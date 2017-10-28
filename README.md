@@ -16,6 +16,7 @@ read me file for the FBExportWebBasedSystem thesis project
 * Spring
 # Frontend
 * MDBootstrap
+* JQuery
 
 
 ## Code Conventions
