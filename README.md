@@ -14,6 +14,7 @@ read me file for the FBExportWebBasedSystem thesis project
 ## Frameworks and Libraries Used 
 # Backend
 * Spring
+* Websocket js
 # Frontend
 * MDBootstrap
 * JQuery
