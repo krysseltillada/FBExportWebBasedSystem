@@ -11,8 +11,11 @@ read me file for the FBExportWebBasedSystem thesis project
 # Database
 * MYSQL
 
-## Frameworks and Libraries Used 
+## Frameworks and Libraries Used
+# Frameworks used
 # Backend
+* jstl
+* jsp
 * Spring
 * Websocket js
 * JPA
@@ -20,7 +23,6 @@ read me file for the FBExportWebBasedSystem thesis project
 # Frontend
 * MDBootstrap
 * JQuery
-
 
 ## Code Conventions
 
