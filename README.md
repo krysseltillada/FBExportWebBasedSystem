@@ -20,6 +20,7 @@ read me file for the FBExportWebBasedSystem thesis project
 * Websocket js
 * JPA
 * Hibernate
+* Servlet
 # Frontend
 * MDBootstrap
 * JQuery
