@@ -7,6 +7,7 @@ read me file for the FBExportWebBasedSystem thesis project
 * Javascript
 * SQL
 * HTML5 / CSS3
+* XML
 
 # Database
 * MYSQL
