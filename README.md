@@ -18,10 +18,11 @@ read me file for the FBExportWebBasedSystem thesis project
 * jstl
 * jsp
 * Spring
-* Websocket js
 * JPA
 * Hibernate
 * Servlet
+* Java Money Currency API
+
 # Frontend
 * MDBootstrap
 * JQuery
