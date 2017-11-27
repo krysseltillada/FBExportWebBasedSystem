@@ -22,6 +22,8 @@ read me file for the FBExportWebBasedSystem thesis project
 * Hibernate
 * Servlet
 * Java Money Currency API
+* Apache commons lang
+* Apache commons text
 
 # Frontend
 * MDBootstrap
