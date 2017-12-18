@@ -28,6 +28,7 @@ read me file for the FBExportWebBasedSystem thesis project
 # Frontend
 * MDBootstrap
 * JQuery
+* underscore.js
 * marine traffic (for tracking ship directions) http://www.marinetraffic.com/en/p/embed-map
 
 ## Code Conventions
