@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC
+  "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN" 
+  "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+<tiles-definitions>
+
+	<!-- sample tile definition
+	
+	<definition name="standard" template="/WEB-INF/layouts/standard.jsp" />
+	
+	<definition name="accounts/list" extends="standard">
+		<put-attribute name="title" value="accounts.list.title" />
+	</definition> 
+	
+	description:
+		name - defines a name for a tile definition and a view name for the controller
+		template - defines a template file for the attributes to be place there 
+		      	   using <tiles:insertAttribute />
+		      	   
+		
+		<put-attribute name = "" value = "" />
+			defines a attribute to be place on insertAttribute the 
+			value defines a value to be replace by that name on <tiles:insertAttribute /> 
+	
+	-->
+
+	<definition name = "main-template" template = "/WEB-INF/views/index.jsp">
+		<put-attribute name = "header" value = "/WEB-INF/views/header.jsp" />
+		<put-attribute name = "main" value = "/WEB-INF/views/main.jsp" />
+		<put-attribute name = "footer" value = "/WEB-INF/views/footer.jsp" />
+	</definition>
+	
+	<definition name = "home" extends = "main-template">
+		<put-attribute name = "main" value = "/WEB-INF/views/main.jsp" />
+	</definition>
+	
+	<definition name = "products" extends = "main-template">
+		<put-attribute name = "main" value = "/WEB-INF/views/products.jsp" />
+	</definition>
+	
+	
+</tiles-definitions>
