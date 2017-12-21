@@ -14,9 +14,5 @@ public class TestController {
 		return "home";
 	}
 	
-	@RequestMapping(value = "/products") 
-	public String products() {
-		return "products";
-	}
 	
 }

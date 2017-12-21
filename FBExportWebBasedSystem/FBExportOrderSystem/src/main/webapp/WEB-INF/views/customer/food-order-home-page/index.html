@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+    <title>Material Design Bootstrap</title>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Material Design Bootstrap -->
+    <link href="css/mdb.min.css" rel="stylesheet">
+
+    <link href="css/style.css" rel="stylesheet">
+
+    <style rel="stylesheet">
+
+.lighter-text {
+  color: #ABB0BE;
+}
+
+.main-color-text {
+  color: #6394F8;
+}
+
+.badge {
+  background-color: #6394F8;
+  border-radius: 10px;
+  color: white;
+  display: inline-block;
+  font-size: 12px;
+  line-height: 1;
+  padding: 3px 7px;
+  text-align: center;
+  vertical-align: middle;
+  white-space: nowrap;
+}
+
+.cart {
+    margin-right: 50px;
+}
+
+.shopping-cart {
+  display: none;
+  margin: 20px 0;
+  float: right;
+  background: white;
+  width: 320px;
+  height: 420px;
+  position: relative;
+  border-radius: 3px;
+  padding: 20px;
+}
+
+.shopping-cart-box {
+    position: absolute; left: 20px; top: 40px; z-index: 1;
+}
+
+.shopping-cart .shopping-cart-header {
+  border-bottom: 1px solid #E8E8E8;
+  padding-bottom: 15px;
+}
+.shopping-cart .shopping-cart-header .shopping-cart-total {
+  float: right;
+}
+
+.shopping-cart-items {
+    position: relative;
+    left: -20px;
+}
+
+.shopping-cart .shopping-cart-items {
+  padding-top: 20px;
+}
+.shopping-cart .shopping-cart-items li {
+  text-decoration: none;
+    margin-bottom: 18px;
+}
+.shopping-cart .shopping-cart-items img {
+  float: left;
+  margin-right: 12px;
+}
+.shopping-cart .shopping-cart-items .item-name {
+  display: block;
+  padding-top: 10px;
+  font-size: 16px;
+}
+.shopping-cart .shopping-cart-items .item-price {
+  color: #6394F8;
+  margin-right: 8px;
+}
+.shopping-cart .shopping-cart-items .item-quantity {
+  color: #ABB0BE;
+}
+
+.shopping-cart:after {
+  bottom: 100%;
+  left: 89%;
+  border: solid transparent;
+  content: " ";
+  height: 0;
+  width: 0;
+  position: absolute;
+  pointer-events: none;
+  border-bottom-color: white;
+  border-width: 8px;
+  margin-left: -8px;
+}
+
+.cart-icon {
+  color: #515783;
+  font-size: 24px;
+  margin-right: 7px;
+  float: left;
+}
+
+.button {
+  background: #6394F8;
+  color: white;
+  text-align: center;
+  padding: 12px;
+  text-decoration: none;
+  display: block;
+  border-radius: 3px;
+  font-size: 16px;
+  width: 285px;
+}
+.button:hover {
+  background: #729ef9;
+}
+
+
+        /* TEMPLATE STYLES */
+
+        
+
+        .nopadding {
+            margin-top: 0 !important;
+        }
+
+        .navbar {
+            height: auto;
+            padding:0px;
+            font-size: 14px;
+        }
+
+        footer.page-footer {
+            background-color: white;
+            margin-top: 2rem;
+        }
+
+        /* footer div.container-fluid div.row ul a {
+            color: black;
+        }
+
+        footer div.container-fluid {
+            color: black;
+        } */
+
+        header nav div a.navbar-brand {
+            margin-left: 7px;
+        }
+
+        .pattern-4 {
+            background-attachment: fixed;
+        }
+
+        .view {
+            background-color: black;
+            -webkit-background-size: cover;
+            -moz-background-size: cover;
+            -o-background-size: cover;
+            background-size: cover;
+            height: 100vh;
+        }
+
+        .full-bg-img {
+            color: #fff;
+        }
+
+       
+        .navbar .btn-group .dropdown-menu a:hover {
+            color: #000 !important;
+        }
+        .navbar .btn-group .dropdown-menu a:active {
+            color: #fff !important;
+        }
+
+        nav.navbar div.container div ul.top-navigation li{
+            padding-right: 10px;
+            padding-left: 0px;
+            margin: 0px;
+        }
+
+    </style>
+</head>
+
+<body>
+
+
+    <!--Navigation & Intro-->
+    <header>
+
+        <!--Navbar-->
+        <nav class="navbar navbar-expand-lg elegant-color-dark">
+            <div class="container">
+
+               
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-3" aria-controls="navbarSupportedContent-3"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+               
+                    <ul class="navbar-nav mr-auto top-navigation">
+                        <li class="nav-item">
+                            <a class="nav-link waves-effect waves-light white-text" href="#">LOGIN <span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link waves-effect waves-light white-text" href="#">SIGN UP</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link waves-effect waves-light white-text" href="#">ABOUT US</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link waves-effect waves-light white-text" href="#">CONTACT US</a>
+                        </li>
+                        <!-- <li class="nav-item btn-group">
+                            <a class="nav-link dropdown-toggle waves-effect waves-light" id="navbarDropdownMenuLink-3" data-toggle="dropdown" aria-haspopup="true"
+                                aria-expanded="false">Dropdown 
+                        </a>
+                            <div class="dropdown-menu dropdown-menu-right dropdown-unique" aria-labelledby="navbarDropdownMenuLink-3">
+                                <a class="dropdown-item waves-effect waves-light" href="#">Action</a>
+                                <a class="dropdown-item waves-effect waves-light" href="#">Another action</a>
+                                <a class="dropdown-item waves-effect waves-light" href="#">Something else here</a>
+                            </div>
+                        </li> -->
+                    </ul>
+                    <ul class="navbar-nav ml-auto nav-flex-icons">
+                        <li class="nav-item">
+                            <a class="nav-link waves-effect waves-light white-text"><i class="fa fa-twitter"></i></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link waves-effect waves-light white-text"><i class="fa fa-google-plus"></i></a>
+                        </li>
+                         <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle waves-effect waves-light" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
+                                aria-expanded="false"><i class="fa fa-user"></i> 
+                        </a>
+                            <div class="dropdown-menu dropdown-menu-right dropdown-unique" aria-labelledby="navbarDropdownMenuLink">
+                                <a class="dropdown-item waves-effect waves-light" href="#">Action</a>
+                                <a class="dropdown-item waves-effect waves-light" href="#">Another action</a>
+                                <a class="dropdown-item waves-effect waves-light" href="#">Something else here</a>
+                            </div>
+                        </li> 
+                    </ul>
+               
+            </div>
+        </nav>
+        <!--/.Navbar-->
+
+    </header>
+
+     <header>
+
+        <nav class="navbar navbar-expand-lg navbar-dark black">
+            <div class="container">
+                <a class="navbar-brand" href="#">Fong Bros International Corp</a>
+            
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Products</a>
+                        </li>
+
+                         
+                    </ul>
+
+                    <div class = "navbar-nav cart">
+                        <a href="#" id="cart" class = "text-white"><i class="fa fa-shopping-cart"></i> Cart <span class="badge">3</span></a></li>     
+                    
+                        
+                          <div class = "container shopping-cart-box">
+  <div class="shopping-cart">
+    <div class="shopping-cart-header">
+      <i class="fa fa-shopping-cart cart-icon"></i><span class="badge">3</span>
+      <div class="shopping-cart-total">
+        <span class="lighter-text">Total:</span>
+        <span class="main-color-text">$2,229.97</span>
+      </div>
+    </div> <!--end shopping-cart-header -->
+
+    <ul class="shopping-cart-items">
+      <li class="clearfix">
+        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/cart-item1.jpg" alt="item1" />
+        <span class="item-name">Sony DSC-RX100M III</span>
+        <span class="item-price">$849.99</span>
+        <span class="item-quantity">Quantity: 01</span>
+      </li>
+
+      <li class="clearfix">
+        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/cart-item2.jpg" alt="item1" />
+        <span class="item-name">KS Automatic Mechanic...</span>
+        <span class="item-price">$1,249.99</span>
+        <span class="item-quantity">Quantity: 01</span>
+      </li>
+
+      <li class="clearfix">
+        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/cart-item3.jpg" alt="item1" />
+        <span class="item-name">Kindle, 6" Glare-Free To...</span>
+        <span class="item-price">$129.99</span>
+        <span class="item-quantity">Quantity: 01</span>
+      </li>
+    </ul>
+
+    <a href="#" class="button">Checkout</a>
+  </div> <!--end shopping-cart -->
+</div> <!--end container -->
+
+                    </div>
+
+                    
+            </div>
+
+             
+        </nav>
+
+        
+  
+
+    </header> 
+
+
+    
+   
+    <!--/Navigation & Intro-->
+
+    <!--Mask-->
+    <div class="view">
+        <div class="full-bg-img flex-center">
+          
+        </div>
+    </div>
+    <!--/.Mask-->
+
+    <!--Footer-->
+    <footer class="page-footer center-on-small-only nopadding rgba-stylish-strong">
+
+        <!--Footer links-->
+        <div class="container-fluid">
+            <div class="row">
+                <!--First column-->
+                <div class="col-lg-3 col-md-6 ml-auto">
+                    <h5 class="title mb-3"><strong>About material design</strong></h5>
+                    <p>Material Design (codenamed Quantum Paper) is a design language developed by Google.</p>
+                    <p>Material Design for Bootstrap (MDB) is a powerful Material Design UI KIT for most popular HTML, CSS,
+                        and JS framework - Bootstrap.</p>
+                </div>
+                <!--/.First column-->
+                <hr class="w-100 clearfix d-sm-none">
+                <!--Second column-->
+                <div class="col-lg-2 col-md-6 ml-auto">
+                    <h5 class="title mb-3"><strong>First column</strong></h5>
+                    <ul>
+                        <li>
+                            <a href="#!">Link 1</a>
+                        </li>
+                        <li>
+                            <a href="#!">Link 2</a>
+                        </li>
+                        <li>
+                            <a href="#!">Link 3</a>
+                        </li>
+                        <li>
+                            <a href="#!">Link 4</a>
+                        </li>
+                    </ul>
+                </div>
+                <!--/.Second column-->
+                <!--Third column-->
+                <div class="col-lg-2 col-md-6 ml-auto">
+                    <h5 class="title mb-3"><strong>Second column</strong></h5>
+                    <ul>
+                        <li>
+                            <a href="#!">Link 1</a>
+                        </li>
+                        <li>
+                            <a href="#!">Link 2</a>
+                        </li>
+                        <li>
+                            <a href="#!">Link 3</a>
+                        </li>
+                        <li>
+                            <a href="#!">Link 4</a>
+                        </li>
+                    </ul>
+                </div>
+                <!--/.Third column-->
+                <!--Fourth column-->
+                <div class="col-lg-2 col-md-6 ml-auto">
+                    <h5 class="title mb-3"><strong>Third column</strong></h5>
+                    <ul>
+                        <li>
+                            <a href="#!">Link 1</a>
+                        </li>
+                        <li>
+                            <a href="#!">Link 2</a>
+                        </li>
+                        <li>
+                            <a href="#!">Link 3</a>
+                        </li>
+                        <li>
+                            <a href="#!">Link 4</a>
+                        </li>
+                    </ul>
+                </div>
+                <!--/.Fourth column-->
+            </div>
+        </div>
+        <!--/.Footer links-->
+
+        <br />
+
+        <!--Copyright-->
+        <div class="footer-copyright stylish-color">
+            <div class="container-fluid">
+                <span class = "text-white"> © 2017 Copyright: </span> <a href="https://www.MDBootstrap.com"> Fong bros International Corporation.  </a>
+
+            </div>
+        </div>
+        <!--/.Copyright-->
+
+    </footer>
+    <!--/.Footer-->
+
+    <!-- SCRIPTS -->
+
+    <!-- JQuery -->
+    <script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+
+    <!-- Bootstrap dropdown -->
+    <script type="text/javascript" src="js/popper.min.js"></script>
+
+    <!-- Bootstrap core JavaScript -->
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+
+    <!-- MDB core JavaScript -->
+    <script type="text/javascript" src="js/mdb.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+
+            
+        (function($){
+    $.fn.outside = function(ename, cb){
+        return this.each(function(){
+            var $this = $(this),
+                self = this;
+
+            $(document).bind(ename, function tempo(e){
+                if(e.target !== self && !$.contains(self, e.target)){
+                    cb.apply(self, [e]);
+                    if(!self.parentNode) $(document.body).unbind(ename, tempo);
+                }
+            });
+        });
+    };
+}(jQuery));
+
+$('.shopping-cart').outside('click', function() {
+     $(".shopping-cart").hide();
+});
+
+                $("#cart").on("click", function(e) { 
+                      e.preventDefault();
+                    e.stopPropagation();
+                     $(".shopping-cart").fadeToggle("fast");
+                });
+
+        });
+
+    </script>
+
+</body>
+
+</html>

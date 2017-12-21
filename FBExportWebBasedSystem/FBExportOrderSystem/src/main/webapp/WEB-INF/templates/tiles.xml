@@ -24,19 +24,8 @@
 	
 	-->
 
-	<definition name = "main-template" template = "/WEB-INF/views/index.jsp">
-		<put-attribute name = "header" value = "/WEB-INF/views/header.jsp" />
-		<put-attribute name = "main" value = "/WEB-INF/views/main.jsp" />
-		<put-attribute name = "footer" value = "/WEB-INF/views/footer.jsp" />
-	</definition>
+	<definition name = "main-template" template = "/WEB-INF/views/customer/index.jsp" />
 	
-	<definition name = "home" extends = "main-template">
-		<put-attribute name = "main" value = "/WEB-INF/views/main.jsp" />
-	</definition>
-	
-	<definition name = "products" extends = "main-template">
-		<put-attribute name = "main" value = "/WEB-INF/views/products.jsp" />
-	</definition>
-	
+	<definition name = "home" extends = "main-template" />
 	
 </tiles-definitions>
