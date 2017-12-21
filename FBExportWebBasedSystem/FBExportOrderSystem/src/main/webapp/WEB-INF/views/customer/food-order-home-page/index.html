@@ -21,7 +21,9 @@
     <link href="css/style.css" rel="stylesheet">
 
     <style rel="stylesheet">
-
+        
+        
+/**/
 .lighter-text {
   color: #ABB0BE;
 }
@@ -48,6 +50,7 @@
 }
 
 .shopping-cart {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   display: none;
   margin: 20px 0;
   float: right;
@@ -173,7 +176,7 @@
         }
 
         .view {
-            background-color: black;
+            background-color: white;
             -webkit-background-size: cover;
             -moz-background-size: cover;
             -o-background-size: cover;
@@ -220,16 +223,28 @@
                
                     <ul class="navbar-nav mr-auto top-navigation">
                         <li class="nav-item">
-                            <a class="nav-link waves-effect waves-light white-text" href="#">LOGIN <span class="sr-only">(current)</span></a>
+                            <a class="nav-link waves-effect waves-light white-text" href="#">
+                                <i class="fa fa-user" aria-hidden="true"></i>
+                                LOGIN <span class="sr-only">(current)</span>
+                            </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link waves-effect waves-light white-text" href="#">SIGN UP</a>
+                            <a class="nav-link waves-effect waves-light white-text" href="#">
+                                <i class="fa fa-user-plus" aria-hidden="true"></i>
+                                SIGN UP
+                            </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link waves-effect waves-light white-text" href="#">ABOUT US</a>
+                            <a class="nav-link waves-effect waves-light white-text" href="#">
+                                <i class="fa fa-info" aria-hidden="true"></i>
+                                ABOUT US
+                            </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link waves-effect waves-light white-text" href="#">CONTACT US</a>
+                            <a class="nav-link waves-effect waves-light white-text" href="#">
+                                <i class="fa fa-envelope-o" aria-hidden="true"></i>
+                                CONTACT US
+                            </a>
                         </li>
                         <!-- <li class="nav-item btn-group">
                             <a class="nav-link dropdown-toggle waves-effect waves-light" id="navbarDropdownMenuLink-3" data-toggle="dropdown" aria-haspopup="true"
@@ -269,9 +284,9 @@
 
      <header>
 
-        <nav class="navbar navbar-expand-lg navbar-dark black">
+        <nav class="navbar navbar-expand-lg navbar-dark blue lighten-1">
             <div class="container">
-                <a class="navbar-brand" href="#">Fong Bros International Corp</a>
+                <a class="navbar-brand" href="#" style = "margin-top: 5px;">Fong Bros International Corp</a>
             
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item active">
@@ -284,8 +299,18 @@
                          
                     </ul>
 
+                    
+                   
+        <form class="form-inline" role="search">
+        <div style = "margin-right: 20px; margin-top:5px; margin-bottom:5px;">
+            <input type="text" class="form-control" placeholder="Search" name="q" style ="width: 450px;">
+            <button class="btn btn-default light-blue lighten-2" type="submit" style = "height: 30px;"><i class="fa fa-search" aria-hidden="true" style="font-size: 10px; position: relative; top: -10px;"></i></button>
+        </div>
+        </form>
+
+                    
                     <div class = "navbar-nav cart">
-                        <a href="#" id="cart" class = "text-white"><i class="fa fa-shopping-cart"></i> Cart <span class="badge">3</span></a></li>     
+                        <a href="#" id="cart" class = "text-white"><i class="fa fa-shopping-cart"></i> Cart <span class="badge light-blue lighten-2" style = "margin-left: 5px;">3</span></a></li>     
                     
                         
                           <div class = "container shopping-cart-box">
