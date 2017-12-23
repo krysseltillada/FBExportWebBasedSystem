@@ -1,519 +1,627 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
+    <head>
 
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
 
-    <title>Material Design Bootstrap</title>
+        <title>Fong Bros</title>
 
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+        <!-- Font Awesome -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
-    <!-- Bootstrap core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+        <!-- Bootstrap core CSS -->
+        <link href="css/bootstrap.min.css" rel="stylesheet">
 
-    <!-- Material Design Bootstrap -->
-    <link href="css/mdb.min.css" rel="stylesheet">
+        <!-- Material Design Bootstrap -->
+        <link href="css/mdb.min.css" rel="stylesheet">
 
-    <link href="css/style.css" rel="stylesheet">
+        <link href="css/style.css" rel="stylesheet">
 
-    <style rel="stylesheet">
-        
-        
-/**/
-.lighter-text {
-  color: #ABB0BE;
-}
-
-.main-color-text {
-  color: #6394F8;
-}
-
-.badge {
-  background-color: #6394F8;
-  border-radius: 10px;
-  color: white;
-  display: inline-block;
-  font-size: 12px;
-  line-height: 1;
-  padding: 3px 7px;
-  text-align: center;
-  vertical-align: middle;
-  white-space: nowrap;
-}
-
-.cart {
-    margin-right: 50px;
-}
-
-.shopping-cart {
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  display: none;
-  margin: 20px 0;
-  float: right;
-  background: white;
-  width: 320px;
-  height: 420px;
-  position: relative;
-  border-radius: 3px;
-  padding: 20px;
-}
-
-.shopping-cart-box {
-    position: absolute; left: 20px; top: 40px; z-index: 1;
-}
-
-.shopping-cart .shopping-cart-header {
-  border-bottom: 1px solid #E8E8E8;
-  padding-bottom: 15px;
-}
-.shopping-cart .shopping-cart-header .shopping-cart-total {
-  float: right;
-}
-
-.shopping-cart-items {
-    position: relative;
-    left: -20px;
-}
-
-.shopping-cart .shopping-cart-items {
-  padding-top: 20px;
-}
-.shopping-cart .shopping-cart-items li {
-  text-decoration: none;
-    margin-bottom: 18px;
-}
-.shopping-cart .shopping-cart-items img {
-  float: left;
-  margin-right: 12px;
-}
-.shopping-cart .shopping-cart-items .item-name {
-  display: block;
-  padding-top: 10px;
-  font-size: 16px;
-}
-.shopping-cart .shopping-cart-items .item-price {
-  color: #6394F8;
-  margin-right: 8px;
-}
-.shopping-cart .shopping-cart-items .item-quantity {
-  color: #ABB0BE;
-}
-
-.shopping-cart:after {
-  bottom: 100%;
-  left: 89%;
-  border: solid transparent;
-  content: " ";
-  height: 0;
-  width: 0;
-  position: absolute;
-  pointer-events: none;
-  border-bottom-color: white;
-  border-width: 8px;
-  margin-left: -8px;
-}
-
-.cart-icon {
-  color: #515783;
-  font-size: 24px;
-  margin-right: 7px;
-  float: left;
-}
-
-.button {
-  background: #6394F8;
-  color: white;
-  text-align: center;
-  padding: 12px;
-  text-decoration: none;
-  display: block;
-  border-radius: 3px;
-  font-size: 16px;
-  width: 285px;
-}
-.button:hover {
-  background: #729ef9;
-}
-
-
-        /* TEMPLATE STYLES */
-
-        
-
-        .nopadding {
-            margin-top: 0 !important;
-        }
-
-        .navbar {
-            height: auto;
-            padding:0px;
-            font-size: 14px;
-        }
-
-        footer.page-footer {
-            background-color: white;
-            margin-top: 2rem;
-        }
-
-        /* footer div.container-fluid div.row ul a {
-            color: black;
-        }
-
-        footer div.container-fluid {
-            color: black;
-        } */
-
-        header nav div a.navbar-brand {
-            margin-left: 7px;
-        }
-
-        .pattern-4 {
-            background-attachment: fixed;
-        }
-
-        .view {
-            background-color: white;
-            -webkit-background-size: cover;
-            -moz-background-size: cover;
-            -o-background-size: cover;
-            background-size: cover;
-            height: 100vh;
-        }
-
-        .full-bg-img {
-            color: #fff;
-        }
-
-       
-        .navbar .btn-group .dropdown-menu a:hover {
-            color: #000 !important;
-        }
-        .navbar .btn-group .dropdown-menu a:active {
-            color: #fff !important;
-        }
-
-        nav.navbar div.container div ul.top-navigation li{
-            padding-right: 10px;
-            padding-left: 0px;
-            margin: 0px;
-        }
-
-    </style>
-</head>
-
-<body>
-
-
-    <!--Navigation & Intro-->
-    <header>
-
-        <!--Navbar-->
-        <nav class="navbar navbar-expand-lg elegant-color-dark">
-            <div class="container">
-
-               
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-3" aria-controls="navbarSupportedContent-3"
-                    aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-               
-                    <ul class="navbar-nav mr-auto top-navigation">
-                        <li class="nav-item">
-                            <a class="nav-link waves-effect waves-light white-text" href="#">
-                                <i class="fa fa-user" aria-hidden="true"></i>
-                                LOGIN <span class="sr-only">(current)</span>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link waves-effect waves-light white-text" href="#">
-                                <i class="fa fa-user-plus" aria-hidden="true"></i>
-                                SIGN UP
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link waves-effect waves-light white-text" href="#">
-                                <i class="fa fa-info" aria-hidden="true"></i>
-                                ABOUT US
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link waves-effect waves-light white-text" href="#">
-                                <i class="fa fa-envelope-o" aria-hidden="true"></i>
-                                CONTACT US
-                            </a>
-                        </li>
-                        <!-- <li class="nav-item btn-group">
-                            <a class="nav-link dropdown-toggle waves-effect waves-light" id="navbarDropdownMenuLink-3" data-toggle="dropdown" aria-haspopup="true"
-                                aria-expanded="false">Dropdown 
-                        </a>
-                            <div class="dropdown-menu dropdown-menu-right dropdown-unique" aria-labelledby="navbarDropdownMenuLink-3">
-                                <a class="dropdown-item waves-effect waves-light" href="#">Action</a>
-                                <a class="dropdown-item waves-effect waves-light" href="#">Another action</a>
-                                <a class="dropdown-item waves-effect waves-light" href="#">Something else here</a>
-                            </div>
-                        </li> -->
-                    </ul>
-                    <ul class="navbar-nav ml-auto nav-flex-icons">
-                        <li class="nav-item">
-                            <a class="nav-link waves-effect waves-light white-text"><i class="fa fa-twitter"></i></a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link waves-effect waves-light white-text"><i class="fa fa-google-plus"></i></a>
-                        </li>
-                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle waves-effect waves-light" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
-                                aria-expanded="false"><i class="fa fa-user"></i> 
-                        </a>
-                            <div class="dropdown-menu dropdown-menu-right dropdown-unique" aria-labelledby="navbarDropdownMenuLink">
-                                <a class="dropdown-item waves-effect waves-light" href="#">Action</a>
-                                <a class="dropdown-item waves-effect waves-light" href="#">Another action</a>
-                                <a class="dropdown-item waves-effect waves-light" href="#">Something else here</a>
-                            </div>
-                        </li> 
-                    </ul>
-               
-            </div>
-        </nav>
-        <!--/.Navbar-->
-
-    </header>
-
-     <header>
-
-        <nav class="navbar navbar-expand-lg navbar-dark blue lighten-1">
-            <div class="container">
-                <a class="navbar-brand" href="#" style = "margin-top: 5px;">Fong Bros International Corp</a>
+        <style rel="stylesheet">
             
-                    <ul class="navbar-nav mr-auto">
-                        <li class="nav-item active">
-                            <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Products</a>
-                        </li>
 
-                         
-                    </ul>
+            /* shopping cart */
 
-                    
-                   
-        <form class="form-inline" role="search">
-        <div style = "margin-right: 20px; margin-top:5px; margin-bottom:5px;">
-            <input type="text" class="form-control" placeholder="Search" name="q" style ="width: 450px;">
-            <button class="btn btn-default light-blue lighten-2" type="submit" style = "height: 30px;"><i class="fa fa-search" aria-hidden="true" style="font-size: 10px; position: relative; top: -10px;"></i></button>
-        </div>
-        </form>
+            .lighter-text {
+            color: #ABB0BE;
+            }
 
-                    
-                    <div class = "navbar-nav cart">
-                        <a href="#" id="cart" class = "text-white"><i class="fa fa-shopping-cart"></i> Cart <span class="badge light-blue lighten-2" style = "margin-left: 5px;">3</span></a></li>     
-                    
-                        
-                          <div class = "container shopping-cart-box">
-  <div class="shopping-cart">
-    <div class="shopping-cart-header">
-      <i class="fa fa-shopping-cart cart-icon"></i><span class="badge">3</span>
-      <div class="shopping-cart-total">
-        <span class="lighter-text">Total:</span>
-        <span class="main-color-text">$2,229.97</span>
-      </div>
-    </div> <!--end shopping-cart-header -->
+            .main-color-text {
+            color: #6394F8;
+            }
 
-    <ul class="shopping-cart-items">
-      <li class="clearfix">
-        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/cart-item1.jpg" alt="item1" />
-        <span class="item-name">Sony DSC-RX100M III</span>
-        <span class="item-price">$849.99</span>
-        <span class="item-quantity">Quantity: 01</span>
-      </li>
+            .badge {
+            background-color: #6394F8;
+            border-radius: 10px;
+            color: white;
+            display: inline-block;
+            font-size: 12px;
+            line-height: 1;
+            padding: 3px 7px;
+            text-align: center;
+            vertical-align: middle;
+            white-space: nowrap;
+            }
 
-      <li class="clearfix">
-        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/cart-item2.jpg" alt="item1" />
-        <span class="item-name">KS Automatic Mechanic...</span>
-        <span class="item-price">$1,249.99</span>
-        <span class="item-quantity">Quantity: 01</span>
-      </li>
+            .cart {
+                margin-right: 50px;
+            }
 
-      <li class="clearfix">
-        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/cart-item3.jpg" alt="item1" />
-        <span class="item-name">Kindle, 6" Glare-Free To...</span>
-        <span class="item-price">$129.99</span>
-        <span class="item-quantity">Quantity: 01</span>
-      </li>
-    </ul>
+            .shopping-cart {
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+            display: none;
+            margin: 20px 0;
+            float: right;
+            background: white;
+            width: 320px;
+            height: 420px;
+            position: relative;
+            border-radius: 3px;
+            padding: 20px;
+            }
 
-    <a href="#" class="button">Checkout</a>
-  </div> <!--end shopping-cart -->
-</div> <!--end container -->
+            .shopping-cart-box {
+                position: absolute; left: 20px; top: 40px; z-index: 1;
+            }
 
-                    </div>
+            .shopping-cart .shopping-cart-header {
+            border-bottom: 1px solid #E8E8E8;
+            padding-bottom: 15px;
+            }
+            .shopping-cart .shopping-cart-header .shopping-cart-total {
+            float: right;
+            }
 
-                    
-            </div>
+            .shopping-cart .shopping-cart-items {
+            padding-top: 20px;
+            }
+            .shopping-cart .shopping-cart-items li {
+            text-decoration: none;
+                margin-bottom: 18px;
+            }
+            .shopping-cart .shopping-cart-items img {
+            float: left;
+            margin-right: 12px;
+            }
+            .shopping-cart .shopping-cart-items .item-name {
+            display: block;
+            padding-top: 10px;
+            font-size: 16px;
+            }
+            .shopping-cart .shopping-cart-items .item-price {
+            color: #6394F8;
+            margin-right: 8px;
+            }
+            .shopping-cart .shopping-cart-items .item-quantity {
+            color: #ABB0BE;
+            }
 
-             
-        </nav>
+            .shopping-cart:after {
+            bottom: 100%;
+            left: 89%;
+            border: solid transparent;
+            content: " ";
+            height: 0;
+            width: 0;
+            position: absolute;
+            pointer-events: none;
+            border-bottom-color: white;
+            border-width: 8px;
+            margin-left: -8px;
+            }
+
+            .cart-icon {
+            color: #515783;
+            font-size: 24px;
+            margin-right: 7px;
+            float: left;
+            }
+
+            .button {
+            background: #6394F8;
+            color: white;
+            text-align: center;
+            padding: 12px;
+            text-decoration: none;
+            display: block;
+            border-radius: 3px;
+            font-size: 16px;
+            width: 285px;
+            }
+            .button:hover {
+            background: #729ef9;
+            }
+
+
+            /* end of shopping cart */
+
+            /* main template */
+
+            .nopadding {
+                margin-top: 0 !important;
+            }
+
+            .navbar {
+                height: auto;
+                padding:0px;
+                font-size: 14px;
+            }
+
+            nav.sub-nav .sub-nav-date:hover {
+                text-decoration: underline;
+            }
+
+            nav.sub-nav .container ul.nav-flex-icons li.nav-item a i {
+                margin-right: 3px;
+            }
+
+            header .main-nav-bar .container .navbar-nav .nav-link {
+                font-size: 16px;
+            }
+
+            header .main-nav-bar {
+                margin-top: 50px;
+            }
+
+            footer.page-footer {
+                background-color: white;
+                margin-top: 2rem;
+            }
+
+            header nav div a.navbar-brand {
+                margin-left: 7px;
+            }
+
+            .pattern-4 {
+                background-attachment: fixed;
+            }
+
+            .view {
+                background-color: white;
+                -webkit-background-size: cover;
+                -moz-background-size: cover;
+                -o-background-size: cover;
+                background-size: cover;
+                height: 100vh;
+            }
+
+            .full-bg-img {
+                color: #fff;
+            }
 
         
-  
+            .navbar .btn-group .dropdown-menu a:hover {
+                color: #000 !important;
+            }
+            .navbar .btn-group .dropdown-menu a:active {
+                color: #fff !important;
+            }
 
-    </header> 
+            nav.navbar div.container div ul.top-navigation li{
+                padding-right: 10px;
+                padding-left: 0px;
+                margin: 0px;
+            }
 
 
-    
-   
-    <!--/Navigation & Intro-->
+            .slider {
+                width: 95px;
+                margin: 2em auto;
+            }
 
-    <!--Mask-->
-    <div class="view">
-        <div class="full-bg-img flex-center">
-          
-        </div>
-    </div>
-    <!--/.Mask-->
+            .closebtn {
+                margin-left: 15px;
+                color: black;
+                font-weight: bold;
+                float: right;
+                font-size: 22px;
+                line-height: 20px;
+                cursor: pointer;
+                transition: 0.3s;
+            }
 
-    <!--Footer-->
-    <footer class="page-footer center-on-small-only nopadding rgba-stylish-strong">
+            .closebtn:hover {
+                color: black;
+            }
 
-        <!--Footer links-->
-        <div class="container-fluid">
-            <div class="row">
-                <!--First column-->
-                <div class="col-lg-3 col-md-6 ml-auto">
-                    <h5 class="title mb-3"><strong>About material design</strong></h5>
-                    <p>Material Design (codenamed Quantum Paper) is a design language developed by Google.</p>
-                    <p>Material Design for Bootstrap (MDB) is a powerful Material Design UI KIT for most popular HTML, CSS,
-                        and JS framework - Bootstrap.</p>
-                </div>
-                <!--/.First column-->
-                <hr class="w-100 clearfix d-sm-none">
-                <!--Second column-->
-                <div class="col-lg-2 col-md-6 ml-auto">
-                    <h5 class="title mb-3"><strong>First column</strong></h5>
-                    <ul>
-                        <li>
-                            <a href="#!">Link 1</a>
-                        </li>
-                        <li>
-                            <a href="#!">Link 2</a>
-                        </li>
-                        <li>
-                            <a href="#!">Link 3</a>
-                        </li>
-                        <li>
-                            <a href="#!">Link 4</a>
-                        </li>
-                    </ul>
-                </div>
-                <!--/.Second column-->
-                <!--Third column-->
-                <div class="col-lg-2 col-md-6 ml-auto">
-                    <h5 class="title mb-3"><strong>Second column</strong></h5>
-                    <ul>
-                        <li>
-                            <a href="#!">Link 1</a>
-                        </li>
-                        <li>
-                            <a href="#!">Link 2</a>
-                        </li>
-                        <li>
-                            <a href="#!">Link 3</a>
-                        </li>
-                        <li>
-                            <a href="#!">Link 4</a>
-                        </li>
-                    </ul>
-                </div>
-                <!--/.Third column-->
-                <!--Fourth column-->
-                <div class="col-lg-2 col-md-6 ml-auto">
-                    <h5 class="title mb-3"><strong>Third column</strong></h5>
-                    <ul>
-                        <li>
-                            <a href="#!">Link 1</a>
-                        </li>
-                        <li>
-                            <a href="#!">Link 2</a>
-                        </li>
-                        <li>
-                            <a href="#!">Link 3</a>
-                        </li>
-                        <li>
-                            <a href="#!">Link 4</a>
-                        </li>
-                    </ul>
-                </div>
-                <!--/.Fourth column-->
-            </div>
-        </div>
-        <!--/.Footer links-->
 
-        <br />
+            /* ul{
+                    padding: 0;
+                    list-style: none;
 
-        <!--Copyright-->
-        <div class="footer-copyright stylish-color">
-            <div class="container-fluid">
-                <span class = "text-white"> © 2017 Copyright: </span> <a href="https://www.MDBootstrap.com"> Fong bros International Corporation.  </a>
-
-            </div>
-        </div>
-        <!--/.Copyright-->
-
-    </footer>
-    <!--/.Footer-->
-
-    <!-- SCRIPTS -->
-
-    <!-- JQuery -->
-    <script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
-
-    <!-- Bootstrap dropdown -->
-    <script type="text/javascript" src="js/popper.min.js"></script>
-
-    <!-- Bootstrap core JavaScript -->
-    <script type="text/javascript" src="js/bootstrap.min.js"></script>
-
-    <!-- MDB core JavaScript -->
-    <script type="text/javascript" src="js/mdb.min.js"></script>
-
-    <script>
-        $(document).ready(function () {
-
-            
-        (function($){
-    $.fn.outside = function(ename, cb){
-        return this.each(function(){
-            var $this = $(this),
-                self = this;
-
-            $(document).bind(ename, function tempo(e){
-                if(e.target !== self && !$.contains(self, e.target)){
-                    cb.apply(self, [e]);
-                    if(!self.parentNode) $(document.body).unbind(ename, tempo);
                 }
-            });
-        });
-    };
-}(jQuery));
+                ul li{
+                    position: relative;
+                    line-height: 21px;
+                    text-align: left;
+                }
+                ul li a{
+                    display: block;
+                    padding: 8px 25px;
+                    color: #333;
+                    text-decoration: none;
+                }
+                ul li ul.dropdown{
+                    min-width: 100%; 
+                    background: #f2f2f2;
+                    display: none;
+                    position: absolute;
+                    z-index: 999;
+                    left: 0;
+                }
+                ul li:hover ul.dropdown{
+                    display: block; 
+                }
+                ul li ul.dropdown li{
+                    display: block;
+                } */
+        
 
-$('.shopping-cart').outside('click', function() {
-     $(".shopping-cart").hide();
-});
+        </style>
+    </head>
 
-                $("#cart").on("click", function(e) { 
-                      e.preventDefault();
-                    e.stopPropagation();
-                     $(".shopping-cart").fadeToggle("fast");
+    <body>
+
+
+        <!--Navigation & Intro-->
+        <header>
+
+            <!--Navbar-->
+            <nav class="navbar navbar-expand-lg elegant-color-dark sub-nav">
+                <div class="container">
+
+                
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-3" aria-controls="navbarSupportedContent-3"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                
+                        <ul class="navbar-nav mr-auto top-navigation">
+
+                            <li class="nav-item">
+                                <a class="nav-link white-text sub-nav-date" href="#"></a>
+                            </li>
+
+                            <!-- <li class="nav-item">
+                                <a class="nav-link waves-effect waves-light white-text" href="#">
+                                    <i class="fa fa-user" aria-hidden="true"></i>
+                                    LOGIN <span class="sr-only">(current)</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link waves-effect waves-light white-text" href="#">
+                                    <i class="fa fa-user-plus" aria-hidden="true"></i>
+                                    SIGN UP
+                                </a>
+                            </li> -->
+                        
+                            <!-- <li class="nav-item btn-group">
+                                <a class="nav-link dropdown-toggle waves-effect waves-light" id="navbarDropdownMenuLink-3" data-toggle="dropdown" aria-haspopup="true"
+                                    aria-expanded="false">Dropdown 
+                            </a>
+                                <div class="dropdown-menu dropdown-menu-right dropdown-unique" aria-labelledby="navbarDropdownMenuLink-3">
+                                    <a class="dropdown-item waves-effect waves-light" href="#">Action</a>
+                                    <a class="dropdown-item waves-effect waves-light" href="#">Another action</a>
+                                    <a class="dropdown-item waves-effect waves-light" href="#">Something else here</a>
+                                </div>
+                            </li> -->
+                        </ul>
+                        <ul class="navbar-nav ml-auto nav-flex-icons" style = "margin-right: 45px;">
+                            <li class="nav-item">
+                                <a class="nav-link waves-effect waves-light white-text" href="#">
+                                    <i class="fa fa-user" aria-hidden="true"></i>
+                                    <span> LOGIN </span> 
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link waves-effect waves-light white-text" href="#">
+                                    <i class="fa fa-user-plus" aria-hidden="true"></i>
+                                    <span> SIGN UP </span>
+                                </a>
+                            </li>
+                        </ul>
+                
+                </div>
+            </nav>
+            <!--/.Navbar-->
+
+        </header>
+    
+        <header>
+            <div style="margin-bottom: -50px;background-image: url('h1.jpg'); background-repeat: no-repeat; background-size: cover;">
+                <a class="navbar-brand" href="#" style = "margin-top: 5px; margin-bottom: 5px; margin-left: 85px; font-size: 30px; color:#000;">Fong Bros International Corp</a>
+            </div>
+        </header>
+
+        <header>
+
+            <nav class="navbar navbar-expand-lg navbar-dark blue lighten-1 main-nav-bar">
+                <div class="container" style="margin-left: 65px;">
+                    <ul class="navbar-nav mr-auto">
+                            <li class="nav-item active">
+                                <a class="nav-link" href="#" style="margin-right: 10px;">Home <span class="sr-only">(current)</span></a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#" style="margin-right: 10px;">Products</a>
+                                <!-- <ul class="dropdown">
+                                <li><a href="#">Journals</a></li>
+                                <li><a href="#">LAW</a></li>
+                                <li><a href="#">Interviews</a></li>
+                            </ul> -->
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link" href="#" style="margin-right: 10px;">
+                                    About Us
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#" style="margin-right: 10px;">
+                                    Contact Us
+                                </a>
+                            </li>
+
+                            
+                        </ul>
+
+                        <form class="form-inline" role="search">
+                            <div style = "margin-right: 20px; margin-top:5px; margin-bottom:5px;">
+                                <input type="text" class="form-control" placeholder="Search" name="q" style ="width: 500px;">
+                                <button class="btn btn-default light-blue lighten-2" type="submit" style = "height: 30px;"><i class="fa fa-search" aria-hidden="true" style="font-size: 10px; position: relative; top: -10px;"></i></button>
+                            </div>
+                        </form>
+
+                        
+                        <div class = "navbar-nav cart">
+                            <a href="#" id="cart" class = "text-white"><i class="fa fa-shopping-cart"></i> Cart <span class="badge light-blue lighten-2" style = "margin-left: 5px;">3</span></a></li>     
+                        
+                            
+                            <div class = "container shopping-cart-box">
+
+                                <div class="shopping-cart">
+                                    <div class="shopping-cart-header">
+                                    <i class="fa fa-shopping-cart cart-icon"></i><span class="badge">3</span>
+                                    <div class="shopping-cart-total">
+                                        <span class="lighter-text">Total:</span>
+                                        <span class="main-color-text">$2,229.97</span>
+                                    </div>
+                                    </div> <!--end shopping-cart-header -->
+
+                                    <ul class="shopping-cart-items">
+                                    <li class="clearfix">
+                                        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/cart-item1.jpg" alt="item1" />
+                                        <span class="item-name">Sony DSC-RX100M III</span>
+                                        <span class="item-price">$849.99</span>
+                                        <span class="item-quantity">Quantity: 01</span>
+                                    </li>
+
+                                    <li class="clearfix">
+                                        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/cart-item2.jpg" alt="item1" />
+                                        <span class="item-name">KS Automatic Mechanic...</span>
+                                        <span class="item-price">$1,249.99</span>
+                                        <span class="item-quantity">Quantity: 01</span>
+                                    </li>
+
+                                    <li class="clearfix">
+                                        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/cart-item3.jpg" alt="item1" />
+                                        <span class="item-name">Kindle, 6" Glare-Free To...</span>
+                                        <span class="item-price">$129.99</span>
+                                        <span class="item-quantity">Quantity: 01</span>
+                                    </li>
+                                    </ul>
+
+                                    <a href="#" class="button">Checkout</a>
+                                </div> <!--end shopping-cart -->
+                
+                
+                            </div> <!--end container -->
+
+                        </div>
+
+                        
+                </div>
+
+                
+            </nav>
+
+        </header> 
+
+
+        
+    
+        <!--/Navigation & Intro-->
+
+        <!--Mask-->
+        <div class="view">
+            <div class="full-bg-img flex-center">
+            
+            </div>
+        </div>
+        <!--/.Mask-->
+
+        <!--Footer-->
+        <footer class="page-footer center-on-small-only nopadding rgba-stylish-strong">
+
+            <!--Footer links-->
+            <div class="container-fluid">
+                <div class="row">
+                    <!--First column-->
+                    <div class="col-lg-3 col-md-6 ml-auto">
+                        <h5 class="title mb-3"><strong>About material design</strong></h5>
+                        <p>Material Design (codenamed Quantum Paper) is a design language developed by Google.</p>
+                        <p>Material Design for Bootstrap (MDB) is a powerful Material Design UI KIT for most popular HTML, CSS,
+                            and JS framework - Bootstrap.</p>
+                    </div>
+                    <!--/.First column-->
+                    <hr class="w-100 clearfix d-sm-none">
+                    <!--Second column-->
+                    <div class="col-lg-2 col-md-6 ml-auto">
+                        <h5 class="title mb-3"><strong>First column</strong></h5>
+                        <ul>
+                            <li>
+                                <a href="#!">Link 1</a>
+                            </li>
+                            <li>
+                                <a href="#!">Link 2</a>
+                            </li>
+                            <li>
+                                <a href="#!">Link 3</a>
+                            </li>
+                            <li>
+                                <a href="#!">Link 4</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <!--/.Second column-->
+                    <!--Third column-->
+                    <div class="col-lg-2 col-md-6 ml-auto">
+                        <h5 class="title mb-3"><strong>Second column</strong></h5>
+                        <ul>
+                            <li>
+                                <a href="#!">Link 1</a>
+                            </li>
+                            <li>
+                                <a href="#!">Link 2</a>
+                            </li>
+                            <li>
+                                <a href="#!">Link 3</a>
+                            </li>
+                            <li>
+                                <a href="#!">Link 4</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <!--/.Third column-->
+                    <!--Fourth column-->
+                    <div class="col-lg-2 col-md-6 ml-auto">
+                        <h5 class="title mb-3"><strong>Third column</strong></h5>
+                        <ul>
+                            <li>
+                                <a href="#!">Link 1</a>
+                            </li>
+                            <li>
+                                <a href="#!">Link 2</a>
+                            </li>
+                            <li>
+                                <a href="#!">Link 3</a>
+                            </li>
+                            <li>
+                                <a href="#!">Link 4</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <!--/.Fourth column-->
+                </div>
+            </div>
+            <!--/.Footer links-->
+
+            <br />
+
+            <!--Copyright-->
+            <div class="footer-copyright stylish-color">
+                <div class="container-fluid">
+                    <span class = "text-white"> © 2017 Copyright: </span> <a href="https://www.MDBootstrap.com"> Fong bros International Corporation.  </a>
+
+                </div>
+            </div>
+            <!--/.Copyright-->
+
+        </footer>
+        <!--/.Footer-->
+
+        <!-- SCRIPTS -->
+
+        <!-- JQuery -->
+        <script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+
+        <!-- Bootstrap dropdown -->
+        <script type="text/javascript" src="js/popper.min.js"></script>
+
+        <!-- Bootstrap core JavaScript -->
+        <script type="text/javascript" src="js/bootstrap.min.js"></script>
+
+        <!-- MDB core JavaScript -->
+        <script type="text/javascript" src="js/mdb.min.js"></script>
+
+        <script src="js/moment.js"> </script>
+        <script src="js/moment-timezone-with-data.js"></script>
+        <script src="js/moment-timezone.js"></script>
+
+        <script>
+            
+            $(document).ready(function () {
+
+                        
+                (function($){
+
+                    $.fn.outside = function(ename, cb){
+                        return this.each(function(){
+                            var $this = $(this),
+                                self = this;
+
+                            $(document).bind(ename, function tempo(e){
+                                if(e.target !== self && !$.contains(self, e.target)){
+                                    cb.apply(self, [e]);
+                                    if(!self.parentNode) $(document.body).unbind(ename, tempo);
+                                }
+                            });
+                        });
+                    };
+                }(jQuery));
+
+                $('.sub-nav-date').ready(function () {
+                
+                    var isAllowed = false;
+
+                    $('.sub-nav-date').text("please wait..");
+
+                    $.ajax({
+                        url: "http://ip-api.com/json",
+                        jsonpCallback: "callback",
+                        dataType: "json",
+                        success: function( location ) {
+                            
+                                setInterval(function() {
+
+                                    var currentDateFormat = moment(new Date().toString());
+
+                                    var country = location.country.toLowerCase();
+
+                                    var currentDate = currentDateFormat.tz(location.timezone).format("ddd YYYY-MM-DD hh:mm:ss a");
+                                    currentDate += " (" + location.timezone + " " + location.country + ")"; 
+
+                                    var countryCity = location.timezone.split("/");
+
+                                    var linkTimeZone = countryCity[0].toLowerCase() + "--" + countryCity[1].toLowerCase();
+
+                                    $('.sub-nav-date').text(currentDate); 
+                                    $('.sub-nav-date').attr("href", "https://www.zeitverschiebung.net/en/timezone/" + linkTimeZone);
+
+                                }, 1000);
+                                
+                        }
+                    });	
+
                 });
 
-        });
+                $('.shopping-cart').outside('click', function() {
+                    $(".shopping-cart").hide();
+                });
 
-    </script>
+                $("#cart").on("click", function(e) { 
+                        e.preventDefault();
+                        e.stopPropagation();
+                        $(".shopping-cart").fadeToggle("fast");
+                });
 
-</body>
+            });
+
+        
+        </script>
+
+    </body>
 
 </html>
