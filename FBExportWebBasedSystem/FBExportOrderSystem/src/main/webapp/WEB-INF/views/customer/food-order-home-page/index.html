@@ -228,7 +228,7 @@
             }
 
 
-            /* ul{
+             /* ul{
                     padding: 0;
                     list-style: none;
 
@@ -257,9 +257,34 @@
                 }
                 ul li ul.dropdown li{
                     display: block;
-                } */
+                }  */
         
+                .card {
+                    width: 300px;
+                    height: 400px;
+                    z-index: 0;
+                    margin-bottom: 10px;
+                }
 
+                .col {
+                    margin-right: 0px !important;
+                }
+
+                header nav.nav-category {
+                    height: 30px;
+                }
+
+                header nav.nav-category div.container ul.top-navigation li.nav-item a {
+                    padding-right: 0px;
+                    padding-left: 0px;
+                }
+
+
+                header nav.nav-category div.container ul.top-navigation {
+                    margin-left: 100px;
+                }
+
+                
         </style>
     </head>
 
@@ -338,20 +363,24 @@
 
         <header>
 
+            
+
             <nav class="navbar navbar-expand-lg navbar-dark blue lighten-1 main-nav-bar">
                 <div class="container" style="margin-left: 65px;">
                     <ul class="navbar-nav mr-auto">
-                            <li class="nav-item active">
+                            <!-- <li class="nav-item active">
                                 <a class="nav-link" href="#" style="margin-right: 10px;">Home <span class="sr-only">(current)</span></a>
+                            </li> -->
+                            <li class="nav-item active">
+                                <a class="nav-link" href="#" style="margin-right: 10px;" data-toggle="collapse" data-target="#demo">Products</a>
+
+                                 <!-- <ul class="dropdown" style = "margin-top: 5px;">
+                                <li>
+                                    <a href="#">Seafoods</a> 
+                                </li>
+                            </ul>  -->
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#" style="margin-right: 10px;">Products</a>
-                                <!-- <ul class="dropdown">
-                                <li><a href="#">Journals</a></li>
-                                <li><a href="#">LAW</a></li>
-                                <li><a href="#">Interviews</a></li>
-                            </ul> -->
-                            </li>
+                            
 
                             <li class="nav-item">
                                 <a class="nav-link" href="#" style="margin-right: 10px;">
@@ -428,22 +457,317 @@
             </nav>
 
         </header> 
-
-
         
-    
-        <!--/Navigation & Intro-->
 
-        <!--Mask-->
-        <div class="view">
-            <div class="full-bg-img flex-center">
-            
-            </div>
+          <div id="demo" class="collapse">
+            Lorem ipsum dolor text....
         </div>
-        <!--/.Mask-->
+
+        <header>
+
+
+            <!--Navbar-->
+            <nav class="navbar navbar-expand-lg elegant-color-dark nav-category">
+                <div class="container">
+
+                
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-3" aria-controls="navbarSupportedContent-3"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                
+                        <ul class="navbar-nav mr-auto top-navigation">
+
+                            <!-- <li class="nav-item">
+                                <a class="nav-link white-text sub-nav-date" href="#"></a>
+                            </li> -->
+
+                            <li class = "nav-item">
+                                <a class = "nav-link white-text"> Products </a>
+                                
+                            </li>
+                            
+                            <li class = "nav-item">
+                                <span class = "nav-link white-text" href = "#">  >  </span>
+                                
+                            </li>
+
+                            <li class = "nav-item">
+                                <a class = "nav-link white-text"> new products </a>
+                                
+                            </li>
+
+                            <!-- <li class="nav-item">
+                                <a class="nav-link waves-effect waves-light white-text" href="#">
+                                    <i class="fa fa-user" aria-hidden="true"></i>
+                                    LOGIN <span class="sr-only">(current)</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link waves-effect waves-light white-text" href="#">
+                                    <i class="fa fa-user-plus" aria-hidden="true"></i>
+                                    SIGN UP
+                                </a>
+                            </li> -->
+                        
+                            <!-- <li class="nav-item btn-group">
+                                <a class="nav-link dropdown-toggle waves-effect waves-light" id="navbarDropdownMenuLink-3" data-toggle="dropdown" aria-haspopup="true"
+                                    aria-expanded="false">Dropdown 
+                            </a>
+                                <div class="dropdown-menu dropdown-menu-right dropdown-unique" aria-labelledby="navbarDropdownMenuLink-3">
+                                    <a class="dropdown-item waves-effect waves-light" href="#">Action</a>
+                                    <a class="dropdown-item waves-effect waves-light" href="#">Another action</a>
+                                    <a class="dropdown-item waves-effect waves-light" href="#">Something else here</a>
+                                </div>
+                            </li> -->
+                        </ul>
+                        <ul class="navbar-nav ml-auto nav-flex-icons" style = "margin-right: 45px;">
+                            <!-- <li class="nav-item">
+                                <a class="nav-link waves-effect waves-light white-text" href="#">
+                                    <i class="fa fa-user" aria-hidden="true"></i>
+                                    <span> LOGIN </span> 
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link waves-effect waves-light white-text" href="#">
+                                    <i class="fa fa-user-plus" aria-hidden="true"></i>
+                                    <span> SIGN UP </span>
+                                </a>
+                            </li> -->
+                        </ul>
+                
+                </div>
+            </nav>
+            <!--/.Navbar-->
+
+        </header>
+      
+        
+         <div class = "container" style = "margin-top: 20px; margin-bottom: 20px; width: 960px;">
+
+                <div class = "row">
+                                
+                    <div class = "col">
+                        <header style = "margin-bottom: 10px;">
+                            <h1> Products </h1>
+         
+                        </header>        
+                    </div>
+
+                </div>
+
+                <div class = "row no-gutters">
+                    <div class = "col">
+                        <div class="card">
+
+                              <!--Card image-->
+                            <img class="img-fluid" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20%282%29.jpg" alt="Card image cap">
+
+                            <!--Card content-->
+                            <div class="card-body">
+                                <!--Title-->
+                                <h4 class="card-title">Card title</h4>
+                                <!--Text-->
+                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                <a href="#" class="btn btn-primary">Button</a>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class = "col">
+
+                        <div class="card">
+
+                            <!--Card image-->
+                            <img class="img-fluid" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20%282%29.jpg" alt="Card image cap">
+
+                            <!--Card content-->
+                            <div class="card-body">
+                                <!--Title-->
+                                <h4 class="card-title">Card title</h4>
+                                <!--Text-->
+                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                <a href="#" class="btn btn-primary">Button</a>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    
+                    <div class = "col">
+
+                        <div class="card">
+
+                            <!--Card image-->
+                            <img class="img-fluid" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20%282%29.jpg" alt="Card image cap">
+
+                            <!--Card content-->
+                            <div class="card-body">
+                                <!--Title-->
+                                <h4 class="card-title">Card title</h4>
+                                <!--Text-->
+                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                <a href="#" class="btn btn-primary">Button</a>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                 <div class = "row no-gutters">
+                    <div class = "col">
+                        <div class="card mr-0">
+
+                              <!--Card image-->
+                            <img class="img-fluid" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20%282%29.jpg" alt="Card image cap">
+
+                            <!--Card content-->
+                            <div class="card-body">
+                                <!--Title-->
+                                <h4 class="card-title">Card title</h4>
+                                <!--Text-->
+                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                <a href="#" class="btn btn-primary">Button</a>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class = "col">
+
+                        <div class="card">
+
+                            <!--Card image-->
+                            <img class="img-fluid" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20%282%29.jpg" alt="Card image cap">
+
+                            <!--Card content-->
+                            <div class="card-body">
+                                <!--Title-->
+                                <h4 class="card-title">Card title</h4>
+                                <!--Text-->
+                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                <a href="#" class="btn btn-primary">Button</a>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    
+                    <div class = "col">
+
+                        <div class="card">
+
+                            <!--Card image-->
+                            <img class="img-fluid" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20%282%29.jpg" alt="Card image cap">
+
+                            <!--Card content-->
+                            <div class="card-body">
+                                <!--Title-->
+                                <h4 class="card-title">Card title</h4>
+                                <!--Text-->
+                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                <a href="#" class="btn btn-primary">Button</a>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                 <div class = "row no-gutters">
+                    <div class = "col">
+                        <div class="card mr-0">
+
+                              <!--Card image-->
+                            <img class="img-fluid" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20%282%29.jpg" alt="Card image cap">
+
+                            <!--Card content-->
+                            <div class="card-body">
+                                <!--Title-->
+                                <h4 class="card-title">Card title</h4>
+                                <!--Text-->
+                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                <a href="#" class="btn btn-primary">Button</a>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class = "col">
+
+                        <div class="card">
+
+                            <!--Card image-->
+                            <img class="img-fluid" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20%282%29.jpg" alt="Card image cap">
+
+                            <!--Card content-->
+                            <div class="card-body">
+                                <!--Title-->
+                                <h4 class="card-title">Card title</h4>
+                                <!--Text-->
+                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                <a href="#" class="btn btn-primary">Button</a>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    
+                    <div class = "col">
+
+                        <div class="card">
+
+                            <!--Card image-->
+                            <img class="img-fluid" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20%282%29.jpg" alt="Card image cap">
+
+                            <!--Card content-->
+                            <div class="card-body">
+                                <!--Title-->
+                                <h4 class="card-title">Card title</h4>
+                                <!--Text-->
+                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                <a href="#" class="btn btn-primary">Button</a>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class = "row">
+                    <div style = "margin-left: auto; margin-right: auto; margin-top: 20px;">
+                            <nav>
+                                <ul class="pagination pg-blue">
+                                    <li class="page-item disabled">
+                                    <a class="page-link" href="#" aria-label="Previous">
+                                        <span aria-hidden="true">&laquo;</span>
+                                        <span class="sr-only">Previous</span>
+                                    </a>
+                                    </li>
+                                    <li class="page-item active">
+                                    <a class="page-link" href="#">1 <span class="sr-only">(current)</span></a>
+                                    </li>
+                                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                    <li class="page-item"><a class="page-link" href="#">4</a></li>
+                                    <li class="page-item"><a class="page-link" href="#">5</a></li>
+                                    <li class="page-item">
+                                    <a class="page-link" href="#" aria-label="Next">
+                                        <span aria-hidden="true">&raquo;</span>
+                                        <span class="sr-only">Next</span>
+                                    </a>
+                                    </li>
+                                </ul>
+                            </nav>
+                    </div>
+                </div>
+            </div>
+
+    
+               
+
 
         <!--Footer-->
-        <footer class="page-footer center-on-small-only nopadding rgba-stylish-strong">
+        <footer class="page-footer center-on-small-only nopadding blue lighten-1">
 
             <!--Footer links-->
             <div class="container-fluid">
@@ -521,7 +845,7 @@
             <br />
 
             <!--Copyright-->
-            <div class="footer-copyright stylish-color">
+            <div class="footer-copyright elegant-color-dark">
                 <div class="container-fluid">
                     <span class = "text-white"> © 2017 Copyright: </span> <a href="https://www.MDBootstrap.com"> Fong bros International Corporation.  </a>
 
