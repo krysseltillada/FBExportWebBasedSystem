@@ -786,7 +786,9 @@
                 </div>
             </div>
 
-        -->
+        end of product grid -->
+
+        
 
         <div class = "container" style = "padding-right: 105px; padding-left: 105px; margin-top: 30px; margin-bottom: 30px;" >
            <form method = "POST">
@@ -907,40 +909,9 @@
                     </div>
                 </div>
 
+             
+
                 <div class = "row mt-4">
-                    <div class = "col-md-12">
-                        <fieldset>
-                            <legend> Contact Information </legend>
-                            
-                            <p class = "mb-2"> - For phone and tel number please enter with a country code </p>
-
-                               <div class = "row mt-4">
-                                <div class = "col-md-4">
-                                    <div class="md-form form-sm">
-                                            <input type="text" id="email" class="form-control" required />
-                                            <label for="email" class="">Email Address</label>
-                                    </div>
-                                </div>
-                                <div class = "col-md-4">
-                                    <div class="md-form form-sm">
-                                            <input type="text" id="phonenumber" class="form-control" required />
-                                            <label for="phonenumber" class="">Phone Number</label>
-                                    </div>
-                                </div>
-                                <div class = "col-md-4">
-                                    <div class="md-form form-sm">
-                                            <input type="text" id="telephonenumber" class="form-control" required />
-                                            <label for="telephonenumber" class="">Telephone Number</label>
-                                    </div>
-                                </div>
-
-                            
-                            </div>
-                        </fieldset>
-                    </div>
-                </div>
-
-                <div class = "row">
                     <div class = "col-md-12">
                         <fieldset>
                             <legend> Address information </legend>
@@ -948,7 +919,7 @@
 
                             <div class = "row mt-3" style = "height: 50px;">
                                 <div class = "col-md-7">
-                                    <div class = "row">
+                                    <div class = "row mt-2">
                                                   
                                                     <div class = "col-md-2">
                                                         <label for = "country"> Country </label>
@@ -962,7 +933,7 @@
                                                     
                                                 </div>
                                 </div>
-                                <div class = "col-md-5">
+                                <div class = "col-md-5 mt-2">
                                  
                                                     <!-- <div class = "col-md-2">
                                                         <label for = "city"> City </label>
@@ -1067,6 +1038,40 @@
                                     
                                 </div> -->
 
+                        </fieldset>
+                    </div>
+                </div>
+
+                   <div class = "row">
+                    <div class = "col-md-12">
+                        <fieldset>
+                            <legend> Contact Information </legend>
+
+                               <div class = "row">
+                                    
+                                    <div class = "col-md-2 mt-3">
+                                            
+                                                <select class="browser-default" id = "countryCode" required>
+                                                    <option value="" disabled selected>Country Code</option>
+                                                </select>
+                                    
+                                    </div>
+                                    <div class = "col-md-5">
+                                        <div class="md-form form-sm">
+                                                <input type="text" id="phonenumber" class="form-control" required />
+                                                <label for="phonenumber" class="">Phone Number</label>
+                                        </div>
+                                    </div>
+
+                                        <div class = "col-md-5">
+                                        <div class="md-form form-sm">
+                                                <input type="text" id="email" class="form-control" required />
+                                                <label for="email" class="">Email Address</label>
+                                        </div>
+                                    </div>
+                                    
+                               </div>
+                       
                         </fieldset>
                     </div>
                 </div>
@@ -1240,6 +1245,27 @@
                     };
                 }(jQuery));
 
+                $("#countryCode").ready(function () {
+                    $.ajax({
+                        url : "https://restcountries.eu/rest/v2/all",
+                        dataType : "json",
+                        success : function (restCountriesData) {
+
+
+                            for (var i = 0; i != restCountriesData.length; ++i) {
+                                var countryLetterCode = restCountriesData[i].alpha2Code;
+                                var countryCode = restCountriesData[i].callingCodes[0];
+                                
+                                if (countryCode.length > 0) 
+                                    $("#countryCode").append('<option value = "' + countryCode + '">+' + countryCode + ' (' + countryLetterCode + ') </option');
+                                
+                            }
+
+                         
+                        } 
+                    });
+                });
+
                 $('#country').ready(function () {
 
                    $.ajax(
@@ -1250,8 +1276,11 @@
 
                                for (var i = 0; i != responseData.length; ++i) {
 
-                                    var country = responseData[i].name;
-                                    $('#country').append('<option value = "'+ country + '">' + country + '</option>');          
+                                    if (responseData[i].alpha2Code.length > 0) {
+                                        var country = responseData[i].name;
+                                        var countryCode = responseData[i].alpha2Code;
+                                        $('#country').append('<option value = "'+ country + '">' + country + ' (' + countryCode + ')</option>');          
+                                    }
 
                                }
 
