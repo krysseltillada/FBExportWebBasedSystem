@@ -585,17 +585,17 @@
                 <div class = "row no-gutters">
                     
                     <div class = "col">
-                        <div class="card">
+                        <div class="card hoverable">
                              
-                            <span style = "position: absolute; color: white; left: 180px; width: 40%; overflow: hidden; padding: 5px; text-align: center; " class = "rgba-black-strong"> 
+                            <span style = "position: absolute; color: white; left: 180px; width: 40%; overflow: hidden; padding: 5px; text-align: center; border: 1px solid white;" class = "rgba-black-strong"> 
                                 200.00 php 
                             </span>
 
-                            <span style = "position: absolute; color: white; left: 195px; top: 34px; width: 35%; padding: 3px 5px 3px 5px; text-align: center; " class = "rgba-black-strong"> 
+                            <span style = "position: absolute; color: white; left: 195px; top: 36px; width: 35%; padding: 3px 5px 3px 5px; text-align: center; border-width: 0px 1px 1px 1px; border-color: white; border-style: solid;" class = "rgba-black-strong"> 
                                  per kilo
                             </span>
 
-                            <span style = "position: absolute; color: white; left: 180px; top: 170px; width: 40%; padding: 3px 5px 3px 5px; text-align: center; " class = "rgba-black-strong"> 
+                            <span style = "position: absolute; color: white; left: 180px; top: 170px; width: 40%; padding: 3px 5px 3px 5px; text-align: center; border: 1px solid white;" class = "rgba-black-strong"> 
                                  Laguna
                             </span>
                            
@@ -606,7 +606,7 @@
                             <div class="card-body">
 
                               
-                                <h4 class="card-title"> <a href = "#"> Puffer fish </a> </h4>
+                                <h4 class="card-title"> <a href = "#" class = "black-text"> Puffer fish </a> </h4>
                                 
                                 <hr class = "m-0"/>
                               
@@ -616,12 +616,12 @@
 
                                 <div class = "mt-1">
                                 
-                                    <a href="#" class="btn btn-primary" style = "position: relative; left: -8px; top: -4px; padding: 8px 10px 8px 10px;">
+                                    <button type = "button" data-toggle="modal" data-target="#centralModalSm" href="#" class="btn btn-primary" style = "position: relative; left: -8px; top: -4px; padding: 8px 10px 8px 10px;">
                                         <i class="fa fa-cart-plus mr-1 mb-1" aria-hidden="true"></i>
-                                        Add to cart</a>
+                                        Add to cart</button>
 
                                     <span style = "font-size: 12px; position: absolute; top: 155px;" class = "red-text"> Fresh until: nov 28 2017 </span>
-
+                                    <span style = "font-size: 12px; position: absolute; top: 174px;" class = "black-text"> Posted on: nov 19 2017 </span>
                                 </div>
                             </div>
 
@@ -816,10 +816,124 @@
                 </div>
             </div>
 
-        
+            <!-- Modal -->
+            <div class="modal fade" id="centralModalSm" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title ml-1" id="exampleModalLabel">
+                                <strong> Add To Cart (Puffer Fish) </strong> 
+                                <i class="fa fa-cart-plus ml-1 mb-1" aria-hidden="true"></i>
+                                
+                            </h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
 
-        
+                            <div class = "container p-0">
+                                <div class = "row">
+                                    <div class = "col-md-5">
+                                            <span style = "position: absolute; color: white; left: 182px; top: 269px; width: 40%; padding: 3px 5px 3px 5px; text-align: center; border: 1px solid white;" class = "rgba-black-strong"> 
+                                                Laguna
+                                            </span>
+                                        <img class = "border border-primary rounded" alt = "Puffer fish yaay" src = "puffer-fish.jpg" width = "300" height = "300" />
+                                    </div>
 
+                                    <div class = "col-md-7">
+                                        <h4 class = "mt-1"> Puffer Fish </h4>
+                                        <hr class = "m-0"/>
+
+                                        
+                                        <p class = "mt-2 mb-0"> <strong>Price:</strong> 200.00 php / Per kilo </p>
+                                        <p class = "mb-0"> <strong>Fresh until:</strong> <span class = "red-text"> Nov 28 1998 </span> </p>
+                                        
+
+                                        <h6 class = "mt-2 pb-2 pt-2" style = "border-width: 1px 0px 1px 0px; border-style: solid; border-color: #E5E5E5; width: 150px;"> <strong>Product Description: </strong> </h6>
+
+
+
+                                        <div class = "mt-2" style = "height: 100px; overflow-y: auto;">
+                                         
+                                            <span class = "text-left">
+                                                Some quick example text to build on the card title and make up the bulk of the card's content.
+                                                Some quick example text to build on the card title and make up the bulk of the card's content.
+                                            </span>
+                                        </div>
+
+                                        <hr />
+
+                                        <div class = "container p-0">
+                                            <div class = "row">
+                                                <div class = "col-md-6">
+
+                                                    <div class = "container p-0">
+                                                        <div class = "row">
+                                                            
+                                                            <div class = "col-md-5 pr-0">
+                                                            
+                                                                <label> <strong> Mass type: </strong> </label>
+                                                            
+                                                            </div> 
+
+                                                            <div class = "col-md-7 pl-0">
+
+                                                                <select class="browser-default">
+                                                                    <option value="kilogram" selected>Kilograms</option>
+                                                                    <option value="ton">Tons</option>
+                                                                    <option value="pound">Pounds</option>
+                                                                </select>
+
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class = "col-md-6">
+                                                      <div class = "container p-0">
+                                                        <div class = "row">
+                                                            
+                                                            <div class = "col-md-5 pr-1">
+                                                                <label> <strong> Quantity: </strong> </label>
+                                                            </div> 
+
+                                                            <div class = "col-md-7 pl-0">
+                                                                <input type="number" id="form1" class = "text-center" value = "1" style = "position: absolute; top: -10px; left: -5px; width: 100px;">
+                                                           </div>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        
+
+                                        
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="modal-footer">
+                            
+                           <span class = "mr-2">
+                                <label for = "totalPrice" style = "margin-right: 10px;"> <strong> Total price: </strong> </label>
+                                <input type="text" id="totalPrice" value = "2000000.00 php" style = "width: 120px; margin-right: 10px; text-align: center;" readonly />
+                           
+                                <label for = "totalMass" style = "margin-right: 10px;" class = "black-text"> <strong> Total mass: </strong> </label>
+                                <input type="text" id="totalMass" value = "200 kilograms" style = "width: 120px; margin-right: 10px; text-align: center;" readonly />
+                           </span>
+                           
+
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                            <button type="button" class="btn btn-primary">Add to cart <i class="fa fa-plus-circle ml-1" aria-hidden="true"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
         <!-- sign up form
         <div class = "container" style = "padding-right: 105px; padding-left: 105px; margin-top: 30px; margin-bottom: 30px;" >
            <form method = "POST">
@@ -1226,7 +1340,7 @@
             
             $(document).ready(function () {
 
-
+                $('#centralModalSm').modal('show');
                 $('[data-toggle="tooltip"]').tooltip();
                
                         
