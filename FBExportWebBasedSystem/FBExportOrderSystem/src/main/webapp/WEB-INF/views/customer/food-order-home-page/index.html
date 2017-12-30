@@ -11,7 +11,7 @@
 
         <!-- Font Awesome -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
         <!-- Bootstrap core CSS -->
         <link href="css/bootstrap.min.css" rel="stylesheet">
 
@@ -24,6 +24,8 @@
         
         <style rel="stylesheet">
             
+
+            .ui-
 
             /* shopping cart */
 
@@ -616,7 +618,7 @@
 
                                 <div class = "mt-1">
                                 
-                                    <button type = "button" data-toggle="modal" data-target="#centralModalSm" href="#" class="btn btn-primary" style = "position: relative; left: -8px; top: -4px; padding: 8px 10px 8px 10px;">
+                                    <button type = "button" data-toggle="modal" data-target="#addToCartModal" href="#" class="btn btn-primary" style = "position: relative; left: -8px; top: -4px; padding: 8px 10px 8px 10px;">
                                         <i class="fa fa-cart-plus mr-1 mb-1" aria-hidden="true"></i>
                                         Add to cart</button>
 
@@ -817,7 +819,7 @@
             </div>
 
             <!-- Modal -->
-            <div class="modal fade" id="centralModalSm" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal fade" id="addToCartModal" tabindex="-1" role="dialog" aria-labelledby="addToCartModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-lg" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -844,9 +846,8 @@
                                     <div class = "col-md-7">
                                         <h4 class = "mt-1"> Puffer Fish </h4>
                                         <hr class = "m-0"/>
-
-                                        
-                                        <p class = "mt-2 mb-0"> <strong>Price:</strong> 200.00 php / Per kilo </p>
+             
+                                        <p class = "mt-2 mb-0"> <strong>Price:</strong> <span id = "priceAddToCartModal">200.00 php</span> / Per <span id = "massDefTypeAddToCart"> kilograms </span> </p>
                                         <p class = "mb-0"> <strong>Fresh until:</strong> <span class = "red-text"> Nov 28 1998 </span> </p>
                                         
 
@@ -879,10 +880,10 @@
 
                                                             <div class = "col-md-7 pl-0">
 
-                                                                <select class="browser-default">
+                                                                <select class="browser-default" id = "massType">
                                                                     <option value="kilogram" selected>Kilograms</option>
                                                                     <option value="ton">Tons</option>
-                                                                    <option value="pound">Pounds</option>
+                                                                    <option value="lb">Pounds</option>
                                                                 </select>
 
                                                             </div>
@@ -899,8 +900,9 @@
                                                             </div> 
 
                                                             <div class = "col-md-7 pl-0">
-                                                                <input type="number" id="form1" class = "text-center" value = "1" style = "position: absolute; top: -10px; left: -5px; width: 100px;">
-                                                           </div>
+                                                                 <!-- <input type="number" id="quantity" class = "text-center browser-default" value = "1" style = "position: absolute; top: -10px; left: -5px; width: 100px;">  -->
+                                                                 <input id="quantity" class = "text-center" name="value" style = "width: 80px;"> 
+                                                            </div>
 
                                                         </div>
                                                     </div>
@@ -1311,6 +1313,8 @@
         <!-- JQuery -->
         <script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
 
+       <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.js"></script>
+
         <!-- Bootstrap dropdown -->
         <script type="text/javascript" src="js/popper.min.js"></script>
 
@@ -1333,17 +1337,110 @@
             -->
         <script src="js/moment.js" type="text/javascript"> </script>
         <script src="js/moment-timezone-with-data.js" type="text/javascript"></script>
-      
+        <script src="js/math.js" type="text/javascript"> </script>
+        <script src="js/accounting.js"> </script>
 
 
         <script>
             
             $(document).ready(function () {
+                
 
-                $('#centralModalSm').modal('show');
-                $('[data-toggle="tooltip"]').tooltip();
+                var convertMass = function (from, to, value) {
+                    return math.unit(value, from).toNumber(to);
+                };
+
+                var updatePriceMass = function (massType, quantity) {
+
+                    // todo not done yet need to convert the money depends on the country
+                
+                    var productPrice = $("span#priceAddToCartModal").text();
+                    var baseMassType = $("span#massDefTypeAddToCart").text();
+                    
+                    var priceAndCurrency = productPrice.split(" ");
+
+                    var convertedMass = convertMass(massType, baseMassType, quantity);
+                    var totalPrice = accounting.formatMoney(convertedMass * priceAndCurrency[0],
+                                                            {
+                                                                symbol : "PHP",
+                                                                format : "%v %s"
+                                                            });
+
+                    console.log(convertedMass + " quantity: " + quantity);
+                    console.log("price: " + totalPrice);
+
+                    $("#totalMass").val(quantity + " " +  massType);
+                    $("#totalPrice").val(totalPrice);
                
-                        
+                    
+                };
+
+               
+
+             
+                $('#addToCartModal').modal('show');
+                $('[data-toggle="tooltip"]').tooltip();
+
+                $("#massType").change(function () {
+
+                    var massType = $(this).val(),
+                        quantity = $("#quantity").val();
+
+                    updatePriceMass(massType, quantity);
+                });
+               
+                var $quantitySpinner = $("#quantity").spinner({
+                    spin: function (event, ui) {
+                        // updatePriceMass();
+                        console.log(ui.value);
+
+                        var massType = $("#massType").val(),
+                            quantity = ui.value;
+
+                        updatePriceMass(massType, quantity);
+                    },
+                    min : 1
+                  
+                   
+                });
+
+                $quantitySpinner.parent().css("position", "relative");
+                $quantitySpinner.parent().css("top", "-5px");
+
+
+                $quantitySpinner.keypress(function (event) {
+
+                    var keyCode = event.keyCode;
+
+
+                    if ( keyCode < 48 || keyCode > 57 )
+                        return false;
+
+
+                });
+
+                $quantitySpinner.keyup(function (event) {
+
+                    if ($(this).val() <= 0)
+                        $(this).val(1);
+
+                    var massType = $("#massType").val(),
+                        quantity = $("#quantity").val();
+
+                    updatePriceMass(massType, quantity);
+                });
+
+                $quantitySpinner.val(1);
+
+                var massType = $("#massType").val(),
+                    quantity = $("#quantity").val();
+
+
+                updatePriceMass(massType, quantity);
+
+
+            
+
                 (function($){
 
                     $.fn.outside = function(ename, cb){
