@@ -445,34 +445,42 @@
                                     <i class="fa fa-shopping-cart cart-icon"></i><span class="badge productCartHeaderItemCount">0</span>
                                     <div class="shopping-cart-total">
                                         <span class="lighter-text">Total:</span>
-                                        <span class="main-color-text">$2,229.97</span>
+                                        <span class="main-color-text">₱0.00</span>
                                     </div>
                                     </div> <!--end shopping-cart-header -->
 
+                                    <div id = "productCartEmptyMessage" style = "margin-left: 85px; margin-top: 30px; margin-bottom: 0px;">
+                                        <p> No products added. </p>
+                                    </div>
+
                                     <ul class="shopping-cart-items">
-                                    <!-- <li class="clearfix">
-                                        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/cart-item1.jpg" alt="item1" />
-                                        <span class="item-name">Sony DSC-RX100M III</span>
-                                        <span class="item-price">$849.99</span>
-                                        <span class="item-quantity">Quantity: 01</span>
-                                    </li>
+                                     
+                                        <!-- <li class="clearfix">
+                                            <button type="button" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                            <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/cart-item1.jpg" alt="item1" />
+                                            <span class="item-name">Sony DSC-RX100M III</span>
+                                            <span class="item-price">$849.99</span>
+                                            <span class="item-quantity">Quantity: 01</span>
+                                        </li>
+                                    
+                                        <li class="clearfix">
+                                            <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/cart-item2.jpg" alt="item1" />
+                                            <span class="item-name">KS Automatic Mechanic...</span>
+                                            <span class="item-price">$1,249.99</span>
+                                            <span class="item-quantity">Quantity: 01</span>
+                                        </li>
 
-                                    <li class="clearfix">
-                                        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/cart-item2.jpg" alt="item1" />
-                                        <span class="item-name">KS Automatic Mechanic...</span>
-                                        <span class="item-price">$1,249.99</span>
-                                        <span class="item-quantity">Quantity: 01</span>
-                                    </li>
+                                        <li class="clearfix">
+                                            <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/cart-item3.jpg" alt="item1" />
+                                            <span class="item-name">Kindle, 6" Glare-Free To...</span>
+                                            <span class="item-price">$129.99</span>
+                                            <span class="item-quantity">Quantity: 01</span>
+                                        </li>  -->
 
-                                    <li class="clearfix">
-                                        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/cart-item3.jpg" alt="item1" />
-                                        <span class="item-name">Kindle, 6" Glare-Free To...</span>
-                                        <span class="item-price">$129.99</span>
-                                        <span class="item-quantity">Quantity: 01</span>
-                                    </li> -->
                                     </ul>
 
-                                    <a href="#" class="button">Checkout</a>
+                                    <a href="#" class="button" id = "btnProductCartCheckout">Checkout</a>
+
                                 </div> <!--end shopping-cart -->
                 
                 
@@ -594,12 +602,12 @@
                                 200.00 php 
                             </span>
 
-                            <span style = "position: absolute; color: white; left: 195px; top: 36px; width: 35%; padding: 3px 5px 3px 5px; text-align: center; border-width: 0px 1px 1px 1px; border-color: white; border-style: solid;" class = "rgba-black-strong"> 
-                                 per kilo
+                            <span style = "position: absolute; color: white; left: 180px; top: 36px; width: 40%; padding: 3px 5px 3px 5px; text-align: center; border-width: 0px 1px 1px 1px; border-color: white; border-style: solid;" class = "rgba-black-strong"> 
+                                 per <span> kilograms </span>
                             </span>
 
-                            <span style = "position: absolute; color: white; left: 180px; top: 170px; width: 40%; padding: 3px 5px 3px 5px; text-align: center; border: 1px solid white;" class = "rgba-black-strong"> 
-                                 Laguna
+                            <span style = "position: absolute; color: white;  top: 170px;  max-width: 200px; max-height: 30px; padding: 3px 5px 3px 5px; text-align: center; border: 1px solid white;" class = "rgba-black-strong"> 
+                                 Laguna oh laguna laguna baldeeee ohh yeaaaaa
                             </span>
                            
                             <img src="puffer-fish.jpg" alt="Card image cap" height = "200" />
@@ -613,17 +621,17 @@
                                 
                                 <hr class = "m-0"/>
                               
-                                <p class="card-text mt-2">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                <p class="card-text mt-2" style = "height: 63px; max-height: 63px; overflow-y: auto;">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
 
                                 <hr class = "m-0"/>
 
                                 <div class = "mt-1">
                                 
-                                    <button type = "button" data-toggle="modal" data-target="#addToCartModal" href="#" class="btn btn-primary" style = "position: relative; left: -8px; top: -4px; padding: 8px 10px 8px 10px;">
+                                    <button type = "button" href="#" class="btn btn-primary btnProductItemAddToCart" style = "position: relative; left: -8px; top: -4px; padding: 8px 10px 8px 10px;">
                                         <i class="fa fa-cart-plus mr-1 mb-1" aria-hidden="true"></i>
                                         Add to cart</button>
 
-                                    <span style = "font-size: 12px; position: absolute; top: 155px;" class = "red-text"> Fresh until: nov 28 2017 </span>
+                                    <span style = "font-size: 12px; position: absolute; top: 155px;"> Fresh until: <span class = "red-text"> nov 28 2017 </span> </span>
                                     <span style = "font-size: 12px; position: absolute; top: 174px;" class = "black-text"> Posted on: nov 19 2017 </span>
                                 </div>
                             </div>
@@ -631,20 +639,45 @@
                         </div>
                     </div>
 
-                    <div class = "col">
+                   <div class = "col">
+                        <div class="card hoverable">
+                             
+                            <span style = "position: absolute; color: white; left: 180px; width: 40%; overflow: hidden; padding: 5px; text-align: center; border: 1px solid white;" class = "rgba-black-strong"> 
+                                1000.00 php 
+                            </span>
 
-                        <div class="card">
+                            <span style = "position: absolute; color: white; left: 180px; top: 36px; width: 40%; padding: 3px 5px 3px 5px; text-align: center; border-width: 0px 1px 1px 1px; border-color: white; border-style: solid;" class = "rgba-black-strong"> 
+                                 per <span> kilograms </span>
+                            </span>
+
+                            <span style = "position: absolute; color: white;  top: 170px;  max-width: 200px; max-height: 30px; padding: 3px 5px 3px 5px; text-align: center; border: 1px solid white;" class = "rgba-black-strong"> 
+                                 sa imagination sea :)
+                            </span>
+                           
+                            <img src="baby_shark.gif" alt="Card image cap" height = "200" />
 
                            
-                            <img src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20%282%29.jpg" alt="Card image cap" height="200">
 
-                         
                             <div class="card-body">
+
                               
-                                <h4 class="card-title">Card title</h4>
+                                <h4 class="card-title"> <a href = "#" class = "black-text"> Baby Shark </a> </h4>
+                                
+                                <hr class = "m-0"/>
                               
-                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                <a href="#" class="btn btn-primary">Button</a>
+                                <p class="card-text mt-2" style = "height: 63px; max-height: 63px; overflow-y: auto;">baby shark durudurudu baby shark dudururuduru </p>
+
+                                <hr class = "m-0"/>
+
+                                <div class = "mt-1">
+                                
+                                    <button type = "button" href="#" class="btn btn-primary btnProductItemAddToCart" style = "position: relative; left: -8px; top: -4px; padding: 8px 10px 8px 10px;">
+                                        <i class="fa fa-cart-plus mr-1 mb-1" aria-hidden="true"></i>
+                                        Add to cart</button>
+
+                                    <span style = "font-size: 12px; position: absolute; top: 155px;"> Fresh until: <span class = "red-text"> nov 28 2017 </span> </span>
+                                    <span style = "font-size: 12px; position: absolute; top: 174px;" class = "black-text"> Posted on: nov 19 2017 </span>
+                                </div>
                             </div>
 
                         </div>
@@ -652,25 +685,51 @@
 
                     
                     <div class = "col">
+                        <div class="card hoverable">
+                             
+                            <span style = "position: absolute; color: white; left: 180px; width: 40%; overflow: hidden; padding: 5px; text-align: center; border: 1px solid white;" class = "rgba-black-strong"> 
+                                500.00 php 
+                            </span>
 
-                        <div class="card">
+                            <span style = "position: absolute; color: white; left: 180px; top: 36px; width: 40%; padding: 3px 5px 3px 5px; text-align: center; border-width: 0px 1px 1px 1px; border-color: white; border-style: solid;" class = "rgba-black-strong"> 
+                                 per <span> kilograms </span>
+                            </span>
 
-                          
-                            <img class="img-fluid" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20%282%29.jpg" alt="Card image cap">
+                            <span style = "position: absolute; color: white;  top: 170px;  max-width: 200px; max-height: 30px; padding: 3px 5px 3px 5px; text-align: center; border: 1px solid white;" class = "rgba-black-strong"> 
+                                 sa mars
+                            </span>
+                           
+                            <img src="lapu-lapu-fish.jpg" alt="Card image cap" height = "200" />
+
+                           
 
                             <div class="card-body">
-                               
-                                <h4 class="card-title">Card title</h4>
-                             
-                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                <a href="#" class="btn btn-primary">Button</a>
+
+                              
+                                <h4 class="card-title"> <a href = "#" class = "black-text"> Lapu Lapu fish </a> </h4>
+                                
+                                <hr class = "m-0"/>
+                              
+                                <p class="card-text mt-2" style = "height: 63px; max-height: 63px; overflow-y: auto;">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+
+                                <hr class = "m-0"/>
+
+                                <div class = "mt-1">
+                                
+                                    <button type = "button" href="#" class="btn btn-primary btnProductItemAddToCart" style = "position: relative; left: -8px; top: -4px; padding: 8px 10px 8px 10px;">
+                                        <i class="fa fa-cart-plus mr-1 mb-1" aria-hidden="true"></i>
+                                        Add to cart</button>
+
+                                    <span style = "font-size: 12px; position: absolute; top: 155px;"> Fresh until: <span class = "red-text"> nov 28 2017 </span> </span>
+                                    <span style = "font-size: 12px; position: absolute; top: 174px;" class = "black-text"> Posted on: nov 19 2017 </span>
+                                </div>
                             </div>
 
                         </div>
                     </div>
                 </div>
 
-                 <div class = "row no-gutters">
+                 <!-- <div class = "row no-gutters">
                     <div class = "col">
                         <div class="card mr-0">
 
@@ -786,7 +845,7 @@
 
                         </div>
                     </div>
-                </div>
+                </div> -->
 
                 <hr />
 
@@ -824,8 +883,8 @@
                 <div class="modal-dialog modal-lg" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title ml-1" id="exampleModalLabel">
-                                <strong> Add To Cart (Puffer Fish) </strong> 
+                            <h5 class="modal-title ml-1" id="productHeaderTitle">
+                                <strong> Add To Cart (<span>Puffer Fish</span>) </strong> 
                                 <i class="fa fa-cart-plus ml-1 mb-1" aria-hidden="true"></i>
                                 
                             </h5>
@@ -838,8 +897,8 @@
                             <div class = "container p-0">
                                 <div class = "row">
                                     <div class = "col-md-5">
-                                            <span style = "position: absolute; color: white; left: 182px; top: 269px; width: 40%; padding: 3px 5px 3px 5px; text-align: center; border: 1px solid white;" class = "rgba-black-strong"> 
-                                                Laguna
+                                            <span id = "addToCartModalOrigin" style = "position: absolute; color: white; top: 270px; max-width: 280px; height: 30px; padding: 3px 5px 3px 5px; text-align: center; border: 1px solid white;" class = "rgba-black-strong"> 
+                                                Laguna oh laguna laguna baldeeee
                                             </span>
                                         <img class = "border border-primary rounded" id = "addToCartProductImage" alt = "Puffer fish yaay" src = "puffer-fish.jpg" width = "300" height = "300" />
                                     </div>
@@ -849,7 +908,7 @@
                                         <hr class = "m-0"/>
              
                                         <p class = "mt-2 mb-0"> <strong>Price:</strong> <span id = "priceAddToCartModal">200.00 php</span> / Per <span id = "massDefTypeAddToCart"> kilograms </span> </p>
-                                        <p class = "mb-0"> <strong>Fresh until:</strong> <span class = "red-text"> Nov 28 1998 </span> </p>
+                                        <p class = "mb-0"> <strong>Fresh until:</strong> <span class = "red-text" id = "addToCartModalExpirationDate"> Nov 28 1998 </span> </p>
                                         
 
                                         <h6 class = "mt-2 pb-2 pt-2" style = "border-width: 1px 0px 1px 0px; border-style: solid; border-color: #E5E5E5; width: 150px;"> <strong>Product Description: </strong> </h6>
@@ -858,7 +917,7 @@
 
                                         <div class = "mt-2" style = "height: 100px; overflow-y: auto;">
                                          
-                                            <span class = "text-left">
+                                            <span class = "text-left" id = "addToCartModalProductDescription">
                                                 Some quick example text to build on the card title and make up the bulk of the card's content.
                                                 Some quick example text to build on the card title and make up the bulk of the card's content.
                                             </span>
@@ -902,7 +961,7 @@
 
                                                             <div class = "col-md-7 pl-0">
                                                                  <!-- <input type="number" id="quantity" class = "text-center browser-default" value = "1" style = "position: absolute; top: -10px; left: -5px; width: 100px;">  -->
-                                                                 <input id="quantity" class = "text-center" name="value" maxlength="10" style = "width: 80px;"> 
+                                                                 <input id="quantity" class = "text-center" name="value" maxlength="10" style = "width: 80px;" data-toggle="tooltip" data-placement="top" title="Invalid value"> 
                                                             </div>
 
                                                         </div>
@@ -1345,6 +1404,7 @@
         <script id = "cartItemTemplate" type = "text/template">
             
                 <li class="clearfix">
+                    <button type="button" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                     <img src="<%= productImage %>" width="70" height="70" />
                     <span class="item-name"><%= productName %></span>
                     <span class="item-price"><%= totalPrice %></span>
@@ -1377,6 +1437,14 @@
                     var $productCartTotal = $("div.shopping-cart-total").children().eq(1);
                     var itemCount = $productCartItemLists.children().length;
             
+                    if (itemCount > 0) {
+                        $("#productCartEmptyMessage").hide();
+                        $("#btnProductCartCheckout").removeClass("disabled");
+                    } else {
+                        $("#productCartEmptyMessage").show();
+                        $("#btnProductCartCheckout").addClass("disabled");
+                    }
+
                     var totalPrice = 0;
 
                     _.each($productCartItemLists.children(), function (productCartItem, i) {
@@ -1392,7 +1460,7 @@
 
 
                     $productCartTotal.text(formatMoney(totalPrice, "₱", "%s%v"));
-                    
+
                     $(".productCartHeaderItemCount").text(itemCount);
                     
 
@@ -1413,9 +1481,21 @@
                         totalMass : cartItem.totalMass
                     }));
 
+                    $productCart.find("li:last button.close")
+                                .click(function () {
+                                   
+                                    console.log($(this).parent().html());
+                                    $(this).parent().fadeOut("slow", function () {
+                                        $(this).remove();
+                                        updateProductCartInfo();
+                                    });
+
+                                });
+
                     updateProductCartInfo();
 
                 };
+
 
                 var updatePriceMass = function (massType, quantity) {
 
@@ -1423,19 +1503,11 @@
                 
                     var productPrice = $("span#priceAddToCartModal").text();
                     var baseMassType = $("span#massDefTypeAddToCart").text();
-                    
-                    var priceAndCurrency = productPrice.split(" ");
-
+                
                     var convertedMass = convertMass(massType, baseMassType, quantity);
-                    var totalPrice = convertedMass * priceAndCurrency[0];
+                    var totalPrice = convertedMass * accounting.unformat(productPrice);
 
                     try {
-
-                        // var formattedPrice = accounting.formatMoney(totalPrice,
-                        //                                         {
-                        //                                             symbol : "PHP",
-                        //                                             format : "%v %s"
-                        //                                         });
 
                         var formattedPrice = formatMoney(totalPrice,
                                                         "PHP",
@@ -1455,9 +1527,20 @@
                     
                 };
 
-             
-                $('#addToCartModal').modal('show');
-                $('[data-toggle="tooltip"]').tooltip();
+                var resetAddToCartValues = function () {
+                    
+                    /// not done yet
+
+                    $("#massType").val("kilogram");
+                    $("#quantity").val(1);
+                    $("#totalPrice").val("200.00 PHP");
+                    $("#totalMass").val("1 kilogram");
+                    
+                };
+
+                
+                //$('#addToCartModal').modal('show');
+                //$('[data-toggle="tooltip"]').tooltip();
 
                 $("#massType").change(function () {
 
@@ -1508,6 +1591,19 @@
                 $quantitySpinner.val(1);
 
                 $("#btnAddToCart").click(function () {
+
+                    if ($("#quantity").val() === "0" ||
+                        $("#quantity").val().length <= 0) {
+                        $("#quantity").tooltip("show");
+
+                        setTimeout(function () {
+                              $("#quantity").tooltip("hide");
+                        }, 2000)
+
+                        return;
+                        
+                    }
+
                     addToCart({
                         productName : $("#addToCartProductName").text(),
                         totalPrice : $("#totalPrice").val(),
@@ -1518,12 +1614,66 @@
                     $("#addToCartModal").modal("hide");
                 });
 
-                var massType = $("#massType").val(),
+
+                $("#addToCartModal").on("hidden.bs.modal", function (event) {
+                        resetAddToCartValues();
+                });
+
+                var showAddToCartModal = function (productItem) {
+                    var $addToCartModal = $("#addToCartModal");
+                    var $addToCartModalBody = $addToCartModal.find("div.modal-body");
+
+                    $addToCartModal.find("h5.modal-title strong span").text(productItem.name);
+                    $addToCartModal.find("h4#addToCartProductName").text(productItem.name);
+                    $addToCartModalBody.find("span#addToCartModalExpirationDate").text(productItem.expirationDate);
+                    $addToCartModalBody.find("span#addToCartModalProductDescription").text(productItem.description);
+                    $addToCartModal.find("span#addToCartModalOrigin").text(productItem.origin);
+                    $addToCartModal.find("img#addToCartProductImage").attr("src", productItem.productImage);
+                    $addToCartModalBody.find("span#priceAddToCartModal").text(productItem.price);
+
+                    var massType = $("#massType").val(),
                     quantity = $("#quantity").val();
 
+                    updatePriceMass(massType, quantity);
 
-                updatePriceMass(massType, quantity);
+                    $addToCartModal.modal("show");
 
+
+                };
+
+                $("#quantity").tooltip({
+                    trigger : 'manual',
+                    offset : '0px 9px'
+                });
+
+                $(".btnProductItemAddToCart").click(function (event) {
+
+                    var $card = $(event.currentTarget).parent().parent().parent();
+                    var $cardBody = $card.find("div.card-body");
+                    
+                    var $spansHeaderInfo = $card.children("span");
+
+                    console.log($card.html());
+
+                    var productItem = {
+                        productImage : $card.find("img").attr("src"),
+                        price : $spansHeaderInfo.eq(0).text(),
+                        massType : $spansHeaderInfo.eq(1).find("span").text(),
+                        origin : $spansHeaderInfo.eq(2).text(),
+                        name : $cardBody.find("h4.card-title a").text(),
+                        description : $cardBody.find("p.card-text").text(),
+                        expirationDate : $cardBody.find("div.mt-1 span span.red-text").text()
+                    };
+
+                    showAddToCartModal(productItem);
+
+                    
+                    
+                });
+
+              
+
+                updateProductCartInfo();
 
             
 
