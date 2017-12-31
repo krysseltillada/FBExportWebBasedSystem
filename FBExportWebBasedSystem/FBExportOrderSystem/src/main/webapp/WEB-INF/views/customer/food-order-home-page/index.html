@@ -61,7 +61,6 @@
             float: right;
             background: white;
             width: 320px;
-            height: 420px;
             position: relative;
             border-radius: 3px;
             padding: 20px;
@@ -80,10 +79,12 @@
             }
 
             .shopping-cart .shopping-cart-items {
-            padding-top: 20px;
+                padding-top: 20px;
+                padding-left: 8px;
+                overflow-y: auto;
+                text-decoration: none;
             }
             .shopping-cart .shopping-cart-items li {
-            text-decoration: none;
                 margin-bottom: 18px;
             }
             .shopping-cart .shopping-cart-items img {
@@ -434,14 +435,14 @@
 
                         
                         <div class = "navbar-nav cart">
-                            <a href="#" id="cart" class = "text-white"><i class="fa fa-shopping-cart"></i> Cart <span class="badge light-blue lighten-2" style = "margin-left: 5px;">3</span></a></li>     
+                            <a href="#" id="cart" class = "text-white"><i class="fa fa-shopping-cart"></i> Cart <span class="badge light-blue lighten-2 productCartHeaderItemCount" style = "margin-left: 5px;">0</span></a></li>     
                         
                             
                             <div class = "container shopping-cart-box">
 
                                 <div class="shopping-cart">
                                     <div class="shopping-cart-header">
-                                    <i class="fa fa-shopping-cart cart-icon"></i><span class="badge">3</span>
+                                    <i class="fa fa-shopping-cart cart-icon"></i><span class="badge productCartHeaderItemCount">0</span>
                                     <div class="shopping-cart-total">
                                         <span class="lighter-text">Total:</span>
                                         <span class="main-color-text">$2,229.97</span>
@@ -449,7 +450,7 @@
                                     </div> <!--end shopping-cart-header -->
 
                                     <ul class="shopping-cart-items">
-                                    <li class="clearfix">
+                                    <!-- <li class="clearfix">
                                         <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/cart-item1.jpg" alt="item1" />
                                         <span class="item-name">Sony DSC-RX100M III</span>
                                         <span class="item-price">$849.99</span>
@@ -468,7 +469,7 @@
                                         <span class="item-name">Kindle, 6" Glare-Free To...</span>
                                         <span class="item-price">$129.99</span>
                                         <span class="item-quantity">Quantity: 01</span>
-                                    </li>
+                                    </li> -->
                                     </ul>
 
                                     <a href="#" class="button">Checkout</a>
@@ -840,11 +841,11 @@
                                             <span style = "position: absolute; color: white; left: 182px; top: 269px; width: 40%; padding: 3px 5px 3px 5px; text-align: center; border: 1px solid white;" class = "rgba-black-strong"> 
                                                 Laguna
                                             </span>
-                                        <img class = "border border-primary rounded" alt = "Puffer fish yaay" src = "puffer-fish.jpg" width = "300" height = "300" />
+                                        <img class = "border border-primary rounded" id = "addToCartProductImage" alt = "Puffer fish yaay" src = "puffer-fish.jpg" width = "300" height = "300" />
                                     </div>
 
                                     <div class = "col-md-7">
-                                        <h4 class = "mt-1"> Puffer Fish </h4>
+                                        <h4 class = "mt-1" id = "addToCartProductName"> Puffer Fish </h4>
                                         <hr class = "m-0"/>
              
                                         <p class = "mt-2 mb-0"> <strong>Price:</strong> <span id = "priceAddToCartModal">200.00 php</span> / Per <span id = "massDefTypeAddToCart"> kilograms </span> </p>
@@ -901,7 +902,7 @@
 
                                                             <div class = "col-md-7 pl-0">
                                                                  <!-- <input type="number" id="quantity" class = "text-center browser-default" value = "1" style = "position: absolute; top: -10px; left: -5px; width: 100px;">  -->
-                                                                 <input id="quantity" class = "text-center" name="value" style = "width: 80px;"> 
+                                                                 <input id="quantity" class = "text-center" name="value" maxlength="10" style = "width: 80px;"> 
                                                             </div>
 
                                                         </div>
@@ -930,7 +931,7 @@
                            
 
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                            <button type="button" class="btn btn-primary">Add to cart <i class="fa fa-plus-circle ml-1" aria-hidden="true"></i></button>
+                            <button type="button" class="btn btn-primary" id = "btnAddToCart">Add to cart <i class="fa fa-plus-circle ml-1" aria-hidden="true"></i></button>
                         </div>
                     </div>
                 </div>
@@ -1339,6 +1340,18 @@
         <script src="js/moment-timezone-with-data.js" type="text/javascript"></script>
         <script src="js/math.js" type="text/javascript"> </script>
         <script src="js/accounting.js"> </script>
+        <script src="js/underscore.js"> </script>
+
+        <script id = "cartItemTemplate" type = "text/template">
+            
+                <li class="clearfix">
+                    <img src="<%= productImage %>" width="70" height="70" />
+                    <span class="item-name"><%= productName %></span>
+                    <span class="item-price"><%= totalPrice %></span>
+                    <span class="item-quantity">Mass: <%= totalMass %></span>
+                </li>
+
+        </script>
 
 
         <script>
@@ -1348,6 +1361,60 @@
 
                 var convertMass = function (from, to, value) {
                     return math.unit(value, from).toNumber(to);
+                };
+
+                var formatMoney = function (val, sign, formatValue) {
+                    return accounting.formatMoney(val,
+                                                    {
+                                                        symbol : sign,
+                                                        format : formatValue
+                                                    });
+                };
+
+                var updateProductCartInfo = function () {
+
+                    var $productCartItemLists = $("ul.shopping-cart-items");
+                    var $productCartTotal = $("div.shopping-cart-total").children().eq(1);
+                    var itemCount = $productCartItemLists.children().length;
+            
+                    var totalPrice = 0;
+
+                    _.each($productCartItemLists.children(), function (productCartItem, i) {
+                        console.log($(productCartItem).html());
+
+                        var $productCartItem = $(productCartItem);
+                        
+                        totalPrice += accounting.unformat($productCartItem.find(".item-price").text());
+                        console.log(totalPrice);
+
+                        
+                    });
+
+
+                    $productCartTotal.text(formatMoney(totalPrice, "₱", "%s%v"));
+                    
+                    $(".productCartHeaderItemCount").text(itemCount);
+                    
+
+                };
+
+                var addToCart = function (cartItem) {
+
+                    var $productCart = $("div.shopping-cart ul.shopping-cart-items");
+
+                    var cartItemTemplate = $("#cartItemTemplate").html();
+
+                    var cartTemplate = _.template(cartItemTemplate);
+
+                    $productCart.append(cartTemplate({
+                        productImage : cartItem.productImage,
+                        productName : cartItem.productName,
+                        totalPrice : cartItem.totalPrice,
+                        totalMass : cartItem.totalMass
+                    }));
+
+                    updateProductCartInfo();
+
                 };
 
                 var updatePriceMass = function (massType, quantity) {
@@ -1360,22 +1427,33 @@
                     var priceAndCurrency = productPrice.split(" ");
 
                     var convertedMass = convertMass(massType, baseMassType, quantity);
-                    var totalPrice = accounting.formatMoney(convertedMass * priceAndCurrency[0],
-                                                            {
-                                                                symbol : "PHP",
-                                                                format : "%v %s"
-                                                            });
+                    var totalPrice = convertedMass * priceAndCurrency[0];
 
-                    console.log(convertedMass + " quantity: " + quantity);
-                    console.log("price: " + totalPrice);
+                    try {
 
-                    $("#totalMass").val(quantity + " " +  massType);
-                    $("#totalPrice").val(totalPrice);
-               
+                        // var formattedPrice = accounting.formatMoney(totalPrice,
+                        //                                         {
+                        //                                             symbol : "PHP",
+                        //                                             format : "%v %s"
+                        //                                         });
+
+                        var formattedPrice = formatMoney(totalPrice,
+                                                        "PHP",
+                                                        "%v %s");
+
+                        if (formattedPrice == "NaN.undefined") throw "Price exceeded";
+
+                        console.log(convertedMass + " quantity: " + quantity);
+                        console.log("price: " + totalPrice);
+
+                        $("#totalMass").val( ((quantity <= 0) ? 0 : quantity) + " " +  massType);
+                        $("#totalPrice").val(formattedPrice);
+                        
+                    } catch (err) {
+                        $("#totalPrice").val(err);
+                    }
                     
                 };
-
-               
 
              
                 $('#addToCartModal').modal('show');
@@ -1399,9 +1477,9 @@
 
                         updatePriceMass(massType, quantity);
                     },
-                    min : 1
-                  
-                   
+                    min : 1,
+                    max : 9999999999
+               
                 });
 
                 $quantitySpinner.parent().css("position", "relative");
@@ -1421,9 +1499,6 @@
 
                 $quantitySpinner.keyup(function (event) {
 
-                    if ($(this).val() <= 0)
-                        $(this).val(1);
-
                     var massType = $("#massType").val(),
                         quantity = $("#quantity").val();
 
@@ -1431,6 +1506,17 @@
                 });
 
                 $quantitySpinner.val(1);
+
+                $("#btnAddToCart").click(function () {
+                    addToCart({
+                        productName : $("#addToCartProductName").text(),
+                        totalPrice : $("#totalPrice").val(),
+                        totalMass : $("#totalMass").val(),
+                        productImage : $("#addToCartProductImage").attr("src")
+                    });
+
+                    $("#addToCartModal").modal("hide");
+                });
 
                 var massType = $("#massType").val(),
                     quantity = $("#quantity").val();
