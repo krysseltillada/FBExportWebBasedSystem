@@ -88,6 +88,7 @@
             }
             .shopping-cart .shopping-cart-items li {
                 margin-bottom: 18px;
+                color: black;
             }
             .shopping-cart .shopping-cart-items img {
             float: left;
@@ -346,11 +347,18 @@
                         <span class="navbar-toggler-icon"></span>
                     </button>
 
-                    <a class="navbar-brand d-none" href="#" id = "nav-bar-brand-mobile-header">Fong Bros International Corp</a>         
+                    <div class="navbar-brand d-none m-0 mt-1 mr-1" href="#" id = "nav-bar-brand-mobile-header" style = "font-size: 15px;">
+                        <span class = "mr-3">
+                            Fong Bros International Corp
+                        </span>
+
+                       
+                        
+                        </div>         
                       
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                        
-                            <div class = "col-md-5">
+                            <div class = "col-md-7">
                                 <ul class="navbar-nav mr-auto">
 
                                     <li class = "nav-item">
@@ -385,52 +393,52 @@
                                                     </li>
                                 </ul>
                             </div>
-                            <div class = "col-md-4">
-                                <form  role="search">
-                                        <input type="text" class="form-control" placeholder="Search" name="q">
-                                </form>
-                            </div>
 
-                            <div class = "col-md-2">
-                                <button class="btn btn-default light-blue lighten-2" type="submit" style = "height: 30px;"><i class="fa fa-search" aria-hidden="true" style="font-size: 10px; position: relative; top: -10px;"></i></button>              
+                            <div class = "col-md-5">
+                                <form  role="search" class = "form-inline pl-5">
+                                        <input type="text" class="form-control" placeholder="Search" name="q">
+                                        <button class="btn btn-default light-blue lighten-2" type="submit" style = "height: 30px;"><i class="fa fa-search" aria-hidden="true" style="font-size: 10px; position: relative; top: -10px;"></i></button>              
+                               
+                                           <a href="#" id="cart" class = "text-white ml-4"><i class="fa fa-shopping-cart"></i> Cart <span class="badge light-blue lighten-2 productCartHeaderItemCount" style = "margin-left: 5px;">0</span></a>    
+                           
+                                 </form>
+                                
+                                   <div class = "navbar-nav cart">
+                                                        
+                                                    
+                                                        
+                                                        <div class = "shopping-cart-box">
+
+                                                            <div class="shopping-cart">
+                                                                <div class="shopping-cart-header">
+                                                                    <i class="fa fa-shopping-cart cart-icon"></i><span class="badge productCartHeaderItemCount">0</span>
+                                                                    <div class="shopping-cart-total">
+                                                                        <span class="lighter-text">Total:</span>
+                                                                        <span class="main-color-text">₱0.00</span>
+                                                                    </div>
+                                                                </div> 
+
+                                                                <div id = "productCartEmptyMessage" style = "margin-left: 85px; margin-top: 30px; margin-bottom: 0px;">
+                                                                    <p> No products added. </p>
+                                                                </div>
+
+                                                                <ul class="shopping-cart-items">
+                                                                
+
+                                                                </ul>
+
+                                                                <a href="#" class="button" id = "btnProductCartCheckout">Checkout</a>
+
+                                                            </div> 
+                                            
+                                            
+                                                        </div> 
+
+                                                    </div>
                             </div>
 
                         
-                             <div class = "col-md-2">
-                                  <div class = "navbar-nav cart">
-                                            <a href="#" id="cart" class = "text-white ml-1"><i class="fa fa-shopping-cart"></i> Cart <span class="badge light-blue lighten-2 productCartHeaderItemCount" style = "margin-left: 5px;">0</span></a>    
-                                        
-                                            
-                                            <div class = "shopping-cart-box">
-
-                                                <div class="shopping-cart">
-                                                    <div class="shopping-cart-header">
-                                                        <i class="fa fa-shopping-cart cart-icon"></i><span class="badge productCartHeaderItemCount">0</span>
-                                                        <div class="shopping-cart-total">
-                                                            <span class="lighter-text">Total:</span>
-                                                            <span class="main-color-text">₱0.00</span>
-                                                        </div>
-                                                    </div> 
-
-                                                    <div id = "productCartEmptyMessage" style = "margin-left: 85px; margin-top: 30px; margin-bottom: 0px;">
-                                                        <p> No products added. </p>
-                                                    </div>
-
-                                                    <ul class="shopping-cart-items">
-                                                    
-
-                                                    </ul>
-
-                                                    <a href="#" class="button" id = "btnProductCartCheckout">Checkout</a>
-
-                                                </div> 
-                                
-                                
-                                            </div> 
-
-                                        </div>
-                            </div>
-
+                          
                             
                     </div>
 
@@ -768,7 +776,7 @@
 
             </header> 
 
-            <div class = "container mt-4">
+              <div class = "container mt-4">
                 
                 <div class = "row">
                     <div class = "col">
@@ -791,21 +799,6 @@
                                                     <option> reviews </option>
                                                 </select>
                                         </div>
-                                   
-                                        <!-- <div class = "row">
-                                            <div class = "col-4">
-                                                <label> Sort by: </label>
-                                            </div>
-                                            <div class = "col-8"> 
-                                                <select class = "browser-default">
-                                                    <option> price: high to low </option>
-                                                    <option> price: low to high </option> 
-                                                    <option> rating: high to low </option>
-                                                    <option> rating: low to high </option>
-                                                    <option> reviews </option>
-                                                </select>
-                                            </div>
-                                        </div> -->
                                    
                                 </div>
                                
@@ -839,20 +832,6 @@
                                                 </select>
                                             </div>
 
-                                            
-                                    
-                                            <!-- <div class = "row">
-                                                <div class = "col-4">
-                                                    <label> Origin: </label>
-                                                </div>
-                                                <div class = "col-8"> 
-                                                    <select class = "browser-default" style = "width: 150px;">
-                                                        <option> Laguna </option>
-                                                        <option> Batangas </option>
-                                                    </select>
-                                                </div>
-                                            </div> -->
-                                        
                                     </div>
 
                                     <div class = "col-md-2">
@@ -870,10 +849,10 @@
 
             
         
-        </div> 
+        </div>  
 
 
-       
+        
           <div class = "container">
 
                 <div class = "row mx-auto" id = "productGridList" style = "padding-left: 60px; padding-right: 60px;">
@@ -1308,10 +1287,9 @@
                         </div>
                     </div>
                 </div>
-            </div> 
-        
-        <!-- sign up form
-        <div class = "container" style = "padding-right: 105px; padding-left: 105px; margin-top: 30px; margin-bottom: 30px;" >
+            </div>  
+ 
+        <!-- <div class = "container p-4">
            <form method = "POST">
   
                 <div class = "row">
@@ -1423,7 +1401,7 @@
              
 
                 <div class = "row mt-4">
-                    <div class = "col-md-12">
+                    <div class = "col-md">
                         <fieldset>
                             <legend> Address information </legend>
 
@@ -1436,11 +1414,11 @@
                                                         <label for = "country"> Country </label>
                                                     </div>
 
-                                                    <div class = "col-md-10">
+                                                     <div class = "col-md-10">
                                                         <select class="browser-default" id = "country" required>
                                                             <option value="" disabled selected>Choose your country</option>
                                                         </select>
-                                                    </div>
+                                                    </div> 
                                                     
                                                 </div>
                                 </div>
@@ -1531,7 +1509,7 @@
    
          </form>
 
-        </div> end of sign up form -->
+        </div>  -->
 <!-- 
         <div class = "container" style = "margin-top: 50px; margin-bottom: 50px; width: 960px;">
             
@@ -1730,6 +1708,30 @@
         <script>
             
             $(document).ready(function () {
+
+                  (function($){
+
+                    $.fn.outside = function(ename, cb){
+                        return this.each(function(){
+                            var $this = $(this),
+                                self = this;
+
+                            $(document).bind(ename, function tempo(e){
+                                if(e.target !== self && !$.contains(self, e.target)){
+                                    cb.apply(self, [e]);
+                                    if(!self.parentNode) $(document.body).unbind(ename, tempo);
+                                }
+                            });
+                        });
+                    };
+
+                    $.fn.outerHTML = function(s) {
+                        return (s)
+                        ? this.before(s).remove()
+                        : jQuery("<p>").append(this.eq(0).clone()).html();
+                    } 
+
+                }(jQuery));
                 
 
                 var convertMass = function (from, to, value) {
@@ -1840,6 +1842,8 @@
                     
                 };
 
+              
+
                 var resetAddToCartValues = function () {
                     
                     /// not done yet
@@ -1855,22 +1859,46 @@
                     var screenWidth = $(document).width();
                     console.log(screenWidth);
 
-                    // style="padding-left: 60px; padding-right: 60px;"
-
-                    if (screenWidth <= 768) {
+                    if (screenWidth <= 800) {
                         console.log(true);
-                        
+
+                        _.each($("div#navbarSupportedContent div.col-md-5 form").children(), function (element, i) {
+                            if (i > 1) {
+                                
+                                var shoppingCartElement = $(element).detach();
+
+                                shoppingCartElement.removeClass("ml-4");
+                                shoppingCartElement.appendTo($("div#nav-bar-brand-mobile-header"));
+
+                            }
+                        });
+
+                        var shoppingCartElement = $("div#navbarSupportedContent div.col-md-5").children(":eq(1)").detach();
+                        shoppingCartElement.appendTo($("div#nav-bar-brand-mobile-header"));
+                        console.log(shoppingCartElement);
+
+                 
                         $("#desktopWebsiteHeader").hide();
                         $("#nav-bar-brand-mobile-header").removeClass("d-none");
                         $("#productGridList").removeAttr("style");
-                        $(".shopping-cart-box").css("left", "10px");
 
+                        $(".shopping-cart-box").css("left", "10px");
+                     
                     } else {
                         
+                        console.log("false"); 
+
+                        var shoppingCartElements = $("div#nav-bar-brand-mobile-header").children(":not(:first-child)");
+
+                        shoppingCartElements.eq(0).addClass("ml-4");
+
+                        shoppingCartElements.eq(0).appendTo($("div#navbarSupportedContent div.col-md-5 form"));                        
+                        shoppingCartElements.eq(1).appendTo($("div#navbarSupportedContent div.col-md-5"));
+
                         $("#nav-bar-brand-mobile-header").addClass("d-none");
                         $("#productGridList").attr("style", "padding-left: 60px; padding-right: 60px;");
                         $("#desktopWebsiteHeader").show();
-                        $(".shopping-cart-box").css("left", "-210px");
+                        $(".shopping-cart-box").css("left", "140px");
                         
                     }
                 };
@@ -2018,25 +2046,6 @@
             
                 updateCartPositioning();
                 updateProductCartInfo();
-
-            
-
-                (function($){
-
-                    $.fn.outside = function(ename, cb){
-                        return this.each(function(){
-                            var $this = $(this),
-                                self = this;
-
-                            $(document).bind(ename, function tempo(e){
-                                if(e.target !== self && !$.contains(self, e.target)){
-                                    cb.apply(self, [e]);
-                                    if(!self.parentNode) $(document.body).unbind(ename, tempo);
-                                }
-                            });
-                        });
-                    };
-                }(jQuery));
 
                 $("#countryCode").ready(function () {
                     $.ajax({
@@ -2206,6 +2215,7 @@
                 $("#cart").on("click", function(e) { 
                         e.preventDefault();
                         e.stopPropagation();
+                        console.log("tng inaaaaaaaa");
                         $(".shopping-cart").fadeToggle("fast");
                 });
 
