@@ -20,18 +20,21 @@
 
         <link href="css/style.css" rel="stylesheet">
 
+      
         <!-- <script src='https://www.google.com/recaptcha/api.js'></script>  -->
         
         <style rel="stylesheet">
 
             /* .ui-slider { display : inline-block; width : 10em; } */
+
+            
            
             /* shopping cart */
             
             .breadcrumb a {
                 color: white;
             }
-            .lighter-text {
+             .lighter-text {
             color: #ABB0BE;
             }
 
@@ -141,9 +144,9 @@
             }
             .button:hover {
             background: #729ef9;
-            }
+            } 
 
-
+              
             /* end of shopping cart */
 
             /* main template */
@@ -339,420 +342,87 @@
                             </h2>
             </header>
 
+        <!--Main Navigation-->
         <header>
 
             <nav class="navbar navbar-expand-lg navbar-dark blue lighten-1">
-                <div class="container pt-1 pb-1 pl-0">
+
+                <div class = "container">
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
 
-                    <div class="navbar-brand d-none m-0 mt-1 mr-1" href="#" id = "nav-bar-brand-mobile-header" style = "font-size: 15px;">
-                        <span class = "mr-3">
+                    <div class="navbar-brand d-none m-0 mb-1" href="#" id = "nav-bar-brand-mobile-header">
+
+                        <span class = "pr-2" style = "font-size: 14px;">
                             Fong Bros International Corp
                         </span>
 
-                       
+                    
                         
-                        </div>         
-                      
-                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                       
-                            <div class = "col-md-7">
-                                <ul class="navbar-nav mr-auto">
 
-                                    <li class = "nav-item">
-                                                        <div class="btn-group">
-
-                                                            <a class="nav-link" href="#" style="margin-right: 10px;" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                                                            Products
-                                                                <i class="fa fa-sort-down" aria-hidden="true" style = "position: relative; top: -3px;"></i>
-                                                            </a>
-
-                                                        
-                                                            <div class="dropdown-menu">
-                                                                <a class="dropdown-item" href="#">Action</a>
-                                                                <a class="dropdown-item" href="#">Another action</a>
-                                                                <a class="dropdown-item" href="#">Something else here</a>
-                                                                <div class="dropdown-divider"></div>
-                                                                <a class="dropdown-item" href="#">Separated link</a>
-                                                            </div>
-                                                        </div>
-                                                        
-                                                    </li>
-                                                    
-                                                    <li class="nav-item">
-                                                        <a class="nav-link" href="#" style="margin-right: 10px;">
-                                                            About Us
-                                                        </a>
-                                                    </li>
-                                                    <li class="nav-item">
-                                                        <a class="nav-link" href="#" style="margin-right: 10px;">
-                                                            Contact Us
-                                                        </a>
-                                                    </li>
-                                </ul>
-                            </div>
-
-                            <div class = "col-md-5">
-                                <form  role="search" class = "form-inline pl-5">
-                                        <input type="text" class="form-control" placeholder="Search" name="q">
-                                        <button class="btn btn-default light-blue lighten-2" type="submit" style = "height: 30px;"><i class="fa fa-search" aria-hidden="true" style="font-size: 10px; position: relative; top: -10px;"></i></button>              
-                               
-                                           <a href="#" id="cart" class = "text-white ml-4"><i class="fa fa-shopping-cart"></i> Cart <span class="badge light-blue lighten-2 productCartHeaderItemCount" style = "margin-left: 5px;">0</span></a>    
-                           
-                                 </form>
-                                
-                                   <div class = "navbar-nav cart">
-                                                        
-                                                    
-                                                        
-                                                        <div class = "shopping-cart-box">
-
-                                                            <div class="shopping-cart">
-                                                                <div class="shopping-cart-header">
-                                                                    <i class="fa fa-shopping-cart cart-icon"></i><span class="badge productCartHeaderItemCount">0</span>
-                                                                    <div class="shopping-cart-total">
-                                                                        <span class="lighter-text">Total:</span>
-                                                                        <span class="main-color-text">₱0.00</span>
-                                                                    </div>
-                                                                </div> 
-
-                                                                <div id = "productCartEmptyMessage" style = "margin-left: 85px; margin-top: 30px; margin-bottom: 0px;">
-                                                                    <p> No products added. </p>
-                                                                </div>
-
-                                                                <ul class="shopping-cart-items">
-                                                                
-
-                                                                </ul>
-
-                                                                <a href="#" class="button" id = "btnProductCartCheckout">Checkout</a>
-
-                                                            </div> 
-                                            
-                                            
-                                                        </div> 
-
-                                                    </div>
-                            </div>
-
-                        
-                          
-                            
                     </div>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav mr-auto">
+                            <li class="nav-item active">
+                                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                            </li>
+                            <li class="nav-item">
+                                <div class="btn-group">
 
-              
+                                    <a class="nav-link pr-0" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        Products
+                                        <i class="fa fa-sort-down" aria-hidden="true" style = "position: relative; top: -3px;"></i>
+                                    </a>
+
+                                                                
+                                    <div class="dropdown-menu">
+                                        <a class="dropdown-item" href="#">Action</a>
+                                        <a class="dropdown-item" href="#">Another action</a>
+                                        <a class="dropdown-item" href="#">Something else here</a>
+                                        <div class="dropdown-divider"></div>
+                                            <a class="dropdown-item" href="#">Separated link</a>
+                                        </div>
+                                    </div>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">
+                                    About Us
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">
+                                    Contact Us
+                                </a>
+                            </li>
+                        </ul>
+
+                        <ul class="navbar-nav nav-flex-icons">
+                            <li class="nav-item mr-3">
+
+                                <form  role="search" class = "form-inline">
+                                    <input type="text" class="form-control" placeholder="Search" name="q">
+                                    <button class="btn btn-default light-blue lighten-2" type="submit" style = "height: 30px;">
+                                        <i class="fa fa-search" aria-hidden="true" style="font-size: 10px; position: relative; top: -10px;"></i>
+                                    </button>                              
+                                </form>
+                            </li>
+                        
+                            <li class="nav-item">
+                                   <a href="#" id="cart" class = "text-white mt-2 m-0">
+                                    <i class="fa fa-shopping-cart"></i> Cart 
+                                    <span class="badge light-blue lighten-2 productCartHeaderItemCount" style = "margin-left: 5px;">0</span>
+                                </a>  
+
+                                
+                            </li>
+                        </ul>
+                    </div>
                 </div>
-
-              
-
             </nav>
-
-            
 
         </header>
 
-        
-
-        <!-- <div class = "container-fluid p-0">
-
-            <div class = "row">
-
-                <div class = "col">
-       
-                    <header>
-
-                        <nav class="navbar navbar-expand-lg elegant-color-dark sub-nav">
-                        
-                                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-3" aria-controls="navbarSupportedContent-3"
-                                    aria-expanded="false" aria-label="Toggle navigation">
-                                <span class="navbar-toggler-icon"></span>
-                            </button>
-                                    
-                            
-                                    <ul class="navbar-nav mr-auto top-navigation">
-
-                                        <li class="nav-item">
-                                            <a class="nav-link white-text sub-nav-date" href="#"></a>
-                                        </li>
-
-                                    </ul>
-                                    <ul class="navbar-nav ml-auto nav-flex-icons" style = "margin-right: 45px;">
-                                        <li class="nav-item">
-                                            <a class="nav-link waves-effect waves-light white-text" href="#">
-                                                <i class="fa fa-user" aria-hidden="true"></i>
-                                                <span> LOGIN </span> 
-                                            </a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link waves-effect waves-light white-text" href="#">
-                                                <i class="fa fa-user-plus" aria-hidden="true"></i>
-                                                <span> SIGN UP </span>
-                                            </a>
-                                        </li>
-                                    </ul>
-                        
-                        </nav>
-
-                    </header>
-
-                </div>
-
-            </div>
-
-            <div class = "row">
-        
-                <div class = "col">
-                    <header>
-                        <div style="background-image: url('h1.jpg'); background-repeat: no-repeat; background-size: cover;">
-                            <a class="navbar-brand" href="#" style = "margin-top: 5px; margin-bottom: 5px;  font-size: 30px; color:#000;">Fong Bros International Corp</a>
-                        </div>
-                    </header>
-                </div>
-
-            </div>
-
-            <div class = "row">
-                <div class = "col">
-                    <header>
-                        
-                        <nav class="navbar navbar-expand-lg navbar-dark blue lighten-1 main-nav-bar">
-                           
-                                <div class = "row">
-
-                                    <div class = "col-md-5">
-                                        <ul class="navbar-nav">
-                                            
-                                            <li class = "nav-item">
-                                                <div class="btn-group">
-
-                                                    <a class="nav-link" href="#" style="margin-right: 10px;" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                                                    Products
-                                                        <i class="fa fa-sort-down" aria-hidden="true" style = "position: relative; top: -3px;"></i>
-                                                    </a>
-
-                                                
-                                                    <div class="dropdown-menu">
-                                                        <a class="dropdown-item" href="#">Action</a>
-                                                        <a class="dropdown-item" href="#">Another action</a>
-                                                        <a class="dropdown-item" href="#">Something else here</a>
-                                                        <div class="dropdown-divider"></div>
-                                                        <a class="dropdown-item" href="#">Separated link</a>
-                                                    </div>
-                                                </div>
-                                                
-                                            </li>
-                                            
-                                            <li class="nav-item">
-                                                <a class="nav-link" href="#" style="margin-right: 10px;">
-                                                    About Us
-                                                </a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a class="nav-link" href="#" style="margin-right: 10px;">
-                                                    Contact Us
-                                                </a>
-                                            </li>
-
-                                            
-                                        </ul>
-
-                                    </div>
-
-                                
-                                    <div class = "col-md-4">
-
-                                        <form  role="search">
-                                            <input type="text" class="form-control" placeholder="Search" name="q">
-                                        </form>
-
-                                    </div>
-
-                                    <div class = "col-md-1">
-                                            <button class="btn btn-default light-blue lighten-2" type="submit" style = "height: 30px;"><i class="fa fa-search" aria-hidden="true" style="font-size: 10px; position: relative; top: -10px;"></i></button>              
-                                    </div>
-            
-                                    <div class = "col-md-1">
-                                        
-                                        <div class = "navbar-nav cart">
-                                            <a href="#" id="cart" class = "text-white"><i class="fa fa-shopping-cart"></i> Cart <span class="badge light-blue lighten-2 productCartHeaderItemCount" style = "margin-left: 5px;">0</span></a>    
-                                        
-                                            
-                                            <div class = "shopping-cart-box">
-
-                                                <div class="shopping-cart">
-                                                    <div class="shopping-cart-header">
-                                                        <i class="fa fa-shopping-cart cart-icon"></i><span class="badge productCartHeaderItemCount">0</span>
-                                                        <div class="shopping-cart-total">
-                                                            <span class="lighter-text">Total:</span>
-                                                            <span class="main-color-text">₱0.00</span>
-                                                        </div>
-                                                    </div> 
-
-                                                    <div id = "productCartEmptyMessage" style = "margin-left: 85px; margin-top: 30px; margin-bottom: 0px;">
-                                                        <p> No products added. </p>
-                                                    </div>
-
-                                                    <ul class="shopping-cart-items">
-                                                    
-
-                                                    </ul>
-
-                                                    <a href="#" class="button" id = "btnProductCartCheckout">Checkout</a>
-
-                                                </div> 
-                                
-                                
-                                            </div> 
-
-                                        </div>
-
-                                    </div>
-
-                                    
-                                </div>
-                     
-
-                            
-                        </nav>
-
-                    </header> 
-                </div>
-            </div>
-            
-
-             <header>
-
-
-
-                <nav class="navbar navbar-expand-lg elegant-color-dark nav-category">
-                    <div class="container">
-
-                    
-                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-3" aria-controls="navbarSupportedContent-3"
-                            aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                    
-                            <ul class="navbar-nav mr-auto top-navigation">
-
-                            
-
-                                <li class = "nav-item">
-                                    <a class = "nav-link white-text"> Products </a>
-                                </li>
-                                
-                                <li class = "nav-item">
-                                    <span class = "nav-link white-text" href = "#">  >  </span>
-                                    
-                                </li>
-
-                                <li class = "nav-item">
-                                    <a class = "nav-link white-text"> new products </a>
-                                    
-                                </li>
-
-                            
-                            </ul>
-                            <ul class="navbar-nav ml-auto nav-flex-icons" style = "margin-right: 45px;">
-                            
-                            </ul>
-                    
-                    </div>
-                </nav>
-            
-
-            </header> 
-        
-             <div class = "container">
-                
-                <div class = "row">
-                    <div class = "col">
-                        <div class = "container">
-                            <div class = "row">
-                                <div class = "col-md-9 pl-0">
-                                    <header>
-                                        <h5> 100 Search results for "lapu lapu" </h5>
-                                    </header>
-                                </div>
-                                <div class = "col-md-3">
-                                    <div class = "container pl-0">
-                                        <div class = "row no-gutters">
-                                            <div class = "col-md-4">
-                                                <label> Sort by: </label>
-                                            </div>
-                                            <div class = "col-md-8"> 
-                                                <select class = "browser-default">
-                                                    <option> price: high to low </option>
-                                                    <option> price: low to high </option> 
-                                                    <option> rating: high to low </option>
-                                                    <option> rating: low to high </option>
-                                                    <option> reviews </option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                               
-                            </div>
-                        </div>
-                        
-                        <hr class = "mt-0" />
-                    </div>
-                </div>
-
-                <div class = "row no-gutters">
-
-                    <div class = "col">
-
-                        <div class = "container pl-0">
-                            <div class = "row">
-                            <div class = "col-md-4 pr-0">
-                                    <label> Price: 100 php - 1,000,000,000 php </label>
-                                </div>
-
-                                <div class = "col-md-3 pl-0">
-                                    <div id = "slider" style = "margin-top: 6px;"> </div>
-                                </div>
-
-                            
-
-                                <div class = "col-md-3">
-                                    <div class = "container pl-0">
-                                        <div class = "row no-gutters">
-                                            <div class = "col-md-4">
-                                                <label> Origin: </label>
-                                            </div>
-                                            <div class = "col-md-8"> 
-                                                <select class = "browser-default" style = "width: 150px;">
-                                                    <option> Laguna </option>
-                                                    <option> Batangas </option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class = "col-md-1">
-                                    <button type="button" class="btn btn-primary m-0" style = "padding: 10px 45px 10px 45px; position: relative; top: -5px;">
-                                        Filter
-                                    </button>
-                                </div>
-
-                            
-                            
-                            </div>
-                        </div>
-
-                        <hr class = "mt-1"/>
-                    </div>
-                </div>
-
-            
-            </div> 
-
-        </div> -->
 
            <header>
 
@@ -776,7 +446,7 @@
 
             </header> 
 
-              <div class = "container mt-4">
+               <div class = "container mt-4">
                 
                 <div class = "row">
                     <div class = "col">
@@ -849,11 +519,11 @@
 
             
         
-        </div>  
+        </div>   
 
 
         
-          <div class = "container">
+           <div class = "container">
 
                 <div class = "row mx-auto" id = "productGridList" style = "padding-left: 60px; padding-right: 60px;">
                     
@@ -1287,9 +957,90 @@
                         </div>
                     </div>
                 </div>
-            </div>  
+            </div>   
+
+              <!-- Modal: modalCart -->
+          <div class="modal fade autoModal" id="shoppingModalCart" tabindex="-1" role="dialog" aria-labelledby="shoppingCartModal" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                      <!--Header-->
+                      <div class="modal-header">
+                        <div class="shopping-cart-header" style="margin-left:40px;">
+                            <i class="fa fa-shopping-cart cart-icon"></i><span class="badge productCartHeaderItemCount">0</span>
+                        </div>
+
+                        <div class="shopping-cart-total" style="margin-right:40px;">
+                            <span class="lighter-text">Total:</span>
+                            <span class="main-color-text">₱0.00</span>
+                        </div>
+
+                      </div>
+                      <!--Body-->
+                      <div class="modal-body" style = "overflow-x: auto;">
+
+                        <div class = "d-none" id = "productCartEmptyMessage">
+                            <p class="text-center p-5"> No products added. </p>
+                        </div>
+
+                          <table class="table table-hover">
+                              <thead>
+                                  <tr>
+                                      <th>#</th>
+                                      <th>Image</th>
+                                      <th>Product name</th>
+                                      <th>Price</th>
+                                      <th>Mass </th>
+                                      <th>Remove</th>
+                                  </tr>
+                              </thead>
+                               <tbody>
+                                   <!-- <tr>
+                                      <th scope="row">1</th>
+                                      <td><img src="https://static.giantbomb.com/uploads/square_small/2/23921/828692-patrickbio.jpg" width="50" heigh="50" class="float-left" alt="placeholder"></td>
+                                      <td>lapu lapu fish</td>
+                                      <td>100$</td>
+                                      <td>100$</td>
+                                      <td class="text-center"><a><i class="fa fa-remove text"></i></a></td>
+                                  </tr>
+                                  <tr>
+                                      <th scope="row">2</th>
+                                      <td><img src="https://static.giantbomb.com/uploads/square_small/2/23921/828692-patrickbio.jpg" width="50" heigh="50" class="float-left" alt="placeholder"></td>
+                                      <td>Product 2</td>
+                                      <td>100$</td>
+                                      <td>100$</td>
+                                      <td class="text-center"><a><i class="fa fa-remove"></i></a></td>
+                                  </tr>
+                                  <tr>
+                                      <th scope="row">3</th>
+                                      <td><img src="https://static.giantbomb.com/uploads/square_small/2/23921/828692-patrickbio.jpg" width="50" heigh="50" class="float-left" alt="placeholder"></td>
+                                      <td>Product 3</td>
+                                      <td>100$</td>
+                                      <td>100$</td>
+                                      <td class="text-center"><a><i class="fa fa-remove"></i></a></td>
+                                  </tr>
+                                  <tr>
+                                      <th scope="row">4</th>
+                                      <td><img src="https://static.giantbomb.com/uploads/square_small/2/23921/828692-patrickbio.jpg" width="50" heigh="50" class="float-left" alt="placeholder"></td>
+                                      <td>Product 4</td>
+                                      <td>100$</td>
+                                      <td>100$</td>
+                                      <td class="text-center"><a><i class="fa fa-remove"></i></a></td>
+                                  </tr>  -->
+                              </tbody> 
+                          </table>
+
+                      </div>
+                      <!--Footer-->
+                      <div class="modal-footer">
+                          <button type="button" class="btn btn-outline-primary" data-dismiss="modal">Close</button>
+                          <button class="btn btn-primary">Checkout</button>
+                      </div>
+                  </div>
+              </div>
+          </div>
+          <!-- Modal: modalCart -->
  
-        <!-- <div class = "container p-4">
+         <!-- <div class = "container p-4">
            <form method = "POST">
   
                 <div class = "row">
@@ -1509,7 +1260,7 @@
    
          </form>
 
-        </div>  -->
+        </div>   -->
 <!-- 
         <div class = "container" style = "margin-top: 50px; margin-bottom: 50px; width: 960px;">
             
@@ -1693,14 +1444,17 @@
         <script src="js/underscore.js"> </script>
 
         <script id = "cartItemTemplate" type = "text/template">
-            
-                <li class="clearfix">
-                    <button type="button" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <img src="<%= productImage %>" width="70" height="70" />
-                    <span class="item-name"><%= productName %></span>
-                    <span class="item-price"><%= totalPrice %></span>
-                    <span class="item-quantity">Mass: <%= totalMass %></span>
-                </li>
+
+                
+
+                  <tr>
+                                      <th scope="row">1</th>
+                                      <td><img src="<%=productImage%>" width="50" height="50" class="float-left" alt="placeholder"></td>
+                                      <td><%=productName%></td>
+                                      <td><%=totalPrice%></td>
+                                      <td><%=totalMass%></td>
+                                      <td class="text-center"><a><i class="fa fa-remove text"></i></a></td>
+                    </tr>
 
         </script>
 
@@ -1748,26 +1502,28 @@
 
                 var updateProductCartInfo = function () {
 
-                    var $productCartItemLists = $("ul.shopping-cart-items");
+                    var $productCartItemLists = $("div#shoppingModalCart div.modal-body>table>tbody");
                     var $productCartTotal = $("div.shopping-cart-total").children().eq(1);
                     var itemCount = $productCartItemLists.children().length;
             
                     if (itemCount > 0) {
-                        $("#productCartEmptyMessage").hide();
-                        $("#btnProductCartCheckout").removeClass("disabled");
+                      $productCartItemLists.parent().removeClass("d-none");
+                      $("#productCartEmptyMessage").addClass("d-none");
+                      $("div#shoppingModalCart div.modal-footer>button:eq(1)").removeClass("disabled");
                     } else {
-                        $("#productCartEmptyMessage").show();
-                        $("#btnProductCartCheckout").addClass("disabled");
+                      $productCartItemLists.parent().addClass("d-none");
+                      $("#productCartEmptyMessage").removeClass("d-none");
+                      $("div#shoppingModalCart div.modal-footer>button:eq(1)").addClass("disabled");
                     }
 
                     var totalPrice = 0;
 
                     _.each($productCartItemLists.children(), function (productCartItem, i) {
-                        console.log($(productCartItem).html());
-
-                        var $productCartItem = $(productCartItem);
+                       
+                        var $productCartItem = $(productCartItem).children().eq(3);
                         
-                        totalPrice += accounting.unformat($productCartItem.find(".item-price").text());
+                        console.log("item price: " + $productCartItem.text());
+                        totalPrice += accounting.unformat($productCartItem.text());
                         console.log(totalPrice);
 
                         
@@ -1783,7 +1539,7 @@
 
                 var addToCart = function (cartItem) {
 
-                    var $productCart = $("div.shopping-cart ul.shopping-cart-items");
+                    var $productCart = $("div#shoppingModalCart .modal-body>table>tbody");
 
                     var cartItemTemplate = $("#cartItemTemplate").html();
 
@@ -1796,15 +1552,12 @@
                         totalMass : cartItem.totalMass
                     }));
 
-                    $productCart.find("li:last button.close")
+                    $productCart.find("tr:last>td:last>a")
                                 .click(function () {
-                                   
-                                    console.log($(this).parent().html());
-                                    $(this).parent().fadeOut("slow", function () {
+                                  $(this).parent().parent().fadeOut("slow", function () {
                                         $(this).remove();
                                         updateProductCartInfo();
-                                    });
-
+                                  });
                                 });
 
                     updateProductCartInfo();
@@ -1862,38 +1615,31 @@
                     if (screenWidth <= 800) {
                         console.log(true);
 
-                        _.each($("div#navbarSupportedContent div.col-md-5 form").children(), function (element, i) {
-                            if (i > 1) {
-                                
-                                var shoppingCartElement = $(element).detach();
+                        var shoppingCartButton = $("div#navbarSupportedContent a#cart").detach();
 
-                                shoppingCartElement.removeClass("ml-4");
-                                shoppingCartElement.appendTo($("div#nav-bar-brand-mobile-header"));
 
-                            }
-                        });
+                        shoppingCartButton.css("font-size", "11px");
+                        shoppingCartButton.css("display", "inline");
+                        shoppingCartButton.appendTo($("#nav-bar-brand-mobile-header"));
 
-                        var shoppingCartElement = $("div#navbarSupportedContent div.col-md-5").children(":eq(1)").detach();
-                        shoppingCartElement.appendTo($("div#nav-bar-brand-mobile-header"));
-                        console.log(shoppingCartElement);
 
-                 
                         $("#desktopWebsiteHeader").hide();
                         $("#nav-bar-brand-mobile-header").removeClass("d-none");
                         $("#productGridList").removeAttr("style");
 
                         $(".shopping-cart-box").css("left", "10px");
+                        
                      
                     } else {
+
+                        var shoppingCartButton = $("#nav-bar-brand-mobile-header a#cart").detach();
+                        
+                        shoppingCartButton.css("font-size", "15px");
+                        shoppingCartButton.css("display", "inline-block");
+                        shoppingCartButton.appendTo($("div#navbarSupportedContent ul:eq(1)>li:eq(1)"));
                         
                         console.log("false"); 
 
-                        var shoppingCartElements = $("div#nav-bar-brand-mobile-header").children(":not(:first-child)");
-
-                        shoppingCartElements.eq(0).addClass("ml-4");
-
-                        shoppingCartElements.eq(0).appendTo($("div#navbarSupportedContent div.col-md-5 form"));                        
-                        shoppingCartElements.eq(1).appendTo($("div#navbarSupportedContent div.col-md-5"));
 
                         $("#nav-bar-brand-mobile-header").addClass("d-none");
                         $("#productGridList").attr("style", "padding-left: 60px; padding-right: 60px;");
@@ -2216,7 +1962,7 @@
                         e.preventDefault();
                         e.stopPropagation();
                         console.log("tng inaaaaaaaa");
-                        $(".shopping-cart").fadeToggle("fast");
+                        $("#shoppingModalCart").modal('toggle');
                 });
 
             });
