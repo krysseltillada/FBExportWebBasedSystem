@@ -147,10 +147,7 @@
 
             /* main template */
 
-            .nopadding {
-                margin-top: 0 !important;
-            }
-
+            
             .navbar {
                 height: auto;
                 padding:0px;
@@ -270,7 +267,7 @@
                     width: 300px;
                     height: 400px;
                     z-index: 0;
-                    margin-bottom: 10px;
+                    margin-bottom: 25px;
                 }
 
                 .col {
@@ -334,7 +331,7 @@
             <!--Main Navigation-->
      
 
-            <header style="background-image: url('h1.jpg'); background-repeat: no-repeat; background-size: cover;">
+            <header id = "desktopWebsiteHeader" style="background-image: url('h1.jpg'); background-repeat: no-repeat; background-size: cover;">
                 <div class = "container">
               
                             <h2 class = "mb-0"> <a class="navbar-brand" href="#" style = "margin-top: 5px; margin-bottom: 5px; color:#000;">Fong Bros International Corp</a>
@@ -344,10 +341,13 @@
         <header>
 
             <nav class="navbar navbar-expand-lg navbar-dark blue lighten-1">
-                <div class="container pt-1 pb-1">
+                <div class="container pt-1 pb-1 pl-0">
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
+
+                    <a class="navbar-brand d-none" href="#" id = "nav-bar-brand-mobile-header">Fong Bros International Corp</a>         
+                      
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                        
                             <div class = "col-md-5">
@@ -434,8 +434,10 @@
                             
                     </div>
 
-                       
+              
                 </div>
+
+              
 
             </nav>
 
@@ -748,7 +750,7 @@
 
 
                 <nav class="navbar navbar-expand-lg elegant-color-dark nav-category" style = "height: 40px;">
-                    <div class="container p-4">
+                    <div class="container p-2">
 
                         <div class = "row">
                             <div class = "col">
@@ -766,20 +768,31 @@
 
             </header> 
 
-            <div class = "container mt-3">
+            <div class = "container mt-4">
                 
                 <div class = "row">
                     <div class = "col">
                       
-                            <div class = "row">
+                            <div class = "row mb-1">
                                 <div class = "col-md-9">
                                     <header>
                                         <h5> 100 Search results for "lapu lapu" </h5>
                                     </header>
                                 </div>
-                                <div class = "col-md-3">
+                                <div class = "col-md-3 pl-5">
+
+                                        <div class = "form-inline">
+                                            <label class = "mr-2"> Sort by: </label>
+                                            <select class = "browser-default">
+                                                    <option> price: high to low </option>
+                                                    <option> price: low to high </option> 
+                                                    <option> rating: high to low </option>
+                                                    <option> rating: low to high </option>
+                                                    <option> reviews </option>
+                                                </select>
+                                        </div>
                                    
-                                        <div class = "row">
+                                        <!-- <div class = "row">
                                             <div class = "col-4">
                                                 <label> Sort by: </label>
                                             </div>
@@ -792,14 +805,14 @@
                                                     <option> reviews </option>
                                                 </select>
                                             </div>
-                                        </div>
+                                        </div> -->
                                    
                                 </div>
                                
                             </div>
                        
                         
-                        <hr class = "mt-0"/>
+                        <hr class = "m-0 mb-2"/>
                     </div>
                 </div>
 
@@ -807,18 +820,28 @@
 
                     <div class = "col">
 
-                            <div class = "row">
-                                    <div class = "col-md-3">
+                            <div class = "row mb-2">
+                                    <div class = "col-md-3 mt-1">
                                         <label> Price: 100 php - 1,000,000,000 php </label>
                                     </div>
 
-                                    <div class = "col-md-4">
+                                    <div class = "col-md-4 mt-1">
                                         <div id = "slider" class = "mt-2" > </div>
                                     </div>
 
-                                    <div class = "col-md-3">
+                                    <div class = "col-md-3 mt-1">
+
+                                            <div class = "form-inline">
+                                                <label class = "mr-3"> Origin: </label>
+                                                <select class = "browser-default" style = "width: 150px;">
+                                                    <option> Laguna </option>
+                                                    <option> Batangas </option>
+                                                </select>
+                                            </div>
+
+                                            
                                     
-                                            <div class = "row">
+                                            <!-- <div class = "row">
                                                 <div class = "col-4">
                                                     <label> Origin: </label>
                                                 </div>
@@ -828,12 +851,12 @@
                                                         <option> Batangas </option>
                                                     </select>
                                                 </div>
-                                            </div>
+                                            </div> -->
                                         
                                     </div>
 
                                     <div class = "col-md-2">
-                                        <button type="button" class="btn btn-primary m-0" style = "padding: 10px 45px 10px 45px;">
+                                        <button type="button" class="btn btn-primary m-0" style = "padding: 10px 56px 10px 56px;">
                                             Filter
                                         </button>
                                     </div>
@@ -853,9 +876,9 @@
        
           <div class = "container">
 
-                <div class = "row mx-auto">
+                <div class = "row mx-auto" id = "productGridList" style = "padding-left: 60px; padding-right: 60px;">
                     
-                    <div class = "col">
+                    <div class = "col-md">
                         <div class="card hoverable">
                              
                             <span style = "position: absolute; color: white; left: 180px; width: 40%; overflow: hidden; padding: 5px; text-align: center; border: 1px solid white;" class = "rgba-black-strong"> 
@@ -899,8 +922,8 @@
                         </div>
                     </div>
 
-                   <div class = "col">
-                        <div class="card hoverable">
+                   <div class = "col-md">
+                        <div class="card hoverable" style = "margin-right: 0px;">
                              
                             <span style = "position: absolute; color: white; left: 180px; width: 40%; overflow: hidden; padding: 5px; text-align: center; border: 1px solid white;" class = "rgba-black-strong"> 
                                 1000.00 php 
@@ -944,7 +967,139 @@
                     </div>
 
                     
-                    <div class = "col">
+                    <div class = "col-md">
+                        <div class="card hoverable">
+                             
+                            <span style = "position: absolute; color: white; left: 180px; width: 40%; overflow: hidden; padding: 5px; text-align: center; border: 1px solid white;" class = "rgba-black-strong"> 
+                                500.00 php 
+                            </span>
+
+                            <span style = "position: absolute; color: white; left: 180px; top: 36px; width: 40%; padding: 3px 5px 3px 5px; text-align: center; border-width: 0px 1px 1px 1px; border-color: white; border-style: solid;" class = "rgba-black-strong"> 
+                                 per <span> kilograms </span>
+                            </span>
+
+                            <span style = "position: absolute; color: white;  top: 170px;  max-width: 200px; max-height: 30px; padding: 3px 5px 3px 5px; text-align: center; border: 1px solid white;" class = "rgba-black-strong"> 
+                                 sa mars
+                            </span>
+                           
+                            <img src="lapu-lapu-fish.jpg" alt="Card image cap" height = "200" />
+
+                           
+
+                            <div class="card-body">
+
+                              
+                                <h4 class="card-title"> <a href = "#" class = "black-text"> Lapu Lapu fish </a> </h4>
+                                
+                                <hr class = "m-0"/>
+                              
+                                <p class="card-text mt-2" style = "height: 63px; max-height: 63px; overflow-y: auto;">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+
+                                <hr class = "m-0"/>
+
+                                <div class = "mt-1">
+                                
+                                    <button type = "button" href="#" class="btn btn-primary btnProductItemAddToCart" style = "position: relative; left: -8px; top: -4px; padding: 8px 10px 8px 10px;">
+                                        <i class="fa fa-cart-plus mr-1 mb-1" aria-hidden="true"></i>
+                                        Add to cart</button>
+
+                                    <span style = "font-size: 12px; position: absolute; top: 155px;"> Fresh until: <span class = "red-text"> nov 28 2017 </span> </span>
+                                    <span style = "font-size: 12px; position: absolute; top: 174px;" class = "black-text"> Posted on: nov 19 2017 </span>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class = "col-md">
+                        <div class="card hoverable">
+                             
+                            <span style = "position: absolute; color: white; left: 180px; width: 40%; overflow: hidden; padding: 5px; text-align: center; border: 1px solid white;" class = "rgba-black-strong"> 
+                                500.00 php 
+                            </span>
+
+                            <span style = "position: absolute; color: white; left: 180px; top: 36px; width: 40%; padding: 3px 5px 3px 5px; text-align: center; border-width: 0px 1px 1px 1px; border-color: white; border-style: solid;" class = "rgba-black-strong"> 
+                                 per <span> kilograms </span>
+                            </span>
+
+                            <span style = "position: absolute; color: white;  top: 170px;  max-width: 200px; max-height: 30px; padding: 3px 5px 3px 5px; text-align: center; border: 1px solid white;" class = "rgba-black-strong"> 
+                                 sa mars
+                            </span>
+                           
+                            <img src="lapu-lapu-fish.jpg" alt="Card image cap" height = "200" />
+
+                           
+
+                            <div class="card-body">
+
+                              
+                                <h4 class="card-title"> <a href = "#" class = "black-text"> Lapu Lapu fish </a> </h4>
+                                
+                                <hr class = "m-0"/>
+                              
+                                <p class="card-text mt-2" style = "height: 63px; max-height: 63px; overflow-y: auto;">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+
+                                <hr class = "m-0"/>
+
+                                <div class = "mt-1">
+                                
+                                    <button type = "button" href="#" class="btn btn-primary btnProductItemAddToCart" style = "position: relative; left: -8px; top: -4px; padding: 8px 10px 8px 10px;">
+                                        <i class="fa fa-cart-plus mr-1 mb-1" aria-hidden="true"></i>
+                                        Add to cart</button>
+
+                                    <span style = "font-size: 12px; position: absolute; top: 155px;"> Fresh until: <span class = "red-text"> nov 28 2017 </span> </span>
+                                    <span style = "font-size: 12px; position: absolute; top: 174px;" class = "black-text"> Posted on: nov 19 2017 </span>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class = "col-md">
+                        <div class="card hoverable">
+                             
+                            <span style = "position: absolute; color: white; left: 180px; width: 40%; overflow: hidden; padding: 5px; text-align: center; border: 1px solid white;" class = "rgba-black-strong"> 
+                                500.00 php 
+                            </span>
+
+                            <span style = "position: absolute; color: white; left: 180px; top: 36px; width: 40%; padding: 3px 5px 3px 5px; text-align: center; border-width: 0px 1px 1px 1px; border-color: white; border-style: solid;" class = "rgba-black-strong"> 
+                                 per <span> kilograms </span>
+                            </span>
+
+                            <span style = "position: absolute; color: white;  top: 170px;  max-width: 200px; max-height: 30px; padding: 3px 5px 3px 5px; text-align: center; border: 1px solid white;" class = "rgba-black-strong"> 
+                                 sa mars
+                            </span>
+                           
+                            <img src="lapu-lapu-fish.jpg" alt="Card image cap" height = "200" />
+
+                           
+
+                            <div class="card-body">
+
+                              
+                                <h4 class="card-title"> <a href = "#" class = "black-text"> Lapu Lapu fish </a> </h4>
+                                
+                                <hr class = "m-0"/>
+                              
+                                <p class="card-text mt-2" style = "height: 63px; max-height: 63px; overflow-y: auto;">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+
+                                <hr class = "m-0"/>
+
+                                <div class = "mt-1">
+                                
+                                    <button type = "button" href="#" class="btn btn-primary btnProductItemAddToCart" style = "position: relative; left: -8px; top: -4px; padding: 8px 10px 8px 10px;">
+                                        <i class="fa fa-cart-plus mr-1 mb-1" aria-hidden="true"></i>
+                                        Add to cart</button>
+
+                                    <span style = "font-size: 12px; position: absolute; top: 155px;"> Fresh until: <span class = "red-text"> nov 28 2017 </span> </span>
+                                    <span style = "font-size: 12px; position: absolute; top: 174px;" class = "black-text"> Posted on: nov 19 2017 </span>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class = "col-md">
                         <div class="card hoverable">
                              
                             <span style = "position: absolute; color: white; left: 180px; width: 40%; overflow: hidden; padding: 5px; text-align: center; border: 1px solid white;" class = "rgba-black-strong"> 
@@ -989,6 +1144,7 @@
                     </div>
                 </div>
 
+              
                 <hr />
 
                 <div class = "row">
@@ -1698,12 +1854,23 @@
                 var updateCartPositioning = function () {
                     var screenWidth = $(document).width();
                     console.log(screenWidth);
+
+                    // style="padding-left: 60px; padding-right: 60px;"
+
                     if (screenWidth <= 768) {
                         console.log(true);
+                        
+                        $("#desktopWebsiteHeader").hide();
+                        $("#nav-bar-brand-mobile-header").removeClass("d-none");
+                        $("#productGridList").removeAttr("style");
                         $(".shopping-cart-box").css("left", "10px");
-                        $
+
                     } else {
-                         $(".shopping-cart-box").css("left", "-210px");
+                        
+                        $("#nav-bar-brand-mobile-header").addClass("d-none");
+                        $("#productGridList").attr("style", "padding-left: 60px; padding-right: 60px;");
+                        $("#desktopWebsiteHeader").show();
+                        $(".shopping-cart-box").css("left", "-210px");
                         
                     }
                 };
@@ -1819,7 +1986,9 @@
                     offset : '0px 9px'
                 });
 
-                $( "#slider" ).slider();
+                $( "#slider" ).slider({
+                    range: true
+                });
 
                 $(".btnProductItemAddToCart").click(function (event) {
 
