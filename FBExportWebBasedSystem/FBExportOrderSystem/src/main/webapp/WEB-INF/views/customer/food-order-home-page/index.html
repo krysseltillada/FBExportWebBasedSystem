@@ -1300,7 +1300,7 @@
                                     </div>
 
                                     <div class = "row">
-                                        <div class = "col-md-1" style = "position: relative; left: 400px;">
+                                        <div class = "col-md-1" style = "position: relative; left: 375px;">
                                             <input type="submit" class="btn btn-primary" value = "Login" />
                                         </div>
                                     </div>
@@ -1610,14 +1610,14 @@
 
                     if (screenWidth <= 800) {
 
-                        $(":submit").parent().parent().css("left", "auto");
+                        $("form#loginForm>div.row:eq(3)>div").css("left", "auto");
                         $("form#loginForm>div.row:eq(2)>div>div").css("left", "auto");
                         $("form#loginForm").removeClass("mt-5").addClass("mt-4");
                         $("form#loginForm").removeClass("ml-5");
 
                     } else {
 
-                        $(":submit").parent().parent().css("left", "400px");
+                        $("form#loginForm>div.row:eq(3)>div").css("left", "375px");
                         $("form#loginForm>div.row:eq(2)>div>div").css("left", "80px");
                         $("form#loginForm").removeClass("mt-4").addClass("mt-5");
                         $("form#loginForm").addClass("ml-5");
