@@ -1267,7 +1267,7 @@
 
                             <hr />
 
-                                <form method = "POST" class = "mt-5 mb-5 ml-5">
+                                <form method = "POST" class = "mt-5 mb-5 ml-5" id = "loginForm">
                                     <div class = "row">
                                         <div class = "col-md-2 mt-3">
                                             <label for = "username-email"> Username / Email: </label>
@@ -1611,16 +1611,16 @@
                     if (screenWidth <= 800) {
 
                         $(":submit").parent().parent().css("left", "auto");
-                        $("form>div.row:eq(2)>div>div").css("left", "auto");
-                        $("form").removeClass("mt-5").addClass("mt-4");
-                        $("form").removeClass("ml-5");
+                        $("form#loginForm>div.row:eq(2)>div>div").css("left", "auto");
+                        $("form#loginForm").removeClass("mt-5").addClass("mt-4");
+                        $("form#loginForm").removeClass("ml-5");
 
                     } else {
 
                         $(":submit").parent().parent().css("left", "400px");
-                        $("form>div.row:eq(2)>div>div").css("left", "80px");
-                        $("form").removeClass("mt-4").addClass("mt-5");
-                        $("form").addClass("ml-5");
+                        $("form#loginForm>div.row:eq(2)>div>div").css("left", "80px");
+                        $("form#loginForm").removeClass("mt-4").addClass("mt-5");
+                        $("form#loginForm").addClass("ml-5");
                         
                     }
 
