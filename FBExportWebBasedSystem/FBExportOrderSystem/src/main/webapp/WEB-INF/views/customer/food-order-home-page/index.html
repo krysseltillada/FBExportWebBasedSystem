@@ -1040,7 +1040,7 @@
           </div>
           <!-- Modal: modalCart -->
  
-          <div class = "container p-4">
+          <!-- <div class = "container p-4">
            <form method = "POST">
   
                 <div class = "row">
@@ -1166,7 +1166,7 @@
                                                 <option value="" disabled selected>Choose your country</option>
                                             </select>
                                     </div>
-                                        
+
                                 </div>
                                 <div class = "col-md-5">
                                  
@@ -1256,9 +1256,9 @@
    
          </form>
 
-        </div>   
-<!-- 
-        <div class = "container" style = "margin-top: 50px; margin-bottom: 50px; width: 960px;">
+        </div>    -->
+ 
+        <div class = "container p-5">
             
                 <div class = "row">
                     <div class = "col-md-12">
@@ -1267,7 +1267,7 @@
 
                             <hr />
 
-                                <form method = "POST" class = "mt-5 mb-5">
+                                <form method = "POST" class = "mt-5 mb-5 ml-5">
                                     <div class = "row">
                                         <div class = "col-md-2 mt-3">
                                             <label for = "username-email"> Username / Email: </label>
@@ -1300,7 +1300,7 @@
                                     </div>
 
                                     <div class = "row">
-                                        <div class = "col-md-1" style = "position: relative; left: 340px;">
+                                        <div class = "col-md-1" style = "position: relative; left: 400px;">
                                             <input type="submit" class="btn btn-primary" value = "Login" />
                                         </div>
                                     </div>
@@ -1312,7 +1312,7 @@
                         </fieldset>
                     </div>
                 </div>
-        </div> -->
+        </div> 
                
 
 
@@ -1604,6 +1604,28 @@
                     
                 };
 
+                var updateLoginFormPositioning = function () {
+                    var screenWidth = $(document).width();
+                    console.log("l");
+
+                    if (screenWidth <= 800) {
+
+                        $(":submit").parent().parent().css("left", "auto");
+                        $("form>div.row:eq(2)>div>div").css("left", "auto");
+                        $("form").removeClass("mt-5").addClass("mt-4");
+                        $("form").removeClass("ml-5");
+
+                    } else {
+
+                        $(":submit").parent().parent().css("left", "400px");
+                        $("form>div.row:eq(2)>div>div").css("left", "80px");
+                        $("form").removeClass("mt-4").addClass("mt-5");
+                        $("form").addClass("ml-5");
+                        
+                    }
+
+                };
+
                 var updateSignUpFormPositioning = function () {
 
                     var screenWidth = $(document).width();
@@ -1683,8 +1705,9 @@
                 
 
                 $(window).resize(function () {
+                    updateLoginFormPositioning();
                     updateCartPositioning();
-                    updateSignUpFormPositioning();
+                    // updateSignUpFormPositioning();
                 });
 
                 $("#massType").change(function () {
@@ -1820,7 +1843,8 @@
                 });
 
             
-                updateSignUpFormPositioning();
+                // updateSignUpFormPositioning();
+                updateLoginFormPositioning();
                 updateCartPositioning();
                 updateProductCartInfo();
 
