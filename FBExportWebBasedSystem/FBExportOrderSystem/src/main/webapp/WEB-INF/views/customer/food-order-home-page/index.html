@@ -321,8 +321,8 @@
     <body>
         
 
-        <!--Main Navigation-->
-            <header>
+        <!--Main Navigation sign out nav-->
+            <!-- <header>
 
                 <nav class="navbar navbar-expand-lg navbar-dark black">
 
@@ -352,8 +352,56 @@
                 
                 </nav>
 
-            </header>
+            </header> -->
             <!--Main Navigation-->
+
+            <header>
+
+                <nav class="navbar navbar-expand-lg navbar-dark black">
+
+                    <div class = "container">
+                    
+                            <ul class="navbar-nav mr-auto">
+                            <li class="nav-item">
+                                    <a class="nav-link white-text sub-nav-date" href="#"></a>
+                                </li>
+                            </ul>
+                            <ul class="navbar-nav nav-flex-icons">
+                                  <li class="nav-item">
+                                                            <span class="nav-link white-text">
+                                                            
+                                                                <span> Welcome kryssel! </span> 
+                                                            </span>
+
+                                                        </li>
+                                                          <li class="nav-item">
+                                                         
+
+                                                            <a class="nav-link waves-effect waves-light white-text pl-0" href="#">
+                                                                 <span class = "font-weight-bold"> 1 </span>
+                                                                 <i class="fa fa-bell" aria-hidden="true"></i>    
+                                                            </a>
+
+                                                        </li>
+                            <li class="nav-item">
+                                                            <a class="nav-link waves-effect waves-light white-text" href="#">
+                                                                <i class="fa fa-user" aria-hidden="true"></i>
+                                                                <span> PROFILE </span> 
+                                                            </a>
+                                                        </li>
+                                                        <li class="nav-item">
+                                                            <a class="nav-link waves-effect waves-light white-text" href="#">
+                                                                <i class="fa fa-sign-out" aria-hidden="true"></i>
+                                                                <span> SIGN OUT </span>
+                                                            </a>
+                                                        </li>
+                            </ul>
+
+                    </div>
+                
+                </nav>
+
+            </header>
      
 
             <header id = "desktopWebsiteHeader" style="background-image: url('h1.jpg'); background-repeat: no-repeat; background-size: cover;">
@@ -368,7 +416,7 @@
 
             <nav class="navbar navbar-expand-lg navbar-dark blue lighten-1">
 
-                <div class = "container">
+                <div class = "container pt-1 pb-1">
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
@@ -470,13 +518,16 @@
 
             <div class = "container">
 
-                <h2 class = "h2-responsive text-center mt-3"> Popular Products </h2>
+                <h2 class = "h2-responsive text-center mt-4 wow fadeIn"> Popular Products </h2>
 
-                <hr />
+                
 
                 <!--Carousel Wrapper-->
-                <div id="carousel-example-2" class="carousel slide carousel-fade pl-5 pr-5" data-ride="carousel">
+                <div id="carousel-example-2" class="carousel slide carousel-fade pl-5 pr-5 wow fadeIn" data-ride="carousel">
                     <!--Indicators-->
+
+                    <hr />
+                    
                     <ol class="carousel-indicators">
                         <li data-target="#carousel-example-2" data-slide-to="0" class="active"></li>
                         <li data-target="#carousel-example-2" data-slide-to="1"></li>
@@ -531,21 +582,15 @@
                     <!--/.Controls-->
                 </div>
                 <!--/.Carousel Wrapper-->
-                
-
-                
-
-                
-                
 
             </div>
 
             <div class = "container mt-4">
-                <h2 class = "h2-responsive  mt-3 ml-5"> New products </h2>
+                <h2 class = "h2-responsive  mt-3 ml-5 wow fadeIn"> New products </h2>
 
                 <hr class = "ml-5 mr-5"/>
 
-                  <div class = "row mx-auto" id = "productGridList">
+                  <div class = "row mx-auto wow fadeIn" id = "productGridList">
                     
                     <div class = "col-md">
                         <div class="card hoverable">
@@ -681,6 +726,13 @@
                     </div>
 
                 </div>
+
+                <div class = "row">
+                    <button type="button" class="btn btn-primary mx-auto">See more</button>
+                </div>
+
+                
+
 
             </div>
       
@@ -1563,14 +1615,12 @@
         <footer class="page-footer center-on-small-only nopadding blue lighten-1">
 
             <!--Footer links-->
-            <div class="container-fluid">
+            <div class="container-fluid wow fadeIn">
                 <div class="row">
                     <!--First column-->
                     <div class="col-lg-3 col-md-6 ml-auto">
                         <h5 class="title mb-3"><strong>About material design</strong></h5>
                         <p>Material Design (codenamed Quantum Paper) is a design language developed by Google.</p>
-                        <p>Material Design for Bootstrap (MDB) is a powerful Material Design UI KIT for most popular HTML, CSS,
-                            and JS framework - Bootstrap.</p>
                     </div>
                     <!--/.First column-->
                     <hr class="w-100 clearfix d-sm-none">
@@ -1639,7 +1689,7 @@
 
             <!--Copyright-->
             <div class="footer-copyright elegant-color-dark">
-                <div class="container-fluid">
+                <div class="container-fluid wow fadeIn">
                     <span class = "text-white"> © 2017 Copyright: </span> <a href="https://www.MDBootstrap.com"> Fong bros International Corporation.  </a>
 
                 </div>
@@ -2090,6 +2140,9 @@
                 updateLoginFormPositioning();
                 updateCartPositioning();
                 updateProductCartInfo();
+
+                new WOW().init();
+
 
                 $("#countryCode").ready(function () {
                     $.ajax({
