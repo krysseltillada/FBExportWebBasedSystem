@@ -948,10 +948,7 @@
 
                                         <ul class="nav nav-tabs">
                                             <li class="nav-item">
-                                                <a class="nav-link active" href="#">Pending orders</a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a class="nav-link" href="#">Approved orders</a>
+                                                <a class="nav-link active" href="#">orders</a>
                                             </li>
                                             <li class="nav-item">
                                                 <a class="nav-link" href="#">Returned orders</a>
@@ -960,59 +957,370 @@
                                                 <a class="nav-link" href="#">Cancelled orders</a>
                                             </li>
                                         </ul>
+                                        
 
                                         <div>
 
-                                            <table class="table table-hover mb-0" style = "border: 1px solid #DFDFDF;">
+                                            <div class="list-group">
+                                                <a class="list-group-item flex-column align-items-start black-text" 
+                                                   data-toggle="collapse" href="#orderCollapseItem1" role="button" aria-expanded="false" aria-controls="orderCollapseItem1">
+      
+                                                    <div class = "row">
+                                                        
+                                                        <div class = "col-9">
+                                                            <div class = "row" style = "font-size: 13px;">
+                                                                <div class = "col-1">
+                                                                      <i class="fa fa-chevron-circle-down fa-2x" aria-hidden="true"></i>
+                                                                </div>
+                                                                <div class = "col-2">
+                                                                  
+                                                                    <strong> ORDER ID: </strong> <br />
+                                                                        123123123
+                                                                </div>
+                                                                <div class = "col-3">
+                                                                    <strong> TOTAL PRICE: </strong> <br />
+                                                                        155000 php
+                                                                </div>
+                                                                <div class = "col-3">
+                                                                    <strong> PAYMENT METHOD: </strong> <br />
+                                                                        PAY ON CASH
+                                                                </div>
+                                                                <div class = "col-3">
+                                                                    <strong> DATE ORDERED: </strong> <br />
+                                                                        NOVEMBER 28 1998
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class = "col-3">
+                                                            <h6 class = "mb-0">  
+                                                                <strong> 
+                                                                    Status: 
+                                                                    <span class = "orange-text"> pending </strong> 
+                                                            </h6>
+                                                            
+                                                            <span class = "blue-text" href = "#" style = "font-size: 14px;"> 
+                                                                <i class="fa fa-print" aria-hidden="true"></i>
+                                                                Print |
+                                                                Details |
+                                                                Cancel  
+                                                            </span> 
+                                                            
+                                                        </div>
+                                                    </div>
 
-                                                <thead>
-                                                    <tr>
-                                                        <th scope="row">#</th>
-                                                        <th class="th-lg"><a>First Name <i class="fa fa-sort ml-1"></i></a></th>
-                                                        <th class="th-lg"><a href="">Last Name<i class="fa fa-sort ml-1"></i></a></th>
-                                                        <th class="th-lg"><a href="">Username<i class="fa fa-sort ml-1"></i></a></th>
-                                                        <th class="th-lg"><a href="">Username<i class="fa fa-sort ml-1"></i></a></th>
-                                                        <th class="th-lg"><a href="">Username<i class="fa fa-sort ml-1"></i></a></th>
-                                                    </tr>
-                                                </thead>
-
-                                                <tbody>
-                                                    <tr>
-                                                        <th scope="row">1</th>
-                                                        <td>Mark</td>
-                                                        <td>Otto</td>
-                                                        <td>@mdo</td>
-                                                        <td>Mark</td>
-                                                        <td>Otto</td>
-                                                    </tr>
-                                                        <tr>
-                                                        <th scope="row">1</th>
-                                                        <td>Mark</td>
-                                                        <td>Otto</td>
-                                                        <td>@mdo</td>
-                                                        <td>Mark</td>
-                                                        <td>Otto</td>
-                                                    </tr>
-                                                        <tr>
-                                                        <th scope="row">1</th>
-                                                        <td>Mark</td>
-                                                        <td>Otto</td>
-                                                        <td>@mdo</td>
-                                                        <td>Mark</td>
-                                                        <td>Otto</td>
-                                                    </tr>
-                                                        <tr>
-                                                        <th scope="row">1</th>
-                                                        <td>Mark</td>
-                                                        <td>Otto</td>
-                                                        <td>@mdo</td>
-                                                        <td>Mark</td>
-                                                        <td>Otto</td>
-                                                    </tr>
+                                                
                                                     
-                                                </tbody>
-                                            </table>
+                                                        
+                                                </a>
 
+                                                <div class="collapse multi-collapse" id="orderCollapseItem1" style = "border-left: 1px solid #DFDFDF; border-right: 1px solid #DFDFDF;">
+                                                  
+                                                    <div class = "ml-3 mr-3 mt-3 mb-2">
+
+                                                        <div class = "row">
+                                                            <div class = "col">
+                                                                <h6> 
+                                                                    <strong> 3 Items ordered </strong> 
+                                                                    <span class = "float-right" style = "font-size: 14px;"> 
+                                                                        <a href = "#"> Shipping information </a> |
+                                                                        <a href = "#"> Shipping log </a>
+                                                                    </span>
+                                                                </h6>
+                                                                <hr class = "mt-0" />
+                                                            </div>
+                                                        </div>
+
+                                                        <div class = "row">
+                                                            <div class = "col-7">
+
+                                                                <div class = "row">
+                                                                    <div class = "col">
+
+                                                                        <div class> 
+
+                                                                            <table class="table table-sm mb-0"  style = "border: 1px solid #DFDFDF;">
+                                                                                <thead>
+                                                                                    <tr>
+                                                                                    <th>#</th>
+                                                                                    <th>Item Name</th>
+                                                                                    <th>Price</th>
+                                                                                    <th>Weight</th>
+                                                                                    </tr>
+                                                                                </thead>
+                                                                                <tbody>
+                                                                                    <tr>
+                                                                                        <th scope="row">
+                                                                                            <img src = "puffer-fish.jpg" width = "40" height = "40" />
+                                                                                        </th>
+                                                                                        <td>Puffer fish</td>
+                                                                                        <td>1000 PHP</td>
+                                                                                        <td>120 KILO</td>
+                                                                                    </tr>
+                                                                                    <tr>
+                                                                                        <th scope="row">
+                                                                                            <img src = "puffer-fish.jpg" width = "40" height = "40" />
+                                                                                        </th>
+                                                                                        <td>Puffer fish</td>
+                                                                                        <td>1000 PHP</td>
+                                                                                        <td>120 KILO</td>
+                                                                                    </tr>
+                                                                                    <tr>
+                                                                                        <th scope="row">
+                                                                                            <img src = "puffer-fish.jpg" width = "40" height = "40" />
+                                                                                        </th>
+                                                                                        <td>Puffer fish</td>
+                                                                                        <td>1000 PHP</td>
+                                                                                        <td>120 KILO</td>
+                                                                                    </tr>
+                                                                                
+                                                                                </tbody>
+                                                                                <tfoot>
+                                                                                    <tr>    
+                                                                                        <th></th>
+                                                                                        <th></th>
+                                                                                        <th>Total: 1000 PHP </th>
+                                                                                        <th>Total: 120 KILO </th>
+                                                                                    </tr>
+                                                                                
+                                                                                </tfoot>
+                                                                            </table>
+                                                                            <!-- <div class="list-group ml-2">
+                                                                                <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+                                                                                <div class = "row">
+                                                                                    <div class = "col-2">
+                                                                                        <img src = "puffer-fish.jpg" height = "50" width = "50" /> 
+                                                                                    </div>
+                                                                                    <div class = "col">
+                                                                                        <strong class = "align-middle">
+                                                                                            Puffer fish
+                                                                                        </strong>
+                                                                                    </div>
+                                                                                    <div class = "col">
+                                                                                        <strong>
+                                                                                            1500 php
+                                                                                        </strong>
+                                                                                    </div>
+                                                                                    <div class = "col">
+                                                                                        <strong>
+                                                                                            1500 kilo
+                                                                                        </strong>
+                                                                                    </div>
+                                                                                </div>
+                                                                                </a>
+                                                                            
+                                                                            </div> -->
+
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class = "col-5" style = "font-size: 14px;">
+                                                                <p>
+                                                                    <strong> Description:  </strong> <br />
+                                                                    please place the cargo at the right hand side of the area
+                                                                </p>
+                                                                <p>
+                                                                    <strong> Shipping Address: </strong> <br />
+                                                                    1700 blk 7 saint joseph subd pulanglupa 2 las pinas city 
+                                                                </p>
+
+                                                                <p>
+                                                                    <strong> Country: </strong> <br />
+                                                                    United States
+                                                                </p>
+
+                                                                <p>
+                                                                    <strong> City: </strong> <br />
+                                                                    New york
+                                                                </p>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+
+                                                <a class="list-group-item flex-column align-items-start black-text" 
+                                                   data-toggle="collapse" href="#orderCollapseItem2" role="button" aria-expanded="false" aria-controls="orderCollapseItem2">
+      
+                                                    <div class = "row">
+                                                        
+                                                        <div class = "col-9">
+                                                            <div class = "row" style = "font-size: 13px;">
+                                                                <div class = "col-1">
+                                                                      <i class="fa fa-chevron-circle-down fa-2x" aria-hidden="true"></i>
+                                                                </div>
+                                                                <div class = "col-2">
+                                                                  
+                                                                    <strong> ORDER ID: </strong> <br />
+                                                                        123123123
+                                                                </div>
+                                                                <div class = "col-3">
+                                                                    <strong> TOTAL PRICE: </strong> <br />
+                                                                        155000 php
+                                                                </div>
+                                                                <div class = "col-3">
+                                                                    <strong> PAYMENT METHOD: </strong> <br />
+                                                                        PAY ON CASH
+                                                                </div>
+                                                                <div class = "col-3">
+                                                                    <strong> DATE ORDERED: </strong> <br />
+                                                                        NOVEMBER 28 1998
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class = "col-3">
+                                                            <h6 class = "mb-0">  
+                                                                <strong> 
+                                                                    Status: 
+                                                                    <span class = "orange-text"> pending </strong> 
+                                                            </h6>
+                                                            
+                                                            <span class = "blue-text" href = "#" style = "font-size: 14px;"> 
+                                                                <i class="fa fa-print" aria-hidden="true"></i>
+                                                                Print |
+                                                                Details |
+                                                                Cancel  
+                                                            </span> 
+                                                            
+                                                        </div>
+                                                    </div>
+
+                                                
+                                                    
+                                                        
+                                                </a>
+
+                                                <div class="collapse multi-collapse" id="orderCollapseItem2" style = "border-left: 1px solid #DFDFDF; border-right: 1px solid #DFDFDF;">
+                                                  
+                                                    <div class = "ml-3 mr-3 mt-3 mb-2">
+
+                                                        <div class = "row">
+                                                            <div class = "col">
+                                                                <h6> 
+                                                                    <strong> 3 Items ordered </strong> 
+                                                                    <span class = "float-right" style = "font-size: 14px;"> 
+                                                                        <a href = "#"> Shipping information </a> |
+                                                                        <a href = "#"> Shipping log </a>
+                                                                    </span>
+                                                                </h6>
+                                                                <hr class = "mt-0" />
+                                                            </div>
+                                                        </div>
+
+                                                        <div class = "row">
+                                                            <div class = "col-7">
+
+                                                                <div class = "row">
+                                                                    <div class = "col">
+
+                                                                        <div class> 
+
+                                                                            <table class="table table-sm mb-0"  style = "border: 1px solid #DFDFDF;">
+                                                                                <thead>
+                                                                                    <tr>
+                                                                                    <th>#</th>
+                                                                                    <th>Item Name</th>
+                                                                                    <th>Price</th>
+                                                                                    <th>Weight</th>
+                                                                                    </tr>
+                                                                                </thead>
+                                                                                <tbody>
+                                                                                    <tr>
+                                                                                        <th scope="row">
+                                                                                            <img src = "puffer-fish.jpg" width = "40" height = "40" />
+                                                                                        </th>
+                                                                                        <td>Puffer fish</td>
+                                                                                        <td>1000 PHP</td>
+                                                                                        <td>120 KILO</td>
+                                                                                    </tr>
+                                                                                    <tr>
+                                                                                        <th scope="row">
+                                                                                            <img src = "puffer-fish.jpg" width = "40" height = "40" />
+                                                                                        </th>
+                                                                                        <td>Puffer fish</td>
+                                                                                        <td>1000 PHP</td>
+                                                                                        <td>120 KILO</td>
+                                                                                    </tr>
+                                                                                    <tr>
+                                                                                        <th scope="row">
+                                                                                            <img src = "puffer-fish.jpg" width = "40" height = "40" />
+                                                                                        </th>
+                                                                                        <td>Puffer fish</td>
+                                                                                        <td>1000 PHP</td>
+                                                                                        <td>120 KILO</td>
+                                                                                    </tr>
+                                                                                
+                                                                                </tbody>
+                                                                                <tfoot>
+                                                                                    <tr>    
+                                                                                        <th></th>
+                                                                                        <th></th>
+                                                                                        <th>Total: 1000 PHP </th>
+                                                                                        <th>Total: 120 KILO </th>
+                                                                                    </tr>
+                                                                                
+                                                                                </tfoot>
+                                                                            </table>
+                                                                            <!-- <div class="list-group ml-2">
+                                                                                <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+                                                                                <div class = "row">
+                                                                                    <div class = "col-2">
+                                                                                        <img src = "puffer-fish.jpg" height = "50" width = "50" /> 
+                                                                                    </div>
+                                                                                    <div class = "col">
+                                                                                        <strong class = "align-middle">
+                                                                                            Puffer fish
+                                                                                        </strong>
+                                                                                    </div>
+                                                                                    <div class = "col">
+                                                                                        <strong>
+                                                                                            1500 php
+                                                                                        </strong>
+                                                                                    </div>
+                                                                                    <div class = "col">
+                                                                                        <strong>
+                                                                                            1500 kilo
+                                                                                        </strong>
+                                                                                    </div>
+                                                                                </div>
+                                                                                </a>
+                                                                            
+                                                                            </div> -->
+
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class = "col-5" style = "font-size: 14px;">
+                                                                <p>
+                                                                    <strong> Description:  </strong> <br />
+                                                                    please place the cargo at the right hand side of the area
+                                                                </p>
+                                                                <p>
+                                                                    <strong> Shipping Address: </strong> <br />
+                                                                    1700 blk 7 saint joseph subd pulanglupa 2 las pinas city 
+                                                                </p>
+
+                                                                <p>
+                                                                    <strong> Country: </strong> <br />
+                                                                    United States
+                                                                </p>
+
+                                                                <p>
+                                                                    <strong> City: </strong> <br />
+                                                                    New york
+                                                                </p>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+
+                                                
+                                             
+                                            </div>
+
+                                        
                                             <div class="d-flex justify-content-center">
 
                                                 <nav class="my-4 pt-2">
