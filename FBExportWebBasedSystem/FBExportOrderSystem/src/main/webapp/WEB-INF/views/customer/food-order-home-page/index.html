@@ -2673,89 +2673,129 @@
                                         
                                         <div class = "row">
                                             <div class = "col">
-                                                <h5> 
-                                                    <strong> Shipping information </strong> 
+                                                
+                                                <div> 
+                                                    <i class="fa fa-chevron-circle-down fa-lg mr-1" aria-hidden="true"
+                                                       data-toggle="collapse" href="#shippingInformationCollapseItem " role="button" aria-expanded="false" aria-controls="orderCollapseItem5" style = "cursor: pointer;"></i>
+                                                    <span class = "h5-responsive"> <strong> Shipping information </strong> </span> 
                                                     <span class = "float-right" style = "font-size: 16px;"> 
                                                         <i class="fa fa-print" aria-hidden="true"></i>
                                                         <a class = "blue-text" href = "#"> Print </a> 
                                                     </span>
-                                                </h5>
+                                                </div>
                                                 
                                                 <hr class = "mt-1" />
 
-                                                <div class = "row no-gutters">
-                                                    <div class = "col-8">
-                                                        <strong> Address <i class="fa fa-address-book-o" aria-hidden="true"></i> : Rivera compound saint joseph subdivision pulang lupa 2 </strong>
+                                                <div class="collapse.show multi-collapse" id="shippingInformationCollapseItem">
+
+                                                    <div class = "row no-gutters">
+                                                        <div class = "col-8">
+                                                            <strong> Address <i class="fa fa-address-book-o" aria-hidden="true"></i> : Rivera compound saint joseph subdivision pulang lupa 2 </strong>
+                                                        </div>
+                                                        <div class = "col-4">
+                                                            <strong> Zipcode <i class="fa fa-home" aria-hidden="true"></i> : 1742 </strong>
+                                                        </div>
                                                     </div>
-                                                    <div class = "col-4">
-                                                        <strong> Zipcode <i class="fa fa-home" aria-hidden="true"></i> : 1742 </strong>
+                                                    <div class = "row no-gutters">
+                                                        <div class = "col-8">
+                                                            <strong> Country <i class="fa fa-globe" aria-hidden="true"></i> : Phillipines </strong>
+                                                        </div>
+                                                        <div class = "col-4">
+                                                            <strong> City <i class="fa fa-map" aria-hidden="true"></i> : Las pinas city </strong>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                                <div class = "row no-gutters">
-                                                    <div class = "col-8">
-                                                        <strong> Country <i class="fa fa-globe" aria-hidden="true"></i> : Phillipines </strong>
+                                                    <div class = "row no-gutters">
+                                                        <div class = "col-8">
+                                                            <strong> Shipment status : On Cargo Ship <i class="fa fa-ship" aria-hidden="true"></i> </strong>
+                                                        </div>
+                                                        <div class = "col-4">
+                                                            <strong> Your Phone number <i class="fa fa-mobile-phone" aria-hidden="true"></i> : 09151829105 </strong>
+                                                        </div>
                                                     </div>
-                                                    <div class = "col-4">
-                                                        <strong> City <i class="fa fa-map" aria-hidden="true"></i> : Las pinas city </strong>
-                                                    </div>
-                                                </div>
-                                                <div class = "row no-gutters">
-                                                    <div class = "col-8">
-                                                        <strong> Shipping type : Cargo Ship <i class="fa fa-ship" aria-hidden="true"></i> </strong>
-                                                    </div>
-                                                    <div class = "col-4">
-                                                        <strong> Your Phone number <i class="fa fa-mobile-phone" aria-hidden="true"></i> : 09151829105 </strong>
-                                                    </div>
-                                                </div>
-
-                                                <br />
-
-                                                <h5>
-                                                    <strong> Vessel Status </strong>
-                                                     <span class = "float-right" style = "font-size: 16px;"> 
-                                                        <i class="fa fa-map-marker" aria-hidden="true"></i>
-                                                        <a class = "blue-text" href = "javascript:void(0)" id = "updateVesselStatus"> Update status </a> 
-                                                    </span>
-                                                </h5>
-
-                                                <hr class = "mt-1" />
-
-                                                 <div class = "row no-gutters">
-                                                    <div class = "col-8">
-                                                        <strong> </strong>
-                                                    </div>
-                                                    <div class = "col-4">
-                                                        <strong> </strong>
-                                                    </div>
-                                                </div>
-                                                
-
-                                                <div class = "row">
-
-                                                    <div class = "col">
-
-                                                        <!-- <script type="text/javascript"> 
-                                                            width='100%';	// the width of the embedded map in pixels or percentage 
-                                                            height='450';	// the height of the embedded map in pixels or percentage 
-                                                            border='0';	// the width of the border around the map (zero means no border) 
-                                                            shownames='true';	// to display ship names on the map (true or false) 
-                                                            latitude='37.4460';	// the latitude of the center of the map, in decimal degrees 
-                                                            longitude='24.9467';	// the longitude of the center of the map, in decimal degrees 
-                                                            zoom='9';	// the zoom level of the map (values between 2 and 17) 
-                                                            maptype='1';	// use 0 for Normal Map, 1 for Satellite, 2 for OpenStreetMap 
-                                                            trackvessel='272140000';	// MMSI of a vessel (note: vessel will be displayed only if within range of the system) - overrides "zoom" option 
-                                                            fleet='';	// the registered email address of a user-defined fleet (user's default fleet is used) 
-                                                        </script> 
-
-                                                        <script type="text/javascript" src="http://www.marinetraffic.com/js/embed.js"></script> -->
-
-                                                        <iframe name="marinetraffic" id="marinetraffic" width="100%" height="450" scrolling="no" frameborder="0" 
-                                                                src="http://www.marinetraffic.com/en/ais/embed/zoom:9/centery:37.446/centerx:24.9467/maptype:1/shownames:true/mmsi:239981000/shipid:0/fleet:/fleet_id:/vtypes:/showmenu:true/remember:false">
-                                                                Browser does not support embedded objects.&lt;br/&gt;Visit directly &lt;a href="http://www.marinetraffic.com/"&gt;www.marinetraffic.com&lt;/a&gt;
-                                                        </iframe>
-
+                                                    <div class = "row no-gutters">
+                                                        <div class = "col-8">
+                                                            <strong> Departure : November 11 2018 </strong>
+                                                        </div>
+                                                        <div class = "col-4">
+                                                            <strong> Arrival : November 30 2018 </strong>
+                                                        </div>
                                                     </div>
 
+                                                    <br />
+
+                                                    <div>
+                                                        <i class="fa fa-chevron-circle-down fa-lg mr-1" aria-hidden="true"
+                                                           data-toggle="collapse" href="#vesselStatusCollapseItem " role="button" aria-expanded="false" aria-controls="orderCollapseItem5" style = "cursor: pointer;"></i>
+                                                        <span class = "h5-responsive"> <strong> Vessel Status </strong> </span> 
+                                                        <span class = "float-right" style = "font-size: 16px;"> 
+                                                            <i class="fa fa-map-marker" aria-hidden="true"></i>
+                                                            <a class = "blue-text" href = "javascript:void(0)" id = "updateVesselStatus"> Update status </a> 
+                                                        </span>
+                                                    </div>
+
+                                                    <hr class = "mt-1" />
+
+                                                    <div class="collapse multi-collapse" id="vesselStatusCollapseItem">
+
+                                                        <div class = "row no-gutters">
+                                                            <div class = "col-8">
+                                                                <strong> Vessel name: AQUA JEWEL </strong>
+                                                            </div>
+                                                            <div class = "col-4">
+                                                                <strong> FLAG: GREECE </strong>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class = "row no-gutters">
+                                                            <div class = "col-8">
+                                                                <strong> MMSI Number: 239981000 </strong>
+                                                            </div>
+                                                            <div class = "col-4">
+                                                                <strong> MMO Number: 8976671</strong>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class = "row no-gutters">
+                                                            <div class = "col-8">
+                                                                <strong> Call Sign: DAFF  </strong>
+                                                            </div>
+                                                            <div class = "col-4">
+                                                                <strong> Destination: Madagascar </strong>
+                                                            </div>
+                                                        </div>
+                                                        
+                                                        <hr class = "mt-1" />
+
+                                                        <div class = "row">
+
+                                                            <div class = "col">
+
+                                                                <!-- <script type="text/javascript"> 
+                                                                    width='100%';	// the width of the embedded map in pixels or percentage 
+                                                                    height='450';	// the height of the embedded map in pixels or percentage 
+                                                                    border='0';	// the width of the border around the map (zero means no border) 
+                                                                    shownames='true';	// to display ship names on the map (true or false) 
+                                                                    latitude='37.4460';	// the latitude of the center of the map, in decimal degrees 
+                                                                    longitude='24.9467';	// the longitude of the center of the map, in decimal degrees 
+                                                                    zoom='9';	// the zoom level of the map (values between 2 and 17) 
+                                                                    maptype='1';	// use 0 for Normal Map, 1 for Satellite, 2 for OpenStreetMap 
+                                                                    trackvessel='272140000';	// MMSI of a vessel (note: vessel will be displayed only if within range of the system) - overrides "zoom" option 
+                                                                    fleet='';	// the registered email address of a user-defined fleet (user's default fleet is used) 
+                                                                </script> 
+
+                                                                <script type="text/javascript" src="http://www.marinetraffic.com/js/embed.js"></script> -->
+
+                                                                <iframe name="marinetraffic" id="marinetraffic" width="100%" height="450" scrolling="no" frameborder="0" 
+                                                                        src="http://www.marinetraffic.com/en/ais/embed/zoom:5/centery:37.446/centerx:24.9467/maptype:1/shownames:true/mmsi:239981000/shipid:0/fleet:/fleet_id:/vtypes:/showmenu:true/remember:false">
+                                                                        Browser does not support embedded objects.&lt;br/&gt;Visit directly &lt;a href="http://www.marinetraffic.com/"&gt;www.marinetraffic.com&lt;/a&gt;
+                                                                </iframe>
+
+                                                            </div>
+
+
+                                                        </div>
+
+                                                    </div>
 
                                                 </div>
                                                 <!-- <ul class = "list-unstyled">
@@ -2767,22 +2807,35 @@
                                                     
                                                     <li> <strong> Shipping type: Cargo Ship </strong> </li>
                                                 </ul> -->
+
+                                                
                                             </div>
+
+                                          
                                         </div>
 
-                                        <br />
+                                    
 
                                          <div class = "row">
                                             <div class = "col">
-                                                <h5> 
-                                                    <strong> Shipping log </strong> 
+                                                <div> 
+                                                    <i class="fa fa-chevron-circle-down fa-lg mr-1" aria-hidden="true"
+                                                       data-toggle="collapse" href="#shippingLogCollapseItem " role="button" aria-expanded="false" aria-controls="orderCollapseItem5" style = "cursor: pointer;"></i>
+                                                    <span class = "h5-responsive"> <strong> Shipping Log </strong> </span> 
                                                     <span class = "float-right" style = "font-size: 16px;"> 
                                                         <i class="fa fa-print" aria-hidden="true"></i>
                                                         <a class = "blue-text" href = "#"> Print </a> 
                                                     </span>
-                                                </h5>
+                                                </div>
                                                 
                                                 <hr class = "mt-1" />
+
+                                                <div class="collapse.show multi-collapse" id="shippingLogCollapseItem">
+                                                    tae
+                                                </div>
+
+
+
                                             </div>
                                         </div>
                                         
