@@ -24,138 +24,10 @@
         
         <style type="text/css">
 
-            ul.nav-wizard {
-  background-color: #f9f9f9;
-  border: 1px solid #d4d4d4;
-  -webkit-border-radius: 6px;
-  -moz-border-radius: 6px;
-  border-radius: 6px;
-  *zoom: 1;
-  position: relative;
-  overflow: hidden;
-}
-ul.nav-wizard:before {
-  display: block;
-  position: absolute;
-  left: 0px;
-  right: 0px;
-  top: 46px;
-  height: 47px;
-  border-top: 1px solid #d4d4d4;
-  border-bottom: 1px solid #d4d4d4;
-  z-index: 11;
-  content: " ";
-}
-ul.nav-wizard:after {
-  display: block;
-  position: absolute;
-  left: 0px;
-  right: 0px;
-  top: 138px;
-  height: 47px;
-  border-top: 1px solid #d4d4d4;
-  border-bottom: 1px solid #d4d4d4;
-  z-index: 11;
-  content: " ";
-}
-ul.nav-wizard li {
-  position: relative;
-  float: left;
-  height: 46px;
-  display: inline-block;
-  text-align: middle;
-  padding: 0 20px 0 30px;
-  margin: 0;
-  font-size: 16px;
-  line-height: 46px;
-}
-ul.nav-wizard li a {
-  color: #468847;
-  padding: 0;
-}
-ul.nav-wizard li a:hover {
-  background-color: transparent;
-}
-ul.nav-wizard li:before {
-  position: absolute;
-  display: block;
-  border: 24px solid transparent;
-  border-left: 16px solid #d4d4d4;
-  border-right: 0;
-  top: -1px;
-  z-index: 10;
-  content: '';
-  right: -16px;
-}
-ul.nav-wizard li:after {
-  position: absolute;
-  display: block;
-  border: 24px solid transparent;
-  border-left: 16px solid #f9f9f9;
-  border-right: 0;
-  top: -1px;
-  z-index: 10;
-  content: '';
-  right: -15px;
-}
-ul.nav-wizard li.active {
-  color: #3a87ad;
-  background: #d9edf7;
-}
-ul.nav-wizard li.active:after {
-  border-left: 16px solid #d9edf7;
-}
-ul.nav-wizard li.active a,
-ul.nav-wizard li.active a:active,
-ul.nav-wizard li.active a:visited,
-ul.nav-wizard li.active a:focus {
-  color: #3a87ad;
-  background: #d9edf7;
-}
-ul.nav-wizard .active ~ li {
-  color: #999999;
-  background: #ededed;
-}
-ul.nav-wizard .active ~ li:after {
-  border-left: 16px solid #ededed;
-}
-ul.nav-wizard .active ~ li a,
-ul.nav-wizard .active ~ li a:active,
-ul.nav-wizard .active ~ li a:visited,
-ul.nav-wizard .active ~ li a:focus {
-  color: #999999;
-  background: #ededed;
-}
-ul.nav-wizard.nav-wizard-backnav li:hover {
-  color: #468847;
-  background: #f6fbfd;
-}
-ul.nav-wizard.nav-wizard-backnav li:hover:after {
-  border-left: 16px solid #f6fbfd;
-}
-ul.nav-wizard.nav-wizard-backnav li:hover a,
-ul.nav-wizard.nav-wizard-backnav li:hover a:active,
-ul.nav-wizard.nav-wizard-backnav li:hover a:visited,
-ul.nav-wizard.nav-wizard-backnav li:hover a:focus {
-  color: #468847;
-  background: #f6fbfd;
-}
-ul.nav-wizard.nav-wizard-backnav .active ~ li {
-  color: #999999;
-  background: #ededed;
-}
-ul.nav-wizard.nav-wizard-backnav .active ~ li:after {
-  border-left: 16px solid #ededed;
-}
-ul.nav-wizard.nav-wizard-backnav .active ~ li a,
-ul.nav-wizard.nav-wizard-backnav .active ~ li a:active,
-ul.nav-wizard.nav-wizard-backnav .active ~ li a:visited,
-ul.nav-wizard.nav-wizard-backnav .active ~ li a:focus {
-  color: #999999;
-  background: #ededed;
-}
-
-          
+            #addShippingAddress:hover {
+                background-color:#DFDFDF;
+            }
+      
             /* table body scroll */
 
             .tableBodyScroll tbody {
@@ -736,100 +608,155 @@ ul.nav-wizard.nav-wizard-backnav .active ~ li a:focus {
 
             </header> 
 
-            <div class="container">
-                <div class="row">
-
+            <div class = "container mt-3">
+                <div class = "row">
                     <div class = "col">
-                        <section>
+                        <h2> Place Order </h2>
+                        <hr />
+                    </div> 
+                </div>
 
-                            <!-- <ul class="nav nav-pills nav-tabs" role="tablist">
+                <div class = "row">
+                    <div class = "col-8" >
+                        <h5> <strong> Select your shipping address </strong> </h5>
 
-                                <li role="presentation" class="nav-item">
-                                    <a href="#step1" class="nav-link active" data-toggle="tab" aria-controls="step1" role="tab">
-                                            SHIPPING DETAILS
-                                        </a>
-                                </li>
+                        <hr />
 
-                                <li role="presentation" class="nav-item">
-                                    <a href="#step2" class="nav-link disabled" data-toggle="tab" aria-controls="step2" role="tab">
-                                            PAYMENT
-                                        </a>
-                                </li>
-                                <li role="presentation" class="nav-item">
-                                    <a href="#step3" class="nav-link disabled" data-toggle="tab" aria-controls="step3" role="tab">
-                                            RECEIPT
-                                        </a>
-                                </li>
+                        <div class = "row">
 
-                                 <li role="presentation" class="nav-item">
-                                    <a href="#complete" class="nav-link disable" data-toggle="tab" aria-controls="complete" role="tab" title="Complete">
-                                            4
-                                        </a>
-                                </li> 
-                            </ul> -->
+                            <div class = "col">
 
-                            <ul class='nav nav-wizard nav-tabs'>
-  
-                                <li class='active'><a href='#step1' data-toggle="tab">Step 1 - Completed</a></li>
+                                <div class="list-group">
+                                    <span class="flex-column align-items-start">
+                                        <div class="z-depth-1 border-light mb-2" style=" height: 10rem;">
+                                                <div class="card-header pt-2 pb-2" style = "font-size: 14px;"> 
+                                                    <strong> User Account Address </strong> 
+                                                </div>
 
-                                <li class = "disabled"><a href='#step2' data-toggle="tab">Step 2 - Active</a></li>
+                                                <div class="card-body pt-3">
 
-                                <li class = "disabled"><a>Step 3 - Not Yet Reached</a></li>
+                                                    <div class = "card-text">
+                                                        <ul class="list-unstyled" style = "font-size: 14px;">
+                                                            <li> <strong> Kryssel Tillada De leon </strong> </li>
+                                                            <li> 1742 Rivera compound Saint Joseph Subdivision Las pinas city </li>
+                                                            <li> Philippines </li>
+                                                            <li> Phone number: 09151829105 </li>
+                                                        </ul>
 
-                            </ul>
-
-                            <form role="form">
-                                <div class="tab-content">
-                                    <div class="tab-pane active" role="tabpanel" id="step1">
-                                        <h3>Step 1</h3>
-                                        <p>This is step 1</p>
-                                        <ul class="list-inline pull-xs-right">
-                                            <li class="list-inline-item">
-                                                <button type="button" class="btn btn-primary next-step">Save and continue</button>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div class="tab-pane" role="tabpanel" id="step2">
-                                        <h3>Step 2</h3>
-                                        <p>This is step 2</p>
-                                        <ul class="pull-xs-right">
-                                            <li class="list-inline-item">
-                                                <button type="button" class="btn btn-default prev-step">Previous</button>
-                                            </li>
-                                            <li class="list-inline-item">
-                                                <button type="button" class="btn btn-primary next-step">Save and continue</button>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div class="tab-pane" role="tabpanel" id="step3">
-                                        <h3>Step 3</h3>
-                                        <p>This is step 3</p>
-                                        <ul class="list-inline pull-xs-right">
-                                            <li class="list-inline-item">
-                                                <button type="button" class="btn btn-default prev-step">Previous</button>
-                                            </li>
-                                            <li class="list-inline-item">
-                                                <button type="button" class="btn btn-default next-step">Skip</button>
-                                            </li>
-                                            <li class="list-inline-item">
-                                                <button type="button" class="btn btn-primary btn-info-full next-step">Save and continue</button>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <!-- <div class="tab-pane" role="tabpanel" id="complete">
-                                        <h3>Complete</h3>
-                                        <p>You have successfully completed all steps.</p>
-                                    </div> -->
-                                    <div class="clearfix"></div>
+                                                    </div>
+ 
+                                                </div>
+                                            </div>
+                                    </span>
+                                      
                                 </div>
-                            </form>
-                        </section>
+
+                            </div>
+
+                        </div>
+
+                        <div class = "row mt-2">
+
+                            <div class = "col">
+
+                            
+                                <div id = "addShippingAddress" style="width: 18rem; border: 1px solid #E5E5E5; cursor: pointer;"
+                                     data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                                    <div class="card-body p-2">
+                                        <a class="card-title" style = "font-size: 14px;">
+                                            <i class="fa fa-plus-square mr-2" aria-hidden="true"></i>
+                                            <strong> Add Shipping address </strong>
+                                        </a>
+                                    </div>
+                                </div>
+
+                                <div class="collapse" id="collapseExample">
+                                   
+                                </div>
+
+                            </div>
+
+                        </div>
+                
+
                     </div>
 
+                    <div class = "col-4">
+
+                        <div class = "row" style = "border: 1px solid #E5E5E5;">
+
+                          <h6 class = "pt-3 pl-3 pb-2 font-weight-bold">  Order Summary (3 items) </h6>
+
+                        </div>
+                        
+                        <div class = "row">
+
+                            <table class="table table-sm tableBodyScroll mb-0"  style = "border: 1px solid #DFDFDF;">
+                                    <thead>
+                                        <tr>
+                                        <th>#</th>
+                                        <th>Item Name</th>
+                                        <th>Price</th>
+                                        <th>Weight</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <th scope="row">
+                                                <img src = "puffer-fish.jpg" width = "40" height = "40" />
+                                            </th>
+                                            <td>Puffer fish</td>
+                                            <td>1000 PHP</td>
+                                            <td>120 KILO</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">
+                                                <img src = "puffer-fish.jpg" width = "40" height = "40" />
+                                            </th>
+                                            <td>Puffer fish</td>
+                                            <td>1000 PHP</td>
+                                            <td>120 KILO</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">
+                                                <img src = "puffer-fish.jpg" width = "40" height = "40" />
+                                            </th>
+                                            <td>Puffer fish</td>
+                                            <td>1000 PHP</td>
+                                            <td>120 KILO</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">
+                                                <img src = "puffer-fish.jpg" width = "40" height = "40" />
+                                            </th>
+                                            <td>Puffer fish</td>
+                                            <td>1000 PHP</td>
+                                            <td>120 KILO</td>
+                                        </tr>
+                                        
+                                    
+                                    </tbody>
+                                
+                            </table>
+
+                        </div>
+
+                         <div class = "row" style = "border: 1px solid #E5E5E5;">
+
+                            <div class = "col">
+
+                            <div class = "pt-2 pl-3 pb-2 float-right font-weight-bold" style = "font-size: 12px;">
+                                <span class = "mr-4">  Total Weight: 420 KILOGRAMS </span>
+                                <span>  Total Price: 4200 PHP </span>
+                            </div>
+
+                            </div>
+
+                        </div>
+                                                                       
+                    </div>
                 </div>
             </div>
-
-         
 
             <!-- view profile page <main>
 
@@ -4303,44 +4230,7 @@ ul.nav-wizard.nav-wizard-backnav .active ~ li a:focus {
             
             $(document).ready(function () {
 
-                //Initialize tooltips
-                $('.nav-tabs > li a[title]').tooltip();
-
-                _.each($('a[data-toggle="tab"]'), function (elem, i) {
-                    console.log(elem);
-                });
-                
-                //Wizard
-                $('a[data-toggle="tab"]').on('show.bs.tab', function (e) {
-
-                    var $target = $(e.target);
-                
-                    if ($target.parent().hasClass('disabled')) {
-                        return false;
-                    }
-                });
-
-                $(".next-step").click(function (e) {
-
-                    var $active = $('.nav-tabs li>a.active');
-                    $active.parent().next().find("a.disabled").removeClass('disabled');
-                    nextTab($active);
-
-                });
-                $(".prev-step").click(function (e) {
-
-                    var $active = $('.nav-tabs li>a.active');
-                    prevTab($active);
-
-                });
-
-                function nextTab(elem) {
-                    $(elem).parent().next().find('a[data-toggle="tab"]').click();
-                }
-                function prevTab(elem) {
-                    $(elem).parent().prev().find('a[data-toggle="tab"]').click();
-                }
-
+          
               
                 (function($){
 
