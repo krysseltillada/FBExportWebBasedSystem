@@ -20,10 +20,143 @@
 
         <link href="css/style.css" rel="stylesheet">
 
-      
         <!-- <script src='https://www.google.com/recaptcha/api.js'></script>  -->
         
         <style type="text/css">
+
+            ul.nav-wizard {
+  background-color: #f9f9f9;
+  border: 1px solid #d4d4d4;
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  border-radius: 6px;
+  *zoom: 1;
+  position: relative;
+  overflow: hidden;
+}
+ul.nav-wizard:before {
+  display: block;
+  position: absolute;
+  left: 0px;
+  right: 0px;
+  top: 46px;
+  height: 47px;
+  border-top: 1px solid #d4d4d4;
+  border-bottom: 1px solid #d4d4d4;
+  z-index: 11;
+  content: " ";
+}
+ul.nav-wizard:after {
+  display: block;
+  position: absolute;
+  left: 0px;
+  right: 0px;
+  top: 138px;
+  height: 47px;
+  border-top: 1px solid #d4d4d4;
+  border-bottom: 1px solid #d4d4d4;
+  z-index: 11;
+  content: " ";
+}
+ul.nav-wizard li {
+  position: relative;
+  float: left;
+  height: 46px;
+  display: inline-block;
+  text-align: middle;
+  padding: 0 20px 0 30px;
+  margin: 0;
+  font-size: 16px;
+  line-height: 46px;
+}
+ul.nav-wizard li a {
+  color: #468847;
+  padding: 0;
+}
+ul.nav-wizard li a:hover {
+  background-color: transparent;
+}
+ul.nav-wizard li:before {
+  position: absolute;
+  display: block;
+  border: 24px solid transparent;
+  border-left: 16px solid #d4d4d4;
+  border-right: 0;
+  top: -1px;
+  z-index: 10;
+  content: '';
+  right: -16px;
+}
+ul.nav-wizard li:after {
+  position: absolute;
+  display: block;
+  border: 24px solid transparent;
+  border-left: 16px solid #f9f9f9;
+  border-right: 0;
+  top: -1px;
+  z-index: 10;
+  content: '';
+  right: -15px;
+}
+ul.nav-wizard li.active {
+  color: #3a87ad;
+  background: #d9edf7;
+}
+ul.nav-wizard li.active:after {
+  border-left: 16px solid #d9edf7;
+}
+ul.nav-wizard li.active a,
+ul.nav-wizard li.active a:active,
+ul.nav-wizard li.active a:visited,
+ul.nav-wizard li.active a:focus {
+  color: #3a87ad;
+  background: #d9edf7;
+}
+ul.nav-wizard .active ~ li {
+  color: #999999;
+  background: #ededed;
+}
+ul.nav-wizard .active ~ li:after {
+  border-left: 16px solid #ededed;
+}
+ul.nav-wizard .active ~ li a,
+ul.nav-wizard .active ~ li a:active,
+ul.nav-wizard .active ~ li a:visited,
+ul.nav-wizard .active ~ li a:focus {
+  color: #999999;
+  background: #ededed;
+}
+ul.nav-wizard.nav-wizard-backnav li:hover {
+  color: #468847;
+  background: #f6fbfd;
+}
+ul.nav-wizard.nav-wizard-backnav li:hover:after {
+  border-left: 16px solid #f6fbfd;
+}
+ul.nav-wizard.nav-wizard-backnav li:hover a,
+ul.nav-wizard.nav-wizard-backnav li:hover a:active,
+ul.nav-wizard.nav-wizard-backnav li:hover a:visited,
+ul.nav-wizard.nav-wizard-backnav li:hover a:focus {
+  color: #468847;
+  background: #f6fbfd;
+}
+ul.nav-wizard.nav-wizard-backnav .active ~ li {
+  color: #999999;
+  background: #ededed;
+}
+ul.nav-wizard.nav-wizard-backnav .active ~ li:after {
+  border-left: 16px solid #ededed;
+}
+ul.nav-wizard.nav-wizard-backnav .active ~ li a,
+ul.nav-wizard.nav-wizard-backnav .active ~ li a:active,
+ul.nav-wizard.nav-wizard-backnav .active ~ li a:visited,
+ul.nav-wizard.nav-wizard-backnav .active ~ li a:focus {
+  color: #999999;
+  background: #ededed;
+}
+
+          
+            /* table body scroll */
 
             .tableBodyScroll tbody {
                 display:block;
@@ -36,6 +169,8 @@
                 width:100%;
                 table-layout:fixed;
             }
+
+            /* end of table body scroll */
 
 
             /* profile page style */
@@ -582,24 +717,119 @@
             <header>
 
 
-                    <nav class="navbar navbar-expand-lg elegant-color-dark nav-category" style = "height: 40px;">
-                        <div class="container p-2">
+                <nav class="navbar navbar-expand-lg elegant-color-dark nav-category" style = "height: 40px;">
+                    <div class="container p-2">
 
-                            <div class = "row">
-                                <div class = "col">
-                                    <ol class="breadcrumb">
-                                        <li class="breadcrumb-item"><a href="#">Home</a></li>
-                                        <li class="breadcrumb-item active" aria-current="page"><a href="#">Products</a></li>
-                                    </ol>
-                                </div>
-                            
+                        <div class = "row">
+                            <div class = "col">
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                                    <li class="breadcrumb-item active" aria-current="page"><a href="#">Products</a></li>
+                                </ol>
                             </div>
-
+                        
                         </div>
-                    </nav>
+
+                    </div>
+                </nav>
                 
 
-                </header> 
+            </header> 
+
+            <div class="container">
+                <div class="row">
+
+                    <div class = "col">
+                        <section>
+
+                            <!-- <ul class="nav nav-pills nav-tabs" role="tablist">
+
+                                <li role="presentation" class="nav-item">
+                                    <a href="#step1" class="nav-link active" data-toggle="tab" aria-controls="step1" role="tab">
+                                            SHIPPING DETAILS
+                                        </a>
+                                </li>
+
+                                <li role="presentation" class="nav-item">
+                                    <a href="#step2" class="nav-link disabled" data-toggle="tab" aria-controls="step2" role="tab">
+                                            PAYMENT
+                                        </a>
+                                </li>
+                                <li role="presentation" class="nav-item">
+                                    <a href="#step3" class="nav-link disabled" data-toggle="tab" aria-controls="step3" role="tab">
+                                            RECEIPT
+                                        </a>
+                                </li>
+
+                                 <li role="presentation" class="nav-item">
+                                    <a href="#complete" class="nav-link disable" data-toggle="tab" aria-controls="complete" role="tab" title="Complete">
+                                            4
+                                        </a>
+                                </li> 
+                            </ul> -->
+
+                            <ul class='nav nav-wizard nav-tabs'>
+  
+                                <li class='active'><a href='#step1' data-toggle="tab">Step 1 - Completed</a></li>
+
+                                <li class = "disabled"><a href='#step2' data-toggle="tab">Step 2 - Active</a></li>
+
+                                <li class = "disabled"><a>Step 3 - Not Yet Reached</a></li>
+
+                            </ul>
+
+                            <form role="form">
+                                <div class="tab-content">
+                                    <div class="tab-pane active" role="tabpanel" id="step1">
+                                        <h3>Step 1</h3>
+                                        <p>This is step 1</p>
+                                        <ul class="list-inline pull-xs-right">
+                                            <li class="list-inline-item">
+                                                <button type="button" class="btn btn-primary next-step">Save and continue</button>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="tab-pane" role="tabpanel" id="step2">
+                                        <h3>Step 2</h3>
+                                        <p>This is step 2</p>
+                                        <ul class="pull-xs-right">
+                                            <li class="list-inline-item">
+                                                <button type="button" class="btn btn-default prev-step">Previous</button>
+                                            </li>
+                                            <li class="list-inline-item">
+                                                <button type="button" class="btn btn-primary next-step">Save and continue</button>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="tab-pane" role="tabpanel" id="step3">
+                                        <h3>Step 3</h3>
+                                        <p>This is step 3</p>
+                                        <ul class="list-inline pull-xs-right">
+                                            <li class="list-inline-item">
+                                                <button type="button" class="btn btn-default prev-step">Previous</button>
+                                            </li>
+                                            <li class="list-inline-item">
+                                                <button type="button" class="btn btn-default next-step">Skip</button>
+                                            </li>
+                                            <li class="list-inline-item">
+                                                <button type="button" class="btn btn-primary btn-info-full next-step">Save and continue</button>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <!-- <div class="tab-pane" role="tabpanel" id="complete">
+                                        <h3>Complete</h3>
+                                        <p>You have successfully completed all steps.</p>
+                                    </div> -->
+                                    <div class="clearfix"></div>
+                                </div>
+                            </form>
+                        </section>
+                    </div>
+
+                </div>
+            </div>
+
+         
 
             <!-- view profile page <main>
 
@@ -4068,10 +4298,51 @@
 
 
         <script>
+
+            
             
             $(document).ready(function () {
 
-                  (function($){
+                //Initialize tooltips
+                $('.nav-tabs > li a[title]').tooltip();
+
+                _.each($('a[data-toggle="tab"]'), function (elem, i) {
+                    console.log(elem);
+                });
+                
+                //Wizard
+                $('a[data-toggle="tab"]').on('show.bs.tab', function (e) {
+
+                    var $target = $(e.target);
+                
+                    if ($target.parent().hasClass('disabled')) {
+                        return false;
+                    }
+                });
+
+                $(".next-step").click(function (e) {
+
+                    var $active = $('.nav-tabs li>a.active');
+                    $active.parent().next().find("a.disabled").removeClass('disabled');
+                    nextTab($active);
+
+                });
+                $(".prev-step").click(function (e) {
+
+                    var $active = $('.nav-tabs li>a.active');
+                    prevTab($active);
+
+                });
+
+                function nextTab(elem) {
+                    $(elem).parent().next().find('a[data-toggle="tab"]').click();
+                }
+                function prevTab(elem) {
+                    $(elem).parent().prev().find('a[data-toggle="tab"]').click();
+                }
+
+              
+                (function($){
 
                     $.fn.outside = function(ename, cb){
                         return this.each(function(){
@@ -4516,9 +4787,8 @@
                 updateUserNavigationPositioning();
                 updateHomePositioning();
 
-                new WOW().init();
+                // new WOW().init();
 
-                $('#example').DataTable();
                 
                 $("#notificationModal").modal('show');
 
