@@ -745,7 +745,19 @@
 
                                             <h6> <strong> Your contact information </strong> </h6>
 
-                                            <hr class = "mt-1" />
+                                            <hr class = "mt-1 mb-1" />
+
+                                              <div class="form-inline">
+
+                                                <select id = "countryCode" class = "mr-2"> 
+                                                    <option disabled selected> Country code </option> 
+                                                    <option> +63 </option>
+                                                </select>
+
+                                                <input type="text" class="form-control p-0" placeholder="Phone number">
+
+
+                                            </div>
 
                                          
                                             
@@ -765,14 +777,50 @@
                             <div class = "col">
                                 <h5> <strong> 2. Choose payment method </strong> </h5>
                                 <hr />
+                                
+
+                                <div class = "row mt-4">
+                                   <div class = "col">
+                                       <form class="form-inline ml-4">
+
+                                            <div class="form-group">
+                                                <input class = "mr-2" name="group1" type="radio" id="radio11" checked="checked">
+                                                <label for="radio11">
+                                                    <span class = "mr-2"> CASH ON DELIVERY </span>
+                                                    <i class="fa fa-truck" aria-hidden="true"></i>
+                                                </label>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <input class = "mr-2" name="group1" type="radio" id="radio21">
+                                                <label for="radio21">
+                                                    <span class = "mr-2"> PAY ON PAYPAL </span>
+                                                    <i class="fa fa-paypal" aria-hidden="true"></i>
+                                                </label>
+                                            </div>
+
+                                        </form>
+         
+                                    </div>
+                                </div>
+
+                                <br />
+                                <br />
+
+                                <button type="button" class="btn btn-primary float-right">Cancel</button>
+                                <button type="button" class="btn btn-primary float-right">Place order</button>
+                                
+
                             </div>
                         </div>
+
+                        <hr />
                 
 
                     </div>
 
                     <div class = "col-4">
-
+                        
                         <div class = "row" style = "border: 1px solid #E5E5E5;">
 
                           <h6 class = "pt-3 pl-3 pb-2 font-weight-bold">  Order Summary (3 items) </h6>
