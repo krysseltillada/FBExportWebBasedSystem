@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Bootstrap Material Admin by Bootstrapious.com</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="all,follow">
+    <!-- Bootstrap CSS-->
+    <link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css">
+    <!-- Font Awesome CSS-->
+    <link rel="stylesheet" href="vendor/font-awesome/css/font-awesome.min.css">
+    <!-- Fontastic Custom icon font-->
+    <link rel="stylesheet" href="css/fontastic.css">
+    <!-- Google fonts - Poppins -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,700">
+    <!-- theme stylesheet-->
+    <link rel="stylesheet" href="css/style.default.css" id="theme-stylesheet">
+    <!-- Custom stylesheet - for your changes-->
+    <link rel="stylesheet" href="css/custom.css">
+    <!-- Favicon-->
+    <link rel="shortcut icon" href="img/favicon.ico">
+    <!-- Tweaks for older IEs--><!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+
+
+
+    <style media="screen">
+    /*CHAT WINDOW*/
+    .messages {
+        position: relative;
+        list-style: none;
+        padding: 20px 10px 0 10px;
+        margin: 0 0 25px 0;
+        height: 450px;
+        overflow-y: scroll;
+      }
+      .messages .message {
+        clear: both;
+        overflow: hidden;
+        margin-bottom: 20px;
+        transition: all 0.5s linear;
+        opacity: 0;
+      }
+      .messages .message.left .avatar {
+        background-color: #f5886e;
+        float: left;
+      }
+      .messages .message.left .text_wrapper {
+        background-color: #ffe6cb;
+        margin-left: 20px;
+      }
+      .messages .message.left .text_wrapper::after, .messages .message.left .text_wrapper::before {
+        right: 100%;
+        border-right-color: #ffe6cb;
+      }
+      .messages .message.left .text {
+        color: #c48843;
+      }
+      .messages .message.right .avatar {
+        background-color: #fdbf68;
+        float: right;
+      }
+      .messages .message.right .text_wrapper {
+        background-color: #c7eafc;
+        margin-right: 20px;
+        float: right;
+      }
+      .messages .message.right .text_wrapper::after, .messages .message.right .text_wrapper::before {
+        left: 100%;
+        border-left-color: #c7eafc;
+      }
+      .messages .message.right .text {
+        color: #45829b;
+      }
+      .messages .message.appeared {
+        opacity: 1;
+      }
+      .messages .message .avatar {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        display: inline-block;
+      }
+      .messages .message .text_wrapper {
+        display: inline-block;
+        padding: 20px;
+        border-radius: 6px;
+        width: calc(100% - 85px);
+        min-width: 100px;
+        position: relative;
+      }
+      .messages .message .text_wrapper::after, .messages .message .text_wrapper:before {
+        top: 18px;
+        border: solid transparent;
+        content: " ";
+        height: 0;
+        width: 0;
+        position: absolute;
+        pointer-events: none;
+      }
+      .messages .message .text_wrapper::after {
+        border-width: 13px;
+        margin-top: 0px;
+      }
+      .messages .message .text_wrapper::before {
+        border-width: 15px;
+        margin-top: -2px;
+      }
+      .messages .message .text_wrapper .text {
+        font-size: 18px;
+        font-weight: 300;
+      }
+    /*CHAT WINDOW*/
+    </style>
+  </head>
+  <body>
+    <div class="page">
+      <!-- Main Navbar-->
+      <header class="header">
+        <nav class="navbar">
+          <!-- Search Box-->
+          <div class="search-box">
+            <button class="dismiss"><i class="icon-close"></i></button>
+            <form id="searchForm" action="#" role="search">
+              <input type="search" placeholder="What are you looking for..." class="form-control">
+            </form>
+          </div>
+          <div class="container-fluid">
+            <div class="navbar-holder d-flex align-items-center justify-content-between">
+              <!-- Navbar Header-->
+              <div class="navbar-header">
+                <!-- Navbar Brand --><a href="index.html" class="navbar-brand">
+                  <div class="brand-text brand-big"><span>Bootstrap </span><strong>Dashboard</strong></div>
+                  <div class="brand-text brand-small"><strong>BD</strong></div></a>
+                <!-- Toggle Button--><a id="toggle-btn" href="#" class="menu-btn active"><span></span><span></span><span></span></a>
+              </div>
+              <!-- Navbar Menu -->
+              <ul class="nav-menu list-unstyled d-flex flex-md-row align-items-md-center">
+                <!-- Search-->
+                <li class="nav-item d-flex align-items-center"><a id="search" href="#"><i class="icon-search"></i></a></li>
+                <!-- Notifications-->
+                <li class="nav-item dropdown"> <a id="notifications" rel="nofollow" data-target="#" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link"><i class="fa fa-bell-o"></i><span class="badge bg-red">12</span></a>
+                  <ul aria-labelledby="notifications" class="dropdown-menu">
+                    <li><a rel="nofollow" href="#" class="dropdown-item">
+                        <div class="notification">
+                          <div class="notification-content"><i class="fa fa-envelope bg-green"></i>You have 6 new messages </div>
+                          <div class="notification-time"><small>4 minutes ago</small></div>
+                        </div></a></li>
+                    <li><a rel="nofollow" href="#" class="dropdown-item">
+                        <div class="notification">
+                          <div class="notification-content"><i class="fa fa-twitter bg-blue"></i>You have 2 followers</div>
+                          <div class="notification-time"><small>4 minutes ago</small></div>
+                        </div></a></li>
+                    <li><a rel="nofollow" href="#" class="dropdown-item">
+                        <div class="notification">
+                          <div class="notification-content"><i class="fa fa-upload bg-orange"></i>Server Rebooted</div>
+                          <div class="notification-time"><small>4 minutes ago</small></div>
+                        </div></a></li>
+                    <li><a rel="nofollow" href="#" class="dropdown-item">
+                        <div class="notification">
+                          <div class="notification-content"><i class="fa fa-twitter bg-blue"></i>You have 2 followers</div>
+                          <div class="notification-time"><small>10 minutes ago</small></div>
+                        </div></a></li>
+                    <li><a rel="nofollow" href="#" class="dropdown-item all-notifications text-center"> <strong>view all notifications                                            </strong></a></li>
+                  </ul>
+                </li>
+                <!-- Messages                        -->
+                <li class="nav-item dropdown"> <a id="messages" rel="nofollow" data-target="#" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link"><i class="fa fa-envelope-o"></i><span class="badge bg-orange">10</span></a>
+                  <ul aria-labelledby="notifications" class="dropdown-menu">
+                    <li><a rel="nofollow" href="#" class="dropdown-item d-flex">
+                        <div class="msg-profile"> <img src="img/avatar-1.jpg" alt="..." class="img-fluid rounded-circle"></div>
+                        <div class="msg-body">
+                          <h3 class="h5">Jason Doe</h3><span>Sent You Message</span>
+                        </div></a></li>
+                    <li><a rel="nofollow" href="#" class="dropdown-item d-flex">
+                        <div class="msg-profile"> <img src="img/avatar-2.jpg" alt="..." class="img-fluid rounded-circle"></div>
+                        <div class="msg-body">
+                          <h3 class="h5">Frank Williams</h3><span>Sent You Message</span>
+                        </div></a></li>
+                    <li><a rel="nofollow" href="#" class="dropdown-item d-flex">
+                        <div class="msg-profile"> <img src="img/avatar-3.jpg" alt="..." class="img-fluid rounded-circle"></div>
+                        <div class="msg-body">
+                          <h3 class="h5">Ashley Wood</h3><span>Sent You Message</span>
+                        </div></a></li>
+                    <li><a rel="nofollow" href="#" class="dropdown-item all-notifications text-center"> <strong>Read all messages    </strong></a></li>
+                  </ul>
+                </li>
+                <!-- Logout    -->
+                <li class="nav-item"><a href="login.html" class="nav-link logout">Logout<i class="fa fa-sign-out"></i></a></li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+      </header>
+      <div class="page-content d-flex align-items-stretch">
+        <!-- Side Navbar -->
+        <nav class="side-navbar">
+          <!-- Sidebar Header-->
+          <div class="sidebar-header d-flex align-items-center">
+            <div class="avatar"><img src="img/avatar-1.jpg" alt="..." class="img-fluid rounded-circle"></div>
+            <div class="title">
+              <h1 class="h4">Mark Stephen</h1>
+              <p>Web Designer</p>
+            </div>
+          </div>
+          <!-- Sidebar Navidation Menus--><span class="heading">Main</span>
+          <ul class="list-unstyled">
+                    <li class="active"><a href="index.html"> <i class="icon-home"></i>Home </a></li>
+                    <li><a href="tables.html"> <i class="icon-grid"></i>Tables </a></li>
+                    <li><a href="charts.html"> <i class="fa fa-bar-chart"></i>Charts </a></li>
+                    <li><a href="forms.html"> <i class="icon-padnote"></i>Forms </a></li>
+                    <li><a href="#exampledropdownDropdown" aria-expanded="false" data-toggle="collapse"> <i class="icon-interface-windows"></i>Example dropdown </a>
+                      <ul id="exampledropdownDropdown" class="collapse list-unstyled ">
+                        <li><a href="#">Page</a></li>
+                        <li><a href="#">Page</a></li>
+                        <li><a href="#">Page</a></li>
+                      </ul>
+                    </li>
+                    <li><a href="login.html"> <i class="icon-interface-windows"></i>Login page </a></li>
+          </ul><span class="heading">Extras</span>
+          <ul class="list-unstyled">
+            <li> <a href="#"> <i class="icon-flask"></i>Demo </a></li>
+            <li> <a href="#"> <i class="icon-screen"></i>Demo </a></li>
+            <li> <a href="#"> <i class="icon-mail"></i>Demo </a></li>
+            <li> <a href="#"> <i class="icon-picture"></i>Demo </a></li>
+          </ul>
+        </nav>
+
+        <div class="content-inner">
+          <!-- Page Header-->
+          <header class="page-header">
+            <div class="container-fluid">
+              <h2 class="no-margin-bottom">Messages</h2>
+            </div>
+          </header>
+
+          <!--CHAT WINDOW-->
+          <div class="container" style="margin-left: 0px;">
+
+          <div class="row">
+
+              <!-- First column -->
+              <div class="col-sm-4" style="height: 550px; overflow-y: scroll; padding: 0px;">
+
+                <!-- Navigation -->
+                <div class="list-group" id="list-tab" role="tablist">
+                  <a class="list-group-item list-group-item-action active" id="list-home-list" data-toggle="list" href="#list-home" role="tab" aria-controls="home">
+                    <div class="avatar">
+                      <img src="https://mdbootstrap.com/img/Photos/Avatars/img%20(27).jpg" alt="avatar" class="rounded-circle img-responsive" width="50" height="50">
+                      <span class="badge badge-primary badge-pill pull-left">14</span>
+                      Full Name
+                      <p style="font-size: 12px;" class="pull-right"> Aug. 11, 1994 <br> 11:00AM
+                      <i class="fa fa-circle pull-right" style="color: #06c100;" aria-hidden="true"></i>
+                      </p>
+
+                    </div>
+                  </a>
+                  <a class="list-group-item list-group-item-action" id="list-profile-list" data-toggle="list" href="#list-profile" role="tab" aria-controls="profile">
+                    <div class="avatar">
+                      <img src="https://mdbootstrap.com/img/Photos/Avatars/img%20(27).jpg" alt="avatar" class="rounded-circle img-responsive" width="50" height="50">
+                      <span class="badge badge-primary badge-pill pull-left">14</span>
+                      Full Name
+                      <p style="font-size: 12px;" class="pull-right"> Aug. 11, 1994 <br> 11:00AM
+                      <i class="fa fa-circle pull-right" style="color: #06c100;" aria-hidden="true"></i>
+                      </p>
+
+                    </div>
+                  </a>
+                  <a class="list-group-item list-group-item-action" id="list-messages-list" data-toggle="list" href="#list-messages" role="tab" aria-controls="messages">
+                    <div class="avatar">
+                      <img src="https://mdbootstrap.com/img/Photos/Avatars/img%20(27).jpg" alt="avatar" class="rounded-circle img-responsive" width="50" height="50">
+                      <span class="badge badge-primary badge-pill pull-left">14</span>
+                      Full Name
+                      <p style="font-size: 12px;" class="pull-right"> Aug. 11, 1994 <br> 11:00AM
+                      <i class="fa fa-circle pull-right" style="color: #06c100;" aria-hidden="true"></i>
+                      </p>
+
+                    </div>
+                  </a>
+                  <a class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="list" href="#list-settings" role="tab" aria-controls="settings">
+                    <div class="avatar">
+                      <img src="https://mdbootstrap.com/img/Photos/Avatars/img%20(27).jpg" alt="avatar" class="rounded-circle img-responsive" width="50" height="50">
+                      <span class="badge badge-primary badge-pill pull-left">14</span>
+                      Full Name
+                      <p style="font-size: 12px;" class="pull-right"> Aug. 11, 1994 <br> 11:00AM
+                      <i class="fa fa-circle pull-right" style="color: #06c100;" aria-hidden="true"></i>
+                      </p>
+
+                    </div>
+                  </a>
+
+                  <a class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="list" href="#list-settings" role="tab" aria-controls="settings">
+                    <div class="avatar">
+                      <img src="https://mdbootstrap.com/img/Photos/Avatars/img%20(27).jpg" alt="avatar" class="rounded-circle img-responsive" width="50" height="50">
+                      <span class="badge badge-primary badge-pill pull-left">14</span>
+                      Full Name
+                      <p style="font-size: 12px;" class="pull-right"> Aug. 11, 1994 <br> 11:00AM
+                      <i class="fa fa-circle pull-right" style="color: #06c100;" aria-hidden="true"></i>
+                      </p>
+
+                    </div>
+                  </a>
+
+                  <a class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="list" href="#list-settings" role="tab" aria-controls="settings">
+                    <div class="avatar">
+                      <img src="https://mdbootstrap.com/img/Photos/Avatars/img%20(27).jpg" alt="avatar" class="rounded-circle img-responsive" width="50" height="50">
+                      <span class="badge badge-primary badge-pill pull-left">14</span>
+                      Full Name
+                      <p style="font-size: 12px;" class="pull-right"> Aug. 11, 1994 <br> 11:00AM
+                      <i class="fa fa-circle pull-right" style="color: #06c100;" aria-hidden="true"></i>
+                      </p>
+
+                    </div>
+                  </a>
+
+                  <a class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="list" href="#list-settings" role="tab" aria-controls="settings">
+                    <div class="avatar">
+                      <img src="https://mdbootstrap.com/img/Photos/Avatars/img%20(27).jpg" alt="avatar" class="rounded-circle img-responsive" width="50" height="50">
+                      <span class="badge badge-primary badge-pill pull-left">14</span>
+                      Full Name
+                      <p style="font-size: 12px;" class="pull-right"> Aug. 11, 1994 <br> 11:00AM
+                      <i class="fa fa-circle pull-right" style="color: #06c100;" aria-hidden="true"></i>
+                      </p>
+
+                    </div>
+                  </a>
+
+                  <a class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="list" href="#list-settings" role="tab" aria-controls="settings">
+                    <div class="avatar">
+                      <img src="https://mdbootstrap.com/img/Photos/Avatars/img%20(27).jpg" alt="avatar" class="rounded-circle img-responsive" width="50" height="50">
+                      <span class="badge badge-primary badge-pill pull-left">14</span>
+                      Full Name
+                      <p style="font-size: 12px;" class="pull-right"> Aug. 11, 1994 <br> 11:00AM
+                      <i class="fa fa-circle pull-right" style="color: #06c100;" aria-hidden="true"></i>
+                      </p>
+
+                    </div>
+                  </a>
+
+                  <a class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="list" href="#list-settings" role="tab" aria-controls="settings">
+                    <div class="avatar">
+                      <img src="https://mdbootstrap.com/img/Photos/Avatars/img%20(27).jpg" alt="avatar" class="rounded-circle img-responsive" width="50" height="50">
+                      <span class="badge badge-primary badge-pill pull-left">14</span>
+                      Full Name
+                      <p style="font-size: 12px;" class="pull-right"> Aug. 11, 1994 <br> 11:00AM
+                      <i class="fa fa-circle pull-right" style="color: #06c100;" aria-hidden="true"></i>
+                      </p>
+
+                    </div>
+                  </a>
+                </div>
+                <!-- Navigation -->
+
+              </div>
+              <!-- First column -->
+
+              <!-- Second column -->
+              <div class="col-sm-8">
+
+                <!-- Content -->
+                <div class="tab-content" id="nav-tabContent">
+                  <div class="tab-pane fade show active" id="list-home" role="tabpanel" aria-labelledby="list-home-list">
+
+                    <ul class="messages"></ul>
+
+                      <div class="row">
+
+                        <div class="col-sm-8">
+                          <textarea id="form8" cols="50"></textarea>
+                        </div>
+
+                        <div class="col-sm-4">
+                          <button class="btn btn-info">Send <i class="fa fa-send ml-1"></i></button>
+                        </div>
+
+                      </div>
+
+                  </div>
+                  <div class="tab-pane fade" id="list-profile" role="tabpanel" aria-labelledby="list-profile-list">NAME 2</div>
+                  <div class="tab-pane fade" id="list-messages" role="tabpanel" aria-labelledby="list-messages-list">NAME 2</div>
+                  <div class="tab-pane fade" id="list-settings" role="tabpanel" aria-labelledby="list-settings-list">NAME 3</div>
+                </div>
+                <!-- Content -->
+
+              </div>
+              <!-- Second column -->
+
+            </div>
+          </div>
+
+          <!--MESSAGE TEMPLATE-->
+          <div class="message_template">
+              <li class="message" style="list-style: none;">
+                  <div class="avatar"></div>
+                  <div class="text_wrapper">
+                      <div class="text" style="word-break: break-all;"></div>
+                  </div>
+              </li>
+          </div>
+          <!--MESSAGE TEMPLATE-->
+          <!--CHAT WINDOW-->
+
+          <hr>
+
+          <!-- Page Footer-->
+          <footer class="main-footer" >
+            <div class="container-fluid">
+              <div class="row">
+                <div class="col-sm-6">
+                  <p>Your company &copy; 2017-2019</p>
+                </div>
+                <div class="col-sm-6 text-right">
+                  <p>Design by <a href="https://bootstrapious.com/admin-templates" class="external">Bootstrapious</a></p>
+                  <!-- Please do not remove the backlink to us unless you support further theme's development at https://bootstrapious.com/donate. It is part of the license conditions. Thank you for understanding :)-->
+                </div>
+              </div>
+            </div>
+          </footer>
+        </div>
+      </div>
+    </div>
+    <!-- Javascript files-->
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="vendor/popper.js/umd/popper.min.js"> </script>
+    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script src="vendor/jquery.cookie/jquery.cookie.js"> </script>
+    <script src="vendor/chart.js/Chart.min.js"></script>
+    <script src="vendor/jquery-validation/jquery.validate.min.js"></script>
+    <script src="js/charts-home.js"></script>
+    <!-- Main File-->
+    <script src="js/front.js"></script>
+
+
+    <!--MESSAGE SCRIPT-->
+    <script type="text/javascript">
+    (function () {
+      var Message;
+      Message = function (arg) {
+          this.text = arg.text, this.message_side = arg.message_side;
+          this.draw = function (_this) {
+              return function () {
+                  var $message;
+                  $message = $($('.message_template').clone().html());
+                  $message.addClass(_this.message_side).find('.text').html(_this.text + "<br><small>1hr</small>");
+
+                  $('.messages').append($message);
+                  return setTimeout(function () {
+                      return $message.addClass('appeared');
+                  }, 0);
+              };
+          }(this);
+          return this;
+      };
+      $(function () {
+          var getMessageText, message_side, sendMessage;
+          message_side = 'right';
+          getMessageText = function () {
+              var $message_input;
+              $message_input = $('.message_input');
+              return $message_input.val();
+          };
+          sendMessage = function (text) {
+              var $messages, message;
+              if (text.trim() === '') {
+                  return;
+              }
+              $('.message_input').val('');
+              $messages = $('.messages');
+              message_side = message_side === 'left' ? 'right' : 'left';
+              message = new Message({
+                  text: text,
+                  message_side: message_side
+              });
+              message.draw();
+              return $messages.animate({ scrollTop: $messages.prop('scrollHeight') }, 300);
+          };
+          $('.send_message').click(function (e) {
+              return sendMessage(getMessageText());
+          });
+          $('.message_input').keyup(function (e) {
+              if (e.which === 13) {
+                  return sendMessage(getMessageText());
+              }
+          });
+          sendMessage('Hello World! :)mabsdhabsdjhabdjhadbjhadbjhadbhdbjadbhasdbajbasjbhasdjadb');
+          sendMessage('Hello World! :)');
+
+          sendMessage('Hello World!! :)');
+          setTimeout(function () {
+              return sendMessage('Hi Sandy! How are you?');
+          }, 1000);
+          return setTimeout(function () {
+              return sendMessage('I\'m fine, thank you!');
+          }, 2000);
+
+
+      });
+    }.call(this));
+    </script>
+    <!--MESSAGE SCRIPT-->
+  </body>
+</html>
