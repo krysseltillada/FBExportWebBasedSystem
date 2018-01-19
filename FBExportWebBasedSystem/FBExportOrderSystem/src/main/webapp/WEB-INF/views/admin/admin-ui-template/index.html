@@ -252,10 +252,51 @@
 
               <div class="row bg-white has-shadow p-0" style = "font-size: 14px;">
                 <!-- Item -->
+                <div class="col-xl-4 col-sm-6">
+                  <div class="item d-flex align-items-center ml-5">
+                    
+                      <div class="icon bg-violet"><i class="icon-user"></i></div>
+                      <div class="title"><span>Pending<br>Orders</span>
+                      </div>
+                      <div class="number"><strong>25</strong></div>
+                    
+                  </div>
+                </div>
+                <!-- Item -->
+                <div class="col-xl-4 col-sm-6">
+                  <div class="item d-flex align-items-center ml-5">
+                    <div class="icon bg-red"><i class="icon-padnote"></i></div>
+                    <div class="title"><span>Approved<br>Orders</span>
+                    </div>
+                    <div class="number"><strong>70</strong></div>
+                  </div>
+                </div>
+                <!-- Item -->
+                <div class="col-xl-4 col-sm-6">
+                  <div class="item d-flex align-items-center ml-5">
+                    <div class="icon bg-green"><i class="icon-bill"></i></div>
+                    <div class="title"><span>Paid<br>Orders</span>
+                    </div>
+                    <div class="number"><strong>40</strong></div>
+                  </div>
+                </div>
+                <!-- Item -->
+                <!-- <div class="col-xl-3 col-sm-6">
+                  <div class="item d-flex align-items-center">
+                    <div class="icon bg-orange"><i class="icon-check"></i></div>
+                    <div class="title"><span>Returned<br>Orders</span>
+                    </div>
+                    <div class="number"><strong>50</strong></div>
+                  </div>
+                </div> -->
+              </div>
+
+              <div class="row bg-white has-shadow p-0 mt-2" style = "font-size: 14px;">
+                <!-- Item -->
                 <div class="col-xl-3 col-sm-6">
                   <div class="item d-flex align-items-center">
                     <div class="icon bg-violet"><i class="icon-user"></i></div>
-                    <div class="title"><span>Pending<br>Orders</span>
+                    <div class="title"><span>To ship <br>Orders</span>
                     </div>
                     <div class="number"><strong>25</strong></div>
                   </div>
@@ -264,7 +305,7 @@
                 <div class="col-xl-3 col-sm-6">
                   <div class="item d-flex align-items-center">
                     <div class="icon bg-red"><i class="icon-padnote"></i></div>
-                    <div class="title"><span>Paid<br>Orders</span>
+                    <div class="title"><span>Received<br>Orders</span>
                     </div>
                     <div class="number"><strong>70</strong></div>
                   </div>
@@ -279,14 +320,14 @@
                   </div>
                 </div>
                 <!-- Item -->
-                <div class="col-xl-3 col-sm-6">
+                 <div class="col-xl-3 col-sm-6">
                   <div class="item d-flex align-items-center">
                     <div class="icon bg-orange"><i class="icon-check"></i></div>
                     <div class="title"><span>Returned<br>Orders</span>
                     </div>
                     <div class="number"><strong>50</strong></div>
                   </div>
-                </div>
+                </div> 
               </div>
             </div>
           </section>
@@ -295,37 +336,26 @@
             <div class="container-fluid">
               <div class="row">
                   <div class="statistics col-lg-3 col-12">
-                  <div class="statistic d-flex align-items-center bg-white has-shadow">
-                    <div class="icon bg-red"><i class="fa fa-tasks"></i></div>
-                    <div class="text"><strong>234</strong><br><small>online users</small></div>
-                  </div>
-                  <div class="statistic d-flex align-items-center bg-white has-shadow">
-                    <div class="icon bg-green"><i class="fa fa-calendar-o"></i></div>
-                    <div class="text"><strong>152</strong><br><small>registered users</small></div>
-                  </div>
-                  <div class="statistic d-flex align-items-center bg-white has-shadow">
-                    <div class="icon bg-orange"><i class="fa fa-paper-plane-o"></i></div>
-                    <div class="text"><strong>147</strong><br><small>new users</small></div>
-                  </div>
+                    <div class="statistic d-flex align-items-center bg-white has-shadow">
+                      <div class="icon bg-red"><i class="fa fa-tasks"></i></div>
+                      <div class="text"><strong>234</strong><br><small>Todays pending orders</small></div>
+                    </div>
+                    <div class="statistic d-flex align-items-center bg-white has-shadow">
+                      <div class="icon bg-green"><i class="fa fa-calendar-o"></i></div>
+                      <div class="text"><strong>152</strong><br><small>Todays approved orders</small></div>
+                    </div>
+                    <div class="statistic d-flex align-items-center bg-white has-shadow">
+                      <div class="icon bg-orange"><i class="fa fa-paper-plane-o"></i></div>
+                      <div class="text"><strong>147</strong><br><small>Todays paid orders</small></div>
+                    </div>
                 </div>
                         
-                <div class="chart col-lg-6 col-12">
-                  <div class="line-chart bg-white d-flex align-items-center justify-content-center has-shadow">
+                <div class="chart col-lg-9 col-12">
+                  <div class="line-chart bg-white d-flex align-items-center justify-content-center has-shadow pl-3 pr-3 pb-3 pt-1">
                     <canvas id="lineCahrt"></canvas>
                   </div>
                 </div>
-                <div class="chart col-lg-3 col-12 pl-0">
-                
-                  <div class="bar-chart has-shadow bg-white">
-                    <div class="title"><strong class="text-violet">95%</strong><br><small>Current Server Uptime</small></div>
-                    <canvas id="barChartHome"></canvas>
-                  </div>
                
-                  <div class="statistic d-flex align-items-center bg-white has-shadow">
-                    <div class="icon bg-green"><i class="fa fa-line-chart"></i></div>
-                    <div class="text"><strong>99.9%</strong><br><small>Success Rate</small></div>
-                  </div>
-                </div>
               </div>
             </div>
           </section> 

@@ -15,6 +15,10 @@ $(document).ready(function () {
     var myLineChart = new Chart(LINECHART, {
         type: 'line',
         options: {
+            title: {
+                display: true,
+                text : "Monthly orders"
+            },
             scales: {
                 xAxes: [{
                     display: true,
@@ -34,10 +38,10 @@ $(document).ready(function () {
             }
         },
         data: {
-            labels: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17"],
+            labels: ["jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sept", "oct", "nov", "dec"],
             datasets: [
                 {
-                    label: "Page Visitors",
+                    label: "Pending orders",
                     fill: true,
                     lineTension: 0,
                     backgroundColor: "transparent",
@@ -56,11 +60,11 @@ $(document).ready(function () {
                     pointHoverBorderWidth: 2,
                     pointRadius: 1,
                     pointHitRadius: 0,
-                    data: [50, 20, 60, 31, 52, 22, 40, 25, 30, 68, 56, 40, 60, 43, 55, 39, 47],
+                    data: [50, 20, 60, 31, 52, 22, 40, 25, 30, 68, 56, 40],
                     spanGaps: false
                 },
                 {
-                    label: "Page Views",
+                    label: "Approved orders",
                     fill: true,
                     lineTension: 0,
                     backgroundColor: "transparent",
@@ -79,7 +83,30 @@ $(document).ready(function () {
                     pointHoverBorderWidth: 2,
                     pointRadius: 1,
                     pointHitRadius: 10,
-                    data: [20, 7, 35, 17, 26, 8, 18, 10, 14, 46, 30, 30, 14, 28, 17, 25, 17, 40],
+                    data: [20, 7, 35, 17, 26, 8, 18, 10, 14, 46, 30, 30],
+                    spanGaps: false
+                },
+                {
+                    label: "Paid orders",
+                    fill: true,
+                    lineTension: 0,
+                    backgroundColor: "transparent",
+                    borderColor: "#FFC36D",
+                    pointHoverBackgroundColor: "#FFC36D",
+                    borderCapStyle: 'butt',
+                    borderDash: [],
+                    borderDashOffset: 0.0,
+                    borderJoinStyle: 'miter',
+                    borderWidth: 1,
+                    pointBorderColor: "#FFC36D",
+                    pointBackgroundColor: "#fff",
+                    pointBorderWidth: 1,
+                    pointHoverRadius: 5,
+                    pointHoverBorderColor: "#fff",
+                    pointHoverBorderWidth: 2,
+                    pointRadius: 1,
+                    pointHitRadius: 10,
+                    data: [1, 2, 35, 17, 26, 8, 4, 1, 14, 46, 3, 30],
                     spanGaps: false
                 }
             ]
