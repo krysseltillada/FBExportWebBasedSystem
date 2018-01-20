@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Bootstrap Material Admin by Bootstrapious.com</title>
+    <title>Fong Bros Dashboard</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="all,follow">
@@ -18,7 +18,7 @@
     <!-- theme stylesheet-->
     <link rel="stylesheet" href="css/style.default.css" id="theme-stylesheet">
     <!-- Custom stylesheet - for your changes-->
-    <link rel="stylesheet" href="css/custom.css">
+    <link rel="stylesheet" href="css/dashboard.css">
     <!-- Favicon-->
     <link rel="shortcut icon" href="img/favicon.ico">
     <!-- Tweaks for older IEs--><!--[if lt IE 9]>
@@ -59,6 +59,13 @@
               </div>
               <!-- Navbar Menu -->
               <ul class="nav-menu list-unstyled d-flex flex-md-row align-items-md-center" style = "color: #0395F7;">
+                
+                <li class="nav-item d-flex align-items-center mr-3" style = "color: black;">
+                  <span class = "mr-1"> Sunday, </span>
+                  <span class = "mr-1"> December 29 1998, </span>
+                  <span> 2:30 PM </span>
+                </li>
+
                 <!-- Search-->
                 <li class="nav-item d-flex align-items-center"><a id="search" href="#"><i class="icon-search"></i></a></li>
                 <!-- Notifications-->
@@ -267,11 +274,12 @@
 
           <section class="dashboard-header pt-2 no-padding-bottom">
             <div class="container-fluid">
+              
               <div class="row">
                 
                 <div class="chart col-lg-8 col-12">
-                  <div class="line-chart bg-white d-flex align-items-center justify-content-center has-shadow">
-                    <canvas id="lineCahrt" width="592" height = "355" class="chartjs-render-monitor"></canvas>
+                  <div class="line-chart bg-white d-flex align-items-center justify-content-center has-shadow no-padding-top">
+                    <canvas id="lineCahrt" width="592" height = "350" class="chartjs-render-monitor"></canvas>
                   </div>
                 </div>
 
@@ -279,12 +287,12 @@
                   
                   <div class = "row">
                     <div class = "col-lg">
-                      <div class="daily-feeds card" style = "max-height: 355px; overflow-y: auto;"> 
+                      <div class="daily-feeds card"> 
                       
                         <div class="card-header">
                           <h3 class="h4">Latest orders</h3>
                         </div>
-                        <div class="card-body no-padding">
+                        <div class="card-body no-padding" style = "max-height: 305px; overflow-y: auto;">
                           <!-- Item-->
                           <div class="item">
                             <div class="feed d-flex justify-content-between">
@@ -396,7 +404,7 @@
                 </div> 
               </div>
             </div>
-          </section>
+          </section>  
 
            <section class="dashboard-header pt-3 no-padding-bottom">
               <div class="container-fluid">
@@ -533,17 +541,36 @@
               </div>
             </div>
           </section>
+
+          <section class = "no-padding-top no-padding-bottom">
+            <div class = "container-fluid">
+              <div class = "row">
+              <div class = "col-lg-8 pr-0">
+                <div class = "card">
+                  <div class = "card-body p-1">
+                    <iframe src="https://investingwidgets.com/live-currency-cross-rates?theme=lightTheme&pairs=9922,9923,9924,9925,9927,9928,9929,9930,9931,9932,9933,9934,9935,9936,9937,9938,9939,9940,9941,9942,9943,9944,9945,9946,9947,9948,9949,9950,9951,9952" width="100%" height="500px" frameborder="0" allowtransparency="true" marginwidth="0" marginheight="0"></iframe>
+                  </div>
+                </div>
+              </div>
+              <div class = "col-lg-4">
+                <div class = "card">
+                  <div class = "card-body p-1">
+                    <a class="weatherwidget-io" href="https://forecast7.com/en/40d71n74d01/new-york/" data-label_1="MANILA" data-label_2="WEATHER" data-icons="Climacons Animated" data-theme="pure" >NEW YORK WEATHER</a>
+                    <script>
+                    !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="https://weatherwidget.io/js/widget.min.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","weatherwidget-io-js");
+                    </script>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
        
           <!-- Page Footer-->
           <footer class="main-footer">
             <div class="container-fluid">
               <div class="row">
-                <div class="col-sm-6">
-                  <p>Your company &copy; 2017-2019</p>
-                </div>
-                <div class="col-sm-6 text-right">
-                  <p>Design by <a href="https://bootstrapious.com/admin-templates" class="external">Bootstrapious</a></p>
-                  <!-- Please do not remove the backlink to us unless you support further theme's development at https://bootstrapious.com/donate. It is part of the license conditions. Thank you for understanding :)-->
+                <div class="col-sm">
+                  <p class = "text-center">Fong Bros International Corporation &copy; 2018-2019</p>
                 </div>
               </div>
             </div>
