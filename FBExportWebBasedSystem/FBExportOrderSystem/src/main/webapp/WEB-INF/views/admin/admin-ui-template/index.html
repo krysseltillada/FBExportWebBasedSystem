@@ -7,6 +7,10 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="all,follow">
+
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css">
     <!-- Bootstrap CSS-->
     <link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css">
     <!-- Font Awesome CSS-->
@@ -19,8 +23,10 @@
     <link rel="stylesheet" href="css/style.default.css" id="theme-stylesheet">
     <!-- Custom stylesheet - for your changes-->
     <link rel="stylesheet" href="css/dashboard.css">
+
     <!-- Favicon-->
     <link rel="shortcut icon" href="img/favicon.ico">
+
 
     <script src="js/pace.min.js"></script>
     <link rel="stylesheet" href = "css/pace-themes/pace-theme-minimal.css" />
@@ -556,7 +562,90 @@
             </div>
           </section>  -->
 
-          
+
+          <header class="page-header">
+            <div class="container-fluid">
+              <h2 class="no-margin-bottom">Inventory</h2>
+            </div>
+          </header>
+
+
+          <section class = "no-padding-top p-0">
+            <div class = "container-fluid p-0">
+
+            </div>
+            <div class = "container-fluid p-0">
+                <div class = "row">
+                  <div class = "col-lg">
+                    <div class = "card mb-0">
+                      <div class = "card-body pt-4 pb-4 pl-0 pr-0">
+                        <table id="example" class="table table-hover table-bordered" cellspacing="0" width="100%">
+                          <thead>
+                              <tr>
+                                  
+                                  <th> <input type="checkbox" value="" class="checkbox-template"> </th>
+                                  <th> Product Name </th>
+                                  <th> Supplier </th>
+                                  <th> Price </th>
+                                  <th>Weight</th>
+                                  <th>Expired Date</th>
+                                  <th> Actions </th>
+                                
+                              </tr>
+                          </thead>
+                          <tfoot>
+                              <tr>
+                                  
+                                  <th></th>
+                                  <th> Product Name </th>
+                                  <th>Price </th>
+                                  <th>Weight</th>
+                                   <th>Weight</th>
+                                  <th>Expired Date</th>
+                                  <th> Actions </th>
+                                 
+                              </tr>
+                          </tfoot>
+                          <tbody>
+                              <tr>
+
+                                  <td></td>
+                                  <td>System Architect</td>
+                                  <td>Edinburgh</td>
+                                  <td>61</td>
+                                  <td>2011/04/25</td>
+                                  <td>2011/04/25</td>
+                                  <td>
+                                    <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+                                      <div class="btn-group-sm mr-2" role="group" aria-label="First group">
+                                         <button type="button" class="btn bg-red">
+                                            <i class="fa fa-trash" aria-hidden="true"></i>
+                                          </button>
+                                          <button type="button" class="btn bg-blue">
+                                            <i class="fa fa-pencil" aria-hidden="true"></i>
+                                          </button>
+                                          <button type="button" class="btn bg-orange">
+                                            <i class="fa fa-print" aria-hidden="true"></i>
+                                          </button>
+                                          <button type="button" class="btn bg-green">
+                                            <span class = "mr-2 pr-3"> Post </span> 
+                                            <i class="fa fa-sticky-note" aria-hidden="true"></i> 
+                                          </button>
+                                      </div>
+                                    </div>
+                                  </td>
+                              </tr>
+                             
+                          </tbody>
+                        </table>  
+                      </div>
+                    </div>
+                  </div>
+                      
+                </div>
+             
+            </div>
+          </section>
        
           <!-- Page Footer-->
           <footer class="main-footer">
@@ -572,14 +661,56 @@
       </div>
     </div>
     <!-- Javascript files-->
+   
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script src="vendor/popper.js/umd/popper.min.js"> </script>
     <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
     <script src="vendor/jquery.cookie/jquery.cookie.js"> </script>
     <script src="vendor/chart.js/Chart.min.js"></script>
     <script src="vendor/jquery-validation/jquery.validate.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script>
     <script src="js/charts-home.js"></script>
     <!-- Main File-->
     <script src="js/front.js"></script>
+    <script> 
+      
+      //  $('#example').DataTable({
+        
+      //   'columnDefs': [{
+      //     'targets': [0],
+      //     'searchable': false,
+      //     'orderable': false,
+      //     'className': 'dt-body-center',
+      //     'render': function (data, type, full, meta){
+      //         return '<input id="checkboxCustom1" type="checkbox" value="" class="checkbox-template">';
+      //     }
+      //   }],
+        
+      //   'order': [[1, 'asc']]
+      // });
+
+      $('#example').dataTable( {
+          "columns": [
+            {
+                  'searchable': false,
+                  'orderable': false,
+                  'className': 'dt-body-center',
+                  'render': function (data, type, full, meta){
+                      return '<input id="checkboxCustom1" type="checkbox" value="" class="checkbox-template">';
+                  }
+            },
+            null,
+            null,
+            null,
+            null,
+            null,
+            { "orderable": false }
+          ],
+          'order': [[1, 'asc']]
+        } 
+      );
+  
+    </script>
   </body>
 </html>
