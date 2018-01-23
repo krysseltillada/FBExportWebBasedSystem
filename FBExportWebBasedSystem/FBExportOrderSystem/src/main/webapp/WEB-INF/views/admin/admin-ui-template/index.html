@@ -19,6 +19,10 @@
     <link rel="stylesheet" href="css/fontastic.css">
     <!-- Google fonts - Poppins -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,700">
+
+    
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+
     <!-- theme stylesheet-->
     <link rel="stylesheet" href="css/style.default.css" id="theme-stylesheet">
     <!-- Custom stylesheet - for your changes-->
@@ -568,52 +572,69 @@
                 <div class = "col-lg">
                   <span class="h3 no-margin-bottom mr-2">Inventory</span>
                   <span class = "small mr-2"> <a href = "javascript:void(0)"> Add new Product <i class="fa fa-plus-square ml-1" aria-hidden="true"></i> </a> </span>
-                  <span class = "small"> <a href = "javascript:void(0)" class = "text-muted" style = "cursor: not-allowed;"> Delete Product <i class="fa fa-trash ml-1" aria-hidden="true"></i> </a> </span>
+                  <span class = "small mr-2"> <a href = "javascript:void(0)" class = "text-muted" style = "cursor: not-allowed;"> Delete Product <i class="fa fa-trash ml-1" aria-hidden="true"></i> </a> </span>
                 </div>
               </div>
                 
             </div>
           </header>
 
-
           <section class = "no-padding-top p-0">
+          
             <div class = "container-fluid p-0">
+                <div clsss = "row">
+                  <div class = "col-lg p-0 m-0">
+                    <div class = "card m-0">
+                      <div class = "card-body">
+                        <form class="form-inline">
+                          
+                          <input class = "text-center" type="text" id="datepicker">      
+                          
 
-            </div>
-            <div class = "container-fluid p-0">
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                </div>
                 <div class = "row">
                   <div class = "col-lg">
                     <div class = "card mb-0">
-                      <div class = "card-body pt-4 pb-5 pl-0 pr-0">
-                        <table id="example" class="table" cellspacing="0" width="100%" style = "border-left: 1px solid #E9ECEF; border-right: 1px solid #E9ECEF; border-bottom: 1px solid #E9ECEF;">
+                      <div class = "card-body pt-3 pb-5 pl-0 pr-0" style = "overflow-x: auto;">
+                        <table id="example" class="table table-sm" cellspacing="0" width="100%" style = "border-bottom: 1px solid #E9ECEF;">
                           <thead>
                               <tr>
                                   
                                   <th> <input type="checkbox" value="" class="checkbox-template"> </th>
                                   <th> </th>
-                                  <th> Product Name </th>
+                                  <th> Product id </th>
+                                  <th> Product </th>
+                                  <th> Origin </th>
                                   <th> Supplier </th>
                                   <th> Price </th>
-                                  <th>Weight</th>
+                                  <th> Weight </th>
+                                  <th> Date  </th>
                                   <th>Expired Date</th>
                                   <th>Status</th>
-                                  <th> Actions </th>
-                                
+                                  <!-- <th> Actions </th>
+                                 -->
                               </tr>
                           </thead>
                           <tfoot>
                               <tr>
                                   
                                   <th></th>
-                                  <th></th>
-                                  <th> Product Name </th>
-                                  <th>Price </th>
-                                  <th>Weight</th>
-                                  <th>Weight</th>
+                                  <th> </th>
+                                  <th> Product id </th>
+                                  <th> Product </th>
+                                  <th> Origin </th>
+                                  <th> Supplier </th>
+                                  <th> Price </th>
+                                  <th> Weight </th>
+                                  <th> Date  </th>
                                   <th>Expired Date</th>
                                   <th>Status</th>
-                                  <th> Actions </th>
-                                 
+                                  <!-- <th> Actions </th>
+                                  -->
                               </tr>
                           </tfoot>
                           <tbody>
@@ -622,12 +643,15 @@
                                   <td></td>
                                   <td> <i class="fa fa-chevron-circle-down fa-lg" aria-hidden="true" style="cursor: pointer;" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample"></i> </td>
                                   <td> lapu lapu </td>
+                                  <td> lapu lapu </td>
+                                  <td> lapu lapu </td>
+                                  <td>Edinburgh</td>
                                   <td>Edinburgh</td>
                                   <td>61</td>
                                   <td>2011/04/25</td>
                                   <td>2011/04/25</td>
                                   <td> Posted </td>
-                                  <td>
+                                  <!-- <td>
                                     <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
                                       <div class="btn-group-sm" role="group" aria-label="First group">
                                          <button type="button" class="btn bg-red">
@@ -636,21 +660,21 @@
                                           <button type="button" class="btn bg-blue">
                                             <i class="fa fa-pencil" aria-hidden="true"></i>
                                           </button>
-                                          <button type="button" class="btn bg-orange">
-                                            <i class="fa fa-print" aria-hidden="true"></i>
-                                          </button>
                                           <button type="button" class="btn bg-green">
-                                            <span class = "pl-2 pr-2"> Post </span> 
+                                            <span> Post </span> 
                                           </button>
                                       </div>
                                     </div>
-                                  </td>
+                                  </td> -->
                               </tr>
-                              <tr>
+                              <!-- <tr>
 
                                   <td></td>
                                   <td> <i class="fa fa-chevron-circle-down fa-lg" aria-hidden="true" style="cursor: pointer;"></i> </td>
                                   <td> dangit </td>
+                                  <td> lapu lapu </td>
+                                  <td> lapu lapu </td>
+                                  <td>Edinburgh</td>
                                   <td>Edinburgh</td>
                                   <td>61</td>
                                   <td>2011/04/25</td>
@@ -665,11 +689,8 @@
                                           <button type="button" class="btn bg-blue">
                                             <i class="fa fa-pencil" aria-hidden="true"></i>
                                           </button>
-                                          <button type="button" class="btn bg-orange">
-                                            <i class="fa fa-print" aria-hidden="true"></i>
-                                          </button>
                                           <button type="button" class="btn bg-green">
-                                            <span class = "pl-2 pr-2"> Post </span> 
+                                            <span> Post </span> 
                                           </button>
                                       </div>
                                     </div>
@@ -680,6 +701,9 @@
                                   <td></td>
                                   <td> <i class="fa fa-chevron-circle-down fa-lg" aria-hidden="true" style="cursor: pointer;"></i> </td>
                                   <td> puffer fish </td>
+                                  <td> lapu lapu </td>
+                                  <td> lapu lapu </td>
+                                  <td>Edinburgh</td>
                                   <td>Edinburgh</td>
                                   <td>61</td>
                                   <td>2011/04/25</td>
@@ -694,11 +718,8 @@
                                           <button type="button" class="btn bg-blue">
                                             <i class="fa fa-pencil" aria-hidden="true"></i>
                                           </button>
-                                          <button type="button" class="btn bg-orange">
-                                            <i class="fa fa-print" aria-hidden="true"></i>
-                                          </button>
                                           <button type="button" class="btn bg-green">
-                                            <span class = "pl-2 pr-2"> Post </span> 
+                                            <span> Post </span> 
                                           </button>
                                       </div>
                                     </div>
@@ -709,6 +730,9 @@
                                   <td></td>
                                   <td> <i class="fa fa-chevron-circle-down fa-lg" aria-hidden="true" style="cursor: pointer;"></i> </td>
                                   <td> puffer fish </td>
+                                  <td> lapu lapu </td>
+                                  <td> lapu lapu </td>
+                                  <td>Edinburgh</td>
                                   <td>Edinburgh</td>
                                   <td>61</td>
                                   <td>2011/04/25</td>
@@ -723,17 +747,13 @@
                                           <button type="button" class="btn bg-blue">
                                             <i class="fa fa-pencil" aria-hidden="true"></i>
                                           </button>
-                                          <button type="button" class="btn bg-orange">
-                                            <i class="fa fa-print" aria-hidden="true"></i>
-                                          </button>
                                           <button type="button" class="btn bg-dark text-white">
                                              unpost  
-                                           
                                           </button>
                                       </div>
                                     </div>
                                   </td>
-                              </tr>
+                              </tr> -->
                              
                           </tbody>
                         </table>  
@@ -762,8 +782,8 @@
 
     <!-- inventory templates -->
 
-    <script id = "collapsingInventoryProductTemplate" type = "text/template"> 
-      <div class = "row slider">
+    <script id = "collapsingInventoryProductTemplatePosted" type = "text/template"> 
+      <div class = "row slider pt-2 pb-2 pl-1 pr-1">
         <div class = "col-lg-4">
          
         
@@ -825,6 +845,85 @@
             <li class = "mb-1"> <strong> Supplier Address: </strong> 1700 blk 7 saint joseph subd pulanglupa 2 las pinas city </li>
             <li class = "mb-1"> <strong> Date of delivery: </strong> May 12 1988  </li>
           </ul>
+
+          <br />
+
+          <button type="button" class="btn bg-green float-right mr-1">Post <i class="fa fa-clipboard ml-1" aria-hidden="true"></i>  </button>
+          <button type="button" class="btn bg-blue float-right mr-1">Edit <i class="fa fa-pencil" aria-hidden="true"></i> </button>
+          <button type="button" class="btn bg-red float-right mr-1">Delete <i class="fa fa-trash" aria-hidden="true"></i> </button>
+        </div>
+      </div> 
+    </script>
+
+    <script id = "collapsingInventoryProductTemplateUnposted" type = "text/template"> 
+      <div class = "row slider pt-2 pb-2 pl-1 pr-1">
+        <div class = "col-lg-4">
+         
+        
+          <div class="tab-content">
+            <div class="tab-pane active" id="img1" role="tabpanel">
+              <img src = "img/bg.jpg" width = "290" height = "200" />
+            </div>
+            <div class="tab-pane" id="img2" role="tabpanel">
+                <img src = "img/project-1.jpg" width = "290" height = "200" />
+            </div>
+            <div class="tab-pane" id="img3" role="tabpanel">
+                 <img src = "img/project-2.jpg" width = "290" height = "200" />
+            </div>
+            <div class="tab-pane" id="img4" role="tabpanel">
+               <img src = "img/project-3.jpg" width = "290" height = "200" />
+            </div>
+          </div>
+
+           <ul class="nav mt-1" role="tablist">
+            <li class="nav-item">
+              <a class="active pr-1" data-toggle="tab" href="#img1" role="tab">
+                <img src = "img/bg.jpg" width = "70" height = "70" />
+              </a>
+            </li>
+              <li class="nav-item">
+              <a class="pr-1" data-toggle="tab" href="#img2" role="tab">
+                  <img src =  "img/project-1.jpg" width = "70" height = "70" />
+              </a>
+            </li>
+              <li class="nav-item">
+              <a class="pr-1" data-toggle="tab" href="#img3" role="tab">
+                   <img src = "img/project-2.jpg" width = "70" height = "70" />
+              </a>
+            </li>
+              <li class="nav-item">
+              <a data-toggle="tab" href="#img4" role="tab">
+                  <img src = "img/project-3.jpg" width = "70" height = "70" />
+              </a>
+            </li>
+           
+          </ul>
+        </div>
+        <div class = "col-lg-8">
+          <h5> 
+            Description: Lapu Lapu
+            <span class = "float-right"> Origin: Leyte </span>
+          </h5>
+          <hr class = "mt-0 mb-2" />
+
+          <p class = "text-justify"> 
+            - In JSP, java code can be written inside the jsp page using the scriptlet tag. Let's see what are the scripting elements first.
+          </p>
+
+          <hr class = "mt-0 mb-2"/>
+
+          <ul class = "list-unstyled">
+            <li class = "mb-1"> <strong> Supplier: </strong> Harmonyssss </li>
+            <li class = "mb-1"> <strong> Supplier Contact number: </strong> 09151828105 </li>
+            <li class = "mb-1"> <strong> Supplier Address: </strong> 1700 blk 7 saint joseph subd pulanglupa 2 las pinas city </li>
+            <li class = "mb-1"> <strong> Date of delivery: </strong> May 12 1988  </li>
+          </ul>
+
+          <br />
+
+          <button type="button" class="btn bg-dark text-white float-right mr-1">Unpost <i class="fa fa-clipboard ml-1" aria-hidden="true"></i>  </button>
+          <button type="button" class="btn bg-blue float-right mr-1">Edit <i class="fa fa-pencil" aria-hidden="true"></i> </button>
+          <button type="button" class="btn bg-red float-right mr-1">Delete <i class="fa fa-trash" aria-hidden="true"></i> </button>
         </div>
       </div> 
     </script>
@@ -845,10 +944,13 @@
     <script src="vendor/jquery-validation/jquery.validate.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+
     <script src="js/charts-home.js"></script>
     <!-- Main File-->
     <script src="js/front.js"></script>
-    <script> 
+ <script> 
+      $( "#datepicker" ).flatpickr();
       
       //  $('#example').DataTable({
         
@@ -883,7 +985,9 @@
             null,
             null,
             null,
-            { "orderable": false }
+            null,
+            null,
+            null
           ],
           "order" : []
         } 
@@ -901,10 +1005,11 @@
                 row.child.hide();
               });
           } else {
-              var rowProductRowCollapse = $("#collapsingInventoryProductTemplate").html();
+              var rowProductRowCollapse = $("#collapsingInventoryProductTemplateUnposted").html();
               row.child(rowProductRowCollapse, 'no-padding').show();
               $(this).removeClass("fa-chevron-circle-down").addClass("fa-chevron-circle-up");
               $('div.slider', row.child()).slideDown(function () {
+                
                 $(this).parent().removeAttr('class').parent().removeAttr('class');
               });
               $('div.slider').css("display", "flex");
