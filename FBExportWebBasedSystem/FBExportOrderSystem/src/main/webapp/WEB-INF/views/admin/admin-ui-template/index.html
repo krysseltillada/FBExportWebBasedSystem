@@ -27,11 +27,9 @@
     <!-- Favicon-->
     <link rel="shortcut icon" href="img/favicon.ico">
 
-
-    <script src="js/pace.min.js"></script>
     <link rel="stylesheet" href = "css/pace-themes/pace-theme-minimal.css" />
 
-    <script src="https://use.fontawesome.com/38a955adbf.js"></script>
+
     <!-- Tweaks for older IEs--><!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
@@ -579,7 +577,7 @@
                   <div class = "col-lg">
                     <div class = "card mb-0">
                       <div class = "card-body pt-4 pb-5 pl-0 pr-0">
-                        <table id="example" class="table table-bordered" cellspacing="0" width="100%">
+                        <table id="example" class="table" cellspacing="0" width="100%" style = "border-left: 1px solid #E9ECEF; border-right: 1px solid #E9ECEF; border-bottom: 1px solid #E9ECEF;">
                           <thead>
                               <tr>
                                   
@@ -757,27 +755,68 @@
     <!-- inventory templates -->
 
     <script id = "collapsingInventoryProductTemplate" type = "text/template"> 
-      <div class = "row">
+      <div class = "row slider">
         <div class = "col-lg-4">
-          <div class = "row">
-            <div class = "col-lg-6">
-              <img src = "https://s7d2.scene7.com/is/image/PetSmart/ARTHMB-HowDoISetUpMyAquariumForMultipleFish-20160818?$AR1104$" width = "200" height = "200" alt = "fucking fish" />
+         
+        
+          <div class="tab-content">
+            <div class="tab-pane active" id="img1" role="tabpanel">
+              <img src = "img/bg.jpg" width = "290" height = "200" />
+            </div>
+            <div class="tab-pane" id="img2" role="tabpanel">
+                <img src = "img/project-1.jpg" width = "290" height = "200" />
+            </div>
+            <div class="tab-pane" id="img3" role="tabpanel">
+                 <img src = "img/project-2.jpg" width = "290" height = "200" />
+            </div>
+            <div class="tab-pane" id="img4" role="tabpanel">
+               <img src = "img/project-3.jpg" width = "290" height = "200" />
             </div>
           </div>
-          <div class = "row">
-            <div class = "col-lg-4">
-               <img src = "https://s7d2.scene7.com/is/image/PetSmart/ARTHMB-HowDoISetUpMyAquariumForMultipleFish-20160818?$AR1104$" width = "100" height = "100" alt = "fucking fish" />
-            </div>
-            <div class = "col-lg-4">
-              <img src = "https://s7d2.scene7.com/is/image/PetSmart/ARTHMB-HowDoISetUpMyAquariumForMultipleFish-20160818?$AR1104$" width = "100" height = "100" alt = "fucking fish" />
-            </div>
-            <div class = "col-lg-4">
-              <img src = "https://s7d2.scene7.com/is/image/PetSmart/ARTHMB-HowDoISetUpMyAquariumForMultipleFish-20160818?$AR1104$" width = "100" height = "100" alt = "fucking fish" />
-            </div>
-          </div>
+
+           <ul class="nav mt-1" role="tablist">
+            <li class="nav-item">
+              <a class="active pr-1" data-toggle="tab" href="#img1" role="tab">
+                <img src = "img/bg.jpg" width = "70" height = "70" />
+              </a>
+            </li>
+              <li class="nav-item">
+              <a class="pr-1" data-toggle="tab" href="#img2" role="tab">
+                  <img src =  "img/project-1.jpg" width = "70" height = "70" />
+              </a>
+            </li>
+              <li class="nav-item">
+              <a class="pr-1" data-toggle="tab" href="#img3" role="tab">
+                   <img src = "img/project-2.jpg" width = "70" height = "70" />
+              </a>
+            </li>
+              <li class="nav-item">
+              <a data-toggle="tab" href="#img4" role="tab">
+                  <img src = "img/project-3.jpg" width = "70" height = "70" />
+              </a>
+            </li>
+           
+          </ul>
         </div>
         <div class = "col-lg-8">
-          
+          <h5> 
+            Description: Lapu Lapu
+            <span class = "float-right"> Origin: Leyte </span>
+          </h5>
+          <hr class = "mt-0 mb-2" />
+
+          <p class = "text-justify"> 
+            - In JSP, java code can be written inside the jsp page using the scriptlet tag. Let's see what are the scripting elements first.
+          </p>
+
+          <hr class = "mt-0 mb-2"/>
+
+          <ul class = "list-unstyled">
+            <li class = "mb-1"> <strong> Supplier: </strong> Harmonyssss </li>
+            <li class = "mb-1"> <strong> Supplier Contact number: </strong> 991231231 </li>
+            <li class = "mb-1"> <strong> Supplier Address: </strong> 1700 blk 7 saint joseph subd pulanglupa 2 las pinas city </li>
+            <li class = "mb-1"> <strong> Delivered date: </strong> May 12 1988  </li>
+          </ul>
         </div>
       </div> 
     </script>
@@ -785,6 +824,11 @@
 
     <!-- Javascript files-->
    
+
+
+
+    <script src="js/pace.min.js"></script>
+    <script src="https://use.fontawesome.com/38a955adbf.js"></script>
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script src="vendor/popper.js/umd/popper.min.js"> </script>
     <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
@@ -844,15 +888,23 @@
           var row = table.row(parentRow);
 
           if (row.child.isShown()) {
-              row.child.hide();
               $(this).removeClass("fa-chevron-circle-up").addClass("fa-chevron-circle-down");
+              $('div.slider', row.child()).slideUp(function () {
+                row.child.hide();
+              });
           } else {
               var rowProductRowCollapse = $("#collapsingInventoryProductTemplate").html();
-              row.child(rowProductRowCollapse).show();
+              row.child(rowProductRowCollapse, 'no-padding').show();
               $(this).removeClass("fa-chevron-circle-down").addClass("fa-chevron-circle-up");
+              $('div.slider', row.child()).slideDown(function () {
+                $(this).parent().removeAttr('class').parent().removeAttr('class');
+              });
+              $('div.slider').css("display", "flex");
           }
 
       });
+
+     
   
     </script>
   </body>
