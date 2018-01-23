@@ -573,7 +573,7 @@
                 <div class = "col-lg">
                   <span class="h3 no-margin-bottom mr-2">Inventory</span>
                   <span class = "small mr-2"> <a href = "javascript:void(0)"> Add new Product <i class="fa fa-plus-square ml-1" aria-hidden="true"></i> </a> </span>
-                  <span class = "small mr-2"> <a href = "javascript:void(0)" class = "text-muted" style = "cursor: not-allowed;"> Delete Product <i class="fa fa-trash ml-1" aria-hidden="true"></i> </a> </span>
+                  <span class = "small mr-2"> <a href = "javascript:void(0)" id = "deleteProduct" class = "text-muted" style = "cursor: not-allowed;"> Delete Product <i class="fa fa-trash ml-1" aria-hidden="true"></i> </a> </span>
                   <span class = "small float-right"> <a data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample"> Filter product <i class="fa fa-filter ml-1" aria-hidden="true"></i> </a> </span>
                 </div>
               </div>
@@ -642,11 +642,11 @@
                   <div class = "col-lg">
                     <div class = "card mb-0">
                       <div class = "card-body pt-3 pb-5 pl-0 pr-0" style = "overflow-x: auto;">
-                        <table id="example" class="table table-sm" cellspacing="0" width="100%" style = "border-bottom: 1px solid #E9ECEF;">
+                        <table id="inventoryTable" class="table table-sm" cellspacing="0" width="100%" style = "border-bottom: 1px solid #E9ECEF;">
                           <thead>
                               <tr>
                                   
-                                  <th> <input type="checkbox" value="" class="checkbox-template"> </th>
+                                  <th> <input type="checkbox" value="" class="checkbox-template checkbox-delete" id = "checkbox-all"> </th>
                                   <th> </th>
                                   <th> Product id </th>
                                   <th> Product </th>
@@ -948,14 +948,14 @@
       // });
       
       // note: activate datatable by calling Datatable instead of dataTable and pass some configuration objects there see the docs for more details -kryssel
-      var table = $('#example').DataTable( {
+      var table = $('#inventoryTable').DataTable( {
           "columns": [
             {
                   'searchable': false,
                   'orderable': false,
                   'className': 'dt-body-center',
                   'render': function (data, type, full, meta){
-                      return '<input id="checkboxCustom1" type="checkbox" value="" class="checkbox-template">';
+                      return '<input id="checkboxCustom1" type="checkbox" value="" class="checkbox-template checkbox-delete">';
                   }
             },
             {"orderable" : false},
@@ -995,6 +995,25 @@
               $('div.slider').css("display", "flex");
           }
 
+      });
+
+      $("#checkbox-all").click(function () {
+          
+          $("#inventoryTable").find("tr:not(:first) input.checkbox-template")
+                              .prop("checked", $(this).prop("checked"));
+
+
+      }); 
+
+      $(".checkbox-delete").change(function () {
+
+        if ($("#inventoryTable").find("tr:not(:first) input.checkbox-template:checked").length > 0) {
+
+          $("a#deleteProduct").removeClass("text-muted").addClass("text-red").css("cursor", "pointer");
+        } else {
+
+          $("a#deleteProduct").removeClass("red-text").addClass("text-muted").css("cursor", "not-allowed");
+        }
       });
 
      
