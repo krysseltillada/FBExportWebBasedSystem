@@ -34,6 +34,8 @@
 
     <link rel="stylesheet" href = "css/pace-themes/pace-theme-minimal.css" />
 
+    <link rel="stylesheet" href = "css/inventory.css" /> 
+
 
     <!-- Tweaks for older IEs--><!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
@@ -566,7 +568,7 @@
           </section>  -->
 
 
-          <header class="page-header pb-3">
+          <!-- inventory <header class="page-header pb-3">
             <div class="container-fluid">
              
               <div class = "row">
@@ -645,7 +647,6 @@
                         <table id="inventoryTable" class="table table-sm" cellspacing="0" width="100%" style = "border-bottom: 1px solid #E9ECEF;">
                           <thead>
                               <tr>
-                                  
                                   <th> <input type="checkbox" value="" class="checkbox-template checkbox-delete" id = "checkbox-all"> </th>
                                   <th> </th>
                                   <th> Product id </th>
@@ -657,8 +658,6 @@
                                   <th> Date Registered </th>
                                   <th>Expired Date</th>
                                   <th>Status</th>
-                                  <!-- <th> Actions </th>
-                                 -->
                               </tr>
                           </thead>
                           <tfoot>
@@ -675,8 +674,6 @@
                                   <th> Date Registered  </th>
                                   <th>Expired Date</th>
                                   <th>Status</th>
-                                  <!-- <th> Actions </th>
-                                  -->
                               </tr>
                           </tfoot>
                           <tbody>
@@ -734,6 +731,37 @@
                       
                 </div>
              
+            </div>
+          </section> -->
+
+          <header class="page-header">
+            <div class="container-fluid">
+              <h2 class="no-margin-bottom">Inventory > Add new product</h2>
+            </div>
+          </header>
+
+          <section class = "pt-2">
+            <div class = "container-fluid">
+              <div class = "row">
+                <div class = "col-4">
+                  <div class = "card">
+                    <div class = "card-body p-2">
+                      <div class="form-group m-0">
+                          <img class = "mb-2" id='img-upload' src = "upload-product-img.png" width = "150" height = "240" />
+                          <div class="input-group">
+                              <span class="input-group-btn">
+                                  <span class="btn btn-default btn-file bg-blue">
+                                      upload
+                                      <i class="fa fa-file-image-o" aria-hidden="true"></i> <input type="file" id="imgInp">
+                                  </span>
+                              </span>
+                              <input type="text" class="form-control" readonly>
+                          </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </section>
        
@@ -917,11 +945,12 @@
     <script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="js/inventory.js"> </script>
 
     <script src="js/charts-home.js"></script>
     <!-- Main File-->
     <script src="js/front.js"></script>
- <script> 
+    <script> 
       $( "#minDatePicker" ).flatpickr();
       $( "#maxDatePicker" ).flatpickr();
       $( "#slider" ).slider({
