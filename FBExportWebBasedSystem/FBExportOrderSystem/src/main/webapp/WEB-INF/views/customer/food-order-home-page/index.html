@@ -368,6 +368,33 @@
                     margin-left: 100px;
                 }
 
+                /*Profile picture upload*/
+
+                .file {
+                  position: relative;
+                }
+                .file label {
+                  background: #39D2B4;
+                  padding: 5px 20px;
+                  color: #fff;
+                  font-weight: bold;
+                  font-size: .9em;
+                  transition: all .4s;
+                }
+                .file input {
+                  position: absolute;
+                  display: inline-block;
+                  left: 0;
+                  top: 0;
+                  opacity: 0.01;
+                  cursor: pointer;
+                }
+                .file input:hover + label,
+                .file input:focus + label {
+                  background: #34495E;
+                  color: #39D2B4;
+                }
+                /*Profile picture upload*/
 
           </style>
 
@@ -1225,7 +1252,7 @@
 
             </main>   -->
 
-            <main>
+            <!-- Order List<main>
 
                     <div class = "container">
 
@@ -2321,7 +2348,7 @@
 
 
 
-            </main>  
+            </main> -->
 
              <!-- account settings <main>
 
@@ -4092,12 +4119,10 @@
             </div>
         </div>
 
-
-
           <!-- Modal: modalCart -->
 
-          <!-- <div class = "container p-4">
-           <form method = "POST">
+          <div class = "container p-4">
+           <form method = "POST" id="uploadForm">
 
                 <div class = "row">
                     <div class = "col">
@@ -4115,21 +4140,30 @@
                         <fieldset>
                             <legend> Login details </legend>
 
-                                <div class = "row mt-3">
+                                <div class = "row mt-3 justify-content-md-center">
+
+                                  <div class="col-md-3 text-center">
+
+                                    <img class = "mb-2 rounded" style = "border: 1px solid #DDDDDD;" id='img-upload' src = "profile-male.jpg" width = "150" height = "150" />
+
+                                    <p class="file">
+                                      <input type="file" name="file" id="file" accept="image/x-png,image/jpeg" />
+                                      <label for="file">Upload your image</label>
+                                    </p>
+                                  </div>
 
                                     <div class = "col-md-6">
-                                    <div class="md-form form-sm">
+                                      <div class="md-form form-sm">
                                             <input type="text" id="username" class="form-control" length = "20" required />
                                             <label for="username" class="">Username</label>
                                         </div>
-                                    </div>
-
-                                    <div class = "col-md-6">
                                         <div class="md-form form-sm">
                                             <input type="password" id="password" class="form-control" length = "20" required />
                                             <label for="password" class="">Password</label>
                                         </div>
                                     </div>
+
+
 
                                 </div>
 
@@ -4170,15 +4204,15 @@
                                     <label> Gender: </label>
                                 </div>
 
-                                <div class = "col-md-11 form-inline mb-2">
+                                <div class = "col-md-5 form-inline mb-2">
 
                                     <div class="form-group form-sm">
-                                        <input class = "mr-2" name="group2" type="radio" class="with-gap" id="male" required />
+                                        <input class = "mr-2" name="gender" value="Male" type="radio" class="with-gap" id="male" required />
                                         <label for="male"> Male </label>
                                     </div>
 
                                     <div class="form-group form-sm">
-                                        <input class = "mr-2" name="group2" type="radio" class="with-gap" id="female" required />
+                                        <input class = "mr-2" name="gender" value="Female" type="radio" class="with-gap" id="female" />
                                         <label for="female"> Female </label>
                                     </div>
 
@@ -4312,7 +4346,7 @@
 
          </form>
 
-        </div>    -->
+       </div>
 
         <!-- <div class = "container p-5">
 
@@ -5149,6 +5183,38 @@
                   }
                 });
                 /*PAYMENT*/
+
+                /*Profile Picture*/
+
+                $('input[type=radio][name=gender]').change(function(){
+                  var gender = $('input[type=radio][name=gender]:checked').val();
+                  if(gender == "Male"){
+                    $("#img-upload").attr("src", "profile-male.jpg");
+
+                  }
+
+                  if(gender == "Female"){
+                    $("#img-upload").attr("src", "profile-female.jpg");
+
+                  }
+                });
+
+                function filePreview(input) {
+                  if (input.files && input.files[0]) {
+                      var reader = new FileReader();
+                      reader.onload = function (e) {
+                          $("#img-upload").attr("src", e.target.result);
+                      }
+                      reader.readAsDataURL(input.files[0]);
+                  }
+                }
+
+                $("#file").change(function () {
+                    filePreview(this);
+                });
+
+
+                /*Profile Picture*/
 
             });
 
