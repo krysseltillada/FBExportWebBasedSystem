@@ -580,7 +580,7 @@
           </section>  -->
 
 
-          <!-- inventory <header class="page-header pb-3">
+           <header class="page-header pb-3">
             <div class="container-fluid">
 
               <div class = "row">
@@ -604,7 +604,7 @@
 
                     <div class = "col-lg-12 p-0 m-0">
                       <div class = "card m-0">
-                        <div class = "card-body pt-2">
+                        <div class = "card-body pt-2 small">
                           <form class="form-inline ml-2">
 
                             <label class = "mr-2"> Date: </label>
@@ -744,7 +744,7 @@
                 </div>
 
             </div>
-          </section>  -->
+          </section>  
             
           <!-- add new product <header class="page-header">
             <div class="container-fluid">
@@ -1051,15 +1051,14 @@
           </section> -->
 
           
-          <header class="page-header pb-3">
+          <!-- orders page <header class="page-header pb-3">
             <div class="container-fluid">
 
               <div class = "row">
                 <div class = "col-lg">
-                   <span class="h3 no-margin-bottom mr-2">Orders</span>
-                    <!-- <span class = "small mr-2"> <a href = "javascript:void(0)"> Add new Product <i class="fa fa-plus-square ml-1" aria-hidden="true"></i> </a> </span> -->
+                  <span class="h3 no-margin-bottom mr-2">Orders</span>
                   <span class = "small ml-2 float-right"> <a href = "javascript:void(0)" id = "deleteProduct" class = "text-muted" style = "cursor: not-allowed;"> Delete order <i class="fa fa-trash ml-1" aria-hidden="true"></i> </a> </span>
-                   <span class = "small float-right"> <a data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample"> Filter Orders <i class="fa fa-filter ml-1" aria-hidden="true"></i> </a> </span>
+                  <span class = "small float-right"> <a data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample"> Filter Orders <i class="fa fa-filter ml-1" aria-hidden="true"></i> </a> </span>
                 </div>
               </div>
 
@@ -1579,7 +1578,9 @@
                 </div>
 
             </div>
-          </section> 
+          </section>  -->
+
+          
           <!-- Page Footer-->
           <footer class="main-footer">
             <div class="container-fluid">
@@ -2115,42 +2116,41 @@
     <script src="js/collections.js"></script>
     <!-- Main File-->
     <script src="js/front.js"></script>
- <script>
+    <script>
 
-    (function($){
+    // (function($){
 
-            $.fn.outside = function(ename, cb){
-                return this.each(function(){
-                    var $this = $(this),
-                        self = this;
+    //     $.fn.outside = function(ename, cb){
+    //         return this.each(function(){
+    //             var $this = $(this),
+    //                 self = this;
 
-                    $(document).bind(ename, function tempo(e){
-                        if(e.target !== self && !$.contains(self, e.target)){
-                            cb.apply(self, [e]);
-                            if(!self.parentNode) $(document.body).unbind(ename, tempo);
-                        }
-                    });
-                });
-            };
+    //             $(document).bind(ename, function tempo(e){
+    //                 if(e.target !== self && !$.contains(self, e.target)){
+    //                     cb.apply(self, [e]);
+    //                     if(!self.parentNode) $(document.body).unbind(ename, tempo);
+    //                 }
+    //             });
+    //         });
+    //     };
 
-            $.fn.outerHTML = function(s) {
-                return (s)
-                ? this.before(s).remove()
-                : jQuery("<p>").append(this.eq(0).clone()).html();
-            }
+    //     $.fn.outerHTML = function(s) {
+    //         return (s)
+    //         ? this.before(s).remove()
+    //         : jQuery("<p>").append(this.eq(0).clone()).html();
+    //     }
 
-        }(jQuery));
-
-      $('[data-toggle="popover"]').popover()
+    // }(jQuery));
 
 
-      var orderStatusColors = new Map({
-                                        "Pending": "#FFC107", 
-                                        "Approved": "#5CB85C",
-                                        "Rejected" : "#D9534F",
-                                        "Received" : "#0275D8",
-                                        "To Ship" : "#796AEE"
-                                      });
+
+    //   var orderStatusColors = new Map({
+    //                                     "Pending": "#FFC107", 
+    //                                     "Approved": "#5CB85C",
+    //                                     "Rejected" : "#D9534F",
+    //                                     "Received" : "#0275D8",
+    //                                     "To Ship" : "#796AEE"
+    //                                   });
 
   
 
@@ -2159,7 +2159,6 @@
 
       $( "#expiredDatePicker" ).flatpickr();
       $( "#deliveryDatePicker" ).flatpickr();
-                                      //<a class="dropdown-item pointerable">Pending</a>
 
      
 
@@ -2218,82 +2217,7 @@
       // });
 
       // note: activate datatable by calling Datatable instead of dataTable and pass some configuration objects there see the docs for more details -kryssel
-      // var table = $('#inventoryTable').DataTable( {
-      //     "columns": [
-      //       {
-      //             'searchable': false,
-      //             'orderable': false,
-      //             'className': 'dt-body-center',
-      //             'render': function (data, type, full, meta){
-      //                 return '<input id="checkboxCustom1" type="checkbox" value="" class="checkbox-template checkbox-delete">';
-      //             }
-      //       },
-      //       {"orderable" : false},
-      //       null,
-      //       null,
-      //       null,
-      //       null,
-      //       null,
-      //       null,
-      //       null,
-      //       null,
-      //       null
-      //     ],
-      //     "order" : []
-      //   }
-      // );
-
-      // $('.fa-chevron-circle-down').click(function () {
-      //     var parentRow = $(this).closest('tr');
-
-
-      //     var row = table.row(parentRow);
-
-      //     if (row.child.isShown()) {
-      //         $(this).removeClass("fa-chevron-circle-up").addClass("fa-chevron-circle-down");
-      //         $('div.slider', row.child()).slideUp(function () {
-      //           row.child.hide();
-      //         });
-      //     } else {
-      //         var rowProductRowCollapse = $("#collapsingInventoryProductTemplateUnposted").html();
-      //         row.child(rowProductRowCollapse, 'no-padding').show();
-      //         $(this).removeClass("fa-chevron-circle-down").addClass("fa-chevron-circle-up");
-      //         $('div.slider', row.child()).slideDown(function () {
-
-      //           $(this).parent().removeAttr('class').parent().removeAttr('class');
-      //         });
-      //         $('div.slider').css("display", "flex");
-      //     }
-
-      // });
-
-      // $("#checkbox-all").click(function () {
-
-      //     $("#inventoryTable").find("tr:not(:first) input.checkbox-template")
-      //                         .prop("checked", $(this).prop("checked"));
-
-
-      // });
-
-      // $(".checkbox-delete").change(function () {
-
-      //   if ($("#inventoryTable").find("tr:not(:first) input.checkbox-template:checked").length > 0) {
-
-      //     $("a#deleteProduct").removeClass("text-muted").addClass("text-red").css("cursor", "pointer");
-      //   } else {
-
-      //     $("a#deleteProduct").removeClass("red-text").addClass("text-muted").css("cursor", "not-allowed");
-      //   }
-      // });
-
-      var table = $('#orderTable').DataTable( {
-         "language" : {
-           "emptyTable" : "No orders found",
-           "zeroRecords" : "No orders found"
-         },
-         "aLengthMenu": [[5, 10, 25, 50], [5, 10, 25, 50]],
-         "iDisplayLength": 5,
-      
+      var table = $('#inventoryTable').DataTable( {
           "columns": [
             {
                   'searchable': false,
@@ -2304,51 +2228,19 @@
                   }
             },
             {"orderable" : false},
-            {"orderable" : false},
-            {"orderable" : false},
-            {"orderable" : false},
-            {"orderable" : false},
-            {"orderable" : false}
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
           ],
           "order" : []
         }
       );
-
-       $("div.dropdown-select").on("hidden.bs.dropdown", function () {
-         var $dropdownMenu = $(this);
-
-         if ($dropdownMenu.find("a.dropdown-item").length > 0) 
-           $dropdownMenu.find("a.dropdown-item").remove();
-
-         table.rows().invalidate().draw();
- 
-      });
-
-      $("div.dropdown-select").on("show.bs.dropdown", function () {
-          
-          var $dropdownMenu = $(this).find("div.dropdown-menu");
-
-          console.log("open");
-
-          orderStatusColors.forEach(function (color, key) {
-            $dropdownMenu.find(".dropdown-header")
-                         .after('<a class = "dropdown-item pointerable">' + key + '</a>')
-                         .next().click(function () {
-                            var orderStatus = $(this).html();
-                            var $dropDownSelectButton = $(this).parent().parent().find("button");
-                            
-                            
-                            $dropDownSelectButton.html(orderStatus);
-
-
-                            $dropDownSelectButton.css("background-color", orderStatusColors.get(orderStatus));
-                            $dropDownSelectButton.css("border-color", orderStatusColors.get(orderStatus));
-
-
-                         });
-          });
-
-      });
 
       $('.fa-chevron-circle-down').click(function () {
           var parentRow = $(this).closest('tr');
@@ -2362,7 +2254,7 @@
                 row.child.hide();
               });
           } else {
-              var rowProductRowCollapse = $("#collapsingOrderDiv").html();
+              var rowProductRowCollapse = $("#collapsingInventoryProductTemplateUnposted").html();
               row.child(rowProductRowCollapse, 'no-padding').show();
               $(this).removeClass("fa-chevron-circle-down").addClass("fa-chevron-circle-up");
               $('div.slider', row.child()).slideDown(function () {
@@ -2393,8 +2285,115 @@
         }
       });
 
+      // var table = $('#orderTable').DataTable( {
+      //    "language" : {
+      //      "emptyTable" : "No orders found",
+      //      "zeroRecords" : "No orders found"
+      //    },
+      //    "aLengthMenu": [[5, 10, 25, 50], [5, 10, 25, 50]],
+      //    "iDisplayLength": 5,
+      
+      //     "columns": [
+      //       {
+      //             'searchable': false,
+      //             'orderable': false,
+      //             'className': 'dt-body-center',
+      //             'render': function (data, type, full, meta){
+      //                 return '<input id="checkboxCustom1" type="checkbox" value="" class="checkbox-template checkbox-delete">';
+      //             }
+      //       },
+      //       {"orderable" : false},
+      //       {"orderable" : false},
+      //       {"orderable" : false},
+      //       {"orderable" : false},
+      //       {"orderable" : false},
+      //       {"orderable" : false}
+      //     ],
+      //     "order" : []
+      //   }
+      // );
+
+      //  $("div.dropdown-select").on("hidden.bs.dropdown", function () {
+      //    var $dropdownMenu = $(this);
+
+      //    if ($dropdownMenu.find("a.dropdown-item").length > 0) 
+      //      $dropdownMenu.find("a.dropdown-item").remove();
+
+      //    table.rows().invalidate().draw();
+ 
+      // });
+
+      // $("div.dropdown-select").on("show.bs.dropdown", function () {
+          
+      //     var $dropdownMenu = $(this).find("div.dropdown-menu");
+
+      //     console.log("open");
+
+      //     orderStatusColors.forEach(function (color, key) {
+      //       $dropdownMenu.find(".dropdown-header")
+      //                    .after('<a class = "dropdown-item pointerable">' + key + '</a>')
+      //                    .next().click(function () {
+      //                       var orderStatus = $(this).html();
+      //                       var $dropDownSelectButton = $(this).parent().parent().find("button");
+                            
+                            
+      //                       $dropDownSelectButton.html(orderStatus);
+
+
+      //                       $dropDownSelectButton.css("background-color", orderStatusColors.get(orderStatus));
+      //                       $dropDownSelectButton.css("border-color", orderStatusColors.get(orderStatus));
+
+
+      //                    });
+      //     });
+
+      // });
+
+      // $('.fa-chevron-circle-down').click(function () {
+      //     var parentRow = $(this).closest('tr');
+
+
+      //     var row = table.row(parentRow);
+
+      //     if (row.child.isShown()) {
+      //         $(this).removeClass("fa-chevron-circle-up").addClass("fa-chevron-circle-down");
+      //         $('div.slider', row.child()).slideUp(function () {
+      //           row.child.hide();
+      //         });
+      //     } else {
+      //         var rowProductRowCollapse = $("#collapsingOrderDiv").html();
+      //         row.child(rowProductRowCollapse, 'no-padding').show();
+      //         $(this).removeClass("fa-chevron-circle-down").addClass("fa-chevron-circle-up");
+      //         $('div.slider', row.child()).slideDown(function () {
+
+      //           $(this).parent().removeAttr('class').parent().removeAttr('class');
+      //         });
+      //         $('div.slider').css("display", "flex");
+      //     }
+
+      // });
+
+      // $("#checkbox-all").click(function () {
+
+      //     $("#inventoryTable").find("tr:not(:first) input.checkbox-template")
+      //                         .prop("checked", $(this).prop("checked"));
+
+
+      // });
+
+      // $(".checkbox-delete").change(function () {
+
+      //   if ($("#inventoryTable").find("tr:not(:first) input.checkbox-template:checked").length > 0) {
+
+      //     $("a#deleteProduct").removeClass("text-muted").addClass("text-red").css("cursor", "pointer");
+      //   } else {
+
+      //     $("a#deleteProduct").removeClass("red-text").addClass("text-muted").css("cursor", "not-allowed");
+      //   }
+      // });
+
 
 
     </script>
   </body>
-</html>
+<html>
