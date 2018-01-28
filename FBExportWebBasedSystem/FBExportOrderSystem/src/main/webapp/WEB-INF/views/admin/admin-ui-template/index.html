@@ -36,13 +36,9 @@
     <link rel="stylesheet" href = "css/pace-themes/pace-theme-minimal.css" />
 
 
-<<<<<<< HEAD
     <link rel="stylesheet" href = "css/inventory.css" /> 
     <link rel="stylesheet" href = "css/admin.css" />
 
-=======
-    <link rel="stylesheet" href = "css/inventory.css" />
->>>>>>> 1a0cfb0d16f584a643177ef4b59b743fedd6fb7c
 
     <link href="css/fileinput.min.css" media="all" rel="stylesheet" type="text/css" />
 
@@ -599,13 +595,8 @@
             </div>
           </header>
 
-<<<<<<< HEAD
           
            <section class = "no-padding-top p-0">
-=======
-
-          <section class = "no-padding-top p-0">
->>>>>>> 1a0cfb0d16f584a643177ef4b59b743fedd6fb7c
             <div class = "container-fluid p-0">
                 <div class="collapse" id="collapseExample">
 
@@ -753,13 +744,8 @@
                 </div>
 
             </div>
-<<<<<<< HEAD
           </section>  -->
             
-=======
-          </section> -->
-
->>>>>>> 1a0cfb0d16f584a643177ef4b59b743fedd6fb7c
           <!-- add new product <header class="page-header">
             <div class="container-fluid">
               <h2 class="no-margin-bottom">Inventory > Add new product</h2>
@@ -1089,58 +1075,56 @@
 
                     <div class = "col-lg-12 p-0 m-0">
                       <div class = "card m-0">
-                        <div class = "card-body pt-2">
+                        <div class = "card-body pt-3 pb-3">
 
-<<<<<<< HEAD
-                          <div clsss = "row">
+                              <form class="form-inline ml-2 small">
+                              
+                                <label class="mr-sm-2" for="inlineFormCustomSelect">Status: </label>
+                                <select class="custom-select mb-2 mr-sm-3 mb-sm-0" id="inlineFormCustomSelect" style = "width: 115px;">
+                                  <option selected> All </option>
+                                  <option>Pending</option>
+                                  <option value="1">Approved</option>
+                                  <option value="2">Reject</option>
+                                  <option value="3">To Ship</option>
+                                  <option value="3">Received</option>
+                                </select>
 
-                              <div class = "col-lg-12 p-0 m-0">
-                                
-                                <form class="form-inline ml-2">
-                                  
-                                  <label class = "mr-2"> Date: </label>
-                                  <input class = "text-center mr-2 p-0 form-control form-control-sm" style = "width: 150px;" type="text" id="minDatePicker" placeholder="2011/04/25">
-                                  <span class = "mr-2"> to </span>    
-                                  <input class = "text-center mr-2 p-0 form-control form-control-sm" style = "width: 150px;" type="text" id="maxDatePicker" placeholder="2011/05/25">  
-                                  <select class = "mt-2 mr-3 p-0 form-control form-control-sm">
-                                      <option>Expired</option>
-                                      <option selected>Date Registered</option>
-                                  </select>
-                                  <label class = "mr-2">
-                                    Status: 
-                                  </label>
-                                  
-                                  <select class="mt-2 mr-3 p-0 form-control form-control-sm">
-                                      <option>Pending</option>
-                                      <option>Approved</option>
-                                      <option>Reject</option>
-                                      <option>To Ship</option>
-                                      <option>Received</option>
-                                  </select>
+                                <label class="mr-sm-2" for="inlineFormCustomSelect">Shipment: </label>
+                                <select class="custom-select mb-2 mr-sm-3 mb-sm-0" id="inlineFormCustomSelect" style = "width: 135px;">
+                                  <option selected> All </option>
+                                  <option value="1">On Cargo Ship</option>
+                                  <option value="2">On Truck</option>
+                                </select>
 
-                                </form>
-                                <form class="form-inline ml-2 mt-1">
-                                  <label class = "mr-2"> Price: </label>
-                                  <input class = "text-center mr-2 p-0 form-control form-control-sm" style = "width: 150px;" type = "text" placeholder="0,00.00">
-                                  <span class = "mr-2"> to </span>
-                                  <input class = "text-center mr-3 p-0 form-control form-control-sm" style = "width: 150px;" type = "text" placeholder="1,000.00">
+                                <label class="mr-sm-2" for="inlineFormCustomSelect">Payment: </label>
+                                <select class="custom-select mb-2 mr-sm-3 mb-sm-0" id="inlineFormCustomSelect" style = "width: 150px;">
+                                  <option selected>All</option>
+                                  <option>Cash on delivery</option>
+                                  <option>Paypal</option>
+                                 
+                                </select>
 
-                                  <label class = "mr-2"> Weight: </label>
-                                  <input class = "text-center mr-2 p-0 form-control form-control-sm" style = "width: 150px;" type = "text" placeholder="0kg">
-                                  <span class = "mr-2"> to </span>
-                                  <input class = "text-center mr-2 p-0 form-control form-control-sm" style = "width: 150px;" type = "text" placeholder="100kg">
+                                <label class="mr-sm-2" for="inlineFormCustomSelect">Sort by: </label>
+                                <select class="custom-select mb-2 mr-sm-1 mb-sm-0" id="inlineFormCustomSelect" style = "width: 140px;">
+                                  <option selected>Order No </option>
+                                  <option value="1">Date ordered</option>
+                                  <option value="1">Receive date</option>
+                                  <option value="2">Customer</option>
+                                  <option value="3">Price</option>
+                                  <option value="3">Weight</option>
+                                  <option value="3">Items</option>
+                                </select>
 
-                                  <button type="button" class="btn btn-primary btn-sm pl-4 pr-4 pt-0 pb-0 mr-1">Filter</button>
-                                  <button type="button" class="btn btn-secondary btn-sm pl-4 pr-4 pt-0 pb-0" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">Close</button>
-                                  
-                                </form>
-                                  
-                              </div>
-                            </div>
+                                 <select class="custom-select mb-2 mb-sm-0" id="inlineFormCustomSelect" style = "width: 120px;">
+                                  <option selected>Unsorted </option>
+                                  <option>Ascending </option>
+                                  <option value="1">Descending</option>
+                                </select>
+                               
+
+                              </form>
+                             
                           </div>
-=======
-                        </div>
->>>>>>> 1a0cfb0d16f584a643177ef4b59b743fedd6fb7c
                       </div>
                     </div>
                   </div>
@@ -1158,10 +1142,7 @@
                                   <th> Order</th>
                                   <th> Status <i class="fa fa-tasks ml-1" aria-hidden="true"></i> </th>
                                   <th> Shipping </th>
-<<<<<<< HEAD
                                   <th> Total </th>
-=======
->>>>>>> 1a0cfb0d16f584a643177ef4b59b743fedd6fb7c
 
                                   <th> Date Ordered </th>
 
@@ -1175,13 +1156,9 @@
                                   <th> </th>
                                   <th> Order </th>
                                   <th> Shipping </th>
-<<<<<<< HEAD
                                   <th> Status </th>
                                   <th> Total </th> 
                                 
-=======
-
->>>>>>> 1a0cfb0d16f584a643177ef4b59b743fedd6fb7c
                                   <th> Date Ordered </th>
 
 
@@ -1193,7 +1170,6 @@
                                   <td></td>
                                   <td> <i class="fa fa-chevron-circle-down fa-lg" aria-hidden="true" style="cursor: pointer;"></i> </td>
                                   <td>
-<<<<<<< HEAD
                                       <h3><span class="badge badge-success p-1">Order#12312</span></h3>
                                       
                                      <span class = "small">
@@ -1265,9 +1241,6 @@
 
                                   <td>
                                     November 28 1998
-=======
-                                    <h2> <span class="badge badge-warning text-white">Pending</span> </h2>
->>>>>>> 1a0cfb0d16f584a643177ef4b59b743fedd6fb7c
                                   </td>
                                   
                                 
@@ -1364,12 +1337,8 @@
                                      <span class = "small">
                                        by: <strong> <a href = "#"> Kryssel tillada </a> </strong>
                                       <br />
-<<<<<<< HEAD
                                       Payment: Cash on delivery <i class="fa fa-truck ml-1" aria-hidden="true"></i>
                                    
-=======
-                                      Total items: 12 items
->>>>>>> 1a0cfb0d16f584a643177ef4b59b743fedd6fb7c
                                      </span>
                                   </td>
                                   <td> 
@@ -1409,11 +1378,7 @@
 
                                     <strong> Country <span style = "font-size: 12px;"> (City) </span>:  </strong> <br />
                                    <span style = "font-size: 12px;">
-<<<<<<< HEAD
                                      United States(New york)
-=======
-                                    1700 blk 7 saint joseph subd pulanglupa 2 las pinas city  1700 blk 7 saint joseph subd pulanglupa 2 las pinas city
->>>>>>> 1a0cfb0d16f584a643177ef4b59b743fedd6fb7c
                                    </span>
                                    <br />
   
@@ -1436,7 +1401,6 @@
                                      </span>
                                   </td>
 
-<<<<<<< HEAD
                                   <td>
                                     November 28 1998
                                   </td>
@@ -1606,16 +1570,6 @@
                                 
                                  
                               </tr>
-=======
-
-                                  </td>
-                                  <td>Edinburgh</td>
-
-
-
-                              </tr>
-
->>>>>>> 1a0cfb0d16f584a643177ef4b59b743fedd6fb7c
                           </tbody>
                         </table>
                       </div>
@@ -1625,12 +1579,7 @@
                 </div>
 
             </div>
-<<<<<<< HEAD
           </section> 
-=======
-          </section>
-
->>>>>>> 1a0cfb0d16f584a643177ef4b59b743fedd6fb7c
           <!-- Page Footer-->
           <footer class="main-footer">
             <div class="container-fluid">
@@ -1647,7 +1596,6 @@
 
     <!-- inventory templates -->
 
-<<<<<<< HEAD
     <script id = "collapsingOrderDiv" type = "text/template"> 
       <div class = "row slider pt-2 pb-2 pl-1 pr-1">
         
@@ -1918,9 +1866,6 @@
     </script>
 
     <script id = "collapsingInventoryProductTemplatePosted" type = "text/template"> 
-=======
-    <script id = "collapsingInventoryProductTemplatePosted" type = "text/template">
->>>>>>> 1a0cfb0d16f584a643177ef4b59b743fedd6fb7c
       <div class = "row slider pt-2 pb-2 pl-1 pr-1">
         <div class = "col-lg-4">
 
@@ -2145,14 +2090,7 @@
 
 
     <!-- Javascript files-->
-<<<<<<< HEAD
    
-=======
-
-
-
-
->>>>>>> 1a0cfb0d16f584a643177ef4b59b743fedd6fb7c
     <script src="js/pace.min.js"></script>
     <script src="https://use.fontawesome.com/38a955adbf.js"></script>
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
@@ -2179,7 +2117,6 @@
     <script src="js/front.js"></script>
  <script>
 
-<<<<<<< HEAD
     (function($){
 
             $.fn.outside = function(ename, cb){
@@ -2216,9 +2153,6 @@
                                       });
 
   
-=======
-$("#input-id").fileinput({'showUpload':false, 'previewFileType':'any'});
->>>>>>> 1a0cfb0d16f584a643177ef4b59b743fedd6fb7c
 
       $( "#minDatePicker" ).flatpickr();
       $( "#maxDatePicker" ).flatpickr();
