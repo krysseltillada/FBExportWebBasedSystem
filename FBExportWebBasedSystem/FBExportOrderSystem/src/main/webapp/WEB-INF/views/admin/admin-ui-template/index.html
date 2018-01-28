@@ -2147,7 +2147,7 @@
       var orderStatusColors = new Map({
                                         "Pending": "#FFC107", 
                                         "Approved": "#5CB85C",
-                                        "Disapproved" : "#D9534F",
+                                        "Rejected" : "#D9534F",
                                         "Received" : "#0275D8",
                                         "To Ship" : "#796AEE"
                                       });
@@ -2287,7 +2287,10 @@
       // });
 
       var table = $('#orderTable').DataTable( {
-        
+         "language" : {
+           "emptyTable" : "No orders found",
+           "zeroRecords" : "No orders found"
+         },
          "aLengthMenu": [[5, 10, 25, 50], [5, 10, 25, 50]],
          "iDisplayLength": 5,
       
