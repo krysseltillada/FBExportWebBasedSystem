@@ -374,7 +374,7 @@
                   position: relative;
                 }
                 .file label {
-                  background: #39D2B4;
+                  background-color: #3498db;
                   padding: 5px 20px;
                   color: #fff;
                   font-weight: bold;
@@ -382,6 +382,7 @@
                   transition: all .4s;
                 }
                 .file input {
+
                   position: absolute;
                   display: inline-block;
                   left: 0;
@@ -392,7 +393,7 @@
                 .file input:hover + label,
                 .file input:focus + label {
                   background: #34495E;
-                  color: #39D2B4;
+                  color: #3498db;
                 }
                 /*Profile picture upload*/
 
@@ -1252,7 +1253,7 @@
 
             </main>   -->
 
-            <main>
+            <!-- ORDER LIST <main>
 
                     <div class = "container">
 
@@ -2310,13 +2311,17 @@
                         </div>
 
                         <hr />
-                    </div>
+                    </div> -->
 
 
 
+<<<<<<< HEAD
             </main>  
+=======
+            </main>
+>>>>>>> 1a0cfb0d16f584a643177ef4b59b743fedd6fb7c
 
-             <!-- account settings <main>
+              <main>
 
                     <div class = "container">
 
@@ -2394,23 +2399,32 @@
                                                                 <fieldset>
                                                                     <legend> Login details </legend>
 
-                                                                        <div class = "row mt-3">
+                                                                    <div class = "row mt-3 justify-content-md-center">
 
-                                                                            <div class = "col-md-6">
+                                                                      <div class="col-md-3 text-center">
+
+                                                                        <img class = "mb-2 rounded" style = "border: 1px solid #DDDDDD;" id='img-upload' src = "profile-male.jpg" width = "150" height = "150" />
+
+                                                                        <p class="file">
+                                                                          <input type="file" name="file" id="file" accept="image/x-png,image/jpeg" />
+                                                                          <label for="file">Upload your image</label>
+                                                                        </p>
+                                                                      </div>
+
+                                                                        <div class = "col-md-6">
+                                                                          <div class="md-form form-sm">
+                                                                                <input type="text" id="username" class="form-control" length = "20" required />
+                                                                                <label for="username" class="">Username</label>
+                                                                            </div>
                                                                             <div class="md-form form-sm">
-                                                                                    <input type="text" id="username" class="form-control" length = "20" required />
-                                                                                    <label for="username" class="">Username</label>
-                                                                                </div>
+                                                                                <input type="password" id="password" class="form-control" length = "20" required />
+                                                                                <label for="password" class="">Password</label>
                                                                             </div>
-
-                                                                            <div class = "col-md-6">
-                                                                                <div class="md-form form-sm">
-                                                                                    <input type="password" id="password" class="form-control" length = "20" required />
-                                                                                    <label for="password" class="">Password</label>
-                                                                                </div>
-                                                                            </div>
-
                                                                         </div>
+
+
+
+                                                                    </div>
 
                                                                 </fieldset>
 
@@ -2452,12 +2466,12 @@
                                                                         <div class = "col-md-11 form-inline mb-2">
 
                                                                             <div class="form-group form-sm">
-                                                                                <input class = "mr-2" name="group2" type="radio" class="with-gap" id="male" required />
+                                                                                <input class="mr-2" type="radio" name="gender" value="Male" id="male" required />
                                                                                 <label for="male"> Male </label>
                                                                             </div>
 
                                                                             <div class="form-group form-sm">
-                                                                                <input class = "mr-2" name="group2" type="radio" class="with-gap" id="female" required />
+                                                                                <input class="mr-2" type="radio" name="gender" id="female" value="Female"/>
                                                                                 <label for="female"> Female </label>
                                                                             </div>
 
@@ -2595,7 +2609,7 @@
 
 
 
-            </main>      -->
+            </main>
 
              <!--  your addresess <main>
 
@@ -5149,12 +5163,10 @@
                   var gender = $('input[type=radio][name=gender]:checked').val();
                   if(gender == "Male"){
                     $("#img-upload").attr("src", "profile-male.jpg");
-
                   }
 
                   if(gender == "Female"){
                     $("#img-upload").attr("src", "profile-female.jpg");
-
                   }
                 });
 
