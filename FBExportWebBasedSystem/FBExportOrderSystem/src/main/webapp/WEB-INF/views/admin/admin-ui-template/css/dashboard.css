@@ -44,7 +44,7 @@ table.dataTable tbody td.no-padding {
 }
 
 /* time picki time picker style */
-.time,
+/* .time,
 .mins,
 .meridian {
   width: 60px;
@@ -73,7 +73,6 @@ table.dataTable tbody td.no-padding {
 
 .time_pick { position: relative; }
 
-/*input{ float:left;}*/
 
 .timepicker_wrap {
   padding: 10px;
@@ -98,7 +97,7 @@ table.dataTable tbody td.no-padding {
   width: 18px;
   height: 10px;
   z-index: 3;
-}
+} */
 
 
 /* time picki time picker style */
