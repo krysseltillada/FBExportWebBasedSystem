@@ -35,12 +35,12 @@
 
     <link rel="stylesheet" href = "css/pace-themes/pace-theme-minimal.css" />
 
-
     <link rel="stylesheet" href = "css/inventory.css" /> 
     <link rel="stylesheet" href = "css/admin.css" />
 
 
     <link href="css/fileinput.min.css" media="all" rel="stylesheet" type="text/css" />
+    <link href="css/timepicki.css" rel="stylesheet" />
 
     <!-- Tweaks for older IEs--><!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
@@ -173,8 +173,8 @@
           <ul class="list-unstyled">
                     <li><a href="index.html"> <i class="icon-presentation"></i>Dashboard </a></li>
                     <li><a href="index.html"> <i class="icon-padnote"></i>Inventory </a></li>
-                    <li class="active"><a href="index.html"> <i class="fa fa-list-alt" aria-hidden="true"></i> Orders </a></li>
-
+                    <li><a href="index.html"> <i class="fa fa-list-alt" aria-hidden="true"></i> Orders </a></li>
+                    <li class = "active"><a href="index.html"> <i class="fa fa-file-text" aria-hidden="true"></i> Report logs </a></li>
                     <li><a href="index.html"> <i class="fa fa-cog" aria-hidden="true"></i> System Settings </a></li>
                     <!-- <li><a href="tables.html"> <i class="icon-grid"></i>Tables </a></li>
                     <li><a href="charts.html"> <i class="fa fa-bar-chart"></i>Charts </a></li>
@@ -1051,7 +1051,7 @@
           </section>   -->
 
           
-          <header class="page-header pb-3">
+          <!-- order page <header class="page-header pb-3">
             <div class="container-fluid">
 
               <div class = "row">
@@ -1577,7 +1577,66 @@
                 </div>
 
             </div>
-          </section>   
+          </section>    -->
+
+          <header class="page-header pb-3">
+            <div class="container-fluid">
+
+              <div class = "row">
+                <div class = "col-lg">
+                  <span class="h3 no-margin-bottom mr-2">System Settings</span>
+                </div>
+              </div>
+
+            </div>
+          </header>
+
+          <section class = "no-padding-top p-0">
+             <div class = "container-fluid p-0">
+               
+                <div class = "row">
+                  <div class = "col-lg">
+                    <div class = "card mb-0">
+                      <div class = "card-body ml-2">
+                       <h3> Log out timeout </h3>
+                       <hr />
+                       <div class="form-inline">
+                          <label class="mr-sm-3" for="inlineFormCustomSelect">Log out Every: </label>
+                          <select class="custom-select mb-2 mr-sm-2 mb-sm-0" id="inlineFormCustomSelect" style = "width: 200px;">
+                            <option selected>3 minutes</option>
+                            <option value="1">5 minutes</option>
+                            <option value="2">10 minutes</option>
+                            <option value="3">30 minutes</option>
+                          </select>
+                        </div>
+
+                        <br />
+                        <br />
+
+                        <h3> System backup </h3>
+                        <hr />
+                        <div class="form-inline">
+                            <label class="mr-sm-3" for="inlineFormCustomSelect">Backup every: </label>
+                            <input type = "text" value = "12:00 AM" class = "form-control timepicker mr-2" 
+                                   data-timepicki-tim="12" data-timepicki-mini="00" data-timepicki-meri="AM"  style = "width: 100px;" />
+                           
+                            <button type="button" class="btn btn-primary btn-sm mr-1">Backup data</button>
+                            <button type="button" class="btn btn-primary btn-sm">Restore data</button>
+
+                        </div>
+
+                        <br />
+                        
+                        <button type="button" class="btn btn-primary float-right">Apply changes</button>
+
+                      </div>
+                    </div>
+                  
+
+                </div>
+
+            </div>
+          </section>
 
           
           <!-- Page Footer-->
@@ -2103,6 +2162,7 @@
     <script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="js/timepicki.js"> </script>
     <script src="js/underscore.js"></script>
 
     <script src="js/fileinput.min.js"></script>
@@ -2116,6 +2176,10 @@
     <!-- Main File-->
     <script src="js/front.js"></script>
     <script>
+
+
+      $(".timepicker").timepicki();
+
 
     // (function($){ order page
 
@@ -2242,121 +2306,121 @@
       //   }
       // });
 
-      var orderStatusColors = new Map({
-                                        "To Ship" : "#796AEE",
-                                        "Received" : "#0275D8",
-                                        "Rejected" : "#D9534F",
-                                        "Approved": "#5CB85C",
-                                        "Pending": "#FFC107" 
-                                      });
+      // var orderStatusColors = new Map({ order page code below
+      //                                   "To Ship" : "#796AEE",
+      //                                   "Received" : "#0275D8",
+      //                                   "Rejected" : "#D9534F",
+      //                                   "Approved": "#5CB85C",
+      //                                   "Pending": "#FFC107" 
+      //                                 });
 
 
-      var table = $('#orderTable').DataTable( {
-         "language" : {
-           "emptyTable" : "No orders found",
-           "zeroRecords" : "No orders found"
-         },
-         "aLengthMenu": [[5, 10, 25, 50], [5, 10, 25, 50]],
-         "iDisplayLength": 5,
+      // var table = $('#orderTable').DataTable( {
+      //    "language" : {
+      //      "emptyTable" : "No orders found",
+      //      "zeroRecords" : "No orders found"
+      //    },
+      //    "aLengthMenu": [[5, 10, 25, 50], [5, 10, 25, 50]],
+      //    "iDisplayLength": 5,
       
-          "columns": [
-            {
-                  'searchable': false,
-                  'orderable': false,
-                  'className': 'dt-body-center',
-                  'render': function (data, type, full, meta){
-                      return '<input id="checkboxCustom1" type="checkbox" value="" class="checkbox-template checkbox-delete">';
-                  }
-            },
-            {"orderable" : false},
-            {"orderable" : false},
-            {"orderable" : false},
-            {"orderable" : false},
-            {"orderable" : false},
-            {"orderable" : false}
-          ],
-          "order" : []
-        }
-      );
+      //     "columns": [
+      //       {
+      //             'searchable': false,
+      //             'orderable': false,
+      //             'className': 'dt-body-center',
+      //             'render': function (data, type, full, meta){
+      //                 return '<input id="checkboxCustom1" type="checkbox" value="" class="checkbox-template checkbox-delete">';
+      //             }
+      //       },
+      //       {"orderable" : false},
+      //       {"orderable" : false},
+      //       {"orderable" : false},
+      //       {"orderable" : false},
+      //       {"orderable" : false},
+      //       {"orderable" : false}
+      //     ],
+      //     "order" : []
+      //   }
+      // );
 
-       $("div.dropdown-select").on("hidden.bs.dropdown", function () {
-         var $dropdownMenu = $(this);
+      //  $("div.dropdown-select").on("hidden.bs.dropdown", function () {
+      //    var $dropdownMenu = $(this);
 
-         if ($dropdownMenu.find("a.dropdown-item").length > 0) 
-           $dropdownMenu.find("a.dropdown-item").remove();
+      //    if ($dropdownMenu.find("a.dropdown-item").length > 0) 
+      //      $dropdownMenu.find("a.dropdown-item").remove();
 
-         table.rows().invalidate().draw();
+      //    table.rows().invalidate().draw();
  
-      });
+      // });
 
-      $("div.dropdown-select").on("show.bs.dropdown", function () {
+      // $("div.dropdown-select").on("show.bs.dropdown", function () {
           
-          var $dropdownMenu = $(this).find("div.dropdown-menu");
+      //     var $dropdownMenu = $(this).find("div.dropdown-menu");
 
-          console.log("open");
+      //     console.log("open");
 
-          orderStatusColors.forEach(function (color, key) {
-            $dropdownMenu.find(".dropdown-header")
-                         .after('<a class = "dropdown-item pointerable">' + key + '</a>')
-                         .next().click(function () {
-                            var orderStatus = $(this).html();
-                            var $dropDownSelectButton = $(this).parent().parent().find("button");
+      //     orderStatusColors.forEach(function (color, key) {
+      //       $dropdownMenu.find(".dropdown-header")
+      //                    .after('<a class = "dropdown-item pointerable">' + key + '</a>')
+      //                    .next().click(function () {
+      //                       var orderStatus = $(this).html();
+      //                       var $dropDownSelectButton = $(this).parent().parent().find("button");
                             
 
-                            $dropDownSelectButton.html(orderStatus);
+      //                       $dropDownSelectButton.html(orderStatus);
 
 
-                            $dropDownSelectButton.css("background-color", orderStatusColors.get(orderStatus));
-                            $dropDownSelectButton.css("border-color", orderStatusColors.get(orderStatus));
+      //                       $dropDownSelectButton.css("background-color", orderStatusColors.get(orderStatus));
+      //                       $dropDownSelectButton.css("border-color", orderStatusColors.get(orderStatus));
 
 
-                         });
-          });
+      //                    });
+      //     });
 
-      });
+      // });
 
-      $('.fa-chevron-circle-down').click(function () {
-          var parentRow = $(this).closest('tr');
-
-
-          var row = table.row(parentRow);
-
-          if (row.child.isShown()) {
-              $(this).removeClass("fa-chevron-circle-up").addClass("fa-chevron-circle-down");
-              $('div.slider', row.child()).slideUp(function () {
-                row.child.hide();
-              });
-          } else {
-              var rowProductRowCollapse = $("#collapsingOrderDiv").html();
-              row.child(rowProductRowCollapse, 'no-padding').show();
-              $(this).removeClass("fa-chevron-circle-down").addClass("fa-chevron-circle-up");
-              $('div.slider', row.child()).slideDown(function () {
-
-                $(this).parent().removeAttr('class').parent().removeAttr('class');
-              });
-              $('div.slider').css("display", "flex");
-          }
-
-      });
-
-      $("#checkbox-all").click(function () {
-
-          $("#orderTable").find("tr:not(:first) input.checkbox-template")
-                              .prop("checked", $(this).prop("checked"));
+      // $('.fa-chevron-circle-down').click(function () {
+      //     var parentRow = $(this).closest('tr');
 
 
-      });
+      //     var row = table.row(parentRow);
 
-      $(".checkbox-delete").change(function () {
+      //     if (row.child.isShown()) {
+      //         $(this).removeClass("fa-chevron-circle-up").addClass("fa-chevron-circle-down");
+      //         $('div.slider', row.child()).slideUp(function () {
+      //           row.child.hide();
+      //         });
+      //     } else {
+      //         var rowProductRowCollapse = $("#collapsingOrderDiv").html();
+      //         row.child(rowProductRowCollapse, 'no-padding').show();
+      //         $(this).removeClass("fa-chevron-circle-down").addClass("fa-chevron-circle-up");
+      //         $('div.slider', row.child()).slideDown(function () {
 
-        if ($("#orderTable").find("tr:not(:first) input.checkbox-template:checked").length > 0) {
+      //           $(this).parent().removeAttr('class').parent().removeAttr('class');
+      //         });
+      //         $('div.slider').css("display", "flex");
+      //     }
 
-          $("a#deleteProduct").removeClass("text-muted").addClass("text-red").css("cursor", "pointer");
-        } else {
+      // });
 
-          $("a#deleteProduct").removeClass("red-text").addClass("text-muted").css("cursor", "not-allowed");
-        }
-      });
+      // $("#checkbox-all").click(function () {
+
+      //     $("#orderTable").find("tr:not(:first) input.checkbox-template")
+      //                         .prop("checked", $(this).prop("checked"));
+
+
+      // });
+
+      // $(".checkbox-delete").change(function () {
+
+      //   if ($("#orderTable").find("tr:not(:first) input.checkbox-template:checked").length > 0) {
+
+      //     $("a#deleteProduct").removeClass("text-muted").addClass("text-red").css("cursor", "pointer");
+      //   } else {
+
+      //     $("a#deleteProduct").removeClass("red-text").addClass("text-muted").css("cursor", "not-allowed");
+      //   }
+      // });
 
 
 
