@@ -2142,27 +2142,11 @@
     // }(jQuery));
 
 
-
-    //   var orderStatusColors = new Map({ order page
-    //                                     "Pending": "#FFC107", 
-    //                                     "Approved": "#5CB85C",
-    //                                     "Rejected" : "#D9534F",
-    //                                     "Received" : "#0275D8",
-    //                                     "To Ship" : "#796AEE"
-    //                                   });
-
-  
-
       // $( "#minDatePicker" ).flatpickr(); inventory page
       // $( "#maxDatePicker" ).flatpickr();
 
       // $( "#expiredDatePicker" ).flatpickr();
       // $( "#deliveryDatePicker" ).flatpickr();
-
-     
-
-     
-
 
 
     //  $("#file-1").fileinput({ add new product
@@ -2258,6 +2242,15 @@
       //   }
       // });
 
+      var orderStatusColors = new Map({
+                                        "To Ship" : "#796AEE",
+                                        "Received" : "#0275D8",
+                                        "Rejected" : "#D9534F",
+                                        "Approved": "#5CB85C",
+                                        "Pending": "#FFC107" 
+                                      });
+
+
       var table = $('#orderTable').DataTable( {
          "language" : {
            "emptyTable" : "No orders found",
@@ -2309,7 +2302,7 @@
                             var orderStatus = $(this).html();
                             var $dropDownSelectButton = $(this).parent().parent().find("button");
                             
-                            
+
                             $dropDownSelectButton.html(orderStatus);
 
 
