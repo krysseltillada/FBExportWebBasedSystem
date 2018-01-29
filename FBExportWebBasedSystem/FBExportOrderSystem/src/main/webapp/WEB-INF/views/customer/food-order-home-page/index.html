@@ -1258,15 +1258,44 @@
                     <div class = "container">
 
                         <div class = "row">
-                            <div class = "col-sm-3">
+                            <div class = "col-sm-2">
                                 <h4 class = "pt-3">
                                     Order Lists
                                     <i class="fa fa-reorder ml-2" aria-hidden="true"></i>
                                 </h4>
                             </div>
-                            <div class = "col-sm-9">
-                                <form class = "form-inline float-right">
-                                    <input type="text" id="form1" class="form-control m-0 p-0" placeholder = "Search Orders">
+                            <div class = "col-sm-10">
+                             
+                                <form class = "form-inline float-right small">
+
+                                    
+                                    <label class="mr-sm-2" for="inlineFormCustomSelect">Filter by</label>
+                                    <select class="custom-select mb-2 mr-sm-2 mb-sm-0" id="inlineFormCustomSelect">
+                                        <option selected>All</option>
+                                        <option value="1">Pending</option>
+                                        <option value="2">Approved</option>
+                                        <option value="3">Rejected</option>
+                                        <option value="3">Received</option>
+                                        <option value="3">Paid</option>
+                                        <option value="3">To Ship</option>
+                                        <option value="1">Cash on delivery</option>
+                                        <option> Paypal </option>
+                                    </select>
+
+                                
+                                    <label class="mr-sm-2" for="inlineFormCustomSelect">Sort by</label>
+                                    <select class="custom-select mb-2 mr-sm-2 mb-sm-0" id="inlineFormCustomSelect">
+                                        <option selected>Unsorted</option>
+                                        <option value="1">Date ordered (latest)</option>
+                                        <option value="1">Date ordered (oldest)</option>
+                                        <option> Order id (latest)</option>
+                                        <option> Order id (oldest)</option>
+                                    </select>
+                                   
+
+                                    <button type="button" class="btn btn-primary pt-2 pb-2 pl-4 pr-4 mr-4">Filter</button>
+
+                                    <input type="text" id="form1" class="form-control m-0 p-0" placeholder = "Order id">
                                     <button type="button" class="btn btn-primary pt-2 pb-2 pl-4 pr-4">Search</button>
                                 </form>
                             </div>
@@ -1334,6 +1363,8 @@
                                                 <a class="nav-link" href="#">Cancelled orders</a>
                                             </li>
                                         </ul>
+
+                                        
 
 
                                         <div>
