@@ -13,6 +13,8 @@
         <meta http-equiv="x-ua-compatible" content="ie=edge">
 
         <title>Fong Bros</title>
+        
+        <script src='https://www.google.com/recaptcha/api.js'></script>  
 
 		<c:forEach var = "cssfile" items="${cssfiles}">
 			<link href = "${cssfile}" rel = "stylesheet" type = "text/css"  />

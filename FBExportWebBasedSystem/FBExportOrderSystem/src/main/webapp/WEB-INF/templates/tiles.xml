@@ -24,7 +24,7 @@
 	
 	-->
 	
-	<definition name = "baseTemplate" template = "/WEB-INF/views/customer/customer-template.jsp">
+	<definition name = "customerBaseTemplate" template = "/WEB-INF/views/customer/customer-template.jsp">
 		<put-attribute name = "userNavigation" value = "/WEB-INF/views/customer/user-navigation.jsp" />
 		<put-attribute name = "header" value = "/WEB-INF/views/customer/header.jsp" />
 		<put-attribute name = "footer" value = "/WEB-INF/views/customer/footer.jsp" />
@@ -55,7 +55,7 @@
 		
 	</definition>
 	
-	<definition name = "home" extends = "baseTemplate">
+	<definition name = "home" extends = "customerBaseTemplate">
 		<put-attribute name = "main" value = "/WEB-INF/views/customer/home.jsp" />
 		
 		<put-list-attribute name = "javascriptfiles" inherit = "true">
@@ -63,9 +63,40 @@
 		</put-list-attribute>
 	</definition>
 	
-	<definition name = "view-profile" extends = "baseTemplate">
+	<definition name = "view-profile" extends = "customerBaseTemplate">
 		<put-attribute name = "main" value = "/WEB-INF/views/customer/view-profile.jsp" />
 	</definition>
+	
+	<definition name = "notifications" extends = "customerBaseTemplate">
+		<put-attribute name = "main" value = "/WEB-INF/views/customer/notifications.jsp" />
+	</definition>
+	
+	<definition name = "order-list" extends = "customerBaseTemplate">
+		<put-attribute name = "main" value = "/WEB-INF/views/customer/order-list.jsp" />
+	</definition>
+	
+	<definition name = "shipping" extends = "customerBaseTemplate">
+		<put-attribute name = "main" value = "/WEB-INF/views/customer/shipping.jsp" />
+	</definition>
+	
+	<definition name = "your-address" extends = "customerBaseTemplate">
+		<put-attribute name = "main" value = "/WEB-INF/views/customer/your-address.jsp" />
+	</definition>
+	
+	<definition name = "account-settings" extends = "customerBaseTemplate">
+		<put-attribute name = "main" value = "/WEB-INF/views/customer/account-settings.jsp" />
+	</definition>
 
+	<definition name = "place-order" extends = "customerBaseTemplate">
+		<put-attribute name = "main" value = "/WEB-INF/views/customer/place-order.jsp" />
+	</definition>
+	
+	<definition name = "login" extends = "customerBaseTemplate">
+		<put-attribute name = "main" value = "/WEB-INF/views/customer/login.jsp" />
+	</definition>
+	
+	<definition name = "sign-up" extends = "customerBaseTemplate">
+		<put-attribute name = "main" value = "/WEB-INF/views/customer/sign-up.jsp" />
+	</definition>
 	
 </tiles-definitions>
