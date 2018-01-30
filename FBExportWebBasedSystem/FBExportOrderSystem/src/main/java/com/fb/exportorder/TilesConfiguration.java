@@ -26,6 +26,5 @@ public class TilesConfiguration {
 		 	return viewResolver;
 	 }
 
-
 }
 	

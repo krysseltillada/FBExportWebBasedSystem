@@ -23,9 +23,49 @@
 			value defines a value to be replace by that name on <tiles:insertAttribute /> 
 	
 	-->
-
-	<definition name = "main-template" template = "/WEB-INF/views/customer/index.jsp" />
 	
-	<definition name = "home" extends = "main-template" />
+	<definition name = "baseTemplate" template = "/WEB-INF/views/customer/customer-template.jsp">
+		<put-attribute name = "userNavigation" value = "/WEB-INF/views/customer/user-navigation.jsp" />
+		<put-attribute name = "header" value = "/WEB-INF/views/customer/header.jsp" />
+		<put-attribute name = "footer" value = "/WEB-INF/views/customer/footer.jsp" />
+		<put-attribute name = "modals" value = "/WEB-INF/views/customer/modals.jsp" />
+		<put-attribute name = "templates" value = "/WEB-INF/views/customer/html-templates.jsp" />
+		
+		<put-list-attribute name = "cssfiles">
+			<add-attribute value = "https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+			<add-attribute value = "https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" />
+			<add-attribute value = "resources/customer/css/bootstrap.min.css" />
+			<add-attribute value = "resources/customer/css/mdb.min.css" />
+		</put-list-attribute>
+		
+		<put-list-attribute name = "javascriptfiles">
+			<add-attribute value = "resources/customer/js/jquery-3.2.1.min.js" />
+			<add-attribute value = "http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.js" />
+			<add-attribute value = "resources/customer/js/popper.min.js" />
+			<add-attribute value = "resources/customer/js/bootstrap.min.js" />
+			<add-attribute value = "resources/customer/js/mdb.min.js" />
+			<add-attribute value = "resources/customer/js/moment.js" />
+			<add-attribute value = "resources/customer/js/moment-timezone-with-data.js" />
+			<add-attribute value = "resources/customer/js/math.js" />
+			<add-attribute value = "resources/customer/js/accounting.js" />
+			<add-attribute value = "resources/customer/js/underscore.js" />
+			<add-attribute value = "resources/customer/js/utilities.js" />
+			<add-attribute value = "resources/customer/js/customer.js" />
+		</put-list-attribute>
+		
+	</definition>
+	
+	<definition name = "home" extends = "baseTemplate">
+		<put-attribute name = "main" value = "/WEB-INF/views/customer/home.jsp" />
+		
+		<put-list-attribute name = "javascriptfiles" inherit = "true">
+			<add-attribute value = "resources/customer/js/home.js" />
+		</put-list-attribute>
+	</definition>
+	
+	<definition name = "view-profile" extends = "baseTemplate">
+		<put-attribute name = "main" value = "/WEB-INF/views/customer/view-profile.jsp" />
+	</definition>
+
 	
 </tiles-definitions>
