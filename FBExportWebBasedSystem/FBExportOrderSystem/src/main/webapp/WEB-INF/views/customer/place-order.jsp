@@ -73,7 +73,7 @@
 
             </div>
 
-                <div class = "row" style = "border: 1px solid #E5E5E5;">
+            <div class = "row mb-4" style = "border: 1px solid #E5E5E5;">
 
                 <div class = "col">
 
@@ -238,7 +238,8 @@
                                 </div>
 
                                 <button type="button" class="btn btn-primary pt-2 pb-2">Add</button>
-                                <button type="button" class="btn btn-primary pt-2 pb-2">Cancel</button>
+                                <button type="button" class="btn btn-primary pt-2 pb-2"
+                                        data-toggle="collapse" href="#addShippingAddressForm" role="button" aria-expanded="false" aria-controls="addShippingAddressForm">Cancel</button>
 
                                 <hr />
 

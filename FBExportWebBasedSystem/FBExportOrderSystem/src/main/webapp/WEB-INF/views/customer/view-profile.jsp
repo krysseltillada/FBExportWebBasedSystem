@@ -1,6 +1,6 @@
 <main>
 
-    <div class = "container">
+    <div class = "container mt-4">
         <h4>
             View Profile
             <i class="fa fa-user ml-2" aria-hidden="true"></i>
@@ -13,7 +13,7 @@
 
             <div class="col-lg-3">
 
-                <div>
+                <div class = "mb-4">
 
                     <div class="list-group">
                         <a href="#" class="list-group-item active">
@@ -58,10 +58,10 @@
                             <div class="profile-div">
 
                                     <div class = "row">
-                                        <div class = "col-md-2">
+                                        <div class = "col-md-3">
                                             <img src = "puffer-fish.jpg" height = "150" width = "150" />
                                         </div>
-                                        <div class = "col-md-10 pl-5">
+                                        <div class = "col-md-9">
                                             <h4> Kryssel Tillada (krysseltillada@gmail.com) <a style = "font-size: 14px;" href = "#"> (edit profile) </a> </h4>
                                             <p>
 

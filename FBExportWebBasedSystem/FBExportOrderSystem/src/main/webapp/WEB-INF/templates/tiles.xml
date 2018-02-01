@@ -64,6 +64,7 @@
 		<put-list-attribute name = "javascriptfiles" inherit = "true">
 			<add-attribute value = "resources/customer/js/home.js" />
 		</put-list-attribute>
+		
 	</definition>
 	
 	<definition name = "view-profile" extends = "customerBaseTemplate">
@@ -84,7 +85,13 @@
 	</definition>
 	
 	<definition name = "shipping" extends = "customerBaseTemplate">
+		
 		<put-attribute name = "main" value = "/WEB-INF/views/customer/shipping.jsp" />
+		
+		<put-list-attribute name = "javascriptfiles" inherit = "true">
+			<add-attribute value = "resources/customer/js/shipping.js" />
+		</put-list-attribute>
+		
 	</definition>
 	
 	<definition name = "your-address" extends = "customerBaseTemplate">
@@ -100,6 +107,7 @@
 		
 		<put-list-attribute name = "javascriptfiles" inherit = "true">
 			<add-attribute value = "resources/customer/js/profile-pic-upload.js" />
+			<add-attribute value = "resources/customer/js/sign-up.js" />
 		</put-list-attribute>
 		
 	</definition>
@@ -117,6 +125,11 @@
 	
 	<definition name = "login" extends = "customerBaseTemplate">
 		<put-attribute name = "main" value = "/WEB-INF/views/customer/login.jsp" />
+		
+		<put-list-attribute name = "javascriptfiles" inherit = "true">
+			<add-attribute value = "resources/customer/js/login.js" />
+		</put-list-attribute>
+		
 	</definition>
 	
 	<definition name = "sign-up" extends = "customerBaseTemplate">
@@ -129,6 +142,7 @@
 		
 		<put-list-attribute name = "javascriptfiles" inherit = "true">
 			<add-attribute value = "resources/customer/js/profile-pic-upload.js" />
+			<add-attribute value = "resources/customer/js/sign-up.js" />
 		</put-list-attribute>
 	</definition>
 	
@@ -150,6 +164,10 @@
 		
 		<put-list-attribute name = "cssfiles" inherit = "true">
 			<add-attribute value = "resources/customer/css/view-product.css" />
+		</put-list-attribute>
+		
+		<put-list-attribute name = "javascriptfiles" inherit = "true">
+			<add-attribute value = "resources/customer/js/view-product.js" />
 		</put-list-attribute>
 		 
 	</definition>

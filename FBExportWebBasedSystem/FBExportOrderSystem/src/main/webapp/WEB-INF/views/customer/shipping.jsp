@@ -1,6 +1,6 @@
   <main>
 
-    <div class = "container">
+    <div class = "container mt-4">
 
         <div class = "row">
             <div class = "col-sm-3">
@@ -9,7 +9,7 @@
                     <i class="fa fa-ship ml-2" aria-hidden="true"></i>
                 </h4>
             </div>
-            <div class = "col-sm-9">
+            <div class = "col-9">
                 <form class = "form-inline float-right">
                     <input type="text" id="form1" class="form-control m-0 p-0" placeholder = "Order id">
                     <button type="button" class="btn btn-primary pt-2 pb-2 pl-4 pr-4">Search</button>
@@ -26,7 +26,7 @@
 
             <div class="col-lg-3">
 
-                <div>
+                <div class = "mb-4">
 
                     <div class="list-group">
                         <a href="#" class="list-group-item">
@@ -87,34 +87,34 @@
                                 <div class="collapse.show multi-collapse" id="shippingInformationCollapseItem">
 
                                     <div class = "row no-gutters">
-                                        <div class = "col-8">
+                                        <div class = "col-lg-8">
                                             <strong> Address <i class="fa fa-address-book-o" aria-hidden="true"></i> : Rivera compound saint joseph subdivision pulang lupa 2 </strong>
                                         </div>
-                                        <div class = "col-4">
+                                        <div class = "col-lg-4">
                                             <strong> Zipcode <i class="fa fa-home" aria-hidden="true"></i> : 1742 </strong>
                                         </div>
                                     </div>
                                     <div class = "row no-gutters">
-                                        <div class = "col-8">
+                                        <div class = "col-lg-8">
                                             <strong> Country <i class="fa fa-globe" aria-hidden="true"></i> : Phillipines </strong>
                                         </div>
-                                        <div class = "col-4">
+                                        <div class = "col-lg-4">
                                             <strong> City <i class="fa fa-map" aria-hidden="true"></i> : Las pinas city </strong>
                                         </div>
                                     </div>
                                     <div class = "row no-gutters">
-                                        <div class = "col-8">
+                                        <div class = "col-lg-8">
                                             <strong> Shipment status : On Cargo Ship <i class="fa fa-ship" aria-hidden="true"></i> </strong>
                                         </div>
-                                        <div class = "col-4">
+                                        <div class = "col-lg-4">
                                             <strong> Your Phone number <i class="fa fa-mobile-phone" aria-hidden="true"></i> : 09151829105 </strong>
                                         </div>
                                     </div>
                                     <div class = "row no-gutters">
-                                        <div class = "col-8">
+                                        <div class = "col-lg-8">
                                             <strong> Departure : November 11 2018 </strong>
                                         </div>
-                                        <div class = "col-4">
+                                        <div class = "col-lg-4">
                                             <strong> Arrival : November 30 2018 </strong>
                                         </div>
                                     </div>
@@ -136,19 +136,19 @@
                                     <div class="collapse multi-collapse" id="vesselStatusCollapseItem">
 
                                         <div class = "row no-gutters">
-                                            <div class = "col-8">
+                                            <div class = "col-md-8">
                                                 <strong> Vessel name: AQUA JEWEL </strong>
                                             </div>
-                                            <div class = "col-4">
+                                            <div class = "col-md-4">
                                                 <strong> IMO Number: 8976671</strong>
                                             </div>
                                         </div>
 
                                         <div class = "row no-gutters">
-                                            <div class = "col-8">
+                                            <div class = "col-md-8">
                                                 <strong> MMSI Number: 239981000 </strong>
                                             </div>
-                                                <div class = "col-4">
+                                                <div class = "col-md-4">
                                                 <strong> Destination: Madagascar </strong>
                                             </div>
                                         </div>

@@ -77,7 +77,7 @@
 
 <div class = "container">
 
-<div class = "row mx-auto" id = "productGridList" style = "padding-left: 60px; padding-right: 60px;">
+<div class = "row mx-auto productGridList" style = "padding-left: 60px; padding-right: 60px;">
 
     <div class = "col-md">
         <div class="card hoverable">

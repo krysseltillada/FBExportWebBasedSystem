@@ -14,7 +14,7 @@
         <div class="row">
 
             <!--First column-->
-            <div class="col-lg-5 col-md-12  mb-5 pb-4 wow fadeIn" data-wow-delay="0.4s">
+            <div class="col-lg-5 col-md-12  mb-4 pb-4 wow fadeIn" data-wow-delay="0.4s">
 
                 <!--Form with header-->
 

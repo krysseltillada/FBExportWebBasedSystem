@@ -370,6 +370,64 @@ $("#cart").on("click", function(e) {
     $("#shoppingModalCart").modal('toggle');
 });
 
+$("#countryCode").ready(function () {
+    $.ajax({
+        url : "https://restcountries.eu/rest/v2/all",
+        dataType : "json",
+        success : function (restCountriesData) {
+
+
+            for (var i = 0; i != restCountriesData.length; ++i) {
+                var countryLetterCode = restCountriesData[i].alpha2Code;
+                var countryCode = restCountriesData[i].callingCodes[0];
+
+                if (countryCode.length > 0)
+                    $("#countryCode").append('<option value = "' + countryCode + '">+' + countryCode + ' (' + countryLetterCode + ') </option');
+
+            }
+
+
+        }
+    });
+});
+
+$('#country').ready(function () {
+
+    $.ajax(
+        {
+            url : "https://restcountries.eu/rest/v2/all",
+            dataType : "json",
+            success : function (responseData) {
+
+                for (var i = 0; i != responseData.length; ++i) {
+
+                    if (responseData[i].alpha2Code.length > 0) {
+                        var country = responseData[i].name;
+                        var countryCode = responseData[i].alpha2Code;
+                        $('#country').append('<option value = "'+ country + '">' + country + ' (' + countryCode + ')</option>');
+                    }
+
+                }
+
+
+
+            }
+        }
+    );
+});
+
+$('#country').change(function () {
+
+    var $cityTextBox = $('#city');
+
+    var country = $(this).val();
+
+
+    if ($cityTextBox.is(":disabled"))
+        $cityTextBox.removeAttr("disabled");
+
+});
+
 $(window).resize(function () {
     updateCartPositioning();
 });

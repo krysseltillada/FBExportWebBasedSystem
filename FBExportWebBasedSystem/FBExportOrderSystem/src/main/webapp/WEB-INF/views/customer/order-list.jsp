@@ -1,6 +1,6 @@
  <main>
 
-    <div class = "container">
+    <div class = "container mt-4">
 
         <div class = "row">
             <div class = "col-sm-2">
@@ -55,7 +55,7 @@
 
             <div class="col-lg-3">
 
-                <div>
+                <div class = "mb-4">
 
                     <div class="list-group">
                         <a href="#" class="list-group-item">

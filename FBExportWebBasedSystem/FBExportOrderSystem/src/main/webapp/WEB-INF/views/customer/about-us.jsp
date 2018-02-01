@@ -1,7 +1,7 @@
 <div class = "container">
 
     <!--Section: About-->
-    <section id="about" class="section info-section mb-4 mt-4">
+    <section id="about" class="section info-section mb-4">
 
         <!--First row-->
         <div class="row pt-5">

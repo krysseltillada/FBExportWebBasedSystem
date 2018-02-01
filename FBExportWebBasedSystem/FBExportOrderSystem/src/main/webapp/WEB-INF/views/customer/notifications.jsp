@@ -1,6 +1,6 @@
 <main>
 
-    <div class = "container">
+    <div class = "container mt-4">
         <h4>
             Notifications
             <i class="fa fa-bell ml-2" aria-hidden="true"></i>
@@ -14,7 +14,7 @@
 
             <div class="col-lg-3">
 
-                <div>
+                <div class = "mb-4">
 
                     <div class="list-group">
                         <a href="#" class="list-group-item">

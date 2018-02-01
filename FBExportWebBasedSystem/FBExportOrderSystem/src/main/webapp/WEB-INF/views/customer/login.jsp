@@ -7,14 +7,14 @@
 
                 <hr />
 
-                    <form method = "POST" class = "mt-5 mb-5 ml-5" id = "loginForm">
+                    <form method = "POST" action = "/login" class = "mt-5 mb-5 ml-5" id = "loginForm">
                         <div class = "row">
                             <div class = "col-md-2 mt-3">
                                 <label for = "username-email"> Username / Email: </label>
                             </div>
                             <div class = "col-md-4">
                                 <div class="md-form form-sm">
-                                    <input type="text" id="username-email" class="form-control" data-toggle="tooltip" data-placement="right" title="Enter your username or email" required>
+                                    <input type="text" name = "ssoId" id="username-email" class="form-control" data-toggle="tooltip" data-placement="right" title="Enter your username or email" required>
                                     <label for="username-email">Username or email</label>
                                 </div>
                             </div>
@@ -25,7 +25,7 @@
                             </div>
                             <div class = "col-md-4">
                                 <div class="md-form form-sm">
-                                    <input type="password" id="password" class="form-control" data-toggle="tooltip" data-placement="right" title="Your password" required>
+                                    <input type="password" name = "password" id="password" class="form-control" data-toggle="tooltip" data-placement="right" title="Your password" required>
                                     <label for="password">password</label>
                                 </div>
                             </div>
@@ -44,6 +44,8 @@
                                 <input type="submit" class="btn btn-primary" value = "Login" />
                             </div>
                         </div>
+                        
+                        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" /></strong>
 
                     </form>
 
@@ -53,3 +55,4 @@
         </div>
     </div>
 </div>   
+
