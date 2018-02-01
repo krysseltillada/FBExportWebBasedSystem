@@ -78,7 +78,7 @@
 		<put-attribute name = "main" value = "/WEB-INF/views/customer/order-list.jsp" />
 		
 		<put-list-attribute name="cssfiles" inherit = "true">
-			<add-attribute value = "resources/views/customer/css/table-body-scroll.css" />
+			<add-attribute value = "resources/customer/css/table-body-scroll.css" />
 		</put-list-attribute>
 		
 	</definition>
