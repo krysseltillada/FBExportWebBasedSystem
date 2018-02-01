@@ -1,0 +1,15 @@
+/* table body scroll for order list and place order */
+
+.tableBodyScroll tbody {
+    display:block;
+    max-height:175px;
+    height: 175px;
+    overflow-y:auto;
+}
+.tableBodyScroll thead, .tableBodyScroll tfoot, tbody tr {
+    display:table;
+    width:100%;
+    table-layout:fixed;
+} 
+
+/* end of table body scroll */

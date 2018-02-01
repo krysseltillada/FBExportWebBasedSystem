@@ -1,0 +1,28 @@
+.star-rating{
+    padding:20px;
+    direction: rtl;
+    display: inline-block;
+}
+
+.star-radio{
+    display: none;
+}
+
+.star{
+    color: #bbb;
+    font-size: 22px;
+    cursor: pointer;
+    transition: color .3s ease-in-out
+}
+
+.star:hover{
+    color: #f2b600;
+}
+
+.star:hover ~ .star{
+    color: #f2b600;
+}
+
+.star-radio:checked ~ .star{
+    color: #f2b600;
+}

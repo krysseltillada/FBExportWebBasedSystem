@@ -31,11 +31,14 @@
 		<put-attribute name = "modals" value = "/WEB-INF/views/customer/modals.jsp" />
 		<put-attribute name = "templates" value = "/WEB-INF/views/customer/html-templates.jsp" />
 		
+		<put-attribute name = "reCaptcha" value = "" />
+		
 		<put-list-attribute name = "cssfiles">
 			<add-attribute value = "https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
 			<add-attribute value = "https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" />
 			<add-attribute value = "resources/customer/css/bootstrap.min.css" />
 			<add-attribute value = "resources/customer/css/mdb.min.css" />
+			<add-attribute value = "resources/customer/css/customer.css" />
 		</put-list-attribute>
 		
 		<put-list-attribute name = "javascriptfiles">
@@ -73,6 +76,11 @@
 	
 	<definition name = "order-list" extends = "customerBaseTemplate">
 		<put-attribute name = "main" value = "/WEB-INF/views/customer/order-list.jsp" />
+		
+		<put-list-attribute name="cssfiles" inherit = "true">
+			<add-attribute value = "resources/views/customer/css/table-body-scroll.css" />
+		</put-list-attribute>
+		
 	</definition>
 	
 	<definition name = "shipping" extends = "customerBaseTemplate">
@@ -85,10 +93,26 @@
 	
 	<definition name = "account-settings" extends = "customerBaseTemplate">
 		<put-attribute name = "main" value = "/WEB-INF/views/customer/account-settings.jsp" />
+		
+		<put-list-attribute name = "cssfiles" inherit = "true">
+			<add-attribute value = "resources/customer/css/profile-pic-upload.css" /> 
+		</put-list-attribute>
+		
+		<put-list-attribute name = "javascriptfiles" inherit = "true">
+			<add-attribute value = "resources/customer/js/profile-pic-upload.js" />
+		</put-list-attribute>
+		
 	</definition>
 
 	<definition name = "place-order" extends = "customerBaseTemplate">
 		<put-attribute name = "main" value = "/WEB-INF/views/customer/place-order.jsp" />
+		
+		<put-list-attribute name = "cssfiles" inherit = "true">
+			<add-attribute value = "resources/customer/css/place-order.css" />
+			<add-attribute value = "resources/customer/css/table-body-scroll.css" />
+		</put-list-attribute>
+		
+		
 	</definition>
 	
 	<definition name = "login" extends = "customerBaseTemplate">
@@ -97,6 +121,37 @@
 	
 	<definition name = "sign-up" extends = "customerBaseTemplate">
 		<put-attribute name = "main" value = "/WEB-INF/views/customer/sign-up.jsp" />
+		<put-attribute name = "reCaptcha" value = "https://www.google.com/recaptcha/api.js" />
+		
+		<put-list-attribute name = "cssfiles" inherit = "true">
+			<add-attribute value = "resources/customer/css/profile-pic-upload.css" /> 
+		</put-list-attribute>
+		
+		<put-list-attribute name = "javascriptfiles" inherit = "true">
+			<add-attribute value = "resources/customer/js/profile-pic-upload.js" />
+		</put-list-attribute>
+	</definition>
+	
+	<definition name = "contact-us" extends = "customerBaseTemplate">
+		<put-attribute name = "main" value = "/WEB-INF/views/customer/contact-us.jsp" />
+	</definition>
+	
+	<definition name = "about-us" extends = "customerBaseTemplate">
+		<put-attribute name = "main" value = "/WEB-INF/views/customer/about-us.jsp" />
+	</definition>
+	
+	<definition name = "search-results" extends = "customerBaseTemplate">
+		<put-attribute name = "main" value = "/WEB-INF/views/customer/search-results.jsp" /> 
+	</definition>
+	
+	<definition name = "view-product" extends = "customerBaseTemplate">
+		
+		<put-attribute name = "main" value = "/WEB-INF/views/customer/view-product.jsp" />
+		
+		<put-list-attribute name = "cssfiles" inherit = "true">
+			<add-attribute value = "resources/customer/css/view-product.css" />
+		</put-list-attribute>
+		 
 	</definition>
 	
 </tiles-definitions>

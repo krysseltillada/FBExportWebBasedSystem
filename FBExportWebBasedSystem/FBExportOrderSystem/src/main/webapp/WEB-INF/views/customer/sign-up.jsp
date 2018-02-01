@@ -21,7 +21,7 @@
 
                             <div class="col-md-3 text-center">
 
-                            <img class = "mb-2 rounded" style = "border: 1px solid #DDDDDD;" id='img-upload' src = "profile-male.jpg" width = "150" height = "150" />
+                            <img class = "mb-2 rounded" style = "border: 1px solid #DDDDDD;" id='img-upload' src = "resources/customer/img/profile-male.jpg" width = "150" height = "150" />
 
                             <p class="file">
                                 <input type="file" name="file" id="file" accept="image/x-png,image/jpeg" />
