@@ -62,6 +62,7 @@ Author: senthil
 	border: 1px solid #ccc;
 	float: left;
 	position: absolute;
+	width: 270px;
 	top: 27px;
 	left: 0;
 }

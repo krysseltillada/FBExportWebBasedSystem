@@ -1,3 +1,5 @@
+
+
 <nav class="side-navbar">
     <!-- Sidebar Header-->
     <div class="sidebar-header d-flex align-items-center">
@@ -13,22 +15,12 @@
         <i class="fa fa-bars" aria-hidden="true"></i>
     </span>
     <ul class="list-unstyled">
-            <li><a href="index.html"> <i class="icon-presentation"></i>Dashboard </a></li>
+    <h1> tae ${sideBarActiveLink} </h1>
+            <li ${ (sideBarActiveLink == "dashboard") ? "class = 'active'" : 'tae' }><a href="index.html"> <i class="icon-presentation"></i>Dashboard </a></li>
             <li><a href="index.html"> <i class="icon-padnote"></i>Inventory </a></li>
             <li><a href="index.html"> <i class="fa fa-list-alt" aria-hidden="true"></i> Orders </a></li>
-            <li class = "active"><a href="index.html"> <i class="fa fa-file-text" aria-hidden="true"></i> Report logs </a></li>
+            <li><a href="index.html"> <i class="fa fa-file-text" aria-hidden="true"></i> Report logs </a></li>
             <li><a href="index.html"> <i class="fa fa-cog" aria-hidden="true"></i> System Settings </a></li>
-            <!-- <li><a href="tables.html"> <i class="icon-grid"></i>Tables </a></li>
-            <li><a href="charts.html"> <i class="fa fa-bar-chart"></i>Charts </a></li>
-            <li><a href="forms.html"> <i class="icon-padnote"></i>Forms </a></li>
-            <li><a href="#exampledropdownDropdown" aria-expanded="false" data-toggle="collapse"> <i class="icon-interface-windows"></i>Example dropdown </a>
-                <ul id="exampledropdownDropdown" class="collapse list-unstyled ">
-                <li><a href="#">Page</a></li>
-                <li><a href="#">Page</a></li>
-                <li><a href="#">Page</a></li>
-                </ul>
-            </li>
-            <li><a href="login.html"> <i class="icon-interface-windows"></i>Login page </a></li> -->
     </ul>
 
     <!-- <span class="heading">Extras</span>

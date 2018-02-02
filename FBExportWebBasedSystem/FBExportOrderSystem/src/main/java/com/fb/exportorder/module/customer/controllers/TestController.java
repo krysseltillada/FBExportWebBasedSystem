@@ -11,7 +11,7 @@ public class TestController {
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String testRequest(Model model) {
 		System.out.println("run");
-		return "shipping";
+		return "add-product";
 	}
 	
 	
