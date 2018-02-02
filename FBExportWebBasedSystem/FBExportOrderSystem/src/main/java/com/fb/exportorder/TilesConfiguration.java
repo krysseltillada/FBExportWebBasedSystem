@@ -13,7 +13,8 @@ public class TilesConfiguration {
 	 @Bean
 	    public TilesConfigurer tilesConfigurer(){
 	        TilesConfigurer tilesConfigurer = new TilesConfigurer();
-	        tilesConfigurer.setDefinitions(new String[] {"/WEB-INF/templates/tiles.xml"});
+	        tilesConfigurer.setDefinitions(new String[] {"/WEB-INF/templates/customerTilesDefinition.xml",
+	        											 "/WEB-INF/templates/adminTilesDefinition.xml"});
 	        tilesConfigurer.setCheckRefresh(true);
 	        return tilesConfigurer;
 	    }

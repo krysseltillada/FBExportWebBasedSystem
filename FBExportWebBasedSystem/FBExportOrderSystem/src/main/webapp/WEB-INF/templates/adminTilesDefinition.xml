@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC
+  "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN" 
+  "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+<tiles-definitions>
+
+	<definition name = "adminBaseTemplate" template = "WEB-INF/views/admin/admin-template.jsp">
+		
+		<put-attribute name="mainNavBar" value = "/WEB-INF/views/admin/main-nav-bar.jsp" />
+		
+				
+		<put-list-attribute name="cssfiles">
+			<add-attribute value = "https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.css" />
+			<add-attribute value = "https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css" />
+			<add-attribute value = "resources/admin/vendor/bootstrap/css/bootstrap.min.css" />
+			<add-attribute value = "resources/admin/vendor/font-awesome/css/font-awesome.min.css" />
+			<add-attribute value = "resources/admin/css/fontastic.css" />
+			<add-attribute value = "https://fonts.googleapis.com/css?family=Poppins:300,400,700" />
+			<add-attribute value = "https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css" />
+			<add-attribute value = "https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" />
+			<add-attribute value = "resources/admin/css/style.default.css" />
+			<add-attribute value = "resources/admin/css/dashboard.css" />
+			
+			<add-attribute value = "resources/admin/css/pace-themes/pace-theme-minimal.css" />
+			
+			<add-attribute value = "resources/admin/css/inventory.css" />
+			<add-attribute value = "resources/admin/css/admin.css" />
+			<add-attribute value = "resources/admin/css/fileinput.min.css" />
+			
+		</put-list-attribute>
+		
+		<put-list-attribute name = "javascriptfiles">
+			
+			<add-attribute value = "resources/admin/js/pace.min.js" />
+			<add-attribute value = "https://use.fontawesome.com/38a955adbf.js" />
+			<add-attribute value = "https://code.jquery.com/jquery-3.2.1.min.js" />
+			<add-attribute value = "resources/admin/vendor/popper.js/umd/popper.min.js" />
+			<add-attribute value = "resources/admin/vendor/bootstrap/js/bootstrap.min.js" />
+			<add-attribute value = "resources/admin/vendor/jquery.cookie/jquery.cookie.js"/>
+			<add-attribute value = "resources/admin/vendor/chart.js/Chart.min.js" />
+			<add-attribute value = "resources/admin/vendor/jquery-validation/jquery.validate.min.js" />
+			<add-attribute value = "https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js" />
+			<add-attribute value = "https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js" />
+			<add-attribute value = "https://cdn.jsdelivr.net/npm/flatpickr" />
+			<add-attribute value = "https://code.jquery.com/ui/1.12.1/jquery-ui.js" />
+			<add-attribute value = "resources/admin/js/timepicki.js" />
+			<add-attribute value = "resources/admin/js/underscore.js" />
+			<add-attribute value = "resources/admin/js/fileinput.min.js" />
+			<add-attribute value = "resources/admin/themes/fa/theme.js" />
+			<add-attribute value = "resources/admin/js/inventory.js" />
+			<add-attribute value = "resources/admin/js/charts-home.js" />
+			<add-attribute value = "resources/admin/js/collections.js" />
+			<add-attribute value = "resources/admin/js/front.js" />
+		
+		</put-list-attribute>
+	</definition>
+	
+	
+</tiles-definitions>
