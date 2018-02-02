@@ -83,6 +83,17 @@
 		
 		<put-attribute name = "main" value = "/WEB-INF/views/admin/add-product.jsp" />
 		<put-attribute name = "sideBarActiveLink" value = "inventory" />
+		
+		<put-list-attribute name = "cssfiles" inherit = "true">
+			<add-attribute value = "resources/admin/css/inventory.css" />
+			<add-attribute value = "resources/admin/css/fileinput.min.css" />
+		</put-list-attribute>
+		
+		<put-list-attribute name = "javascriptfiles" inherit = "true">
+			<add-attribute value = "resources/admin/js/add-product.js" />
+			<add-attribute value = "resources/admin/js/fileinput.min.js" />
+			<add-attribute value = "resources/admin/themes/fa/theme.js" />
+		</put-list-attribute>
 	
 	</definition>
 	

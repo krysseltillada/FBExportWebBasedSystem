@@ -1,23 +1,27 @@
-$(".btnProductItemAddToCart").click(function (event) {
-    var $card = $(event.currentTarget).parent().parent().parent();
-    var $cardBody = $card.find("div.card-body");
+$(document).ready(function () {
 
-    var $spansHeaderInfo = $card.find("div div div span");
+    $(".btnProductItemAddToCart").click(function (event) {
+        var $card = $(event.currentTarget).parent().parent().parent();
+        var $cardBody = $card.find("div.card-body");
 
-    console.log($spansHeaderInfo.html());
+        var $spansHeaderInfo = $card.find("div div div span");
 
-    var productItem = {
-        productImage : $card.find("img").attr("src"),
-        price : $spansHeaderInfo.eq(0).text(),
-        massType : $spansHeaderInfo.eq(1).find("span").text(),
-        origin : $spansHeaderInfo.eq(3).text(),
-        name : $cardBody.find("h4.card-title a").text(),
-        description : $cardBody.find("p.card-text").text(),
-        expirationDate : $cardBody.find("span span.red-text").text()
-    };
+        console.log($spansHeaderInfo.html());
 
-    showAddToCartModal(productItem);
+        var productItem = {
+            productImage : $card.find("img").attr("src"),
+            price : $spansHeaderInfo.eq(0).text(),
+            massType : $spansHeaderInfo.eq(1).find("span").text(),
+            origin : $spansHeaderInfo.eq(3).text(),
+            name : $cardBody.find("h4.card-title a").text(),
+            description : $cardBody.find("p.card-text").text(),
+            expirationDate : $cardBody.find("span span.red-text").text()
+        };
+
+        showAddToCartModal(productItem);
 
 
+
+    });
 
 });

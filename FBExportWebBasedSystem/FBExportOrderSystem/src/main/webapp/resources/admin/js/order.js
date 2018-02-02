@@ -1,5 +1,5 @@
 
-$(window).ready(function () {
+$(document).ready(function () {
 
     var orderStatusColors = new Map({ 
                                     "To Ship" : "#796AEE",

@@ -1,4 +1,4 @@
-$(window).ready(function () {
+$(document).ready(function () {
 
     var updateLoginFormPositioning = function () {
                     var screenWidth = $(document).width();

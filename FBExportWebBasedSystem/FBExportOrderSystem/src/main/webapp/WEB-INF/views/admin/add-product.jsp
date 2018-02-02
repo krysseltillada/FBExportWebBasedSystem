@@ -12,7 +12,7 @@
                 <div class = "col-4">
 
                         <div class="form-group m-0">
-                            <img class = "mb-2 rounded" style = "border: 1px solid #DDDDDD;" id='img-upload' src = "upload-product-img.png" width = "150" height = "240" />
+                            <img class = "mb-2 rounded" style = "border: 1px solid #DDDDDD;" id='img-upload' src = "resources/admin/upload-product-img.png" width = "150" height = "240" />
                             <div class="input-group">
                                 <span class="input-group-btn rounded">
                                     <span class="btn btn-primary btn-file">

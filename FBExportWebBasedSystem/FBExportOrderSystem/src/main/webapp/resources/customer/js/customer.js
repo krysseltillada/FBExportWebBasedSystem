@@ -6,6 +6,8 @@
 //   or {{ statement }}
 //   or {{- HTML-escaped text }}
 //
+
+
 $(function () {
   _.templateSettings.interpolate = /\{\{=([^-][\S\s]+?)\}\}/g;
   _.templateSettings.evaluate = /\{\{([^-=][\S\s]+?)\}\}/g;
@@ -36,402 +38,405 @@ $(function () {
 
 }(jQuery));
 
-var updateCartPositioning = function () {
-    var screenWidth = $(document).width();
-    console.log(screenWidth);
+$(document).ready(function () {
 
-    if (screenWidth <= 800) {
-        console.log(true);
+    var updateCartPositioning = function () {
+        var screenWidth = $(document).width();
+        console.log(screenWidth);
 
-        var shoppingCartButton = $("div#navbarSupportedContent a#cart").detach();
+        if (screenWidth <= 800) {
+            console.log(true);
 
+            var shoppingCartButton = $("div#navbarSupportedContent a#cart").detach();
 
-        shoppingCartButton.css("font-size", "11px");
-        shoppingCartButton.css("display", "inline");
-        shoppingCartButton.appendTo($("#nav-bar-brand-mobile-header"));
 
+            shoppingCartButton.css("font-size", "11px");
+            shoppingCartButton.css("display", "inline");
+            shoppingCartButton.appendTo($("#nav-bar-brand-mobile-header"));
 
-        $("#desktopWebsiteHeader").hide();
-        $("#nav-bar-brand-mobile-header").removeClass("d-none");
-        $(".productGridList").removeAttr("style");
 
-        $(".shopping-cart-box").css("left", "10px");
+            $("#desktopWebsiteHeader").hide();
+            $("#nav-bar-brand-mobile-header").removeClass("d-none");
+            $(".productGridList").removeAttr("style");
 
+            $(".shopping-cart-box").css("left", "10px");
 
-    } else {
 
-        var shoppingCartButton = $("#nav-bar-brand-mobile-header a#cart").detach();
+        } else {
 
-        shoppingCartButton.css("font-size", "15px");
-        shoppingCartButton.css("display", "inline-block");
-        shoppingCartButton.appendTo($("div#navbarSupportedContent ul:eq(1)>li:eq(1)"));
+            var shoppingCartButton = $("#nav-bar-brand-mobile-header a#cart").detach();
 
-        console.log("false");
+            shoppingCartButton.css("font-size", "15px");
+            shoppingCartButton.css("display", "inline-block");
+            shoppingCartButton.appendTo($("div#navbarSupportedContent ul:eq(1)>li:eq(1)"));
 
+            console.log("false");
 
-        $("#nav-bar-brand-mobile-header").addClass("d-none");
-        $(".productGridList").attr("style", "padding-left: 60px; padding-right: 60px;");
-        $("#desktopWebsiteHeader").show();
-        $(".shopping-cart-box").css("left", "140px");
 
-    }
-};
+            $("#nav-bar-brand-mobile-header").addClass("d-none");
+            $(".productGridList").attr("style", "padding-left: 60px; padding-right: 60px;");
+            $("#desktopWebsiteHeader").show();
+            $(".shopping-cart-box").css("left", "140px");
 
-
-var updateProductCartInfo = function () {
-
-    var $productCartItemLists = $("div#shoppingModalCart div.modal-body>table>tbody");
-    var $productCartTotal = $("div.shopping-cart-total").children().eq(1);
-    var itemCount = $productCartItemLists.children().length;
-
-    if (itemCount > 0) {
-        $productCartItemLists.parent().removeClass("d-none");
-        $("#productCartEmptyMessage").addClass("d-none");
-        $("div#shoppingModalCart div.modal-footer>button:eq(1)").removeClass("disabled");
-    } else {
-        $productCartItemLists.parent().addClass("d-none");
-        $("#productCartEmptyMessage").removeClass("d-none");
-        $("div#shoppingModalCart div.modal-footer>button:eq(1)").addClass("disabled");
-    }
-
-    var totalPrice = 0;
-
-    _.each($productCartItemLists.children(), function (productCartItem, i) {
-
-        var $productCartItem = $(productCartItem).children().eq(3);
-
-        console.log("item price: " + $productCartItem.text());
-        totalPrice += accounting.unformat($productCartItem.text());
-        console.log(totalPrice);
-
-
-    });
-
-
-    $productCartTotal.text(formatMoney(totalPrice, "₱", "%s%v"));
-
-    $(".productCartHeaderItemCount").text(itemCount);
-
-
-};
-
-var addToCart = function (cartItem) {
-
-    var $productCart = $("div#shoppingModalCart .modal-body>table>tbody");
-
-    var cartItemTemplate = $("#cartItemTemplate").html();
-
-    var cartTemplate = _.template(cartItemTemplate);
-
-    $productCart.append(cartTemplate({
-        productImage : cartItem.productImage,
-        productName : cartItem.productName,
-        totalPrice : cartItem.totalPrice,
-        totalMass : cartItem.totalMass
-    }));
-
-    $productCart.find("tr:last>td:last>a")
-                .click(function () {
-                    $(this).parent().parent().fadeOut("slow", function () {
-                        $(this).remove();
-                        updateProductCartInfo();
-                    });
-                });
-
-    updateProductCartInfo();
-
-};
-
-var updatePriceMass = function (massType, quantity) {
-
-    // todo not done yet need to convert the money depends on the country
-
-    var productPrice = $("span#priceAddToCartModal").text();
-    var baseMassType = $("span#massDefTypeAddToCart").text();
-
-    var convertedMass = convertMass(massType, baseMassType, quantity);
-    var totalPrice = convertedMass * accounting.unformat(productPrice);
-
-    try {
-
-        var formattedPrice = formatMoney(totalPrice,
-                                        "PHP",
-                                        "%v %s");
-
-        if (formattedPrice == "NaN.undefined") throw "Price exceeded";
-
-        console.log(convertedMass + " quantity: " + quantity);
-        console.log("price: " + totalPrice);
-
-        $("#totalMass").val( ((quantity <= 0) ? 0 : quantity) + " " +  massType);
-        $("#totalPrice").val(formattedPrice);
-
-    } catch (err) {
-        $("#totalPrice").val(err);
-    }
-
-};
-
-var resetAddToCartValues = function () {
-
-    /// not done yet
-
-    $("#massType").val("kilogram");
-    $("#quantity").val(1);
-    $("#totalPrice").val("200.00 PHP");
-    $("#totalMass").val("1 kilogram");
-
-};
-
-$("#massType").change(function () {
-
-    var massType = $(this).val(),
-        quantity = $("#quantity").val();
-
-    updatePriceMass(massType, quantity);
-});
-
- var $quantitySpinner = $("#quantity").spinner({
-    spin: function (event, ui) {
-        // updatePriceMass();
-        console.log(ui.value);
-
-        var massType = $("#massType").val(),
-            quantity = ui.value;
-
-        updatePriceMass(massType, quantity);
-    },
-    min : 1,
-    max : 9999999999
-
-});
-
-$quantitySpinner.parent().css("position", "relative");
-$quantitySpinner.parent().css("top", "-5px");
-
-
-$quantitySpinner.keypress(function (event) {
-
-    var keyCode = event.keyCode;
-
-
-    if ( keyCode < 48 || keyCode > 57 )
-        return false;
-
-
-});
-
-$quantitySpinner.keyup(function (event) {
-
-    var massType = $("#massType").val(),
-        quantity = $("#quantity").val();
-
-    updatePriceMass(massType, quantity);
-});
-
-$quantitySpinner.val(1);
-
-$("#btnAddToCart").click(function () {
-
-    if (accounting.unformat($("#totalPrice").val()) == 0) {
-        $("#quantity").tooltip("show");
-
-        setTimeout(function () {
-                $("#quantity").tooltip("hide");
-        }, 2000)
-
-        return;
-
-    }
-
-    addToCart({
-        productName : $("#addToCartProductName").text(),
-        totalPrice : $("#totalPrice").val(),
-        totalMass : $("#totalMass").val(),
-        productImage : $("#addToCartProductImage").attr("src")
-    });
-
-    $("#addToCartModal").modal("hide");
-});
-
-$("#addToCartModal").on("hidden.bs.modal", function (event) {
-        resetAddToCartValues();
-});
-
-var showAddToCartModal = function (productItem) {
-    var $addToCartModal = $("#addToCartModal");
-    var $addToCartModalBody = $addToCartModal.find("div.modal-body");
-
-    $addToCartModal.find("h5.modal-title strong span").text(productItem.name);
-    $addToCartModal.find("h4#addToCartProductName").text(productItem.name);
-    $addToCartModalBody.find("span#addToCartModalExpirationDate").text(productItem.expirationDate);
-    $addToCartModalBody.find("span#addToCartModalProductDescription").text(productItem.description);
-    $addToCartModal.find("span#addToCartModalOrigin").text(productItem.origin);
-    $addToCartModal.find("img#addToCartProductImage").attr("src", productItem.productImage);
-    $addToCartModalBody.find("span#priceAddToCartModal").text(productItem.price);
-
-    var massType = $("#massType").val(),
-    quantity = $("#quantity").val();
-
-    updatePriceMass(massType, quantity);
-
-    $addToCartModal.modal("show");
-
-
-};
-
- $("#quantity").tooltip({
-    trigger : 'manual',
-    offset : '0px 9px'
-});
-
-$( "#slider" ).slider({
-    range: true
-});
-
-$(".btnProductItemAddToCart").click(function (event) {
-
-    var $card = $(event.currentTarget).parent().parent().parent();
-    var $cardBody = $card.find("div.card-body");
-
-    var $spansHeaderInfo = $card.children("span");
-
-    console.log($card.html());
-
-    var productItem = {
-        productImage : $card.find("img").attr("src"),
-        price : $spansHeaderInfo.eq(0).text(),
-        massType : $spansHeaderInfo.eq(1).find("span").text(),
-        origin : $spansHeaderInfo.eq(2).text(),
-        name : $cardBody.find("h4.card-title a").text(),
-        description : $cardBody.find("p.card-text").text(),
-        expirationDate : $cardBody.find("div.mt-1 span span.red-text").text()
+        }
     };
 
-    showAddToCartModal(productItem);
+
+    var updateProductCartInfo = function () {
+
+        var $productCartItemLists = $("div#shoppingModalCart div.modal-body>table>tbody");
+        var $productCartTotal = $("div.shopping-cart-total").children().eq(1);
+        var itemCount = $productCartItemLists.children().length;
+
+        if (itemCount > 0) {
+            $productCartItemLists.parent().removeClass("d-none");
+            $("#productCartEmptyMessage").addClass("d-none");
+            $("div#shoppingModalCart div.modal-footer>button:eq(1)").removeClass("disabled");
+        } else {
+            $productCartItemLists.parent().addClass("d-none");
+            $("#productCartEmptyMessage").removeClass("d-none");
+            $("div#shoppingModalCart div.modal-footer>button:eq(1)").addClass("disabled");
+        }
+
+        var totalPrice = 0;
+
+        _.each($productCartItemLists.children(), function (productCartItem, i) {
+
+            var $productCartItem = $(productCartItem).children().eq(3);
+
+            console.log("item price: " + $productCartItem.text());
+            totalPrice += accounting.unformat($productCartItem.text());
+            console.log(totalPrice);
 
 
+        });
 
-});
 
-$('.sub-nav-date').ready(function () {
+        $productCartTotal.text(formatMoney(totalPrice, "₱", "%s%v"));
 
-    $('.sub-nav-date').text("please wait..");
+        $(".productCartHeaderItemCount").text(itemCount);
 
-    $.ajax({
-        url: "http://ip-api.com/json",
-        jsonpCallback: "callback",
-        dataType: "json",
-        success: function( location ) {
 
-                    var country = location.country.toLowerCase();
+    };
 
-                    $.ajax({
-                        url : "https://restcountries.eu/rest/v2/name/" + country,
-                        success : function (responseData) {
+    var addToCart = function (cartItem) {
 
-                                setInterval(function () {
+        var $productCart = $("div#shoppingModalCart .modal-body>table>tbody");
 
-                                    var flagImageLink = responseData[0].flag;
+        var cartItemTemplate = $("#cartItemTemplate").html();
 
-                                    var currentDate = moment().tz(location.timezone).format("ddd YYYY-MM-DD hh:mm:ss a");
+        var cartTemplate = _.template(cartItemTemplate);
 
-                                    currentDate = "(" + location.timezone + " " + location.country + " <img src='" + flagImageLink + "' width = '15' height = '15' style = 'position: relative; top: -1px;'/> ) " + currentDate;
+        $productCart.append(cartTemplate({
+            productImage : cartItem.productImage,
+            productName : cartItem.productName,
+            totalPrice : cartItem.totalPrice,
+            totalMass : cartItem.totalMass
+        }));
 
-                                    var countryCity = location.timezone.split("/");
-
-                                    var linkTimeZone = countryCity[0].toLowerCase() + "--" + countryCity[1].toLowerCase();
-
-                                    $('.sub-nav-date').text("");
-                                    $('.sub-nav-date').append(currentDate);
-                                    $('.sub-nav-date').attr("href", "https://www.zeitverschiebung.net/en/timezone/" + linkTimeZone);
-                                    $('.sub-nav-date').attr("target", "_blank");
-
-                                }, 1000);
-
-                        }
+        $productCart.find("tr:last>td:last>a")
+                    .click(function () {
+                        $(this).parent().parent().fadeOut("slow", function () {
+                            $(this).remove();
+                            updateProductCartInfo();
+                        });
                     });
 
+        updateProductCartInfo();
 
+    };
 
+    var updatePriceMass = function (massType, quantity) {
+
+        // todo not done yet need to convert the money depends on the country
+
+        var productPrice = $("span#priceAddToCartModal").text();
+        var baseMassType = $("span#massDefTypeAddToCart").text();
+
+        var convertedMass = convertMass(massType, baseMassType, quantity);
+        var totalPrice = convertedMass * accounting.unformat(productPrice);
+
+        try {
+
+            var formattedPrice = formatMoney(totalPrice,
+                                            "PHP",
+                                            "%v %s");
+
+            if (formattedPrice == "NaN.undefined") throw "Price exceeded";
+
+            console.log(convertedMass + " quantity: " + quantity);
+            console.log("price: " + totalPrice);
+
+            $("#totalMass").val( ((quantity <= 0) ? 0 : quantity) + " " +  massType);
+            $("#totalPrice").val(formattedPrice);
+
+        } catch (err) {
+            $("#totalPrice").val(err);
         }
+
+    };
+
+    var resetAddToCartValues = function () {
+
+        /// not done yet
+
+        $("#massType").val("kilogram");
+        $("#quantity").val(1);
+        $("#totalPrice").val("200.00 PHP");
+        $("#totalMass").val("1 kilogram");
+
+    };
+
+    $("#massType").change(function () {
+
+        var massType = $(this).val(),
+            quantity = $("#quantity").val();
+
+        updatePriceMass(massType, quantity);
     });
 
-});
+    var $quantitySpinner = $("#quantity").spinner({
+        spin: function (event, ui) {
+            // updatePriceMass();
+            console.log(ui.value);
 
-$('.shopping-cart').outside('click', function() {
-    $(".shopping-cart").hide();
-});
+            var massType = $("#massType").val(),
+                quantity = ui.value;
 
-$("#cart").on("click", function(e) {
-    e.preventDefault();
-    e.stopPropagation();
-    console.log("tng inaaaaaaaa");
-    $("#shoppingModalCart").modal('toggle');
-});
+            updatePriceMass(massType, quantity);
+        },
+        min : 1,
+        max : 9999999999
 
-$("#countryCode").ready(function () {
-    $.ajax({
-        url : "https://restcountries.eu/rest/v2/all",
-        dataType : "json",
-        success : function (restCountriesData) {
+    });
+
+    $quantitySpinner.parent().css("position", "relative");
+    $quantitySpinner.parent().css("top", "-5px");
 
 
-            for (var i = 0; i != restCountriesData.length; ++i) {
-                var countryLetterCode = restCountriesData[i].alpha2Code;
-                var countryCode = restCountriesData[i].callingCodes[0];
+    $quantitySpinner.keypress(function (event) {
 
-                if (countryCode.length > 0)
-                    $("#countryCode").append('<option value = "' + countryCode + '">+' + countryCode + ' (' + countryLetterCode + ') </option');
+        var keyCode = event.keyCode;
+
+
+        if ( keyCode < 48 || keyCode > 57 )
+            return false;
+
+
+    });
+
+    $quantitySpinner.keyup(function (event) {
+
+        var massType = $("#massType").val(),
+            quantity = $("#quantity").val();
+
+        updatePriceMass(massType, quantity);
+    });
+
+    $quantitySpinner.val(1);
+
+    $("#btnAddToCart").click(function () {
+
+        if (accounting.unformat($("#totalPrice").val()) == 0) {
+            $("#quantity").tooltip("show");
+
+            setTimeout(function () {
+                    $("#quantity").tooltip("hide");
+            }, 2000)
+
+            return;
+
+        }
+
+        addToCart({
+            productName : $("#addToCartProductName").text(),
+            totalPrice : $("#totalPrice").val(),
+            totalMass : $("#totalMass").val(),
+            productImage : $("#addToCartProductImage").attr("src")
+        });
+
+        $("#addToCartModal").modal("hide");
+    });
+
+    $("#addToCartModal").on("hidden.bs.modal", function (event) {
+            resetAddToCartValues();
+    });
+
+    var showAddToCartModal = function (productItem) {
+        var $addToCartModal = $("#addToCartModal");
+        var $addToCartModalBody = $addToCartModal.find("div.modal-body");
+
+        $addToCartModal.find("h5.modal-title strong span").text(productItem.name);
+        $addToCartModal.find("h4#addToCartProductName").text(productItem.name);
+        $addToCartModalBody.find("span#addToCartModalExpirationDate").text(productItem.expirationDate);
+        $addToCartModalBody.find("span#addToCartModalProductDescription").text(productItem.description);
+        $addToCartModal.find("span#addToCartModalOrigin").text(productItem.origin);
+        $addToCartModal.find("img#addToCartProductImage").attr("src", productItem.productImage);
+        $addToCartModalBody.find("span#priceAddToCartModal").text(productItem.price);
+
+        var massType = $("#massType").val(),
+        quantity = $("#quantity").val();
+
+        updatePriceMass(massType, quantity);
+
+        $addToCartModal.modal("show");
+
+
+    };
+
+    $("#quantity").tooltip({
+        trigger : 'manual',
+        offset : '0px 9px'
+    });
+
+    $( "#slider" ).slider({
+        range: true
+    });
+
+    $(".btnProductItemAddToCart").click(function (event) {
+
+        var $card = $(event.currentTarget).parent().parent().parent();
+        var $cardBody = $card.find("div.card-body");
+
+        var $spansHeaderInfo = $card.children("span");
+
+        console.log($card.html());
+
+        var productItem = {
+            productImage : $card.find("img").attr("src"),
+            price : $spansHeaderInfo.eq(0).text(),
+            massType : $spansHeaderInfo.eq(1).find("span").text(),
+            origin : $spansHeaderInfo.eq(2).text(),
+            name : $cardBody.find("h4.card-title a").text(),
+            description : $cardBody.find("p.card-text").text(),
+            expirationDate : $cardBody.find("div.mt-1 span span.red-text").text()
+        };
+
+        showAddToCartModal(productItem);
+
+
+
+    });
+
+    $('.sub-nav-date').ready(function () {
+
+        $('.sub-nav-date').text("please wait..");
+
+        $.ajax({
+            url: "http://ip-api.com/json",
+            jsonpCallback: "callback",
+            dataType: "json",
+            success: function( location ) {
+
+                        var country = location.country.toLowerCase();
+
+                        $.ajax({
+                            url : "https://restcountries.eu/rest/v2/name/" + country,
+                            success : function (responseData) {
+
+                                    setInterval(function () {
+
+                                        var flagImageLink = responseData[0].flag;
+
+                                        var currentDate = moment().tz(location.timezone).format("ddd YYYY-MM-DD hh:mm:ss a");
+
+                                        currentDate = "(" + location.timezone + " " + location.country + " <img src='" + flagImageLink + "' width = '15' height = '15' style = 'position: relative; top: -1px;'/> ) " + currentDate;
+
+                                        var countryCity = location.timezone.split("/");
+
+                                        var linkTimeZone = countryCity[0].toLowerCase() + "--" + countryCity[1].toLowerCase();
+
+                                        $('.sub-nav-date').text("");
+                                        $('.sub-nav-date').append(currentDate);
+                                        $('.sub-nav-date').attr("href", "https://www.zeitverschiebung.net/en/timezone/" + linkTimeZone);
+                                        $('.sub-nav-date').attr("target", "_blank");
+
+                                    }, 1000);
+
+                            }
+                        });
+
+
 
             }
+        });
 
-
-        }
     });
-});
 
-$('#country').ready(function () {
+    $('.shopping-cart').outside('click', function() {
+        $(".shopping-cart").hide();
+    });
 
-    $.ajax(
-        {
+    $("#cart").on("click", function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        console.log("tng inaaaaaaaa");
+        $("#shoppingModalCart").modal('toggle');
+    });
+
+    $("#countryCode").ready(function () {
+        $.ajax({
             url : "https://restcountries.eu/rest/v2/all",
             dataType : "json",
-            success : function (responseData) {
+            success : function (restCountriesData) {
 
-                for (var i = 0; i != responseData.length; ++i) {
 
-                    if (responseData[i].alpha2Code.length > 0) {
-                        var country = responseData[i].name;
-                        var countryCode = responseData[i].alpha2Code;
-                        $('#country').append('<option value = "'+ country + '">' + country + ' (' + countryCode + ')</option>');
-                    }
+                for (var i = 0; i != restCountriesData.length; ++i) {
+                    var countryLetterCode = restCountriesData[i].alpha2Code;
+                    var countryCode = restCountriesData[i].callingCodes[0];
+
+                    if (countryCode.length > 0)
+                        $("#countryCode").append('<option value = "' + countryCode + '">+' + countryCode + ' (' + countryLetterCode + ') </option');
 
                 }
 
 
-
             }
-        }
-    );
-});
+        });
+    });
 
-$('#country').change(function () {
+    $('#country').ready(function () {
 
-    var $cityTextBox = $('#city');
+        $.ajax(
+            {
+                url : "https://restcountries.eu/rest/v2/all",
+                dataType : "json",
+                success : function (responseData) {
 
-    var country = $(this).val();
+                    for (var i = 0; i != responseData.length; ++i) {
+
+                        if (responseData[i].alpha2Code.length > 0) {
+                            var country = responseData[i].name;
+                            var countryCode = responseData[i].alpha2Code;
+                            $('#country').append('<option value = "'+ country + '">' + country + ' (' + countryCode + ')</option>');
+                        }
+
+                    }
 
 
-    if ($cityTextBox.is(":disabled"))
-        $cityTextBox.removeAttr("disabled");
 
-});
+                }
+            }
+        );
+    });
 
-$(window).resize(function () {
+    $('#country').change(function () {
+
+        var $cityTextBox = $('#city');
+
+        var country = $(this).val();
+
+
+        if ($cityTextBox.is(":disabled"))
+            $cityTextBox.removeAttr("disabled");
+
+    });
+
+    $(window).resize(function () {
+        updateCartPositioning();
+    });
+
     updateCartPositioning();
+    updateProductCartInfo();
+
 });
-
-updateCartPositioning();
-updateProductCartInfo();
-
