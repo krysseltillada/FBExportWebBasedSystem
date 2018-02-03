@@ -557,7 +557,7 @@ $(document).ready(function () {
         var gender = $('input[type=radio][name=genderEmployeeAdd]:checked').val();
         if(gender == "Male"){
           if($("#fileEmployeeAdd").get(0).files.length == 0)
-            $("#img-upload").attr("src", "resources/admin/img/profile-male.jpg");
+            $("#img-uploadEmployeeAdd").attr("src", "resources/admin/img/profile-male.jpg");
         }
 
         if(gender == "Female"){
