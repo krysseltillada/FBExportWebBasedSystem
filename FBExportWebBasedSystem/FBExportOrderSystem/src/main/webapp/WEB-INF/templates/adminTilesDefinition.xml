@@ -38,8 +38,7 @@
 			<add-attribute value = "https://code.jquery.com/ui/1.12.1/jquery-ui.js" />
 			<add-attribute value = "resources/admin/js/timepicki.js" />
 			<add-attribute value = "resources/admin/js/underscore.js" />
-			<add-attribute value = "resources/admin/themes/fa/theme.js" />
-			<add-attribute value = "resources/admin/js/charts-home.js" />
+			
 			<add-attribute value = "resources/admin/js/collections.js" />
 			<add-attribute value = "resources/admin/js/front.js" />
 		
@@ -55,6 +54,10 @@
 		<put-list-attribute name = "cssfiles" inherit = "true">
 			<add-attribute value = "resources/admin/css/dashboard.css" />
 		</put-list-attribute>	
+		
+		<put-list-attribute name = "javascriptfiles" inherit = "true">
+			<add-attribute value = "resources/admin/js/dashboard.js" />
+		</put-list-attribute>
 	
 	</definition>
 	
@@ -95,6 +98,24 @@
 			<add-attribute value = "resources/admin/themes/fa/theme.js" />
 		</put-list-attribute>
 	
+	</definition>
+	
+	<definition name = "edit-product" extends = "adminBaseTemplate">
+		
+		<put-attribute name = "main" value = "/WEB-INF/views/admin/edit-product.jsp" />
+		<put-attribute name = "sideBarActiveLink" value = "inventory" />
+		
+		<put-list-attribute name = "cssfiles" inherit = "true">
+			<add-attribute value = "resources/admin/css/inventory.css" />
+			<add-attribute value = "resources/admin/css/fileinput.min.css" />
+		</put-list-attribute>
+		
+		<put-list-attribute name = "javascriptfiles" inherit = "true">
+			<add-attribute value = "resources/admin/js/edit-product.js" />
+		</put-list-attribute>
+		
+		
+		
 	</definition>
 	
 	<definition name = "orders" extends = "adminBaseTemplate">
@@ -146,8 +167,5 @@
 		</put-list-attribute>
 	
 	</definition>
-	
-	
-	
 	
 </tiles-definitions>

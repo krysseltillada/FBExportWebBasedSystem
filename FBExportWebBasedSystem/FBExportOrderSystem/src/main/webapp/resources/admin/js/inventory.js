@@ -1,7 +1,19 @@
 $(document).ready(function (){
 			 
-	$( "#minDatePicker" ).flatpickr();
-	$( "#maxDatePicker" ).flatpickr();
+	$( "#minDatePicker" ).flatpickr({
+		minDate : "today",
+		onChange : function (selectedDates, date) {
+			
+			$("#maxDatePicker").flatpickr({
+				defaultDate : date,
+				minDate : date
+			})
+		}
+	});
+
+	$( "#maxDatePicker" ).flatpickr({
+		minDate : "today"
+	});
 	
 	var table = $('#inventoryTable').DataTable( { 
 		"columns": [
