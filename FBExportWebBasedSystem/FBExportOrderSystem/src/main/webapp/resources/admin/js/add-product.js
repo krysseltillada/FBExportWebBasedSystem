@@ -48,8 +48,13 @@ $(document).ready(function () {
 		readURL(this);
 	}); 
 
-	$( "#expiredDatePicker" ).flatpickr();
-    $( "#deliveryDatePicker" ).flatpickr();
+	$( "#expiredDatePicker" ).flatpickr({
+		minDate : "today"
+	});
+
+    $( "#deliveryDatePicker" ).flatpickr({
+		minDate : "today"
+	});
 
 	$("#file-1").fileinput({ 
         theme : "fa",

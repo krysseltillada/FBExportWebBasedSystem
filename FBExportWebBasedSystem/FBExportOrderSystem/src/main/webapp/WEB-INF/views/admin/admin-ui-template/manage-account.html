@@ -107,6 +107,65 @@
         border-radius: 50%;
       }
       /*Toggle Button IsActive*/
+
+      /*Profile picture upload Employee Add*/
+
+      .fileEmployeeAdd {
+        position: relative;
+      }
+      .fileEmployeeAdd label {
+        background-color: #3498db;
+        padding: 5px 20px;
+        color: #fff;
+        font-weight: bold;
+        font-size: .9em;
+        transition: all .4s;
+      }
+      .fileEmployeeAdd input {
+
+        position: absolute;
+        display: inline-block;
+        left: 0;
+        top: 0;
+        opacity: 0.01;
+        cursor: pointer;
+      }
+      .fileEmployeeAdd input:hover + label,
+      .fileEmployeeAdd input:focus + label {
+        background: #34495E;
+        color: #3498db;
+      }
+      /*Profile picture upload Employee Add*/
+
+      /*Profile picture upload Employee Edit*/
+
+      .fileEmployeeEdit {
+        position: relative;
+      }
+      .fileEmployeeEdit label {
+        background-color: #3498db;
+        padding: 5px 20px;
+        color: #fff;
+        font-weight: bold;
+        font-size: .9em;
+        transition: all .4s;
+      }
+      .fileEmployeeEdit input {
+
+        position: absolute;
+        display: inline-block;
+        left: 0;
+        top: 0;
+        opacity: 0.01;
+        cursor: pointer;
+      }
+      .fileEmployeeEdit input:hover + label,
+      .fileEmployeeEdit input:focus + label {
+        background: #34495E;
+        color: #3498db;
+      }
+      /*Profile picture upload Employee Edit*/
+
     </style>
 
   </head>
@@ -1226,8 +1285,8 @@
               <div class = "row">
                 <div class = "col-lg">
                   <span class="h3 no-margin-bottom mr-2" >Manage Accounts</span>
-                  <span class = "small float-right"  > <a style="margin: 5px; color: #596275;;"data-toggle="collapse" href="#collapseEmployees" aria-expanded="false" aria-controls="collapseExample"> Filter Employees <i class="fa fa-filter ml-1" aria-hidden="true"> </i> </a></span>
-                  <span class = "small float-right" > <a style="margin: 5px; color: #596275;;" data-toggle="collapse" href="#collapseClients" aria-expanded="false" aria-controls="collapseExample"> Filter Clients <i class="fa fa-filter ml-1" aria-hidden="true"> </i> </a></span>
+                  <span class = "small float-right"  > <a style="margin: 5px;"data-toggle="collapse" href="#collapseEmployees" aria-expanded="false" aria-controls="collapseExample"> Filter Employees <i class="fa fa-filter ml-1" aria-hidden="true"> </i> </a></span>
+                  <span class = "small float-right" > <a style="margin: 5px;" data-toggle="collapse" href="#collapseClients" aria-expanded="false" aria-controls="collapseExample"> Filter Clients <i class="fa fa-filter ml-1" aria-hidden="true"> </i> </a></span>
                 </div>
               </div>
 
@@ -1243,7 +1302,6 @@
               </li>
           </ul>
 
-          <!-- Tab panels -->
           <div class="tab-content" >
 
               <!--Panel 1-->
@@ -1323,68 +1381,68 @@
                                           <div class="row">
                                             <div class="col-lg-6">
                                               <div class="form-group">
-                                                <label class="form-control-label" for="username">Username</label>
-                                                <input type="text" placeholder="Your username" id="username" class="form-control" required>
+                                                <label class="form-control-label" for="usernameClientEdit">Username</label>
+                                                <input type="text" placeholder="Your username" id="usernameClientEdit" class="form-control" required>
                                               </div>
                                               <div class="form-group">
-                                                <label class="form-control-label" for="firstname">Firstname</label>
-                                                <input type="text" placeholder="Your firstname" id="firstname" class="form-control" required>
+                                                <label class="form-control-label" for="firstnameClientEdit">Firstname</label>
+                                                <input type="text" placeholder="Your firstname" id="firstnameClientEdit" class="form-control" required>
                                               </div>
                                               <div class="form-group">
-                                                <label class="form-control-label" for="middlename">Middlename</label>
-                                                <input type="text" placeholder="Your middlename" class="form-control" id="middlename" required>
+                                                <label class="form-control-label" for="middlenameClientEdit">Middlename</label>
+                                                <input type="text" placeholder="Your middlename" class="form-control" id="middlenameClientEdit" required>
                                               </div>
                                               <div class="form-group">
-                                                <label class="form-control-label" for="lastname">Lastname</label>
-                                                <input type="text" placeholder="Your lastname" class="form-control" id="lastname" required>
+                                                <label class="form-control-label" for="lastnameClientEdit">Lastname</label>
+                                                <input type="text" placeholder="Your lastname" class="form-control" id="lastnameClientEdit" required>
                                               </div>
                                               <div class="form-group">
                                                 <label class="form-control-label" style="margin-right: 10px;">Gender : </label>
-                                                <input id="male" type="radio" value="Male" name="gender" class="radio-template" required>
-                                                <label for="male" style="margin-right: 10px;">Male</label>
-                                                <input id="female" type="radio" value="Female" name="gender" class="radio-template">
-                                                <label for="female" style="margin-right: 10px;">Female</label>
+                                                <input id="maleClientEdit" type="radio" value="Male" name="genderClientEdit" class="radio-template" required>
+                                                <label for="maleClientEdit" style="margin-right: 10px;">Male</label>
+                                                <input id="femaleClientEdit" type="radio" value="Female" name="genderClientEdit" class="radio-template">
+                                                <label for="femaleClientEdit" style="margin-right: 10px;">Female</label>
                                               </div>
                                               <div class="form-group">
                                                 <div class="form-inline">
-                                                  <label class="mr-3 form-control-label" for="age">Age</label>
-                                                  <input type="number" style="width: 50%;"placeholder="Your age" min="1" required class="form-control" id="age">
+                                                  <label class="mr-3 form-control-label" for="ageClientEdit">Age</label>
+                                                  <input type="number" style="width: 50%;"placeholder="Your age" min="1" required class="form-control" id="ageClientEdit">
                                                 </div>
                                               </div>
                                             </div>
 
                                             <div class="col-lg-6">
                                               <div class="form-group">
-                                                <label class="form-control-label" for="email">Email</label>
-                                                <input type="email" placeholder="Your email address" id="email" class="form-control" required>
+                                                <label class="form-control-label" for="emailClientEdit">Email</label>
+                                                <input type="email" placeholder="Your email address" id="emailClientEdit" class="form-control" required>
                                               </div>
                                               <div class="form-group">
                                                 <div class = "form-inline">
-                                                        <label for = "country" class = "mr-3 form-control-label"> Country: </label>
-                                                        <select class="browser-default" id = "country" style="width: 75%;" required>
+                                                        <label for = "countryClientEdit" class = "mr-3 form-control-label"> Country: </label>
+                                                        <select class="browser-default" id = "countryClientEdit" style="width: 75%;" required>
                                                             <option value="" disabled selected>Choose your country</option>
                                                         </select>
                                                 </div>
                                                  <div class="form-inline" >
-                                                   <label for="city" class=" mr-3 form-control-label">City : </label>
-                                                    <input type="text" id="city" style="width: 80%;" class="form-control" required disabled/>
+                                                   <label for="cityClientEdit" class=" mr-3 form-control-label">City : </label>
+                                                    <input type="text" id="cityClientEdit" style="width: 80%;" class="form-control" required disabled/>
                                                 </div>
                                               </div>
                                               <div class="form-group">
-                                                <label class="form-control-label" for="address">Address</label><br>
-                                                <textarea name="address" id="address" rows="3" cols="40" style="resize: none;"></textarea>
+                                                <label class="form-control-label" for="addressClientEdit">Address</label><br>
+                                                <textarea name="address" id="addressClientEdit" rows="3" cols="40" style="resize: none;"></textarea>
                                               </div>
                                               <div class="form-group">
                                                 <div class="form-inline">
-                                                  <label class="form-control-label mr-3" for="zipcode">Zip Code : </label>
-                                                  <input type="text" placeholder="Your zip code" id="zipcode" class="form-control">
+                                                  <label class="form-control-label mr-3" for="zipcodeClientEdit">Zip Code : </label>
+                                                  <input type="text" placeholder="Your zip code" id="zipcodeClientEdit" class="form-control">
                                                 </div>
                                               </div>
                                               <div class="form-group">
-                                                    <select class="browser-default" id = "countryCode" required>
+                                                    <select class="browser-default" id = "countryCodeClientEdit" required>
                                                         <option value="" disabled selected>Country Code</option>
                                                     </select>
-                                                    <input type="text" id="phonenumber" placeholder="Your phone number" class="form-control" required />
+                                                    <input type="text" id="phonenumberClientEdit" placeholder="Your phone number" class="form-control" required />
                                               </div>
                                             </div>
                                           </div>
@@ -1462,20 +1520,47 @@
                                         <td></td>
                                         <td><i class="fa fa-chevron-circle-down fa-lg" aria-hidden="true" style="cursor: pointer;"></i></td>
                                         <td><img src="upload-product-img.png" height="100" width="100"/></td>
-                                        <td contenteditable='true'>Night Rider</td>
+                                        <td>Night Rider</td>
                                         <td>ahsbfvfkshdahsbd12454</td>
-                                        <td contenteditable='true'>Alfred</td>
-                                        <td contenteditable='true'>Argarin</td>
-                                        <td contenteditable='true'>Borja</td>
-                                        <td contenteditable='true'>Male</td>
-                                        <td contenteditable='true'>23</td>
-                                        <td contenteditable='true'>alfredoborja81194@gmail.com</td>
-                                        <td contenteditable='true'>Philippines (PH)</td>
-                                        <td contenteditable='true'>Parañaque</td>
-                                        <td contenteditable='true'>71 Ninoy Aquino Avenue</td>
-                                        <td contenteditable='true'>1700</td>
-                                        <td contenteditable='true'>+63</td>
-                                        <td contenteditable='true'>9996668084</td>
+                                        <td>Alfred</td>
+                                        <td>Argarin</td>
+                                        <td>Borja</td>
+                                        <td>Male</td>
+                                        <td>23</td>
+                                        <td>alfredoborja81194@gmail.com</td>
+                                        <td>Philippines</td>
+                                        <td>Parañaque</td>
+                                        <td>71 Ninoy Aquino Avenue</td>
+                                        <td>1700</td>
+                                        <td>63</td>
+                                        <td>9996668084</td>
+
+                                        <td>
+                                          <label class="switch">
+                                              <input type="checkbox" checked name="isActive" id="isActive">
+                                              <span class="slider round"></span>
+                                            </label>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td></td>
+                                        <td><i class="fa fa-chevron-circle-down fa-lg" aria-hidden="true" style="cursor: pointer;"></i></td>
+                                        <td><img src="upload-product-img.png" height="100" width="100"/></td>
+                                        <td>Night Rider 123</td>
+                                        <td>ahsbfvfkshdahsbd12454</td>
+                                        <td>Alfred</td>
+                                        <td>Argarin</td>
+                                        <td>Borja</td>
+                                        <td>Male</td>
+                                        <td>23</td>
+                                        <td>alfredoborja81194@gmail.com</td>
+                                        <td>Philippines</td>
+                                        <td>Parañaque</td>
+                                        <td>71 Ninoy Aquino Avenue</td>
+                                        <td>1700</td>
+                                        <td>63</td>
+                                        <td>9996668084</td>
 
                                         <td>
                                           <label class="switch">
@@ -1574,7 +1659,7 @@
                     </div>
 
 
-
+                    <!-- Edit Employee -->
                     <div class="modal fade" id="editEmployeeAccount" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog modal-lg" role="document">
                             <div class="modal-content">
@@ -1588,80 +1673,91 @@
                                   <div class="modal-body">
                                     <div class="row">
                                       <div class="col-lg-6">
-                                        <div class="form-group">
-                                          <label class="form-control-label" for="username">Username</label>
-                                          <input type="text" placeholder="Your username" id="username" class="form-control" required>
+                                        <div class="form-group text-center">
+                                            <img class = "mb-2 rounded" style = "border: 1px solid #DDDDDD; width: 100px" id='img-uploadEmployeeEdit' src = "profile-male.jpg" />
+
+                                          <p class="fileEmployeeAdd">
+                                            <input type="file" name="fileEmployeeEdit" id="fileEmployeeEdit" accept="image/x-png,image/jpeg" />
+                                            <label for="fileEmployeeEdit">Upload your image</label>
+                                          </p>
                                         </div>
                                         <div class="form-group">
-                                          <label class="form-control-label" for="firstname">Firstname</label>
-                                          <input type="text" placeholder="Your firstname" id="firstname" class="form-control" required>
+                                          <label class="form-control-label" for="usernameEmployeeEdit">Username</label>
+                                          <input type="text" placeholder="Your username" id="usernameEmployeeEdit" class="form-control" required>
                                         </div>
                                         <div class="form-group">
-                                          <label class="form-control-label" for="middlename">Middlename</label>
-                                          <input type="text" placeholder="Your middlename" class="form-control" id="middlename" required>
+                                          <label class="form-control-label" for="firstnameEmployeeEdit">Firstname</label>
+                                          <input type="text" placeholder="Your firstname" id="firstnameEmployeeEdit" class="form-control" required>
                                         </div>
                                         <div class="form-group">
-                                          <label class="form-control-label" for="lastname">Lastname</label>
-                                          <input type="text" placeholder="Your lastname" class="form-control" id="lastname" required>
+                                          <label class="form-control-label" for="middlenameEmployeeEdit">Middlename</label>
+                                          <input type="text" placeholder="Your middlename" class="form-control" id="middlenameEmployeeEdit" required>
+                                        </div>
+                                        <div class="form-group">
+                                          <label class="form-control-label" for="lastnameEmployeeEdit">Lastname</label>
+                                          <input type="text" placeholder="Your lastname" class="form-control" id="lastnameEmployeeEdit" required>
                                         </div>
                                         <div class="form-group">
                                           <div class="form-inline">
-                                            <label class="mr-3 form-control-label" for="position">Position</label>
-                                            <input type="text" placeholder="Your position" class="form-control" id="position" required>
+                                            <label class="mr-3 form-control-label" for="positionEmployeeEdit">Position</label>
+                                            <input type="text" placeholder="Your position" class="form-control" id="positionEmployeeEdit" required>
                                           </div>
                                         </div>
                                         <div class="form-group">
                                           <label class="form-control-label" style="margin-right: 10px;">Gender : </label>
-                                          <input id="male" type="radio" value="Male" name="gender" class="radio-template" required>
-                                          <label for="male" style="margin-right: 10px;">Male</label>
-                                          <input id="female" type="radio" value="Female" name="gender" class="radio-template">
-                                          <label for="female" style="margin-right: 10px;">Female</label>
+                                          <input id="maleEmployeeEdit" type="radio" value="Male" name="genderEmployeeEdit" class="radio-template" required>
+                                          <label for="maleEmployeeEdit" style="margin-right: 10px;">Male</label>
+                                          <input id="femaleEmployeeEdit" type="radio" value="Female" name="genderEmployeeEdit" class="radio-template">
+                                          <label for="femaleEmployeeEdit" style="margin-right: 10px;">Female</label>
                                         </div>
-                                        <div class="form-group">
-                                          <div class="form-inline">
-                                            <label class="mr-3 form-control-label" for="age">Age</label>
-                                            <input type="number" style="width: 50%;"placeholder="Your age" min="1" required class="form-control" id="age">
-                                          </div>
-                                        </div>
+
                                       </div>
 
                                       <div class="col-lg-6">
                                         <div class="form-group">
-                                            <label class="mr-3 form-control-label" for="role">Role</label>
-                                            <input type="text" placeholder="Your role" class="form-control" id="role" required>
+                                          <div class="form-inline">
+                                            <label class="mr-3 form-control-label" for="ageEmployeeEdit">Age</label>
+                                            <input type="number" style="width: 50%;"placeholder="Your age" min="1" required class="form-control" id="ageEmployeeEdit">
+                                          </div>
                                         </div>
                                         <div class="form-group">
-                                          <label class="form-control-label" for="email">Email</label>
-                                          <input type="email" placeholder="Your email address" id="email" class="form-control" required>
+                                            <label class="mr-3 form-control-label" for="roleEmployeeEdit">Role</label>
+                                            <input type="text" placeholder="Your role" class="form-control" id="roleEmployeeEdit" required>
+                                        </div>
+
+                                        <div class="form-group">
+                                          <label class="form-control-label" for="emailEmployeeEdit">Email</label>
+                                          <input type="email" placeholder="Your email address" id="emailEmployeeEdit" class="form-control" required>
                                         </div>
                                         <div class="form-group">
                                           <div class = "form-inline">
-                                                  <label for = "country" class = "mr-3 form-control-label"> Country: </label>
-                                                  <select class="browser-default" id = "country" style="width: 75%;" required>
+                                                  <label for = "countryEmployeeEdit" class = "mr-3 form-control-label"> Country: </label>
+                                                  <select class="browser-default" id = "countryEmployeeEdit" style="width: 75%;" required>
                                                       <option value="" disabled selected>Choose your country</option>
                                                   </select>
                                           </div>
                                            <div class="form-inline" >
-                                             <label for="city" class=" mr-3 form-control-label">City : </label>
-                                              <input type="text" id="city" style="width: 80%;" class="form-control" required disabled/>
+                                             <label for="cityEmployeeEdit" class=" mr-3 form-control-label">City : </label>
+                                              <input type="text" id="cityEmployeeEdit" style="width: 80%;" class="form-control" required disabled/>
                                           </div>
                                         </div>
                                         <div class="form-group">
-                                          <label class="form-control-label" for="address">Address</label><br>
-                                          <textarea name="address" id="address" rows="3" cols="40" style="resize: none;"></textarea>
+                                          <label class="form-control-label" for="addressEmployeeEdit">Address</label><br>
+                                          <textarea name="address" id="addressEmployeeEdit" rows="3" cols="40" style="resize: none;"></textarea>
                                         </div>
                                         <div class="form-group">
                                           <div class="form-inline">
-                                            <label class="form-control-label mr-3" for="zipcode">Zip Code : </label>
-                                            <input type="text" placeholder="Your zip code" id="zipcode" class="form-control">
+                                            <label class="form-control-label mr-3" for="zipcodeEmployeeEdit">Zip Code : </label>
+                                            <input type="text" placeholder="Your zip code" id="zipcodeEmployeeEdit" class="form-control">
                                           </div>
                                         </div>
                                         <div class="form-group">
-                                              <select class="browser-default" id = "countryCode" required>
+                                              <select class="browser-default" id = "countryCodeEmployeeEdit" required>
                                                   <option value="" disabled selected>Country Code</option>
                                               </select>
-                                              <input type="text" id="phonenumber" placeholder="Your phone number" class="form-control" required />
+                                              <input type="text" id="phonenumberEmployeeEdit" placeholder="Your phone number" class="form-control" required />
                                         </div>
+
                                       </div>
                                     </div>
                                   </div>
@@ -1674,8 +1770,129 @@
                             </div>
                         </div>
                     </div>
+                    <!-- Edit Employee -->
+
+                    <!-- Add Employee -->
+                    <div class="modal fade" id="addEmployeeAccount" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-lg" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Add New Employee</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <form>
+                                  <div class="modal-body">
+                                    <div class="row">
+                                      <div class="col-lg-6">
+                                        <div class="form-group text-center">
+                                            <img class = "mb-2 rounded" style = "border: 1px solid #DDDDDD; width: 100px" id='img-uploadEmployeeAdd' src = "profile-male.jpg" />
+
+                                          <p class="fileEmployeeAdd">
+                                            <input type="file" name="fileEmployeeAdd" id="fileEmployeeAdd" accept="image/x-png,image/jpeg" />
+                                            <label for="fileEmployeeAdd">Upload your image</label>
+                                          </p>
+                                        </div>
+                                        <div class="form-group">
+                                          <label class="form-control-label" for="usernameEmployeeAdd">Username</label>
+                                          <input type="text" placeholder="Your username" id="usernameEmployeeAdd" class="form-control" required>
+                                        </div>
+                                        <div class="form-group">
+                                          <label class="form-control-label" for="firstnameEmployeeAdd">Firstname</label>
+                                          <input type="text" placeholder="Your firstname" id="firstnameEmployeeAdd" class="form-control" required>
+                                        </div>
+                                        <div class="form-group">
+                                          <label class="form-control-label" for="middlenameEmployeeAdd">Middlename</label>
+                                          <input type="text" placeholder="Your middlename" class="form-control" id="middlenameEmployeeAdd" required>
+                                        </div>
+                                        <div class="form-group">
+                                          <label class="form-control-label" for="lastnameEmployeeAdd">Lastname</label>
+                                          <input type="text" placeholder="Your lastname" class="form-control" id="lastnameEmployeeAdd" required>
+                                        </div>
+                                        <div class="form-group">
+                                          <label class="form-control-label" for="passwordEmployeeAdd">Password</label>
+                                          <input type="password" placeholder="Your password" class="form-control" id="passwordEmployeeAdd" required>
+                                        </div>
+                                        <div class="form-group">
+                                          <label class="form-control-label" for="retypePasswordEmployeeAdd">Retype Password</label>
+                                          <input type="password" placeholder="Your retype password" class="form-control" id="retypePasswordEmployeeAdd" required>
+                                        </div>
 
 
+                                      </div>
+
+                                      <div class="col-lg-6">
+                                        <div class="form-group">
+                                          <div class="form-inline">
+                                            <label class="mr-3 form-control-label" for="positionEmployeeAdd">Position</label>
+                                            <input type="text" placeholder="Your position" class="form-control" id="positionEmployeeAdd" required>
+                                          </div>
+                                        </div>
+                                        <div class="form-group">
+                                          <label class="form-control-label" style="margin-right: 10px;">Gender : </label>
+                                          <input id="maleEmployeeAdd" type="radio" value="Male" name="genderEmployeeAdd" class="radio-template" required>
+                                          <label for="maleEmployeeAdd" style="margin-right: 10px;">Male</label>
+                                          <input id="femaleEmployeeAdd" type="radio" value="Female" name="genderEmployeeAdd" class="radio-template">
+                                          <label for="femaleEmployeeAdd" style="margin-right: 10px;">Female</label>
+                                        </div>
+                                        <div class="form-group">
+                                          <div class="form-inline">
+                                            <label class="mr-3 form-control-label" for="ageEmployeeAdd">Age</label>
+                                            <input type="number" style="width: 50%;"placeholder="Your age" min="1" required class="form-control" id="ageEmployeeAdd">
+                                          </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="mr-3 form-control-label" for="roleEmployeeAdd">Role</label>
+                                            <input type="text" placeholder="Your role" class="form-control" id="roleEmployeeAdd" required>
+                                        </div>
+                                        <div class="form-group">
+                                          <label class="form-control-label" for="emailEmployeeAdd">Email</label>
+                                          <input type="email" placeholder="Your email address" id="emailEmployeeAdd" class="form-control" required>
+                                        </div>
+                                        <div class="form-group">
+                                          <div class = "form-inline">
+                                                  <label for = "countryEmployeeAdd" class = "mr-3 form-control-label"> Country: </label>
+                                                  <select class="browser-default" id = "countryEmployeeAdd" style="width: 75%;" required>
+                                                      <option value="" disabled selected>Choose your country</option>
+                                                  </select>
+                                          </div>
+                                           <div class="form-inline" >
+                                             <label for="cityEmployeeAdd" class=" mr-3 form-control-label">City : </label>
+                                              <input type="text" id="cityEmployeeAdd" style="width: 80%;" class="form-control" required disabled/>
+                                          </div>
+                                        </div>
+                                        <div class="form-group">
+                                          <label class="form-control-label" for="addressEmployeeAdd">Address</label><br>
+                                          <textarea name="address" id="addressEmployeeAdd" rows="3" cols="40" style="resize: none;"></textarea>
+                                        </div>
+                                        <div class="form-group">
+                                          <div class="form-inline">
+                                            <label class="form-control-label mr-3" for="zipcodeEmployeeAdd">Zip Code : </label>
+                                            <input type="text" placeholder="Your zip code" id="zipcodeEmployeeAdd" class="form-control">
+                                          </div>
+                                        </div>
+                                        <div class="form-group">
+                                              <select class="browser-default" id = "countryCodeEmployeeAdd" required>
+                                                  <option value="" disabled selected>Country Code</option>
+                                              </select>
+                                              <input type="text" id="phonenumberEmployeeAdd" placeholder="Your phone number" class="form-control" required />
+                                        </div>
+
+
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div class="modal-footer">
+                                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                      <button type="button" class="btn btn-primary" id="btnSaveNewEmployee">Save changes</button>
+                                  </div>
+                                </form>
+
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Add Employee -->
 
                         <div class = "row">
                           <div class = "col-lg">
@@ -1683,6 +1900,7 @@
                               <div class="container" style="padding-top: 10px;">
                                 <button type="button" width="100" id="btnDeleteEmployee" class="btn bg-red float-right mr-1" title="Delete Selected Item"> <i class="fa fa-trash" aria-hidden="true"></i> </button>
                                 <button type="button" width="100" id="btnUpdateEmployee" class="btn bg-blue float-right mr-1" title="Update Selected Item" data-toggle="modal" data-target="#editEmployeeAccount"> <i class="fa fa-pencil-square-o" aria-hidden="true"></i> </button>
+                                <button type="button" width="100" id="btnAddEmployee" class="btn bg-green float-right mr-1" title="Add New Item" data-toggle="modal" data-target="#addEmployeeAccount"><i class="fa fa-user-plus" aria-hidden="true"></i> </button>
                               </div>
                               <div class = "card-body pt-3 pb-5 pl-0 pr-0" style = "overflow-x: auto;">
                                 <table id="employee-table" class="table table-striped table-sm" cellspacing="0" width="100%">
@@ -1739,22 +1957,22 @@
                                         <td></td>
                                         <td><i class="fa fa-chevron-circle-down fa-lg" aria-hidden="true" style="cursor: pointer;"></i></td>
                                         <td><img src="upload-product-img.png" height="100" width="100"/></td>
-                                        <td contenteditable='true'>Night Rider</td>
+                                        <td>Night Rider</td>
                                         <td>ahsbfvfkshdahsbd12454</td>
-                                        <td contenteditable='true'>Alfred</td>
-                                        <td contenteditable='true'>Argarin</td>
-                                        <td contenteditable='true'>Borja</td>
-                                        <td contenteditable='true'>CEO</td>
-                                        <td contenteditable='true'>Admin</td>
-                                        <td contenteditable='true'>Male</td>
-                                        <td contenteditable='true'>23</td>
-                                        <td contenteditable='true'>alfredoborja81194@gmail.com</td>
-                                        <td contenteditable='true'>Philippines</td>
-                                        <td contenteditable='true'>Parañaque</td>
-                                        <td contenteditable='true'>71 Ninoy Aquino Avenue</td>
-                                        <td contenteditable='true'>1700</td>
-                                        <td contenteditable='true'>+63</td>
-                                        <td contenteditable='true'>9996668084</td>
+                                        <td>Alfred</td>
+                                        <td>Argarin</td>
+                                        <td>Borja</td>
+                                        <td>CEO</td>
+                                        <td>Admin</td>
+                                        <td>Male</td>
+                                        <td>23</td>
+                                        <td>alfredoborja81194@gmail.com</td>
+                                        <td>Philippines</td>
+                                        <td>Parañaque</td>
+                                        <td>71 Ninoy Aquino Avenue</td>
+                                        <td>1700</td>
+                                        <td>63</td>
+                                        <td>9996668084</td>
 
                                         <td>
                                           <label class="switch">
@@ -2418,7 +2636,7 @@ $("#input-id").fileinput({'showUpload':false, 'previewFileType':'any'});
                 'orderable': false,
                 'className': 'dt-body-center',
                 'render': function (data, type, full, meta){
-                    return '<input id="checkboxCustom1" type="checkbox" value="" class="checkbox-template checkbox-delete">';
+                    return '<input id="checkboxCustom1" name="checkboxClient[]" type="checkbox" value="" class="checkbox-template checkbox-delete">';
                 }
           },
           {"orderable" : false},
@@ -2437,25 +2655,49 @@ $("#input-id").fileinput({'showUpload':false, 'previewFileType':'any'});
           null,
           null,
           null,
-          {"orderable" : false}
+          {"orderable" : false},
         ],
         "order" : []
       });
+
+
 
       $('#client-table tbody').on( 'click', 'tr', function () {
 
         if ( $(this).hasClass('selected') ) {
             $(this).removeClass('selected');
+            $(this).css("background-color", "#e7ffd6");
         }
         else {
             clienttable.$('tr.selected').removeClass('selected');
             $(this).addClass('selected');
-        }
+
+            var $rows = $("#client-table").children('tbody').children('tr');
+            $rows.css("background-color", "#e7ffd6");
+            $(this).css("background-color", "#81ecec");
+          }
       } );
 
       $('#btnDeleteClient').click( function () {
           clienttable.row('.selected').remove().draw( false );
       } );
+
+      $('#btnUpdateClient').click( function () {
+        var employeeData = clienttable.row('.selected').data();
+        $("#usernameClientEdit").val(employeeData[3]);
+        $("#firstnameClientEdit").val(employeeData[5]);
+        $("#middlenameClientEdit").val(employeeData[6]);
+        $("#lastnameClientEdit").val(employeeData[7]);
+        $("input[name='genderClientEdit'][value='"+employeeData[8]+"']").prop('checked', true);
+        $("#ageClientEdit").val(employeeData[9]);
+        $("#emailClientEdit").val(employeeData[10]);
+        $("#countryClientEdit").val(employeeData[11]).change();
+        $("#cityClientEdit").val(employeeData[12]);
+        $("#addressClientEdit").val(employeeData[13]);
+        $("#zipcodeClientEdit").val(employeeData[14]).change();
+        $("#countryCodeClientEdit").val(employeeData[15]);
+        $("#phonenumberClientEdit").val(employeeData[16]);
+      });
 
       /*IS ACTIVE TOGGLE*/
       var $boxes = $('input[name=isActive]');
@@ -2505,8 +2747,8 @@ $("#input-id").fileinput({'showUpload':false, 'previewFileType':'any'});
                               .prop("checked", $(this).prop("checked"));
       });
 
-      /*Country*/
-      $("#countryCode").ready(function () {
+      /*Country Edit Client*/
+      $("#countryCodeClientEdit").ready(function () {
           $.ajax({
               url : "https://restcountries.eu/rest/v2/all",
               dataType : "json",
@@ -2518,7 +2760,7 @@ $("#input-id").fileinput({'showUpload':false, 'previewFileType':'any'});
                       var countryCode = restCountriesData[i].callingCodes[0];
 
                       if (countryCode.length > 0)
-                          $("#countryCode").append('<option value = "' + countryCode + '">+' + countryCode + ' (' + countryLetterCode + ') </option');
+                          $("#countryCodeClientEdit").append('<option value = "' + countryCode + '">+' + countryCode + ' (' + countryLetterCode + ') </option');
 
                   }
 
@@ -2527,7 +2769,7 @@ $("#input-id").fileinput({'showUpload':false, 'previewFileType':'any'});
           });
       });
 
-      $('#country').ready(function () {
+      $('#countryClientEdit').ready(function () {
 
          $.ajax(
              {
@@ -2540,7 +2782,7 @@ $("#input-id").fileinput({'showUpload':false, 'previewFileType':'any'});
                           if (responseData[i].alpha2Code.length > 0) {
                               var country = responseData[i].name;
                               var countryCode = responseData[i].alpha2Code;
-                              $('#country').append('<option value = "'+ country + '">' + country + ' (' + countryCode + ')</option>');
+                              $('#countryClientEdit').append('<option value = "'+ country + '">' + country + ' (' + countryCode + ')</option>');
                           }
 
                      }
@@ -2552,9 +2794,9 @@ $("#input-id").fileinput({'showUpload':false, 'previewFileType':'any'});
          );
       });
 
-      $('#country').change(function () {
+      $('#countryClientEdit').change(function () {
 
-          var $cityTextBox = $('#city');
+          var $cityTextBox = $('#cityClientEdit');
 
           var country = $(this).val();
 
@@ -2563,9 +2805,74 @@ $("#input-id").fileinput({'showUpload':false, 'previewFileType':'any'});
               $cityTextBox.removeAttr("disabled");
 
       });
-      /*Country*/
+      /*Country Edit Client*/
+
+      /*CLIENT FILTER*/
+
+      $.fn.dataTable.ext.search.push(
+          function( settings, data, dataIndex ) {
+              var min = parseInt( $('#minAgeClient').val(), 10 );
+              var max = parseInt( $('#maxAgeClient').val(), 10 );
+              var age = parseFloat( data[9] ) || 0; // use data for the age column
+
+              if ( ( isNaN( min ) && isNaN( max ) ) ||
+                   ( isNaN( min ) && age <= max ) ||
+                   ( min <= age   && isNaN( max ) ) ||
+                   ( min <= age   && age <= max ) )
+              {
+                  return true;
+              }
+              return false;
+          }
+      );
+
+      // Event listener to the two range filtering inputs to redraw on input
+      $('#minAgeClient, #maxAgeClient').keyup( function() {
+          clienttable.draw();
+      } );
+
+      $('#countryClient').ready(function () {
+
+         $.ajax(
+             {
+                 url : "https://restcountries.eu/rest/v2/all",
+                 dataType : "json",
+                 success : function (responseData) {
+
+                     for (var i = 0; i != responseData.length; ++i) {
+
+                          if (responseData[i].alpha2Code.length > 0) {
+                              var country = responseData[i].name;
+                              var countryCode = responseData[i].alpha2Code;
+                              $('#countryClient').append('<option value = "'+ country + '">' + country + ' (' + countryCode + ')</option>');
+                          }
+
+                     }
+
+                 }
+             }
+         );
+      });
+
+      /*CLIENT FILTER*/
 
       /*CLIENT TABLE*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
       /*EMPLOYEE TABLE*/
       var employeetable = $('#employee-table').DataTable({
@@ -2597,25 +2904,52 @@ $("#input-id").fileinput({'showUpload':false, 'previewFileType':'any'});
           null,
           null,
           null,
-          {"orderable" : false}
+          {"orderable" : false},
         ],
         "order" : []
       });
 
       $('#employee-table tbody').on( 'click', 'tr', function () {
 
+
         if ( $(this).hasClass('selected') ) {
             $(this).removeClass('selected');
+            $(this).css("background-color", "#e7ffd6");
         }
         else {
             employeetable.$('tr.selected').removeClass('selected');
             $(this).addClass('selected');
-        }
+
+            var $rows = $("#employee-table").children('tbody').children('tr');
+            $rows.css("background-color", "#e7ffd6");
+            $(this).css("background-color", "#81ecec");
+          }
       } );
 
       $('#btnDeleteEmployee').click( function () {
           employeetable.row('.selected').remove().draw( false );
       } );
+
+      $('#btnUpdateEmployee').click( function () {
+        var employeeData = employeetable.row('.selected').data();
+        $("#usernameEmployeeEdit").val(employeeData[3]);
+        $("#firstnameEmployeeEdit").val(employeeData[5]);
+        $("#middlenameEmployeeEdit").val(employeeData[6]);
+        $("#lastnameEmployeeEdit").val(employeeData[7]);
+        $("#positionEmployeeEdit").val(employeeData[8]);
+        $("#roleEmployeeEdit").val(employeeData[9]);
+        $("input[name='genderEmployeeEdit'][value='"+employeeData[10]+"']").prop('checked', true);
+        $("#ageEmployeeEdit").val(employeeData[11]);
+        $("#emailEmployeeEdit").val(employeeData[12]);
+        $("#countryEmployeeEdit").val(employeeData[13]).change();
+        $("#cityEmployeeEdit").val(employeeData[14]);
+        $("#addressEmployeeEdit").val(employeeData[15]);
+        $("#zipcodeEmployeeEdit").val(employeeData[16]).change();
+        $("#countryCodeEmployeeEdit").val(employeeData[17]);
+        $("#phonenumberEmployeeEdit").val(employeeData[18]);
+        $("#img-uploadEmployeeEdit").attr("src", $(employeeData[2]).attr("src"));
+
+      });
 
       /*IS ACTIVE TOGGLE*/
       var $boxes = $('input[name=isActive]');
@@ -2665,53 +2999,9 @@ $("#input-id").fileinput({'showUpload':false, 'previewFileType':'any'});
                               .prop("checked", $(this).prop("checked"));
       });
 
-      //Filter
-      $.fn.dataTable.ext.search.push(
-          function( settings, data, dataIndex ) {
-              var min = parseInt( $('#minAgeClient').val(), 10 );
-              var max = parseInt( $('#maxAgeClient').val(), 10 );
-              var age = parseFloat( data[9] ) || 0; // use data for the age column
 
-              if ( ( isNaN( min ) && isNaN( max ) ) ||
-                   ( isNaN( min ) && age <= max ) ||
-                   ( min <= age   && isNaN( max ) ) ||
-                   ( min <= age   && age <= max ) )
-              {
-                  return true;
-              }
-              return false;
-          }
-      );
 
-      // Event listener to the two range filtering inputs to redraw on input
-      $('#minAgeClient, #maxAgeClient').keyup( function() {
-          clienttable.draw();
-      } );
-
-      $('#countryClient').ready(function () {
-
-         $.ajax(
-             {
-                 url : "https://restcountries.eu/rest/v2/all",
-                 dataType : "json",
-                 success : function (responseData) {
-
-                     for (var i = 0; i != responseData.length; ++i) {
-
-                          if (responseData[i].alpha2Code.length > 0) {
-                              var country = responseData[i].name;
-                              var countryCode = responseData[i].alpha2Code;
-                              $('#countryClient').append('<option value = "'+ country + '">' + country + ' (' + countryCode + ')</option>');
-                          }
-
-                     }
-
-                 }
-             }
-         );
-      });
-
-      //Filter
+      //Filter EMPLOYEE
       $.fn.dataTable.ext.search.push(
           function( settings, data, dataIndex ) {
               var min = parseInt( $('#minAgeEmployee').val(), 10 );
@@ -2755,7 +3045,185 @@ $("#input-id").fileinput({'showUpload':false, 'previewFileType':'any'});
              }
          );
       });
-      //Filter
+      //Filter EMPLOYEE
+
+
+      /*Country Edit Employee*/
+      $("#countryCodeEmployeeEdit").ready(function () {
+          $.ajax({
+              url : "https://restcountries.eu/rest/v2/all",
+              dataType : "json",
+              success : function (restCountriesData) {
+
+
+                  for (var i = 0; i != restCountriesData.length; ++i) {
+                      var countryLetterCode = restCountriesData[i].alpha2Code;
+                      var countryCode = restCountriesData[i].callingCodes[0];
+
+                      if (countryCode.length > 0)
+                          $("#countryCodeEmployeeEdit").append('<option value = "' + countryCode + '">+' + countryCode + ' (' + countryLetterCode + ') </option');
+
+                  }
+
+
+              }
+          });
+      });
+
+      $('#countryEmployeeEdit').ready(function () {
+
+         $.ajax(
+             {
+                 url : "https://restcountries.eu/rest/v2/all",
+                 dataType : "json",
+                 success : function (responseData) {
+
+                     for (var i = 0; i != responseData.length; ++i) {
+
+                          if (responseData[i].alpha2Code.length > 0) {
+                              var country = responseData[i].name;
+                              var countryCode = responseData[i].alpha2Code;
+                              $('#countryEmployeeEdit').append('<option value = "'+ country + '">' + country + ' (' + countryCode + ')</option>');
+                          }
+
+                     }
+
+
+
+                 }
+             }
+         );
+      });
+
+      $('#countryEmployeeEdit').change(function () {
+
+          var $cityTextBox = $('#cityEmployeeEdit');
+
+          var country = $(this).val();
+
+
+          if ($cityTextBox.is(":disabled"))
+              $cityTextBox.removeAttr("disabled");
+
+      });
+      /*Country Edit Employee*/
+
+
+
+
+
+      /*Country Add Employee*/
+      $("#countryCodeEmployeeAdd").ready(function () {
+          $.ajax({
+              url : "https://restcountries.eu/rest/v2/all",
+              dataType : "json",
+              success : function (restCountriesData) {
+
+
+                  for (var i = 0; i != restCountriesData.length; ++i) {
+                      var countryLetterCode = restCountriesData[i].alpha2Code;
+                      var countryCode = restCountriesData[i].callingCodes[0];
+
+                      if (countryCode.length > 0)
+                          $("#countryCodeEmployeeAdd").append('<option value = "' + countryCode + '">+' + countryCode + ' (' + countryLetterCode + ') </option');
+
+                  }
+
+
+              }
+          });
+      });
+
+      $('#countryEmployeeAdd').ready(function () {
+
+         $.ajax(
+             {
+                 url : "https://restcountries.eu/rest/v2/all",
+                 dataType : "json",
+                 success : function (responseData) {
+
+                     for (var i = 0; i != responseData.length; ++i) {
+
+                          if (responseData[i].alpha2Code.length > 0) {
+                              var country = responseData[i].name;
+                              var countryCode = responseData[i].alpha2Code;
+                              $('#countryEmployeeAdd').append('<option value = "'+ country + '">' + country + ' (' + countryCode + ')</option>');
+                          }
+
+                     }
+
+
+
+                 }
+             }
+         );
+      });
+
+      $('#countryEmployeeAdd').change(function () {
+
+          var $cityTextBox = $('#cityEmployeeAdd');
+
+          var country = $(this).val();
+
+
+          if ($cityTextBox.is(":disabled"))
+              $cityTextBox.removeAttr("disabled");
+
+      });
+
+
+      /*Country Add Employee*/
+
+      /*Profile Picture Add New Employee*/
+
+      $('input[type=radio][name=genderEmployeeAdd]').change(function(){
+        var gender = $('input[type=radio][name=genderEmployeeAdd]:checked').val();
+        if(gender == "Male"){
+          if($("#fileEmployeeAdd").get(0).files.length == 0)
+            $("#img-upload").attr("src", "profile-male.jpg");
+        }
+
+        if(gender == "Female"){
+          if($("#fileEmployeeAdd").get(0).files.length == 0)
+            $("#img-uploadEmployeeAdd").attr("src", "profile-female.jpg");
+        }
+      });
+
+      function filePreviewAdd(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                $("#img-uploadEmployeeAdd").attr("src", e.target.result);
+            }
+            reader.readAsDataURL(input.files[0]);
+        }
+      }
+
+      $("#fileEmployeeAdd").change(function () {
+          filePreviewAdd(this);
+      });
+
+
+      /*Profile Picture Add New Employee*/
+
+      /*Profile Picture Edit Employee*/
+
+      function filePreviewEdit(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                $("#img-uploadEmployeeEdit").attr("src", e.target.result);
+            }
+            reader.readAsDataURL(input.files[0]);
+        }
+      }
+
+      $("#fileEmployeeEdit").change(function () {
+          filePreviewEdit(this);
+      });
+
+
+      /*Profile Picture Edit Employee*/
       /*EMPLOYEE TABLE*/
     </script>
   </body>
