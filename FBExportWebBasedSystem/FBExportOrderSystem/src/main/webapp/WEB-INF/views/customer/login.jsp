@@ -14,7 +14,7 @@
                             </div>
                             <div class = "col-md-4">
                                 <div class="md-form form-sm">
-                                    <input type="text" name = "ssoId" id="username-email" class="form-control" data-toggle="tooltip" data-placement="right" title="Enter your username or email" required>
+                                    <input type="text" name = "username" id="username-email" class="form-control" data-toggle="tooltip" data-placement="right" title="Enter your username or email" required>
                                     <label for="username-email">Username or email</label>
                                 </div>
                             </div>

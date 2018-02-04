@@ -61,7 +61,7 @@
 	
 	</definition>
 	
-	<definition name = "login" 
+	<definition name = "admin-login" 
 				extends = "adminBaseTemplate" 
 				template = "/WEB-INF/views/admin/login.jsp" />	
 				
