@@ -14,6 +14,8 @@ import javax.persistence.TemporalType;
 
 import org.javamoney.moneta.Money;
 
+import com.fb.exportorder.models.enums.ProductStatus;
+
 @Entity
 public class Product {
 	

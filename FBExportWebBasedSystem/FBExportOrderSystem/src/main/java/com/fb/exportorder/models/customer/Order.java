@@ -4,11 +4,14 @@ import java.util.Date;
 
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
+import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -16,9 +19,12 @@ import org.javamoney.moneta.Money;
 
 import com.fb.exportorder.models.Shipping;
 import com.fb.exportorder.models.ShippingAddress;
+import com.fb.exportorder.models.enums.OrderStatus;
+import com.fb.exportorder.models.enums.PaymentMethod;
 
-@Entity
-public class Order {
+@Entity(name = "`Order`")
+@Table(name = "`Order`")
+public class Order	 {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
@@ -30,7 +36,13 @@ public class Order {
 	@OneToOne
 	Cart cart;
 	
-	@Embedded
+	@Enumerated(EnumType.STRING)
+	PaymentMethod paymentMethod;
+	
+	@Enumerated(EnumType.STRING)
+	OrderStatus orderStatus;
+	
+	@OneToOne
 	ShippingAddress shippingAddress;
 	
 	@OneToOne
@@ -47,7 +59,7 @@ public class Order {
 	public Long getOrderId() {
 		return orderId;
 	}
-
+	
 	public void setOrderId(Long orderId) {
 		this.orderId = orderId;
 	}

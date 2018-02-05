@@ -1,11 +1,8 @@
 package com.fb.exportorder.models.customer;
 
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 import javax.persistence.CascadeType;
-import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
@@ -16,15 +13,18 @@ import com.fb.exportorder.models.ShippingAddress;
 @Entity
 public class Customer extends Account {
 	
-	@OneToMany(cascade=CascadeType.ALL)
+	@OneToMany(cascade=CascadeType.ALL, mappedBy="customer")
 	private List<Order> orders;
 	
 	@OneToOne
 	private Cart cart;
 	
-	@ElementCollection
-	List <ShippingAddress> shippingAddress;
+	@OneToMany(cascade=CascadeType.ALL)
+	List <ShippingAddress> shippingAddresses;
 
+	@OneToMany(cascade=CascadeType.ALL)
+	List <Activity> activities;
+	
 	public List<Order> getOrders() {
 		return orders;
 	}
@@ -42,11 +42,11 @@ public class Customer extends Account {
 	}
 
 	public List<ShippingAddress> getShippingAddress() {
-		return shippingAddress;
+		return shippingAddresses;
 	}
 
-	public void setShippingAddress(List<ShippingAddress> shippingAddress) {
-		this.shippingAddress = shippingAddress;
+	public void setShippingAddress(List<ShippingAddress> shippingAddresses) {
+		this.shippingAddresses = shippingAddresses;
 	}
 	
 }

@@ -17,6 +17,8 @@ import javax.persistence.MappedSuperclass;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fb.exportorder.models.enums.Gender;
+
 @Entity
 @Inheritance(
 		strategy=InheritanceType.TABLE_PER_CLASS
@@ -141,6 +143,23 @@ public abstract class Account {
 	public void setAge(int age) {
 		this.age = age;
 	}
+
+	public Address getAddress() {
+		return address;
+	}
+
+	public void setAddress(Address address) {
+		this.address = address;
+	}
+
+	public Contact getContact() {
+		return contact;
+	}
+
+	public void setContact(Contact contact) {
+		this.contact = contact;
+	}
+	
 	
 	
 	
