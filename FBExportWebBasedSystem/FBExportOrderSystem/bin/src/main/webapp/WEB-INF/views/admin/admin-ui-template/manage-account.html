@@ -1,0 +1,3230 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Fong Bros Dashboard</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="all,follow">
+
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css">
+    <!-- Bootstrap CSS-->
+    <link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css">
+    <!-- Font Awesome CSS-->
+    <link rel="stylesheet" href="vendor/font-awesome/css/font-awesome.min.css">
+    <!-- Fontastic Custom icon font-->
+    <link rel="stylesheet" href="css/fontastic.css">
+    <!-- Google fonts - Poppins -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,700">
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+    <!-- theme stylesheet-->
+    <link rel="stylesheet" href="css/style.default.css" id="theme-stylesheet">
+    <!-- Custom stylesheet - for your changes-->
+    <link rel="stylesheet" href="css/dashboard.css">
+
+    <!-- Favicon-->
+    <link rel="shortcut icon" href="img/favicon.ico">
+
+    <link rel="stylesheet" href = "css/pace-themes/pace-theme-minimal.css" />
+
+
+    <link rel="stylesheet" href = "css/inventory.css" />
+
+    <link href="css/fileinput.min.css" media="all" rel="stylesheet" type="text/css" />
+
+    <!-- Tweaks for older IEs--><!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+
+    <style>
+      .kv-file-upload{ color:#fff !important; visibility: hidden !important;
+      }
+
+      /*Toggle Button IsActive*/
+      /* The switch - the box around the slider */
+      .switch {
+        position: relative;
+        display: inline-block;
+        width: 60px;
+        height: 34px;
+      }
+
+      /* Hide default HTML checkbox */
+      .switch input {display:none;}
+
+      /* The slider */
+      .slider {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #ccc;
+        -webkit-transition: .4s;
+        transition: .4s;
+      }
+
+      .slider:before {
+        position: absolute;
+        content: "";
+        height: 26px;
+        width: 26px;
+        left: 4px;
+        bottom: 4px;
+        background-color: white;
+        -webkit-transition: .4s;
+        transition: .4s;
+      }
+
+      input:checked + .slider {
+        background-color: #2196F3;
+      }
+
+      input:focus + .slider {
+        box-shadow: 0 0 1px #2196F3;
+      }
+
+      input:checked + .slider:before {
+        -webkit-transform: translateX(26px);
+        -ms-transform: translateX(26px);
+        transform: translateX(26px);
+      }
+
+      /* Rounded sliders */
+      .slider.round {
+        border-radius: 34px;
+      }
+
+      .slider.round:before {
+        border-radius: 50%;
+      }
+      /*Toggle Button IsActive*/
+
+      /*Profile picture upload Employee Add*/
+
+      .fileEmployeeAdd {
+        position: relative;
+      }
+      .fileEmployeeAdd label {
+        background-color: #3498db;
+        padding: 5px 20px;
+        color: #fff;
+        font-weight: bold;
+        font-size: .9em;
+        transition: all .4s;
+      }
+      .fileEmployeeAdd input {
+
+        position: absolute;
+        display: inline-block;
+        left: 0;
+        top: 0;
+        opacity: 0.01;
+        cursor: pointer;
+      }
+      .fileEmployeeAdd input:hover + label,
+      .fileEmployeeAdd input:focus + label {
+        background: #34495E;
+        color: #3498db;
+      }
+      /*Profile picture upload Employee Add*/
+
+      /*Profile picture upload Employee Edit*/
+
+      .fileEmployeeEdit {
+        position: relative;
+      }
+      .fileEmployeeEdit label {
+        background-color: #3498db;
+        padding: 5px 20px;
+        color: #fff;
+        font-weight: bold;
+        font-size: .9em;
+        transition: all .4s;
+      }
+      .fileEmployeeEdit input {
+
+        position: absolute;
+        display: inline-block;
+        left: 0;
+        top: 0;
+        opacity: 0.01;
+        cursor: pointer;
+      }
+      .fileEmployeeEdit input:hover + label,
+      .fileEmployeeEdit input:focus + label {
+        background: #34495E;
+        color: #3498db;
+      }
+      /*Profile picture upload Employee Edit*/
+
+    </style>
+
+  </head>
+  <body>
+    <div class="page">
+      <!-- Main Navbar-->
+      <header class="header">
+        <nav class="navbar bg-white" style = "color: black;">
+          <!-- Search Box-->
+          <div class="search-box">
+            <button class="dismiss"><i class="icon-close"></i></button>
+            <form id="searchForm" action="#" role="search">
+              <input type="search" placeholder="What are you looking for..." class="form-control">
+            </form>
+          </div>
+          <div class="container-fluid pl-3 pr-3">
+            <div class="navbar-holder d-flex align-items-center justify-content-between">
+              <!-- Navbar Header-->
+              <div class="navbar-header">
+
+                <!-- Navbar Brand -->
+                <a href="index.html" class="navbar-brand">
+                  <div class="brand-text brand-big">
+                    <img class="pb-1 mr-1" src = "https://dt-cdn.net/assets/images/gfx/icons/tech/trello-586abec645.svg" width = "30" height = "30" />
+                    <span>  Fong Bros International Corporation </span>
+                  </div>
+                  <div class="brand-text brand-small">
+                    <strong>FB</strong>
+                  </div>
+                </a>
+
+                <!-- Toggle Button-->
+                  <a id="toggle-btn" href="#" class="menu-btn active small">
+                    <span></span><span></span><span></span></a>
+              </div>
+              <!-- Navbar Menu -->
+              <ul class="nav-menu list-unstyled d-flex flex-md-row align-items-md-center" style = "color: #0395F7;">
+
+                <li class="nav-item d-flex align-items-center mr-3" style = "color: black;">
+                  <span class = "mr-1"> Sunday, </span>
+                  <span class = "mr-1"> December 29 1998, </span>
+                  <span> 2:30 PM </span>
+                </li>
+
+                <!-- Search-->
+                <li class="nav-item d-flex align-items-center"><a id="search" href="#"><i class="icon-search"></i></a></li>
+                <!-- Notifications-->
+                <li class="nav-item dropdown"> <a id="notifications" rel="nofollow" data-target="#" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link"><i class="fa fa-bell-o"></i><span class="badge bg-red">12</span></a>
+                  <ul aria-labelledby="notifications" class="dropdown-menu">
+                    <li><a rel="nofollow" href="#" class="dropdown-item">
+                        <div class="notification">
+                          <div class="notification-content"><i class="fa fa-envelope bg-green"></i>You have 6 new messages </div>
+                          <div class="notification-time"><small>4 minutes ago</small></div>
+                        </div></a></li>
+                    <li><a rel="nofollow" href="#" class="dropdown-item">
+                        <div class="notification">
+                          <div class="notification-content"><i class="fa fa-twitter bg-blue"></i>You have 2 followers</div>
+                          <div class="notification-time"><small>4 minutes ago</small></div>
+                        </div></a></li>
+                    <li><a rel="nofollow" href="#" class="dropdown-item">
+                        <div class="notification">
+                          <div class="notification-content"><i class="fa fa-upload bg-orange"></i>Server Rebooted</div>
+                          <div class="notification-time"><small>4 minutes ago</small></div>
+                        </div></a></li>
+                    <li><a rel="nofollow" href="#" class="dropdown-item">
+                        <div class="notification">
+                          <div class="notification-content"><i class="fa fa-twitter bg-blue"></i>You have 2 followers</div>
+                          <div class="notification-time"><small>10 minutes ago</small></div>
+                        </div></a></li>
+                    <li><a rel="nofollow" href="#" class="dropdown-item all-notifications text-center"> <strong>view all notifications                                            </strong></a></li>
+                  </ul>
+                </li>
+                <!-- Messages                        -->
+                <li class="nav-item dropdown"> <a id="messages" rel="nofollow" data-target="#" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link"><i class="fa fa-envelope-o"></i><span class="badge bg-orange">10</span></a>
+                  <ul aria-labelledby="notifications" class="dropdown-menu">
+                    <li><a rel="nofollow" href="#" class="dropdown-item d-flex">
+                        <div class="msg-profile"> <img src="img/avatar-1.jpg" alt="..." class="img-fluid rounded-circle"></div>
+                        <div class="msg-body">
+                          <h3 class="h5">Jason Doe</h3><span>Sent You Message</span>
+                        </div></a></li>
+                    <li><a rel="nofollow" href="#" class="dropdown-item d-flex">
+                        <div class="msg-profile"> <img src="img/avatar-2.jpg" alt="..." class="img-fluid rounded-circle"></div>
+                        <div class="msg-body">
+                          <h3 class="h5">Frank Williams</h3><span>Sent You Message</span>
+                        </div></a></li>
+                    <li><a rel="nofollow" href="#" class="dropdown-item d-flex">
+                        <div class="msg-profile"> <img src="img/avatar-3.jpg" alt="..." class="img-fluid rounded-circle"></div>
+                        <div class="msg-body">
+                          <h3 class="h5">Ashley Wood</h3><span>Sent You Message</span>
+                        </div></a></li>
+                    <li><a rel="nofollow" href="#" class="dropdown-item all-notifications text-center"> <strong>Read all messages    </strong></a></li>
+                  </ul>
+                </li>
+                <!-- Logout    -->
+                <li class="nav-item">
+                  <a href="login.html" class="nav-link logout" style = "color:black;">
+                    Logout
+                    <i class="fa fa-sign-out"></i>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+      </header>
+      <div class="page-content d-flex align-items-stretch">
+        <!-- Side Navbar -->
+        <nav class="side-navbar">
+          <!-- Sidebar Header-->
+          <div class="sidebar-header d-flex align-items-center">
+            <div class="avatar"><img src="img/avatar-1.jpg" alt="..." class="img-fluid rounded-circle"></div>
+            <div class="title">
+              <h1 class="h4">Kryssel tillada</h1>
+              <p>System Admin</p>
+            </div>
+          </div>
+          <!-- Sidebar Navidation Menus-->
+          <span class="heading text-muted">
+             <span class = "mr-2"> Main menu </span>
+             <i class="fa fa-bars" aria-hidden="true"></i>
+          </span>
+          <ul class="list-unstyled">
+                    <li><a href="index.html"> <i class="icon-presentation"></i>Dashboard </a></li>
+                    <li><a href="index.html"> <i class="icon-padnote"></i>Inventory </a></li>
+                    <li><a href="index.html"> <i class="fa fa-list-alt" aria-hidden="true"></i> Orders </a></li>
+                    <li class="active"><a href="index.html"> <i class="fa fa-list-alt" aria-hidden="true"></i> Manage Accounts </a></li>
+                    <li><a href="index.html"> <i class="fa fa-cog" aria-hidden="true"></i> System Settings </a></li>
+                    <!-- <li><a href="tables.html"> <i class="icon-grid"></i>Tables </a></li>
+                    <li><a href="charts.html"> <i class="fa fa-bar-chart"></i>Charts </a></li>
+                    <li><a href="forms.html"> <i class="icon-padnote"></i>Forms </a></li>
+                    <li><a href="#exampledropdownDropdown" aria-expanded="false" data-toggle="collapse"> <i class="icon-interface-windows"></i>Example dropdown </a>
+                      <ul id="exampledropdownDropdown" class="collapse list-unstyled ">
+                        <li><a href="#">Page</a></li>
+                        <li><a href="#">Page</a></li>
+                        <li><a href="#">Page</a></li>
+                      </ul>
+                    </li>
+                    <li><a href="login.html"> <i class="icon-interface-windows"></i>Login page </a></li> -->
+          </ul>
+
+          <!-- <span class="heading">Extras</span>
+          <ul class="list-unstyled">
+            <li> <a href="#"> <i class="icon-flask"></i>Demo </a></li>
+            <li> <a href="#"> <i class="icon-screen"></i>Demo </a></li>
+            <li> <a href="#"> <i class="icon-mail"></i>Demo </a></li>
+            <li> <a href="#"> <i class="icon-picture"></i>Demo </a></li>
+          </ul> -->
+
+        </nav>
+        <div class="content-inner">
+
+
+          <!-- dashboard page  <section class="dashboard-counts no-padding-bottom pt-0">
+            <div class="container-fluid">
+
+              <div class = "row pl-0 pb-2 pt-3">
+                <div class = "col-lg-2 pl-0">
+                  <div class = "card mb-0">
+                    <div class = "card-header p-2">
+                      <h3 class = "text-center m-1">
+                        <span class = "mr-1"> Orders </span>
+                        <i class="fa fa-list-alt" aria-hidden="true"></i>
+                      </h3>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+
+              <div class="row bg-white has-shadow p-0" style = "font-size: 14px;">
+
+                <div class="col-xl-3 col-sm-4">
+                  <div class="item d-flex align-items-center">
+
+                      <div class="icon bg-orange"><i class="fa fa-tasks" aria-hidden="true"></i></div>
+                      <div class="title"><span>Pending<br>Orders</span>
+                      </div>
+                      <div class="number"><strong>25</strong></div>
+
+                  </div>
+                </div>
+
+                <div class="col-xl-3 col-sm-4">
+                  <div class="item d-flex align-items-center">
+                    <div class="icon bg-green"><i class="fa fa-check" aria-hidden="true"></i></div>
+                    <div class="title"><span>Approved<br>Orders</span>
+                    </div>
+                    <div class="number"><strong>70</strong></div>
+                  </div>
+                </div>
+
+                <div class="col-xl-3 col-sm-4">
+                  <div class="item d-flex align-items-center">
+                    <div class="icon bg-yellow"><i class="fa fa-usd" aria-hidden="true"></i></div>
+                    <div class="title"><span>Paid<br>Orders</span>
+                    </div>
+                    <div class="number"><strong>40</strong></div>
+                  </div>
+                </div>
+
+                 <div class="col-xl-3 col-sm-6">
+                  <div class="item d-flex align-items-center">
+                    <div class="icon bg-red"><i class="fa fa-times" aria-hidden="true"></i></div>
+                    <div class="title"><span>Disapproved<br>Orders</span>
+                    </div>
+                    <div class="number"><strong>50</strong></div>
+                  </div>
+                </div>
+
+              </div>
+
+            </div>
+          </section>
+
+          <section class="dashboard-header pt-2 no-padding-bottom">
+            <div class="container-fluid">
+
+              <div class="row">
+
+                <div class="chart col-lg-8 col-12">
+                  <div class="line-chart bg-white d-flex align-items-center justify-content-center has-shadow no-padding-top">
+                    <canvas id="lineCahrt" width="592" height = "350" class="chartjs-render-monitor"></canvas>
+                  </div>
+                </div>
+
+                <div class = "col-lg-4 pl-0">
+
+                  <div class = "row">
+                    <div class = "col-lg">
+                      <div class="daily-feeds card">
+
+                        <div class="card-header">
+                          <h3 class="h4">Latest orders
+                            <i class="fa fa-list-ul ml-2" aria-hidden="true"></i>
+
+                          </h3>
+                        </div>
+                        <div class="card-body no-padding" style = "max-height: 305px; overflow-y: auto;">
+
+                          <div class="item">
+                            <div class="feed d-flex justify-content-between">
+                              <div class="feed-body d-flex justify-content-between"><a href="#" class="feed-profile"><img src="img/avatar-5.jpg" alt="person" class="img-fluid rounded-circle"></a>
+                                <div class="content">
+                                  <h5>Aria Smith</h5><span>Posted a new blog </span>
+                                  <div class="full-date"><small>Today 5:60 pm - 12.06.2014</small></div>
+                                </div>
+                              </div>
+                              <div class="date text-right"><small>5min ago</small></div>
+                            </div>
+                          </div>
+
+                            <div class="item">
+                            <div class="feed d-flex justify-content-between">
+                              <div class="feed-body d-flex justify-content-between"><a href="#" class="feed-profile"><img src="img/avatar-5.jpg" alt="person" class="img-fluid rounded-circle"></a>
+                                <div class="content">
+                                  <h5>Aria Smith</h5><span>Posted a new blog </span>
+                                  <div class="full-date"><small>Today 5:60 pm - 12.06.2014</small></div>
+                                </div>
+                              </div>
+                              <div class="date text-right"><small>5min ago</small></div>
+                            </div>
+                          </div>
+                            <div class="item">
+                            <div class="feed d-flex justify-content-between">
+                              <div class="feed-body d-flex justify-content-between"><a href="#" class="feed-profile"><img src="img/avatar-5.jpg" alt="person" class="img-fluid rounded-circle"></a>
+                                <div class="content">
+                                  <h5>Aria Smith</h5><span>Posted a new blog </span>
+                                  <div class="full-date"><small>Today 5:60 pm - 12.06.2014</small></div>
+                                </div>
+                              </div>
+                              <div class="date text-right"><small>5min ago</small></div>
+                            </div>
+                          </div>
+                            <div class="item">
+                            <div class="feed d-flex justify-content-between">
+                              <div class="feed-body d-flex justify-content-between"><a href="#" class="feed-profile"><img src="img/avatar-5.jpg" alt="person" class="img-fluid rounded-circle"></a>
+                                <div class="content">
+                                  <h5>Aria Smith</h5><span>Posted a new blog </span>
+                                  <div class="full-date"><small>Today 5:60 pm - 12.06.2014</small></div>
+                                </div>
+                              </div>
+                              <div class="date text-right"><small>5min ago</small></div>
+                            </div>
+                          </div>
+                            <div class="item">
+                            <div class="feed d-flex justify-content-between">
+                              <div class="feed-body d-flex justify-content-between"><a href="#" class="feed-profile"><img src="img/avatar-5.jpg" alt="person" class="img-fluid rounded-circle"></a>
+                                <div class="content">
+                                  <h5>Aria Smith</h5><span>Posted a new blog </span>
+                                  <div class="full-date"><small>Today 5:60 pm - 12.06.2014</small></div>
+                                </div>
+                              </div>
+                              <div class="date text-right"><small>5min ago</small></div>
+                            </div>
+                          </div>
+
+
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+
+              </div>
+            </div>
+          </section>
+
+          <section class = "dashboard-counts no-padding-bottom pt-0">
+            <div class = "container-fluid">
+                <div class="row bg-white has-shadow p-0 mt-2" style = "font-size: 14px;">
+
+                <div class="col-xl-3 col-sm-6">
+                  <div class="item d-flex align-items-center">
+                    <div class="icon bg-violet"><i class="fa fa-ship" aria-hidden="true"></i></div>
+                    <div class="title"><span>To ship <br>Orders</span>
+                    </div>
+                    <div class="number"><strong>25</strong></div>
+                  </div>
+                </div>
+
+                <div class="col-xl-3 col-sm-6">
+                  <div class="item d-flex align-items-center">
+                    <div class="icon bg-blue"><i class="icon-padnote"></i></div>
+                    <div class="title"><span>Received<br>Orders</span>
+                    </div>
+                    <div class="number"><strong>70</strong></div>
+                  </div>
+                </div>
+
+                <div class="col-xl-3 col-sm-6">
+                  <div class="item d-flex align-items-center">
+                    <div class="icon bg-red"><i class="fa fa-times" aria-hidden="true"></i></div>
+                    <div class="title"><span>Cancelled<br>Orders</span>
+                    </div>
+                    <div class="number"><strong>40</strong></div>
+                  </div>
+                </div>
+
+                 <div class="col-xl-3 col-sm-6">
+                  <div class="item d-flex align-items-center">
+                    <div class="icon bg-red"><i class="fa fa-arrow-left" aria-hidden="true"></i></div>
+                    <div class="title"><span>Returned<br>Orders</span>
+                    </div>
+                    <div class="number"><strong>50</strong></div>
+                  </div>
+                </div>
+
+
+              </div>
+            </div>
+          </section>
+
+           <section class="dashboard-header pt-3 no-padding-bottom">
+              <div class="container-fluid">
+                <div class = "row pb-2">
+                    <div class = "col-lg-2">
+                      <div class = "card mb-0">
+                        <div class = "card-header p-2">
+                          <h3 class = "text-center m-1">
+                            <span class = "mr-2"> Users </span>
+                            <i class="fa fa-users" aria-hidden="true"></i>
+                          </h3>
+                        </div>
+                      </div>
+                  </div>
+                </div>
+
+                <div class = "row">
+                  <div class="statistics col-lg-3 col-12">
+                    <div class="statistic d-flex align-items-center bg-white has-shadow mb-2">
+                      <div class="icon bg-red"><i class="fa fa-tasks"></i></div>
+                      <div class="text"><strong>234</strong><br><small>online users</small></div>
+                    </div>
+                    <div class="statistic d-flex align-items-center bg-white has-shadow mb-2">
+                      <div class="icon bg-green"><i class="fa fa-calendar-o"></i></div>
+                      <div class="text"><strong>152</strong><br><small>registered users</small></div>
+                    </div>
+                    <div class="statistic d-flex align-items-center bg-white has-shadow">
+                      <div class="icon bg-orange"><i class="fa fa-paper-plane-o"></i></div>
+                      <div class="text"><strong>147</strong><br><small>offline users</small></div>
+                    </div>
+                  </div>
+
+                  <div class="chart col-lg-9 col-12 pl-0">
+                    <div class="line-chart-example card">
+
+                    <div class="card-body"><div class="chartjs-size-monitor" style="position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;"><div class="chartjs-size-monitor-expand" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:1000000px;height:1000000px;left:0;top:0"></div></div><div class="chartjs-size-monitor-shrink" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:200%;height:200%;left:0; top:0"></div></div></div>
+                      <canvas id="lineChartExample" width="592" height="215" class="chartjs-render-monitor" style="display: block; width: 592px; height: 296px;"></canvas>
+                    </div>
+                  </div>
+                  </div>
+                </div>
+              </div>
+          </section>
+
+
+          <section class = "products-section pt-0 no-padding-bottom">
+            <div class = "container-fluid">
+
+              <div class = "row pb-2 pt-0">
+                <div class = "col-lg-3">
+                  <div class = "card mb-0">
+                    <div class = "card-header p-2">
+                      <h3 class = "text-center m-1">
+                        <span class = "mr-2"> Top products </span>
+                        <i class="fa fa-list-ol" aria-hidden="true"></i>
+                      </h3>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+
+              <div class = "row">
+                <div class = "col-lg pr-1">
+                  <div class="articles card">
+
+                    <div class="card-header d-flex align-items-center">
+                      <h2 class="h3">
+                        <span class = "mr-2"> Paid products </span>
+                        <i class="fa fa-check-square-o" aria-hidden="true"></i>
+                      </h2>
+                    </div>
+                    <div class="card-body no-padding">
+                      <div class="item d-flex align-items-center">
+                        <div class="image"><img src="img/avatar-1.jpg" alt="..." class="img-fluid rounded-circle"></div>
+                        <div class="text"><a href="#">
+                            <h3 class="h5">Lorem Ipsum Dolor</h3></a><small>Posted on 5th June 2017 by Aria Smith.   </small></div>
+                      </div>
+                      <div class="item d-flex align-items-center">
+                        <div class="image"><img src="img/avatar-2.jpg" alt="..." class="img-fluid rounded-circle"></div>
+                        <div class="text"><a href="#">
+                            <h3 class="h5">Lorem Ipsum Dolor</h3></a><small>Posted on 5th June 2017 by Frank Williams.   </small></div>
+                      </div>
+                      <div class="item d-flex align-items-center">
+                        <div class="image"><img src="img/avatar-3.jpg" alt="..." class="img-fluid rounded-circle"></div>
+                        <div class="text"><a href="#">
+                            <h3 class="h5">Lorem Ipsum Dolor</h3></a><small>Posted on 5th June 2017 by Ashley Wood.   </small></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class = "col-lg pl-1 pr-1">
+                  <div class="articles card">
+
+                    <div class="card-header d-flex align-items-center">
+                      <h2 class="h3">
+                        <span class = "mr-2"> Rated Products </span>
+                        <i class="fa fa-star" aria-hidden="true"></i>
+                        <i class="fa fa-star" aria-hidden="true"></i>
+                        <i class="fa fa-star" aria-hidden="true"></i>
+                        <i class="fa fa-star" aria-hidden="true"></i>
+                        <i class="fa fa-star-half-o" aria-hidden="true"></i>
+                      </h2>
+                    </div>
+                    <div class="card-body no-padding">
+                      <div class="item d-flex align-items-center">
+                        <div class="image"><img src="img/avatar-1.jpg" alt="..." class="img-fluid rounded-circle"></div>
+                        <div class="text"><a href="#">
+                            <h3 class="h5">Lorem Ipsum Dolor</h3></a><small>Posted on 5th June 2017 by Aria Smith.   </small></div>
+                      </div>
+                      <div class="item d-flex align-items-center">
+                        <div class="image"><img src="img/avatar-2.jpg" alt="..." class="img-fluid rounded-circle"></div>
+                        <div class="text"><a href="#">
+                            <h3 class="h5">Lorem Ipsum Dolor</h3></a><small>Posted on 5th June 2017 by Frank Williams.   </small></div>
+                      </div>
+                      <div class="item d-flex align-items-center">
+                        <div class="image"><img src="img/avatar-3.jpg" alt="..." class="img-fluid rounded-circle"></div>
+                        <div class="text"><a href="#">
+                            <h3 class="h5">Lorem Ipsum Dolor</h3></a><small>Posted on 5th June 2017 by Ashley Wood.   </small></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class = "col-lg pl-1">
+                  <div class="articles card">
+
+                    <div class="card-header d-flex align-items-center">
+                      <h2 class="h3">
+                        <span class = "mr-2"> Viewed Products </span>
+                        <i class="fa fa-user" aria-hidden="true"></i>
+                      </h2>
+                    </div>
+                    <div class="card-body no-padding">
+                      <div class="item d-flex align-items-center">
+                        <div class="image"><img src="img/avatar-1.jpg" alt="..." class="img-fluid rounded-circle"></div>
+                        <div class="text"><a href="#">
+                            <h3 class="h5">Lorem Ipsum Dolor</h3></a><small>Posted on 5th June 2017 by Aria Smith.   </small></div>
+                      </div>
+                      <div class="item d-flex align-items-center">
+                        <div class="image"><img src="img/avatar-2.jpg" alt="..." class="img-fluid rounded-circle"></div>
+                        <div class="text"><a href="#">
+                            <h3 class="h5">Lorem Ipsum Dolor</h3></a><small>Posted on 5th June 2017 by Frank Williams.   </small></div>
+                      </div>
+                      <div class="item d-flex align-items-center">
+                        <div class="image"><img src="img/avatar-3.jpg" alt="..." class="img-fluid rounded-circle"></div>
+                        <div class="text"><a href="#">
+                            <h3 class="h5">Lorem Ipsum Dolor</h3></a><small>Posted on 5th June 2017 by Ashley Wood.   </small></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section class = "no-padding-top no-padding-bottom">
+            <div class = "container-fluid">
+              <div class = "row">
+              <div class = "col-lg-8">
+                <div class = "card">
+                  <div class = "card-body p-1">
+                    <iframe src="https://investingwidgets.com/live-currency-cross-rates?theme=lightTheme&pairs=9922,9923,9924,9925,9927,9928,9929,9930,9931,9932,9933,9934,9935,9936,9937,9938,9939,9940,9941,9942,9943,9944,9945,9946,9947,9948,9949,9950,9951,9952" width="100%" height="500px" frameborder="0" allowtransparency="true" marginwidth="0" marginheight="0"></iframe>
+                  </div>
+                </div>
+              </div>
+              <div class = "col-lg-4">
+                <div class = "card">
+                  <div class = "card-body p-1">
+                    <a class="weatherwidget-io" href="https://forecast7.com/en/40d71n74d01/new-york/" data-label_1="MANILA" data-label_2="WEATHER" data-icons="Climacons Animated" data-theme="pure" >NEW YORK WEATHER</a>
+                    <script>
+                    !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="https://weatherwidget.io/js/widget.min.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","weatherwidget-io-js");
+                    </script>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>  -->
+
+
+          <!-- inventory <header class="page-header pb-3">
+            <div class="container-fluid">
+
+              <div class = "row">
+                <div class = "col-lg">
+                  <span class="h3 no-margin-bottom mr-2">Inventory</span>
+                  <span class = "small mr-2"> <a href = "javascript:void(0)"> Add new Product <i class="fa fa-plus-square ml-1" aria-hidden="true"></i> </a> </span>
+                  <span class = "small mr-2"> <a href = "javascript:void(0)" id = "deleteProduct" class = "text-muted" style = "cursor: not-allowed;"> Delete Product <i class="fa fa-trash ml-1" aria-hidden="true"></i> </a> </span>
+                  <span class = "small float-right"> <a data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample"> Filter product <i class="fa fa-filter ml-1" aria-hidden="true"></i> </a> </span>
+                </div>
+              </div>
+
+            </div>
+          </header> -->
+
+
+          <!-- <section class = "no-padding-top p-0">
+            <div class = "container-fluid p-0">
+                <div class="collapse" id="collapseExample">
+
+                  <div clsss = "row">
+
+                    <div class = "col-lg-12 p-0 m-0">
+                      <div class = "card m-0">
+                        <div class = "card-body pt-2">
+                          <form class="form-inline ml-2">
+
+                            <label class = "mr-2"> Date: </label>
+                            <input class = "text-center mr-2 p-0 form-control form-control-sm" style = "width: 150px;" type="text" id="minDatePicker" placeholder="2011/04/25">
+                            <span class = "mr-2"> to </span>
+                            <input class = "text-center mr-2 p-0 form-control form-control-sm" style = "width: 150px;" type="text" id="maxDatePicker" placeholder="2011/05/25">
+                            <select class = "mt-2 mr-3 p-0 form-control form-control-sm">
+                                <option>Expired</option>
+                                <option selected>Date Registered</option>
+                            </select>
+                            <label class = "mr-2">
+                              Status:
+                            </label>
+
+                            <div class="btn-group" data-toggle="buttons">
+
+                            <label class="btn btn-success btn-sm p-0 pl-3 pr-3">
+                              <input type="radio" name="options" id="option2" autocomplete="off"> Posted
+                              </label>
+                              <label class="btn btn-warning text-white btn-sm p-0 pl-3 pr-3">
+                                <input type="radio" name="options" id="option3" autocomplete="off"> Unposted
+                              </label>
+                            </div>
+
+
+                          </form>
+                          <form class="form-inline ml-2 mt-1">
+                            <label class = "mr-2"> Price: </label>
+                            <input class = "text-center mr-2 p-0 form-control form-control-sm" style = "width: 150px;" type = "text" placeholder="0,00.00">
+                            <span class = "mr-2"> to </span>
+                            <input class = "text-center mr-3 p-0 form-control form-control-sm" style = "width: 150px;" type = "text" placeholder="1,000.00">
+
+                            <label class = "mr-2"> Weight: </label>
+                            <input class = "text-center mr-2 p-0 form-control form-control-sm" style = "width: 150px;" type = "text" placeholder="0kg">
+                            <span class = "mr-2"> to </span>
+                            <input class = "text-center mr-2 p-0 form-control form-control-sm" style = "width: 150px;" type = "text" placeholder="100kg">
+
+                            <button type="button" class="btn btn-primary btn-sm pl-4 pr-4 pt-0 pb-0 mr-1">Filter</button>
+                            <button type="button" class="btn btn-secondary btn-sm pl-4 pr-4 pt-0 pb-0" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">Close</button>
+
+                          </form>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class = "row">
+                  <div class = "col-lg">
+                    <div class = "card mb-0">
+                      <div class = "card-body pt-3 pb-5 pl-0 pr-0" style = "overflow-x: auto;">
+                        <table id="inventoryTable" class="table table-sm" cellspacing="0" width="100%" style = "border-bottom: 1px solid #E9ECEF;">
+                          <thead>
+                              <tr>
+                                  <th> <input type="checkbox" value="" class="checkbox-template checkbox-delete" id = "checkbox-all"> </th>
+                                  <th> </th>
+                                  <th> Product id </th>
+                                  <th> Product </th>
+                                  <th> Origin </th>
+                                  <th> Supplier </th>
+                                  <th> Price </th>
+                                  <th> Weight </th>
+                                  <th> Date Registered </th>
+                                  <th>Expired Date</th>
+                                  <th>Status</th>
+                              </tr>
+                          </thead>
+                          <tfoot>
+                              <tr>
+
+                                  <th></th>
+                                  <th> </th>
+                                  <th> Product id </th>
+                                  <th> Product </th>
+                                  <th> Origin </th>
+                                  <th> Supplier </th>
+                                  <th> Price </th>
+                                  <th> Weight </th>
+                                  <th> Date Registered  </th>
+                                  <th>Expired Date</th>
+                                  <th>Status</th>
+                              </tr>
+                          </tfoot>
+                          <tbody>
+                              <tr>
+
+                                  <td></td>
+                                  <td> <i class="fa fa-chevron-circle-down fa-lg" aria-hidden="true" style="cursor: pointer;"></i> </td>
+                                  <td> lapu lapu </td>
+                                  <td> lapu lapu </td>
+                                  <td> lapu lapu </td>
+                                  <td>Edinburgh</td>
+                                  <td>Edinburgh</td>
+                                  <td>61</td>
+                                  <td>2011/04/25</td>
+                                  <td>2011/04/25</td>
+                                  <td> Posted </td>
+
+                              </tr>
+                              <tr>
+
+                                  <td></td>
+                                  <td> <i class="fa fa-chevron-circle-down fa-lg" aria-hidden="true" style="cursor: pointer;"></i> </td>
+                                  <td> lapu lapu </td>
+                                  <td> lapu lapu </td>
+                                  <td> lapu lapu </td>
+                                  <td>Edinburgh</td>
+                                  <td>Edinburgh</td>
+                                  <td>61</td>
+                                  <td>2011/04/25</td>
+                                  <td>2011/04/25</td>
+                                  <td> Posted </td>
+
+                              </tr>
+                              <tr>
+
+                                  <td></td>
+                                  <td> <i class="fa fa-chevron-circle-down fa-lg" aria-hidden="true" style="cursor: pointer;"></i> </td>
+                                  <td> lapu lapu </td>
+                                  <td> lapu lapu </td>
+                                  <td> lapu lapu </td>
+                                  <td>Edinburgh</td>
+                                  <td>Edinburgh</td>
+                                  <td>61</td>
+                                  <td>2011/04/25</td>
+                                  <td>2011/04/25</td>
+                                  <td> Posted </td>
+
+                              </tr>
+
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+
+            </div>
+          </section> -->
+
+          <!-- add new product <header class="page-header">
+            <div class="container-fluid">
+              <h2 class="no-margin-bottom">Inventory > Add new product</h2>
+            </div>
+          </header>
+
+          <section class = "m-0 p-0">
+            <div class = "container-fluid p-0">
+               <div class = "card mb-0">
+                    <div class = "card-body p-5">
+                      <div class = "row">
+                        <div class = "col-4">
+
+                              <div class="form-group m-0">
+                                  <img class = "mb-2 rounded" style = "border: 1px solid #DDDDDD;" id='img-upload' src = "upload-product-img.png" width = "150" height = "240" />
+                                  <div class="input-group">
+                                      <span class="input-group-btn rounded">
+                                          <span class="btn btn-primary btn-file">
+                                              upload
+                                              <i class="fa fa-file-image-o" aria-hidden="true"></i> <input type="file" id="imgInp">
+                                          </span>
+                                      </span>
+                                      <input type="text" class="form-control small product-image" placeholder = "image jpeg, png" readonly>
+                                  </div>
+                              </div>
+
+                        </div>
+                        <div class = "col-8">
+                          <div class = "row">
+                            <div class = "col-6">
+                              <div class="form-group">
+                                <label class="form-control-label">Product Name</label>
+                                <input type="text" placeholder="product name" class="form-control">
+                              </div>
+                            </div>
+                            <div class = "col-6">
+                               <div class = "form-group">
+                                <label class="form-control-label"> Origin</label>
+                                <input class = "form-control" type="text" placeholder="Origin">
+                              </div>
+                            </div>
+                          </div>
+                          <div class = "row">
+                            <div class = "col-lg-4">
+                              <div class = "form-group">
+                                <label class="form-control-label">Expired Date</label>
+                                <input class = "text-center form-control" type="text" id="expiredDatePicker" placeholder="2011/04/25">
+                              </div>
+                            </div>
+                            <div class = "col-lg-4">
+                              <div class="form-group">
+                                  <label class="form-control-label">Price</label>
+                                  <div class="input-group">
+                                    <input type="text" class="form-control" placeholder="200.00"><span class="input-group-addon">PHP</span>
+                                  </div>
+                              </div>
+                            </div>
+                            <div class = "col-lg-4">
+                               <div class="form-group">
+                                <label class="form-control-label">Weight</label>
+                                <div class="input-group">
+                                  <input type="text" class="form-control" placeholder="400.00"><span class="input-group-addon">Kilo</span>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="form-group">
+                                <label class="form-control-label">Description</label>
+                                <div class="input-group">
+                                  <textarea cols = "200" rows = "3" style = "resize: none; border: 1px solid #DEE2E6;"></textarea>
+                                </div>
+                          </div>
+
+                        </div>
+                      </div>
+                      <div class = "row mt-2">
+                        <div class = "col-lg-4">
+                          <div class="form-group">
+                            <label class="form-control-label">Supplier</label>
+                            <input type="text" placeholder="Supplier / Company" class="form-control">
+                          </div>
+                        </div>
+                        <div class = "col-lg-4">
+                          <div class="form-group">
+                            <label class="form-control-label">Supplier contact number</label>
+                            <input type="text" placeholder="Contact number" class="form-control">
+                          </div>
+                        </div>
+                         <div class = "col-lg-4">
+                          <div class="form-group">
+                            <label class="form-control-label">Date of Delivery</label>
+                            <input class = "text-center form-control" type="text" id="deliveryDatePicker" placeholder="2011/04/25">
+                          </div>
+                        </div>
+                      </div>
+                      <div class = "row">
+                        <div class = "col-lg-5">
+                          <label class = "form-control-label"> Supplier Address </label>
+                          <textarea  cols = "50" rows = "3" style = "resize: none; border: 1px solid #DEE2E6;"></textarea>
+                        </div>
+
+                      </div>
+                      <div class = "row mt-2">
+                        <div class = "col">
+                          <div class="form-group">
+                              <label class = "form-control-label"> Preview images </label>
+                              <div class="file-loading">
+                                  <input id="file-1" type="file" multiple class="file" data-overwrite-initial="false" data-min-file-count="2">
+                              </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <br />
+
+                      <div class = "row">
+                        <div class = "col-lg">
+
+
+                          <input id="checkboxCustom1" type="checkbox" value="" class="checkbox-template">
+                          <label for="checkboxCustom1">Post this product?</label>
+
+                          <button type="button" class="btn btn-secondary float-right ml-1">Cancel</button>
+                          <button type="button" class="btn btn-primary float-right pl-4 pr-4">Add</button>
+                        </div>
+                      </div>
+
+                    </div>
+               </div>
+            </div>
+          </section> -->
+
+          <!-- edit product page
+            <div class="container-fluid">
+              <h2 class="no-margin-bottom">Inventory > Edit product</h2>
+            </div>
+          </header>
+
+          <section class = "m-0 p-0">
+            <div class = "container-fluid p-0">
+               <div class = "card mb-0">
+                    <div class = "card-body p-5">
+                      <div class = "row">
+                        <div class = "col-4">
+
+                              <div class="form-group m-0">
+                                  <img class = "mb-2 rounded" style = "border: 1px solid #DDDDDD;" id='img-upload' src = "upload-product-img.png" width = "150" height = "240" />
+                                  <div class="input-group">
+                                      <span class="input-group-btn rounded">
+                                          <span class="btn btn-primary btn-file">
+                                              change
+                                              <i class="fa fa-file-image-o" aria-hidden="true"></i> <input type="file" id="imgInp">
+                                          </span>
+                                      </span>
+                                      <input type="text" class="form-control small product-image" placeholder = "image jpeg, png" readonly>
+                                  </div>
+                              </div>
+
+                        </div>
+                        <div class = "col-8">
+                          <div class = "row">
+                            <div class = "col-6">
+                              <div class="form-group">
+                                <label class="form-control-label">Product Name</label>
+                                <input type="text" placeholder="product name" class="form-control" readonly>
+                              </div>
+                            </div>
+                            <div class = "col-6">
+                               <div class = "form-group">
+                                <label class="form-control-label"> Origin</label>
+                                <input class = "form-control" type="text" placeholder="Origin">
+                              </div>
+                            </div>
+                          </div>
+                          <div class = "row">
+                            <div class = "col-lg-4">
+                              <div class = "form-group">
+                                <label class="form-control-label">Expired Date</label>
+                                <input class = "text-center form-control" type="text" id="expiredDatePicker" placeholder="2011/04/25">
+                              </div>
+                            </div>
+                            <div class = "col-lg-4">
+                              <div class="form-group">
+                                  <label class="form-control-label">Price</label>
+                                  <div class="input-group">
+                                    <input type="text" class="form-control" placeholder="200.00"><span class="input-group-addon">PHP</span>
+                                  </div>
+                              </div>
+                            </div>
+                            <div class = "col-lg-4">
+                               <div class="form-group">
+                                <label class="form-control-label">Weight</label>
+                                <div class="input-group">
+                                  <input type="text" class="form-control" placeholder="400.00"><span class="input-group-addon">Kilo</span>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="form-group">
+                                <label class="form-control-label">Description</label>
+                                <div class="input-group">
+                                  <textarea cols = "200" rows = "3" style = "resize: none; border: 1px solid #DEE2E6;"></textarea>
+                                </div>
+                          </div>
+
+                        </div>
+                      </div>
+                      <div class = "row mt-2">
+                        <div class = "col-lg-4">
+                          <div class="form-group">
+                            <label class="form-control-label">Supplier</label>
+                            <input type="text" placeholder="Supplier / Company" class="form-control">
+                          </div>
+                        </div>
+                        <div class = "col-lg-4">
+                          <div class="form-group">
+                            <label class="form-control-label">Supplier contact number</label>
+                            <input type="text" placeholder="Contact number" class="form-control">
+                          </div>
+                        </div>
+                         <div class = "col-lg-4">
+                          <div class="form-group">
+                            <label class="form-control-label">Date of Delivery</label>
+                            <input class = "text-center form-control" type="text" id="deliveryDatePicker" placeholder="2011/04/25">
+                          </div>
+                        </div>
+                      </div>
+                      <div class = "row">
+                        <div class = "col-lg-5">
+                          <label class = "form-control-label"> Supplier Address </label>
+                          <textarea  cols = "50" rows = "3" style = "resize: none; border: 1px solid #DEE2E6;"></textarea>
+                        </div>
+
+                      </div>
+                      <div class = "row mt-2">
+                        <div class = "col">
+                          <div class="form-group">
+                              <label class = "form-control-label"> Preview images </label>
+
+                              <hr class = "mt-0"/>
+
+                              <div class = "row">
+                                <div class = "col-lg-4">
+                                     <div class="form-group m-0">
+                                        <img class = "mb-2 rounded" style = "border: 1px solid #DDDDDD;" id='img-upload' src = "upload-product-img.png" width = "100" height = "220" />
+                                        <div class="input-group">
+                                            <span class="input-group-btn rounded">
+                                                <span class="btn btn-primary btn-file">
+                                                    change
+                                                    <i class="fa fa-file-image-o" aria-hidden="true"></i> <input type="file" id="imgInp">
+                                                </span>
+                                            </span>
+                                            <input type="text" class="form-control small product-image" placeholder = "image jpeg, png" readonly>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class = "col-lg-4">
+                                   <div class="form-group m-0">
+                                        <img class = "mb-2 rounded" style = "border: 1px solid #DDDDDD;" id='img-upload' src = "upload-product-img.png" width = "100" height = "220" />
+                                        <div class="input-group">
+                                            <span class="input-group-btn rounded">
+                                                <span class="btn btn-primary btn-file">
+                                                    change
+                                                    <i class="fa fa-file-image-o" aria-hidden="true"></i> <input type="file" id="imgInp">
+                                                </span>
+                                            </span>
+                                            <input type="text" class="form-control small product-image" placeholder = "image jpeg, png" readonly>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class = "col-lg-4">
+                                   <div class="form-group m-0">
+                                        <img class = "mb-2 rounded" style = "border: 1px solid #DDDDDD;" id='img-upload' src = "upload-product-img.png" width = "100" height = "220" />
+                                        <div class="input-group">
+                                            <span class="input-group-btn rounded">
+                                                <span class="btn btn-primary btn-file">
+                                                    change
+                                                    <i class="fa fa-file-image-o" aria-hidden="true"></i> <input type="file" id="imgInp">
+                                                </span>
+                                            </span>
+                                            <input type="text" class="form-control small product-image" placeholder = "image jpeg, png" readonly>
+                                        </div>
+                                    </div>
+                                </div>
+                              </div>
+
+                              <hr />
+
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class = "row">
+                        <div class = "col-lg">
+                          <button type="button" class="btn btn-secondary float-right ml-1">Cancel</button>
+                          <button type="button" class="btn btn-primary float-right pl-4 pr-4">Edit</button>
+                        </div>
+                      </div>
+
+                    </div>
+               </div>
+            </div>
+          </section> -->
+
+          <!-- ORDER <header class="page-header pb-3">
+            <div class="container-fluid">
+
+              <div class = "row">
+                <div class = "col-lg">
+                   <span class="h3 no-margin-bottom mr-2">Orders</span>
+                    <!-- <span class = "small mr-2"> <a href = "javascript:void(0)"> Add new Product <i class="fa fa-plus-square ml-1" aria-hidden="true"></i> </a> </span> -->
+                  <!-- <span class = "small ml-2 float-right"> <a href = "javascript:void(0)" id = "deleteProduct" class = "text-muted" style = "cursor: not-allowed;"> Delete order <i class="fa fa-trash ml-1" aria-hidden="true"></i> </a> </span>
+                   <span class = "small float-right"> <a data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample"> Filter Orders <i class="fa fa-filter ml-1" aria-hidden="true"></i> </a> </span>
+                </div>
+              </div>
+
+            </div>
+          </header> -->
+
+
+          <!-- ORDER <section class = "no-padding-top p-0">
+            <div class = "container-fluid p-0">
+                <div class="collapse" id="collapseExample">
+
+                  <div clsss = "row">
+
+                    <div class = "col-lg-12 p-0 m-0">
+                      <div class = "card m-0">
+                        <div class = "card-body pt-2">
+
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class = "row">
+                  <div class = "col-lg">
+                    <div class = "card mb-0">
+                      <div class = "card-body pt-3 pb-5 pl-0 pr-0" style = "overflow-x: auto;">
+                        <table id="orderTable" class="table" cellspacing="0" width="100%" style = "border-bottom: 1px solid #E9ECEF;">
+                          <thead>
+                              <tr>
+                                  <th> <input type="checkbox" value="" class="checkbox-template checkbox-delete" id = "checkbox-all"> </th>
+                                  <th> </th>
+                                  <th> Status <i class="fa fa-tasks ml-1" aria-hidden="true"></i> </th>
+                                  <th> Order</th>
+                                  <th> Shipping </th>
+
+                                  <th> Date Ordered </th>
+
+
+                              </tr>
+                          </thead>
+                          <tfoot>
+                              <tr>
+
+                                  <th></th>
+                                  <th> </th>
+                                  <th> Status </th>
+                                  <th> Order </th>
+                                  <th> Shipping </th>
+
+                                  <th> Date Ordered </th>
+
+
+                              </tr>
+                          </tfoot>
+                          <tbody>
+                              <tr>
+
+                                  <td></td>
+                                  <td> <i class="fa fa-chevron-circle-down fa-lg" aria-hidden="true" style="cursor: pointer;"></i> </td>
+                                  <td>
+                                    <h2> <span class="badge badge-warning text-white">Pending</span> </h2>
+                                  </td>
+                                  <td>
+                                      <h3><span class="badge badge-success p-1">Order#12312</span></h3>
+
+                                     <span class = "small">
+                                       by: <strong> <a href = "#"> Kryssel tillada </a> </strong>
+                                      <br />
+                                      Payment: Cash on delivery <i class="fa fa-truck ml-1" aria-hidden="true"></i>
+                                      <br />
+                                      Total items: 12 items
+                                     </span>
+                                  </td>
+                                  <td style = "max-width: 300px;">
+                                   <strong> Address: </strong> <br />
+                                   <span style = "font-size: 12px;">
+                                    1700 blk 7 saint joseph subd pulanglupa 2 las pinas city  1700 blk 7 saint joseph subd pulanglupa 2 las pinas city
+                                   </span>
+                                   <br />
+
+
+                                  </td>
+                                  <td>Edinburgh</td>
+
+
+
+                              </tr>
+
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+
+            </div>
+          </section> -->
+          <!-- Nav tabs -->
+
+
+
+          <header class="page-header pb-3">
+            <div class="container-fluid">
+
+              <div class = "row">
+                <div class = "col-lg">
+                  <span class="h3 no-margin-bottom mr-2" >Manage Accounts</span>
+                  <span class = "small float-right"  > <a style="margin: 5px;"data-toggle="collapse" href="#collapseEmployees" aria-expanded="false" aria-controls="collapseExample"> Filter Employees <i class="fa fa-filter ml-1" aria-hidden="true"> </i> </a></span>
+                  <span class = "small float-right" > <a style="margin: 5px;" data-toggle="collapse" href="#collapseClients" aria-expanded="false" aria-controls="collapseExample"> Filter Clients <i class="fa fa-filter ml-1" aria-hidden="true"> </i> </a></span>
+                </div>
+              </div>
+
+            </div>
+          </header>
+
+          <ul class="nav nav-tabs nav-justified " role="tablist" style="background-color: #ecf0f1;">
+              <li class="nav-item">
+                  <a style="color: #596275;" class="nav-link active" data-toggle="tab" href="#panel5" role="tab"><i class="fa fa-user"></i> Client Accounts</a>
+              </li>
+              <li class="nav-item">
+                  <a style="color: #596275;" class="nav-link" data-toggle="tab" href="#panel6" role="tab"><i class="fa fa-user"></i> Employees</a>
+              </li>
+          </ul>
+
+          <div class="tab-content" >
+
+              <!--Panel 1-->
+              <div class="tab-pane fade in show active" id="panel5" role="tabpanel">
+
+                  <section class = "no-padding-top p-0">
+                    <div class = "container-fluid p-0">
+
+                        <div class="collapse " id="collapseClients">
+
+                          <!--Filter-->
+
+                          <div clsss = "row">
+
+                            <div class = "col-lg-12 p-0 m-0">
+                              <div class = "card m-0">
+                                <div class = "card-body pt-2">
+
+                                  <table border="0" cellspacing="5" cellpadding="5" style="margin-top: 25px;">
+                                    <tbody>
+                                      <tr>
+                                        <td>Minimum age:</td>
+                                        <td><input type="text" id="minAgeClient" name="minAgeClient"></td>
+                                        <td>Country:</td>
+                                        <td>
+                                          <select class="browser-default" id = "countryClient" style="width: 75%;">
+                                              <option value="" disabled selected>Choose your country</option>
+                                          </select>
+                                        </td>
+                                      </tr>
+                                      <tr>
+                                          <td>Maximum age:</td>
+                                          <td><input type="text" id="maxAgeClient" name="maxAgeClient"></td>
+                                          <td>Account Status:</td>
+                                          <td>
+                                            <select class="browser-default" style="width: 75%;">
+                                                <option value="" disabled selected>Choose account status</option>
+                                                <option value="Active" >Active</option>
+                                                <option value="Inactive">Inactive</option>
+                                            </select>
+                                          </td>
+                                      </tr>
+                                      <tr>
+                                        <td>Gender:</td>
+                                        <td>
+                                          <select class="browser-default" style="width: 75%;">
+                                              <option value="" disabled selected>Choose gender</option>
+                                              <option value="Male" >Male</option>
+                                              <option value="Female">Female</option>
+                                          </select>
+                                        </td>
+                                      </tr>
+                                    </tbody>
+                                  </table>
+
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+
+                          <!--Filter-->
+                        </div>
+
+                        <!--Edit Account Modal-->
+                        <!-- Modal -->
+                          <div class="modal fade" id="editClientAccount" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                              <div class="modal-dialog modal-lg" role="document">
+                                  <div class="modal-content">
+                                      <div class="modal-header">
+                                          <h5 class="modal-title" id="exampleModalLabel">Edit Client</h5>
+                                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                              <span aria-hidden="true">&times;</span>
+                                          </button>
+                                      </div>
+                                      <form>
+                                        <div class="modal-body">
+                                          <div class="row">
+                                            <div class="col-lg-6">
+                                              <div class="form-group">
+                                                <label class="form-control-label" for="usernameClientEdit">Username</label>
+                                                <input type="text" placeholder="Your username" id="usernameClientEdit" class="form-control" required>
+                                              </div>
+                                              <div class="form-group">
+                                                <label class="form-control-label" for="firstnameClientEdit">Firstname</label>
+                                                <input type="text" placeholder="Your firstname" id="firstnameClientEdit" class="form-control" required>
+                                              </div>
+                                              <div class="form-group">
+                                                <label class="form-control-label" for="middlenameClientEdit">Middlename</label>
+                                                <input type="text" placeholder="Your middlename" class="form-control" id="middlenameClientEdit" required>
+                                              </div>
+                                              <div class="form-group">
+                                                <label class="form-control-label" for="lastnameClientEdit">Lastname</label>
+                                                <input type="text" placeholder="Your lastname" class="form-control" id="lastnameClientEdit" required>
+                                              </div>
+                                              <div class="form-group">
+                                                <label class="form-control-label" style="margin-right: 10px;">Gender : </label>
+                                                <input id="maleClientEdit" type="radio" value="Male" name="genderClientEdit" class="radio-template" required>
+                                                <label for="maleClientEdit" style="margin-right: 10px;">Male</label>
+                                                <input id="femaleClientEdit" type="radio" value="Female" name="genderClientEdit" class="radio-template">
+                                                <label for="femaleClientEdit" style="margin-right: 10px;">Female</label>
+                                              </div>
+                                              <div class="form-group">
+                                                <div class="form-inline">
+                                                  <label class="mr-3 form-control-label" for="ageClientEdit">Age</label>
+                                                  <input type="number" style="width: 50%;"placeholder="Your age" min="1" required class="form-control" id="ageClientEdit">
+                                                </div>
+                                              </div>
+                                            </div>
+
+                                            <div class="col-lg-6">
+                                              <div class="form-group">
+                                                <label class="form-control-label" for="emailClientEdit">Email</label>
+                                                <input type="email" placeholder="Your email address" id="emailClientEdit" class="form-control" required>
+                                              </div>
+                                              <div class="form-group">
+                                                <div class = "form-inline">
+                                                        <label for = "countryClientEdit" class = "mr-3 form-control-label"> Country: </label>
+                                                        <select class="browser-default" id = "countryClientEdit" style="width: 75%;" required>
+                                                            <option value="" disabled selected>Choose your country</option>
+                                                        </select>
+                                                </div>
+                                                 <div class="form-inline" >
+                                                   <label for="cityClientEdit" class=" mr-3 form-control-label">City : </label>
+                                                    <input type="text" id="cityClientEdit" style="width: 80%;" class="form-control" required disabled/>
+                                                </div>
+                                              </div>
+                                              <div class="form-group">
+                                                <label class="form-control-label" for="addressClientEdit">Address</label><br>
+                                                <textarea name="address" id="addressClientEdit" rows="3" cols="40" style="resize: none;"></textarea>
+                                              </div>
+                                              <div class="form-group">
+                                                <div class="form-inline">
+                                                  <label class="form-control-label mr-3" for="zipcodeClientEdit">Zip Code : </label>
+                                                  <input type="text" placeholder="Your zip code" id="zipcodeClientEdit" class="form-control">
+                                                </div>
+                                              </div>
+                                              <div class="form-group">
+                                                    <select class="browser-default" id = "countryCodeClientEdit" required>
+                                                        <option value="" disabled selected>Country Code</option>
+                                                    </select>
+                                                    <input type="text" id="phonenumberClientEdit" placeholder="Your phone number" class="form-control" required />
+                                              </div>
+                                            </div>
+                                          </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                            <button type="button" class="btn btn-primary">Save changes</button>
+                                        </div>
+                                      </form>
+
+                                  </div>
+                              </div>
+                          </div>
+                        <!-- Edit Account Modal -->
+
+
+                        <div class = "row" >
+                          <div class = "col-lg">
+                            <div class = "card mb-0">
+                              <div class="container" style="padding-top: 10px;">
+                                <button type="button" width="100" id="btnDeleteClient" class="btn bg-red float-right mr-1" title="Delete Selected Item"> <i class="fa fa-trash" aria-hidden="true"></i> </button>
+                                <button type="button" width="100" id="btnUpdateClient" class="btn bg-blue float-right mr-1" title="Update Selected Item" data-toggle="modal" data-target="#editClientAccount"> <i class="fa fa-pencil-square-o" aria-hidden="true"></i> </button>
+                              </div>
+                              <div class = "card-body pt-3 pb-5 pl-0 pr-0" style = "overflow-x: auto;">
+
+                                <table id="client-table" class="table table-striped table-sm" cellspacing="0" width="100%">
+                                  <thead>
+                                      <tr>
+                                          <th> <input type="checkbox" value="" class="checkbox-template checkbox-delete" id = "checkbox-all-client"> </th>
+                                          <th> </th>
+                                          <th>Image</th>
+                                          <th>Username</th>
+                                          <th>Password</th>
+                                          <th>First Name</th>
+                                          <th>Middle Name</th>
+                                          <th>Last Name</th>
+                                          <th>Gender</th>
+                                          <th>Age</th>
+                                          <th>Email Address</th>
+                                          <th>Country</th>
+                                          <th>City</th>
+                                          <th>Address</th>
+                                          <th>Zip Code</th>
+                                          <th>Country Code</th>
+                                          <th>Phone Number</th>
+
+                                          <th>Active</th>
+                                      </tr>
+                                  </thead>
+                                  <tfoot>
+                                      <tr>
+                                        <th></th>
+                                        <th></th>
+                                        <th>Image</th>
+                                        <th>Username</th>
+                                        <th>Password</th>
+                                        <th>First Name</th>
+                                        <th>Middle Name</th>
+                                        <th>Last Name</th>
+                                        <th>Gender</th>
+                                        <th>Age</th>
+                                        <th>Email Address</th>
+                                        <th>Country</th>
+                                        <th>City</th>
+                                        <th>Address</th>
+                                        <th>Zip Code</th>
+                                        <th>Country Code</th>
+                                        <th>Phone Number</th>
+
+                                        <th>Active</th>
+                                      </tr>
+                                  </tfoot>
+                                  <tbody>
+                                    <tr>
+                                        <td></td>
+                                        <td><i class="fa fa-chevron-circle-down fa-lg" aria-hidden="true" style="cursor: pointer;"></i></td>
+                                        <td><img src="upload-product-img.png" height="100" width="100"/></td>
+                                        <td>Night Rider</td>
+                                        <td>ahsbfvfkshdahsbd12454</td>
+                                        <td>Alfred</td>
+                                        <td>Argarin</td>
+                                        <td>Borja</td>
+                                        <td>Male</td>
+                                        <td>23</td>
+                                        <td>alfredoborja81194@gmail.com</td>
+                                        <td>Philippines</td>
+                                        <td>Parañaque</td>
+                                        <td>71 Ninoy Aquino Avenue</td>
+                                        <td>1700</td>
+                                        <td>63</td>
+                                        <td>9996668084</td>
+
+                                        <td>
+                                          <label class="switch">
+                                              <input type="checkbox" checked name="isActive" id="isActive">
+                                              <span class="slider round"></span>
+                                            </label>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td></td>
+                                        <td><i class="fa fa-chevron-circle-down fa-lg" aria-hidden="true" style="cursor: pointer;"></i></td>
+                                        <td><img src="upload-product-img.png" height="100" width="100"/></td>
+                                        <td>Night Rider 123</td>
+                                        <td>ahsbfvfkshdahsbd12454</td>
+                                        <td>Alfred</td>
+                                        <td>Argarin</td>
+                                        <td>Borja</td>
+                                        <td>Male</td>
+                                        <td>23</td>
+                                        <td>alfredoborja81194@gmail.com</td>
+                                        <td>Philippines</td>
+                                        <td>Parañaque</td>
+                                        <td>71 Ninoy Aquino Avenue</td>
+                                        <td>1700</td>
+                                        <td>63</td>
+                                        <td>9996668084</td>
+
+                                        <td>
+                                          <label class="switch">
+                                              <input type="checkbox" checked name="isActive" id="isActive">
+                                              <span class="slider round"></span>
+                                            </label>
+                                        </td>
+                                    </tr>
+
+                                  </tbody>
+                                </table>
+
+
+
+                              </div>
+                            </div>
+                          </div>
+
+                        </div>
+
+                    </div>
+                  </section>
+              </div>
+              <!--/.Panel 1-->
+              <!--Panel 2-->
+              <div class="tab-pane fade" id="panel6" role="tabpanel">
+                  <section class = "no-padding-top p-0">
+
+                    <div class = "container-fluid p-0">
+
+                      <div class="collapse" id="collapseEmployees">
+
+                      <!--Filter-->
+
+                      <div clsss = "row">
+
+                        <div class = "col-lg-12 p-0 m-0">
+                          <div class = "card m-0">
+                            <div class = "card-body pt-2">
+                              <table border="0" cellspacing="5" cellpadding="5" style="margin-top: 25px;">
+                                <tbody>
+                                  <tr>
+                                    <td>Minimum age:</td>
+                                    <td><input type="text" id="minAgeEmployee" name="minAgeEmployee"></td>
+                                    <td>Country:</td>
+                                    <td>
+                                      <select class="browser-default" id = "countryEmployee" style="width: 75%;">
+                                          <option value="" disabled selected>Choose your country</option>
+                                      </select>
+                                    </td>
+                                  </tr>
+                                  <tr>
+                                      <td>Maximum age:</td>
+                                      <td><input type="text" id="maxAgeEmployee" name="maxAgeEmployee"></td>
+                                      <td>Account Status:</td>
+                                      <td>
+                                        <select class="browser-default" style="width: 75%;">
+                                            <option value="" disabled selected>Choose account status</option>
+                                            <option value="Active" >Active</option>
+                                            <option value="Inactive">Inactive</option>
+                                        </select>
+                                      </td>
+                                  </tr>
+                                  <tr>
+                                    <td>Gender:</td>
+                                    <td>
+                                      <select class="browser-default" style="width: 75%;">
+                                          <option value="" disabled selected>Choose gender</option>
+                                          <option value="Male" >Male</option>
+                                          <option value="Female">Female</option>
+                                      </select>
+
+                                      <td>Position:</td>
+                                      <td>
+                                        <select class="browser-default" style="width: 75%;">
+                                            <option value="" disabled selected>Choose position</option>
+                                        </select>
+                                      </td>
+                                  </tr>
+                                  <tr>
+                                    <td>Role:</td>
+                                    <td>
+                                      <select class="browser-default" style="width: 75%;">
+                                          <option value="" disabled selected>Choose role</option>
+                                      </select>
+                                    </td>
+                                  </tr>
+                                </tbody>
+                              </table>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <!--Filter-->
+                    </div>
+
+
+                    <!-- Edit Employee -->
+                    <div class="modal fade" id="editEmployeeAccount" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-lg" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Edit Employee</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <form>
+                                  <div class="modal-body">
+                                    <div class="row">
+                                      <div class="col-lg-6">
+                                        <div class="form-group text-center">
+                                            <img class = "mb-2 rounded" style = "border: 1px solid #DDDDDD; width: 100px" id='img-uploadEmployeeEdit' src = "profile-male.jpg" />
+
+                                          <p class="fileEmployeeAdd">
+                                            <input type="file" name="fileEmployeeEdit" id="fileEmployeeEdit" accept="image/x-png,image/jpeg" />
+                                            <label for="fileEmployeeEdit">Upload your image</label>
+                                          </p>
+                                        </div>
+                                        <div class="form-group">
+                                          <label class="form-control-label" for="usernameEmployeeEdit">Username</label>
+                                          <input type="text" placeholder="Your username" id="usernameEmployeeEdit" class="form-control" required>
+                                        </div>
+                                        <div class="form-group">
+                                          <label class="form-control-label" for="firstnameEmployeeEdit">Firstname</label>
+                                          <input type="text" placeholder="Your firstname" id="firstnameEmployeeEdit" class="form-control" required>
+                                        </div>
+                                        <div class="form-group">
+                                          <label class="form-control-label" for="middlenameEmployeeEdit">Middlename</label>
+                                          <input type="text" placeholder="Your middlename" class="form-control" id="middlenameEmployeeEdit" required>
+                                        </div>
+                                        <div class="form-group">
+                                          <label class="form-control-label" for="lastnameEmployeeEdit">Lastname</label>
+                                          <input type="text" placeholder="Your lastname" class="form-control" id="lastnameEmployeeEdit" required>
+                                        </div>
+                                        <div class="form-group">
+                                          <div class="form-inline">
+                                            <label class="mr-3 form-control-label" for="positionEmployeeEdit">Position</label>
+                                            <input type="text" placeholder="Your position" class="form-control" id="positionEmployeeEdit" required>
+                                          </div>
+                                        </div>
+                                        <div class="form-group">
+                                          <label class="form-control-label" style="margin-right: 10px;">Gender : </label>
+                                          <input id="maleEmployeeEdit" type="radio" value="Male" name="genderEmployeeEdit" class="radio-template" required>
+                                          <label for="maleEmployeeEdit" style="margin-right: 10px;">Male</label>
+                                          <input id="femaleEmployeeEdit" type="radio" value="Female" name="genderEmployeeEdit" class="radio-template">
+                                          <label for="femaleEmployeeEdit" style="margin-right: 10px;">Female</label>
+                                        </div>
+
+                                      </div>
+
+                                      <div class="col-lg-6">
+                                        <div class="form-group">
+                                          <div class="form-inline">
+                                            <label class="mr-3 form-control-label" for="ageEmployeeEdit">Age</label>
+                                            <input type="number" style="width: 50%;"placeholder="Your age" min="1" required class="form-control" id="ageEmployeeEdit">
+                                          </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="mr-3 form-control-label" for="roleEmployeeEdit">Role</label>
+                                            <input type="text" placeholder="Your role" class="form-control" id="roleEmployeeEdit" required>
+                                        </div>
+
+                                        <div class="form-group">
+                                          <label class="form-control-label" for="emailEmployeeEdit">Email</label>
+                                          <input type="email" placeholder="Your email address" id="emailEmployeeEdit" class="form-control" required>
+                                        </div>
+                                        <div class="form-group">
+                                          <div class = "form-inline">
+                                                  <label for = "countryEmployeeEdit" class = "mr-3 form-control-label"> Country: </label>
+                                                  <select class="browser-default" id = "countryEmployeeEdit" style="width: 75%;" required>
+                                                      <option value="" disabled selected>Choose your country</option>
+                                                  </select>
+                                          </div>
+                                           <div class="form-inline" >
+                                             <label for="cityEmployeeEdit" class=" mr-3 form-control-label">City : </label>
+                                              <input type="text" id="cityEmployeeEdit" style="width: 80%;" class="form-control" required disabled/>
+                                          </div>
+                                        </div>
+                                        <div class="form-group">
+                                          <label class="form-control-label" for="addressEmployeeEdit">Address</label><br>
+                                          <textarea name="address" id="addressEmployeeEdit" rows="3" cols="40" style="resize: none;"></textarea>
+                                        </div>
+                                        <div class="form-group">
+                                          <div class="form-inline">
+                                            <label class="form-control-label mr-3" for="zipcodeEmployeeEdit">Zip Code : </label>
+                                            <input type="text" placeholder="Your zip code" id="zipcodeEmployeeEdit" class="form-control">
+                                          </div>
+                                        </div>
+                                        <div class="form-group">
+                                              <select class="browser-default" id = "countryCodeEmployeeEdit" required>
+                                                  <option value="" disabled selected>Country Code</option>
+                                              </select>
+                                              <input type="text" id="phonenumberEmployeeEdit" placeholder="Your phone number" class="form-control" required />
+                                        </div>
+
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div class="modal-footer">
+                                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                      <button type="button" class="btn btn-primary">Save changes</button>
+                                  </div>
+                                </form>
+
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Edit Employee -->
+
+                    <!-- Add Employee -->
+                    <div class="modal fade" id="addEmployeeAccount" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-lg" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Add New Employee</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <form>
+                                  <div class="modal-body">
+                                    <div class="row">
+                                      <div class="col-lg-6">
+                                        <div class="form-group text-center">
+                                            <img class = "mb-2 rounded" style = "border: 1px solid #DDDDDD; width: 100px" id='img-uploadEmployeeAdd' src = "profile-male.jpg" />
+
+                                          <p class="fileEmployeeAdd">
+                                            <input type="file" name="fileEmployeeAdd" id="fileEmployeeAdd" accept="image/x-png,image/jpeg" />
+                                            <label for="fileEmployeeAdd">Upload your image</label>
+                                          </p>
+                                        </div>
+                                        <div class="form-group">
+                                          <label class="form-control-label" for="usernameEmployeeAdd">Username</label>
+                                          <input type="text" placeholder="Your username" id="usernameEmployeeAdd" class="form-control" required>
+                                        </div>
+                                        <div class="form-group">
+                                          <label class="form-control-label" for="firstnameEmployeeAdd">Firstname</label>
+                                          <input type="text" placeholder="Your firstname" id="firstnameEmployeeAdd" class="form-control" required>
+                                        </div>
+                                        <div class="form-group">
+                                          <label class="form-control-label" for="middlenameEmployeeAdd">Middlename</label>
+                                          <input type="text" placeholder="Your middlename" class="form-control" id="middlenameEmployeeAdd" required>
+                                        </div>
+                                        <div class="form-group">
+                                          <label class="form-control-label" for="lastnameEmployeeAdd">Lastname</label>
+                                          <input type="text" placeholder="Your lastname" class="form-control" id="lastnameEmployeeAdd" required>
+                                        </div>
+                                        <div class="form-group">
+                                          <label class="form-control-label" for="passwordEmployeeAdd">Password</label>
+                                          <input type="password" placeholder="Your password" class="form-control" id="passwordEmployeeAdd" required>
+                                        </div>
+                                        <div class="form-group">
+                                          <label class="form-control-label" for="retypePasswordEmployeeAdd">Retype Password</label>
+                                          <input type="password" placeholder="Your retype password" class="form-control" id="retypePasswordEmployeeAdd" required>
+                                        </div>
+
+
+                                      </div>
+
+                                      <div class="col-lg-6">
+                                        <div class="form-group">
+                                          <div class="form-inline">
+                                            <label class="mr-3 form-control-label" for="positionEmployeeAdd">Position</label>
+                                            <input type="text" placeholder="Your position" class="form-control" id="positionEmployeeAdd" required>
+                                          </div>
+                                        </div>
+                                        <div class="form-group">
+                                          <label class="form-control-label" style="margin-right: 10px;">Gender : </label>
+                                          <input id="maleEmployeeAdd" type="radio" value="Male" name="genderEmployeeAdd" class="radio-template" required>
+                                          <label for="maleEmployeeAdd" style="margin-right: 10px;">Male</label>
+                                          <input id="femaleEmployeeAdd" type="radio" value="Female" name="genderEmployeeAdd" class="radio-template">
+                                          <label for="femaleEmployeeAdd" style="margin-right: 10px;">Female</label>
+                                        </div>
+                                        <div class="form-group">
+                                          <div class="form-inline">
+                                            <label class="mr-3 form-control-label" for="ageEmployeeAdd">Age</label>
+                                            <input type="number" style="width: 50%;"placeholder="Your age" min="1" required class="form-control" id="ageEmployeeAdd">
+                                          </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="mr-3 form-control-label" for="roleEmployeeAdd">Role</label>
+                                            <input type="text" placeholder="Your role" class="form-control" id="roleEmployeeAdd" required>
+                                        </div>
+                                        <div class="form-group">
+                                          <label class="form-control-label" for="emailEmployeeAdd">Email</label>
+                                          <input type="email" placeholder="Your email address" id="emailEmployeeAdd" class="form-control" required>
+                                        </div>
+                                        <div class="form-group">
+                                          <div class = "form-inline">
+                                                  <label for = "countryEmployeeAdd" class = "mr-3 form-control-label"> Country: </label>
+                                                  <select class="browser-default" id = "countryEmployeeAdd" style="width: 75%;" required>
+                                                      <option value="" disabled selected>Choose your country</option>
+                                                  </select>
+                                          </div>
+                                           <div class="form-inline" >
+                                             <label for="cityEmployeeAdd" class=" mr-3 form-control-label">City : </label>
+                                              <input type="text" id="cityEmployeeAdd" style="width: 80%;" class="form-control" required disabled/>
+                                          </div>
+                                        </div>
+                                        <div class="form-group">
+                                          <label class="form-control-label" for="addressEmployeeAdd">Address</label><br>
+                                          <textarea name="address" id="addressEmployeeAdd" rows="3" cols="40" style="resize: none;"></textarea>
+                                        </div>
+                                        <div class="form-group">
+                                          <div class="form-inline">
+                                            <label class="form-control-label mr-3" for="zipcodeEmployeeAdd">Zip Code : </label>
+                                            <input type="text" placeholder="Your zip code" id="zipcodeEmployeeAdd" class="form-control">
+                                          </div>
+                                        </div>
+                                        <div class="form-group">
+                                              <select class="browser-default" id = "countryCodeEmployeeAdd" required>
+                                                  <option value="" disabled selected>Country Code</option>
+                                              </select>
+                                              <input type="text" id="phonenumberEmployeeAdd" placeholder="Your phone number" class="form-control" required />
+                                        </div>
+
+
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div class="modal-footer">
+                                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                      <button type="button" class="btn btn-primary" id="btnSaveNewEmployee">Save changes</button>
+                                  </div>
+                                </form>
+
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Add Employee -->
+
+                        <div class = "row">
+                          <div class = "col-lg">
+                            <div class = "card mb-0">
+                              <div class="container" style="padding-top: 10px;">
+                                <button type="button" width="100" id="btnDeleteEmployee" class="btn bg-red float-right mr-1" title="Delete Selected Item"> <i class="fa fa-trash" aria-hidden="true"></i> </button>
+                                <button type="button" width="100" id="btnUpdateEmployee" class="btn bg-blue float-right mr-1" title="Update Selected Item" data-toggle="modal" data-target="#editEmployeeAccount"> <i class="fa fa-pencil-square-o" aria-hidden="true"></i> </button>
+                                <button type="button" width="100" id="btnAddEmployee" class="btn bg-green float-right mr-1" title="Add New Item" data-toggle="modal" data-target="#addEmployeeAccount"><i class="fa fa-user-plus" aria-hidden="true"></i> </button>
+                              </div>
+                              <div class = "card-body pt-3 pb-5 pl-0 pr-0" style = "overflow-x: auto;">
+                                <table id="employee-table" class="table table-striped table-sm" cellspacing="0" width="100%">
+                                  <thead>
+                                      <tr>
+                                          <th> <input type="checkbox" value="" class="checkbox-template checkbox-delete" id = "checkbox-all-employee"> </th>
+                                          <th> </th>
+                                          <th>Image</th>
+                                          <th>Username</th>
+                                          <th>Password</th>
+                                          <th>First Name</th>
+                                          <th>Middle Name</th>
+                                          <th>Last Name</th>
+                                          <th>Position</th>
+                                          <th>Role</th>
+                                          <th>Gender</th>
+                                          <th>Age</th>
+                                          <th>Email Address</th>
+                                          <th>Country</th>
+                                          <th>City</th>
+                                          <th>Address</th>
+                                          <th>Zip Code</th>
+                                          <th>Country Code</th>
+                                          <th>Phone Number</th>
+                                          <th>Active</th>
+                                      </tr>
+                                  </thead>
+                                  <tfoot>
+                                      <tr>
+                                        <th></th>
+                                        <th></th>
+                                        <th>Image</th>
+                                        <th>Username</th>
+                                        <th>Password</th>
+                                        <th>First Name</th>
+                                        <th>Middle Name</th>
+                                        <th>Last Name</th>
+                                        <th>Position</th>
+                                        <th>Role</th>
+                                        <th>Gender</th>
+                                        <th>Age</th>
+                                        <th>Email Address</th>
+                                        <th>Country</th>
+                                        <th>City</th>
+                                        <th>Address</th>
+                                        <th>Zip Code</th>
+                                        <th>Country Code</th>
+                                        <th>Phone Number</th>
+                                        <th>Active</th>
+                                      </tr>
+                                  </tfoot>
+                                  <tbody>
+                                    <tr>
+                                        <td></td>
+                                        <td><i class="fa fa-chevron-circle-down fa-lg" aria-hidden="true" style="cursor: pointer;"></i></td>
+                                        <td><img src="upload-product-img.png" height="100" width="100"/></td>
+                                        <td>Night Rider</td>
+                                        <td>ahsbfvfkshdahsbd12454</td>
+                                        <td>Alfred</td>
+                                        <td>Argarin</td>
+                                        <td>Borja</td>
+                                        <td>CEO</td>
+                                        <td>Admin</td>
+                                        <td>Male</td>
+                                        <td>23</td>
+                                        <td>alfredoborja81194@gmail.com</td>
+                                        <td>Philippines</td>
+                                        <td>Parañaque</td>
+                                        <td>71 Ninoy Aquino Avenue</td>
+                                        <td>1700</td>
+                                        <td>63</td>
+                                        <td>9996668084</td>
+
+                                        <td>
+                                          <label class="switch">
+                                              <input type="checkbox" checked name="isActive" id="isActive">
+                                              <span class="slider round"></span>
+                                            </label>
+                                        </td>
+                                    </tr>
+
+                                  </tbody>
+                                </table>
+                              </div>
+                            </div>
+                          </div>
+
+                        </div>
+
+                    </div>
+                  </section>
+              </div>
+              <!--/.Panel 2-->
+
+          </div>
+
+          <!-- Button trigger modal -->
+<!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+    Launch demo modal
+</button> -->
+
+<!-- Modal -->
+<!-- <div class="modal fade right" style="margin-right:0px"  id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document" style="margin: 0px;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Edit Account</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                ...
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div> -->
+
+
+
+
+          <!-- Page Footer-->
+          <footer class="main-footer">
+            <div class="container-fluid">
+              <div class="row">
+                <div class="col-sm">
+                  <p class = "text-center">Fong Bros International Corporation &copy; 2018-2019</p>
+                </div>
+              </div>
+            </div>
+          </footer>
+        </div>
+      </div>
+    </div>
+
+    <!--Manage Account Templates-->
+    <script id = "collapsingClientTableMoreInformation" type="text/template">
+
+        <div class = "row showMoreInfoSlider pt-2 pb-2 pl-1 pr-1">
+          <div class = "col-lg-4">
+            <h3>User's Activities</h3>
+            <table id="user-activity-table" class="table table-striped table-bordered" cellspacing="0" width="100%">
+              <thead>
+                  <tr>
+                      <th>User's Activity</th>
+                      <th>Date</th>
+                      <th>Time</th>
+                  </tr>
+              </thead>
+              <tfoot>
+                  <tr>
+                    <th>User's Activity</th>
+                    <th>Date</th>
+                    <th>Time</th>
+                  </tr>
+              </tfoot>
+              <tbody>
+                  <tr>
+                      <td>Bought products</td>
+                      <td>January 29, 2018</td>
+                      <td>13:30:35</td>
+                  </tr>
+                </tbody>
+              </table>
+
+          </div>
+        </div>
+      </div>
+
+      <!--Pagination -->
+      <nav class="my-4 ">
+          <ul class="pagination pagination-circle pg-blue mb-0">
+
+              <!--First-->
+              <li class="page-item disabled"><a class="page-link">First</a></li>
+
+              <!--Arrow left-->
+              <li class="page-item disabled">
+                  <a class="page-link" aria-label="Previous">
+                      <span aria-hidden="true">&laquo;</span>
+                      <span class="sr-only">Previous</span>
+                  </a>
+              </li>
+
+              <!--Numbers-->
+              <li class="page-item active"><a class="page-link">1</a></li>
+              <li class="page-item"><a class="page-link">2</a></li>
+              <li class="page-item"><a class="page-link">3</a></li>
+              <li class="page-item"><a class="page-link">4</a></li>
+              <li class="page-item"><a class="page-link">5</a></li>
+
+              <!--Arrow right-->
+              <li class="page-item">
+                  <a class="page-link" aria-label="Next">
+                      <span aria-hidden="true">&raquo;</span>
+                      <span class="sr-only">Next</span>
+                  </a>
+              </li>
+
+              <!--First-->
+              <li class="page-item"><a class="page-link">Last</a></li>
+
+          </ul>
+      </nav>
+      <!--/Pagination -->
+
+
+    </script>
+    <!-- Manage Account Templates -->
+
+    <!-- Employee Activity -->
+    <script id = "collapsingEmployeeTableMoreInformation" type="text/template">
+
+        <div class = "row showMoreInfoSlider pt-2 pb-2 pl-1 pr-1">
+          <div class = "col-lg-4">
+            <h3>Employee's Activities</h3>
+            <table id="employee-activity-table" class="table table-striped table-bordered" cellspacing="0" width="100%">
+              <thead>
+                  <tr>
+                      <th>Employee's Activity</th>
+                      <th>Date</th>
+                      <th>Time</th>
+                  </tr>
+              </thead>
+              <tfoot>
+                  <tr>
+                    <th>Employee's Activity</th>
+                    <th>Date</th>
+                    <th>Time</th>
+                  </tr>
+              </tfoot>
+              <tbody>
+                  <tr>
+                      <td>Bought products</td>
+                      <td>January 29, 2018</td>
+                      <td>13:30:35</td>
+                  </tr>
+                </tbody>
+              </table>
+
+          </div>
+        </div>
+      </div>
+
+      <!--Pagination -->
+      <nav class="my-4 ">
+          <ul class="pagination pagination-circle pg-blue mb-0">
+
+              <!--First-->
+              <li class="page-item disabled"><a class="page-link">First</a></li>
+
+              <!--Arrow left-->
+              <li class="page-item disabled">
+                  <a class="page-link" aria-label="Previous">
+                      <span aria-hidden="true">&laquo;</span>
+                      <span class="sr-only">Previous</span>
+                  </a>
+              </li>
+
+              <!--Numbers-->
+              <li class="page-item active"><a class="page-link">1</a></li>
+              <li class="page-item"><a class="page-link">2</a></li>
+              <li class="page-item"><a class="page-link">3</a></li>
+              <li class="page-item"><a class="page-link">4</a></li>
+              <li class="page-item"><a class="page-link">5</a></li>
+
+              <!--Arrow right-->
+              <li class="page-item">
+                  <a class="page-link" aria-label="Next">
+                      <span aria-hidden="true">&raquo;</span>
+                      <span class="sr-only">Next</span>
+                  </a>
+              </li>
+
+              <!--First-->
+              <li class="page-item"><a class="page-link">Last</a></li>
+
+          </ul>
+      </nav>
+      <!--/Pagination -->
+
+
+    </script>
+    <!-- Employee Activity -->
+
+    <!-- inventory templates -->
+
+    <script id = "collapsingInventoryProductTemplatePosted" type = "text/template">
+      <div class = "row slider pt-2 pb-2 pl-1 pr-1">
+        <div class = "col-lg-4">
+
+
+          <div class="tab-content">
+            <div class="tab-pane active" id="img1" role="tabpanel">
+              <img src = "img/bg.jpg" width = "290" height = "200" />
+            </div>
+            <div class="tab-pane" id="img2" role="tabpanel">
+                <img src = "img/project-1.jpg" width = "290" height = "200" />
+            </div>
+            <div class="tab-pane" id="img3" role="tabpanel">
+                 <img src = "img/project-2.jpg" width = "290" height = "200" />
+            </div>
+            <div class="tab-pane" id="img4" role="tabpanel">
+               <img src = "img/project-3.jpg" width = "290" height = "200" />
+            </div>
+          </div>
+
+           <ul class="nav mt-1" role="tablist">
+            <li class="nav-item">
+              <a class="active pr-1" data-toggle="tab" href="#img1" role="tab">
+                <img src = "img/bg.jpg" width = "70" height = "70" />
+              </a>
+            </li>
+              <li class="nav-item">
+              <a class="pr-1" data-toggle="tab" href="#img2" role="tab">
+                  <img src =  "img/project-1.jpg" width = "70" height = "70" />
+              </a>
+            </li>
+              <li class="nav-item">
+              <a class="pr-1" data-toggle="tab" href="#img3" role="tab">
+                   <img src = "img/project-2.jpg" width = "70" height = "70" />
+              </a>
+            </li>
+              <li class="nav-item">
+              <a data-toggle="tab" href="#img4" role="tab">
+                  <img src = "img/project-3.jpg" width = "70" height = "70" />
+              </a>
+            </li>
+
+          </ul>
+        </div>
+        <div class = "col-lg-8">
+          <h5>
+            Description: Lapu Lapu
+            <span class = "float-right"> Origin: Leyte </span>
+          </h5>
+          <hr class = "mt-0 mb-2" />
+
+          <p class = "text-justify">
+            - In JSP, java code can be written inside the jsp page using the scriptlet tag. Let's see what are the scripting elements first.
+          </p>
+
+          <hr class = "mt-0 mb-2"/>
+
+          <ul class = "list-unstyled">
+            <li class = "mb-1"> <strong> Supplier: </strong> Harmonyssss </li>
+            <li class = "mb-1"> <strong> Supplier Contact number: </strong> 09151828105 </li>
+            <li class = "mb-1"> <strong> Supplier Address: </strong> 1700 blk 7 saint joseph subd pulanglupa 2 las pinas city </li>
+            <li class = "mb-1"> <strong> Date of delivery: </strong> May 12 1988  </li>
+          </ul>
+
+          <br />
+
+          <button type="button" class="btn bg-green float-right mr-1">Post <i class="fa fa-clipboard ml-1" aria-hidden="true"></i>  </button>
+          <button type="button" class="btn bg-blue float-right mr-1">Edit <i class="fa fa-pencil" aria-hidden="true"></i> </button>
+          <button type="button" class="btn bg-red float-right mr-1">Delete <i class="fa fa-trash" aria-hidden="true"></i> </button>
+        </div>
+      </div>
+    </script>
+
+    <script id = "collapsingInventoryProductTemplateUnposted" type = "text/template">
+      <div class = "row slider pt-2 pb-2 pl-1 pr-1">
+        <div class = "col-lg-4">
+
+
+          <div class="tab-content">
+            <div class="tab-pane active" id="img1" role="tabpanel">
+              <img src = "img/bg.jpg" width = "290" height = "200" />
+            </div>
+            <div class="tab-pane" id="img2" role="tabpanel">
+                <img src = "img/project-1.jpg" width = "290" height = "200" />
+            </div>
+            <div class="tab-pane" id="img3" role="tabpanel">
+                 <img src = "img/project-2.jpg" width = "290" height = "200" />
+            </div>
+            <div class="tab-pane" id="img4" role="tabpanel">
+               <img src = "img/project-3.jpg" width = "290" height = "200" />
+            </div>
+          </div>
+
+           <ul class="nav mt-1" role="tablist">
+            <li class="nav-item">
+              <a class="active pr-1" data-toggle="tab" href="#img1" role="tab">
+                <img src = "img/bg.jpg" width = "70" height = "70" />
+              </a>
+            </li>
+              <li class="nav-item">
+              <a class="pr-1" data-toggle="tab" href="#img2" role="tab">
+                  <img src =  "img/project-1.jpg" width = "70" height = "70" />
+              </a>
+            </li>
+              <li class="nav-item">
+              <a class="pr-1" data-toggle="tab" href="#img3" role="tab">
+                   <img src = "img/project-2.jpg" width = "70" height = "70" />
+              </a>
+            </li>
+              <li class="nav-item">
+              <a data-toggle="tab" href="#img4" role="tab">
+                  <img src = "img/project-3.jpg" width = "70" height = "70" />
+              </a>
+            </li>
+
+          </ul>
+        </div>
+        <div class = "col-lg-8">
+          <h5>
+            Description: Lapu Lapu
+            <span class = "float-right"> Origin: Leyte </span>
+          </h5>
+          <hr class = "mt-0 mb-2" />
+
+          <p class = "text-justify">
+            - In JSP, java code can be written inside the jsp page using the scriptlet tag. Let's see what are the scripting elements first.
+          </p>
+
+          <hr class = "mt-0 mb-2"/>
+
+          <ul class = "list-unstyled">
+            <li class = "mb-1"> <strong> Supplier: </strong> Harmonyssss </li>
+            <li class = "mb-1"> <strong> Supplier Contact number: </strong> 09151828105 </li>
+            <li class = "mb-1"> <strong> Supplier Address: </strong> 1700 blk 7 saint joseph subd pulanglupa 2 las pinas city </li>
+            <li class = "mb-1"> <strong> Date of delivery: </strong> May 12 1988  </li>
+          </ul>
+
+          <br />
+
+          <button type="button" class="btn bg-dark text-white float-right mr-1">Unpost <i class="fa fa-clipboard ml-1" aria-hidden="true"></i>  </button>
+          <button type="button" class="btn bg-blue float-right mr-1">Edit <i class="fa fa-pencil" aria-hidden="true"></i> </button>
+          <button type="button" class="btn bg-red float-right mr-1">Delete <i class="fa fa-trash" aria-hidden="true"></i> </button>
+        </div>
+      </div>
+    </script>
+
+    <script type="text/template" id="qq-template">
+        <div class="qq-uploader-selector qq-uploader qq-gallery" qq-drop-area-text="Drop files here">
+            <div class="qq-total-progress-bar-container-selector qq-total-progress-bar-container">
+                <div role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" class="qq-total-progress-bar-selector qq-progress-bar qq-total-progress-bar"></div>
+            </div>
+            <div class="qq-upload-drop-area-selector qq-upload-drop-area" qq-hide-dropzone>
+                <span class="qq-upload-drop-area-text-selector"></span>
+            </div>
+            <div class="qq-upload-button-selector qq-upload-button">
+                <div>Upload a file</div>
+            </div>
+            <span class="qq-drop-processing-selector qq-drop-processing">
+                <span>Processing dropped files...</span>
+                <span class="qq-drop-processing-spinner-selector qq-drop-processing-spinner"></span>
+            </span>
+            <ul class="qq-upload-list-selector qq-upload-list" role="region" aria-live="polite" aria-relevant="additions removals">
+                <li>
+                    <span role="status" class="qq-upload-status-text-selector qq-upload-status-text"></span>
+                    <div class="qq-progress-bar-container-selector qq-progress-bar-container">
+                        <div role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" class="qq-progress-bar-selector qq-progress-bar"></div>
+                    </div>
+                    <span class="qq-upload-spinner-selector qq-upload-spinner"></span>
+                    <div class="qq-thumbnail-wrapper">
+                        <img class="qq-thumbnail-selector" qq-max-size="120" qq-server-scale>
+                    </div>
+                    <button type="button" class="qq-upload-cancel-selector qq-upload-cancel">X</button>
+                    <button type="button" class="qq-upload-retry-selector qq-upload-retry">
+                        <span class="qq-btn qq-retry-icon" aria-label="Retry"></span>
+                        Retry
+                    </button>
+
+                    <div class="qq-file-info">
+                        <div class="qq-file-name">
+                            <span class="qq-upload-file-selector qq-upload-file"></span>
+                            <span class="qq-edit-filename-icon-selector qq-btn qq-edit-filename-icon" aria-label="Edit filename"></span>
+                        </div>
+                        <input class="qq-edit-filename-selector qq-edit-filename" tabindex="0" type="text">
+                        <span class="qq-upload-size-selector qq-upload-size"></span>
+                        <button type="button" class="qq-btn qq-upload-delete-selector qq-upload-delete">
+                            <span class="qq-btn qq-delete-icon" aria-label="Delete"></span>
+                        </button>
+                        <button type="button" class="qq-btn qq-upload-pause-selector qq-upload-pause">
+                            <span class="qq-btn qq-pause-icon" aria-label="Pause"></span>
+                        </button>
+                        <button type="button" class="qq-btn qq-upload-continue-selector qq-upload-continue">
+                            <span class="qq-btn qq-continue-icon" aria-label="Continue"></span>
+                        </button>
+                    </div>
+                </li>
+            </ul>
+
+            <dialog class="qq-alert-dialog-selector">
+                <div class="qq-dialog-message-selector"></div>
+                <div class="qq-dialog-buttons">
+                    <button type="button" class="qq-cancel-button-selector">Close</button>
+                </div>
+            </dialog>
+
+            <dialog class="qq-confirm-dialog-selector">
+                <div class="qq-dialog-message-selector"></div>
+                <div class="qq-dialog-buttons">
+                    <button type="button" class="qq-cancel-button-selector">No</button>
+                    <button type="button" class="qq-ok-button-selector">Yes</button>
+                </div>
+            </dialog>
+
+            <dialog class="qq-prompt-dialog-selector">
+                <div class="qq-dialog-message-selector"></div>
+                <input type="text">
+                <div class="qq-dialog-buttons">
+                    <button type="button" class="qq-cancel-button-selector">Cancel</button>
+                    <button type="button" class="qq-ok-button-selector">Ok</button>
+                </div>
+            </dialog>
+        </div>
+    </script>
+
+
+    <!-- Javascript files-->
+
+
+
+
+    <script src="js/pace.min.js"></script>
+    <script src="https://use.fontawesome.com/38a955adbf.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="vendor/popper.js/umd/popper.min.js"> </script>
+    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script src="vendor/jquery.cookie/jquery.cookie.js"> </script>
+    <script src="vendor/chart.js/Chart.min.js"></script>
+    <script src="vendor/jquery-validation/jquery.validate.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+    <script src="js/fileinput.min.js"></script>
+
+    <script src="themes/fa/theme.js"></script>
+
+    <script src="js/inventory.js"> </script>
+
+    <script src="js/charts-home.js"></script>
+    <!-- Main File-->
+    <script src="js/front.js"></script>
+ <script>
+
+$("#input-id").fileinput({'showUpload':false, 'previewFileType':'any'});
+
+      $( "#minDatePicker" ).flatpickr();
+      $( "#maxDatePicker" ).flatpickr();
+
+      $( "#expiredDatePicker" ).flatpickr();
+      $( "#deliveryDatePicker" ).flatpickr();
+
+     $("#file-1").fileinput({
+        theme : "fa",
+        uploadUrl: '#', // you must set a valid URL here else you will get an error
+        allowedFileExtensions: ['jpg', 'png'],
+        overwriteInitial: false,
+        maxFileSize: 10024,
+        maxFileCount: 3,
+        showUpload: false,
+        showClose : false,
+        showRemove : true,
+        browseOnZoneClick : true,
+        dropZoneTitle : "Drag and drop images here maxinum of 3",
+        dropZoneClickTitle : "<br /> or click to browse images",
+        previewSettings : {
+          image: {width: "250px", height: "250px"}
+        }
+
+    });
+
+
+
+
+      //  $('#example').DataTable({
+
+      //   'columnDefs': [{
+      //     'targets': [0],
+      //     'searchable': false,
+      //     'orderable': false,
+      //     'className': 'dt-body-center',
+      //     'render': function (data, type, full, meta){
+      //         return '<input id="checkboxCustom1" type="checkbox" value="" class="checkbox-template">';
+      //     }
+      //   }],
+
+      //   'order': [[1, 'asc']]
+      // });
+
+      // note: activate datatable by calling Datatable instead of dataTable and pass some configuration objects there see the docs for more details -kryssel
+      // var table = $('#inventoryTable').DataTable( {
+      //     "columns": [
+      //       {
+      //             'searchable': false,
+      //             'orderable': false,
+      //             'className': 'dt-body-center',
+      //             'render': function (data, type, full, meta){
+      //                 return '<input id="checkboxCustom1" type="checkbox" value="" class="checkbox-template checkbox-delete">';
+      //             }
+      //       },
+      //       {"orderable" : false},
+      //       null,
+      //       null,
+      //       null,
+      //       null,
+      //       null,
+      //       null,
+      //       null,
+      //       null,
+      //       null
+      //     ],
+      //     "order" : []
+      //   }
+      // );
+
+      // $('.fa-chevron-circle-down').click(function () {
+      //     var parentRow = $(this).closest('tr');
+
+
+      //     var row = table.row(parentRow);
+
+      //     if (row.child.isShown()) {
+      //         $(this).removeClass("fa-chevron-circle-up").addClass("fa-chevron-circle-down");
+      //         $('div.slider', row.child()).slideUp(function () {
+      //           row.child.hide();
+      //         });
+      //     } else {
+      //         var rowProductRowCollapse = $("#collapsingInventoryProductTemplateUnposted").html();
+      //         row.child(rowProductRowCollapse, 'no-padding').show();
+      //         $(this).removeClass("fa-chevron-circle-down").addClass("fa-chevron-circle-up");
+      //         $('div.slider', row.child()).slideDown(function () {
+
+      //           $(this).parent().removeAttr('class').parent().removeAttr('class');
+      //         });
+      //         $('div.slider').css("display", "flex");
+      //     }
+
+      // });
+
+      // $("#checkbox-all").click(function () {
+      //
+      //     $("#inventoryTable").find("tr:not(:first) input.checkbox-template")
+      //                         .prop("checked", $(this).prop("checked"));
+      // });
+
+      // $(".checkbox-delete").change(function () {
+
+      //   if ($("#inventoryTable").find("tr:not(:first) input.checkbox-template:checked").length > 0) {
+
+      //     $("a#deleteProduct").removeClass("text-muted").addClass("text-red").css("cursor", "pointer");
+      //   } else {
+
+      //     $("a#deleteProduct").removeClass("red-text").addClass("text-muted").css("cursor", "not-allowed");
+      //   }
+      // });
+
+      /*ORDER TABLE*/
+      // var table = $('#orderTable').DataTable( {
+      //     "columns": [
+      //       {
+      //             'searchable': false,
+      //             'orderable': false,
+      //             'className': 'dt-body-center',
+      //             'render': function (data, type, full, meta){
+      //                 return '<input id="checkboxCustom1" type="checkbox" value="" class="checkbox-template checkbox-delete">';
+      //             }
+      //       },
+      //       {"orderable" : false},
+      //       {"orderable" : false},
+      //       {"orderable" : false},
+      //       {"orderable" : false},
+      //       {"orderable" : false},
+      //     ],
+      //     "order" : []
+      //   }
+      // );
+      //
+      // $('.fa-chevron-circle-down').click(function () {
+      //     var parentRow = $(this).closest('tr');
+      //
+      //
+      //     var row = table.row(parentRow);
+      //
+      //     if (row.child.isShown()) {
+      //         $(this).removeClass("fa-chevron-circle-up").addClass("fa-chevron-circle-down");
+      //         $('div.slider', row.child()).slideUp(function () {
+      //           row.child.hide();
+      //         });
+      //     } else {
+      //         var rowProductRowCollapse = $("#collapsingInventoryProductTemplateUnposted").html();
+      //         row.child(rowProductRowCollapse, 'no-padding').show();
+      //         $(this).removeClass("fa-chevron-circle-down").addClass("fa-chevron-circle-up");
+      //         $('div.slider', row.child()).slideDown(function () {
+      //
+      //           $(this).parent().removeAttr('class').parent().removeAttr('class');
+      //         });
+      //         $('div.slider').css("display", "flex");
+      //     }
+      //
+      // });
+      //
+      // $("#checkbox-all").click(function () {
+      //
+      //     $("#inventoryTable").find("tr:not(:first) input.checkbox-template")
+      //                         .prop("checked", $(this).prop("checked"));
+      //
+      //
+      // });
+      //
+      // $(".checkbox-delete").change(function () {
+      //
+      //   if ($("#inventoryTable").find("tr:not(:first) input.checkbox-template:checked").length > 0) {
+      //
+      //     $("a#deleteProduct").removeClass("text-muted").addClass("text-red").css("cursor", "pointer");
+      //   } else {
+      //
+      //     $("a#deleteProduct").removeClass("red-text").addClass("text-muted").css("cursor", "not-allowed");
+      //   }
+      // });
+      /*ORDER TABLE*/
+
+      /*CLIENT TABLE*/
+
+      /*User Activity*/
+
+      /*User Activity*/
+
+      var clienttable = $('#client-table').DataTable({
+        "scrollX": true,
+        "columns": [
+          {
+                'searchable': false,
+                'orderable': false,
+                'className': 'dt-body-center',
+                'render': function (data, type, full, meta){
+                    return '<input id="checkboxCustom1" name="checkboxClient[]" type="checkbox" value="" class="checkbox-template checkbox-delete">';
+                }
+          },
+          {"orderable" : false},
+          {"orderable" : false},
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          {"orderable" : false},
+        ],
+        "order" : []
+      });
+
+
+
+      $('#client-table tbody').on( 'click', 'tr', function () {
+
+        if ( $(this).hasClass('selected') ) {
+            $(this).removeClass('selected');
+            $(this).css("background-color", "#e7ffd6");
+        }
+        else {
+            clienttable.$('tr.selected').removeClass('selected');
+            $(this).addClass('selected');
+
+            var $rows = $("#client-table").children('tbody').children('tr');
+            $rows.css("background-color", "#e7ffd6");
+            $(this).css("background-color", "#81ecec");
+          }
+      } );
+
+      $('#btnDeleteClient').click( function () {
+          clienttable.row('.selected').remove().draw( false );
+      } );
+
+      $('#btnUpdateClient').click( function () {
+        var employeeData = clienttable.row('.selected').data();
+        $("#usernameClientEdit").val(employeeData[3]);
+        $("#firstnameClientEdit").val(employeeData[5]);
+        $("#middlenameClientEdit").val(employeeData[6]);
+        $("#lastnameClientEdit").val(employeeData[7]);
+        $("input[name='genderClientEdit'][value='"+employeeData[8]+"']").prop('checked', true);
+        $("#ageClientEdit").val(employeeData[9]);
+        $("#emailClientEdit").val(employeeData[10]);
+        $("#countryClientEdit").val(employeeData[11]).change();
+        $("#cityClientEdit").val(employeeData[12]);
+        $("#addressClientEdit").val(employeeData[13]);
+        $("#zipcodeClientEdit").val(employeeData[14]).change();
+        $("#countryCodeClientEdit").val(employeeData[15]);
+        $("#phonenumberClientEdit").val(employeeData[16]);
+      });
+
+      /*IS ACTIVE TOGGLE*/
+      var $boxes = $('input[name=isActive]');
+      $boxes.each(function(){
+        toggleIsActive(this);
+      });
+
+      $boxes.on('change', function(){
+        toggleIsActive(this);
+      });
+
+      function toggleIsActive(btnIsActive){
+        if($(btnIsActive).is(":checked")){
+          $(btnIsActive).closest('tr').css("background-color", "#e7ffd6");
+        }else{
+          $(btnIsActive).closest('tr').css("background-color", "#ffd6d6");
+        }
+      }
+      /*IS ACTIVE TOGGLE*/
+
+      $('.fa-chevron-circle-down').click(function () {
+        var parentRow = $(this).closest('tr');
+
+
+        var row = clienttable.row(parentRow);
+
+        if (row.child.isShown()) {
+            $(this).removeClass("fa-chevron-circle-up").addClass("fa-chevron-circle-down");
+            $('div.showMoreInfoSlider', row.child()).slideUp(function () {
+              row.child.hide();
+            });
+        } else {
+            var rowMoreInformationCollapse = $("#collapsingClientTableMoreInformation").html();
+            row.child(rowMoreInformationCollapse, 'no-padding').show();
+            $(this).removeClass("fa-chevron-circle-down").addClass("fa-chevron-circle-up");
+            $('div.showMoreInfoSlider', row.child()).slideDown(function () {
+
+              $(this).parent().removeAttr('class').parent().removeAttr('class');
+            });
+            $('div.showMoreInfoSlider').css("display", "flex");
+        }
+
+      });
+
+      $("#checkbox-all-client").click(function () {
+          $("#client-table").find("tr:not(:first) input.checkbox-template")
+                              .prop("checked", $(this).prop("checked"));
+      });
+
+      /*Country Edit Client*/
+      $("#countryCodeClientEdit").ready(function () {
+          $.ajax({
+              url : "https://restcountries.eu/rest/v2/all",
+              dataType : "json",
+              success : function (restCountriesData) {
+
+
+                  for (var i = 0; i != restCountriesData.length; ++i) {
+                      var countryLetterCode = restCountriesData[i].alpha2Code;
+                      var countryCode = restCountriesData[i].callingCodes[0];
+
+                      if (countryCode.length > 0)
+                          $("#countryCodeClientEdit").append('<option value = "' + countryCode + '">+' + countryCode + ' (' + countryLetterCode + ') </option');
+
+                  }
+
+
+              }
+          });
+      });
+
+      $('#countryClientEdit').ready(function () {
+
+         $.ajax(
+             {
+                 url : "https://restcountries.eu/rest/v2/all",
+                 dataType : "json",
+                 success : function (responseData) {
+
+                     for (var i = 0; i != responseData.length; ++i) {
+
+                          if (responseData[i].alpha2Code.length > 0) {
+                              var country = responseData[i].name;
+                              var countryCode = responseData[i].alpha2Code;
+                              $('#countryClientEdit').append('<option value = "'+ country + '">' + country + ' (' + countryCode + ')</option>');
+                          }
+
+                     }
+
+
+
+                 }
+             }
+         );
+      });
+
+      $('#countryClientEdit').change(function () {
+
+          var $cityTextBox = $('#cityClientEdit');
+
+          var country = $(this).val();
+
+
+          if ($cityTextBox.is(":disabled"))
+              $cityTextBox.removeAttr("disabled");
+
+      });
+      /*Country Edit Client*/
+
+      /*CLIENT FILTER*/
+
+      $.fn.dataTable.ext.search.push(
+          function( settings, data, dataIndex ) {
+              var min = parseInt( $('#minAgeClient').val(), 10 );
+              var max = parseInt( $('#maxAgeClient').val(), 10 );
+              var age = parseFloat( data[9] ) || 0; // use data for the age column
+
+              if ( ( isNaN( min ) && isNaN( max ) ) ||
+                   ( isNaN( min ) && age <= max ) ||
+                   ( min <= age   && isNaN( max ) ) ||
+                   ( min <= age   && age <= max ) )
+              {
+                  return true;
+              }
+              return false;
+          }
+      );
+
+      // Event listener to the two range filtering inputs to redraw on input
+      $('#minAgeClient, #maxAgeClient').keyup( function() {
+          clienttable.draw();
+      } );
+
+      $('#countryClient').ready(function () {
+
+         $.ajax(
+             {
+                 url : "https://restcountries.eu/rest/v2/all",
+                 dataType : "json",
+                 success : function (responseData) {
+
+                     for (var i = 0; i != responseData.length; ++i) {
+
+                          if (responseData[i].alpha2Code.length > 0) {
+                              var country = responseData[i].name;
+                              var countryCode = responseData[i].alpha2Code;
+                              $('#countryClient').append('<option value = "'+ country + '">' + country + ' (' + countryCode + ')</option>');
+                          }
+
+                     }
+
+                 }
+             }
+         );
+      });
+
+      /*CLIENT FILTER*/
+
+      /*CLIENT TABLE*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      /*EMPLOYEE TABLE*/
+      var employeetable = $('#employee-table').DataTable({
+        "scrollX": true,
+        "columns": [
+          {
+                'searchable': false,
+                'orderable': false,
+                'className': 'dt-body-center',
+                'render': function (data, type, full, meta){
+                    return '<input id="checkboxCustom2" type="checkbox" value="" class="checkbox-template checkbox-delete">';
+                }
+          },
+          {"orderable" : false},
+          {"orderable" : false},
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          {"orderable" : false},
+        ],
+        "order" : []
+      });
+
+      $('#employee-table tbody').on( 'click', 'tr', function () {
+
+
+        if ( $(this).hasClass('selected') ) {
+            $(this).removeClass('selected');
+            $(this).css("background-color", "#e7ffd6");
+        }
+        else {
+            employeetable.$('tr.selected').removeClass('selected');
+            $(this).addClass('selected');
+
+            var $rows = $("#employee-table").children('tbody').children('tr');
+            $rows.css("background-color", "#e7ffd6");
+            $(this).css("background-color", "#81ecec");
+          }
+      } );
+
+      $('#btnDeleteEmployee').click( function () {
+          employeetable.row('.selected').remove().draw( false );
+      } );
+
+      $('#btnUpdateEmployee').click( function () {
+        var employeeData = employeetable.row('.selected').data();
+        $("#usernameEmployeeEdit").val(employeeData[3]);
+        $("#firstnameEmployeeEdit").val(employeeData[5]);
+        $("#middlenameEmployeeEdit").val(employeeData[6]);
+        $("#lastnameEmployeeEdit").val(employeeData[7]);
+        $("#positionEmployeeEdit").val(employeeData[8]);
+        $("#roleEmployeeEdit").val(employeeData[9]);
+        $("input[name='genderEmployeeEdit'][value='"+employeeData[10]+"']").prop('checked', true);
+        $("#ageEmployeeEdit").val(employeeData[11]);
+        $("#emailEmployeeEdit").val(employeeData[12]);
+        $("#countryEmployeeEdit").val(employeeData[13]).change();
+        $("#cityEmployeeEdit").val(employeeData[14]);
+        $("#addressEmployeeEdit").val(employeeData[15]);
+        $("#zipcodeEmployeeEdit").val(employeeData[16]).change();
+        $("#countryCodeEmployeeEdit").val(employeeData[17]);
+        $("#phonenumberEmployeeEdit").val(employeeData[18]);
+        $("#img-uploadEmployeeEdit").attr("src", $(employeeData[2]).attr("src"));
+
+      });
+
+      /*IS ACTIVE TOGGLE*/
+      var $boxes = $('input[name=isActive]');
+      $boxes.each(function(){
+        toggleIsActive(this);
+      });
+
+      $boxes.on('change', function(){
+        toggleIsActive(this);
+      });
+
+      function toggleIsActive(btnIsActive){
+        if($(btnIsActive).is(":checked")){
+          $(btnIsActive).closest('tr').css("background-color", "#e7ffd6");
+        }else{
+          $(btnIsActive).closest('tr').css("background-color", "#ffd6d6");
+        }
+      }
+      /*IS ACTIVE TOGGLE*/
+
+      $('.fa-chevron-circle-down').click(function () {
+        var parentRowEmployee = $(this).closest('tr');
+
+
+        var rowEmployee = employeetable.row(parentRowEmployee);
+
+        if (rowEmployee.child.isShown()) {
+            $(this).removeClass("fa-chevron-circle-up").addClass("fa-chevron-circle-down");
+            $('div.showMoreInfoSlider', rowEmployee.child()).slideUp(function () {
+              rowEmployee.child.hide();
+            });
+        } else {
+            var rowMoreInformationCollapse = $("#collapsingEmployeeTableMoreInformation").html();
+            rowEmployee.child(rowMoreInformationCollapse, 'no-padding').show();
+            $(this).removeClass("fa-chevron-circle-down").addClass("fa-chevron-circle-up");
+            $('div.showMoreInfoSlider', rowEmployee.child()).slideDown(function () {
+
+              $(this).parent().removeAttr('class').parent().removeAttr('class');
+            });
+            $('div.showMoreInfoSlider').css("display", "flex");
+        }
+
+      });
+
+      $("#checkbox-all-employee").click(function () {
+          $("#employee-table").find("tr:not(:first) input.checkbox-template")
+                              .prop("checked", $(this).prop("checked"));
+      });
+
+
+
+      //Filter EMPLOYEE
+      $.fn.dataTable.ext.search.push(
+          function( settings, data, dataIndex ) {
+              var min = parseInt( $('#minAgeEmployee').val(), 10 );
+              var max = parseInt( $('#maxAgeEmployee').val(), 10 );
+              var age = parseFloat( data[11] ) || 0; // use data for the age column
+
+              if ( ( isNaN( min ) && isNaN( max ) ) ||
+                   ( isNaN( min ) && age <= max ) ||
+                   ( min <= age   && isNaN( max ) ) ||
+                   ( min <= age   && age <= max ) )
+              {
+                  return true;
+              }
+              return false;
+          }
+      );
+
+      $('#minAgeEmployee, #maxAgeEmployee').keyup( function() {
+          employeetable.draw();
+      } );
+
+      $('#countryEmployee').ready(function () {
+
+         $.ajax(
+             {
+                 url : "https://restcountries.eu/rest/v2/all",
+                 dataType : "json",
+                 success : function (responseData) {
+
+                     for (var i = 0; i != responseData.length; ++i) {
+
+                          if (responseData[i].alpha2Code.length > 0) {
+                              var country = responseData[i].name;
+                              var countryCode = responseData[i].alpha2Code;
+                              $('#countryEmployee').append('<option value = "'+ country + '">' + country + ' (' + countryCode + ')</option>');
+                          }
+
+                     }
+
+                 }
+             }
+         );
+      });
+      //Filter EMPLOYEE
+
+
+      /*Country Edit Employee*/
+      $("#countryCodeEmployeeEdit").ready(function () {
+          $.ajax({
+              url : "https://restcountries.eu/rest/v2/all",
+              dataType : "json",
+              success : function (restCountriesData) {
+
+
+                  for (var i = 0; i != restCountriesData.length; ++i) {
+                      var countryLetterCode = restCountriesData[i].alpha2Code;
+                      var countryCode = restCountriesData[i].callingCodes[0];
+
+                      if (countryCode.length > 0)
+                          $("#countryCodeEmployeeEdit").append('<option value = "' + countryCode + '">+' + countryCode + ' (' + countryLetterCode + ') </option');
+
+                  }
+
+
+              }
+          });
+      });
+
+      $('#countryEmployeeEdit').ready(function () {
+
+         $.ajax(
+             {
+                 url : "https://restcountries.eu/rest/v2/all",
+                 dataType : "json",
+                 success : function (responseData) {
+
+                     for (var i = 0; i != responseData.length; ++i) {
+
+                          if (responseData[i].alpha2Code.length > 0) {
+                              var country = responseData[i].name;
+                              var countryCode = responseData[i].alpha2Code;
+                              $('#countryEmployeeEdit').append('<option value = "'+ country + '">' + country + ' (' + countryCode + ')</option>');
+                          }
+
+                     }
+
+
+
+                 }
+             }
+         );
+      });
+
+      $('#countryEmployeeEdit').change(function () {
+
+          var $cityTextBox = $('#cityEmployeeEdit');
+
+          var country = $(this).val();
+
+
+          if ($cityTextBox.is(":disabled"))
+              $cityTextBox.removeAttr("disabled");
+
+      });
+      /*Country Edit Employee*/
+
+
+
+
+
+      /*Country Add Employee*/
+      $("#countryCodeEmployeeAdd").ready(function () {
+          $.ajax({
+              url : "https://restcountries.eu/rest/v2/all",
+              dataType : "json",
+              success : function (restCountriesData) {
+
+
+                  for (var i = 0; i != restCountriesData.length; ++i) {
+                      var countryLetterCode = restCountriesData[i].alpha2Code;
+                      var countryCode = restCountriesData[i].callingCodes[0];
+
+                      if (countryCode.length > 0)
+                          $("#countryCodeEmployeeAdd").append('<option value = "' + countryCode + '">+' + countryCode + ' (' + countryLetterCode + ') </option');
+
+                  }
+
+
+              }
+          });
+      });
+
+      $('#countryEmployeeAdd').ready(function () {
+
+         $.ajax(
+             {
+                 url : "https://restcountries.eu/rest/v2/all",
+                 dataType : "json",
+                 success : function (responseData) {
+
+                     for (var i = 0; i != responseData.length; ++i) {
+
+                          if (responseData[i].alpha2Code.length > 0) {
+                              var country = responseData[i].name;
+                              var countryCode = responseData[i].alpha2Code;
+                              $('#countryEmployeeAdd').append('<option value = "'+ country + '">' + country + ' (' + countryCode + ')</option>');
+                          }
+
+                     }
+
+
+
+                 }
+             }
+         );
+      });
+
+      $('#countryEmployeeAdd').change(function () {
+
+          var $cityTextBox = $('#cityEmployeeAdd');
+
+          var country = $(this).val();
+
+
+          if ($cityTextBox.is(":disabled"))
+              $cityTextBox.removeAttr("disabled");
+
+      });
+
+
+      /*Country Add Employee*/
+
+      /*Profile Picture Add New Employee*/
+
+      $('input[type=radio][name=genderEmployeeAdd]').change(function(){
+        var gender = $('input[type=radio][name=genderEmployeeAdd]:checked').val();
+        if(gender == "Male"){
+          if($("#fileEmployeeAdd").get(0).files.length == 0)
+            $("#img-upload").attr("src", "profile-male.jpg");
+        }
+
+        if(gender == "Female"){
+          if($("#fileEmployeeAdd").get(0).files.length == 0)
+            $("#img-uploadEmployeeAdd").attr("src", "profile-female.jpg");
+        }
+      });
+
+      function filePreviewAdd(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                $("#img-uploadEmployeeAdd").attr("src", e.target.result);
+            }
+            reader.readAsDataURL(input.files[0]);
+        }
+      }
+
+      $("#fileEmployeeAdd").change(function () {
+          filePreviewAdd(this);
+      });
+
+
+      /*Profile Picture Add New Employee*/
+
+      /*Profile Picture Edit Employee*/
+
+      function filePreviewEdit(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                $("#img-uploadEmployeeEdit").attr("src", e.target.result);
+            }
+            reader.readAsDataURL(input.files[0]);
+        }
+      }
+
+      $("#fileEmployeeEdit").change(function () {
+          filePreviewEdit(this);
+      });
+
+
+      /*Profile Picture Edit Employee*/
+      /*EMPLOYEE TABLE*/
+    </script>
+  </body>
+</html>

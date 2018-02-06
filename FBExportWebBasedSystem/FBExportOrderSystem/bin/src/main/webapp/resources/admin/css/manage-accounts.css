@@ -1,0 +1,57 @@
+/*Profile picture upload Employee Add*/
+
+.fileEmployeeAdd {
+position: relative;
+}
+.fileEmployeeAdd label {
+background-color: #3498db;
+padding: 5px 20px;
+color: #fff;
+font-weight: bold;
+font-size: .9em;
+transition: all .4s;
+}
+.fileEmployeeAdd input {
+
+position: absolute;
+display: inline-block;
+left: 0;
+top: 0;
+opacity: 0.01;
+cursor: pointer;
+}
+.fileEmployeeAdd input:hover + label,
+.fileEmployeeAdd input:focus + label {
+background: #34495E;
+color: #3498db;
+}
+/*Profile picture upload Employee Add*/
+
+/*Profile picture upload Employee Edit*/
+
+.fileEmployeeEdit {
+position: relative;
+}
+.fileEmployeeEdit label {
+background-color: #3498db;
+padding: 5px 20px;
+color: #fff;
+font-weight: bold;
+font-size: .9em;
+transition: all .4s;
+}
+.fileEmployeeEdit input {
+
+position: absolute;
+display: inline-block;
+left: 0;
+top: 0;
+opacity: 0.01;
+cursor: pointer;
+}
+.fileEmployeeEdit input:hover + label,
+.fileEmployeeEdit input:focus + label {
+background: #34495E;
+color: #3498db;
+}
+/*Profile picture upload Employee Edit*/

@@ -1,0 +1,15 @@
+.pointerable {
+    cursor: pointer;
+}
+
+div.slider {
+    display: none;
+}
+
+table.dataTable tbody td.no-padding {
+    padding: 0;
+}
+
+.kv-file-upload{ 
+    color:#fff !important; visibility: hidden !important;
+}

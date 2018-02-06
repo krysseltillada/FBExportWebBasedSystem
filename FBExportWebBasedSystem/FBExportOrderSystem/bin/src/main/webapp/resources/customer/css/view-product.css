@@ -1,0 +1,81 @@
+.star-rating{
+    padding:20px;
+    direction: rtl;
+    display: inline-block;
+}
+
+.star-radio{
+    display: none;
+}
+
+.star{
+    color: #bbb;
+    font-size: 22px;
+    cursor: pointer;
+    transition: color .3s ease-in-out
+}
+
+.star:hover{
+    color: #f2b600;
+}
+
+.star:hover ~ .star{
+    color: #f2b600;
+}
+
+.star-radio:checked ~ .star{
+    color: #f2b600;
+}
+
+/* profile page style */
+
+main {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+}
+
+.widget-wrapper {
+    padding-bottom: 2rem;
+    border-bottom: 1px solid #e0e0e0;
+    margin-bottom: 2rem;
+}
+
+.reviews {
+    text-align: center;
+    border-top: 1px solid #e0e0e0;
+    border-bottom: 1px solid #e0e0e0;
+    padding: 1rem;
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+}
+
+.price {
+    position: absolute;
+    left: 0;
+    top: 0;
+    margin-top: -2px;
+}
+
+.price .tag {
+    margin: 0;
+}
+
+.navbar {
+    background-color: #676b74;
+}
+
+footer.page-footer {
+    background-color: #676b74;
+    margin-top: 2rem;
+}
+.card {
+    font-weight: 300;
+}
+.navbar .btn-group .dropdown-menu a:hover {
+    color: #000 !important;
+}
+.navbar .btn-group .dropdown-menu a:active {
+    color: #fff !important;
+}
+
+/* end of profile page style */

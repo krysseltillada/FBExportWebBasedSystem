@@ -1,0 +1,1978 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+        <title>Fong Bros</title>
+
+        <!-- Font Awesome -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+        <!-- Bootstrap core CSS -->
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+
+        <!-- Material Design Bootstrap -->
+        <link href="css/mdb.min.css" rel="stylesheet">
+
+        <link href="css/style.css" rel="stylesheet">
+
+
+        <!-- <script src='https://www.google.com/recaptcha/api.js'></script>  -->
+
+        <style rel="stylesheet">
+
+            /* .ui-slider { display : inline-block; width : 10em; } */
+
+
+
+            /* shopping cart */
+
+            .breadcrumb a {
+                color: white;
+            }
+             .lighter-text {
+            color: #ABB0BE;
+            }
+
+            .main-color-text {
+            color: #6394F8;
+            }
+
+            .badge {
+            background-color: #6394F8;
+            border-radius: 10px;
+            color: white;
+            display: inline-block;
+            font-size: 12px;
+            line-height: 1;
+            padding: 3px 7px;
+            text-align: center;
+            vertical-align: middle;
+            white-space: nowrap;
+            }
+
+            .cart {
+                margin-right: 50px;
+            }
+
+            .shopping-cart {
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+            display: none;
+            margin: 20px 0;
+            float: right;
+            background: white;
+            width: 320px;
+            position: relative;
+            border-radius: 3px;
+            padding: 20px;
+            }
+
+            .shopping-cart-box {
+                position: absolute; left: -210px; top: 45px; z-index: 3;
+            }
+
+            .shopping-cart .shopping-cart-header {
+            border-bottom: 1px solid #E8E8E8;
+            padding-bottom: 15px;
+            }
+            .shopping-cart .shopping-cart-header .shopping-cart-total {
+            float: right;
+            }
+
+            .shopping-cart .shopping-cart-items {
+                padding-top: 20px;
+                padding-left: 8px;
+                overflow-y: auto;
+                list-style-type: none;
+            }
+            .shopping-cart .shopping-cart-items li {
+                margin-bottom: 18px;
+                color: black;
+            }
+            .shopping-cart .shopping-cart-items img {
+            float: left;
+            margin-right: 12px;
+            }
+            .shopping-cart .shopping-cart-items .item-name {
+            display: block;
+            padding-top: 10px;
+            font-size: 16px;
+            }
+            .shopping-cart .shopping-cart-items .item-price {
+            color: #6394F8;
+            margin-right: 8px;
+            }
+            .shopping-cart .shopping-cart-items .item-quantity {
+            color: #ABB0BE;
+            }
+
+            .shopping-cart:after {
+            bottom: 100%;
+            left: 89%;
+            border: solid transparent;
+            content: " ";
+            height: 0;
+            width: 0;
+            position: absolute;
+            pointer-events: none;
+            border-bottom-color: white;
+            border-width: 8px;
+            margin-left: -8px;
+            }
+
+            .cart-icon {
+            color: #515783;
+            font-size: 24px;
+            margin-right: 7px;
+            float: left;
+            }
+
+            .button {
+            background: #6394F8;
+            color: white;
+            text-align: center;
+            padding: 12px;
+            text-decoration: none;
+            display: block;
+            border-radius: 3px;
+            font-size: 16px;
+            width: 285px;
+            }
+            .button:hover {
+            background: #729ef9;
+            }
+
+
+            /* end of shopping cart */
+
+            /* main template */
+
+
+            .navbar {
+                height: auto;
+                padding:0px;
+                font-size: 14px;
+            }
+
+            nav.sub-nav .sub-nav-date:hover {
+                text-decoration: underline;
+            }
+
+            nav.sub-nav .container ul.nav-flex-icons li.nav-item a i {
+                margin-right: 3px;
+            }
+
+            header .main-nav-bar .container .navbar-nav .nav-link {
+                font-size: 16px;
+            }
+
+            header .main-nav-bar {
+                margin-top: 50px;
+            }
+
+            footer.page-footer {
+                background-color: white;
+                margin-top: 2rem;
+            }
+
+            header nav div a.navbar-brand {
+                margin-left: 7px;
+            }
+
+            .pattern-4 {
+                background-attachment: fixed;
+            }
+
+            .view {
+                background-color: white;
+                -webkit-background-size: cover;
+                -moz-background-size: cover;
+                -o-background-size: cover;
+                background-size: cover;
+                height: 100vh;
+            }
+
+            .full-bg-img {
+                color: #fff;
+            }
+
+
+            .navbar .btn-group .dropdown-menu a:hover {
+                color: #000 !important;
+            }
+            .navbar .btn-group .dropdown-menu a:active {
+                color: #fff !important;
+            }
+
+            nav.navbar div.container div ul.top-navigation li{
+                padding-right: 10px;
+                padding-left: 0px;
+                margin: 0px;
+            }
+
+
+            .slider {
+                width: 95px;
+                margin: 2em auto;
+            }
+
+            .closebtn {
+                margin-left: 15px;
+                color: black;
+                font-weight: bold;
+                float: right;
+                font-size: 22px;
+                line-height: 20px;
+                cursor: pointer;
+                transition: 0.3s;
+            }
+
+            .closebtn:hover {
+                color: black;
+            }
+
+
+             /* ul{
+                    padding: 0;
+                    list-style: none;
+
+                }
+                ul li{
+                    position: relative;
+                    line-height: 21px;
+                    text-align: left;
+                }
+                ul li a{
+                    display: block;
+                    padding: 8px 25px;
+                    color: #333;
+                    text-decoration: none;
+                }
+                ul li ul.dropdown{
+                    min-width: 100%;
+                    background: #f2f2f2;
+                    display: none;
+                    position: absolute;
+                    z-index: 999;
+                    left: 0;
+                }
+                ul li:hover ul.dropdown{
+                    display: block;
+                }
+                ul li ul.dropdown li{
+                    display: block;
+                }  */
+
+                .card {
+                    width: 300px;
+                    height: 400px;
+                    z-index: 0;
+                    margin-bottom: 25px;
+                }
+
+                .col {
+                    margin-right: 0px !important;
+                }
+
+                header nav.nav-category {
+                    height: 30px;
+                }
+
+                header nav.nav-category div.container ul.top-navigation li.nav-item a {
+                    padding-right: 0px;
+                    padding-left: 0px;
+                }
+
+
+                header nav.nav-category div.container ul.top-navigation {
+                    margin-left: 100px;
+                }
+
+
+                /*STARS RATING*/
+                  .star-rating{
+                    padding:20px;
+                    direction: rtl;
+                    display: inline-block;
+                  }
+
+                  .star-radio{
+                      display: none;
+                  }
+
+                  .star{
+                    color: #bbb;
+                    font-size: 22px;
+                    cursor: pointer;
+                    transition: color .3s ease-in-out
+                  }
+
+                  .star:hover{
+                    color: #f2b600;
+                  }
+
+                  .star:hover ~ .star{
+                    color: #f2b600;
+                  }
+
+                  .star-radio:checked ~ .star{
+                    color: #f2b600;
+                  }
+
+
+                /*STARS RATING*/
+
+
+          </style>
+
+    </head>
+
+    <body>
+
+
+        <!--Main Navigation-->
+            <header>
+
+                <nav class="navbar navbar-expand-lg navbar-dark black">
+
+                    <div class = "container">
+
+                            <ul class="navbar-nav mr-auto">
+                            <li class="nav-item">
+                                    <a class="nav-link white-text sub-nav-date" href="#"></a>
+                                </li>
+                            </ul>
+                            <ul class="navbar-nav nav-flex-icons">
+                            <li class="nav-item">
+                                                            <a class="nav-link waves-effect waves-light white-text" href="#">
+                                                                <i class="fa fa-user" aria-hidden="true"></i>
+                                                                <span> LOGIN </span>
+                                                            </a>
+                                                        </li>
+                                                        <li class="nav-item">
+                                                            <a class="nav-link waves-effect waves-light white-text" href="#">
+                                                                <i class="fa fa-user-plus" aria-hidden="true"></i>
+                                                                <span> SIGN UP </span>
+                                                            </a>
+                                                        </li>
+                            </ul>
+
+                    </div>
+
+                </nav>
+
+            </header>
+            <!--Main Navigation-->
+
+
+            <header id = "desktopWebsiteHeader" style="background-image: url('h1.jpg'); background-repeat: no-repeat; background-size: cover;">
+                <div class = "container">
+
+                            <h2 class = "mb-0"> <a class="navbar-brand" href="#" style = "margin-top: 5px; margin-bottom: 5px; color:#000;">Fong Bros International Corp</a>
+                            </h2>
+            </header>
+
+        <!--Main Navigation-->
+        <header>
+
+            <nav class="navbar navbar-expand-lg navbar-dark blue lighten-1">
+
+                <div class = "container">
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <div class="navbar-brand d-none m-0 mb-1" href="#" id = "nav-bar-brand-mobile-header">
+
+                        <span class = "pr-2" style = "font-size: 14px;">
+                            Fong Bros International Corp
+                        </span>
+
+
+
+
+                    </div>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav mr-auto">
+                            <li class="nav-item active">
+                                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                            </li>
+                            <li class="nav-item">
+                                <div class="btn-group">
+
+                                    <a class="nav-link pr-0" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        Products
+                                        <i class="fa fa-sort-down" aria-hidden="true" style = "position: relative; top: -3px;"></i>
+                                    </a>
+
+
+                                    <div class="dropdown-menu">
+                                        <a class="dropdown-item" href="#">Action</a>
+                                        <a class="dropdown-item" href="#">Another action</a>
+                                        <a class="dropdown-item" href="#">Something else here</a>
+                                        <div class="dropdown-divider"></div>
+                                            <a class="dropdown-item" href="#">Separated link</a>
+                                        </div>
+                                    </div>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">
+                                    About Us
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">
+                                    Contact Us
+                                </a>
+                            </li>
+                        </ul>
+
+                        <ul class="navbar-nav nav-flex-icons">
+                            <li class="nav-item mr-3">
+
+                                <form  role="search" class = "form-inline">
+                                    <input type="text" class="form-control" placeholder="Search" name="q">
+                                    <button class="btn btn-default light-blue lighten-2" type="submit" style = "height: 30px;">
+                                        <i class="fa fa-search" aria-hidden="true" style="font-size: 10px; position: relative; top: -10px;"></i>
+                                    </button>
+                                </form>
+                            </li>
+
+                            <li class="nav-item">
+                                   <a href="#" id="cart" class = "text-white mt-2 m-0">
+                                    <i class="fa fa-shopping-cart"></i> Cart
+                                    <span class="badge light-blue lighten-2 productCartHeaderItemCount" style = "margin-left: 5px;">0</span>
+                                </a>
+
+
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+
+        </header>
+
+
+           <header>
+
+
+                <nav class="navbar navbar-expand-lg elegant-color-dark nav-category" style = "height: 40px;">
+                    <div class="container p-2">
+
+                        <div class = "row">
+                            <div class = "col">
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                                    <li class="breadcrumb-item active" aria-current="page"><a href="#">Products</a></li>
+                                </ol>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </nav>
+
+
+            </header>
+
+
+
+            <div class = "container" style="margin-top: 40px;">
+
+                  <div class = "row mx-auto">
+
+
+                        <div class = "col">
+                            <header style = "margin-bottom: 10px;">
+                                <h1> Product Information </h1>
+                                <hr />
+                            </header>
+                        </div>
+
+                        <!--Carousel Wrapper-->
+                        <div id="carousel-example-1z" class="carousel slide carousel-fade" data-ride="carousel">
+                            <!--Indicators-->
+                            <ol class="carousel-indicators">
+                                <li data-target="#carousel-example-1z" data-slide-to="0" class="active"></li>
+                                <li data-target="#carousel-example-1z" data-slide-to="1"></li>
+                                <li data-target="#carousel-example-1z" data-slide-to="2"></li>
+                            </ol>
+                            <!--/.Indicators-->
+
+                            <!--Slides-->
+                            <div class="carousel-inner" role="listbox">
+
+                                <!--First slide-->
+                                <div class="carousel-item active">
+                                  <span style = "position: absolute; right:0px; color: white; width: 40%; overflow: hidden; padding: 5px; text-align: center; border: 1px solid white;" class = "rgba-black-strong">
+                                      200.00 php
+                                  </span>
+
+                                  <span style = "position: absolute; right:0px; color: white; top: 36px; width: 40%; padding: 3px 5px 3px 5px; text-align: center; border-width: 0px 1px 1px 1px; border-color: white; border-style: solid;" class = "rgba-black-strong">
+                                       per <span> kilograms </span>
+                                  </span>
+                                  <span style = "position: absolute; color: white; bottom: 0px;  width: 40%; max-height: 30px; padding: 3px 5px 3px 5px; text-align: center; border: 1px solid white;" class = "rgba-black-strong">
+                                       Laguna oh laguna laguna
+                                  </span>
+
+                                    <img class="d-block w-100" src="https://mdbootstrap.com/img/Photos/Slides/img%20(130).jpg" alt="First slide">
+                                </div>
+                                <!--/First slide-->
+                                <!--Second slide-->
+                                <div class="carousel-item">
+                                  <span style = "position: absolute; right:0px; color: white; width: 40%; overflow: hidden; padding: 5px; text-align: center; border: 1px solid white;" class = "rgba-black-strong">
+                                      200.00 php
+                                  </span>
+
+                                  <span style = "position: absolute; right:0px; color: white; top: 36px; width: 40%; padding: 3px 5px 3px 5px; text-align: center; border-width: 0px 1px 1px 1px; border-color: white; border-style: solid;" class = "rgba-black-strong">
+                                       per <span> kilograms </span>
+                                  </span>
+                                  <span style = "position: absolute; color: white; bottom: 0px;  width: 40%; max-height: 30px; padding: 3px 5px 3px 5px; text-align: center; border: 1px solid white;" class = "rgba-black-strong">
+                                       Laguna oh laguna laguna
+                                  </span>
+                                    <img class="d-block w-100" src="https://mdbootstrap.com/img/Photos/Slides/img%20(129).jpg" alt="Second slide">
+                                </div>
+                                <!--/Second slide-->
+                                <!--Third slide-->
+                                <div class="carousel-item">
+                                  <span style = "position: absolute; right:0px; color: white; width: 40%; overflow: hidden; padding: 5px; text-align: center; border: 1px solid white;" class = "rgba-black-strong">
+                                      200.00 php
+                                  </span>
+
+                                  <span style = "position: absolute; right:0px; color: white; top: 36px; width: 40%; padding: 3px 5px 3px 5px; text-align: center; border-width: 0px 1px 1px 1px; border-color: white; border-style: solid;" class = "rgba-black-strong">
+                                       per <span> kilograms </span>
+                                  </span>
+                                  <span style = "position: absolute; color: white; bottom: 0px; width: 40%; max-height: 30px; padding: 3px 5px 3px 5px; text-align: center; border: 1px solid white;" class = "rgba-black-strong">
+                                       Laguna oh laguna laguna
+                                  </span>
+                                    <img class="d-block w-100" src="https://mdbootstrap.com/img/Photos/Slides/img%20(70).jpg" alt="Third slide">
+
+                                </div>
+                                <!--/Third slide-->
+                            </div>
+                            <!--/.Slides-->
+                            <!--Controls-->
+                            <a class="carousel-control-prev" href="#carousel-example-1z" role="button" data-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="sr-only">Previous</span>
+                            </a>
+                            <a class="carousel-control-next" href="#carousel-example-1z" role="button" data-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="sr-only">Next</span>
+                            </a>
+                            <!--/.Controls-->
+                        </div>
+                        <!--/.Carousel Wrapper-->
+
+                        <hr>
+
+                        <!--Content-->
+                        <div class="text-center card-body">
+                          <h4 class="card-title"> <a href = "#" class = " black-text"> Puffer fish </a> </h4>
+                          <p class="card-text">
+                              <i class="fa fa-quote-left"></i> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod eos id officiis hic tenetur quae
+                              quaerat ad velit ab. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore cum accusamus eveniet
+                              molestias voluptatum inventore laboriosam labore sit, aspernatur praesentium iste impedit quidem dolor
+                              veniam.</p>
+
+                              <span> Fresh until: <span class = "red-text"> nov 28 2017 </span> </span><br>
+                              <span class = "black-text"> Posted on: nov 19 2017 </span><br>
+
+
+
+                          <button type = "button" href="#" class="btn btn-primary btnProductItemAddToCart" style = "margin-top:25px;">
+                              <i class="fa fa-cart-plus mr-1 mb-1" aria-hidden="true"></i>
+                              Add to cart</button>
+                          <hr>
+                          <div class="container">
+                            <div class="row">
+                              <div class="col-sm-3" style="margin-bottom:30px;">
+                                <br>
+                                <h4>Customer Feedback</h4>
+                                <h1>4.5</h1>
+                                <!--Review-->
+                                <i class="fa fa-star yellow-text fa-2x"> </i>
+                                <i class="fa fa-star yellow-text fa-2x"> </i>
+                                <i class="fa fa-star yellow-text fa-2x"> </i>
+                                <i class="fa fa-star yellow-text fa-2x"> </i>
+                                <i class="fa fa-star-half-full yellow-text fa-2x"> </i>
+
+                              </div>
+                              <div class="col-sm-9">
+                                <div class="row">
+                                  <div class="col-sm-9">
+                                    <div class="progress" style="height: 20px;">
+                                      <div class="progress-bar" role="progressbar" style="width: 90%; height: 20px;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                  </div>
+
+                                  <div class="col-sm-3">
+                                    <i class="fa fa-star yellow-text fa-lg"> </i>
+                                    <i class="fa fa-star yellow-text fa-lg"> </i>
+                                    <i class="fa fa-star yellow-text fa-lg"> </i>
+                                    <i class="fa fa-star yellow-text fa-lg"> </i>
+                                    <i class="fa fa-star yellow-text fa-lg"> </i>
+                                    90%
+                                  </div>
+                                </div>
+
+                                <div class="row">
+                                  <div class="col-sm-9">
+                                    <div class="progress" style="height: 20px;">
+                                      <div class="progress-bar" role="progressbar" style="width: 65%; height: 20px;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                  </div>
+
+                                  <div class="col-sm-3">
+                                    <i class="fa fa-star yellow-text fa-lg"> </i>
+                                    <i class="fa fa-star yellow-text fa-lg"> </i>
+                                    <i class="fa fa-star yellow-text fa-lg"> </i>
+                                    <i class="fa fa-star yellow-text fa-lg"> </i>
+                                    <i class="fa fa-star grey-text fa-lg"> </i>
+                                    65%
+                                  </div>
+                                </div>
+
+                                <div class="row">
+                                  <div class="col-sm-9">
+                                    <div class="progress" style="height: 20px;">
+                                      <div class="progress-bar" role="progressbar" style="width: 45%; height: 20px;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                  </div>
+
+                                  <div class="col-sm-3">
+                                    <i class="fa fa-star yellow-text fa-lg"> </i>
+                                    <i class="fa fa-star yellow-text fa-lg"> </i>
+                                    <i class="fa fa-star yellow-text fa-lg"> </i>
+                                    <i class="fa fa-star grey-text fa-lg"> </i>
+                                    <i class="fa fa-star grey-text fa-lg"> </i>
+                                    45%
+                                  </div>
+                                </div>
+
+                                <div class="row">
+                                  <div class="col-sm-9">
+                                    <div class="progress" style="height: 20px;">
+                                      <div class="progress-bar" role="progressbar" style="width: 54%; height: 20px;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                  </div>
+
+                                  <div class="col-sm-3">
+                                    <i class="fa fa-star yellow-text fa-lg"> </i>
+                                    <i class="fa fa-star yellow-text fa-lg"> </i>
+                                    <i class="fa fa-star grey-text fa-lg"> </i>
+                                    <i class="fa fa-star grey-text fa-lg"> </i>
+                                    <i class="fa fa-star grey-text fa-lg"> </i>
+                                    54%
+                                  </div>
+                                </div>
+
+                                <div class="row">
+                                  <div class="col-sm-9">
+                                    <div class="progress" style="height: 20px;">
+                                      <div class="progress-bar" role="progressbar" style="width: 10%; height: 20px;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                  </div>
+
+                                  <div class="col-sm-3">
+                                    <i class="fa fa-star yellow-text fa-lg"> </i>
+                                    <i class="fa fa-star grey-text fa-lg"> </i>
+                                    <i class="fa fa-star grey-text fa-lg"> </i>
+                                    <i class="fa fa-star grey-text fa-lg"> </i>
+                                    <i class="fa fa-star grey-text fa-lg"> </i>
+                                    10%
+                                  </div>
+                                </div>
+                              </div>
+
+
+
+                            </div>
+
+                          </div>
+
+                          <div class="md-form">
+
+                            <textarea id="textarea-char-counter" class="md-textarea" length="120"></textarea>
+                            <label for="textarea-char-counter">Add Review</label>
+                          </div>
+
+                            <div class="text-right">
+                              <div class="star-rating">
+                                <input id="star-1" class="star-radio" type="radio" name="rating" value="star-1">
+                                <label class="star" for="star-1">
+                                  <i class="fa fa-star fa-lg"> </i>
+                                </label>
+
+                                <input id="star-2" class="star-radio" type="radio" name="rating" value="star-2">
+                                <label class="star" for="star-2">
+                                  <i class="fa fa-star fa-lg"> </i>
+                                </label>
+
+                                <input id="star-3" class="star-radio" type="radio" name="rating" value="star-3">
+                                <label class="star" for="star-3">
+                                  <i class="fa fa-star fa-lg"> </i>
+                                </label>
+
+                                <input id="star-4" class="star-radio" type="radio" name="rating" value="star-4">
+                                <label class="star" for="star-4">
+                                  <i class="fa fa-star fa-lg"> </i>
+                                </label>
+
+                                <input id="star-5" class="star-radio" type="radio" name="rating" value="star-5">
+                                <label class="star" for="star-5">
+                                  <i class="fa fa-star fa-lg"> </i>
+                                </label>
+
+                              </div>
+
+                              <!-- Default button -->
+                              <button type="button" class="btn btn-default">Post Review</button>
+
+
+                            </div>
+
+                          <br>
+                          <h4>Reviews<h4>
+                        </div>
+
+                        <!-- COMMENTS -->
+                        <!--Grid row-->
+                       <div class="row">
+
+                         <!--Grid column-->
+                         <div class="col-lg-3 text-center">
+                             <!--Featured image-->
+                             <img src="https://mdbootstrap.com/img/Photos/Others/images/31.jpg" width="100" height="100" class="rounded-circle" alt="Second sample image" >
+                         </div>
+                         <!--Grid column-->
+
+                         <!--Grid column-->
+                         <div class="col-lg-9 col-xl-9">
+                             <h3 class="mb-3 font-bold dark-grey-text">
+                             </h3>
+                             <p class="grey-text">At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque
+                             corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident et dolorum fuga.</p>
+                             <p>by
+                             <a class="font-bold dark-grey-text">Jessica Clark</a>, 24/08/2018</p>
+                         </div>
+                         <!--Grid column-->
+
+                       </div>
+                       <!--Grid row-->
+
+                       <hr class="mb-5">
+
+                       <!--Grid row-->
+                       <div class="row mt-3">
+
+                       <!--Grid column-->
+                       <div class="col-lg-3 text-center">
+                           <!--Featured image-->
+                           <img src="https://mdbootstrap.com/img/Photos/Others/images/31.jpg" width="100" height="100" class="rounded-circle" alt="Second sample image" >
+                       </div>
+                       <!--Grid column-->
+
+                       <!--Grid column-->
+                       <div class="col-lg-9 col-xl-9">
+                           <h3 class="mb-3 font-bold dark-grey-text">
+                           </h3>
+                           <p class="grey-text">At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque
+                           corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident et dolorum fuga.</p>
+                           <p>by
+                           <a class="font-bold dark-grey-text">Jessica Clark</a>, 24/08/2018</p>
+                       </div>
+                       <!--Grid column-->
+
+                       </div>
+                       <!--Grid row-->
+
+                       <hr class="mb-5">
+
+                       <!--Grid row-->
+                       <div class="row">
+
+                         <!--Grid column-->
+                         <div class="col-lg-3 text-center">
+                             <!--Featured image-->
+                             <img src="https://mdbootstrap.com/img/Photos/Others/images/31.jpg" width="100" height="100" class="rounded-circle" alt="Second sample image" >
+                         </div>
+                         <!--Grid column-->
+
+                         <!--Grid column-->
+                         <div class="col-lg-9 col-xl-9">
+                             <h3 class="mb-3 font-bold dark-grey-text">
+                             </h3>
+                             <p class="grey-text">At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque
+                             corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident et dolorum fuga.</p>
+                             <p>by
+                             <a class="font-bold dark-grey-text">Jessica Clark</a>, 24/08/2018</p>
+                         </div>
+                         <!--Grid column-->
+
+                       </div>
+                       <!--Grid row-->
+
+
+                       <!-- COMMENTS -->
+
+
+                  </div>
+                <button type="button" class="btn btn-default btn-lg btn-block">Show more comments</button>
+                <hr>
+              </div>
+
+
+              <div class="modal fade" id="addToCartModal" tabindex="-1" role="dialog" aria-labelledby="addToCartModalLabel" aria-hidden="true">
+                  <div class="modal-dialog modal-lg" role="document">
+                      <div class="modal-content">
+                          <div class="modal-header">
+                              <h5 class="modal-title ml-1" id="productHeaderTitle">
+                                  <strong> Add To Cart (<span>Puffer Fish</span>) </strong>
+                                  <i class="fa fa-cart-plus ml-1 mb-1" aria-hidden="true"></i>
+
+                              </h5>
+                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                  <span aria-hidden="true">&times;</span>
+                              </button>
+                          </div>
+                          <div class="modal-body pb-0">
+
+                              <div class = "container p-0">
+                                  <div class = "row">
+                                      <div class = "col-md-5">
+                                              <span id = "addToCartModalOrigin" style = "position: absolute; color: white; top: 270px; max-width: 280px; height: 30px; padding: 3px 5px 3px 5px; text-align: center; border: 1px solid white;" class = "rgba-black-strong">
+                                                  Laguna oh laguna laguna baldeeee
+                                              </span>
+                                          <img class = "border border-primary rounded" id = "addToCartProductImage" alt = "Puffer fish yaay" src = "puffer-fish.jpg" width = "300" height = "300" />
+                                      </div>
+
+                                      <div class = "col-md-7">
+                                          <h4 class = "mt-1" id = "addToCartProductName"> Puffer Fish </h4>
+                                          <hr class = "m-0"/>
+
+                                          <p class = "mt-2 mb-0"> <strong>Price:</strong> <span id = "priceAddToCartModal">200.00 php</span> / Per <span id = "massDefTypeAddToCart"> kilograms </span> </p>
+                                          <p class = "mb-0"> <strong>Available stocks:</strong> <span> 200 kilograms </span> </p>
+                                          <p class = "mb-0"> <strong>Fresh until:</strong> <span class = "red-text" id = "addToCartModalExpirationDate"> Nov 28 1998 </span> </p>
+
+
+                                          <h6 class = "mt-2 pb-2 pt-2" style = "border-width: 1px 0px 1px 0px; border-style: solid; border-color: #E5E5E5; width: 150px;"> <strong>Product Description: </strong> </h6>
+
+
+
+                                          <div class = "mt-2" style = "height: 70px; overflow-y: auto;">
+
+                                              <span class = "text-left" id = "addToCartModalProductDescription">
+                                                  Some quick example text to build on the card title and make up the bulk of the card's content.
+                                                  Some quick example text to build on the card title and make up the bulk of the card's content.
+                                              </span>
+                                          </div>
+
+                                          <hr />
+
+
+                                              <div class = "row">
+                                                  <div class = "col-md-6">
+
+
+                                                          <div class = "row">
+
+                                                              <div class = "col-md-6">
+
+                                                                  <label> <strong> Mass type: </strong> </label>
+
+                                                              </div>
+
+                                                              <div class = "col-md-6">
+
+                                                                  <select class="browser-default" id = "massType">
+                                                                      <option value="kilogram" selected>Kilograms</option>
+                                                                      <option value="ton">Tons</option>
+                                                                      <option value="lb">Pounds</option>
+                                                                  </select>
+
+                                                              </div>
+
+                                                          </div>
+
+                                                  </div>
+                                                  <div class = "col-md-6">
+
+                                                          <div class = "row">
+
+                                                              <div class = "col-md-6">
+                                                                  <label> <strong> Quantity: </strong> </label>
+                                                              </div>
+
+                                                              <div class = "col-md-6">
+                                                                   <input id="quantity" class = "text-center" name="value" maxlength="10" style = "width: 50px;" data-toggle="tooltip" data-placement="top" title="Invalid value">
+                                                              </div>
+
+                                                          </div>
+
+                                                  </div>
+                                              </div>
+
+
+
+
+                                      </div>
+                                  </div>
+                              </div>
+
+                          </div>
+                          <div class="modal-footer mt-1">
+
+                              <div class = "container p-0 ml-1">
+
+                                  <div class = "row no-gutters">
+
+                                      <div class = "col-md-8 mt-2">
+
+                                                  <div class = "row">
+                                                      <div class = "col-md-6">
+                                                          <label for = "totalPrice"> <strong> Total price: </strong> </label>
+                                                          <input type="text" id="totalPrice" value = "2000000.00 php" style = "width: 120px;  text-align: center;" readonly />
+                                                      </div>
+                                                      <div class = "col-md-6">
+                                                          <label for = "totalMass"  class = "black-text"> <strong> Total mass: </strong> </label>
+                                                          <input type="text" id="totalMass" value = "200 kilograms" style = "width: 120px; text-align: center;" readonly />
+                                                      </div>
+                                                  </div>
+
+                                      </div>
+
+                                      <div class = "col-md-2">
+                                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                      </div>
+
+                                      <div class = "col-md-2">
+                                          <button type="button" class="btn btn-primary" id = "btnAddToCart">Add <i class="fa fa-plus-circle ml-1" aria-hidden="true"></i></button>
+                                      </div>
+                                  </div>
+                              </div>
+
+                          </div>
+                      </div>
+                  </div>
+              </div>
+
+
+              <!-- Modal: modalCart -->
+          <div class="modal fade autoModal" id="shoppingModalCart" tabindex="-1" role="dialog" aria-labelledby="shoppingCartModal" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                      <!--Header-->
+                      <div class="modal-header">
+                        <div class="shopping-cart-header" style="margin-left:40px;">
+                            <i class="fa fa-shopping-cart cart-icon"></i><span class="badge productCartHeaderItemCount">0</span>
+                        </div>
+
+                        <div class="shopping-cart-total" style="margin-right:40px;">
+                            <span class="lighter-text">Total:</span>
+                            <span class="main-color-text">₱0.00</span>
+                        </div>
+
+                      </div>
+                      <!--Body-->
+                      <div class="modal-body" style = "overflow-x: auto;">
+
+                        <div class = "d-none" id = "productCartEmptyMessage">
+                            <p class="text-center p-5"> No products added. </p>
+                        </div>
+
+                          <table class="table table-hover">
+                              <thead>
+                                  <tr>
+                                      <th>#</th>
+                                      <th>Image</th>
+                                      <th>Product name</th>
+                                      <th>Price</th>
+                                      <th>Mass </th>
+                                      <th>Remove</th>
+                                  </tr>
+                              </thead>
+                               <tbody>
+                                   <!-- <tr>
+                                      <th scope="row">1</th>
+                                      <td><img src="https://static.giantbomb.com/uploads/square_small/2/23921/828692-patrickbio.jpg" width="50" heigh="50" class="float-left" alt="placeholder"></td>
+                                      <td>lapu lapu fish</td>
+                                      <td>100$</td>
+                                      <td>100$</td>
+                                      <td class="text-center"><a><i class="fa fa-remove text"></i></a></td>
+                                  </tr>
+                                  <tr>
+                                      <th scope="row">2</th>
+                                      <td><img src="https://static.giantbomb.com/uploads/square_small/2/23921/828692-patrickbio.jpg" width="50" heigh="50" class="float-left" alt="placeholder"></td>
+                                      <td>Product 2</td>
+                                      <td>100$</td>
+                                      <td>100$</td>
+                                      <td class="text-center"><a><i class="fa fa-remove"></i></a></td>
+                                  </tr>
+                                  <tr>
+                                      <th scope="row">3</th>
+                                      <td><img src="https://static.giantbomb.com/uploads/square_small/2/23921/828692-patrickbio.jpg" width="50" heigh="50" class="float-left" alt="placeholder"></td>
+                                      <td>Product 3</td>
+                                      <td>100$</td>
+                                      <td>100$</td>
+                                      <td class="text-center"><a><i class="fa fa-remove"></i></a></td>
+                                  </tr>
+                                  <tr>
+                                      <th scope="row">4</th>
+                                      <td><img src="https://static.giantbomb.com/uploads/square_small/2/23921/828692-patrickbio.jpg" width="50" heigh="50" class="float-left" alt="placeholder"></td>
+                                      <td>Product 4</td>
+                                      <td>100$</td>
+                                      <td>100$</td>
+                                      <td class="text-center"><a><i class="fa fa-remove"></i></a></td>
+                                  </tr>  -->
+                              </tbody>
+                          </table>
+
+                      </div>
+                      <!--Footer-->
+                      <div class="modal-footer">
+                          <button type="button" class="btn btn-outline-primary" data-dismiss="modal">Close</button>
+                          <button class="btn btn-primary">Checkout</button>
+                      </div>
+                  </div>
+              </div>
+          </div>
+          <!-- Modal: modalCart -->
+
+         <!-- <div class = "container p-4">
+           <form method = "POST">
+
+                <div class = "row">
+                    <div class = "col">
+                        <h1> Sign Up </h1>
+                    </div>
+
+
+                </div>
+
+                <hr />
+
+                <div class = "row">
+                    <div class = "col-md-12">
+
+                        <fieldset>
+                            <legend> Login details </legend>
+
+                                <div class = "row mt-3">
+
+                                    <div class = "col-md-6">
+                                    <div class="md-form form-sm">
+                                            <input type="text" id="username" class="form-control" length = "20" required />
+                                            <label for="username" class="">Username</label>
+                                        </div>
+                                    </div>
+
+                                    <div class = "col-md-6">
+                                        <div class="md-form form-sm">
+                                            <input type="password" id="password" class="form-control" length = "20" required />
+                                            <label for="password" class="">Password</label>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                        </fieldset>
+
+                    </div>
+                </div>
+
+                <div class = "row">
+                    <div class = "col-md-12">
+                        <fieldset>
+                            <legend> Basic information </legend>
+
+                            <div class = "row mt-3">
+                                    <div class = "col-md-4">
+                                        <div class="md-form form-sm">
+                                            <input type="text" id="firstname" class="form-control" required />
+                                            <label for="firstname" class="">First Name</label>
+                                        </div>
+                                    </div>
+                                    <div class = "col-md-4">
+                                        <div class="md-form form-sm">
+                                            <input type="text" id="middlename" class="form-control" required />
+                                            <label for="middlename" class="">Middle Name</label>
+                                        </div>
+                                    </div>
+                                    <div class = "col-md-4">
+                                        <div class="md-form form-sm">
+                                            <input type="text" id="lastname" class="form-control" required />
+                                            <label for="lastname" class="">Last Name</label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            <div class = "row">
+
+                                <div class = "col-md-1">
+                                    <label> Gender: </label>
+                                </div>
+
+                                <div class = "col-md-11 form-inline mb-2">
+
+                                    <div class="form-group form-sm">
+                                        <input class = "mr-2" name="group2" type="radio" class="with-gap" id="male" required />
+                                        <label for="male"> Male </label>
+                                    </div>
+
+                                    <div class="form-group form-sm">
+                                        <input class = "mr-2" name="group2" type="radio" class="with-gap" id="female" required />
+                                        <label for="female"> Female </label>
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                            <div class = "row mt-3">
+                                <div class = "col-md-1">
+                                    <label class = "mt-2" for = "age"> Age: </label>
+                                </div>
+
+                                <div class = "col-md-11 form-inline mb-2">
+
+                                    <div class="form-group form-sm">
+                                        <input  name="group2" type="number" class="with-gap" placeholder="your age" id = "age" required />
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </fieldset>
+                    </div>
+                </div>
+
+
+
+                <div class = "row mt-4">
+                    <div class = "col-md">
+                        <fieldset>
+                            <legend> Address information </legend>
+
+
+                            <div class = "row mt-3" style = "height: 50px;">
+                                <div class = "col-md-7">
+                                    <div class = "row mt-2">
+
+                                                    <div class = "col-md-2">
+                                                        <label for = "country"> Country </label>
+                                                    </div>
+
+                                                     <div class = "col-md-10">
+                                                        <select class="browser-default" id = "country" required>
+                                                            <option value="" disabled selected>Choose your country</option>
+                                                        </select>
+                                                    </div>
+
+                                                </div>
+                                </div>
+                                <div class = "col-md-5 mt-2">
+
+                                    <div class="md-form form-sm" style = "position: relative; top: -20px;">
+                                        <input type="text" id="city" class="form-control" required disabled/>
+                                        <label for="city" class="">city</label>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <div class = "row">
+                                <div class = "col-md-7">
+                                    <div class="md-form form-sm mt-3">
+
+                                        <textarea type="text" id="address" class="md-textarea" required></textarea>
+                                        <label for="address">Address</label>
+
+                                    </div>
+
+                                </div>
+                                <div class = "col-md-5">
+                                    <div class="md-form form-sm" style = "margin-top: 75px;">
+                                        <input type="text" id="zipcode" class="form-control" required />
+                                        <label for="zipcode">Zip Code</label>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </fieldset>
+                    </div>
+                </div>
+
+                   <div class = "row">
+                    <div class = "col-md-12">
+                        <fieldset>
+                            <legend> Contact Information </legend>
+
+                               <div class = "row">
+
+                                    <div class = "col-md-2 mt-3">
+
+                                                <select class="browser-default" id = "countryCode" required>
+                                                    <option value="" disabled selected>Country Code</option>
+                                                </select>
+
+                                    </div>
+                                    <div class = "col-md-5">
+                                        <div class="md-form form-sm">
+                                                <input type="text" id="phonenumber" class="form-control" required />
+                                                <label for="phonenumber" class="">Phone Number</label>
+                                        </div>
+                                    </div>
+
+                                        <div class = "col-md-5">
+                                        <div class="md-form form-sm">
+                                                <input type="text" id="email" class="form-control" required />
+                                                <label for="email" class="">Email Address</label>
+                                        </div>
+                                    </div>
+
+                               </div>
+
+                        </fieldset>
+                    </div>
+                </div>
+
+                <div class = "row">
+                    <div class = "col-md-12">
+                        <fieldset>
+                            <legend> Verify </legend>
+                             <div class = "row">
+                                 <div class = "col-md-12">
+                                    <div class="g-recaptcha" data-sitekey="6LcmST4UAAAAADNKoDoTOVJIVugq5Fu7kh1KQXV6"></div>
+                                </div>
+                            </div>
+                        </fieldset>
+                    </div>
+                </div>
+
+                <div class = "row">
+                    <div class = "col-md-12">
+                        <input type="submit" class="btn btn-primary" value = "Submit" style = "margin-left: 0px;"/>
+                    </div>
+                </div>
+
+         </form>
+
+        </div>   -->
+<!--
+        <div class = "container" style = "margin-top: 50px; margin-bottom: 50px; width: 960px;">
+
+                <div class = "row">
+                    <div class = "col-md-12">
+                        <fieldset>
+                            <legend> Login </legend>
+
+                            <hr />
+
+                                <form method = "POST" class = "mt-5 mb-5">
+                                    <div class = "row">
+                                        <div class = "col-md-2 mt-3">
+                                            <label for = "username-email"> Username / Email: </label>
+                                        </div>
+                                        <div class = "col-md-4">
+                                            <div class="md-form form-sm">
+                                                <input type="text" id="username-email" class="form-control" data-toggle="tooltip" data-placement="right" title="Enter your username or email" required>
+                                                <label for="username-email">Username or email</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class = "row">
+                                        <div class = "col-md-2 mt-3">
+                                            <label for = "password"> Password: </label>
+                                        </div>
+                                        <div class = "col-md-4">
+                                            <div class="md-form form-sm">
+                                                <input type="password" id="password" class="form-control" data-toggle="tooltip" data-placement="right" title="Your password" required>
+                                                <label for="password">password</label>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class = "row mt-2">
+                                        <div class = "col-md-12">
+                                            <div style = "position: relative; left: 80px; font-size: 14px;">
+                                                <p> <span class = "blue-text"> Forgot password? </span> / Not registered? <span class = "blue-text"> Sign up </span> </p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class = "row">
+                                        <div class = "col-md-1" style = "position: relative; left: 340px;">
+                                            <input type="submit" class="btn btn-primary" value = "Login" />
+                                        </div>
+                                    </div>
+
+                                </form>
+
+                             <hr />
+
+                        </fieldset>
+                    </div>
+                </div>
+        </div> -->
+
+
+
+        <!--Footer-->
+        <footer class="page-footer center-on-small-only nopadding blue lighten-1">
+
+            <!--Footer links-->
+            <div class="container-fluid">
+                <div class="row">
+                    <!--First column-->
+                    <div class="col-lg-3 col-md-6 ml-auto">
+                        <h5 class="title mb-3"><strong>About material design</strong></h5>
+                        <p>Material Design (codenamed Quantum Paper) is a design language developed by Google.</p>
+                        <p>Material Design for Bootstrap (MDB) is a powerful Material Design UI KIT for most popular HTML, CSS,
+                            and JS framework - Bootstrap.</p>
+                    </div>
+                    <!--/.First column-->
+                    <hr class="w-100 clearfix d-sm-none">
+                    <!--Second column-->
+                    <div class="col-lg-2 col-md-6 ml-auto">
+                        <h5 class="title mb-3"><strong>First column</strong></h5>
+                        <ul>
+                            <li>
+                                <a href="#!">Link 1</a>
+                            </li>
+                            <li>
+                                <a href="#!">Link 2</a>
+                            </li>
+                            <li>
+                                <a href="#!">Link 3</a>
+                            </li>
+                            <li>
+                                <a href="#!">Link 4</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <!--/.Second column-->
+                    <!--Third column-->
+                    <div class="col-lg-2 col-md-6 ml-auto">
+                        <h5 class="title mb-3"><strong>Second column</strong></h5>
+                        <ul>
+                            <li>
+                                <a href="#!">Link 1</a>
+                            </li>
+                            <li>
+                                <a href="#!">Link 2</a>
+                            </li>
+                            <li>
+                                <a href="#!">Link 3</a>
+                            </li>
+                            <li>
+                                <a href="#!">Link 4</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <!--/.Third column-->
+                    <!--Fourth column-->
+                    <div class="col-lg-2 col-md-6 ml-auto">
+                        <h5 class="title mb-3"><strong>Third column</strong></h5>
+                        <ul>
+                            <li>
+                                <a href="#!">Link 1</a>
+                            </li>
+                            <li>
+                                <a href="#!">Link 2</a>
+                            </li>
+                            <li>
+                                <a href="#!">Link 3</a>
+                            </li>
+                            <li>
+                                <a href="#!">Link 4</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <!--/.Fourth column-->
+                </div>
+            </div>
+            <!--/.Footer links-->
+
+            <br />
+
+            <!--Copyright-->
+            <div class="footer-copyright elegant-color-dark">
+                <div class="container-fluid">
+                    <span class = "text-white"> © 2017 Copyright: </span> <a href="https://www.MDBootstrap.com"> Fong bros International Corporation.  </a>
+
+                </div>
+            </div>
+            <!--/.Copyright-->
+
+        </footer>
+        <!--/.Footer-->
+
+        <!-- SCRIPTS -->
+
+        <!-- JQuery -->
+        <script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+
+       <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.js"></script>
+
+        <!-- Bootstrap dropdown -->
+        <script type="text/javascript" src="js/popper.min.js"></script>
+
+        <!-- Bootstrap core JavaScript -->
+        <script type="text/javascript" src="js/bootstrap.min.js"></script>
+
+        <!-- MDB core JavaScript -->
+        <script type="text/javascript" src="js/mdb.min.js"></script>
+
+        <!--
+
+             https://stackoverflow.com/questions/33258908/angular-moment-moment-timezone-has-no-data-for-america-new-york
+
+             in case for including moment timezone datas moment-timezone.js
+
+             Time zone data should only be loaded once, and the moment-timezone scripts should only be loaded once.
+             If you use either moment-timezone-with-data.js or moment-timezone-with-data-2012-2022.js,
+             you should not be using moment-timezone.js, as that script is already included.
+
+            -->
+        <script src="js/moment.js" type="text/javascript"> </script>
+        <script src="js/moment-timezone-with-data.js" type="text/javascript"></script>
+        <script src="js/math.js" type="text/javascript"> </script>
+        <script src="js/accounting.js"> </script>
+        <script src="js/underscore.js"> </script>
+
+        <script id = "cartItemTemplate" type = "text/template">
+
+
+
+                  <tr>
+                                      <th scope="row">1</th>
+                                      <td><img src="<%=productImage%>" width="50" height="50" class="float-left" alt="placeholder"></td>
+                                      <td><%=productName%></td>
+                                      <td><%=totalPrice%></td>
+                                      <td><%=totalMass%></td>
+                                      <td class="text-center"><a><i class="fa fa-remove text"></i></a></td>
+                    </tr>
+
+        </script>
+
+
+        <script>
+
+            $(document).ready(function () {
+
+                  (function($){
+
+                    $.fn.outside = function(ename, cb){
+                        return this.each(function(){
+                            var $this = $(this),
+                                self = this;
+
+                            $(document).bind(ename, function tempo(e){
+                                if(e.target !== self && !$.contains(self, e.target)){
+                                    cb.apply(self, [e]);
+                                    if(!self.parentNode) $(document.body).unbind(ename, tempo);
+                                }
+                            });
+                        });
+                    };
+
+                    $.fn.outerHTML = function(s) {
+                        return (s)
+                        ? this.before(s).remove()
+                        : jQuery("<p>").append(this.eq(0).clone()).html();
+                    }
+
+                }(jQuery));
+
+
+                var convertMass = function (from, to, value) {
+                    return math.unit(value, from).toNumber(to);
+                };
+
+                var formatMoney = function (val, sign, formatValue) {
+                    return accounting.formatMoney(val,
+                                                    {
+                                                        symbol : sign,
+                                                        format : formatValue
+                                                    });
+                };
+
+                var updateProductCartInfo = function () {
+
+                    var $productCartItemLists = $("div#shoppingModalCart div.modal-body>table>tbody");
+                    var $productCartTotal = $("div.shopping-cart-total").children().eq(1);
+                    var itemCount = $productCartItemLists.children().length;
+
+                    if (itemCount > 0) {
+                      $productCartItemLists.parent().removeClass("d-none");
+                      $("#productCartEmptyMessage").addClass("d-none");
+                      $("div#shoppingModalCart div.modal-footer>button:eq(1)").removeClass("disabled");
+                    } else {
+                      $productCartItemLists.parent().addClass("d-none");
+                      $("#productCartEmptyMessage").removeClass("d-none");
+                      $("div#shoppingModalCart div.modal-footer>button:eq(1)").addClass("disabled");
+                    }
+
+                    var totalPrice = 0;
+
+                    _.each($productCartItemLists.children(), function (productCartItem, i) {
+
+                        var $productCartItem = $(productCartItem).children().eq(3);
+
+                        console.log("item price: " + $productCartItem.text());
+                        totalPrice += accounting.unformat($productCartItem.text());
+                        console.log(totalPrice);
+
+
+                    });
+
+
+                    $productCartTotal.text(formatMoney(totalPrice, "₱", "%s%v"));
+
+                    $(".productCartHeaderItemCount").text(itemCount);
+
+
+                };
+
+                var addToCart = function (cartItem) {
+
+                    var $productCart = $("div#shoppingModalCart .modal-body>table>tbody");
+
+                    var cartItemTemplate = $("#cartItemTemplate").html();
+
+                    var cartTemplate = _.template(cartItemTemplate);
+
+                    $productCart.append(cartTemplate({
+                        productImage : cartItem.productImage,
+                        productName : cartItem.productName,
+                        totalPrice : cartItem.totalPrice,
+                        totalMass : cartItem.totalMass
+                    }));
+
+                    $productCart.find("tr:last>td:last>a")
+                                .click(function () {
+                                  $(this).parent().parent().fadeOut("slow", function () {
+                                        $(this).remove();
+                                        updateProductCartInfo();
+                                  });
+                                });
+
+                    updateProductCartInfo();
+
+                };
+
+
+                var updatePriceMass = function (massType, quantity) {
+
+                    // todo not done yet need to convert the money depends on the country
+
+                    var productPrice = $("span#priceAddToCartModal").text();
+                    var baseMassType = $("span#massDefTypeAddToCart").text();
+
+                    var convertedMass = convertMass(massType, baseMassType, quantity);
+                    var totalPrice = convertedMass * accounting.unformat(productPrice);
+
+                    try {
+
+                        var formattedPrice = formatMoney(totalPrice,
+                                                        "PHP",
+                                                        "%v %s");
+
+                        if (formattedPrice == "NaN.undefined") throw "Price exceeded";
+
+                        console.log(convertedMass + " quantity: " + quantity);
+                        console.log("price: " + totalPrice);
+
+                        $("#totalMass").val( ((quantity <= 0) ? 0 : quantity) + " " +  massType);
+                        $("#totalPrice").val(formattedPrice);
+
+                    } catch (err) {
+                        $("#totalPrice").val(err);
+                    }
+
+                };
+
+
+
+                var resetAddToCartValues = function () {
+
+                    /// not done yet
+
+                    $("#massType").val("kilogram");
+                    $("#quantity").val(1);
+                    $("#totalPrice").val("200.00 PHP");
+                    $("#totalMass").val("1 kilogram");
+
+                };
+
+                var updateCartPositioning = function () {
+                    var screenWidth = $(document).width();
+                    console.log(screenWidth);
+
+                    if (screenWidth <= 800) {
+                        console.log(true);
+
+                        var shoppingCartButton = $("div#navbarSupportedContent a#cart").detach();
+
+
+                        shoppingCartButton.css("font-size", "11px");
+                        shoppingCartButton.css("display", "inline");
+                        shoppingCartButton.appendTo($("#nav-bar-brand-mobile-header"));
+
+
+                        $("#desktopWebsiteHeader").hide();
+                        $("#nav-bar-brand-mobile-header").removeClass("d-none");
+                        $("#productGridList").removeAttr("style");
+
+                        $(".shopping-cart-box").css("left", "10px");
+
+
+                    } else {
+
+                        var shoppingCartButton = $("#nav-bar-brand-mobile-header a#cart").detach();
+
+                        shoppingCartButton.css("font-size", "15px");
+                        shoppingCartButton.css("display", "inline-block");
+                        shoppingCartButton.appendTo($("div#navbarSupportedContent ul:eq(1)>li:eq(1)"));
+
+                        console.log("false");
+
+
+                        $("#nav-bar-brand-mobile-header").addClass("d-none");
+                        $("#productGridList").attr("style", "padding-left: 60px; padding-right: 60px;");
+                        $("#desktopWebsiteHeader").show();
+                        $(".shopping-cart-box").css("left", "140px");
+
+                    }
+                };
+                //$('#addToCartModal').modal('show');
+                //$('[data-toggle="tooltip"]').tooltip();
+
+
+
+                $(window).resize(function () {
+                    updateCartPositioning();
+                });
+
+                $("#massType").change(function () {
+
+                    var massType = $(this).val(),
+                        quantity = $("#quantity").val();
+
+                    updatePriceMass(massType, quantity);
+                });
+
+                var $quantitySpinner = $("#quantity").spinner({
+                    spin: function (event, ui) {
+                        // updatePriceMass();
+                        console.log(ui.value);
+
+                        var massType = $("#massType").val(),
+                            quantity = ui.value;
+
+                        updatePriceMass(massType, quantity);
+                    },
+                    min : 1,
+                    max : 9999999999
+
+                });
+
+                $quantitySpinner.parent().css("position", "relative");
+                $quantitySpinner.parent().css("top", "-5px");
+
+
+                $quantitySpinner.keypress(function (event) {
+
+                    var keyCode = event.keyCode;
+
+
+                    if ( keyCode < 48 || keyCode > 57 )
+                        return false;
+
+
+                });
+
+                $quantitySpinner.keyup(function (event) {
+
+                    var massType = $("#massType").val(),
+                        quantity = $("#quantity").val();
+
+                    updatePriceMass(massType, quantity);
+                });
+
+                $quantitySpinner.val(1);
+
+                $("#btnAddToCart").click(function () {
+
+                    if (accounting.unformat($("#totalPrice").val()) == 0) {
+                        $("#quantity").tooltip("show");
+
+                        setTimeout(function () {
+                              $("#quantity").tooltip("hide");
+                        }, 2000)
+
+                        return;
+
+                    }
+
+                    addToCart({
+                        productName : $("#addToCartProductName").text(),
+                        totalPrice : $("#totalPrice").val(),
+                        totalMass : $("#totalMass").val(),
+                        productImage : $("#addToCartProductImage").attr("src")
+                    });
+
+                    $("#addToCartModal").modal("hide");
+                });
+
+
+                $("#addToCartModal").on("hidden.bs.modal", function (event) {
+                        resetAddToCartValues();
+                });
+
+                var showAddToCartModal = function (productItem) {
+                    var $addToCartModal = $("#addToCartModal");
+                    var $addToCartModalBody = $addToCartModal.find("div.modal-body");
+
+                    $addToCartModal.find("h5.modal-title strong span").text(productItem.name);
+                    $addToCartModal.find("h4#addToCartProductName").text(productItem.name);
+                    $addToCartModalBody.find("span#addToCartModalExpirationDate").text(productItem.expirationDate);
+                    $addToCartModalBody.find("span#addToCartModalProductDescription").text(productItem.description);
+                    $addToCartModal.find("span#addToCartModalOrigin").text(productItem.origin);
+                    $addToCartModal.find("img#addToCartProductImage").attr("src", productItem.productImage);
+                    $addToCartModalBody.find("span#priceAddToCartModal").text(productItem.price);
+
+                    var massType = $("#massType").val(),
+                    quantity = $("#quantity").val();
+
+                    updatePriceMass(massType, quantity);
+
+                    $addToCartModal.modal("show");
+
+
+                };
+
+                $("#quantity").tooltip({
+                    trigger : 'manual',
+                    offset : '0px 9px'
+                });
+
+                $( "#slider" ).slider({
+                    range: true
+                });
+
+                $(".btnProductItemAddToCart").click(function (event) {
+                    var $card = $(event.currentTarget).parent().parent().parent();
+                    var $cardBody = $card.find("div.card-body");
+
+                    var $spansHeaderInfo = $card.find("div div div span");
+
+                  console.log($spansHeaderInfo.html());
+
+                    var productItem = {
+                        productImage : $card.find("img").attr("src"),
+                        price : $spansHeaderInfo.eq(0).text(),
+                        massType : $spansHeaderInfo.eq(1).find("span").text(),
+                        origin : $spansHeaderInfo.eq(3).text(),
+                        name : $cardBody.find("h4.card-title a").text(),
+                        description : $cardBody.find("p.card-text").text(),
+                        expirationDate : $cardBody.find("span span.red-text").text()
+                    };
+
+                    showAddToCartModal(productItem);
+
+
+
+                });
+
+
+                updateCartPositioning();
+                updateProductCartInfo();
+
+                $("#countryCode").ready(function () {
+                    $.ajax({
+                        url : "https://restcountries.eu/rest/v2/all",
+                        dataType : "json",
+                        success : function (restCountriesData) {
+
+
+                            for (var i = 0; i != restCountriesData.length; ++i) {
+                                var countryLetterCode = restCountriesData[i].alpha2Code;
+                                var countryCode = restCountriesData[i].callingCodes[0];
+
+                                if (countryCode.length > 0)
+                                    $("#countryCode").append('<option value = "' + countryCode + '">+' + countryCode + ' (' + countryLetterCode + ') </option');
+
+                            }
+
+
+                        }
+                    });
+                });
+
+                $('#country').ready(function () {
+
+                   $.ajax(
+                       {
+                           url : "https://restcountries.eu/rest/v2/all",
+                           dataType : "json",
+                           success : function (responseData) {
+
+                               for (var i = 0; i != responseData.length; ++i) {
+
+                                    if (responseData[i].alpha2Code.length > 0) {
+                                        var country = responseData[i].name;
+                                        var countryCode = responseData[i].alpha2Code;
+                                        $('#country').append('<option value = "'+ country + '">' + country + ' (' + countryCode + ')</option>');
+                                    }
+
+                               }
+
+
+
+                           }
+                       }
+                   );
+                });
+
+                $('#country').change(function () {
+
+                    var $cityTextBox = $('#city');
+
+                    var country = $(this).val();
+
+
+                    if ($cityTextBox.is(":disabled"))
+                        $cityTextBox.removeAttr("disabled");
+
+                });
+
+
+
+                function getInputSelection(input) {
+
+
+                    var start = 0, end = 0;
+                    input.focus();
+                    if (typeof input.selectionStart == "number" &&
+                        typeof input.selectionEnd == "number") {
+
+                        start = input.selectionStart;
+                        end = input.selectionEnd;
+                    } else if (document.selection && document.selection.createRange) {
+                        var range = document.selection.createRange();
+                        if (range) {
+                            var inputRange = input.createTextRange();
+                            var workingRange = inputRange.duplicate();
+                            var bookmark = range.getBookmark();
+                            inputRange.moveToBookmark(bookmark);
+                            workingRange.setEndPoint("EndToEnd", inputRange);
+                            end = workingRange.text.length;
+                            workingRange.setEndPoint("EndToStart", inputRange);
+                            start = workingRange.text.length;
+                        }
+                    }
+                    return {
+                        start: start,
+                        end: end,
+                        length: end - start
+                    };
+                }
+
+                function getDeletedCharacterByText (event, callback) {
+
+                    event = event || window.event;
+
+                    var keyCode = event.keyCode;
+                    var deleteKey = (keyCode == 46), backspaceKey = (keyCode == 8);
+                    var sel, deletedText, val;
+
+                    if (deleteKey || backspaceKey) {
+                        val = event.currentTarget.value;
+                        sel = getInputSelection(event.currentTarget);
+
+                        if (sel.length) {
+                            deletedText = val.slice(sel.start, sel.end);
+                        } else {
+                            deletedText = val.charAt(deleteKey ? sel.start : sel.start - 1);
+                        }
+
+                        callback(deletedText);
+                    }
+
+
+                }
+
+
+
+                $('.sub-nav-date').ready(function () {
+
+                    $('.sub-nav-date').text("please wait..");
+
+                    $.ajax({
+                        url: "http://ip-api.com/json/",
+                        jsonpCallback: "callback",
+                        dataType: "json",
+                        success: function( location ) {
+
+                                    var country = location.country.toLowerCase();
+
+                                    $.ajax({
+                                        url : "https://restcountries.eu/rest/v2/name/" + country,
+                                        success : function (responseData) {
+
+                                                setInterval(function () {
+
+                                                    var flagImageLink = responseData[0].flag;
+
+                                                    var currentDate = moment().tz(location.timezone).format("ddd YYYY-MM-DD hh:mm:ss a");
+
+                                                    currentDate = "(" + location.timezone + " " + location.country + " <img src='" + flagImageLink + "' width = '15' height = '15' style = 'position: relative; top: -1px;'/> ) " + currentDate;
+
+                                                    var countryCity = location.timezone.split("/");
+
+                                                    var linkTimeZone = countryCity[0].toLowerCase() + "--" + countryCity[1].toLowerCase();
+
+                                                    $('.sub-nav-date').text("");
+                                                    $('.sub-nav-date').append(currentDate);
+                                                    $('.sub-nav-date').attr("href", "https://www.zeitverschiebung.net/en/timezone/" + linkTimeZone);
+                                                    $('.sub-nav-date').attr("target", "_blank");
+
+                                                }, 1000);
+
+                                        }
+                                    });
+
+
+
+                        }
+                    });
+
+                });
+
+                $('.shopping-cart').outside('click', function() {
+                    $(".shopping-cart").hide();
+                });
+
+                $("#cart").on("click", function(e) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        console.log("tng inaaaaaaaa");
+                        $("#shoppingModalCart").modal('toggle');
+                });
+
+            });
+
+
+        </script>
+
+    </body>
+
+</html>

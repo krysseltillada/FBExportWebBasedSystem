@@ -40,19 +40,21 @@ $(document).ready(function () {
 
 
       $('#client-table tbody').on( 'click', 'tr', function () {
+    	  
+    	 if($(this).attr("role")){
+    		 if ( $(this).hasClass('selected') ) {
+    	            $(this).removeClass('selected');
+    	            $(this).css("background-color", "#e7ffd6");
+    	        }
+    	        else {
+    	            clienttable.$('tr.selected').removeClass('selected');
+    	            $(this).addClass('selected');
+    	            
+    	            $(this).css("background-color", "#81ecec");
+    	          }
+    	 }
 
-        if ( $(this).hasClass('selected') ) {
-            $(this).removeClass('selected');
-            $(this).css("background-color", "#e7ffd6");
-        }
-        else {
-            clienttable.$('tr.selected').removeClass('selected');
-            $(this).addClass('selected');
-
-            var $rows = $("#client-table").children('tbody').children('tr');
-            $rows.css("background-color", "#e7ffd6");
-            $(this).css("background-color", "#81ecec");
-          }
+        
       } );
 
       $('#btnDeleteClient').click( function () {
@@ -287,20 +289,20 @@ $(document).ready(function () {
       });
 
       $('#employee-table tbody').on( 'click', 'tr', function () {
+    	if($(this).attr("role")){
+            if ( $(this).hasClass('selected') ) {
+                $(this).removeClass('selected');
+                $(this).css("background-color", "#e7ffd6");
+            }
+            else {
+                employeetable.$('tr.selected').removeClass('selected');
+                $(this).addClass('selected');
 
+                $(this).css("background-color", "#81ecec");
+              }
 
-        if ( $(this).hasClass('selected') ) {
-            $(this).removeClass('selected');
-            $(this).css("background-color", "#e7ffd6");
-        }
-        else {
-            employeetable.$('tr.selected').removeClass('selected');
-            $(this).addClass('selected');
+    	}
 
-            var $rows = $("#employee-table").children('tbody').children('tr');
-            $rows.css("background-color", "#e7ffd6");
-            $(this).css("background-color", "#81ecec");
-          }
       } );
 
       $('#btnDeleteEmployee').click( function () {

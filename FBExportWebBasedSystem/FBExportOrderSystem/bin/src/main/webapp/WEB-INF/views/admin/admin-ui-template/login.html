@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Bootstrap Material Admin by Bootstrapious.com</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="all,follow">
+    <!-- Bootstrap CSS-->
+    <link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css">
+    <!-- Font Awesome CSS-->
+    <link rel="stylesheet" href="vendor/font-awesome/css/font-awesome.min.css">
+    <!-- Fontastic Custom icon font-->
+    <link rel="stylesheet" href="css/fontastic.css">
+    <!-- Google fonts - Poppins -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,700">
+    <!-- theme stylesheet-->
+    <link rel="stylesheet" href="css/style.default.css" id="theme-stylesheet">
+    <!-- Custom stylesheet - for your changes-->
+    <link rel="stylesheet" href="css/custom.css">
+    <!-- Favicon-->
+    <link rel="shortcut icon" href="img/favicon.ico">
+    <!-- Tweaks for older IEs--><!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+
+    <style media="screen">
+      body{
+        background-color: #ecf0f1;
+      }
+
+      #login-banner:hover{
+        opacity: 1.0;
+      }
+
+      #login-banner{
+        background-image: url("resources/admin/img/project-6.jpg");
+        opacity: 0.7;
+      }
+
+    </style>
+
+  </head>
+  <body>
+    <div class="login-page">
+      <div class="container d-flex align-items-center">
+        <div class="form-holder has-shadow">
+          <div class="row">
+            <!-- Logo & Information Panel-->
+            <div class="col-lg-6" id="login-banner">
+              <div class="d-flex align-items-center">
+                <div class="content" style="color: white; padding: 50px;">
+                   <div class="logo" style="margin-bottom: 200px;">
+                    <h2>Fong Bros International Corporation</h2>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Form Panel    -->
+            <div class="col-lg-6 bg-white">
+              <div class="form d-flex align-items-center">
+                <div class="content text-center">
+                  <i class="fa fa-user-circle fa-5x" style="font-size: 100px; color: grey; margin-bottom: 15px;  " aria-hidden="true"></i>
+                  <form id="login-form" method="post">
+                    <div class="form-group">
+                      <input id="login-username" type="text" name="loginUsername" required="" class="input-material">
+                      <label for="login-username" class="label-material">User Name</label>
+                    </div>
+                    <div class="form-group text-left">
+                      <input id="login-password" type="password" name="loginPassword" required="" class="input-material">
+                      <label for="login-password" class="label-material">Password</label>
+                    </div><a id="login" href="index.html" class="btn btn-primary pull-right">Login</a>
+                    <!-- This should be submit button but I replaced it with <a> for demo purposes-->
+                    <a href="#" class="forgot-pass pull-left">Forgot Password?</a>
+                  </form>
+                  <br>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <!-- Javascript files-->
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="vendor/popper.js/umd/popper.min.js"> </script>
+    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script src="vendor/jquery.cookie/jquery.cookie.js"> </script>
+    <script src="vendor/chart.js/Chart.min.js"></script>
+    <script src="vendor/jquery-validation/jquery.validate.min.js"></script>
+    <!-- Main File-->
+    <script src="js/front.js"></script>
+  </body>
+</html>
