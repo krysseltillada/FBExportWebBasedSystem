@@ -8,6 +8,8 @@ import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
+import com.fb.exportorder.utilities.PasswordValidator;
+
 @Configuration
 @EnableTransactionManagement 
 public class ApplicationConfiguration {
@@ -22,6 +24,11 @@ public class ApplicationConfiguration {
 	@Bean
 	public PlatformTransactionManager transactionManager() {
 		return new JpaTransactionManager();
+	}
+	
+	@Bean
+	public PasswordValidator passwordValidator() {
+		return new PasswordValidator();
 	}
 
 }

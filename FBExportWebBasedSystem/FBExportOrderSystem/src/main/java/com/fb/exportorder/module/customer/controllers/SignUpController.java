@@ -2,6 +2,8 @@ package com.fb.exportorder.module.customer.controllers;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -9,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.fb.exportorder.models.Address;
 import com.fb.exportorder.models.Contact;
@@ -22,36 +25,35 @@ public class SignUpController {
 	@Autowired
 	CustomerSignUpService customerSignUpService;
 	
-	@Autowired
-	BCryptPasswordEncoder passwordEncoder;
-	
 	@RequestMapping("/sign-up")
 	public String signUp() {
 		return "sign-up";
 	}
 	
 	@RequestMapping(value = "/register", method=RequestMethod.POST)
-	public String register (@RequestParam("username") String username, 
-			 				@RequestParam("password") String password,
-			 				@RequestParam("firstname") String firstname,
-			 				@RequestParam("middlename") String middlename,
-			 				@RequestParam("lastname") String lastname,
-			 				@RequestParam("gender") String gender,
-			 				@RequestParam("age") int age,
-			 				@RequestParam("country") String country,
-			 				@RequestParam("city") String city,
-			 				@RequestParam("address") String address,
-			 				@RequestParam("zipcode") String zipcode,
+	public String register (@RequestParam("profile-image") MultipartFile profileImage,
+							String username, 
+			 				String password,
+			 				String firstname,
+			 				String middlename,
+			 				String lastname,
+			 				String gender,
+			 				int age,
+			 				String country,
+			 				String city,
+			 				String address,
+			 				String zipcode,
 			 				@RequestParam("country-code") String countryCode,
 			 				@RequestParam("phone-number") String phoneNumber,
-			 				@RequestParam("email-address") String emailAddress, Model model) {
+			 				@RequestParam("email-address") String emailAddress, 
+			 				@RequestParam("g-recaptcha-response") String recaptcha, Model model, HttpServletRequest request) {
 		
 		Customer newCustomer = new Customer();
 		Address customerAddress = new Address();
 		Contact customerContact = new Contact(); 
 		
 		newCustomer.setUsername(username);
-		newCustomer.setPassword(passwordEncoder.encode(password));
+		newCustomer.setPassword(password);
 		
 		newCustomer.setFirstname(firstname);
 		newCustomer.setMiddlename(middlename);
@@ -71,12 +73,17 @@ public class SignUpController {
 		newCustomer.setAddress(customerAddress);
 		newCustomer.setContact(customerContact);
 		
-		List<String> errorMessages = customerSignUpService.register(newCustomer);
+		List<String> errorMessages = customerSignUpService.register(newCustomer, 
+																	recaptcha, 
+																	request.getRemoteAddr(),
+																	profileImage);
 		
-		if (!errorMessages.isEmpty())
+		if (!errorMessages.isEmpty()) {
 			model.addAttribute("errorMessages", errorMessages);
+			return "sign-up";
+		} 
 		
-		return "sign-up";
+		return "redirect:home";
 		
 	}
 	

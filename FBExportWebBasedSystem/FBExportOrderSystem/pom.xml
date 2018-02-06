@@ -133,6 +133,30 @@
 		    <version>1.1</version>
 		</dependency>
 		
+		<dependency>
+	       <groupId>edu.vt.middleware</groupId>
+	       <artifactId>vt-password</artifactId>
+	       <version>3.1.2</version>
+  		</dependency>
+  		
+  		<dependency>
+		   <groupId>org.apache.commons</groupId>
+		   <artifactId>commons-email</artifactId>
+		   <version>1.5</version>
+		</dependency>
+		
+		<dependency>
+		   <groupId>commons-validator</groupId>
+		   <artifactId>commons-validator</artifactId>
+		   <version>1.4.0</version>
+		</dependency>
+		
+		<dependency>
+		   <groupId>commons-codec</groupId>
+		   <artifactId>commons-codec</artifactId>
+		   <version>1.9</version>
+		</dependency>
+		
 	</dependencies>
 
 	<build>

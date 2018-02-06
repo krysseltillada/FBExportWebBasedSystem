@@ -1,7 +1,7 @@
 <%@ include file = "../../lib/tags/tag-libraries.jsp" %>
 
 <div class = "container p-4">
-    <form action = "/register" method = "POST" id="uploadForm">
+    <form action = "/register" method = "POST" enctype = "multipart/form-data">
 
         <div class = "row">
             <div class = "col">
@@ -16,11 +16,7 @@
         	<hr />
         	
         	<c:forEach var = "errorMessage" items = "${errorMessages}">
-        	
-        		
-        		
         		<span class = "red-text"> *<c:out value="${errorMessage}" /> </span> <br />
-        	
         	</c:forEach>
         
         </c:if>
@@ -42,19 +38,22 @@
                             <img class = "mb-2 rounded" style = "border: 1px solid #DDDDDD;" id='img-upload' src = "resources/customer/img/profile-male.jpg" width = "150" height = "150" />
 
                             <p class="file">
-                                <input type="file" name="file" id="file" accept="image/x-png,image/jpeg" />
+                                <input type="file" name="profile-image" id="file" accept="image/x-png,image/jpeg" />
                                 <label for="file">Upload your image</label>
                             </p>
                             </div>
 
                             <div class = "col-md-6">
                                 <div class="md-form form-sm">
-                                    <input type="text" name = "username" id="username" class="form-control" length = "20" required />
                                     <label for="username" class="">Username</label>
+                                    <input type="text" name = "username" id="username" class="form-control" length = "20" required />
                                 </div>
                                 <div class="md-form form-sm">
-                                    <input type="password" name = "password" id="password" class="form-control" length = "20" required />
                                     <label for="password" class="">Password</label>
+                                    <input type="password" name = "password" id="password" class="form-control" length = "20" required />
+									<p class="form-text text-muted small">
+									  password must be 5-20 characters , contains at least one uppercase and lowercase letter and number, and must not contain spaces and special characters.
+									</p>                                    
                                 </div>
                             </div>
 
