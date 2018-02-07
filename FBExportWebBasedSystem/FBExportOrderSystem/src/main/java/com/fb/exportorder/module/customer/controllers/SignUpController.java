@@ -48,6 +48,8 @@ public class SignUpController {
 			 				@RequestParam("email-address") String emailAddress, 
 			 				@RequestParam("g-recaptcha-response") String recaptcha, Model model, HttpServletRequest request) {
 		
+		
+		
 		Customer newCustomer = new Customer();
 		Address customerAddress = new Address();
 		Contact customerContact = new Contact(); 
@@ -63,6 +65,7 @@ public class SignUpController {
 		
 		newCustomer.setAge(age);
 		
+		customerAddress.setAddress(address);
 		customerAddress.setCountry(country);
 		customerAddress.setCity(city);
 		customerAddress.setZipCode(zipcode);
@@ -83,7 +86,7 @@ public class SignUpController {
 			return "sign-up";
 		} 
 		
-		return "redirect:home";
+		return "redirect:sign-up";
 		
 	}
 	

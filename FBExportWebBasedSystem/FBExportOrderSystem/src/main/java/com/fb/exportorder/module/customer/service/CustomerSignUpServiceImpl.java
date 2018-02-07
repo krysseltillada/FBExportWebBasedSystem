@@ -24,6 +24,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.fb.exportorder.models.Address;
 import com.fb.exportorder.models.Contact;
 import com.fb.exportorder.models.customer.Customer;
+import com.fb.exportorder.models.enums.Gender;
 import com.fb.exportorder.module.customer.repository.CustomerRepository;
 import com.fb.exportorder.utilities.PasswordValidator;
 
@@ -35,6 +36,9 @@ public class CustomerSignUpServiceImpl implements CustomerSignUpService {
 	@Value("${profile-img-context-location}")
 	String profileImageContextLocation;
 
+	@Value("${fbexport.server.domain.name}")
+	String serverDomainName;
+	
 	@Autowired
 	BCryptPasswordEncoder passwordEncoder;
 	
@@ -109,9 +113,6 @@ public class CustomerSignUpServiceImpl implements CustomerSignUpService {
 			errorMessages.add("Verify you're a human");
 		}
 		
-		if (profileImage.isEmpty())
-			errorMessages.add("Add your profile image");
-		
 		return errorMessages;
 		
 	}
@@ -136,11 +137,28 @@ public class CustomerSignUpServiceImpl implements CustomerSignUpService {
 					put("image/png", ".png");
 				}};
 				
-				String profileImageFilename = DigestUtils.md5Hex(customer.getUsername()) + imageTypes.get(profileImage.getContentType());
+				String profileImageLink = StringUtils.EMPTY;
 				
-				Path path = Paths.get(profileImageContextLocation + File.separator + profileImageFilename);
-				Files.write(path, imageBytes);
+				if (!profileImage.isEmpty()) {
+					
+					String profileImageFilename = DigestUtils.md5Hex(customer.getUsername()) + imageTypes.get(profileImage.getContentType());
+					String profileImageFilePath = profileImageContextLocation + File.separator + profileImageFilename;
+					Path path = Paths.get(profileImageFilePath);
+					Files.write(path, imageBytes);
+					
+					profileImageLink = serverDomainName + "profile-img/" + profileImageFilename;
+					
+				} else {
+					
+					profileImageLink = (customer.getGender() == Gender.MALE) ? serverDomainName + "resources/customer/img/profile-male.jpg" :
+																			   serverDomainName + "resources/customer/img/profile-female.jpg";
+					
+				}
 				
+				customer.setProfileImageLink(profileImageLink);
+				customer.setEnabled(true);
+				
+				customerRepository.save(customer);
 				
 			} catch (IOException e) {
 				e.printStackTrace();
