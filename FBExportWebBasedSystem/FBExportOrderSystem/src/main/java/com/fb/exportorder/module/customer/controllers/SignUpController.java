@@ -69,8 +69,8 @@ public class SignUpController {
 		customerAddress.setCountry(country);
 		customerAddress.setCity(city);
 		customerAddress.setZipCode(zipcode);
-		
-		customerContact.setPhoneNumber(countryCode + phoneNumber);
+		customerContact.setCountryCode(countryCode);
+		customerContact.setPhoneNumber(phoneNumber);
 		customerContact.setEmailAddress(emailAddress);
 		
 		newCustomer.setAddress(customerAddress);
@@ -81,12 +81,13 @@ public class SignUpController {
 																	request.getRemoteAddr(),
 																	profileImage);
 		
+		
 		if (!errorMessages.isEmpty()) {
 			model.addAttribute("errorMessages", errorMessages);
 			return "sign-up";
 		} 
 		
-		return "redirect:sign-up";
+		return "redirect:login";
 		
 	}
 	

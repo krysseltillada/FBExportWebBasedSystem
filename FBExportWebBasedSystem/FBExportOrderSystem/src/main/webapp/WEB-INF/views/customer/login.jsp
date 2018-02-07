@@ -1,9 +1,18 @@
+<%@ include file = "../../lib/tags/tag-libraries.jsp" %>
+
 <div class = "container p-5">
 
     <div class = "row">
         <div class = "col-md-12">
             <fieldset>
-                <legend> Login </legend>
+                <legend> 
+                	Login 
+                	
+               		<c:if test = "${not empty loginErrorMessage}">
+               			<span class = "red-text ml-3" style = "font-size: 15px;"> <strong> *${loginErrorMessage} </strong> </span>
+               		</c:if>
+                	
+                </legend>
 
                 <hr />
 
@@ -34,7 +43,7 @@
                         <div class = "row mt-2">
                             <div class = "col-md-12">
                                 <div style = "position: relative; left: 80px; font-size: 14px;">
-                                    <p> <span class = "blue-text"> Forgot password? </span> / Not registered? <span class = "blue-text"> Sign up </span> </p>
+                                    <p> <a class = "blue-text" href = "#"> Forgot password? </a> / Not registered? <a class = "blue-text" href = "/sign-up"> Sign up </a> </p>
                                 </div>
                             </div>
                         </div>

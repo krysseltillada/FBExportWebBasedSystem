@@ -15,7 +15,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.fb.exportorder.models.Account;
+import com.fb.exportorder.models.Authorities;
+import com.fb.exportorder.models.customer.Customer;
 import com.fb.exportorder.module.customer.repository.AccountRepository;
+import com.fb.exportorder.module.customer.repository.CustomerRepository;
 
 @Service("userDetailsService")
 public class AccountSecurityServiceImpl implements UserDetailsService {
@@ -23,24 +26,70 @@ public class AccountSecurityServiceImpl implements UserDetailsService {
   @Autowired
   private AccountRepository accountRepository;
 
+  @Autowired
+  private CustomerRepository customerRepository;
+  
   @Transactional(readOnly = true)
   @Override
   public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
     Account account = accountRepository.findAccountByUsername(username);
+    Account accountByEmail = accountRepository.findAccountByEmail(username);
+    
     UserBuilder builder = null;
+    String[] authorities = null;
+    Authorities accountAuth = null;
+    Account accountBuilder = null;
+    
     if (account != null) {
+    	
+      accountAuth = account.getAuthorities().iterator().next();
       
-      builder = org.springframework.security.core.userdetails.User.withUsername(username);
-      builder.disabled(!account.isEnabled());
-      builder.password(account.getPassword());
-      String[] authorities = account.getAuthorities()
-          .stream().map(a -> a.getAuthority()).toArray(String[]::new);
-
-      builder.authorities(authorities);
+      switch (accountAuth.getAuthority()) {
+      	case "CUSTOMER":
+      		
+      		accountBuilder = customerRepository.findAccountByUsername(username);
+      		System.out.println(accountBuilder.getUsername());
+      		
+      		break;
+      	case "EMPLOYEE":
+      		break;
+      	case "ADMIN":
+      		break;
+      }
+    
+   
+    } else if (accountByEmail != null) {
+    	
+    	accountAuth = accountByEmail.getAuthorities().iterator().next();
+        
+        switch (accountAuth.getAuthority()) {
+        	case "CUSTOMER":
+        		
+        		accountBuilder = customerRepository.findAccountByEmail(username);
+        		System.out.println(accountBuilder.getUsername());
+        		
+        		break;
+        	case "EMPLOYEE":
+        		break;
+        	case "ADMIN":
+        		break;
+        }
+      	
+    	
     } else {
-      throw new UsernameNotFoundException("User not found.");
+    	throw new UsernameNotFoundException("Username not found");
     }
+    
+    builder = org.springframework.security.core.userdetails.User.withUsername(accountBuilder.getUsername());
+    builder.disabled(!accountBuilder.isEnabled());
+    builder.password(accountBuilder.getPassword());
+    authorities = accountBuilder.getAuthorities()
+        .stream().map(a -> a.getAuthority()).toArray(String[]::new);
+
+    builder.authorities(authorities);
+    
     return builder.build();
   }
+  
 }

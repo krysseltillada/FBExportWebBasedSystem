@@ -7,10 +7,13 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Set;
 
 import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -22,7 +25,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.fb.exportorder.models.Address;
+import com.fb.exportorder.models.Authorities;
 import com.fb.exportorder.models.Contact;
+import com.fb.exportorder.models.customer.Activity;
 import com.fb.exportorder.models.customer.Customer;
 import com.fb.exportorder.models.enums.Gender;
 import com.fb.exportorder.module.customer.repository.CustomerRepository;
@@ -57,13 +62,20 @@ public class CustomerSignUpServiceImpl implements CustomerSignUpService {
 		Address customerAddress = customer.getAddress();
 		
 		List<String> errorMessages = new ArrayList<>();
+		
 		Customer registeredCustomer = customerRepository.findAccountByUsername(customer.getUsername());
+		
+		boolean isEmailExists = customerRepository.isEmailExists(customerContact.getEmailAddress());
 		
 		if (!StringUtils.isAlphanumericSpace(customer.getUsername()))
 			errorMessages.add("username cannot contain a special character");
 		
-		if (Objects.nonNull(registeredCustomer))
+		if (Objects.nonNull(registeredCustomer)) {
 			errorMessages.add("username exists");
+		}
+		
+		if (isEmailExists)
+			errorMessages.add("Email Address exists");
 		
 		RuleResult result = passwordValidator.validate(customer.getPassword());
 		RuleResult sResult = passwordValidator.validateSpecialCharacters(customer.getPassword());
@@ -121,7 +133,9 @@ public class CustomerSignUpServiceImpl implements CustomerSignUpService {
 	public List<String> register(Customer customer, String recaptcha, String ip, MultipartFile profileImage) {
 		
 		List<String> errorMessages = validate (customer, recaptcha, ip, profileImage);
-
+		Authorities authorities = new Authorities();
+		
+		
 		if (errorMessages.isEmpty()) {
 			System.out.println("successfully registered");
 			customer.setPassword(passwordEncoder.encode(customer.getPassword()));
@@ -154,9 +168,31 @@ public class CustomerSignUpServiceImpl implements CustomerSignUpService {
 																			   serverDomainName + "resources/customer/img/profile-female.jpg";
 					
 				}
+
+			
+				
+				authorities.setAuthority("CUSTOMER");
+				authorities.setAccount(customer);
+				
+				for (int i = 0; i != 10; ++i) {
+					
+					Activity act = new Activity();
+					
+					act.setDate(new Date());
+					act.setDescription("tae tae");
+					act.setHeader("tng ina tng ina");
+					
+					customer.getActivities()
+							.add(act);
+				}
 				
 				customer.setProfileImageLink(profileImageLink);
+				
+				customer.getAuthorities()
+						.add(authorities);
+				
 				customer.setEnabled(true);
+
 				
 				customerRepository.save(customer);
 				
