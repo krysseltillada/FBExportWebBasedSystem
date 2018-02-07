@@ -38,5 +38,40 @@ $(document).ready(function () {
     });
 
     updateSignUpFormPositioning();
+    
+    /*Profile Picture */
+
+    $('input[type=radio][name=gender]').change(function(){
+      var gender = $('input[type=radio][name=gender]:checked').val();
+      if(gender == "Male"){
+        if($("#profile-image").get(0).files.length == 0){
+          $("#img-uploadProfile").attr("src", "resources/customer/img/profile-male.jpg");
+        }
+      }
+
+      if(gender == "Female"){
+        if($("#profile-image").get(0).files.length == 0){
+          $("#img-uploadProfile").attr("src", "resources/customer/img/profile-female.jpg");
+        }
+        
+      }
+    });
+
+    function filePreviewAdd(input) {
+      if (input.files && input.files[0]) {
+          var reader = new FileReader();
+          reader.onload = function (e) {
+              $("#img-uploadProfile").attr("src", e.target.result);
+          }
+          reader.readAsDataURL(input.files[0]);
+      }
+    }
+
+    $("#profile-image").change(function () {
+        filePreviewAdd(this);
+    });
+
+
+    /*Profile Picture*/
 
 });

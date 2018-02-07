@@ -35,11 +35,11 @@
 
                             <div class="col-md-3 text-center">
 
-                            <img class = "mb-2 rounded" style = "border: 1px solid #DDDDDD;" id='img-upload' src = "resources/customer/img/profile-male.jpg" width = "150" height = "150" />
+                            <img class = "mb-2 rounded" style = "border: 1px solid #DDDDDD;" id='img-uploadProfile' src = "resources/customer/img/profile-male.jpg" width = "150" height = "150" />
 
                             <p class="file">
-                                <input type="file" name="profile-image" id="file" accept="image/x-png,image/jpeg" />
-                                <label for="file">Upload your image</label>
+                                <input type="file" name="profile-image" id="profile-image" accept="image/x-png,image/jpeg" />
+                                <label for="profile-image">Upload your image</label>
                             </p>
                             </div>
 
