@@ -2,6 +2,7 @@ package com.fb.exportorder.module.customer.repository;
 
 import java.util.List;
 
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.PagingAndSortingRepository;
@@ -26,5 +27,9 @@ public interface CustomerRepository
 	
 	@Query("SELECT c.activities FROM Customer c WHERE c.id = :id")
 	List<Activity> getActivitiesById(@Param("id") long id);
+	
+	@Query("SELECT c.activities FROM Customer c WHERE c.id = :id")
+	List<Activity> getActivitiesById(@Param("id") long id, 
+            Pageable pageRequest);
 	
 }

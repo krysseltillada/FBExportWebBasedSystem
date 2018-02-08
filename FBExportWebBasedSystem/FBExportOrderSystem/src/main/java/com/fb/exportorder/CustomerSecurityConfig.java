@@ -2,6 +2,7 @@ package com.fb.exportorder;
 
 import java.io.IOException;
 
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -18,8 +19,6 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.web.authentication.AuthenticationFailureHandler;
-
 import com.fb.exportorder.module.customer.handlers.LoginFailureHandler;
 import com.fb.exportorder.module.customer.handlers.LoginSuccessHandler;
 
@@ -31,7 +30,7 @@ public class CustomerSecurityConfig extends WebSecurityConfigurerAdapter {
 	  private static String[] CSRF_IGNORED_URLS = {
 			  "/register"
 	  };
-
+	  
 	  @Autowired
 	  private UserDetailsService userDetailsService;
 	  

@@ -53,8 +53,8 @@ public class LoginFailureHandler implements AuthenticationFailureHandler {
 		else {
 			errorMessage = "invalid username or email";
 		}
-		
-		response.sendRedirect("/login?errorMessage=" + errorMessage);
+		System.out.println("tngina");
+		response.sendRedirect(request.getServletContext().getContextPath() + "/login?errorMessage=" + errorMessage);
 		
 	}
 

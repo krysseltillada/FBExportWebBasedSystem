@@ -18,13 +18,13 @@
 	            </ul>
 	            <ul class="navbar-nav nav-flex-icons">
 	                <li class="nav-item">
-	                    <a class="nav-link waves-effect waves-light white-text" href="/login">
+	                    <a class="nav-link waves-effect waves-light white-text" href="<c:url value = '/login' />">
 	                        <i class="fa fa-user" aria-hidden="true"></i>
 	                        <span> LOGIN </span>
 	                    </a>
 	                </li>
 	                <li class="nav-item">
-	                    <a class="nav-link waves-effect waves-light white-text" href="/sign-up">
+	                    <a class="nav-link waves-effect waves-light white-text" href="<c:url value = '/sign-up' />">
 	                        <i class="fa fa-user-plus" aria-hidden="true"></i>
 	                        <span> SIGN UP </span>
 	                    </a>
@@ -45,6 +45,8 @@
 <security:authorize access = "hasAuthority('CUSTOMER')">
 	<header>
 	
+		<input type = "hidden" value = '${sessionScope.customerId}' id = "customer-id"/>
+	
 	    <nav class="navbar navbar-expand-lg navbar-dark black">
 	
 	        <div class = "container">
@@ -57,9 +59,9 @@
 	                <ul class="navbar-nav nav-flex-icons">
 	                    <li class="nav-item">
 	
-	                        <a class="nav-link waves-effect waves-light white-text" href="${sessionScope.profileViewLink}">
+	                        <a class="nav-link waves-effect waves-light white-text" href="<c:url value = '${sessionScope.profileViewLink}' />">
 	                            <span class = "font-weight-bold"> Welcome ${sessionScope.name}!</span>
-	                            <img class = "ml-1" src = "${sessionScope.profileImageLink}" height = "20" width = "20" alt = "profile image" />
+	                            <img class = "ml-1" src = "<c:url value = '${sessionScope.profileImageLink}' />" height = "20" width = "20" alt = "profile image" />
 	                        </a>
 	
 	                    </li>
@@ -104,13 +106,13 @@
 	
 	                    </li>
 	                    <li class="nav-item">
-	                        <a class="nav-link waves-effect waves-light white-text" href="${sessionScope.profileViewLink}">
+	                        <a class="nav-link waves-effect waves-light white-text" href="<c:url value = '${sessionScope.profileViewLink}' />">
 	                            <i class="fa fa-user" aria-hidden="true"></i>
 	                            <span> PROFILE </span>
 	                        </a>
 	                    </li>
 	                    <li class="nav-item">
-	                        <a class="nav-link waves-effect waves-light white-text" href="/sign-out">
+	                        <a class="nav-link waves-effect waves-light white-text" href="<c:url value = '/sign-out' />">
 	                            <i class="fa fa-sign-out" aria-hidden="true"></i>
 	                            <span> SIGN OUT </span>
 	                        </a>

@@ -3,6 +3,8 @@ package com.fb.exportorder.module.customer.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.stereotype.Service;
 
@@ -24,9 +26,8 @@ public class CustomerServiceImpl implements CustomerService {
 	@Override
 	public List<Activity> getCustomerActivitiesById(long customerId, int pageNumber, int pageSize) {
 		
-		
-		return customerRepository.findOne(customerId)
-						  		 .getActivities();
+		Pageable page = new PageRequest(pageNumber, pageSize);
+		return customerRepository.getActivitiesById(customerId, page);
 		
 	}
 

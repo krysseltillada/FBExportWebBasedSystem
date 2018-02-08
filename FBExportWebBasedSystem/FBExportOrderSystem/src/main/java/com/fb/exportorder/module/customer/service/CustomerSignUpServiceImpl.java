@@ -41,9 +41,6 @@ public class CustomerSignUpServiceImpl implements CustomerSignUpService {
 	@Value("${profile-img-context-location}")
 	String profileImageContextLocation;
 
-	@Value("${fbexport.server.domain.name}")
-	String serverDomainName;
-	
 	@Autowired
 	BCryptPasswordEncoder passwordEncoder;
 	
@@ -160,12 +157,12 @@ public class CustomerSignUpServiceImpl implements CustomerSignUpService {
 					Path path = Paths.get(profileImageFilePath);
 					Files.write(path, imageBytes);
 					
-					profileImageLink = serverDomainName + "profile-img/" + profileImageFilename;
+					profileImageLink = "/profile-img/" + profileImageFilename;
 					
 				} else {
 					
-					profileImageLink = (customer.getGender() == Gender.MALE) ? serverDomainName + "resources/customer/img/profile-male.jpg" :
-																			   serverDomainName + "resources/customer/img/profile-female.jpg";
+					profileImageLink = (customer.getGender() == Gender.MALE) ? "/resources/customer/img/profile-male.jpg" :
+																			   "/resources/customer/img/profile-female.jpg";
 					
 				}
 
@@ -180,7 +177,7 @@ public class CustomerSignUpServiceImpl implements CustomerSignUpService {
 					
 					act.setDate(new Date());
 					act.setDescription("tae tae");
-					act.setHeader("tng ina tng ina");
+					act.setHeader("tng ina tng ina" + i);
 					
 					customer.getActivities()
 							.add(act);

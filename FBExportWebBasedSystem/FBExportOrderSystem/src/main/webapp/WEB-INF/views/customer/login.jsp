@@ -8,6 +8,7 @@
                 <legend> 
                 	Login 
                 	
+                	
                		<c:if test = "${not empty loginErrorMessage}">
                			<span class = "red-text ml-3" style = "font-size: 15px;"> <strong> *${loginErrorMessage} </strong> </span>
                		</c:if>
@@ -16,7 +17,7 @@
 
                 <hr />
 
-                    <form method = "POST" action = "/login" class = "mt-5 mb-5 ml-5" id = "loginForm">
+                    <form method = "POST" action = "<c:url value = '/login' />" class = "mt-5 mb-5 ml-5" id = "loginForm">
                         <div class = "row">
                             <div class = "col-md-2 mt-3">
                                 <label for = "username-email"> Username / Email: </label>
@@ -43,7 +44,7 @@
                         <div class = "row mt-2">
                             <div class = "col-md-12">
                                 <div style = "position: relative; left: 80px; font-size: 14px;">
-                                    <p> <a class = "blue-text" href = "#"> Forgot password? </a> / Not registered? <a class = "blue-text" href = "/sign-up"> Sign up </a> </p>
+                                    <p> <a class = "blue-text" href = "#"> Forgot password? </a> / Not registered? <a class = "blue-text" href = "<c:url value = "/sign-up" />"> Sign up </a> </p>
                                 </div>
                             </div>
                         </div>

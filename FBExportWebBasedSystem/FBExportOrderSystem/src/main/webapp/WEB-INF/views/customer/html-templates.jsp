@@ -10,3 +10,19 @@
     </tr>
 
 </script>
+
+<script id = "activityItemTemplate" type = "text/template">
+
+	<span href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+		<div class="d-flex w-100 justify-content-between">
+			<h5 class="mb-1">{{=activityHeader}}</h5>
+			<button type="button" class="close delete-activity" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+			</button>
+		</div>
+
+		<p class="mb-1">{{=activityDescription}}</p>
+		<small> {{=activityDate}} </small>
+	</span>
+
+</script>

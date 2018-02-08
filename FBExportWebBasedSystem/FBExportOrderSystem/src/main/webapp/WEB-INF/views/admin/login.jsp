@@ -17,7 +17,7 @@
 	    <meta name="robots" content="all,follow">
 		
 		<c:forEach var = "cssfile" items = "${cssfiles}">
-			<link href = "${cssfile}" rel = "stylesheet" type = "text/css" />
+			<link href = "<c:url value = '${cssfile}' />" rel = "stylesheet" type = "text/css" />
 		</c:forEach>
 		
 		<style media="screen">
@@ -78,7 +78,7 @@
 		    </div>
 	
 		<c:forEach var = "javascriptfile" items = "${javascriptfiles}">
-			<script src = "${javascriptfile}" type = "text/javascript"></script>
+			<script src = "<c:url value = '${javascriptfile}' />" type = "text/javascript"></script>
 		</c:forEach> 
 	</body>
 	

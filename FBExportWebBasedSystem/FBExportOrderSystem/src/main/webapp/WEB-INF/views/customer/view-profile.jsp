@@ -61,7 +61,7 @@
 
                                     <div class = "row">
                                         <div class = "col-md-3">
-                                            <img src = "${customer.profileImageLink}" height = "150" width = "150" />
+                                            <img src = "<c:url value = '${customer.profileImageLink}' />" height = "150" width = "150" />
                                         </div>
                                         <div class = "col-md-9">
                                             <h4> 
@@ -94,7 +94,7 @@
 
                                         <hr />
 
-                                        <div class="list-group">
+                                        <div class="list-group activity-list">
                                         	
                                         	<c:choose>
                                         		<c:when test = "${not empty activityList}">
@@ -104,7 +104,7 @@
                                         				<span href="#" class="list-group-item list-group-item-action flex-column align-items-start">
 			                                                <div class="d-flex w-100 justify-content-between">
 			                                                    <h5 class="mb-1">${activity.header}</h5>
-			                                                    <button type="button" class="close" aria-label="Close">
+			                                                    <button type="button" class="close delete-activity" aria-label="Close">
 			                                                            <span aria-hidden="true">&times;</span>
 			                                                    </button>
 			                                                </div>
@@ -133,7 +133,10 @@
                                 </div>
 
                                 <div class = "row">
-                                            <a class = "mx-auto mt-2" href = "#"> See more </a>
+                                			<div class = "mx-auto mt-2">
+                                            	<a class = "see-more" href = "javascript:void(0)"> See more </a>
+                                            	<img class = "see-more-loader" style = "display:none;" src = "<c:url value = '/resources/customer/img/loader.gif' />" height ="50" width = "50" />
+                                			</div>
                                 </div>
 
 
@@ -153,5 +156,7 @@
 
         <hr />
     </div>
+    
+    
 
 </main>  

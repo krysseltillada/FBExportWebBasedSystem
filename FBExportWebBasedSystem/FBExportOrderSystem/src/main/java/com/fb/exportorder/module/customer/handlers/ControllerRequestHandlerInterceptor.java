@@ -28,8 +28,8 @@ public class ControllerRequestHandlerInterceptor extends HandlerInterceptorAdapt
 				if (Objects.nonNull(session.getAttribute("name"))) {
 					
 					if (StringUtils.equals(request.getRequestURI(), 
-										   "/login")) {	
-						response.sendRedirect("/");
+										   "/login")) {
+						response.sendRedirect("FBExportSystem/");
 					}
 					
 				} 

@@ -40,6 +40,8 @@ $(function () {
 
 $(document).ready(function () {
 
+    
+
     var updateCartPositioning = function () {
         var screenWidth = $(document).width();
         console.log(screenWidth);
@@ -352,6 +354,13 @@ $(document).ready(function () {
                                         $('.sub-nav-date').attr("target", "_blank");
 
                                     }, 1000);
+
+                                     var token = $("meta[name='_csrf']").attr("content");
+                                    var header = $("meta[name='_csrf_header']").attr("content");
+                                    $(document).ajaxSend(function(e, xhr, options) {
+                                        xhr.setRequestHeader(header, token);
+                                        xhr.set
+                                    });
 
                             }
                         });
