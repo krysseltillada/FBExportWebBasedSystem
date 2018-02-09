@@ -89,7 +89,15 @@
                                         <h4>
                                             <i class="fa fa-th-list mr-2" aria-hidden="true"></i>
                                             <span> Activity </span>
-                                            <a class = "float-right mr-3 mt-1 blue-text" href = "#" style = "font-size: 16px;"> Clear all </a>
+                                            
+                                        	<c:choose>
+                                        		<c:when test = "${not empty activityList}">
+                                        			<a class = "float-right mr-3 mt-1 blue-text clear-all" href = "javascript:void(0)" style = "font-size: 16px;"> Clear all </a>
+                                        		</c:when>
+                                        		<c:otherwise>
+                                        			<a class = "float-right mr-3 mt-1 grey-text disabled clear-all" href = "javascript:void(0)" style = "font-size: 16px;"> Clear all </a>
+                                        		</c:otherwise>
+                                        	</c:choose>
                                         </h4>
 
                                         <hr />
@@ -101,7 +109,7 @@
                                         		
                                         			<c:forEach var = "activity" items = "${activityList}">
                                         				
-                                        				<span href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+                                        				<span id = "${activity.activityId}" class="list-group-item list-group-item-action flex-column align-items-start">
 			                                                <div class="d-flex w-100 justify-content-between">
 			                                                    <h5 class="mb-1">${activity.header}</h5>
 			                                                    <button type="button" class="close delete-activity" aria-label="Close">
@@ -118,7 +126,11 @@
 			                                            
                                         		</c:when>
                                         		<c:otherwise>
-                                        			<h1> tng ina mo </h1>
+                                        			<div class = "row">
+			                                			<div class = "mx-auto mt-2">
+			                                            	<h4> No activities here </h4>
+			                                			</div>
+                                					</div>
                                         		</c:otherwise>
                                         	</c:choose>
 	                                        
@@ -132,12 +144,14 @@
 
                                 </div>
 
-                                <div class = "row">
-                                			<div class = "mx-auto mt-2">
-                                            	<a class = "see-more" href = "javascript:void(0)"> See more </a>
-                                            	<img class = "see-more-loader" style = "display:none;" src = "<c:url value = '/resources/customer/img/loader.gif' />" height ="50" width = "50" />
-                                			</div>
-                                </div>
+								<c:if test="${not empty activityList}">
+	                                <div class = "row">
+	                                			<div class = "mx-auto mt-2">
+	                                            	<a class = "see-more" href = "javascript:void(0)"> See more </a>
+	                                            	<img class = "see-more-loader" style = "display:none;" src = "<c:url value = '/resources/customer/img/loader.gif' />" height ="50" width = "50" />
+	                                			</div>
+	                                </div>
+                                </c:if>
 
 
                             </div>

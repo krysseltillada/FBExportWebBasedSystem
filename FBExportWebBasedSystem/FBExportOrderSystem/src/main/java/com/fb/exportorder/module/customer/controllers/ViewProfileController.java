@@ -5,8 +5,10 @@ import java.util.List;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -30,8 +32,7 @@ public class ViewProfileController {
 		if (lcustomerId == currentCustomerId) {
 			
 			model.addAttribute(customerService.getCustomerById(lcustomerId));
-			model.addAttribute(customerService.getCustomerActivitiesById(lcustomerId, 0, 5));
-			
+			model.addAttribute(customerService.getCustomerActivitiesById(lcustomerId, 5, 0));
 			return "view-profile";
 		}
 		
@@ -42,13 +43,34 @@ public class ViewProfileController {
 	@RequestMapping(value = "/see-more-activities", method = RequestMethod.POST)
 	public @ResponseBody 
 		   List<Activity> seeMoreActivities(@RequestParam String customerId,
-				   							@RequestParam String pageNumber) {
+				   							@RequestParam String pageCount) {
 		
 			long lcustomerId = Long.parseLong(customerId);
-			int ipageNumber = Integer.parseInt(pageNumber);
+			int ipageCount = Integer.parseInt(pageCount);
+			
+			return customerService.getCustomerActivitiesById(lcustomerId, 5, ipageCount);
 		
-			return customerService.getCustomerActivitiesById(lcustomerId, ipageNumber, 5);
+	}
+	
+	@RequestMapping(value = "/delete-activity", method = RequestMethod.POST)
+	public @ResponseBody
+		   String deleteActivity (@RequestParam String activityId,
+				   				  @RequestParam String customerId) {
+			
+			customerService.deleteActivityByActivityId(Long.parseLong(customerId), 
+													   Long.parseLong(activityId));
 		
+			return "";
+	}
+	
+	@RequestMapping(value = "/delete-all-activity", method = RequestMethod.POST,
+					consumes=MediaType.APPLICATION_JSON_VALUE, produces=MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody
+		   String deleteActivity (@RequestBody int[] deleteData) {
+			
+			System.out.println(deleteData);
+		
+			return "";
 	}
 
 }

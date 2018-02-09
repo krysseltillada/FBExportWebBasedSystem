@@ -7,5 +7,6 @@ import com.fb.exportorder.models.customer.Customer;
 
 public interface CustomerService {
 	public Customer getCustomerById(long customerId);
-	public List<Activity> getCustomerActivitiesById(long customerId, int pageNumber, int pageSize);
+	public List<Activity> getCustomerActivitiesById(long customerId, int records, int offset);
+	public void deleteActivityByActivityId(long customerId, long activityId);
 }

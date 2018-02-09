@@ -2,6 +2,8 @@ package com.fb.exportorder.module.customer.repository;
 
 import java.util.List;
 
+import javax.persistence.NamedNativeQuery;
+
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
@@ -31,5 +33,11 @@ public interface CustomerRepository
 	@Query("SELECT c.activities FROM Customer c WHERE c.id = :id")
 	List<Activity> getActivitiesById(@Param("id") long id, 
             Pageable pageRequest);
+	
+	@Query(value = "SELECT * FROM activity a WHERE a.customer_id = :id LIMIT :record OFFSET :offset", 
+		   nativeQuery=true)
+	List<Object[]> getActivitiesByIdRecordsAndOffset(@Param("id") long customerId,
+													 @Param("record") int record,
+													 @Param("offset") int offset); 	
 	
 }

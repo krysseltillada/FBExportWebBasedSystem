@@ -96,17 +96,17 @@ public class CustomerSignUpServiceImpl implements CustomerSignUpService {
 		if (!StringUtils.isAlphaSpace(customer.getLastname()) || StringUtils.isBlank(customer.getLastname()))
 			errorMessages.add("last name cannot be empty have digits or symbols");
 		
-		if (!StringUtils.isNumeric(Integer.toString(customer.getAge())))
-			errorMessages.add("age cannot contain letters or symbols");
+		if (!StringUtils.isNumeric(Integer.toString(customer.getAge())) || customer.getAge() <= 0)
+			errorMessages.add("age cannot contain letters or symbols or invalid number");
 		
 		if (!StringUtils.isAlphaSpace(customerAddress.getCity()) || StringUtils.isBlank(customerAddress.getCity()))
 			errorMessages.add("city cannot be empty, contain digits or symbols");
 		
-		if (!StringUtils.isNumeric(customerAddress.getZipCode()) || StringUtils.isBlank(customer.getAddress().getZipCode()))
-			errorMessages.add("zipcode cannot be empty, contains letters, spaces or symbols");
+		if (!StringUtils.isNumeric(customerAddress.getZipCode()) || StringUtils.isBlank(customer.getAddress().getZipCode()) || Integer.parseInt(customerAddress.getZipCode()) <= 0)
+			errorMessages.add("zipcode cannot be empty, contains letters, spaces or symbols or invalid number");
 		
-		if (!StringUtils.isNumeric(customerContact.getPhoneNumber()) || StringUtils.isBlank(customerContact.getPhoneNumber()))
-			errorMessages.add("phone number cannot be empty, contain letters, spaces or symbols");
+		if (!StringUtils.isNumeric(customerContact.getPhoneNumber()) || StringUtils.isBlank(customerContact.getPhoneNumber()) || Integer.parseInt(customerContact.getPhoneNumber()) <= 0)
+			errorMessages.add("phone number cannot be empty, contain letters, spaces or symbols or invalid number");
 		
 		if(!EmailValidator.getInstance()
 			 			  .isValid(customer.getContact().getEmailAddress())) {
@@ -178,6 +178,7 @@ public class CustomerSignUpServiceImpl implements CustomerSignUpService {
 					act.setDate(new Date());
 					act.setDescription("tae tae");
 					act.setHeader("tng ina tng ina" + i);
+					act.setCustomer(customer);
 					
 					customer.getActivities()
 							.add(act);
