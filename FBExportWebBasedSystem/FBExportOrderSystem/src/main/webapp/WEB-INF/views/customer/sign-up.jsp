@@ -1,7 +1,8 @@
 <%@ include file = "../../lib/tags/tag-libraries.jsp" %>
 
+
 <div class = "container p-4">
-    <form action = "/register" method = "POST" enctype = "multipart/form-data">
+    <form action = "<c:url value = '/register' />" method = "POST" enctype = "multipart/form-data">
 
         <div class = "row">
             <div class = "col">

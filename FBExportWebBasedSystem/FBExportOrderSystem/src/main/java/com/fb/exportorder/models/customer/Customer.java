@@ -1,5 +1,6 @@
 package com.fb.exportorder.models.customer;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -20,10 +21,10 @@ public class Customer extends Account {
 	private Cart cart;
 	
 	@OneToMany(cascade=CascadeType.ALL)
-	List <ShippingAddress> shippingAddresses;
+	List <ShippingAddress> shippingAddresses = new ArrayList<>();
 
 	@OneToMany(cascade=CascadeType.ALL)
-	List <Activity> activities;
+	List <Activity> activities = new ArrayList<>();
 	
 	public List<Order> getOrders() {
 		return orders;
@@ -48,5 +49,22 @@ public class Customer extends Account {
 	public void setShippingAddress(List<ShippingAddress> shippingAddresses) {
 		this.shippingAddresses = shippingAddresses;
 	}
+
+	public List<ShippingAddress> getShippingAddresses() {
+		return shippingAddresses;
+	}
+
+	public void setShippingAddresses(List<ShippingAddress> shippingAddresses) {
+		this.shippingAddresses = shippingAddresses;
+	}
+
+	public List<Activity> getActivities() {
+		return activities;
+	}
+
+	public void setActivities(List<Activity> activities) {
+		this.activities = activities;
+	}
+	
 	
 }

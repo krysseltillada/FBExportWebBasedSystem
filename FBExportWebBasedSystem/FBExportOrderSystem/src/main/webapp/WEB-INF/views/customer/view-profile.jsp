@@ -1,3 +1,5 @@
+<%@ include file = "../../lib/tags/tag-libraries.jsp" %>
+
 <main>
 
     <div class = "container mt-4">
@@ -59,15 +61,17 @@
 
                                     <div class = "row">
                                         <div class = "col-md-3">
-                                            <img src = "puffer-fish.jpg" height = "150" width = "150" />
+                                            <img src = "<c:url value = '${customer.profileImageLink}' />" height = "150" width = "150" />
                                         </div>
                                         <div class = "col-md-9">
-                                            <h4> Kryssel Tillada (krysseltillada@gmail.com) <a style = "font-size: 14px;" href = "#"> (edit profile) </a> </h4>
+                                            <h4> 
+                                            	${customer.firstname += " " += customer.middlename += " " += customer.lastname} 
+                                            	(${customer.contact.emailAddress}) <a style = "font-size: 14px;" href = "#"> (edit profile) </a> </h4>
                                             <p>
 
-                                                1500 Metro Manila, Philippines <br />
-                                                blck 7 rivera compound saint joseph subdivision pulang lupa 2  <br />
-                                                09120051827
+                                                ${customer.address.zipCode} ${customer.address.city}, ${customer.address.country} <br />
+                                                ${customer.address.address}  <br />
+                                                (+${customer.contact.countryCode}) ${customer.contact.phoneNumber}
 
                                             </p>
 
@@ -90,62 +94,36 @@
 
                                         <hr />
 
-                                        <div class="list-group">
-                                            <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
-                                                <div class="d-flex w-100 justify-content-between">
-                                                    <h5 class="mb-1">Checkout</h5>
-                                                    <button type="button" class="close" aria-label="Close">
-                                                            <span aria-hidden="true">&times;</span>
-                                                    </button>
-                                                </div>
-
-                                                <p class="mb-1">your order lapu lapu 1 kilo is approved</p>
-                                                <small> 1 day ago </small>
-                                            </a>
-                                            <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
-                                                <div class="d-flex w-100 justify-content-between">
-                                                    <h5 class="mb-1">Checkout</h5>
-                                                    <button type="button" class="close" aria-label="Close">
-                                                            <span aria-hidden="true">&times;</span>
-                                                    </button>
-                                                </div>
-
-                                                <p class="mb-1">your order lapu lapu 1 kilo is approved</p>
-                                                <small> 1 day ago </small>
-                                            </a>
-                                            <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
-                                                <div class="d-flex w-100 justify-content-between">
-                                                    <h5 class="mb-1">Checkout</h5>
-                                                    <button type="button" class="close" aria-label="Close">
-                                                            <span aria-hidden="true">&times;</span>
-                                                    </button>
-                                                </div>
-
-                                                <p class="mb-1">your order lapu lapu 1 kilo is approved</p>
-                                                <small> 1 day ago </small>
-                                            </a>
-                                            <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
-                                                <div class="d-flex w-100 justify-content-between">
-                                                    <h5 class="mb-1">Checkout</h5>
-                                                    <button type="button" class="close" aria-label="Close">
-                                                            <span aria-hidden="true">&times;</span>
-                                                    </button>
-                                                </div>
-
-                                                <p class="mb-1">your order lapu lapu 1 kilo is approved</p>
-                                                <small> 1 day ago </small>
-                                            </a>
-                                            <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
-                                                <div class="d-flex w-100 justify-content-between">
-                                                    <h5 class="mb-1">Checkout</h5>
-                                                    <button type="button" class="close" aria-label="Close">
-                                                            <span aria-hidden="true">&times;</span>
-                                                    </button>
-                                                </div>
-
-                                                <p class="mb-1">your order lapu lapu 1 kilo is approved</p>
-                                                <small> 1 day ago </small>
-                                            </a>
+                                        <div class="list-group activity-list">
+                                        	
+                                        	<c:choose>
+                                        		<c:when test = "${not empty activityList}">
+                                        		
+                                        			<c:forEach var = "activity" items = "${activityList}">
+                                        				
+                                        				<span href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+			                                                <div class="d-flex w-100 justify-content-between">
+			                                                    <h5 class="mb-1">${activity.header}</h5>
+			                                                    <button type="button" class="close delete-activity" aria-label="Close">
+			                                                            <span aria-hidden="true">&times;</span>
+			                                                    </button>
+			                                                </div>
+			
+			                                                <p class="mb-1">${activity.description}</p>
+			                                                <small> ${activity.date} </small>
+			                                            </span>
+                                        				
+                                        			</c:forEach>
+                                        			 
+			                                            
+                                        		</c:when>
+                                        		<c:otherwise>
+                                        			<h1> tng ina mo </h1>
+                                        		</c:otherwise>
+                                        	</c:choose>
+	                                        
+                                           
+                                            
 
                                         </div>
 
@@ -155,7 +133,10 @@
                                 </div>
 
                                 <div class = "row">
-                                            <a class = "mx-auto mt-2" href = "#"> See more </a>
+                                			<div class = "mx-auto mt-2">
+                                            	<a class = "see-more" href = "javascript:void(0)"> See more </a>
+                                            	<img class = "see-more-loader" style = "display:none;" src = "<c:url value = '/resources/customer/img/loader.gif' />" height ="50" width = "50" />
+                                			</div>
                                 </div>
 
 
@@ -175,5 +156,7 @@
 
         <hr />
     </div>
+    
+    
 
 </main>  

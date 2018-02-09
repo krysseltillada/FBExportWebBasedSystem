@@ -12,4 +12,7 @@ public interface EmployeeRepository extends CrudRepository<Employee, Long>{
 	
 	@Query("SELECT c FROM Employee c WHERE c.username = :username")
 	Employee findAccountByUsername(@Param("username")String username);
+	
+	@Query("SELECT COUNT(c.contact.emailAddress) > 0 FROM Employee c WHERE c.contact.emailAddress = :email")
+	boolean isEmailExists (@Param("email") String username);
 }

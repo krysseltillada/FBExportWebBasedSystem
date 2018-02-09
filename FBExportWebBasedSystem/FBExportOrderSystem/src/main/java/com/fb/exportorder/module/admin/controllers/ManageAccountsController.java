@@ -22,12 +22,22 @@ public class ManageAccountsController {
 	@Autowired
 	EmployeeAddService employeeAddService;
 	
-	@RequestMapping("/manage-accounts")
+	@RequestMapping("/admin/manage-accounts")
 	public String manageAccounts() {
 		return "manage-accounts";
 	}
 	
-	@RequestMapping(value="/add-new-employee", method=RequestMethod.POST)
+	@RequestMapping("/admin/dashboard")
+	public String dashboard() {
+		return "dashboard";
+	}
+	
+	@RequestMapping("/admin/admin-login")
+	public String login() {
+		return "admin-login";
+	}
+	
+	@RequestMapping(value="/admin/add-new-employee", method=RequestMethod.POST)
 	public String addNewEmployee(@RequestParam("fileEmployeeAdd") MultipartFile profileImage,
 								 String usernameEmployeeAdd,
 								 String firstnameEmployeeAdd,
@@ -45,22 +55,6 @@ public class ManageAccountsController {
 								 String countryCodeEmployeeAdd,
 								 String phonenumberEmployeeAdd,
 								 Model model) {
-		
-		System.out.println(usernameEmployeeAdd);
-		System.out.println(firstnameEmployeeAdd);
-		System.out.println(middlenameEmployeeAdd);
-		System.out.println(lastnameEmployeeAdd);
-		System.out.println(passwordEmployeeAdd);
-		System.out.println(positionEmployeeAdd);
-		System.out.println(genderEmployeeAdd);
-		System.out.println(ageEmployeeAdd);
-		System.out.println(emailEmployeeAdd);
-		System.out.println(countryEmployeeAdd);
-		System.out.println(cityEmployeeAdd);
-		System.out.println(addressEmployeeAdd);
-		System.out.println(zipcodeEmployeeAdd);
-		System.out.println(countryCodeEmployeeAdd);
-		System.out.println(phonenumberEmployeeAdd);
 		
 		Employee newEmployee = new Employee();
 		Address employeeAddress = new Address();
@@ -85,6 +79,7 @@ public class ManageAccountsController {
 		
 		employeeContact.setEmailAddress(emailEmployeeAdd);
 		employeeContact.setPhoneNumber(phonenumberEmployeeAdd);
+		employeeContact.setCountryCode(countryCodeEmployeeAdd);
 		
 		newEmployee.setAddress(employeeAddress);
 		newEmployee.setContact(employeeContact);
@@ -92,7 +87,7 @@ public class ManageAccountsController {
 		List<String> errorMessages = employeeAddService.addNewEmployee(newEmployee, profileImage);
 		
 		if(!errorMessages.isEmpty()) {
-			model.addAttribute(errorMessages);
+			model.addAttribute("errorMessages",errorMessages);
 			return "manage-accounts";
 		}
 		

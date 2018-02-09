@@ -15,13 +15,17 @@
 	    <meta name="description" content="">
 	    <meta name="viewport" content="width=device-width, initial-scale=1">
 	    <meta name="robots" content="all,follow">
+	    
+	    
 		
 		<c:forEach var = "cssfile" items = "${cssfiles}">
-			<link href = "${cssfile}" rel = "stylesheet" type = "text/css" />
+			<link href = "<c:url value ='${cssfile}' />" rel = "stylesheet" type = "text/css" />
 		</c:forEach>
 		
 	</head>
 	<body>
+	
+	
 			
 		<div class = "page">
 			
@@ -65,7 +69,7 @@
 		<tiles:insertAttribute name = "templates" />
 		
 		<c:forEach var = "javascriptfile" items = "${javascriptfiles}">
-			<script src = "${javascriptfile}" type = "text/javascript"></script>
+			<script src = "<c:url value ='${javascriptfile}' />" type = "text/javascript"></script>
 		</c:forEach> 
 	
 	</body>

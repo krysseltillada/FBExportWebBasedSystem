@@ -7,6 +7,7 @@ public class Contact {
 	
 	private String phoneNumber;
 	private String emailAddress;
+	private String countryCode;
 	
 	public String getPhoneNumber() {
 		return phoneNumber;
@@ -20,6 +21,11 @@ public class Contact {
 	public void setEmailAddress(String emailAddress) {
 		this.emailAddress = emailAddress;
 	}
-
+	public String getCountryCode() {
+		return countryCode;
+	}
+	public void setCountryCode(String countryCode) {
+		this.countryCode = countryCode;
+	}
 	
 }

@@ -54,11 +54,16 @@ public class EmloyeeAddServiceImpl implements EmployeeAddService {
 		List<String> errorMessages = new ArrayList<>();
 		Employee registeredEmployee = employeeRepository.findAccountByUsername(employee.getUsername());
 		
+		boolean isEmailExists = employeeRepository.isEmailExists(employeeContact.getEmailAddress());
+		
 		if(!StringUtils.isAlphanumericSpace(employee.getUsername()))
 			errorMessages.add("username cannot contain special character");
 		
 		if(Objects.nonNull(registeredEmployee))
 			errorMessages.add("username exists");
+		
+		if (isEmailExists)
+			errorMessages.add("Email Address exists");
 		
 		RuleResult result = passwordValidator.validate(employee.getPassword());
 		RuleResult sResult = passwordValidator.validateSpecialCharacters(employee.getPassword());
@@ -88,14 +93,23 @@ public class EmloyeeAddServiceImpl implements EmployeeAddService {
 		if(!StringUtils.isNumeric(Integer.toString(employee.getAge())))
 			errorMessages.add("age cannot contain letters or symbols");
 		
+		if (StringUtils.isBlank(employeeAddress.getAddress()))
+			errorMessages.add("address cannot be empty");
+		
+		if (!StringUtils.isAlphaSpace(employeeAddress.getCountry()) || StringUtils.isBlank(employeeAddress.getCountry()))
+			errorMessages.add("country cannot be empty, contain digits or symbols");
+		
 		if(!StringUtils.isAlphaSpace(employeeAddress.getCity()) || StringUtils.isBlank(employeeAddress.getCity()))
 			errorMessages.add("city cannot be empty, contains digits or symbols");
 		
-		if(!StringUtils.isAlphaSpace(employeeAddress.getZipCode()) || StringUtils.isBlank(employeeAddress.getZipCode()))
-			errorMessages.add("zipcode cannot be empty, contains letters, spaces or symbols");
+		if(StringUtils.isBlank(employeeAddress.getZipCode()))
+			errorMessages.add("zipcode cannot be empty");
 		
 		if (!StringUtils.isNumeric(employeeContact.getPhoneNumber()) || StringUtils.isBlank(employeeContact.getPhoneNumber()))
 			errorMessages.add("phone number cannot be empty, contain letters, spaces or symbols");
+		
+		if (StringUtils.isBlank(employeeContact.getCountryCode()))
+			errorMessages.add("country code cannot be empty");
 		
 		if(!EmailValidator.getInstance()
 	 			  .isValid(employee.getContact().getEmailAddress())) {

@@ -16,6 +16,7 @@ public class TilesConfiguration {
 	        tilesConfigurer.setDefinitions(new String[] {
 	        											 "/WEB-INF/templates/customerTilesDefinition.xml",
 	        											 "/WEB-INF/templates/adminTilesDefinition.xml"});
+	        
 	        tilesConfigurer.setCheckRefresh(true);
 	        return tilesConfigurer;
 	    }

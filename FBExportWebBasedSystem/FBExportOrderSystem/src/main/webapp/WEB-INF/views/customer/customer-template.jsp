@@ -13,15 +13,18 @@
 		<meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
+        
+        <meta name="_csrf" content="${_csrf.token}"/>
+  		<meta name="_csrf_header" content="${_csrf.headerName}"/>
 
         <title>Fong Bros</title>
         
         <c:if test="${not empty reCaptcha}">
-        	<script src="${reCaptcha}"></script>
+        	<script src="<c:url value = '${reCaptcha}' />"></script>
         </c:if>  
         
        	<c:forEach var = "cssfile" items="${cssfiles}">
-			<link href = "${cssfile}" rel = "stylesheet" type = "text/css"  />
+			<link href = "<c:url value = '${cssfile}' />" rel = "stylesheet" type = "text/css"  />
 		</c:forEach>
 	    
 	</head>
@@ -39,7 +42,7 @@
 		<tiles:insertAttribute name = "templates" />
 		
 		<c:forEach var = "javascriptfile" items = "${javascriptfiles}">
-			<script src = "${javascriptfile}" type = "text/javascript"></script>
+			<script src = "<c:url value = '${javascriptfile}' />" type = "text/javascript"></script>
 		</c:forEach>
 		
 	</body>

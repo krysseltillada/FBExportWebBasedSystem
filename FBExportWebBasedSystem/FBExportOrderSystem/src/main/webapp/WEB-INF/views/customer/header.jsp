@@ -3,7 +3,7 @@
 <header id = "desktopWebsiteHeader" style="background-image: url('<spring:url value = 'resources/customer/img/h1.jpg' />'); background-repeat: no-repeat; background-size: cover;">
     <div class = "container">
         <h2 class = "mb-0">
-            <a class="navbar-brand" href="#" style = "margin-top: 5px; margin-bottom: 5px; color:#000;">
+            <a class="navbar-brand" href="<c:url value = '/' />" style = "margin-top: 5px; margin-bottom: 5px; color:#000;">
                 Fong Bros International Corp
             </a>
         </h2>
@@ -19,7 +19,7 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
 
-            <div class="navbar-brand d-none m-0 mb-1" href="#" id = "nav-bar-brand-mobile-header">
+            <div class="navbar-brand d-none m-0 mb-1" href="<c:url value = '/' />" id = "nav-bar-brand-mobile-header">
 
                 <span class = "pr-2" style = "font-size: 14px;">
                     Fong Bros International Corp
@@ -29,18 +29,18 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item active">
-                        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                        <a class="nav-link" href="<c:url value = '/' />">Home <span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item">
 
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link pr-1" href="#">
+                        <a class="nav-link pr-1" href="<c:url value = '/about-us' />">
                             About Us
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link pr-1" href="#">
+                        <a class="nav-link pr-1" href="<c:url value = '/contact-us' />">
                             Contact Us
                         </a>
                     </li>
