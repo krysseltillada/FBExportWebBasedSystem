@@ -1,3 +1,5 @@
+<%@ include file = "../../lib/tags/tag-libraries.jsp" %>
+
 <main>
 
     <div class = "container mt-4">
@@ -18,7 +20,7 @@
                 <div class = "mb-4">
 
                     <div class="list-group">
-                        <a href="#" class="list-group-item">
+                        <a href="<c:url value = '/view-profile' />" class="list-group-item">
                             <i class="fa fa-user mr-2" aria-hidden="true"></i>
                             View Profile
                         </a>
@@ -38,7 +40,7 @@
                             <i class="fa fa-address-card mr-2" aria-hidden="true"></i>
                             Your Addreses
                         </a>
-                        <a href="#" class="list-group-item active">
+                        <a href="<c:url value = '/account-settings' />" class="list-group-item active">
                             <i class="fa fa-gear mr-2" aria-hidden="true"></i>
                             Account Settings
                         </a>

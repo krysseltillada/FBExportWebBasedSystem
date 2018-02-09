@@ -24,19 +24,14 @@ public class ViewProfileController {
 	CustomerService customerService;
 	
 	@RequestMapping("/view-profile")
-	public String viewProfile (@RequestParam String customerId, Model model, HttpSession session) {
+	public String viewProfile (Model model, HttpSession session) {
 		
-		long lcustomerId = Long.parseLong(customerId);
 		long currentCustomerId = (long)session.getAttribute("customerId");
-		
-		if (lcustomerId == currentCustomerId) {
 			
-			model.addAttribute(customerService.getCustomerById(lcustomerId));
-			model.addAttribute(customerService.getCustomerActivitiesById(lcustomerId, 5, 0));
-			return "view-profile";
-		}
+		model.addAttribute(customerService.getCustomerById(currentCustomerId));
+		model.addAttribute(customerService.getCustomerActivitiesById(currentCustomerId, 5, 0));
 		
-		return "customer/page-not-found";
+		return "view-profile";
 		
 	}
 	

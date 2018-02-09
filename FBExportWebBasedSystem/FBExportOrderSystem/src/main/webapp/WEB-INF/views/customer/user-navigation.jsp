@@ -59,7 +59,7 @@
 	                <ul class="navbar-nav nav-flex-icons">
 	                    <li class="nav-item">
 	
-	                        <a class="nav-link waves-effect waves-light white-text" href="<c:url value = '${sessionScope.profileViewLink}' />">
+	                        <a class="nav-link waves-effect waves-light white-text" href="<c:url value = '/view-profile' />">
 	                            <span class = "font-weight-bold"> Welcome ${sessionScope.name}!</span>
 	                            <img class = "ml-1" src = "<c:url value = '${sessionScope.profileImageLink}' />" height = "20" width = "20" alt = "profile image" />
 	                        </a>
@@ -106,7 +106,7 @@
 	
 	                    </li>
 	                    <li class="nav-item">
-	                        <a class="nav-link waves-effect waves-light white-text" href="<c:url value = '${sessionScope.profileViewLink}' />">
+	                        <a class="nav-link waves-effect waves-light white-text" href="<c:url value = '/view-profile' />">
 	                            <i class="fa fa-user" aria-hidden="true"></i>
 	                            <span> PROFILE </span>
 	                        </a>
