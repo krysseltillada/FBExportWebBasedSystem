@@ -282,7 +282,6 @@ $(document).ready(function () {
           null,
           null,
           null,
-          null,
           {"orderable" : false},
         ],
         "order" : []
@@ -316,16 +315,15 @@ $(document).ready(function () {
         $("#middlenameEmployeeEdit").val(employeeData[6]);
         $("#lastnameEmployeeEdit").val(employeeData[7]);
         $("#positionEmployeeEdit").val(employeeData[8]);
-        $("#roleEmployeeEdit").val(employeeData[9]);
-        $("input[name='genderEmployeeEdit'][value='"+employeeData[10]+"']").prop('checked', true);
-        $("#ageEmployeeEdit").val(employeeData[11]);
-        $("#emailEmployeeEdit").val(employeeData[12]);
-        $("#countryEmployeeEdit").val(employeeData[13]).change();
-        $("#cityEmployeeEdit").val(employeeData[14]);
-        $("#addressEmployeeEdit").val(employeeData[15]);
-        $("#zipcodeEmployeeEdit").val(employeeData[16]).change();
-        $("#countryCodeEmployeeEdit").val(employeeData[17]);
-        $("#phonenumberEmployeeEdit").val(employeeData[18]);
+        $("input[name='genderEmployeeEdit'][value='"+employeeData[9]+"']").prop('checked', true);
+        $("#ageEmployeeEdit").val(employeeData[10]);
+        $("#emailEmployeeEdit").val(employeeData[11]);
+        $("#countryEmployeeEdit").val(employeeData[12]).change();
+        $("#cityEmployeeEdit").val(employeeData[13]);
+        $("#addressEmployeeEdit").val(employeeData[14]);
+        $("#zipcodeEmployeeEdit").val(employeeData[15]).change();
+        $("#countryCodeEmployeeEdit").val(employeeData[16]);
+        $("#phonenumberEmployeeEdit").val(employeeData[17]);
         $("#img-uploadEmployeeEdit").attr("src", $(employeeData[2]).attr("src"));
 
       });

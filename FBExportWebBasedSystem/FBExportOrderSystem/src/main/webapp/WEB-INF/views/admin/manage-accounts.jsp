@@ -1,3 +1,5 @@
+<%@ include file = "../../lib/tags/tag-libraries.jsp" %>
+
 <header class="page-header pb-3">
     <div class="container-fluid">
 
@@ -439,10 +441,6 @@
                                     <input type="number" style="width: 50%;"placeholder="Your age" min="1" required class="form-control" id="ageEmployeeEdit">
                                     </div>
                                 </div>
-                                <div class="form-group">
-                                    <label class="mr-3 form-control-label" for="roleEmployeeEdit">Role</label>
-                                    <input type="text" placeholder="Your role" class="form-control" id="roleEmployeeEdit" required>
-                                </div>
 
                                 <div class="form-group">
                                     <label class="form-control-label" for="emailEmployeeEdit">Email</label>
@@ -501,8 +499,20 @@
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
-                        <form>
+                        <form action="/add-new-employee" method="POST" enctype="multipart/form-data">
                             <div class="modal-body">
+                            <c:if test="${not empty errorMessages }">
+        	
+        						<hr />
+        	
+        						<c:forEach var = "errorMessage" items = "${errorMessages}">
+        						<span class = "red-text"> *<c:out value="${errorMessage}" /> </span> <br />
+        						</c:forEach>
+        						
+        						<hr />
+        						
+        					</c:if>
+        					
                             <div class="row">
                                 <div class="col-lg-6">
                                 <div class="form-group text-center">
@@ -515,28 +525,31 @@
                                 </div>
                                 <div class="form-group">
                                     <label class="form-control-label" for="usernameEmployeeAdd">Username</label>
-                                    <input type="text" placeholder="Your username" id="usernameEmployeeAdd" class="form-control" required>
+                                    <input type="text" placeholder="Your username" name="usernameEmployeeAdd" id="usernameEmployeeAdd" class="form-control" length="20">
                                 </div>
                                 <div class="form-group">
                                     <label class="form-control-label" for="firstnameEmployeeAdd">Firstname</label>
-                                    <input type="text" placeholder="Your firstname" id="firstnameEmployeeAdd" class="form-control" required>
+                                    <input type="text" placeholder="Your firstname" name="firstnameEmployeeAdd" id="firstnameEmployeeAdd" class="form-control">
                                 </div>
                                 <div class="form-group">
                                     <label class="form-control-label" for="middlenameEmployeeAdd">Middlename</label>
-                                    <input type="text" placeholder="Your middlename" class="form-control" id="middlenameEmployeeAdd" required>
+                                    <input type="text" placeholder="Your middlename" name="middlenameEmployeeAdd" class="form-control" id="middlenameEmployeeAdd">
                                 </div>
                                 <div class="form-group">
                                     <label class="form-control-label" for="lastnameEmployeeAdd">Lastname</label>
-                                    <input type="text" placeholder="Your lastname" class="form-control" id="lastnameEmployeeAdd" required>
+                                    <input type="text" placeholder="Your lastname" name="lastnameEmployeeAdd" class="form-control" id="lastnameEmployeeAdd">
                                 </div>
                                 <div class="form-group">
                                     <label class="form-control-label" for="passwordEmployeeAdd">Password</label>
-                                    <input type="password" placeholder="Your password" class="form-control" id="passwordEmployeeAdd" required>
+                                    <input type="password" placeholder="Your password" name="passwordEmployeeAdd" length="20" class="form-control" id="passwordEmployeeAdd">
+                                	<p class="form-text text-muted small">
+									  password must be 5-20 characters , contains at least one uppercase and lowercase letter and number, and must not contain spaces and special characters.
+									</p> 
                                 </div>
-                                <div class="form-group">
+                                <!--  <div class="form-group">
                                     <label class="form-control-label" for="retypePasswordEmployeeAdd">Retype Password</label>
-                                    <input type="password" placeholder="Your retype password" class="form-control" id="retypePasswordEmployeeAdd" required>
-                                </div>
+                                    <input type="password" placeholder="Your retype password" name="retypePasswordEmployeeAdd" class="form-control" id="retypePasswordEmployeeAdd" required>
+                                </div> -->
 
 
                                 </div>
@@ -545,12 +558,12 @@
                                 <div class="form-group">
                                     <div class="form-inline">
                                     <label class="mr-3 form-control-label" for="positionEmployeeAdd">Position</label>
-                                    <input type="text" placeholder="Your position" class="form-control" id="positionEmployeeAdd" required>
+                                    <input type="text" placeholder="Your position" class="form-control" name="positionEmployeeAdd" id="positionEmployeeAdd">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="form-control-label" style="margin-right: 10px;">Gender : </label>
-                                    <input id="maleEmployeeAdd" type="radio" value="Male" name="genderEmployeeAdd" class="radio-template" required>
+                                    <input id="maleEmployeeAdd" type="radio" value="Male" name="genderEmployeeAdd" class="radio-template" checked >
                                     <label for="maleEmployeeAdd" style="margin-right: 10px;">Male</label>
                                     <input id="femaleEmployeeAdd" type="radio" value="Female" name="genderEmployeeAdd" class="radio-template">
                                     <label for="femaleEmployeeAdd" style="margin-right: 10px;">Female</label>
@@ -558,44 +571,40 @@
                                 <div class="form-group">
                                     <div class="form-inline">
                                     <label class="mr-3 form-control-label" for="ageEmployeeAdd">Age</label>
-                                    <input type="number" style="width: 50%;"placeholder="Your age" min="1" required class="form-control" id="ageEmployeeAdd">
+                                    <input type="number" style="width: 50%;"placeholder="Your age" name="ageEmployeeAdd" min="1" class="form-control" id="ageEmployeeAdd">
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="mr-3 form-control-label" for="roleEmployeeAdd">Role</label>
-                                    <input type="text" placeholder="Your role" class="form-control" id="roleEmployeeAdd" required>
-                                </div>
-                                <div class="form-group">
                                     <label class="form-control-label" for="emailEmployeeAdd">Email</label>
-                                    <input type="email" placeholder="Your email address" id="emailEmployeeAdd" class="form-control" required>
+                                    <input type="email" placeholder="Your email address" id="emailEmployeeAdd" name="emailEmployeeAdd" class="form-control">
                                 </div>
                                 <div class="form-group">
                                     <div class = "form-inline">
                                             <label for = "countryEmployeeAdd" class = "mr-3 form-control-label"> Country: </label>
-                                            <select class="browser-default" id = "countryEmployeeAdd" style="width: 75%;" required>
+                                            <select class="browser-default" name="countryEmployeeAdd" id = "countryEmployeeAdd" style="width: 75%;">
                                                 <option value="" disabled selected>Choose your country</option>
                                             </select>
                                     </div>
                                     <div class="form-inline" >
                                         <label for="cityEmployeeAdd" class=" mr-3 form-control-label">City : </label>
-                                        <input type="text" id="cityEmployeeAdd" style="width: 80%;" class="form-control" required disabled/>
+                                        <input type="text" id="cityEmployeeAdd" name="cityEmployeeAdd" style="width: 80%;" class="form-control" disabled/>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="form-control-label" for="addressEmployeeAdd">Address</label><br>
-                                    <textarea name="address" id="addressEmployeeAdd" rows="3" cols="40" style="resize: none;"></textarea>
+                                    <textarea name="address" id="addressEmployeeAdd" name="addressEmployeeAdd" rows="3" cols="40" style="resize: none;" ></textarea>
                                 </div>
                                 <div class="form-group">
                                     <div class="form-inline">
                                     <label class="form-control-label mr-3" for="zipcodeEmployeeAdd">Zip Code : </label>
-                                    <input type="text" placeholder="Your zip code" id="zipcodeEmployeeAdd" class="form-control">
+                                    <input type="text" placeholder="Your zip code" id="zipcodeEmployeeAdd" name="zipcodeEmployeeAdd" class="form-control">
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                        <select class="browser-default" id = "countryCodeEmployeeAdd" required>
+                                        <select class="browser-default" id = "countryCodeEmployeeAdd" name="countryCodeEmployeeAdd" >
                                             <option value="" disabled selected>Country Code</option>
                                         </select>
-                                        <input type="text" id="phonenumberEmployeeAdd" placeholder="Your phone number" class="form-control" required />
+                                        <input type="text" id="phonenumberEmployeeAdd" name="phonenumberEmployeeAdd" placeholder="Your phone number" class="form-control" />
                                 </div>
 
 
@@ -604,7 +613,7 @@
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-primary" id="btnSaveNewEmployee">Save changes</button>
+                                <input type="submit" class="btn btn-primary" id="btnSaveNewEmployee" value="Add Employee">
                             </div>
                         </form>
 
@@ -634,7 +643,6 @@
                                     <th>Middle Name</th>
                                     <th>Last Name</th>
                                     <th>Position</th>
-                                    <th>Role</th>
                                     <th>Gender</th>
                                     <th>Age</th>
                                     <th>Email Address</th>
@@ -658,7 +666,6 @@
                                 <th>Middle Name</th>
                                 <th>Last Name</th>
                                 <th>Position</th>
-                                <th>Role</th>
                                 <th>Gender</th>
                                 <th>Age</th>
                                 <th>Email Address</th>
@@ -681,8 +688,7 @@
                                 <td>Alfred</td>
                                 <td>Argarin</td>
                                 <td>Borja</td>
-                                <td>CEO</td>
-                                <td>Admin</td>
+                                <td>CEO</td>s
                                 <td>Male</td>
                                 <td>23</td>
                                 <td>alfredoborja81194@gmail.com</td>
