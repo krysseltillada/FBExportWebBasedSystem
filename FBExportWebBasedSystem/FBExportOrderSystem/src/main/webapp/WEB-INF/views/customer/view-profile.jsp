@@ -66,7 +66,7 @@
                                         <div class = "col-md-9">
                                             <h4> 
                                             	${customer.firstname += " " += customer.middlename += " " += customer.lastname} 
-                                            	(${customer.contact.emailAddress}) <a style = "font-size: 14px;" href = "#"> (edit profile) </a> </h4>
+                                            	(${customer.contact.emailAddress}) <a style = "font-size: 14px;" href = "<c:url value = '/account-settings' />"> (edit profile) </a> </h4>
                                             <p>
 
                                                 ${customer.address.zipCode} ${customer.address.city}, ${customer.address.country} <br />
