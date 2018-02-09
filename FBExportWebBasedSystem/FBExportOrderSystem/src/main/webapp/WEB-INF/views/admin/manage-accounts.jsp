@@ -516,7 +516,7 @@
                             <div class="row">
                                 <div class="col-lg-6">
                                 <div class="form-group text-center">
-                                    <img class = "mb-2 rounded" style = "border: 1px solid #DDDDDD; width: 100px" id='img-uploadEmployeeAdd' src = "resources/admin/img/profile-male.jpg" />
+                                    <img class = "mb-2 rounded" style = "border: 1px solid #DDDDDD; width: 100px" id='img-uploadEmployeeAdd' src = "/../FBExportSystem/resources/admin/img/profile-male.jpg" />
 
                                     <p class="fileEmployeeAdd">
                                     <input type="file" name="fileEmployeeAdd" id="fileEmployeeAdd" accept="image/x-png,image/jpeg" />
@@ -683,7 +683,7 @@
                                 <td>Alfred</td>
                                 <td>Argarin</td>
                                 <td>Borja</td>
-                                <td>CEO</td>s
+                                <td>CEO</td>
                                 <td>Male</td>
                                 <td>23</td>
                                 <td>alfredoborja81194@gmail.com</td>
