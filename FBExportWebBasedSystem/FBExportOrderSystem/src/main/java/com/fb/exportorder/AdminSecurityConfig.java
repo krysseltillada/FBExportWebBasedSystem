@@ -18,8 +18,10 @@ import com.fb.exportorder.module.customer.handlers.LoginSuccessHandler;
 @EnableWebSecurity
 @Order(2)
 public class AdminSecurityConfig extends WebSecurityConfigurerAdapter { 
-	
-
+	  
+	  private static String[] CSRF_IGNORED_URLS = {
+			  "/admin/add-new-employee"
+	  };
 	  @Autowired
 	  private UserDetailsService userDetailsService;
 	  
@@ -39,7 +41,10 @@ public class AdminSecurityConfig extends WebSecurityConfigurerAdapter {
 		  	.hasAnyAuthority("ADMIN", "EMPLOYEE")
 		  	.and()
 		  	.formLogin()
-		  	.loginPage("/admin/login");
+		  	.loginPage("/admin/login")
+		  	.and()
+		  	.csrf()
+		  	.ignoringAntMatchers(CSRF_IGNORED_URLS);
 		  
 	  }
 

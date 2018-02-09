@@ -28,7 +28,8 @@ import com.fb.exportorder.module.customer.handlers.LoginSuccessHandler;
 public class CustomerSecurityConfig extends WebSecurityConfigurerAdapter {
 	
 	  private static String[] CSRF_IGNORED_URLS = {
-			  "/register"
+			  "/register",
+			  "/admin/add-new-employee"
 	  };
 	  
 	  @Autowired

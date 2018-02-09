@@ -99,14 +99,23 @@ public class CustomerSignUpServiceImpl implements CustomerSignUpService {
 		if (!StringUtils.isNumeric(Integer.toString(customer.getAge())) || customer.getAge() <= 0)
 			errorMessages.add("age cannot contain letters or symbols or invalid number");
 		
+		if (StringUtils.isBlank(customerAddress.getAddress()))
+			errorMessages.add("address cannot be empty");
+		
+		if (!StringUtils.isAlphaSpace(customerAddress.getCountry()) || StringUtils.isBlank(customerAddress.getCountry()))
+			errorMessages.add("country cannot be empty, contain digits or symbols");
+		
 		if (!StringUtils.isAlphaSpace(customerAddress.getCity()) || StringUtils.isBlank(customerAddress.getCity()))
 			errorMessages.add("city cannot be empty, contain digits or symbols");
 		
-		if (!StringUtils.isNumeric(customerAddress.getZipCode()) || StringUtils.isBlank(customer.getAddress().getZipCode()) || Integer.parseInt(customerAddress.getZipCode()) <= 0)
-			errorMessages.add("zipcode cannot be empty, contains letters, spaces or symbols or invalid number");
+		if (StringUtils.isBlank(customerAddress.getZipCode()))
+			errorMessages.add("zipcode cannot be empty");
 		
 		if (!StringUtils.isNumeric(customerContact.getPhoneNumber()) || StringUtils.isBlank(customerContact.getPhoneNumber()) || Integer.parseInt(customerContact.getPhoneNumber()) <= 0)
 			errorMessages.add("phone number cannot be empty, contain letters, spaces or symbols or invalid number");
+		
+		if (StringUtils.isBlank(customerContact.getCountryCode()))
+			errorMessages.add("country code cannot be empty");
 		
 		if(!EmailValidator.getInstance()
 			 			  .isValid(customer.getContact().getEmailAddress())) {
