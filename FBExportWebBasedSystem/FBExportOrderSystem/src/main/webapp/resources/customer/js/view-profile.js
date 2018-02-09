@@ -19,29 +19,33 @@ $(document).ready(function () {
 
     var deleteAllActivity = function () {
            
-        var ids = [];
+        var ids = {
+          idElem : []
+        };
         
         $(".activity-list>span").each(function (index) {
             console.log($(this).attr("id"));
 
-            ids.push(parseInt($(this).attr("id")));
+            ids.idElem.push(parseInt($(this).attr("id")));
 
         });
-
+        console.log(JSON.stringify(ids));
         $.ajax({
             type : "POST",
             url : "/FBExportSystem/delete-all-activity",
-            beforeSend: function(xhr) {
-                xhr.setRequestHeader("Accept", "application/json");
-                xhr.setRequestHeader("Content-Type", "application/json");
-            },
             data : {
                 deleteData : JSON.stringify(ids) 
             },
             success : function () {
-                console.log("tae mo");
-            },
-            dataType : "json"
+                  $(".activity-list>span").fadeIn("slow", function () {
+                    $(this).remove();
+                  });
+
+                  
+                  $(".clear-all").addClass("disabled").addClass("grey-text");
+                  $(".see-more").hide();
+                  $(".no-activity").css("display", "block");
+            }
         })
 
         // $.post("/FBExportSystem/delete-all-activity", {

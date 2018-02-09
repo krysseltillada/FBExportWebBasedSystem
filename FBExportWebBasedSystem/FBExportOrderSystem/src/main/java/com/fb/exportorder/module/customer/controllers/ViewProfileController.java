@@ -63,12 +63,11 @@ public class ViewProfileController {
 			return "";
 	}
 	
-	@RequestMapping(value = "/delete-all-activity", method = RequestMethod.POST,
-					consumes=MediaType.APPLICATION_JSON_VALUE, produces=MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "/delete-all-activity", method = RequestMethod.POST)
 	public @ResponseBody
-		   String deleteActivity (@RequestBody int[] deleteData) {
+		   String deleteActivity (String deleteData) {
 			
-			System.out.println(deleteData);
+			customerService.deleteAllActivity(1, deleteData);
 		
 			return "";
 	}

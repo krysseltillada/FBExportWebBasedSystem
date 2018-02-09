@@ -6,6 +6,10 @@ import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -70,13 +74,42 @@ public class CustomerServiceImpl implements CustomerService {
 //					}
 //				}
 				customerActivities.remove(activity);
-				customer.setActivities(customerActivities);
 				customerRepository.save(customer);
 			
 			}
 			
 		}
 		
+		
+	}
+
+	@Override
+	public void deleteAllActivity(long customerId, String jsonDeleteDataIds) {
+		try {
+			
+			Customer customer = customerRepository.findOne(customerId);
+			
+			List<Activity> activities = customer.getActivities();
+			
+			JSONObject jsonRawObject = (JSONObject)(new JSONParser().parse(jsonDeleteDataIds));
+			JSONArray jsonDeleteDataArr = (JSONArray)jsonRawObject.get("idElem");
+			
+			if (Objects.nonNull(activities)) {
+
+				for (int i = 0; i != jsonDeleteDataArr.size(); ++i)  {
+					System.out.println("json delete: " + jsonDeleteDataArr.get(i));
+					long lActivityId = (long)jsonDeleteDataArr.get(i);
+					Activity activity = activityRepository.findOne(lActivityId);
+					activities.remove(activity);
+				}
+				
+				customerRepository.save(customer);
+			
+			}
+			
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
 		
 	}
 

@@ -9,4 +9,5 @@ public interface CustomerService {
 	public Customer getCustomerById(long customerId);
 	public List<Activity> getCustomerActivitiesById(long customerId, int records, int offset);
 	public void deleteActivityByActivityId(long customerId, long activityId);
+	public void deleteAllActivity(long customerId, String jsonDeleteDataIds);
 }

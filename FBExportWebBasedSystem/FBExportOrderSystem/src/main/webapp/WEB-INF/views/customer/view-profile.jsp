@@ -122,13 +122,17 @@
 			                                            </span>
                                         				
                                         			</c:forEach>
+                                        			
+                                        			<div class = "no-activity mx-auto mt-2" style = "display: none;">
+			                                        	<h5> No activities here </h5>
+			                                		</div>
                                         			 
 			                                            
                                         		</c:when>
                                         		<c:otherwise>
                                         			<div class = "row">
 			                                			<div class = "mx-auto mt-2">
-			                                            	<h4> No activities here </h4>
+			                                            	<h5> No activities here </h5>
 			                                			</div>
                                 					</div>
                                         		</c:otherwise>
