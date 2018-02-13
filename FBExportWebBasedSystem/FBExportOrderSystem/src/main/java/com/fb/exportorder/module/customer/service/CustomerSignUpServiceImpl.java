@@ -114,7 +114,7 @@ public class CustomerSignUpServiceImpl implements CustomerSignUpService {
 			errorMessages.add("zipcode cannot be empty");
 		
 		if (!StringUtils.isNumeric(customerContact.getPhoneNumber()) || StringUtils.isBlank(customerContact.getPhoneNumber()) || Long.parseLong(customerContact.getPhoneNumber()) <= 0)
-			errorMessages.add("phone number cannot be empty, contain letters, spaces or symbols or invalid number");
+			errorMessages.add("invalid phone number");
 		
 		if (StringUtils.isBlank(customerContact.getCountryCode()))
 			errorMessages.add("country code cannot be empty");

@@ -231,6 +231,7 @@
             <div class="modal-header">
 
             <span> Add Address <i class="fa fa-address-card ml-2" aria-hidden="true"></i> </span>
+            <span class = "errorMessage red-text mr-2 small"></span>
 
             </div>
 
@@ -249,7 +250,6 @@
                         <div class="form-group ml-2 mr-2">       
                                      <div class = "form-inline">
                                         <select class = "mr-2 countryCode" id = "countryCode">
-                                            <option value = "+63"> (+63 PH) </option>
                                         </select>
                                         <input type="text" id = "phone-number" placeholder="phone number" class="form-control m-0 p-0 pt-0">
                                      </div>
@@ -257,7 +257,6 @@
                         
                         <label class = "ml-2 mb-1">Country</label>
 						<select class = "ml-2 country" id = "country">
-                        	<option value = "Phillipines"> Phillipines </option>
                         </select>
 
                         <div class="form-group ml-2 mr-2 mt-1">       
@@ -300,9 +299,7 @@
             <div class="modal-header">
 
             <span> Edit Address <i class="fa fa-address-card ml-2" aria-hidden="true"></i> </span>
-
-            
-
+			<span class = "errorMessage red-text mr-2"></span>
 
             </div>
 
@@ -321,7 +318,6 @@
                             <div class="form-group ml-2 mr-2">       
                                      <div class = "form-inline">
                                         <select class = "mr-2 countryCode" id = "country-code">
-                                            <option value = "+63"> (+63 PH) </option>
                                         </select>
                                         <input type="text" id = "phone-number" placeholder="phone number" class="form-control m-0 p-0 pt-0">
                                      </div>
@@ -329,7 +325,6 @@
                         
                         <label class = "ml-2 mb-1">Country</label>
                         <select class = "ml-2 country" id = "country">
-                        	<option value = "Phillipines"> Phillipines </option>
                         </select>
 
                         <div class="form-group ml-2 mr-2 mt-1">       

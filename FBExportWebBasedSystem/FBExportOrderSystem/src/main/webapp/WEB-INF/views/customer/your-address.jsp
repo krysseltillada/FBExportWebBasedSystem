@@ -89,15 +89,15 @@
 		                                            	<span> ${shippingAddress.address.address} </span>
 		                                            	<span> ${shippingAddress.address.city } </span>
 		                                            </li>
-		                                            <li> ${shippingAddress.address.country} </li>
-		                                            <li> Phone number: <span> ${shippingAddress.contact.countryCode} </span> <span> ${shippingAddress.contact.phoneNumber} </span> </li>
+		                                            <li>${shippingAddress.address.country}</li>
+		                                            <li> Phone number: (+<span>${shippingAddress.contact.countryCode}</span>) <span>${shippingAddress.contact.phoneNumber}</span> </li>
 		                                        </ul>
 		                                        
 		                                        <input type = "hidden" value = "${shippingAddress.shippingInstructions}" />
 		                                        
 		                                        <c:choose>
 		                                        
-			                                        <c:when test="${shippingAddress.addressType eq 'User Account Address'}">
+			                                        <c:when test="${shippingAddress.addressType eq 'User Account'}">
 			                                        
 				                                        <ul class="list-inline" style = "font-size: 12px;">
 				                                            <li class="list-inline-item"> <a class = "blue-text edit-address" href = "javascript:void(0)"> Edit </a> </li>

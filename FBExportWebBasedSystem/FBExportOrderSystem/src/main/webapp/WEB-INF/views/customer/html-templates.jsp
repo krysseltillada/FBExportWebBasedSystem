@@ -45,7 +45,7 @@
 							<span> {{=city}} </span>
 						</li>
 						<li> {{=country}} </li>
-						<li> Phone number: <span> {{=countryCode}} </span> <span> {{=phoneNumber}} </span> </li>
+						<li> Phone number: (+<span>{{=countryCode}}</span>) <span> {{=phoneNumber}} </span> </li>
 					</ul>
 					
 					<input type = "hidden" value = "{{=shippingInstructions}}" />

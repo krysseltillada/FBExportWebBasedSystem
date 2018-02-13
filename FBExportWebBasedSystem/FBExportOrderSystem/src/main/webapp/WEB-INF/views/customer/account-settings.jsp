@@ -269,7 +269,6 @@
                                                             <div class = "col-md-2 mt-4">
 
                                                                 <select name = "country-code" class="browser-default countryCode" required>
-                                                                    <option value="" disabled selected>Country Code</option>
                                                                 </select>
 
                                                             </div>

@@ -38,6 +38,8 @@ public class YourAddressController {
 
 		long customerId = (long)session.getAttribute("customerId");
 		
+		List<String> errorMessages = null;
+		
 		try {
 
 			JSONObject shippingAddressRawJSON = (JSONObject) new JSONParser().parse(shippingAddressJSON);
@@ -63,16 +65,34 @@ public class YourAddressController {
 			newShippingAddress.setShippingInstructions((String) shippingAddressRawJSON.get("shippingInstructions"));
 			newShippingAddress.setAddress(address);
 
-			yourAddressService.addAddress(newShippingAddress, customerId);
+			errorMessages = yourAddressService.addAddress(newShippingAddress, customerId);
 			
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
 			System.out.println(e.getMessage());
 		}
 		
-		List <ShippingAddress> shippingAddress = yourAddressService.getAllAddressesById(customerId);
-
-		return Long.toString(shippingAddress.get(shippingAddress.size() - 1).getShippingAddressId());
+		if (errorMessages.isEmpty()) {
+		
+			List <ShippingAddress> shippingAddress = yourAddressService.getAllAddressesById(customerId);
+	
+			JSONObject responseJSON = new JSONObject();
+			
+			responseJSON.put("status", "success");
+			responseJSON.put("id",shippingAddress.get(shippingAddress.size() - 1).getShippingAddressId());
+			
+			return responseJSON.toJSONString();
+			
+		} else {
+			
+			JSONObject responseJSON = new JSONObject();
+			
+			responseJSON.put("status", "error");
+			responseJSON.put("message", errorMessages.get(0));
+			
+			return responseJSON.toJSONString();
+			
+		}
 	}
 	
 	@RequestMapping(value = "/delete-address", method = RequestMethod.POST)

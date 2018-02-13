@@ -227,7 +227,7 @@
                         <hr class = "mt-0" />
                         <div class = "row">
                             <div class = "col-md-12">
-                            <!-- <div class="g-recaptcha" data-sitekey="6LcmST4UAAAAADNKoDoTOVJIVugq5Fu7kh1KQXV6"></div>  -->
+                            <div class="g-recaptcha" data-sitekey="6LcmST4UAAAAADNKoDoTOVJIVugq5Fu7kh1KQXV6"></div>  
                         </div>
                     </div>
                 </fieldset>

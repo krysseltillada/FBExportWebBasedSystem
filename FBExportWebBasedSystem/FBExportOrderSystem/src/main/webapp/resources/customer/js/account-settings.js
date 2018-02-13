@@ -4,9 +4,11 @@ $(document).ready(function () {
 
     console.log(cid);
 
-    $("#countryCode").ready(function () {
+    $(".countryCode").ready(function () {
 
         //https://restcountries.eu/rest/v2/name/Australia
+
+        console.log("tae");
 
          $.get("/FBExportSystem/get-customer", 
              {
@@ -15,19 +17,24 @@ $(document).ready(function () {
                  console.log(response);
                 var countryCode = response.contact.countryCode;
                 console.log(countryCode);
-                $('#countryCode option[value~=' + countryCode + ']').prop('selected', true);
+                $('.countryCode').find('option[value~="' + countryCode + '"]').prop('selected', true);
              }, "json");
 
     });
 
-    $('#country').ready(function () {
+    $('.country').ready(function () {
+
+        console.log("tae e");
 
          $.get("/FBExportSystem/get-customer", 
              {
                 customerId : cid
              }, function (response) {
                 var country = response.address.country;
-                $('#country option[value*=' + country + ']').prop('selected', true);
+
+                console.log(country);
+
+                $('.country').find('option[value*="' + country + '"]').prop('selected', true);
              }, "json");
         
     });
