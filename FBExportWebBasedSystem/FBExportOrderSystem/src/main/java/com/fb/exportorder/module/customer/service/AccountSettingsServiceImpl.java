@@ -201,7 +201,7 @@ public class AccountSettingsServiceImpl implements AccountSettingsService {
 			ShippingAddress userAccountShippingAddress = editedCustomerAccount.getShippingAddresses().get(0);
 			
 			userAccountShippingAddress.setAddress(editedCustomerAccount.getAddress());
-			userAccountShippingAddress.setPhoneNumber(editedCustomerAccount.getContact().getPhoneNumber());
+			userAccountShippingAddress.setContact(editedCustomerAccount.getContact());
 			userAccountShippingAddress.setReceiverFullName(editedCustomerAccount.getFirstname() + " " + editedCustomerAccount.getMiddlename() + " " + editedCustomerAccount.getLastname());
 			
 			customerRepository.save(editedCustomerAccount);

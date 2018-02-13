@@ -383,7 +383,7 @@ $(document).ready(function () {
         $("#shoppingModalCart").modal('toggle');
     });
 
-    $("#countryCode").ready(function () {
+    $(".countryCode").ready(function () {
         $.ajax({
             url : "https://restcountries.eu/rest/v2/all",
             dataType : "json",
@@ -395,7 +395,7 @@ $(document).ready(function () {
                     var countryCode = restCountriesData[i].callingCodes[0];
 
                     if (countryCode.length > 0)
-                        $("#countryCode").append('<option value = "' + countryCode + '">+' + countryCode + ' (' + countryLetterCode + ') </option');
+                        $("#countryCode").append('<option value = "' + countryCode + '">+' + countryCode + ' (' + countryLetterCode + ') </option>');
 
                 }
 
@@ -404,7 +404,7 @@ $(document).ready(function () {
         });
     });
 
-    $('#country').ready(function () {
+    $('.country').ready(function () {
         $.ajax(
             {
                 url : "https://restcountries.eu/rest/v2/all",
@@ -428,7 +428,7 @@ $(document).ready(function () {
         );
     });
 
-    $('#country').change(function () {
+    $('.country').change(function () {
         
         var $cityTextBox = $('#city');
 

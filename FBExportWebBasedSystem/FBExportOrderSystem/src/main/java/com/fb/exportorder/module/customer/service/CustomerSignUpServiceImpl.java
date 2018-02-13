@@ -158,13 +158,11 @@ public class CustomerSignUpServiceImpl implements CustomerSignUpService {
 			customer.setPassword(passwordEncoder.encode(customer.getPassword()));
 
 			userAccountAddress.setAddress(customer.getAddress());
-			userAccountAddress.setAddressType("User Account Address");
-			userAccountAddress.setPhoneNumber(customer.getContact().getPhoneNumber());
+			userAccountAddress.setAddressType("User Account");
+			userAccountAddress.setContact(customer.getContact());
 			userAccountAddress.setReceiverFullName(fullname);
 			userAccountAddress.setShippingInstructions("specify your shipping instructions by editing the card");
 			userAccountAddress.setDefaultShippingAddress(true);
-			
-			
 				
 			System.out.println(profileImage.getContentType());
 				
@@ -181,8 +179,6 @@ public class CustomerSignUpServiceImpl implements CustomerSignUpService {
 																			"/resources/customer/img/profile-female.jpg";
 					
 			}
-
-			
 				
 			authorities.setAuthority("CUSTOMER");
 			authorities.setAccount(customer);

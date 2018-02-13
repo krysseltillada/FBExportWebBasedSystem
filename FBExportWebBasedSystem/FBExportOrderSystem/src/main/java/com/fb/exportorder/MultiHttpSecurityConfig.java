@@ -22,7 +22,14 @@ public class MultiHttpSecurityConfig {
     @Order(2)
     public static class CustomerSecurityConfiguration extends WebSecurityConfigurerAdapter {
     	
-    	private static final String[] CSRF_IGNORE_URLS = {"/register", "/sign-up", "/edit-account"};
+    	private static final String[] CSRF_IGNORE_URLS = {"/register", 
+    													  "/sign-up", 
+    													  "/edit-account", 
+    													  "/add-address",
+    													  "/delete-address",
+    													  "/set-default-shipping-address",
+    													  "/see-more-activities",
+    													  "/delete-all-activity"};
     	
     	@Autowired
     	@Qualifier("customerUserDetailsService")

@@ -25,6 +25,10 @@ public class Customer extends Account {
 	private Cart cart;
 	
 	@OneToMany(cascade=CascadeType.ALL)
+	@Cascade({org.hibernate.annotations.CascadeType.DELETE,
+        org.hibernate.annotations.CascadeType.MERGE,
+        org.hibernate.annotations.CascadeType.PERSIST,
+        org.hibernate.annotations.CascadeType.DELETE_ORPHAN})
 	List <ShippingAddress> shippingAddresses = new ArrayList<>();
 
 	@OneToMany(cascade=CascadeType.ALL, mappedBy="customer")

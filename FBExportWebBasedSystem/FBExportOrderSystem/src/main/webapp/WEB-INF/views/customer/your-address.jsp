@@ -20,7 +20,7 @@
                 <div class = "mb-4">
 
                     <div class="list-group">
-                        <a href="#" class="list-group-item">
+                        <a href="<c:url value = '/view-profile' />" class="list-group-item">
                             <i class="fa fa-user mr-2" aria-hidden="true"></i>
                             View Profile
                         </a>
@@ -60,7 +60,7 @@
                 <div class="row">
                     <div class="col-md-12">
 
-                        <div class = "row">
+                        <div class = "row" id = "addressList">
                             <div class = "col-md-4">
                             <div id = "add-address" class="card bg-light z-depth-0" style="width: 17rem; height: 12rem; color: #A3A3A3; cursor: pointer; border: 2px dashed #A3A3A3;">
                                 <div class="card-body">
@@ -74,27 +74,33 @@
                             
                             <c:forEach var = "shippingAddress" items = "${shippingAddressList}">
                             	<div class = "col-md-4">
-		                            <div class="card border-light mb-3" style="max-width: 17rem; height: 12rem;">
+		                            <div class="card border-light mb-3" style="max-width: 17rem; height: 12rem;" id = "${shippingAddress.shippingAddressId}">
 		                                <div class="card-header pt-2 pb-2" style = "font-size: 14px;">
-		                                    <strong> ${shippingAddress.addressType} </strong>
+		                                    <span> ${shippingAddress.addressType}</span>'s Address
 		                                </div>
 		                                
-		                                <div class="card-body pt-3">
+		                                <div class="card-body pt-3 pr-2">
 									
 		                                    <div class = "card-text">
 		                                        <ul class="list-unstyled mb-2" style = "font-size: 12px; height: 6rem; max-height: 6rem; overflow-y: auto;">
-		                                            <li> ${shippingAddress.receiverFullName} </li>
-		                                            <li> ${shippingAddress.address.zipCode} ${shippingAddress.address.address} ${shippingAddress.address.city } </li>
+		                                            <li> <strong> ${shippingAddress.receiverFullName} </strong> </li>
+		                                            <li> 
+		                                            	<span> ${shippingAddress.address.zipCode} </span>
+		                                            	<span> ${shippingAddress.address.address} </span>
+		                                            	<span> ${shippingAddress.address.city } </span>
+		                                            </li>
 		                                            <li> ${shippingAddress.address.country} </li>
-		                                            <li> Phone number: ${shippingAddress.phoneNumber} </li>
+		                                            <li> Phone number: <span> ${shippingAddress.contact.countryCode} </span> <span> ${shippingAddress.contact.phoneNumber} </span> </li>
 		                                        </ul>
+		                                        
+		                                        <input type = "hidden" value = "${shippingAddress.shippingInstructions}" />
 		                                        
 		                                        <c:choose>
 		                                        
 			                                        <c:when test="${shippingAddress.addressType eq 'User Account Address'}">
 			                                        
 				                                        <ul class="list-inline" style = "font-size: 12px;">
-				                                            <li class="list-inline-item"> <a class = "blue-text" href = "#"> Edit </a> </li>
+				                                            <li class="list-inline-item"> <a class = "blue-text edit-address" href = "javascript:void(0)"> Edit </a> </li>
 				                                            <li class="list-inline-item"> | </li>
 				                                            <li class="list-inline-item"> 
 				                                            
@@ -104,7 +110,7 @@
 					                                            		<a class = "disabled grey-text"> Set default shipping address </a> 
 					                                        		</c:when>
 					                                        		<c:otherwise>
-					                                        			<a class = "blue-text" href = "#"> Set default shipping address</a>
+					                                        			<a class = "blue-text set-default-shipping-address" href = "javascript:void()"> Set default shipping address</a>
 					                                        		</c:otherwise>
 					                                        		
 					                                        	</c:choose>
@@ -117,18 +123,18 @@
 			                                        </c:when>
 			                                        <c:otherwise>
 			                                        	<ul class="list-inline" style="font-size: 12px;">
-                                                            <li class="list-inline-item mr-1"> <a class="blue-text" href="#"> Edit </a> </li>
+                                                            <li class="list-inline-item mr-1"> <a class="blue-text edit-address" href="javascript:void(0)"> Edit </a> </li>
                                                             <li class="list-inline-item mr-1"> | </li>
-                                                            <li class="list-inline-item mr-1"> <a class="blue-text" href="#"> Delete </a> </li>
+                                                            <li class="list-inline-item mr-1"> <a class="blue-text delete-address" href="javascript:void(0)"> Delete </a> </li>
                                                             <li class="list-inline-item mr-1"> | </li>
                                                             
 															<c:choose>
 					                                            
 					                                            <c:when test="${shippingAddress.defaultShippingAddress}">
-					                                            	<a class = "disabled grey-text"> Set default shipping address </a> 
-					                                        	</c:when>
+					                                            	<a class = "disabled grey-text" href = "javascript:void(0)"> Set default shipping address </a> 
+					                                        	</c:when> 
 					                                        	<c:otherwise>
-					                                        		<a class = "blue-text" href = "#"> Set default shipping address</a>
+					                                        		<a class = "blue-text set-default-shipping-address" href = "javascript:void(0)"> Set default shipping address</a>
 					                                        	</c:otherwise>
 					                                        		
 					                                        </c:choose>

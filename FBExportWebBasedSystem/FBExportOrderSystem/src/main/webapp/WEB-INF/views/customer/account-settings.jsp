@@ -221,7 +221,7 @@
 
                                                             <div class = "form-inline">
                                                                     <label for = "country" class = "mr-3"> Country: </label>
-                                                                    <select name = "country" class="browser-default" id = "country" required>
+                                                                    <select name = "country" class="browser-default country" required>
                                                                       
                                                                     </select>
                                                             </div>
@@ -268,7 +268,7 @@
 
                                                             <div class = "col-md-2 mt-4">
 
-                                                                <select name = "country-code" class="browser-default" id = "countryCode" required>
+                                                                <select name = "country-code" class="browser-default countryCode" required>
                                                                     <option value="" disabled selected>Country Code</option>
                                                                 </select>
 

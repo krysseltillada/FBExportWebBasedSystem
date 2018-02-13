@@ -238,26 +238,32 @@
                 
                 
                         <div class="form-group ml-2 mr-2">
-                            <label class="form-control-label">Address Type</label>
-                            <input type="text" placeholder="Your friend, coworker?" class="form-control m-0 p-0 pt-0">
+                            <label class="form-control-label">Address To</label>
+                            <input type="text" placeholder="Your friend, coworker?" id = "address-type" class="form-control m-0 p-0 pt-0">
                         </div>
                         <div class="form-group ml-2 mr-2">       
                             <label class="form-control-label">Receiver's name</label>
-                            <input type="text" placeholder="his/her full name" class="form-control m-0 p-0 pt-0">
+                            <input type="text" placeholder="his/her full name" id = "receivers-name" class="form-control m-0 p-0 pt-0">
                         </div>
 
-                            <div class="form-group ml-2 mr-2">       
-                            <label class="form-control-label">Phone number</label>
-                            <input type="text" placeholder="phone number" class="form-control m-0 p-0 pt-0">
-                        </div>
+                        <div class="form-group ml-2 mr-2">       
+                                     <div class = "form-inline">
+                                        <select class = "mr-2 countryCode" id = "countryCode">
+                                            <option value = "+63"> (+63 PH) </option>
+                                        </select>
+                                        <input type="text" id = "phone-number" placeholder="phone number" class="form-control m-0 p-0 pt-0">
+                                     </div>
+                                </div>
                         
                         <label class = "ml-2 mb-1">Country</label>
-                        <select class = "ml-2" id = "country"></select>
+						<select class = "ml-2 country" id = "country">
+                        	<option value = "Phillipines"> Phillipines </option>
+                        </select>
 
                         <div class="form-group ml-2 mr-2 mt-1">       
                             <div class = "form-inline">
-                                <input type="text" placeholder="city" class="form-control mr-3 mb-0">
-                                <input type="text" placeholder="zipcode" class="form-control mb-0">
+                                <input type="text" id = "city" placeholder="city" class="form-control mr-3 mb-0">
+                                <input type="text" id = "zipcode" placeholder="zipcode" class="form-control mb-0">
                             </div>
                         </div>
                         
@@ -271,7 +277,7 @@
 
                         <div class = "form-group ml-2 mr-2 mt-2 mb-1">
                             <label> Shipping instructions </label>
-                            <textarea type="text" id="address" class="md-textarea p-0" style = "height: 10px;"></textarea>
+                            <textarea type="text" id="shipping-instructions" class="md-textarea p-0" style = "height: 10px;"></textarea>
                         </div>
                         
                         
@@ -281,7 +287,7 @@
 
             <div class="modal-footer p-2">
                 <button type="button" class="btn btn-outline-primary" data-dismiss="modal">Cancel</button>
-                <button class="btn btn-primary">Add</button>
+                <button class="btn btn-primary btn-add">Add</button>
             </div>
 
         </div>
@@ -305,25 +311,31 @@
                 
                         <div class="form-group ml-2 mr-2">
                             <label class="form-control-label">Address Type</label>
-                            <input type="text" placeholder="Your friend, coworker?" class="form-control m-0 p-0 pt-0">
+                            <input type="text" id = "address-type" placeholder="Your friend, coworker?" class="form-control m-0 p-0 pt-0">
                         </div>
                         <div class="form-group ml-2 mr-2">       
                             <label class="form-control-label">Receiver's name</label>
-                            <input type="text" placeholder="his/her full name" class="form-control m-0 p-0 pt-0">
+                            <input type="text" id = "receivers-name" placeholder="his/her full name" class="form-control m-0 p-0 pt-0">
                         </div>
 
                             <div class="form-group ml-2 mr-2">       
-                            <label class="form-control-label">Phone number</label>
-                            <input type="text" placeholder="phone number" class="form-control m-0 p-0 pt-0">
-                        </div>
+                                     <div class = "form-inline">
+                                        <select class = "mr-2 countryCode" id = "country-code">
+                                            <option value = "+63"> (+63 PH) </option>
+                                        </select>
+                                        <input type="text" id = "phone-number" placeholder="phone number" class="form-control m-0 p-0 pt-0">
+                                     </div>
+                                </div>
                         
                         <label class = "ml-2 mb-1">Country</label>
-                        <select class = "ml-2" id = "country"></select>
+                        <select class = "ml-2 country" id = "country">
+                        	<option value = "Phillipines"> Phillipines </option>
+                        </select>
 
                         <div class="form-group ml-2 mr-2 mt-1">       
                             <div class = "form-inline">
-                                <input type="text" placeholder="city" class="form-control mr-3 mb-0">
-                                <input type="text" placeholder="zipcode" class="form-control mb-0">
+                                <input type="text" id = "city" placeholder="city" class="form-control mr-3 mb-0">
+                                <input type="text" id = "zipcode" placeholder="zipcode" class="form-control mb-0">
                             </div>
                         </div>
                         
@@ -337,17 +349,14 @@
 
                         <div class = "form-group ml-2 mr-2 mt-2 mb-1">
                             <label> Shipping instructions </label>
-                            <textarea type="text" id="address" class="md-textarea p-0" style = "height: 10px;"></textarea>
+                            <textarea type="text" id="shipping-instructions" class="md-textarea p-0" style = "height: 10px;"></textarea>
                         </div>
-                        
-                        
-
                             
             </div>
 
             <div class="modal-footer p-2">
                 <button type="button" class="btn btn-outline-primary" data-dismiss="modal">Cancel</button>
-                <button class="btn btn-primary">Edit</button>
+                <button class="btn btn-primary btn-edit">Edit</button>
             </div>
 
         </div>
