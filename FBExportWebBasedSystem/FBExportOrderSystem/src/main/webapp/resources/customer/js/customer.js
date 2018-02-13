@@ -405,7 +405,6 @@ $(document).ready(function () {
     });
 
     $('#country').ready(function () {
-
         $.ajax(
             {
                 url : "https://restcountries.eu/rest/v2/all",
@@ -430,7 +429,7 @@ $(document).ready(function () {
     });
 
     $('#country').change(function () {
-
+        
         var $cityTextBox = $('#city');
 
         var country = $(this).val();

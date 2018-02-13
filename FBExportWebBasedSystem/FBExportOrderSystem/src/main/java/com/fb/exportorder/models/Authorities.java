@@ -7,6 +7,8 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @Entity
 @Table(name = "AUTHORITIES")
 public class Authorities {
@@ -17,6 +19,7 @@ public class Authorities {
   private String authority;
 
   @ManyToOne
+  @JsonBackReference
   private Account account;
 
 	public String getAuthority() {

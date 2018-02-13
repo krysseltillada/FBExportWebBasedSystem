@@ -34,15 +34,15 @@
                             <i class="fa fa-ship mr-2" aria-hidden="true"></i>
                             Shipping
                         </a>
-                        <a href="#" class="list-group-item">
+                        <a href="<c:url value = '/your-address' />" class="list-group-item">
                             <i class="fa fa-address-card mr-2" aria-hidden="true"></i>
-                            Your Addreses
+                            Your Addresses
                         </a>
                         <a href="<c:url value = '/account-settings' />" class="list-group-item">
                             <i class="fa fa-gear mr-2" aria-hidden="true"></i>
                             Account Settings
                         </a>
-                        <a href="#" class="list-group-item">
+                        <a href="<c:url value = '/sign-out' />" class="list-group-item">
                             <i class="fa fa-sign-out mr-2" aria-hidden="true"></i>
                             Sign out
                         </a>

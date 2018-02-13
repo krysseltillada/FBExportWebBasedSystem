@@ -17,6 +17,7 @@ import com.fb.exportorder.models.Address;
 import com.fb.exportorder.models.Contact;
 import com.fb.exportorder.models.customer.Customer;
 import com.fb.exportorder.models.enums.Gender;
+import com.fb.exportorder.module.customer.repository.CustomerRepository;
 import com.fb.exportorder.module.customer.service.CustomerSignUpService;
 
 @Controller
@@ -24,6 +25,9 @@ public class SignUpController {
 	
 	@Autowired
 	CustomerSignUpService customerSignUpService;
+	
+	@Autowired
+	CustomerRepository cr;
 	
 	@RequestMapping("/sign-up")
 	public String signUp() {
@@ -46,8 +50,9 @@ public class SignUpController {
 			 				@RequestParam("country-code") String countryCode,
 			 				@RequestParam("phone-number") String phoneNumber,
 			 				@RequestParam("email-address") String emailAddress, 
-			 				@RequestParam("g-recaptcha-response") String recaptcha, Model model, HttpServletRequest request) {
+			 				@RequestParam(name = "g-recaptcha-response", required=false) String recaptcha, Model model, HttpServletRequest request) {
 		
+		System.out.println("tae");
 		
 		
 		Customer newCustomer = new Customer();
@@ -89,6 +94,15 @@ public class SignUpController {
 		
 		return "redirect:login";
 		
+	}
+	
+	@RequestMapping ("/load-users") 
+	public String loadUsers () {
+		
+		for (int i = 0; i != 100; ++i)
+			cr.save(new Customer());
+		
+		return "redirect:/";
 	}
 	
 }

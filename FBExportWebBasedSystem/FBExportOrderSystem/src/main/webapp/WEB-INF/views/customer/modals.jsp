@@ -224,3 +224,132 @@
         </div>
     </div>
 </div>
+
+<div class="modal fade" id="addAddressModal" tabindex="-1" role="dialog" aria-labelledby="addAddressModal" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+
+            <span> Add Address <i class="fa fa-address-card ml-2" aria-hidden="true"></i> </span>
+
+            </div>
+
+            <div class = "modal-body pb-1 small">
+                
+                
+                        <div class="form-group ml-2 mr-2">
+                            <label class="form-control-label">Address Type</label>
+                            <input type="text" placeholder="Your friend, coworker?" class="form-control m-0 p-0 pt-0">
+                        </div>
+                        <div class="form-group ml-2 mr-2">       
+                            <label class="form-control-label">Receiver's name</label>
+                            <input type="text" placeholder="his/her full name" class="form-control m-0 p-0 pt-0">
+                        </div>
+
+                            <div class="form-group ml-2 mr-2">       
+                            <label class="form-control-label">Phone number</label>
+                            <input type="text" placeholder="phone number" class="form-control m-0 p-0 pt-0">
+                        </div>
+                        
+                        <label class = "ml-2 mb-1">Country</label>
+                        <select class = "ml-2" id = "country"></select>
+
+                        <div class="form-group ml-2 mr-2 mt-1">       
+                            <div class = "form-inline">
+                                <input type="text" placeholder="city" class="form-control mr-3 mb-0">
+                                <input type="text" placeholder="zipcode" class="form-control mb-0">
+                            </div>
+                        </div>
+                        
+
+                        <div class = "form-group ml-2 mr-2 mt-0 mb-1">
+
+                            <label> Address </label>
+                            <textarea type="text" id="address" class="md-textarea p-0" style = "height: 10px;"></textarea>
+                            
+                        </div>
+
+                        <div class = "form-group ml-2 mr-2 mt-2 mb-1">
+                            <label> Shipping instructions </label>
+                            <textarea type="text" id="address" class="md-textarea p-0" style = "height: 10px;"></textarea>
+                        </div>
+                        
+                        
+
+                            
+            </div>
+
+            <div class="modal-footer p-2">
+                <button type="button" class="btn btn-outline-primary" data-dismiss="modal">Cancel</button>
+                <button class="btn btn-primary">Add</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="editAddressModal" tabindex="-1" role="dialog" aria-labelledby="editAddressModal" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+
+            <span> Edit Address <i class="fa fa-address-card ml-2" aria-hidden="true"></i> </span>
+
+            
+
+
+            </div>
+
+            <div class = "modal-body pb-1 small">
+                
+                
+                        <div class="form-group ml-2 mr-2">
+                            <label class="form-control-label">Address Type</label>
+                            <input type="text" placeholder="Your friend, coworker?" class="form-control m-0 p-0 pt-0">
+                        </div>
+                        <div class="form-group ml-2 mr-2">       
+                            <label class="form-control-label">Receiver's name</label>
+                            <input type="text" placeholder="his/her full name" class="form-control m-0 p-0 pt-0">
+                        </div>
+
+                            <div class="form-group ml-2 mr-2">       
+                            <label class="form-control-label">Phone number</label>
+                            <input type="text" placeholder="phone number" class="form-control m-0 p-0 pt-0">
+                        </div>
+                        
+                        <label class = "ml-2 mb-1">Country</label>
+                        <select class = "ml-2" id = "country"></select>
+
+                        <div class="form-group ml-2 mr-2 mt-1">       
+                            <div class = "form-inline">
+                                <input type="text" placeholder="city" class="form-control mr-3 mb-0">
+                                <input type="text" placeholder="zipcode" class="form-control mb-0">
+                            </div>
+                        </div>
+                        
+
+                        <div class = "form-group ml-2 mr-2 mt-0 mb-1">
+
+                            <label> Address </label>
+                            <textarea type="text" id="address" class="md-textarea p-0" style = "height: 10px;"></textarea>
+                            
+                        </div>
+
+                        <div class = "form-group ml-2 mr-2 mt-2 mb-1">
+                            <label> Shipping instructions </label>
+                            <textarea type="text" id="address" class="md-textarea p-0" style = "height: 10px;"></textarea>
+                        </div>
+                        
+                        
+
+                            
+            </div>
+
+            <div class="modal-footer p-2">
+                <button type="button" class="btn btn-outline-primary" data-dismiss="modal">Cancel</button>
+                <button class="btn btn-primary">Edit</button>
+            </div>
+
+        </div>
+    </div>
+</div>

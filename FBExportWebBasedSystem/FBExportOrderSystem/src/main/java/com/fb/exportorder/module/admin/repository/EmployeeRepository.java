@@ -6,12 +6,16 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import com.fb.exportorder.models.Employee;
+import com.fb.exportorder.models.customer.Customer;
 
 @Repository
 public interface EmployeeRepository extends CrudRepository<Employee, Long>{
 	
-	@Query("SELECT c FROM Employee c WHERE c.username = :username")
+	@Query("SELECT e FROM Employee e WHERE e.username = :username")
 	Employee findAccountByUsername(@Param("username")String username);
+	
+	@Query("SELECT e FROM Employee e WHERE e.contact.emailAddress = :email")
+	Employee findAccountByEmail (@Param("email") String email);
 	
 	@Query("SELECT COUNT(c.contact.emailAddress) > 0 FROM Employee c WHERE c.contact.emailAddress = :email")
 	boolean isEmailExists (@Param("email") String username);

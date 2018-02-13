@@ -22,7 +22,7 @@ public interface CustomerRepository
 	Customer findAccountByUsername (@Param("username")String username);
 	
 	@Query("SELECT COUNT(c.contact.emailAddress) > 0 FROM Customer c WHERE c.contact.emailAddress = :email")
-	boolean isEmailExists (@Param("email") String username);
+	boolean isEmailExists (@Param("email") String email);
 	
 	@Query("SELECT c FROM Customer c WHERE c.contact.emailAddress = :email")
 	Customer findAccountByEmail (@Param("email") String email);
@@ -39,5 +39,8 @@ public interface CustomerRepository
 	List<Object[]> getActivitiesByIdRecordsAndOffset(@Param("id") long customerId,
 													 @Param("record") int record,
 													 @Param("offset") int offset); 	
+	
+	@Query("SELECT COUNT (c.username) > 0 FROM Customer c WHERE c.username = :username")
+	boolean isUsernameExists (@Param("username") String username);
 	
 }

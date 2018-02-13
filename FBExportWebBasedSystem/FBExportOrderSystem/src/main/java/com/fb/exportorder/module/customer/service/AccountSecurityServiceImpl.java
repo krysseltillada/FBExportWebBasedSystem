@@ -29,13 +29,17 @@ public class AccountSecurityServiceImpl implements UserDetailsService {
   @Autowired
   private CustomerRepository customerRepository;
   
+
+  
   @Transactional(readOnly = true)
   @Override
   public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
+	  System.out.println(username);
+	  
     Account account = accountRepository.findAccountByUsername(username);
     Account accountByEmail = accountRepository.findAccountByEmail(username);
-    
+    	
     UserBuilder builder = null;
     String[] authorities = null;
     Authorities accountAuth = null;
@@ -45,16 +49,17 @@ public class AccountSecurityServiceImpl implements UserDetailsService {
     	
       accountAuth = account.getAuthorities().iterator().next();
       
+      System.out.println(accountAuth.getAuthority());
+      
       switch (accountAuth.getAuthority()) {
-      	case "CUSTOMER":
+      case "CUSTOMER":
       		
       		accountBuilder = customerRepository.findAccountByUsername(username);
-      		System.out.println(accountBuilder.getUsername());
+      		System.out.println(accountBuilder.getUsername() + " CUSTOMER ");
       		
       		break;
-      	case "EMPLOYEE":
-      		break;
-      	case "ADMIN":
+      	case "EMPLOYEE": case "ADMIN":
+      		
       		break;
       }
     
@@ -70,9 +75,7 @@ public class AccountSecurityServiceImpl implements UserDetailsService {
         		System.out.println(accountBuilder.getUsername());
         		
         		break;
-        	case "EMPLOYEE":
-        		break;
-        	case "ADMIN":
+        	case "EMPLOYEE": case "ADMIN":
         		break;
         }
       	

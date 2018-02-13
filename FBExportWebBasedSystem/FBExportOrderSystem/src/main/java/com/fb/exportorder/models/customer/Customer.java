@@ -11,6 +11,7 @@ import javax.persistence.OneToOne;
 
 import org.hibernate.annotations.Cascade;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fb.exportorder.models.Account;
 import com.fb.exportorder.models.ShippingAddress;
 
@@ -31,6 +32,7 @@ public class Customer extends Account {
 	          org.hibernate.annotations.CascadeType.MERGE,
 	          org.hibernate.annotations.CascadeType.PERSIST,
 	          org.hibernate.annotations.CascadeType.DELETE_ORPHAN})
+	@JsonManagedReference
 	List <Activity> activities = new ArrayList<>();
 	
 	public List<Order> getOrders() {
@@ -47,14 +49,6 @@ public class Customer extends Account {
 
 	public void setCart(Cart cart) {
 		this.cart = cart;
-	}
-
-	public List<ShippingAddress> getShippingAddress() {
-		return shippingAddresses;
-	}
-
-	public void setShippingAddress(List<ShippingAddress> shippingAddresses) {
-		this.shippingAddresses = shippingAddresses;
 	}
 
 	public List<ShippingAddress> getShippingAddresses() {

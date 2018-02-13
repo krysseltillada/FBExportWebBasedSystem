@@ -20,6 +20,8 @@ public class ShippingAddress {
 	private String phoneNumber;
 	private String shippingInstructions;
 	
+	private boolean defaultShippingAddress;
+	
 	public String getAddressType() {
 		return addressType;
 	}
@@ -67,5 +69,15 @@ public class ShippingAddress {
 	public void setShippingAddressId(Long shippingAddressId) {
 		this.shippingAddressId = shippingAddressId;
 	}
+
+	public boolean isDefaultShippingAddress() {
+		return defaultShippingAddress;
+	}
+
+	public void setDefaultShippingAddress(boolean defaultShippingAddress) {
+		this.defaultShippingAddress = defaultShippingAddress;
+	}
+
+	
 	
 }

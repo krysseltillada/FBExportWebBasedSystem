@@ -54,17 +54,22 @@
 		              <div class="form d-flex align-items-center">
 		                <div class="content text-center">
 		                  <i class="fa fa-user-circle fa-5x" style="font-size: 100px; color: grey; margin-bottom: 15px;  " aria-hidden="true"></i>
-		                  <form id="login-form" method="post">
+		                  <form action = "<c:url value = '/admin/login' />" id="login-form" method="post">
 		                    <div class="form-group">
-		                      <input id="login-username" type="text" name="loginUsername" required="" class="input-material">
+		                      <input id="login-username" type="text" name="username" required="" class="input-material">
 		                      <label for="login-username" class="label-material">User Name</label>
 		                    </div>
 		                    <div class="form-group text-left">
-		                      <input id="login-password" type="password" name="loginPassword" required="" class="input-material">
+		                      <input id="login-password" type="password" name="password" required="" class="input-material">
 		                      <label for="login-password" class="label-material">Password</label>
-		                    </div><a id="login" href="index.html" class="btn btn-primary pull-right">Login</a>
+		                    </div>
+		                    
+		                    <input type="submit" class="btn btn-primary float-right" value = "Login" />
 		                    <!-- This should be submit button but I replaced it with <a> for demo purposes-->
 		                    <a href="#" class="forgot-pass pull-left">Forgot Password?</a>
+		                    
+		                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+		                    
 		                  </form>
 		                  <br>
 		
