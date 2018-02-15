@@ -557,12 +557,12 @@ $(document).ready(function () {
         var gender = $('input[type=radio][name=genderEmployeeAdd]:checked').val();
         if(gender == "Male"){
           if($("#fileEmployeeAdd").get(0).files.length == 0)
-            $("#img-uploadEmployeeAdd").attr("src", "resources/admin/img/profile-male.jpg");
+            $("#img-uploadEmployeeAdd").attr("src", "/../FBExportSystem/resources/admin/img/profile-male.jpg");
         }
 
         if(gender == "Female"){
           if($("#fileEmployeeAdd").get(0).files.length == 0)
-            $("#img-uploadEmployeeAdd").attr("src", "resources/admin/img/profile-female.jpg");
+            $("#img-uploadEmployeeAdd").attr("src", "/../FBExportSystem/resources/admin/img/profile-female.jpg");
         }
       });
 

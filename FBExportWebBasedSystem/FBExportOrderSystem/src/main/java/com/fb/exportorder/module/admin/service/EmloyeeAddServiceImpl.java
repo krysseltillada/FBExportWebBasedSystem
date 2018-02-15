@@ -2,6 +2,7 @@ package com.fb.exportorder.module.admin.service;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.FileSystems;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -31,9 +32,6 @@ import edu.vt.middleware.password.RuleResult;
 
 @Service
 public class EmloyeeAddServiceImpl implements EmployeeAddService {
-	
-	@Value("${profile-img-context-location}")
-	String profileImageContextLocation;
 
 	@Value("${fbexport.server.domain.name}")
 	String serverDomainName;
@@ -145,16 +143,15 @@ public class EmloyeeAddServiceImpl implements EmployeeAddService {
 				if (!profileImage.isEmpty()) {
 					
 					String profileImageFilename = DigestUtils.md5Hex(employee.getUsername()) + imageTypes.get(profileImage.getContentType());
-					String profileImageFilePath = profileImageContextLocation + File.separator + profileImageFilename;
-					Path path = Paths.get(profileImageFilePath);
+					Path path = FileSystems.getDefault().getPath("src\\main\\webapp\\profile-img\\" + profileImageFilename);
 					Files.write(path, imageBytes);
 					
-					profileImageLink = serverDomainName + "profile-img/" + profileImageFilename;
-					
+					profileImageLink = serverDomainName + "/profile-img/" + profileImageFilename;
+				
 				} else {
 					
-					profileImageLink = (employee.getGender() == Gender.MALE) ? serverDomainName + "resources/admin/img/profile-male.jpg" :
-																			   serverDomainName + "resources/admin/img/profile-female.jpg";
+					profileImageLink = (employee.getGender() == Gender.MALE) ? serverDomainName + "/resources/admin/img/profile-male.jpg" :
+																			   serverDomainName + "/resources/admin/img/profile-female.jpg";
 				}
 				
 				employee.setProfileImageLink(profileImageLink);
