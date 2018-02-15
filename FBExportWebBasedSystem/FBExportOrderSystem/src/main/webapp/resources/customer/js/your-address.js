@@ -23,6 +23,24 @@ $(document).ready(function () {
 
     };
 
+    var resetEditAddressModal = function ($editAddressModal) {
+
+        $editAddressModal.find("#address-type").val("");
+        $editAddressModal.find("#receivers-name").val("");
+        $editAddressModal.find("#phone-number").val("");
+        $editAddressModal.find("#city").val("");
+        $editAddressModal.find("#zipcode").val("");
+        $editAddressModal.find("#address").val("");
+        $editAddressModal.find("#shipping-instructions").val("");
+        $editAddressModal.find(".country").find("option:selected").prop("selected", false);
+        $editAddressModal.find(".countryCode").find("option:selected").prop("selected", false);
+        $editAddressModal.find(".country").find("option:first").prop("selected", true);
+        $editAddressModal.find(".countryCode").find("option:first").prop("selected", true);
+
+        $editAddressModal.find(".errorMessage").html("");
+
+    };
+
     var changeShippingAddressCardDetails = function (shippingAddress, shippingAddressCardId) {
         var $shippingAddresssCardDetails = $("div.card[id=" + shippingAddressCardId + "]");
 
@@ -170,7 +188,8 @@ $(document).ready(function () {
                          $deletedAddressItem.remove();
                          toastr.success('shipping address deleted');
                         } else {
-                            alertify.alert("cannot delete shipping address");
+                            alertify.reset()
+                                    .alert("cannot delete shipping address this is already a default one");
                         }
 
                     });
@@ -218,50 +237,63 @@ $(document).ready(function () {
         console.log(shippingAddress.country);
         console.log(shippingAddress.countryCode);
 
-        $.post("/FBExportSystem/add-address", {
+        yourAddressModalProgressBarConfig.parent = '#addAddressModal .modal-content';
+
+        var addAddressModalProgressBar = new Mprogress(yourAddressModalProgressBarConfig);
+
+        addAddressModalProgressBar.start();
+
+        setTimeout(function () {
+              $.post("/FBExportSystem/add-address", {
                 shippingAddressJSON : JSON.stringify(shippingAddress)
-        }, 
-        function (response) {
+                }, 
+                function (response) {
 
-            if (response.status != "error") {
+                    if (response.status != "error") {
+                        
+                        var shippingAddressTemplate = _.template($("#shippingAddressTemplate").html());
+                        
+                        shippingAddress.shippingAddressId = response.id;
+
+                        var shippingAddressItem = shippingAddressTemplate(shippingAddress);
+
+                        $("#addressList").append(shippingAddressItem);
+
+                        $("#addressList div.card:last .edit-address").click(editAddress);
+                        $("#addressList div.card:last .delete-address").click(deleteAddress);
+                        $("#addressList div.card:last .set-default-shipping-address").click(setDefaultShippingAddress);
+
+                        console.log(shippingAddressItem);
+                    
+                        resetAddAddressModal($addAddressModal);
                 
-                var shippingAddressTemplate = _.template($("#shippingAddressTemplate").html());
-                
-                shippingAddress.shippingAddressId = response.id;
+                        $("#addAddressModal").modal("toggle");
 
-                var shippingAddressItem = shippingAddressTemplate(shippingAddress);
+                        toastr.success('shipping address added');
 
-                $("#addressList").append(shippingAddressItem);
+                    } else {
 
-                $("#addressList div.card:last .edit-address").click(editAddress);
-                $("#addressList div.card:last .delete-address").click(deleteAddress);
-                $("#addressList div.card:last .set-default-shipping-address").click(setDefaultShippingAddress);
+                        
 
-                console.log(shippingAddressItem);
-               
-                resetAddAddressModal($addAddressModal);
-        
-                $("#addAddressModal").modal("toggle");
+                        $addAddressModal.addClass('animated');
+                        $addAddressModal.addClass('shake');
 
-                toastr.success('shipping address added');
+                        $addAddressModal.one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
+                            $addAddressModal.removeClass('animated');
+                            $addAddressModal.removeClass('shake');
+                        });
 
-            } else {
+                        
+                        $addAddressModal.find(".errorMessage").html("*" + response.message);
+                    }
 
-                
+                    addAddressModalProgressBar.end();
+                    $btnAdd.removeClass("disabled");
+                    
+                }, "json");
+        }, 1000);
 
-                $addAddressModal.addClass('animated');
-                $addAddressModal.addClass('shake');
-
-                $addAddressModal.one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
-                    $addAddressModal.removeClass('animated');
-                    $addAddressModal.removeClass('shake');
-                });
-
-                 
-                $addAddressModal.find(".errorMessage").html("*" + response.message);
-            }
-            
-        }, "json");
+      
 
     });
 
@@ -343,6 +375,10 @@ $(document).ready(function () {
 
     $("#addAddressModal").on("hidden.bs.modal", function () {
         resetAddAddressModal($(this));
+    });
+
+    $("#editAddressModal").on("hidden.bs.modal", function () {
+        resetEditAddressModal($(this));
     });
 
     $(".edit-address").click(editAddress);
