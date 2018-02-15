@@ -40,6 +40,7 @@
 			<add-attribute value = "/resources/customer/css/mdb.min.css" />
 			<add-attribute value = "/resources/customer/css/alertify.css" />
 			<add-attribute value = "/resources/customer/css/toastr.min.css" />
+			<add-attribute value = "/resources/customer/css/mprogress.min.css" />
 			<add-attribute value = "/resources/customer/css/customer.css" />
 		</put-list-attribute>
 		
@@ -51,6 +52,7 @@
 			<add-attribute value = "/resources/customer/js/mdb.min.js" />
 			<add-attribute value = "/resources/customer/js/alertify.js" />
 			<add-attribute value = "/resources/customer/js/toastr.min.js" />
+			<add-attribute value = "/resources/customer/js/mprogress.min.js" />
 			<add-attribute value = "/resources/customer/js/moment.js" />
 			<add-attribute value = "/resources/customer/js/moment-timezone-with-data.js" />
 			<add-attribute value = "/resources/customer/js/math.js" />

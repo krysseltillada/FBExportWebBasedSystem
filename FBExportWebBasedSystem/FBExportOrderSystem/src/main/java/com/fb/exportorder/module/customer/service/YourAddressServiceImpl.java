@@ -33,8 +33,13 @@ public class YourAddressServiceImpl implements YourAddressService {
 		if (StringUtils.isBlank(shippingAddress.getAddressType()))
 			errorMessages.add("Address to cannot be empty");
 		
-		if (!StringUtils.isAlphaSpace(shippingAddress.getReceiverFullName()) || StringUtils.isBlank(shippingAddress.getReceiverFullName()))
-			errorMessages.add("Receiver's full name cannot be empty");
+		if (!StringUtils.isAlphaSpace(shippingAddress.getReceiverFullName()) || StringUtils.isBlank(shippingAddress.getReceiverFullName())) {
+			if (!StringUtils.isAlphaSpace(shippingAddress.getReceiverFullName())) {
+				errorMessages.add("Receiver's name cannot contain number or a symbol");
+			} else if (StringUtils.isBlank(shippingAddress.getReceiverFullName())) {
+				errorMessages.add("Receiver's name cannot be empty");
+			}
+		}
 		
 		if (StringUtils.isBlank(contact.getCountryCode()))
 			errorMessages.add("country code cannot be empty");
@@ -84,17 +89,27 @@ public class YourAddressServiceImpl implements YourAddressService {
 	}
 
 	@Override
-	public void deleteAddress(long customerId, long addressId) {
+	public String deleteAddress(long customerId, long addressId) {
 		
 		Customer customer = customerRepository.findOne(customerId);
 		ShippingAddress deleteShippingAddress = shippingAddressRepository.findOne(addressId);
 		
-		customer.getShippingAddresses()
-				.remove(deleteShippingAddress);
+		if (!deleteShippingAddress.isDefaultShippingAddress()) {
 		
-		customerRepository.save(customer);
+			customer.getShippingAddresses()
+					.remove(deleteShippingAddress);
+			
+			customerRepository.save(customer);
+			
+			return "success";
+			
+		} 
+		
+		return "failed";
 		
 	}
+	
+	
 
 	@Override
 	public void setDefaultShippingAddress(long prevShippingAddressId, long newShippingAddressId) {
@@ -111,12 +126,51 @@ public class YourAddressServiceImpl implements YourAddressService {
 	}
 
 	@Override
-	public List<String> editShippingAddress(ShippingAddress shippingAddress, long shippingAddressId) {
+	public List<String> editShippingAddress(ShippingAddress shippingAddress, long shippingAddressId, long customerId) {
+		
+		System.out.println("shipping id " + shippingAddressId);
 		
 		List<String> errorMessages = validate(shippingAddress);
 		
 		if (errorMessages.isEmpty()) {
 			
+			if (StringUtils.equals(shippingAddress.getAddressType(), "User Account")) {
+				
+				Customer customer = customerRepository.findOne(customerId);
+				ShippingAddress editedUserAccountShippingAddress = customer.getShippingAddresses().get(0);
+				
+				editedUserAccountShippingAddress.setAddressType(shippingAddress.getAddressType());
+				editedUserAccountShippingAddress.setReceiverFullName(shippingAddress.getReceiverFullName());
+				editedUserAccountShippingAddress.setContact(shippingAddress.getContact());
+				editedUserAccountShippingAddress.setAddress(shippingAddress.getAddress());
+				editedUserAccountShippingAddress.setShippingInstructions(shippingAddress.getShippingInstructions());
+				
+				customer.setAddress(shippingAddress.getAddress());
+				
+				Contact customerContact = customer.getContact();
+				
+				customerContact.setCountryCode(shippingAddress.getContact().getCountryCode());
+				customerContact.setPhoneNumber(shippingAddress.getContact().getPhoneNumber());
+				
+				customerRepository.save(customer);
+				
+				System.out.println(editedUserAccountShippingAddress.getAddressType());
+				
+			} else {
+				
+				ShippingAddress editedShippingAddress = shippingAddressRepository.findOne(shippingAddressId);
+				
+				editedShippingAddress.setAddressType(shippingAddress.getAddressType());
+				editedShippingAddress.setReceiverFullName(shippingAddress.getReceiverFullName());
+				editedShippingAddress.setContact(shippingAddress.getContact());
+				editedShippingAddress.setAddress(shippingAddress.getAddress());
+				editedShippingAddress.setShippingInstructions(shippingAddress.getShippingInstructions());
+				
+				shippingAddressRepository.save(editedShippingAddress);
+				
+			}
+			
+			System.out.println("edit successfully");
 		}
 		
 		return errorMessages;

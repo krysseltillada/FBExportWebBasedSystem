@@ -1,5 +1,10 @@
 $(document).ready(function () {
 
+    var yourAddressModalProgressBarConfig = {
+            template : 3
+    };
+
+
     var resetAddAddressModal = function ($addAddressModal) {
 
         $addAddressModal.find("#address-type").val("");
@@ -17,11 +22,35 @@ $(document).ready(function () {
         $addAddressModal.find(".errorMessage").html("");
 
     };
+
+    var changeShippingAddressCardDetails = function (shippingAddress, shippingAddressCardId) {
+        var $shippingAddresssCardDetails = $("div.card[id=" + shippingAddressCardId + "]");
+
+        var $list = $shippingAddresssCardDetails.find("ul.list-unstyled>li");
+        
+        $shippingAddresssCardDetails.find("div.card-header>span").html(shippingAddress.addressType);
+
+        $list.eq(0).find("strong").html(shippingAddress.receiverFullName);
+        
+        var $span = $list.eq(1).find("span");
+
+        $span.eq(0).html(shippingAddress.zipcode);
+        
+        $span.eq(1).html(shippingAddress.address);
+        $span.eq(2).html(shippingAddress.city);
+
+        $list.eq(2).html(shippingAddress.country);
+        $list.eq(3).find("span").html(shippingAddress.countryCode);
+
+        $shippingAddresssCardDetails.find("input[type=hidden]").val(shippingAddress.shippingInstructions);
+
+    };
     
     var showEditAddressModal = function (shippingAddress) {
 
         var $editAddressModal = $("#editAddressModal");
 
+        $editAddressModal.find("#shippingAddressId").val(shippingAddress.shippingAddressId);
         $editAddressModal.find("#address-type").val(shippingAddress.addressType);
         
         if (shippingAddress.addressType == "User Account") {
@@ -76,6 +105,7 @@ $(document).ready(function () {
         console.log($card.find("input[type=hidden]").val());
 
         showEditAddressModal({
+            shippingAddressId : $card.attr("id"),
             addressType : $card.find("div.card-header").find("span").html().trim(),
             receiversFullName : $list.eq(0).find("strong").html(),
             zipcode : $span.eq(0).html(),
@@ -132,13 +162,17 @@ $(document).ready(function () {
                 .confirm("Delete this shipping address?", function () {
                     console.log("tae");
 
-                    
-
                     $.post("/FBExportSystem/delete-address", {
                          deleteId : id
-                    }, function () {
+                    }, function (response) {
+
+                        if (response == "success") {
                          $deletedAddressItem.remove();
                          toastr.success('shipping address deleted');
+                        } else {
+                            alertify.alert("cannot delete shipping address");
+                        }
+
                     });
 
                 });
@@ -155,9 +189,12 @@ $(document).ready(function () {
     });
 
     $(".btn-add").click(function () {
-        
+    
         var $addAddressModal = $("#addAddressModal");
 
+        var $btnAdd = $(this);
+
+        $btnAdd.addClass("disabled");
 
         var shippingAddress = {
             addressType : $addAddressModal.find("#address-type").val(),
@@ -206,6 +243,8 @@ $(document).ready(function () {
         
                 $("#addAddressModal").modal("toggle");
 
+                toastr.success('shipping address added');
+
             } else {
 
                 
@@ -227,6 +266,80 @@ $(document).ready(function () {
     });
 
     //TODO DO THE EDIT 
+
+    $(".btn-edit").click(function () {
+
+        var $editAddressModal = $("#editAddressModal");
+
+        var $btnEdit = $(this);
+
+        $btnEdit.addClass("disabled");
+
+        var shippingAddress = {
+            addressTo : $editAddressModal.find("#address-type").val(),
+            shippingAddressId : parseInt($editAddressModal.find("#shippingAddressId").val()),
+            addressType : $editAddressModal.find("#address-type").val(),
+            receiverFullName : $editAddressModal.find("#receivers-name").val(),
+            phoneNumber : $editAddressModal.find("#phone-number").val(),
+            city : $editAddressModal.find("#city").val(),
+            zipcode : $editAddressModal.find("#zipcode").val(),
+            address : $editAddressModal.find("#address").val(),
+            shippingInstructions : $editAddressModal.find("#shipping-instructions").val(),
+            country : $editAddressModal.find(".country").find("option:selected").val(),
+            countryCode : $editAddressModal.find(".countryCode").find("option:selected").val()
+        };
+
+        yourAddressModalProgressBarConfig.parent = '#editAddressModal .modal-content';
+
+        var editAddressModalProgressBar = new Mprogress(yourAddressModalProgressBarConfig);
+
+        editAddressModalProgressBar.start();
+
+        setTimeout(function () {
+            $.post("/FBExportSystem/edit-address", {
+                shippingAddressJSON : JSON.stringify(shippingAddress)
+                },
+                function (response) {
+                    if (response.status != "error") {
+
+                        changeShippingAddressCardDetails(shippingAddress, 
+                                                        shippingAddress.shippingAddressId);
+
+                        $editAddressModal.modal("toggle");
+
+                        $editAddressModal.find(".errorMessage").html("");
+
+                        toastr.success('shipping address edited');
+
+                        
+                        $btnEdit.removeClass("disabled");
+
+
+                    } else {
+
+
+                        $editAddressModal.addClass('animated');
+                        $editAddressModal.addClass('shake');
+
+                        $editAddressModal.one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
+                            $editAddressModal.removeClass('animated');
+                            $editAddressModal.removeClass('shake');
+                        });
+
+                        $btnEdit.removeClass("disabled");
+
+                    
+                        $editAddressModal.find(".errorMessage").html("*" + response.message);
+                    }
+
+                    editAddressModalProgressBar.end();
+                },
+                "json"
+            );
+
+        }, 1500);
+       
+    });
 
     $("#addAddressModal").on("hidden.bs.modal", function () {
         resetAddAddressModal($(this));

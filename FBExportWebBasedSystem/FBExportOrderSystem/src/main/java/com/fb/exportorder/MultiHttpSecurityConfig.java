@@ -26,6 +26,7 @@ public class MultiHttpSecurityConfig {
     													  "/sign-up", 
     													  "/edit-account", 
     													  "/add-address",
+    													  "/edit-address",
     													  "/delete-address",
     													  "/set-default-shipping-address",
     													  "/see-more-activities",

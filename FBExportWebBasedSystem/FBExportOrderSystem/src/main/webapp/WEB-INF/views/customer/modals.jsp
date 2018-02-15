@@ -297,9 +297,10 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-
+	
             <span> Edit Address <i class="fa fa-address-card ml-2" aria-hidden="true"></i> </span>
-			<span class = "errorMessage red-text mr-2"></span>
+			<span class = "errorMessage red-text mr-2 small"></span>
+			<input type = "hidden" id = "shippingAddressId" value = "" />
 
             </div>
 

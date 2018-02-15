@@ -76,18 +76,18 @@
                             	<div class = "col-md-4">
 		                            <div class="card border-light mb-3" style="max-width: 17rem; height: 12rem;" id = "${shippingAddress.shippingAddressId}">
 		                                <div class="card-header pt-2 pb-2" style = "font-size: 14px;">
-		                                    <span> ${shippingAddress.addressType}</span>'s Address
+		                                    <span>${shippingAddress.addressType}</span>'s Address
 		                                </div>
 		                                
 		                                <div class="card-body pt-3 pr-2">
 									
 		                                    <div class = "card-text">
 		                                        <ul class="list-unstyled mb-2" style = "font-size: 12px; height: 6rem; max-height: 6rem; overflow-y: auto;">
-		                                            <li> <strong> ${shippingAddress.receiverFullName} </strong> </li>
+		                                            <li> <strong>${shippingAddress.receiverFullName}</strong> </li>
 		                                            <li> 
-		                                            	<span> ${shippingAddress.address.zipCode} </span>
-		                                            	<span> ${shippingAddress.address.address} </span>
-		                                            	<span> ${shippingAddress.address.city } </span>
+		                                            	<span>${shippingAddress.address.zipCode}</span>
+		                                            	<span>${shippingAddress.address.address}</span>
+		                                            	<span>${shippingAddress.address.city }</span>
 		                                            </li>
 		                                            <li>${shippingAddress.address.country}</li>
 		                                            <li> Phone number: (+<span>${shippingAddress.contact.countryCode}</span>) <span>${shippingAddress.contact.phoneNumber}</span> </li>

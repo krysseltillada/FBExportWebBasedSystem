@@ -32,7 +32,71 @@ public class YourAddressController {
 		model.addAttribute(yourAddressService.getAllAddressesById((long) session.getAttribute("customerId")));
 		return "your-address";
 	}
+	
 
+	@RequestMapping(value = "/edit-address", method = RequestMethod.POST)
+	public @ResponseBody String editAddress(@RequestParam String shippingAddressJSON, HttpSession session) {
+		
+		System.out.println(shippingAddressJSON);
+		
+		long customerId = (long)session.getAttribute("customerId");
+		
+		List<String> errorMessages = null;
+		
+		try {
+
+			JSONObject shippingAddressRawJSON = (JSONObject) new JSONParser().parse(shippingAddressJSON);
+			
+			long shippingAddressId = (long)shippingAddressRawJSON.get("shippingAddressId");
+
+			ShippingAddress editShippingAddress = new ShippingAddress();
+
+			Contact contactShippingAddress = new Contact();
+
+			Address address = new Address();
+
+			address.setAddress((String) shippingAddressRawJSON.get("address"));
+			address.setCity((String) shippingAddressRawJSON.get("city"));
+			address.setCountry((String) shippingAddressRawJSON.get("country"));
+			address.setZipCode((String) shippingAddressRawJSON.get("zipcode"));
+
+			contactShippingAddress.setPhoneNumber((String) shippingAddressRawJSON.get("phoneNumber"));
+			contactShippingAddress.setCountryCode((String) shippingAddressRawJSON.get("countryCode"));
+
+			editShippingAddress.setAddressType((String) shippingAddressRawJSON.get("addressTo"));
+			editShippingAddress.setReceiverFullName((String) shippingAddressRawJSON.get("receiverFullName"));
+			editShippingAddress.setContact(contactShippingAddress);
+			editShippingAddress.setShippingInstructions((String) shippingAddressRawJSON.get("shippingInstructions"));
+			editShippingAddress.setAddress(address);
+
+			errorMessages = yourAddressService.editShippingAddress(editShippingAddress, shippingAddressId, customerId);
+			
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			System.out.println(e.getMessage());
+		}
+		
+		if (errorMessages.isEmpty()) {
+		
+			JSONObject responseJSON = new JSONObject();
+			
+			responseJSON.put("status", "success");
+			
+			return responseJSON.toJSONString();
+			
+		} else {
+			
+			JSONObject responseJSON = new JSONObject();
+			
+			responseJSON.put("status", "error");
+			responseJSON.put("message", errorMessages.get(0));
+			
+			return responseJSON.toJSONString();
+			
+		}
+		
+	}
+	
 	@RequestMapping(value = "/add-address", method = RequestMethod.POST)
 	public @ResponseBody String addAddress(@RequestParam String shippingAddressJSON, HttpSession session) {
 
@@ -100,9 +164,8 @@ public class YourAddressController {
 		
 		long customerId = (long)session.getAttribute("customerId");
 		
-		yourAddressService.deleteAddress(customerId, Long.parseLong(deleteId));
-		
-		return "";
+		return yourAddressService.deleteAddress(customerId, Long.parseLong(deleteId));
+
 	}
 	
 	@RequestMapping(value = "/set-default-shipping-address", method = RequestMethod.POST)
