@@ -30,7 +30,6 @@ read me file for the FBExportWebBasedSystem thesis project
 * JQuery
 * underscore.js
 * marine traffic (for tracking ship directions) http://www.marinetraffic.com/en/p/embed-map
-* Weather Widget http://www.weather-wherever.co.uk/widget/
 
 ## Code Conventions
 

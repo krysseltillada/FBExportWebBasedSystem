@@ -29,7 +29,15 @@ public class CustomerSecurityConfig extends WebSecurityConfigurerAdapter {
 	
 	  private static String[] CSRF_IGNORED_URLS = {
 			  "/register",
-			  "/admin/add-new-employee"
+			  "/admin/add-new-employee",
+			  "/admin/enabled-employee",
+			  "/admin/edit-employee",
+			  "/admin/add-new-admin",
+			  "/admin/enabled-admin",
+			  "/admin/edit-admin",
+			  "/admin/enabled-customer",
+			  "/admin/edit-customer",
+			  "/admin/show-customer-activity"
 	  };
 	  
 	  @Autowired

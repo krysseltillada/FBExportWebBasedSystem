@@ -1,3 +1,5 @@
+<%@ include file = "../../lib/tags/tag-libraries.jsp" %>
+
 <script id = "collapsingOrderDiv" type = "text/template"> 
       <div class = "row slider pt-2 pb-2 pl-1 pr-1">
         
@@ -420,144 +422,32 @@
 
     <div class = "row showMoreInfoSlider pt-2 pb-2 pl-1 pr-1">
         <div class = "col-lg-4">
-        <h3>User's Activities</h3>
-        <table id="user-activity-table" class="table table-striped table-bordered" cellspacing="0" width="100%">
+        <h3>Customer's Activities</h3>
+        <table id="user-activity-table" class="table table-striped table-bordered" style="background-color: white;" cellspacing="0" width="100%">
             <thead>
                 <tr>
-                    <th>User's Activity</th>
+                    <th>Customer's Activity</th>
+					<th>Description</th>
                     <th>Date</th>
-                    <th>Time</th>
                 </tr>
             </thead>
             <tfoot>
                 <tr>
-                <th>User's Activity</th>
-                <th>Date</th>
-                <th>Time</th>
+                	<th>Customer's Activity</th>
+					<th>Description</th>
+                	<th>Date</th>
                 </tr>
             </tfoot>
             <tbody>
-                <tr>
-                    <td>Bought products</td>
-                    <td>January 29, 2018</td>
-                    <td>13:30:35</td>
-                </tr>
+				
             </tbody>
             </table>
 
         </div>
     </div>
-    </div>
 
-    <!--Pagination -->
-    <nav class="my-4 ">
-        <ul class="pagination pagination-circle pg-blue mb-0">
-
-            <!--First-->
-            <li class="page-item disabled"><a class="page-link">First</a></li>
-
-            <!--Arrow left-->
-            <li class="page-item disabled">
-                <a class="page-link" aria-label="Previous">
-                    <span aria-hidden="true">&laquo;</span>
-                    <span class="sr-only">Previous</span>
-                </a>
-            </li>
-
-            <!--Numbers-->
-            <li class="page-item active"><a class="page-link">1</a></li>
-            <li class="page-item"><a class="page-link">2</a></li>
-            <li class="page-item"><a class="page-link">3</a></li>
-            <li class="page-item"><a class="page-link">4</a></li>
-            <li class="page-item"><a class="page-link">5</a></li>
-
-            <!--Arrow right-->
-            <li class="page-item">
-                <a class="page-link" aria-label="Next">
-                    <span aria-hidden="true">&raquo;</span>
-                    <span class="sr-only">Next</span>
-                </a>
-            </li>
-
-            <!--First-->
-            <li class="page-item"><a class="page-link">Last</a></li>
-
-        </ul>
-    </nav>
-    <!--/Pagination -->
+    
 
 
 </script>
 
-<script id = "collapsingEmployeeTableMoreInformation" type="text/template">
-
-    <div class = "row showMoreInfoSlider pt-2 pb-2 pl-1 pr-1">
-        <div class = "col-lg-4">
-        <h3>Employee's Activities</h3>
-        <table id="employee-activity-table" class="table table-striped table-bordered" cellspacing="0" width="100%">
-            <thead>
-                <tr>
-                    <th>Employee's Activity</th>
-                    <th>Date</th>
-                    <th>Time</th>
-                </tr>
-            </thead>
-            <tfoot>
-                <tr>
-                <th>Employee's Activity</th>
-                <th>Date</th>
-                <th>Time</th>
-                </tr>
-            </tfoot>
-            <tbody>
-                <tr>
-                    <td>Bought products</td>
-                    <td>January 29, 2018</td>
-                    <td>13:30:35</td>
-                </tr>
-            </tbody>
-            </table>
-
-        </div>
-    </div>
-    </div>
-
-    <!--Pagination -->
-    <nav class="my-4 ">
-        <ul class="pagination pagination-circle pg-blue mb-0">
-
-            <!--First-->
-            <li class="page-item disabled"><a class="page-link">First</a></li>
-
-            <!--Arrow left-->
-            <li class="page-item disabled">
-                <a class="page-link" aria-label="Previous">
-                    <span aria-hidden="true">&laquo;</span>
-                    <span class="sr-only">Previous</span>
-                </a>
-            </li>
-
-            <!--Numbers-->
-            <li class="page-item active"><a class="page-link">1</a></li>
-            <li class="page-item"><a class="page-link">2</a></li>
-            <li class="page-item"><a class="page-link">3</a></li>
-            <li class="page-item"><a class="page-link">4</a></li>
-            <li class="page-item"><a class="page-link">5</a></li>
-
-            <!--Arrow right-->
-            <li class="page-item">
-                <a class="page-link" aria-label="Next">
-                    <span aria-hidden="true">&raquo;</span>
-                    <span class="sr-only">Next</span>
-                </a>
-            </li>
-
-            <!--First-->
-            <li class="page-item"><a class="page-link">Last</a></li>
-
-        </ul>
-    </nav>
-    <!--/Pagination -->
-
-
-</script>

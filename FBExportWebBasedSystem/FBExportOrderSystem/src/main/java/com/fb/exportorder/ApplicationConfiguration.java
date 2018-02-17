@@ -30,5 +30,6 @@ public class ApplicationConfiguration {
 	public PasswordValidator passwordValidator() {
 		return new PasswordValidator();
 	}
-
+	
+	
 }

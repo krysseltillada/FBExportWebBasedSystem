@@ -102,16 +102,16 @@ public class CustomerSignUpServiceImpl implements CustomerSignUpService {
 		if (StringUtils.isBlank(customerAddress.getAddress()))
 			errorMessages.add("address cannot be empty");
 		
-		if (!StringUtils.isAlphaSpace(customerAddress.getCountry()) || StringUtils.isBlank(customerAddress.getCountry()))
-			errorMessages.add("country cannot be empty, contain digits or symbols");
+		if (StringUtils.isNumeric(customerAddress.getCountry()) || StringUtils.isBlank(customerAddress.getCountry()))
+			errorMessages.add("country cannot be empty and contain digits");
 		
 		if (!StringUtils.isAlphaSpace(customerAddress.getCity()) || StringUtils.isBlank(customerAddress.getCity()))
 			errorMessages.add("city cannot be empty, contain digits or symbols");
 		
-		if (StringUtils.isBlank(customerAddress.getZipCode()))
-			errorMessages.add("zipcode cannot be empty");
+		if (!StringUtils.isAlphanumeric(customerAddress.getZipCode()) || StringUtils.isBlank(customerAddress.getZipCode()))
+			errorMessages.add("zipcode cannot be empty or contain any symbols");
 		
-		if (!StringUtils.isNumeric(customerContact.getPhoneNumber()) || StringUtils.isBlank(customerContact.getPhoneNumber()) || Integer.parseInt(customerContact.getPhoneNumber()) <= 0)
+		if (!StringUtils.isNumeric(customerContact.getPhoneNumber()) || StringUtils.isBlank(customerContact.getPhoneNumber()))
 			errorMessages.add("phone number cannot be empty, contain letters, spaces or symbols or invalid number");
 		
 		if (StringUtils.isBlank(customerContact.getCountryCode()))

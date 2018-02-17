@@ -22,6 +22,7 @@ public class AdminSecurityConfig extends WebSecurityConfigurerAdapter {
 	  private static String[] CSRF_IGNORED_URLS = {
 			  "/admin/add-new-employee"
 	  };
+	  
 	  @Autowired
 	  private UserDetailsService userDetailsService;
 	  
