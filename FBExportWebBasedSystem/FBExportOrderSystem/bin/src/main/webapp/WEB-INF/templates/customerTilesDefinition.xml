@@ -96,6 +96,10 @@
 	
 	<definition name = "your-address" extends = "customerBaseTemplate">
 		<put-attribute name = "main" value = "/WEB-INF/views/customer/your-address.jsp" />
+		
+		<put-list-attribute name = "javascriptfiles" inherit = "true">
+			<add-attribute value = "resources/customer/js/your-address.js" />
+		</put-list-attribute>
 	</definition>
 	
 	<definition name = "account-settings" extends = "customerBaseTemplate">

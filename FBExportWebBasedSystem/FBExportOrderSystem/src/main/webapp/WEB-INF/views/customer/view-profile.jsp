@@ -34,15 +34,15 @@
                             <i class="fa fa-ship mr-2" aria-hidden="true"></i>
                             Shipping
                         </a>
-                        <a href="#" class="list-group-item">
+                        <a href="<c:url value = '/your-address' />" class="list-group-item">
                             <i class="fa fa-address-card mr-2" aria-hidden="true"></i>
-                            Your Addreses
+                            Your Addresses
                         </a>
                         <a href="<c:url value = '/account-settings' />" class="list-group-item">
                             <i class="fa fa-gear mr-2" aria-hidden="true"></i>
                             Account Settings
                         </a>
-                        <a href="#" class="list-group-item">
+                        <a href="<c:url value = '/sign-out' />" class="list-group-item">
                             <i class="fa fa-sign-out mr-2" aria-hidden="true"></i>
                             Sign out
                         </a>
@@ -66,7 +66,7 @@
                                         <div class = "col-md-9">
                                             <h4> 
                                             	${customer.firstname += " " += customer.middlename += " " += customer.lastname} 
-                                            	(${customer.contact.emailAddress}) <a style = "font-size: 14px;" href = "#"> (edit profile) </a> </h4>
+                                            	(${customer.contact.emailAddress}) <a style = "font-size: 14px;" href = "<c:url value = '/account-settings' />"> (edit profile) </a> </h4>
                                             <p>
 
                                                 ${customer.address.zipCode} ${customer.address.city}, ${customer.address.country} <br />

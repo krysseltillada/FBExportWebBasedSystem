@@ -17,6 +17,9 @@ import javax.persistence.MappedSuperclass;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.GenericGenerator;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fb.exportorder.models.enums.Gender;
 
 @Entity
@@ -25,8 +28,9 @@ import com.fb.exportorder.models.enums.Gender;
 		)
 public abstract class Account {
 	
-	 @Id
-	 @GeneratedValue(strategy=GenerationType.TABLE)
+	@Id
+	@GeneratedValue(
+	    strategy= GenerationType.TABLE) 
 	 private Long id;
 	 
 	 private String username;
@@ -53,6 +57,7 @@ public abstract class Account {
 	 private boolean enabled;
 
 	 @OneToMany(cascade = CascadeType.ALL, mappedBy = "account")
+	 @JsonManagedReference
 	 private Set<Authorities> authorities = new HashSet<>();
 	 
 	 

@@ -10,6 +10,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @Entity
 public class Activity {
 	
@@ -21,6 +23,7 @@ public class Activity {
 	private String description;
 	
 	@ManyToOne
+	@JsonBackReference
 	private Customer customer;
 	
 	@Temporal(TemporalType.DATE)

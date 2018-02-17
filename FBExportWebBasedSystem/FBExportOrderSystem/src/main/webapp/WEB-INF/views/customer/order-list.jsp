@@ -76,7 +76,7 @@
                         </a>
                         <a href="#" class="list-group-item">
                             <i class="fa fa-address-card mr-2" aria-hidden="true"></i>
-                            Your Addreses
+                            Your Addresses
                         </a>
                         <a href="#" class="list-group-item">
                             <i class="fa fa-gear mr-2" aria-hidden="true"></i>

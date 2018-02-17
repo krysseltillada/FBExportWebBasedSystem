@@ -26,3 +26,45 @@
 	</span>
 
 </script>
+
+<script id = "shippingAddressTemplate" type = "text/template">
+	<div class = "col-md-4">
+		<div class="card border-light mb-3" style="max-width: 17rem; height: 12rem;" id = "{{=shippingAddressId}}">
+			<div class="card-header pt-2 pb-2" style = "font-size: 14px;">
+				<span>{{=addressType}}</span>'s Address 
+			</div>
+			
+			<div class="card-body pt-3 pr-2">
+		
+				<div class = "card-text">
+					<ul class="list-unstyled mb-2" style = "font-size: 12px; height: 6rem; max-height: 6rem; overflow-y: auto;">
+						<li> <strong> {{=receiverFullName}}  </strong> </li>
+						<li> 
+							<span> {{=zipcode}} </span>
+							<span> {{=address}} </span>
+							<span> {{=city}} </span>
+						</li>
+						<li> {{=country}} </li>
+						<li> Phone number: (+<span>{{=countryCode}}</span>) <span> {{=phoneNumber}} </span> </li>
+					</ul>
+					
+					<input type = "hidden" value = "{{=shippingInstructions}}" />
+					
+						
+					<ul class="list-inline" style="font-size: 12px;">
+						<li class="list-inline-item mr-1"> <a class="blue-text edit-address" href="javascript:void(0)"> Edit </a> </li>
+						<li class="list-inline-item mr-1"> | </li>
+						<li class="list-inline-item mr-1"> <a class="blue-text delete-address" href="javascript:void(0)"> Delete </a> </li>
+						<li class="list-inline-item mr-1"> | </li>
+						
+						<a class = "blue-text set-default-shipping-address" href = "javascript:void(0)"> Set default shipping address</a>
+					
+					</ul>
+					
+
+				</div>
+
+			</div>
+		</div>
+	</div>
+</script>

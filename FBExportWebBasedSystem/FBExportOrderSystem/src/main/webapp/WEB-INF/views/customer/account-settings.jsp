@@ -36,16 +36,16 @@
                             <i class="fa fa-ship mr-2" aria-hidden="true"></i>
                             Shipping
                         </a>
-                        <a href="#" class="list-group-item">
+                        <a href="<c:url value = '/your-address' />" class="list-group-item">
                             <i class="fa fa-address-card mr-2" aria-hidden="true"></i>
-                            Your Addreses
+                            Your Addresses
                         </a>
                         <a href="<c:url value = '/account-settings' />" class="list-group-item active">
                             <i class="fa fa-gear mr-2" aria-hidden="true"></i>
                             Account Settings
                         </a>
 
-                        <a href="#" class="list-group-item">
+                        <a href="<c:url value = '/sign-out' />" class="list-group-item">
                             <i class="fa fa-sign-out mr-2" aria-hidden="true"></i>
                             Sign out
                         </a>
@@ -66,11 +66,29 @@
                                 <hr />
                             </div>
                         </div>
+                        
+                        <c:if test="${not empty errorMessages}">
+        	
+				        	<c:forEach var = "errorMessage" items = "${errorMessages}">
+				        		<span class = "red-text"> *<c:out value="${errorMessage}" /> </span> <br />
+				        	</c:forEach>
+							
+							<hr />
+								        
+				        </c:if>
+				        
+				        <c:if test="${not empty successMessage}">
+				        
+				        	<span class = "text-success"> *<c:out value="${successMessage}" /> </span> <br />
+				        	
+							<hr />
+								        
+				        </c:if>
 
                         <div class = "row">
 
                             <div class = "col">
-                                <form method = "POST">
+                                <form action = "<c:url value = '/edit-account' />" method = "POST" enctype = "multipart/form-data">
 
                                         <div class = "row">
                                             <div class = "col-md-12">
@@ -82,22 +100,27 @@
 
                                                         <div class="col-md-3 text-center">
 
-                                                        <img class = "mb-2 rounded" style = "border: 1px solid #DDDDDD;" id='img-upload' src = "resources/customer/img/profile-male.jpg" width = "150" height = "150" />
+                                                        <img class = "mb-2 rounded" style = "border: 1px solid #DDDDDD;" id='img-upload' 
+                                                        	 src = "<c:url value='${sessionScope.profileImageLink}' />" width = "150" height = "150" />
 
                                                         <p class="file">
-                                                            <input type="file" name="file" id="file" accept="image/x-png,image/jpeg" />
+                                                            <input type="file" name="profile-image" id="file" accept="image/x-png,image/jpeg" />
                                                             <label for="file" class = "pr-4 pl-4">Change image</label>
                                                         </p>
                                                         </div>
 
                                                         <div class = "col-md-6">
                                                             <div class="md-form form-sm">
-                                                                <input type="text" id="username" class="form-control" length = "20" required />
+                                                                <input name = "username" type="text" id="username" class="form-control" length = "20" value = "${customer.username}" required/>
                                                                 <label for="username" class="">Username</label>
                                                             </div>
                                                             <div class="md-form form-sm">
-                                                                <input type="password" id="password" class="form-control" length = "20" required />
-                                                                <label for="password" class="">Password</label>
+                                                                <input name = "oldpassword" type="password" id="old-password" class="form-control" length = "20" />
+                                                                <label for="password" class="">Old password</label>
+                                                            </div>
+                                                            <div class="md-form form-sm">
+                                                                <input name = "newpassword" type="password" id="new-password" class="form-control" length = "20" />
+                                                                <label for="password" class="">New password</label>
                                                             </div>
                                                         </div>
 
@@ -118,19 +141,19 @@
                                                     <div class = "row mt-3">
                                                             <div class = "col-md-4">
                                                                 <div class="md-form form-sm">
-                                                                    <input type="text" id="firstname" class="form-control" required />
+                                                                    <input name = "firstname" type="text" id="firstname" class="form-control" value = "${customer.firstname}" required />
                                                                     <label for="firstname" class="">First Name</label>
                                                                 </div>
                                                             </div>
                                                             <div class = "col-md-4">
                                                                 <div class="md-form form-sm">
-                                                                    <input type="text" id="middlename" class="form-control" required />
+                                                                    <input name = "middlename" type="text" id="middlename" class="form-control" value = "${customer.middlename}" required />
                                                                     <label for="middlename" class="">Middle Name</label>
                                                                 </div>
                                                             </div>
                                                             <div class = "col-md-4">
                                                                 <div class="md-form form-sm">
-                                                                    <input type="text" id="lastname" class="form-control" required />
+                                                                    <input name = "lastname" type="text" id="lastname" class="form-control" value = "${customer.lastname}" required />
                                                                     <label for="lastname" class="">Last Name</label>
                                                                 </div>
                                                             </div>
@@ -145,12 +168,22 @@
                                                         <div class = "col-md-11 form-inline mb-2">
 
                                                             <div class="form-group form-sm">
-                                                                <input class="mr-2" type="radio" name="gender" value="Male" id="male" required />
+                                                                <input class="mr-2" 
+                                                                	   type="radio" 
+                                                                	   name="gender" 
+                                                                	   value="Male" 
+                                                                	   id="male" 
+                                                                	   required ${ (customer.gender == 'MALE') ? 'checked' : '' } />
+                                                                	   
                                                                 <label for="male"> Male </label>
                                                             </div>
 
                                                             <div class="form-group form-sm">
-                                                                <input class="mr-2" type="radio" name="gender" id="female" value="Female"/>
+                                                                <input class="mr-2" 
+                                                                	   type="radio" 
+                                                                	   name="gender" 
+                                                                	   id="female" 
+                                                                		value="Female" ${ (customer.gender == 'FEMALE') ? 'checked' : '' }/>
                                                                 <label for="female"> Female </label>
                                                             </div>
 
@@ -166,7 +199,7 @@
                                                         <div class = "col-md-11 form-inline mb-2">
 
                                                             <div class="form-group form-sm">
-                                                                <input  name="group2" type="number" class="with-gap" placeholder="your age" id = "age" required />
+                                                                <input  name="age" type="number" min = "1" class="with-gap" value = "${customer.age}" placeholder="your age" id = "age" required />
                                                             </div>
 
                                                         </div>
@@ -188,8 +221,8 @@
 
                                                             <div class = "form-inline">
                                                                     <label for = "country" class = "mr-3"> Country: </label>
-                                                                    <select class="browser-default" id = "country" required>
-                                                                        <option value="" disabled selected>Choose your country</option>
+                                                                    <select name = "country" class="browser-default country" required>
+                                                                      
                                                                     </select>
                                                             </div>
 
@@ -197,8 +230,8 @@
                                                         <div class = "col-md-5">
 
                                                             <div class="md-form form-sm" style = "position: relative; top: -20px;">
-                                                                <input type="text" id="city" class="form-control" required disabled/>
-                                                                <label for="city" class="">city</label>
+                                                                <input name = "city" type="text" value = "${customer.address.city}" id="city" class="form-control" required/>
+                                                                <label for="city" class=""> city </label>
                                                             </div>
 
                                                         </div>
@@ -208,7 +241,7 @@
                                                         <div class = "col-md-7">
                                                             <div class="md-form form-sm mt-3">
 
-                                                                <textarea type="text" id="address" class="md-textarea" required></textarea>
+                                                                <textarea name = "address" type="text" id="address" class="md-textarea" required>${customer.address.address}</textarea>
                                                                 <label for="address">Address</label>
 
                                                             </div>
@@ -216,7 +249,7 @@
                                                         </div>
                                                         <div class = "col-md-5">
                                                             <div class="md-form form-sm" style = "margin-top: 75px;">
-                                                                <input type="text" id="zipcode" class="form-control" required />
+                                                                <input name = "zipcode" maxlength = "7" type="text" id="zipcode" class="form-control" value = "${customer.address.zipCode}" required />
                                                                 <label for="zipcode">Zip Code</label>
                                                             </div>
                                                         </div>
@@ -235,22 +268,21 @@
 
                                                             <div class = "col-md-2 mt-4">
 
-                                                                <select class="browser-default" id = "countryCode" required>
-                                                                    <option value="" disabled selected>Country Code</option>
+                                                                <select name = "country-code" class="browser-default countryCode" required>
                                                                 </select>
 
                                                             </div>
                                                             <div class = "col-md-5 mt-1">
 
                                                                 <div class="md-form form-sm">
-                                                                        <input type="text" id="phonenumber" class="form-control" required />
+                                                                        <input name = "phone-number" maxlength = "15" type="text" id="phonenumber" value = "${customer.contact.phoneNumber}" class="form-control" required />
                                                                         <label for="phonenumber" class="">Phone Number</label>
                                                                 </div>
                                                             </div>
 
                                                                 <div class = "col-md-5 mt-1">
                                                                 <div class="md-form form-sm">
-                                                                        <input type="text" id="email" class="form-control" required />
+                                                                        <input name = "email-address" type="text" id="email" value = "${customer.contact.emailAddress}" class="form-control" required />
                                                                         <label for="email" class="">Email Address</label>
                                                                 </div>
                                                             </div>

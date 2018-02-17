@@ -1,5 +1,6 @@
 package com.fb.exportorder.models;
 
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -15,10 +16,15 @@ public class ShippingAddress {
 	private String addressType;
 	private String receiverFullName;
 	
+	@Embedded
 	private Address address;
 	
-	private String phoneNumber;
+	@Embedded
+	private Contact contact;
+	
 	private String shippingInstructions;
+	
+	private boolean defaultShippingAddress;
 	
 	public String getAddressType() {
 		return addressType;
@@ -44,14 +50,14 @@ public class ShippingAddress {
 		this.address = address;
 	}
 	
-	public String getPhoneNumber() {
-		return phoneNumber;
+	public Contact getContact() {
+		return contact;
 	}
-	
-	public void setPhoneNumber(String phoneNumber) {
-		this.phoneNumber = phoneNumber;
+
+	public void setContact(Contact contact) {
+		this.contact = contact;
 	}
-	
+
 	public String getShippingInstructions() {
 		return shippingInstructions;
 	}
@@ -67,5 +73,15 @@ public class ShippingAddress {
 	public void setShippingAddressId(Long shippingAddressId) {
 		this.shippingAddressId = shippingAddressId;
 	}
+
+	public boolean isDefaultShippingAddress() {
+		return defaultShippingAddress;
+	}
+
+	public void setDefaultShippingAddress(boolean defaultShippingAddress) {
+		this.defaultShippingAddress = defaultShippingAddress;
+	}
+
+	
 	
 }

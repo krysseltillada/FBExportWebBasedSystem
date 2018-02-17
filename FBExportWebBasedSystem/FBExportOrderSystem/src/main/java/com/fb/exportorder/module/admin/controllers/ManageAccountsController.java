@@ -70,7 +70,7 @@ public class ManageAccountsController {
 		return "dashboard";
 	}
 	
-	@RequestMapping("/admin/admin-login")
+	@RequestMapping("/admin/login")
 	public String login() {
 		return "admin-login";
 	}

@@ -45,9 +45,7 @@ public class LoginSuccessHandler implements AuthenticationSuccessHandler {
 		String profileImageLink = (Objects.nonNull(customer)) ? customer.getProfileImageLink() :
 									 						    customerByEmail.getProfileImageLink();
 		
-		String profileViewLink = "/view-profile?customerId=" + 
-								 ((Objects.nonNull(customer)) ? customer.getId() :
-									 						    customerByEmail.getId());
+	
 		
 		long customerId = (Objects.nonNull(customer)) ? customer.getId() :
 														customerByEmail.getId();
@@ -56,7 +54,6 @@ public class LoginSuccessHandler implements AuthenticationSuccessHandler {
 		session.setAttribute("name", name);
 		session.setAttribute("customerId", customerId);
 		session.setAttribute("profileImageLink", profileImageLink);
-		session.setAttribute("profileViewLink", profileViewLink);
 		
 		response.sendRedirect(request.getServletContext().getContextPath() + "/");
 		

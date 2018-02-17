@@ -14,6 +14,26 @@ $(function () {
   _.templateSettings.escape = /\{\{-([^=][\S\s]+?)\}\}/g;
 });
 
+$(function () {
+    toastr.options = {
+                "closeButton": false,
+                "debug": false,
+                "newestOnTop": false,
+                "progressBar": false,
+                "positionClass": "toast-bottom-right",
+                "preventDuplicates": false,
+                "onclick": null,
+                "showDuration": "300",
+                "hideDuration": "1000",
+                "timeOut": "6000",
+                "extendedTimeOut": "1000",
+                "showEasing": "swing",
+                "hideEasing": "linear",
+                "showMethod": "fadeIn",
+                "hideMethod": "fadeOut"
+            }
+});
+
 (function($){
 
     $.fn.outside = function(ename, cb){
@@ -383,7 +403,7 @@ $(document).ready(function () {
         $("#shoppingModalCart").modal('toggle');
     });
 
-    $("#countryCode").ready(function () {
+    $(".countryCode").ready(function () {
         $.ajax({
             url : "https://restcountries.eu/rest/v2/all",
             dataType : "json",
@@ -391,11 +411,11 @@ $(document).ready(function () {
 
 
                 for (var i = 0; i != restCountriesData.length; ++i) {
-                    var countryLetterCode = restCountriesData[i].alpha2Code;
-                    var countryCode = restCountriesData[i].callingCodes[0];
+                    var countryLetterCode = restCountriesData[i].alpha2Code.trim();
+                    var countryCode = restCountriesData[i].callingCodes[0].trim();
 
                     if (countryCode.length > 0)
-                        $("#countryCode").append('<option value = "' + countryCode + '">+' + countryCode + ' (' + countryLetterCode + ') </option');
+                        $(".countryCode").append('<option value = "' + countryCode + '">+' + countryCode + ' (' + countryLetterCode + ') </option>');
 
                 }
 
@@ -404,8 +424,7 @@ $(document).ready(function () {
         });
     });
 
-    $('#country').ready(function () {
-
+    $('.country').ready(function () {
         $.ajax(
             {
                 url : "https://restcountries.eu/rest/v2/all",
@@ -415,9 +434,9 @@ $(document).ready(function () {
                     for (var i = 0; i != responseData.length; ++i) {
 
                         if (responseData[i].alpha2Code.length > 0) {
-                            var country = responseData[i].name;
-                            var countryCode = responseData[i].alpha2Code;
-                            $('#country').append('<option value = "'+ country + '">' + country + ' (' + countryCode + ')</option>');
+                            var country = responseData[i].name.trim();
+                            var countryCode = responseData[i].alpha2Code.trim();
+                            $('.country').append('<option value = "'+ country + '">' + country + ' (' + countryCode + ')</option>');
                         }
 
                     }
@@ -429,8 +448,8 @@ $(document).ready(function () {
         );
     });
 
-    $('#country').change(function () {
-
+    $('.country').change(function () {
+        
         var $cityTextBox = $('#city');
 
         var country = $(this).val();

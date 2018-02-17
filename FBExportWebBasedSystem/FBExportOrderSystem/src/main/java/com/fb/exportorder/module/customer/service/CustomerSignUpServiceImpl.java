@@ -27,11 +27,13 @@ import org.springframework.web.multipart.MultipartFile;
 import com.fb.exportorder.models.Address;
 import com.fb.exportorder.models.Authorities;
 import com.fb.exportorder.models.Contact;
+import com.fb.exportorder.models.ShippingAddress;
 import com.fb.exportorder.models.customer.Activity;
 import com.fb.exportorder.models.customer.Customer;
 import com.fb.exportorder.models.enums.Gender;
 import com.fb.exportorder.module.customer.repository.CustomerRepository;
 import com.fb.exportorder.utilities.PasswordValidator;
+import com.fb.exportorder.utilities.UploadImage;
 
 import edu.vt.middleware.password.RuleResult;
 
@@ -64,8 +66,8 @@ public class CustomerSignUpServiceImpl implements CustomerSignUpService {
 		
 		boolean isEmailExists = customerRepository.isEmailExists(customerContact.getEmailAddress());
 		
-		if (!StringUtils.isAlphanumericSpace(customer.getUsername()))
-			errorMessages.add("username cannot contain a special character");
+		if (!StringUtils.isAlphanumeric(customer.getUsername()))
+			errorMessages.add("username cannot contain a special characters or a space or empty");
 		
 		if (Objects.nonNull(registeredCustomer)) {
 			errorMessages.add("username exists");
@@ -125,10 +127,14 @@ public class CustomerSignUpServiceImpl implements CustomerSignUpService {
 				errorMessages.add("Invalid Email Address"); 
 		}
 		
-		String recaptchaMessage = googleRecaptchaService.verifyRecaptcha(ip, recaptcha);
+		if (StringUtils.isNotBlank(recaptcha)) {
+ 		
+			String recaptchaMessage = googleRecaptchaService.verifyRecaptcha(ip, recaptcha);
+			
+			if (StringUtils.isNotEmpty(recaptchaMessage)) {
+				errorMessages.add("Verify you're a human");
+			}
 		
-		if (StringUtils.isNotEmpty(recaptchaMessage)) {
-			errorMessages.add("Verify you're a human");
 		}
 		
 		return errorMessages;
@@ -139,74 +145,70 @@ public class CustomerSignUpServiceImpl implements CustomerSignUpService {
 	public List<String> register(Customer customer, String recaptcha, String ip, MultipartFile profileImage) {
 		
 		List<String> errorMessages = validate (customer, recaptcha, ip, profileImage);
-		Authorities authorities = new Authorities();
 		
 		
 		if (errorMessages.isEmpty()) {
+			
+			Authorities authorities = new Authorities();
+			ShippingAddress userAccountAddress = new ShippingAddress();
+			
+			String fullname = customer.getFirstname() + " " + customer.getMiddlename() + " " + customer.getLastname();
+			
 			System.out.println("successfully registered");
 			customer.setPassword(passwordEncoder.encode(customer.getPassword()));
-			
-			try {
-				
-				System.out.println(profileImage.getContentType());
-				
-				byte[] imageBytes = profileImage.getBytes();
-				
-				Map <String, String> imageTypes = new HashMap<String, String>() {{
-					put("image/jpeg", ".jpg");
-					put("image/png", ".png");
-				}};
-				
-				String profileImageLink = StringUtils.EMPTY;
-				
-				if (!profileImage.isEmpty()) {
-					
-					String profileImageFilename = DigestUtils.md5Hex(customer.getUsername()) + imageTypes.get(profileImage.getContentType());
-					String profileImageFilePath = profileImageContextLocation + File.separator + profileImageFilename;
-					Path path = Paths.get(profileImageFilePath);
-					Files.write(path, imageBytes);
-					
-					profileImageLink = "/profile-img/" + profileImageFilename;
-					
-				} else {
-					
-					profileImageLink = (customer.getGender() == Gender.MALE) ? "/resources/customer/img/profile-male.jpg" :
-																			   "/resources/customer/img/profile-female.jpg";
-					
-				}
 
+			userAccountAddress.setAddress(customer.getAddress());
+			userAccountAddress.setAddressType("User Account");
+			userAccountAddress.setContact(customer.getContact());
+			userAccountAddress.setReceiverFullName(fullname);
+			userAccountAddress.setShippingInstructions("specify your shipping instructions by editing the card");
+			userAccountAddress.setDefaultShippingAddress(true);
+				
+			System.out.println(profileImage.getContentType());
+				
+				
+			String profileImageLink = StringUtils.EMPTY;
 			
-				
-				authorities.setAuthority("CUSTOMER");
-				authorities.setAccount(customer);
-				
-				for (int i = 0; i != 10; ++i) {
+			if (!profileImage.isEmpty()) {
 					
-					Activity act = new Activity();
+				profileImageLink = UploadImage.uploadProfileImage(customer.getUsername(), profileImageContextLocation, profileImage);
 					
-					act.setDate(new Date());
-					act.setDescription("tae tae");
-					act.setHeader("tng ina tng ina" + i);
-					act.setCustomer(customer);
+			} else {
 					
-					customer.getActivities()
-							.add(act);
-				}
+				profileImageLink = (customer.getGender() == Gender.MALE) ? "/resources/customer/img/profile-male.jpg" :
+																			"/resources/customer/img/profile-female.jpg";
+					
+			}
 				
-				customer.setProfileImageLink(profileImageLink);
+			authorities.setAuthority("CUSTOMER");
+			authorities.setAccount(customer);
 				
-				customer.getAuthorities()
+			for (int i = 0; i != 5; ++i) {
+					
+				Activity act = new Activity();
+					
+				act.setDate(new Date());
+				act.setDescription("tae tae");
+				act.setHeader("tng ina tng ina" + i);
+				act.setCustomer(customer);
+					
+				customer.getActivities()
+						.add(act);
+			}
+				
+			customer.setProfileImageLink(profileImageLink);
+				
+			customer.getAuthorities()
 						.add(authorities);
 				
-				customer.setEnabled(true);
+			customer.getShippingAddresses()
+						.add(userAccountAddress);
+				
+			customer.setEnabled(true);
 
 				
-				customerRepository.save(customer);
+			customerRepository.save(customer);
 				
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-			
 			
 		}
 		

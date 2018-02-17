@@ -38,15 +38,21 @@
 			<add-attribute value = "https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" />
 			<add-attribute value = "/resources/customer/css/bootstrap.min.css" />
 			<add-attribute value = "/resources/customer/css/mdb.min.css" />
+			<add-attribute value = "/resources/customer/css/alertify.css" />
+			<add-attribute value = "/resources/customer/css/toastr.min.css" />
+			<add-attribute value = "/resources/customer/css/mprogress.min.css" />
 			<add-attribute value = "/resources/customer/css/customer.css" />
 		</put-list-attribute>
 		
 		<put-list-attribute name = "javascriptfiles">
-			<add-attribute value = "resources/customer/js/jquery-3.2.1.min.js" />
+			<add-attribute value = "/resources/customer/js/jquery-3.2.1.min.js" />
 			<add-attribute value = "http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.js" />
 			<add-attribute value = "/resources/customer/js/popper.min.js" />
 			<add-attribute value = "/resources/customer/js/bootstrap.min.js" />
 			<add-attribute value = "/resources/customer/js/mdb.min.js" />
+			<add-attribute value = "/resources/customer/js/alertify.js" />
+			<add-attribute value = "/resources/customer/js/toastr.min.js" />
+			<add-attribute value = "/resources/customer/js/mprogress.min.js" />
 			<add-attribute value = "/resources/customer/js/moment.js" />
 			<add-attribute value = "/resources/customer/js/moment-timezone-with-data.js" />
 			<add-attribute value = "/resources/customer/js/math.js" />
@@ -100,6 +106,10 @@
 	
 	<definition name = "your-address" extends = "customerBaseTemplate">
 		<put-attribute name = "main" value = "/WEB-INF/views/customer/your-address.jsp" />
+		
+		<put-list-attribute name = "javascriptfiles" inherit = "true">
+			<add-attribute value = "/resources/customer/js/your-address.js" />
+		</put-list-attribute>
 	</definition>
 	
 	<definition name = "account-settings" extends = "customerBaseTemplate">
@@ -112,6 +122,7 @@
 		<put-list-attribute name = "javascriptfiles" inherit = "true">
 			<add-attribute value = "/resources/customer/js/profile-pic-upload.js" />
 			<add-attribute value = "/resources/customer/js/sign-up.js" />
+			<add-attribute value = "/resources/customer/js/account-settings.js" />
 		</put-list-attribute>
 		
 	</definition>

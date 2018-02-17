@@ -5,6 +5,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.ResourceBundleMessageSource;
 import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.jpa.JpaTransactionManager;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
@@ -31,5 +32,9 @@ public class ApplicationConfiguration {
 		return new PasswordValidator();
 	}
 	
-	
+	@Bean
+	  public BCryptPasswordEncoder passwordEncoder() {
+	    return new BCryptPasswordEncoder();
+	  };
+
 }
