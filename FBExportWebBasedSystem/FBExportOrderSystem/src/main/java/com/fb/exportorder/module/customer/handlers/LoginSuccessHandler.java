@@ -17,7 +17,7 @@ import org.springframework.stereotype.Component;
 import com.fb.exportorder.models.customer.Customer;
 import com.fb.exportorder.module.customer.repository.CustomerRepository;
 
-@Component
+@Component("customerLoginSuccessHandler")
 public class LoginSuccessHandler implements AuthenticationSuccessHandler {
 
 	@Autowired
@@ -32,12 +32,23 @@ public class LoginSuccessHandler implements AuthenticationSuccessHandler {
 										Authentication auth)
 			throws IOException, ServletException {
 		
+		
 		String usernameOrEmail = request.getParameter("username");
 		
 		Customer customer = customerRepository.findAccountByUsername(usernameOrEmail);
 		Customer customerByEmail = customerRepository.findAccountByEmail(usernameOrEmail);
 		
 		HttpSession session = request.getSession();
+		
+		if (Objects.nonNull(session.getAttribute("employeeName"))) {
+			session.removeAttribute("employeeName");
+			session.removeAttribute("position");
+			session.removeAttribute("employeeId");
+			session.removeAttribute("employeeProfileImageLink");
+		}
+		
+		
+		System.out.println(session.getId());
 		
 		String name = (Objects.nonNull(customer)) ? customer.getFirstname() :
 													customerByEmail.getFirstname();
@@ -51,9 +62,9 @@ public class LoginSuccessHandler implements AuthenticationSuccessHandler {
 														customerByEmail.getId();
 		
 		
-		session.setAttribute("name", name);
+		session.setAttribute("customerName", name);
 		session.setAttribute("customerId", customerId);
-		session.setAttribute("profileImageLink", profileImageLink);
+		session.setAttribute("customerProfileImageLink", profileImageLink);
 		
 		response.sendRedirect(request.getServletContext().getContextPath() + "/");
 		

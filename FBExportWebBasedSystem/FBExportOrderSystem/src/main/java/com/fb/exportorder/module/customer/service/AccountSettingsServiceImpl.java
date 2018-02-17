@@ -188,7 +188,7 @@ public class AccountSettingsServiceImpl implements AccountSettingsService {
 			editedCustomerAccount.setUsername(customer.getUsername());
 			
 			if (StringUtils.isNotBlank(customer.getPassword()))
-				editedCustomerAccount.setPassword(customer.getPassword());
+				editedCustomerAccount.setPassword(passwordEncoder.encode(customer.getPassword()));
 			
 			editedCustomerAccount.setFirstname(customer.getFirstname());
 			editedCustomerAccount.setMiddlename(customer.getMiddlename());

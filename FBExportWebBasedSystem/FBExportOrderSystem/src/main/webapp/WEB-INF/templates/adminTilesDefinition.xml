@@ -19,8 +19,10 @@
 			<add-attribute value = "https://fonts.googleapis.com/css?family=Poppins:300,400,700" />
 			<add-attribute value = "https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css" />
 			<add-attribute value = "https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" />
+			<add-attribute value = "http://netdna.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" />
 			<add-attribute value = "/resources/admin/css/style.default.css" />
 			<add-attribute value = "/resources/admin/css/pace-themes/pace-theme-minimal.css" />
+			<add-attribute value = "/resources/admin/fine-uploader/fine-uploader-gallery.min.css" />
 			<add-attribute value = "/resources/admin/css/admin.css" />
 		</put-list-attribute>
 		
@@ -28,7 +30,7 @@
 			
 			<add-attribute value = "/resources/admin/js/pace.min.js" />
 			<add-attribute value = "https://use.fontawesome.com/38a955adbf.js" />
-			<add-attribute value = "https://code.jquery.com/jquery-3.2.1.min.js" />
+			<add-attribute value = "http://code.jquery.com/jquery-1.12.4.min.js" />
 			<add-attribute value = "/resources/admin/vendor/popper.js/umd/popper.min.js" />
 			<add-attribute value = "/resources/admin/vendor/bootstrap/js/bootstrap.min.js" />
 			<add-attribute value = "/resources/admin/vendor/jquery.cookie/jquery.cookie.js"/>
@@ -38,9 +40,10 @@
 			<add-attribute value = "https://code.jquery.com/ui/1.12.1/jquery-ui.js" />
 			<add-attribute value = "/resources/admin/js/timepicki.js" />
 			<add-attribute value = "/resources/admin/js/underscore.js" />
-			
+			<add-attribute value = "/resources/admin/js/moment.js" />
 			<add-attribute value = "/resources/admin/js/collections.js" />
 			<add-attribute value = "/resources/admin/js/front.js" />
+			<add-attribute value = "/resources/admin/js/admin.js" />
 		
 		</put-list-attribute>
 		
@@ -89,13 +92,10 @@
 		
 		<put-list-attribute name = "cssfiles" inherit = "true">
 			<add-attribute value = "/resources/admin/css/inventory.css" />
-			<add-attribute value = "/resources/admin/css/fileinput.min.css" />
 		</put-list-attribute>
 		
 		<put-list-attribute name = "javascriptfiles" inherit = "true">
 			<add-attribute value = "/resources/admin/js/add-product.js" />
-			<add-attribute value = "/resources/admin/js/fileinput.min.js" />
-			<add-attribute value = "/resources/admin/themes/fa/theme.js" />
 		</put-list-attribute>
 	
 	</definition>

@@ -1,3 +1,5 @@
+<%@ include file = "../../lib/tags/tag-libraries.jsp" %>
+
 <header class="header">
     <nav class="navbar bg-white" style = "color: black;">
       
@@ -6,7 +8,7 @@
 	            <div class="navbar-header">
 	
 	            <!-- Navbar Brand -->
-	            <a href="index.html" class="navbar-brand">
+	            <a href="<c:url value = '/admin/dashboard' />" class="navbar-brand">
 	                <div class="brand-text brand-big">
 	                <img class="pb-1 mr-1" src = "https://dt-cdn.net/assets/images/gfx/icons/tech/trello-586abec645.svg" width = "30" height = "30" />
 	                <span>  Fong Bros International Corporation </span>
@@ -22,11 +24,10 @@
 	            <!-- Navbar Menu -->
 	            <ul class="nav-menu list-unstyled d-flex flex-md-row align-items-md-center" style = "color: #0395F7;">
 	
-	            <li class="nav-item d-flex align-items-center mr-3" style = "color: black;">
-	                <span class = "mr-1"> Sunday, </span>
-	                <span class = "mr-1"> December 29 1998, </span>
-	                <span> 2:30 PM </span>
+	            <li class="nav-item d-flex align-items-center mr-3" id = "main-nav-date-time" style = "color: black;">
+	              loading..
 	            </li>
+	
 	
 	            <li class="nav-item dropdown"> <a id="notifications" rel="nofollow" data-target="#" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link"><i class="fa fa-bell-o"></i><span class="badge bg-red">12</span></a>
 	                <ul aria-labelledby="notifications" class="dropdown-menu">
@@ -76,7 +77,7 @@
 	            </li>
 	            <!-- Logout    -->
 	            <li class="nav-item">
-	                <a href="login.html" class="nav-link logout" style = "color:black;">
+	                <a href="<c:url value = '/admin/sign-out' />" class="nav-link logout" style = "color:black;">
 	                Logout
 	                <i class="fa fa-sign-out"></i>
 	                </a>

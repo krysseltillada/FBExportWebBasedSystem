@@ -44,6 +44,8 @@ $(document).ready(function () {
     var changeShippingAddressCardDetails = function (shippingAddress, shippingAddressCardId) {
         var $shippingAddresssCardDetails = $("div.card[id=" + shippingAddressCardId + "]");
 
+        console.log(shippingAddress);
+
         var $list = $shippingAddresssCardDetails.find("ul.list-unstyled>li");
         
         $shippingAddresssCardDetails.find("div.card-header>span").html(shippingAddress.addressType);
@@ -58,13 +60,16 @@ $(document).ready(function () {
         $span.eq(2).html(shippingAddress.city);
 
         $list.eq(2).html(shippingAddress.country);
-        $list.eq(3).find("span").html(shippingAddress.countryCode);
+        $list.eq(3).find("span").eq(0).html(shippingAddress.countryCode);
+        $list.eq(3).find("span").eq(1).html(shippingAddress.phoneNumber);
 
         $shippingAddresssCardDetails.find("input[type=hidden]").val(shippingAddress.shippingInstructions);
 
     };
     
     var showEditAddressModal = function (shippingAddress) {
+
+        console.log(shippingAddress);
 
         var $editAddressModal = $("#editAddressModal");
 
@@ -320,6 +325,8 @@ $(document).ready(function () {
             country : $editAddressModal.find(".country").find("option:selected").val(),
             countryCode : $editAddressModal.find(".countryCode").find("option:selected").val()
         };
+
+        console.log(shippingAddress);
 
         yourAddressModalProgressBarConfig.parent = '#editAddressModal .modal-content';
 

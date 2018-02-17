@@ -38,14 +38,14 @@
 		
 				<div class = "card-text">
 					<ul class="list-unstyled mb-2" style = "font-size: 12px; height: 6rem; max-height: 6rem; overflow-y: auto;">
-						<li> <strong> {{=receiverFullName}}  </strong> </li>
+						<li> <strong>{{=receiverFullName}}</strong> </li>
 						<li> 
-							<span> {{=zipcode}} </span>
-							<span> {{=address}} </span>
-							<span> {{=city}} </span>
+							<span>{{=zipcode}}</span>
+							<span>{{=address}}</span>
+							<span>{{=city}}</span>
 						</li>
-						<li> {{=country}} </li>
-						<li> Phone number: (+<span>{{=countryCode}}</span>) <span> {{=phoneNumber}} </span> </li>
+						<li>{{=country}}</li>
+						<li> Phone number: (+<span>{{=countryCode}}</span>) <span>{{=phoneNumber}}</span> </li>
 					</ul>
 					
 					<input type = "hidden" value = "{{=shippingInstructions}}" />
