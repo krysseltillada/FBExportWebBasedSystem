@@ -22,7 +22,8 @@
 			<add-attribute value = "http://netdna.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" />
 			<add-attribute value = "/resources/admin/css/style.default.css" />
 			<add-attribute value = "/resources/admin/css/pace-themes/pace-theme-minimal.css" />
-			<add-attribute value = "/resources/admin/fine-uploader/fine-uploader-gallery.min.css" />
+			<add-attribute value = "/resources/admin/fine-uploader/fine-uploader-new.css" />
+			<add-attribute value = "/resources/admin/css/animate.css" />
 			<add-attribute value = "/resources/admin/css/admin.css" />
 		</put-list-attribute>
 		

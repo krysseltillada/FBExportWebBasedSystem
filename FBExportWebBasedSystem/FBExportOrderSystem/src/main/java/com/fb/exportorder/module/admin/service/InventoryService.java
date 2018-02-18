@@ -7,7 +7,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.fb.exportorder.models.Product;
 
 public interface InventoryService {
-	public List<String> addProduct (MultipartFile productImage,
+	public void addProduct (MultipartFile productImage,
 								   String productName,
 								   String origin,
 								   String expiredDate,
@@ -18,6 +18,17 @@ public interface InventoryService {
 								   String supplier,
 								   String supplierContactNumber,
 								   String supplierAddress,
-								   MultipartFile[] productPreviewImages,
 								   String postThisProduct);
+	
+	public List<String> validate (MultipartFile productImage,
+			   String productName,
+			   String origin,
+			   String expiredDate,
+			   String deliveryDate,
+			   String price,
+			   String weight,
+			   String description,
+			   String supplier,
+			   String supplierContactNumber,
+			   String supplierAddress);
 }

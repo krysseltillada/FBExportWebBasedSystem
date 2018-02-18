@@ -122,7 +122,8 @@ public class MultiHttpSecurityConfig {
         		.antMatchers("/admin/dashboard",
         					 "/admin/inventory",
         					 "/admin/add-product",
-        					 "/admin/add",
+        					 "/admin/add-product/add",
+        					 "/admin/add-product/add-preview-images",
         					 "/admin/manage-accounts").hasAnyAuthority("ADMIN", "EMPLOYEE")
         		.and()
 	    		.formLogin()
@@ -133,7 +134,9 @@ public class MultiHttpSecurityConfig {
 	    		.logoutUrl("/admin/sign-out")
 	    		.logoutSuccessUrl("/admin/login")
 	    		.and()
-	    		.exceptionHandling().accessDeniedPage("/error");
+	    		.exceptionHandling().accessDeniedPage("/error")
+	    		.and()
+	    		.csrf().ignoringAntMatchers("/admin/add-product/add-preview-images", "/admin/add-product/delete-preview-images/**");
         
         }
     }

@@ -27,8 +27,7 @@ public class InventoryServiceImpl implements InventoryService {
 	
 	private SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 	
-	private List<String> validate (MultipartFile productImage,
-								   MultipartFile[] productPreviewImages,
+	public List<String> validate (MultipartFile productImage,
 								   String productName,
 								   String origin,
 								   String expiredDate,
@@ -44,12 +43,6 @@ public class InventoryServiceImpl implements InventoryService {
 		
 		if (productImage.isEmpty())
 			errorMessages.add("required product image");
-		
-		System.out.println(productPreviewImages[0].getOriginalFilename());
-		
-		if (productPreviewImages.length < 3) {
-			errorMessages.add("required 3 product preview images");
-		}
 		 
 		if (!StringUtils.isAlpha(productName))
 			errorMessages.add("product name cannot be empty and cannot contain number or symbols");
@@ -98,7 +91,7 @@ public class InventoryServiceImpl implements InventoryService {
 	}
 	
 	@Override
-	public List<String> addProduct(MultipartFile productImage,
+	public void addProduct(MultipartFile productImage,
 			 					   String productName,
 			 					   String origin,
 			 					   String expiredDate,
@@ -109,31 +102,11 @@ public class InventoryServiceImpl implements InventoryService {
 			 					   String supplier,
 			 					   String supplierContactNumber,
 			 					   String supplierAddress,
-			 					   MultipartFile[] productPreviewImages,
 			 					   String postThisProduct) {
 
-		List<String> errorMessages = validate(productImage,
-											  productPreviewImages,
-											  productName, 
-											  origin, 
-											  expiredDate, 
-											  deliveryDate, 
-											  price, weight, 
-											  description, 
-											  supplier, 
-											  supplierContactNumber, 
-											  supplierAddress);
-		
-		if (errorMessages.isEmpty()) {
 			
 			System.out.println("validation success");
-		} else {
-			for (String errorMessage : errorMessages) 
-				System.out.println(errorMessage);
-		}
 		
-		
-		return errorMessages;
 	}
 
 }
