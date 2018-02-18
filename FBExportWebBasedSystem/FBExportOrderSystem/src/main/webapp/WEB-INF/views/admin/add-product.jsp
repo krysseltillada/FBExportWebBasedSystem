@@ -4,9 +4,7 @@
     <div class="container-fluid">
     	<h2 class="no-margin-bottom">
     		<span> Inventory > Add new product </span>
-    		<c:if test = "${not empty errorMessage}">
-    			<span class="text-red small float-right animated shake"> *${errorMessage} </span>
-    		</c:if>
+    		<span id = "errorMessage" class="text-red small float-right errorMessage" style = "display : none;"></span>
     	</h2>
     </div>
 </header>

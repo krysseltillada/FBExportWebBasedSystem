@@ -131,26 +131,60 @@ $(document).ready(function () {
 			
 			event.preventDefault();
 
-			$.post("/FBExportSystem/admin/add-product/validate", 
-				   {
-					product : "{'tng ina' : 'tae'}"
-				   },function (response) {
-
-						console.log(response);
-
-						if (response.status == "success") {
-
-						} else {
-
-					}
-
-			}, "json");
-
 			var imageUploadCount = $("body ul.qq-upload-list li[qq-file-id]").children().length / 6;
 			
 			if (imageUploadCount >= 3 && isThreeImagesUploaded)  {
 				console.log("form submit!!");
-				$("form[action]").submit();
+
+				var product = {
+					isImageEmpty : ($("input[name='product-image']")[0].files.length == 0 ? "true" : "false"),
+					name : $("input[name='product-name']").val(),
+					origin : $("input[name='origin']").val(),
+					expiredDate : $("input[name='expired-date']").val(),
+					deliveryDate : $("input[name='delivery-date']").val(),
+					price : $("input[name='price']").val(),
+					weight : $("input[name='weight']").val(),
+					description : $("input[name='description']").val(),
+					supplier : $("input[name='supplier']").val(),
+					supplierContactNumber : $("input[name='supplier-contact-number']").val(),
+					supplierAddress : $("input[name='supplier-address']").val()
+				};
+
+				console.log(product);
+
+				$.post("/FBExportSystem/admin/add-product/validate", 
+					{
+						productJSONString : JSON.stringify(product)
+					},function (response) {
+
+							if (response.status == "success") {
+								//$("form[action]").submit();
+							} else {
+								$("html, body").animate({ scrollTop: 0 }, 
+														"fast", function () {
+															$("span.errorMessage").html("*" + response.message);
+
+															$("#errorMessage").removeClass("animated");
+															$("#errorMessage").removeClass("shake");
+
+															var prevClassVal = $("#errorMessage").attr("class");
+
+															console.log(prevClassVal);
+
+															$("#errorMessage").removeAttr("class");
+															
+															$("#errorMessage").css("display", "inline");
+															
+															$("#errorMessage").addClass(prevClassVal);
+															$("#errorMessage").addClass("animated shake");
+														
+														});
+
+							}
+
+				}, "json");
+
+				
 			}
 			else {
 

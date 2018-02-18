@@ -27,21 +27,21 @@ public class InventoryServiceImpl implements InventoryService {
 	
 	private SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 	
-	public List<String> validate (MultipartFile productImage,
-								   String productName,
-								   String origin,
-								   String expiredDate,
-								   String deliveryDate,
-								   String price,
-								   String weight,
-								   String description,
-								   String supplier,
-								   String supplierContactNumber,
-								   String supplierAddress) {
+	public List<String> validate (String isImageEmpty,
+								  String productName,
+								  String origin,
+								  String expiredDate,
+								  String deliveryDate,
+								  String price,
+								  String weight,
+								  String description,
+								  String supplier,
+								  String supplierContactNumber,
+								  String supplierAddress) {
 		
 		List<String> errorMessages = new ArrayList<String>();
 		
-		if (productImage.isEmpty())
+		if (Boolean.parseBoolean(isImageEmpty))
 			errorMessages.add("required product image");
 		 
 		if (!StringUtils.isAlpha(productName))
@@ -50,20 +50,14 @@ public class InventoryServiceImpl implements InventoryService {
 		if (!StringUtils.isAlphanumeric(origin))
 			errorMessages.add("origin cannot be empty and cannot contain symbols");
 		
-		if (StringUtils.isBlank(description))
-			errorMessages.add("description cannot be empty");
-		
-		
 		try {
+			
+			if (StringUtils.isEmpty(expiredDate))
+				throw new ParseException("", 0);
+			
 			dateFormat.parse(expiredDate);
 		} catch (ParseException e) {
 			errorMessages.add("invalid expired date");
-		}
-		
-		try {
-			dateFormat.parse(deliveryDate);
-		} catch (ParseException e) {
-			errorMessages.add("invalid delivery date");
 		}
 		
 		try {
@@ -78,14 +72,29 @@ public class InventoryServiceImpl implements InventoryService {
 			errorMessages.add("invalid weight");
 		}
 		
+		
+		if (StringUtils.isBlank(description))
+			errorMessages.add("description cannot be empty");
+		
 		if (StringUtils.isBlank(supplier))
 			errorMessages.add("supplier cannot be empty");
 		
-		if (StringUtils.isBlank(supplierAddress))
-			errorMessages.add("supplier address cannot be emoty");
-		
 		if (!StringUtils.isNumeric(supplierContactNumber))
 			errorMessages.add("invalid supplier contact number");
+		
+		
+		try {
+			
+			if (StringUtils.isEmpty(deliveryDate))
+				throw new ParseException("", 0);
+			
+			dateFormat.parse(deliveryDate);
+		} catch (ParseException e) {
+			errorMessages.add("invalid delivery date");
+		}
+		
+		if (StringUtils.isBlank(supplierAddress))
+			errorMessages.add("supplier address cannot be emoty");
 		
 		return errorMessages;
 	}

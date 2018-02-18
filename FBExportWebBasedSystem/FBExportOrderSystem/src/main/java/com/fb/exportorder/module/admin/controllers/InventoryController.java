@@ -83,26 +83,26 @@ public class InventoryController {
 	
 	@RequestMapping(value = "/admin/add-product/validate", method = RequestMethod.POST)
 	@ResponseBody
-	public String validate(@RequestParam String product) {
+	public String validate(@RequestParam String productJSONString) {
 		
 		List<String> errorMessages = null;
 		
 		try {
 			
-			JSONObject jsonRawObject = (JSONObject)new JSONParser().parse(product);
+			JSONObject jsonRawObject = (JSONObject)new JSONParser().parse(productJSONString);
 		
 		
-			errorMessages = inventoryService.validate(null, 
-													 (String)jsonRawObject.get("name"), 
-													 (String)jsonRawObject.get("origin"), 
-													 (String)jsonRawObject.get("expiredDate"), 
-													 (String)jsonRawObject.get("deliveryDate"), 
-													 (String)jsonRawObject.get("price"), 
-													 (String)jsonRawObject.get("weight"), 
-													 (String)jsonRawObject.get("description"), 
-													 (String)jsonRawObject.get("supplier"), 
-													 (String)jsonRawObject.get("supplierContactNumber"), 
-													 (String)jsonRawObject.get("supplierAddress"));	
+			errorMessages = inventoryService.validate((String)jsonRawObject.get("isImageEmpty"), 
+													  (String)jsonRawObject.get("name"), 
+													  (String)jsonRawObject.get("origin"), 
+													  (String)jsonRawObject.get("expiredDate"), 
+													  (String)jsonRawObject.get("deliveryDate"), 
+													  (String)jsonRawObject.get("price"), 
+													  (String)jsonRawObject.get("weight"), 
+													  (String)jsonRawObject.get("description"), 
+													  (String)jsonRawObject.get("supplier"), 
+													  (String)jsonRawObject.get("supplierContactNumber"), 
+													  (String)jsonRawObject.get("supplierAddress"));	
 			
 		} catch (org.json.simple.parser.ParseException e) {
 			// TODO Auto-generated catch block

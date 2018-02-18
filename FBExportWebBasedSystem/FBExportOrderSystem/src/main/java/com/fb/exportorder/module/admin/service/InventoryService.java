@@ -20,7 +20,7 @@ public interface InventoryService {
 								   String supplierAddress,
 								   String postThisProduct);
 	
-	public List<String> validate (MultipartFile productImage,
+	public List<String> validate (String productImage,
 			   String productName,
 			   String origin,
 			   String expiredDate,
