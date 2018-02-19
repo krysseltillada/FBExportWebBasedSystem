@@ -23,6 +23,7 @@ public class Product {
 	@GeneratedValue
 	private Long productId;
 	
+	private String name;
 	private String origin;
 	private String supplier;
 	private String supplierContactNumber;
@@ -47,6 +48,8 @@ public class Product {
 	private String description;
 	
 	private String productImageLink;
+	
+	private boolean isPosted;
 	
 	@ElementCollection
 	private List<String> previewImageLinks;
@@ -161,6 +164,22 @@ public class Product {
 
 	public void setPreviewImageLinks(List<String> previewImageLinks) {
 		this.previewImageLinks = previewImageLinks;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public boolean isPosted() {
+		return isPosted;
+	}
+
+	public void setPosted(boolean isPosted) {
+		this.isPosted = isPosted;
 	}
 	
 	

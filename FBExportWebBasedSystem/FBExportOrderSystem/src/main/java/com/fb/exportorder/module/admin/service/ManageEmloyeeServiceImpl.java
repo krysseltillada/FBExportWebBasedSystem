@@ -50,8 +50,8 @@ public class ManageEmloyeeServiceImpl implements ManageEmployeeService {
 		
 		List<String> errorMessages = new ArrayList<>();
 				
-		if(!StringUtils.isAlphanumericSpace(employee.getUsername()))
-			errorMessages.add("username cannot contain special character");
+		if(!StringUtils.isAlphanumeric(employee.getUsername()))
+			errorMessages.add("username cannot contain a special characters or a space or empty");
 		
 		RuleResult result = passwordValidator.validate(employee.getPassword());
 		RuleResult sResult = passwordValidator.validateSpecialCharacters(employee.getPassword());
@@ -206,8 +206,12 @@ public class ManageEmloyeeServiceImpl implements ManageEmployeeService {
 			Employee registeredEmployee = employeeRepository.findAccountByUsername(newUsernameEmployeeEdit);
 			if(Objects.nonNull(registeredEmployee))
 				errorMessages.add("username exists");
-			else
-				employee.setUsername(newUsernameEmployeeEdit);
+			else {
+				if(!StringUtils.isAlphanumeric(newUsernameEmployeeEdit))
+					errorMessages.add("username cannot contain a special characters or a space or empty");
+				else
+					employee.setUsername(newUsernameEmployeeEdit);
+			}
 		}
 		
 		/*Check if exist*/

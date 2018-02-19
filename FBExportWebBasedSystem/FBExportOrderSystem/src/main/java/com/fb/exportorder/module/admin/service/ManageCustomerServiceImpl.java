@@ -37,8 +37,8 @@ public class ManageCustomerServiceImpl implements ManageCustomerService {
 		
 		List<String> errorMessages = new ArrayList<>();
 				
-		if(!StringUtils.isAlphanumericSpace(customer.getUsername()))
-			errorMessages.add("username cannot contain special character");
+		if(!StringUtils.isAlphanumeric(customer.getUsername()))
+			errorMessages.add("username cannot contain a special characters or a space or empty");
 		
 		if(!StringUtils.isAlphaSpace(customer.getFirstname()) || StringUtils.isBlank(customer.getFirstname()))
 			errorMessages.add("first name cannot be empty, have digits and symbols");
@@ -119,8 +119,12 @@ public class ManageCustomerServiceImpl implements ManageCustomerService {
 			Customer registeredCustomer = customerRepository.findAccountByUsername(newUsernameClientEdit);
 			if(Objects.nonNull(registeredCustomer))
 				errorMessages.add("username exists");
-			else
-				customer.setUsername(newUsernameClientEdit);
+			else {
+				if(!StringUtils.isAlphanumeric(newUsernameClientEdit))
+					errorMessages.add("username cannot contain a special characters or a space or empty");
+				else
+					customer.setUsername(newUsernameClientEdit);
+			}
 		}
 		
 		/*Check if exist*/

@@ -203,6 +203,7 @@
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                                     <input type="submit" value="Save Changes" class="btn btn-primary"/>
                                 </div>
+                                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
                                 </form>
 
                             </div>
@@ -539,6 +540,7 @@
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                                 <input type="submit" value="Save Changes" class="btn btn-primary" />
                             </div>
+                            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
                         </form>
 
                     </div>
@@ -667,6 +669,7 @@
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                                 <input type="submit" class="btn btn-primary" id="btnSaveNewEmployee" value="Add Employee">
                             </div>
+                            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
                         </form>
 
                     </div>
@@ -999,7 +1002,8 @@
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                                 <input type="submit" value="Save Changes" class="btn btn-primary" />
                             </div>
-                        </form>
+                        	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+                     	</form>
 
                     </div>
                 </div>
@@ -1127,6 +1131,7 @@
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                                 <input type="submit" class="btn btn-primary" id="btnSaveNewAdmin" value="Add Admin">
                             </div>
+                            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
                         </form>
 
                     </div>

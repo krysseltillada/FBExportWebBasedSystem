@@ -1,10 +1,12 @@
+<%@ include file = "../../lib/tags/tag-libraries.jsp" %>
+
 <header class="page-header pb-3">
     <div class="container-fluid">
 
         <div class = "row">
         <div class = "col-lg">
             <span class="h3 no-margin-bottom mr-2">Inventory</span>
-            <span class = "small mr-2"> <a href = "javascript:void(0)"> Add new Product <i class="fa fa-plus-square ml-1" aria-hidden="true"></i> </a> </span>
+            <span class = "small mr-2"> <a href = "<c:url value = '/admin/add-product' />"> Add new Product <i class="fa fa-plus-square ml-1" aria-hidden="true"></i> </a> </span>
             <span class = "small mr-2"> <a href = "javascript:void(0)" id = "deleteProduct" class = "text-muted" style = "cursor: not-allowed;"> Delete Product <i class="fa fa-trash ml-1" aria-hidden="true"></i> </a> </span>
             <span class = "small float-right"> <a data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample"> Filter product <i class="fa fa-filter ml-1" aria-hidden="true"></i> </a> </span>
         </div>
@@ -121,36 +123,7 @@
                             <td> Posted </td>
 
                         </tr>
-                        <tr>
-
-                            <td></td>
-                            <td> <i class="fa fa-chevron-circle-down fa-lg" aria-hidden="true" style="cursor: pointer;"></i> </td>
-                            <td> lapu lapu </td>
-                            <td> lapu lapu </td>
-                            <td> lapu lapu </td>
-                            <td>Edinburgh</td>
-                            <td>Edinburgh</td>
-                            <td>61</td>
-                            <td>2011/04/25</td>
-                            <td>2011/04/25</td>
-                            <td> Posted </td>
-
-                        </tr>
-                        <tr>
-
-                            <td></td>
-                            <td> <i class="fa fa-chevron-circle-down fa-lg" aria-hidden="true" style="cursor: pointer;"></i> </td>
-                            <td> lapu lapu </td>
-                            <td> lapu lapu </td>
-                            <td> lapu lapu </td>
-                            <td>Edinburgh</td>
-                            <td>Edinburgh</td>
-                            <td>61</td>
-                            <td>2011/04/25</td>
-                            <td>2011/04/25</td>
-                            <td> Posted </td>
-
-                        </tr>
+                       
 
                     </tbody>
                 </table>

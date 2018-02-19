@@ -1,15 +1,24 @@
 package com.fb.exportorder;
 
+
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
+import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.access.AccessDeniedHandler;
 
 import com.fb.exportorder.module.customer.handlers.LoginFailureHandler;
 import com.fb.exportorder.module.customer.handlers.LoginSuccessHandler;
@@ -22,25 +31,27 @@ public class MultiHttpSecurityConfig {
     @Order(2)
     public static class CustomerSecurityConfiguration extends WebSecurityConfigurerAdapter {
     	
-    	private static final String[] CSRF_IGNORE_URLS = {"/register", 
-    													  "/sign-up", 
-    													  "/edit-account", 
-    													  "/add-address",
-    													  "/edit-address",
-    													  "/delete-address",
-    													  "/set-default-shipping-address",
-    													  "/see-more-activities",
-    													  "/delete-all-activity"};
+//    	private static final String[] CSRF_IGNORE_URLS = {"/register", 
+//    													  "/sign-up", 
+//    													  "/edit-account", 
+//    													  "/add-address",
+//    													  "/edit-address",
+//    													  "/delete-address",
+//    													  "/set-default-shipping-address",
+//    													  "/see-more-activities",
+//    													  "/delete-all-activity"};
     	
     	@Autowired
     	@Qualifier("customerUserDetailsService")
     	UserDetailsService userDetailService;
     	
     	@Autowired
-    	LoginSuccessHandler loginSuccessHandler;
+    	@Qualifier("customerLoginSuccessHandler")
+    	com.fb.exportorder.module.customer.handlers.LoginSuccessHandler loginSuccessHandler;
     	
     	@Autowired
-    	LoginFailureHandler loginFailureHandler;
+    	@Qualifier("customerLoginFailureHandler")
+    	com.fb.exportorder.module.customer.handlers.LoginFailureHandler loginFailureHandler;
     	
     	@Autowired
     	BCryptPasswordEncoder passwordEncoder;
@@ -67,7 +78,6 @@ public class MultiHttpSecurityConfig {
         		.and()
         		.formLogin()
         		.loginPage("/login")
-        		.defaultSuccessUrl("/")
         		.successHandler(loginSuccessHandler)
         		.failureHandler(loginFailureHandler)
         		.and()
@@ -75,7 +85,11 @@ public class MultiHttpSecurityConfig {
         		.logoutUrl("/sign-out")
         		.logoutSuccessUrl("/")
         		.and()
-        		.csrf().ignoringAntMatchers(CSRF_IGNORE_URLS);
+        		.exceptionHandling()
+        		.accessDeniedPage("/error");
+//        		.and()
+//        		.csrf().ignoringAntMatchers(CSRF_IGNORE_URLS);
+//        	
         	
         }
     }
@@ -84,16 +98,12 @@ public class MultiHttpSecurityConfig {
     @Order(1)
     public static class AdminSecurityConfiguration extends WebSecurityConfigurerAdapter {
     	
+    	//AJAX needs to ignore
     	private static final String[] CSRF_IGNORE_URLS = {
     			  "/admin/show-customer-activity", 
-				  "/admin/enabled-customer", 
-				  "/admin/edit-customer", 
+				  "/admin/enabled-customer",
 				  "/admin/enabled-employee",
-				  "/admin/add-new-employee",
-				  "/admin/edit-employee",
-				  "/admin/enabled-admin",
-				  "/admin/add-new-admin",
-				  "/admin/edit-admin"};
+				  "/admin/enabled-admin"};
     	
     	@Autowired
     	@Qualifier("adminEmployeeUserDetailsService")
@@ -101,6 +111,10 @@ public class MultiHttpSecurityConfig {
     	
     	@Autowired
     	BCryptPasswordEncoder passwordEncoder;
+    	
+    	@Autowired
+    	@Qualifier("adminLoginSuccessHandler")
+    	com.fb.exportorder.module.admin.handlers.LoginSuccessHandler loginSuccessHandler;
 
     	@Override
 	   	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
@@ -112,15 +126,24 @@ public class MultiHttpSecurityConfig {
         	
         	http.antMatcher("/admin/**")
         		.authorizeRequests()
-        		.antMatchers("/admin/dashboard").hasAnyAuthority("ADMIN", "EMPLOYEE")
+        		.antMatchers("/admin/dashboard",
+        					 "/admin/inventory",
+        					 "/admin/add-product",
+        					 "/admin/add",
+        					 "/admin/manage-accounts").hasAnyAuthority("ADMIN", "EMPLOYEE")
         		.and()
 	    		.formLogin()
 	    		.loginPage("/admin/login")
-	    		.defaultSuccessUrl("/admin/dashboard")
+	    		.successHandler(loginSuccessHandler)
+	    		.and()
+	    		.logout()
+	    		.logoutUrl("/admin/sign-out")
+	    		.logoutSuccessUrl("/admin/login")
 	    		.and()
 	    		.exceptionHandling().accessDeniedPage("/error")
 	    		.and()
-        		.csrf().ignoringAntMatchers(CSRF_IGNORE_URLS);;
+        		.csrf().ignoringAntMatchers(CSRF_IGNORE_URLS);
+
         }
     }
 }

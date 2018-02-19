@@ -18,7 +18,7 @@ import org.springframework.stereotype.Component;
 import com.fb.exportorder.models.customer.Customer;
 import com.fb.exportorder.module.customer.repository.CustomerRepository;
 
-@Component
+@Component("customerLoginFailureHandler")
 public class LoginFailureHandler implements AuthenticationFailureHandler {
 
 	@Autowired

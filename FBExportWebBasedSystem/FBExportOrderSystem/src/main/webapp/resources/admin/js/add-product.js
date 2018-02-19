@@ -56,22 +56,40 @@ $(document).ready(function () {
 		minDate : "today"
 	});
 
-	$("#file-1").fileinput({ 
-        theme : "fa",
-        uploadUrl: '#', 
-        allowedFileExtensions: ['jpg', 'png'],
-        overwriteInitial: false,
-        maxFileSize: 10024,
-        maxFileCount: 3,
-        showUpload: false,
-        showClose : false,
-        showRemove : true,
-        browseOnZoneClick : true,
-        dropZoneTitle : "Drag and drop images here maxinum of 3",
-        dropZoneClickTitle : "<br /> or click to browse images",
-        previewSettings : {
-          image: {width: "250px", height: "250px"}
-        }
+	var multiFileUploader = new qq.FineUploader({
+			element: document.getElementById("file-1"),
+			request: {
+                endpoint: '/server/uploads'
+            }
+		});
+		
+	multiFileUploader.setItemLimit(3);
+	multiFileUploader.setForm("qq-form");
 
-    });
+
+	// $("#file-1").fileinput({ 
+    //     theme : "fa",
+    //     uploadUrl: '#', 
+    //     allowedFileExtensions: ['jpg', 'png'],
+    //     overwriteInitial: false,
+    //     maxFileSize: 10024,
+    //     maxFileCount: 3,
+    //     showUpload: false,
+    //     showClose : false,
+    //     showRemove : true,
+	// 	browseOnZoneClick : true,
+	// 	dropZoneEnabled : false,
+    //     dropZoneTitle : "Drag and drop images here maxinum of 3",
+    //     dropZoneClickTitle : "<br /> or click to browse images",
+    //     previewSettings : {
+    //       image: {width: "250px", height: "250px"}
+    //     }
+
+	// });
+
+	// $("#file-1").on("change", function (event) {
+	// 	console.log(event.target.files);
+	// });
+	
+	
 });
