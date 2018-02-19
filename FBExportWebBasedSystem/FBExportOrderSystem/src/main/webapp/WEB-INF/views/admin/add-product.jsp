@@ -2,14 +2,17 @@
 
 <header class="page-header">
     <div class="container-fluid">
-        <h2 class="no-margin-bottom">Inventory > Add new product</h2>
+    	<h2 class="no-margin-bottom">
+    		<span> Inventory > Add new product </span>
+    		<span id = "errorMessage" class="text-red small float-right errorMessage" style = "display : none;"></span>
+    	</h2>
     </div>
 </header>
 
     <section class = "m-0 p-0">
     <div class = "container-fluid p-0">
     
-    	<form action = "<c:url value = '/admin/add-product/add' />" method = "POST" enctype = "multipart/form-data" id = "qq-form">
+    	<form action = "<c:url value = '/admin/add-product/add' />" method = "POST" enctype = "multipart/form-data">
 	        <div class = "card mb-0">
 	            <div class = "card-body p-5">
 	                <div class = "row">
@@ -107,7 +110,7 @@
 	                <div class = "row mt-2">
 	                <div class = "col">
 	                    <div class="form-group">
-	                        <label class = "form-control-label"> Preview images </label>
+	                        <label class = "form-control-label"> Preview images <span id = "upload-message" style = "display: none;"></span> </label>
 	                        <div class="file-loading">
 	                            <div id="file-1"> </div>
 	                        </div>
@@ -125,7 +128,7 @@
 	                    <label for="checkboxCustom1">Post this product?</label>
 	
 	                    <a class="btn btn-secondary float-right ml-1" href = "<c:url value = '/admin/inventory' />">Cancel</a>
-	                    <input type="submit" class="btn btn-primary float-right pl-4 pr-4" value = "Add" /> 
+	                    <input type="submit" class="btn btn-primary float-right pl-4 pr-4" id = "btn-add-product" value = "Add" /> 
 	                </div>
 	                </div>
 	

@@ -103,7 +103,9 @@ public class MultiHttpSecurityConfig {
     			  "/admin/show-customer-activity", 
 				  "/admin/enabled-customer",
 				  "/admin/enabled-employee",
-				  "/admin/enabled-admin"};
+				  "/admin/enabled-admin",
+				  "/admin/add-product/add-preview-images",
+				  "/admin/add-product/delete-preview-images/**"};
     	
     	@Autowired
     	@Qualifier("adminEmployeeUserDetailsService")
@@ -129,7 +131,8 @@ public class MultiHttpSecurityConfig {
         		.antMatchers("/admin/dashboard",
         					 "/admin/inventory",
         					 "/admin/add-product",
-        					 "/admin/add",
+        					 "/admin/add-product/add",
+        					 "/admin/add-product/add-preview-images",
         					 "/admin/manage-accounts").hasAnyAuthority("ADMIN", "EMPLOYEE")
         		.and()
 	    		.formLogin()
@@ -142,7 +145,7 @@ public class MultiHttpSecurityConfig {
 	    		.and()
 	    		.exceptionHandling().accessDeniedPage("/error")
 	    		.and()
-        		.csrf().ignoringAntMatchers(CSRF_IGNORE_URLS);
+	    		.csrf().ignoringAntMatchers(CSRF_IGNORE_URLS);
 
         }
     }
