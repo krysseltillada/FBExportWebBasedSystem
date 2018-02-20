@@ -270,6 +270,85 @@
     </iframe> 
 </script>
 
+<script id = "collapsingInventoryProductTemplate" type = "text/template"> 
+<div class = "row slider pt-2 pb-2 pl-1 pr-1">
+	    <div class = "col-lg-4">
+
+
+        <div class="tab-content">
+    	    <div class="tab-pane active" id="img{{=productImageId1}}" role="tabpanel">
+        	    <img src = "/FBExportSystem{{=productImageLink1}}" width = "290" height = "200" />
+        	</div>
+        	<div class="tab-pane" id="img{{=productImageId2}}" role="tabpanel">
+           		<img src = "/FBExportSystem{{=productImageLink2}}" width = "290" height = "200" />
+        	</div>
+        	<div class="tab-pane" id="img{{=productImageId3}}" role="tabpanel">
+                <img src = "/FBExportSystem{{=productImageLink3}}" width = "290" height = "200" />
+        	</div>
+        	<div class="tab-pane" id="img{{=productImageId4}}" role="tabpanel">
+            	<img src = "/FBExportSystem{{=productImageLink4}}" width = "290" height = "200" />
+        	</div>
+        </div>
+
+        <ul class="nav mt-1" role="tablist">
+        	<li class="nav-item">
+            	<a class="active pr-1" data-toggle="tab" href="#img{{=productImageId1}}" role="tab">
+            		<img src = "/FBExportSystem{{=productImageLink1}}" width = "70" height = "70" />
+            	</a>
+        	</li>
+            <li class="nav-item">
+            	<a class="pr-1" data-toggle="tab" href="#img{{=productImageId2}}" role="tab">
+                	<img src =  "/FBExportSystem{{=productImageLink2}}" width = "70" height = "70" />
+            </a>
+        	</li>
+            <li class="nav-item">
+            	<a class="pr-1" data-toggle="tab" href="#img{{=productImageId3}}" role="tab">
+                	<img src = "/FBExportSystem{{=productImageLink3}}" width = "70" height = "70" />
+            	</a>
+        	</li>
+            <li class="nav-item">
+            	<a data-toggle="tab" href="#img{{=productImageId4}}" role="tab">
+                	<img src = "/FBExportSystem{{=productImageLink4}}" width = "70" height = "70" />
+            	</a>
+        	</li>
+
+        </ul>
+    </div>
+
+    <div class = "col-lg-8">
+        <h5>
+        	Description: {{=name}}
+        	<span class = "float-right"> Origin: {{=origin}} </span>
+        </h5>
+        <hr class = "mt-0 mb-2" />
+
+        <p class = "text-justify">
+        - {{=productDescription}}
+        </p>
+
+        <hr class = "mt-0 mb-2"/>
+
+        <ul class = "list-unstyled">
+        	<li class = "mb-1"> <strong> Supplier: </strong> {{=supplier}} </li>
+        	<li class = "mb-1"> <strong> Supplier Contact number: </strong> {{=supplierContactNumber}} </li>
+        	<li class = "mb-1"> <strong> Supplier Address: </strong> {{=supplierAddress}} </li>
+        	<li class = "mb-1"> <strong> Date of delivery: </strong> {{=dateOfDelivery}}  </li>
+        </ul>
+
+        <br />
+		
+		{{ if (status == "POSTED") { }}
+        	<button type="button" class="btn bg-dark text-white float-right mr-1 btn-post-unpost">Unpost <i class="fa fa-clipboard ml-1" aria-hidden="true"></i>  </button>
+		{{ } else if (status == "UNPOSTED") { }}
+			<button type="button" class="btn bg-green float-right mr-1 btn-post-unpost">Post <i class="fa fa-clipboard ml-1" aria-hidden="true"></i>  </button>	
+		{{ } }}
+
+        <button type="button" class="btn bg-blue float-right mr-1">Edit <i class="fa fa-pencil" aria-hidden="true"></i> </button>
+        <button type="button" class="btn bg-red float-right mr-1 btn-delete">Delete <i class="fa fa-trash" aria-hidden="true"></i> </button>
+    </div>
+</div>
+</script>
+
 <script id = "collapsingInventoryProductTemplatePosted" type = "text/template"> 
     <div class = "row slider pt-2 pb-2 pl-1 pr-1">
     <div class = "col-lg-4">
@@ -350,38 +429,38 @@
 
         <div class="tab-content">
         <div class="tab-pane active" id="img1" role="tabpanel">
-            <img src = "img/bg.jpg" width = "290" height = "200" />
+            <img src = "/FBExportSystem/resources/admin/img/bg.jpg" width = "290" height = "200" />
         </div>
         <div class="tab-pane" id="img2" role="tabpanel">
-            <img src = "img/project-1.jpg" width = "290" height = "200" />
+            <img src = "/FBExportSystem/resources/admin/img/project-1.jpg" width = "290" height = "200" />
         </div>
         <div class="tab-pane" id="img3" role="tabpanel">
-                <img src = "img/project-2.jpg" width = "290" height = "200" />
+                <img src = "/FBExportSystem/resources/admin/img/project-2.jpg" width = "290" height = "200" />
         </div>
         <div class="tab-pane" id="img4" role="tabpanel">
-            <img src = "img/project-3.jpg" width = "290" height = "200" />
+            <img src = "/FBExportSystem/resources/admin/img/project-3.jpg" width = "290" height = "200" />
         </div>
         </div>
 
         <ul class="nav mt-1" role="tablist">
         <li class="nav-item">
             <a class="active pr-1" data-toggle="tab" href="#img1" role="tab">
-            <img src = "img/bg.jpg" width = "70" height = "70" />
+            <img src = "/FBExportSystem/resources/admin/img/bg.jpg" width = "70" height = "70" />
             </a>
         </li>
             <li class="nav-item">
             <a class="pr-1" data-toggle="tab" href="#img2" role="tab">
-                <img src =  "img/project-1.jpg" width = "70" height = "70" />
+                <img src =  "/FBExportSystem/resources/admin/img/project-1.jpg" width = "70" height = "70" />
             </a>
         </li>
             <li class="nav-item">
             <a class="pr-1" data-toggle="tab" href="#img3" role="tab">
-                <img src = "img/project-2.jpg" width = "70" height = "70" />
+                <img src = "/FBExportSystem/resources/admin/img/project-2.jpg" width = "70" height = "70" />
             </a>
         </li>
             <li class="nav-item">
             <a data-toggle="tab" href="#img4" role="tab">
-                <img src = "img/project-3.jpg" width = "70" height = "70" />
+                <img src = "/FBExportSystem/resources/admin/img/project-3.jpg" width = "70" height = "70" />
             </a>
         </li>
 
@@ -636,4 +715,35 @@
             </div>
         </dialog>
     </div>
+</script>
+
+<script id = "filterLoaderTemplate" type = "text/template">
+	<tr class = "odd filter-loader">
+		<td colspan = "11" valign="top" colspan="11" class="text-center">
+			<span> Filtering </span> <img class = "ml-2" src = "/FBExportSystem/resources/admin/img/loader.gif" width = "50" height = "50" /> 
+	    </td>
+	</tr>
+</script>
+
+<script id = "rowProductTemplate" type = "text/template">
+	 <tr>
+	
+	                            <td></td>
+	                            <td> <i class="fa fa-chevron-circle-down fa-lg" aria-hidden="true" style="cursor: pointer;"></i> </td>
+	                            <td>{{=id}}</td>
+	                            <td>{{=name}}</td>
+	                            <td>{{=origin}}</td>
+	                            <td>{{=supplier}}</td>
+	                            <td>{{=price}}</td>
+	                            <td>{{=weight}}</td>
+	                            <td>{{=dateRegistered}}</td>
+	                            <td>{{=expiredDate}}</td>
+	                            <td>{{ if (status == 'POSTED') { }}
+										Posted 
+									{{ } else if (status == 'UNPOSTED') { }}
+										Unposted
+									{{ } }}
+								</td>
+	
+	  </tr>
 </script>

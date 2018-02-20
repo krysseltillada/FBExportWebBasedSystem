@@ -1,26 +1,18 @@
 package com.fb.exportorder.module.admin.controllers;
 
-import java.io.File;
 import java.io.IOException;
-import java.math.BigDecimal;
-import java.text.DateFormat;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-import java.util.Objects;
 
-import javax.money.format.MonetaryParseException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.swing.text.Utilities;
 
-import org.bouncycastle.crypto.digests.MD5Digest;
-import org.javamoney.moneta.Money;
-import org.json.JSONException;
+import org.apache.commons.lang3.StringUtils;
+import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -30,9 +22,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.MultipartRequest;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.fb.exportorder.models.Product;
+import com.fb.exportorder.models.enums.ProductStatus;
 import com.fb.exportorder.module.admin.service.InventoryService;
 import com.fb.exportorder.utilities.DeleteImage;
 import com.fb.exportorder.utilities.UploadImage;
@@ -45,7 +38,10 @@ public class InventoryController {
 	InventoryService inventoryService;
 	
 	@RequestMapping("/admin/inventory")
-	public String inventory () {
+	public String inventory (Model model) {
+		
+		model.addAttribute(inventoryService.getAllProducts());
+		
 		return "inventory";
 	}
 	
@@ -64,9 +60,7 @@ public class InventoryController {
             @RequestParam(value = "qqtotalfilesize", required = false, defaultValue = "-1") long totalFileSize,
 																 HttpServletResponse response) throws IOException {
 		
-		  String name = previewImage.getOriginalFilename().substring(0, previewImage.getOriginalFilename().indexOf("."));
-		
-		  UploadImage.uploadProductImage(name, previewImage);
+		  String uploadedFilename = UploadImage.uploadProductImage(uuid, previewImage);
 
 		  System.out.println("uploading: " + previewImage.getOriginalFilename());
 		  System.out.println("uuid " + uuid);
@@ -74,6 +68,7 @@ public class InventoryController {
 		  JSONObject json1 = new JSONObject(); 
           
 		  json1.put("success", true);
+		  json1.put("productImageLink", uploadedFilename);
           response.setCharacterEncoding("UTF-8");
           response.setContentType("text/plain");
           response.getWriter().print(json1);
@@ -133,11 +128,7 @@ public class InventoryController {
 		
 			System.out.println("uploadDelete() called " + filename);
 			
-			String name = filename.substring(0, filename.indexOf("."));
-			
-			System.out.println(name);
-			
-			DeleteImage.deleteProductImage(name);
+			DeleteImage.deleteProductImage(qquuid);
 			
 			response.setStatus(200);
 			response.flushBuffer();
@@ -157,12 +148,118 @@ public class InventoryController {
 							   @RequestParam("supplier-contact-number") String 	supplierContactNumber,
 							   @RequestParam("supplier-address") String supplierAddress,
 							   @RequestParam(name = "post-this-product", required = false) String postThisProduct,
-							   Model model) {
+							   @RequestParam("profileImageLinks[]") List<String> profileImageLinks,
+							   RedirectAttributes attributes) {
 		
-		  inventoryService.addProduct(productImage, productName, origin, expiredDate, deliveryDate, price, weight, description, supplier, supplierContactNumber, supplierAddress, postThisProduct);
+		  for (String profileImageLink : profileImageLinks)
+			  System.out.println(profileImageLink);
+		
+		  inventoryService.addProduct(productImage, productName, origin, expiredDate, deliveryDate, price, weight, description, supplier, supplierContactNumber, supplierAddress, postThisProduct, profileImageLinks);
 		  
-		  return "add-product";
+		  attributes.addAttribute("successMessage", "Product has been added");
+		  
+		  return "redirect:/admin/inventory";
           
+	}
+	
+	@RequestMapping(value = "/admin/inventory/get-product-details", method = RequestMethod.POST)
+	@ResponseBody
+	public Product getProductDetails(@RequestParam String id) {
+		return inventoryService.getProductById(Long.parseLong(id));
+	}
+	
+	@RequestMapping(value = "/admin/inventory/delete-product", method = RequestMethod.POST)
+	@ResponseBody
+	public String deleteProduct(@RequestParam String id) {
+		inventoryService.deleteProduct(Long.parseLong(id));
+		return "";
+	}
+	// annotation 
+	@RequestMapping(value = "/admin/inventory/delete-selected-product", method = RequestMethod.POST)
+	@ResponseBody
+	public String deleteSelectedProduct(@RequestParam String ids) {
+		
+		try {
+			
+			JSONObject rawIds = (JSONObject)new JSONParser().parse(ids);
+			
+			JSONArray idsArray = (JSONArray)rawIds.get("deletedIds");
+			
+			List<Long> idsList = new ArrayList<Long>();
+			
+			for (int i = 0; i != idsArray.size(); ++i)
+				idsList.add(Long.parseLong((String)idsArray.get(i)));
+			
+			inventoryService.deleteSelectedProduct(idsList);
+			
+			
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		return "";
+	}
+
+	@RequestMapping(value = "/admin/inventory/post-product", method = RequestMethod.POST)
+	@ResponseBody
+	public String postProduct(@RequestParam String id) {
+		inventoryService.postProduct(Long.parseLong(id));
+		return "";
+	}
+	
+	@RequestMapping(value = "/admin/inventory/unpost-product", method = RequestMethod.POST)
+	@ResponseBody
+	public String unpostProduct(@RequestParam String id) {
+		inventoryService.unpostProduct(Long.parseLong(id));
+		return "";
+	}
+	
+	@RequestMapping(value = "/admin/inventory/filter-products", method = RequestMethod.GET)
+	@ResponseBody
+	public List<Product> filterProducts(@RequestParam String filterData) throws java.text.ParseException, ParseException {
+		
+		JSONObject filterDataJSON = (JSONObject)new JSONParser().parse(filterData);
+		
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+		
+		String strStatus = (String)filterDataJSON.get("status");
+		
+		ProductStatus status = (strStatus.equals("Posted")) ? ProductStatus.POSTED :
+							   (strStatus.equals("Unposted") ? ProductStatus.UNPOSTED : ProductStatus.EXPIRED);
+		
+		double minPrice = StringUtils.isBlank((String)filterDataJSON.get("minPrice")) ? 0 : 
+																						Double.parseDouble((String)filterDataJSON.get("minPrice"));
+		
+		double maxPrice = StringUtils.isBlank((String)filterDataJSON.get("maxPrice")) ? 0 : 
+																					    Double.parseDouble((String)filterDataJSON.get("maxPrice"));
+		
+		double minWeight = StringUtils.isBlank((String)filterDataJSON.get("minWeight")) ? 0 : 
+		    																			Double.parseDouble((String)filterDataJSON.get("minWeight"));
+		
+		double maxWeight = StringUtils.isBlank((String)filterDataJSON.get("maxWeight")) ? 0 : 
+																						Double.parseDouble((String)filterDataJSON.get("maxWeight"));
+		//TODO make this filter function work
+		
+		
+		List<Product> products = inventoryService.filterProducts(dateFormat.parse((String)filterDataJSON.get("minDate")),
+																 dateFormat.parse((String)filterDataJSON.get("maxDate")),
+																 (String)filterDataJSON.get("dateFilterType"),
+																 status,
+																 minPrice,
+																 maxPrice,
+																 minWeight,
+																 maxWeight
+																 );
+																 
+	
+		
+		for (Product product : products) 
+			System.out.println(product);
+		
+		return null;
+		
 	}
 
 }

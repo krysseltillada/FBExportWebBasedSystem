@@ -1,5 +1,5 @@
 $(document).ready(function (){
-			 
+	
 	$( "#minDatePicker" ).flatpickr({
 		minDate : "today",
 		onChange : function (selectedDates, date) {
@@ -14,8 +14,43 @@ $(document).ready(function (){
 	$( "#maxDatePicker" ).flatpickr({
 		minDate : "today"
 	});
+
+	$("#minPrice").keypress(function (event) {
+		var keyCode = event.keyCode;
+
+        if ( keyCode < 48 || keyCode > 57 )
+            return false;
+	});
+
+	$("#maxPrice").keypress(function (event) {
+		var keyCode = event.keyCode;
+
+        if ( keyCode < 48 || keyCode > 57 )
+            return false;
+	});
+
+	$("#minWeight").keypress(function (event) {
+		var keyCode = event.keyCode;
+
+		if ( keyCode < 48 || keyCode > 57 )
+			return false;
+	});
+
+	$("#maxWeight").keypress(function (event) {
+		var keyCode = event.keyCode;
+
+        if ( keyCode < 48 || keyCode > 57 )
+            return false;
+	});
+
+	$.post("/FBExportSystem/admin/inventory/get-product-details", {
+		id : "1"
+	}, function (response) {
+		console.log(response);
+	}, "json");
 	
 	var table = $('#inventoryTable').DataTable( { 
+		"processing" : true,
 		"columns": [
 		{
 				'searchable': false,
@@ -37,12 +72,88 @@ $(document).ready(function (){
 		null
 		],
 		"order" : []
-	}
+		}
 	);
+
+	$(".btn-filter").click(function () {
+		console.log("filter");
+
+		var productStatus = $("input[name='status']:checked").val() != undefined ? $("input[name='status']:checked").val() : "";  
+
+		var filter = {
+			minDate : $("#minDatePicker").val(),
+			maxDate : $("#maxDatePicker").val(),
+			dateFilterType : $("#dateFilterType").val(),
+			status : productStatus,
+			minPrice : $("#minPrice").val(),
+			maxPrice : $("#maxPrice").val(),
+			minWeight : $("#minWeight").val(),
+			maxWeight : $("#maxWeight").val()
+		};
+
+		var filterLoaderTemplate = $("#filterLoaderTemplate").html();
+
+		table.clear().draw();
+
+		$("#inventoryTable tbody").html(filterLoaderTemplate);
+
+		setTimeout(function () {
+
+			console.log(filter);
+
+			$.get("/FBExportSystem/admin/inventory/filter-products", {
+				filterData : JSON.stringify(filter) 
+			}, function (response) {
+
+				var rowProductRawTemplate = $("#rowProductTemplate").html();
+				var $inventoryTableBody = $("#inventoryTable tbody");
+				console.log(response);
+
+				$(".filter-loader").remove();
+
+				for (var i = 0; i != response.length; ++i) {
+					
+					var product = response[i];
+
+					table.row.add( [
+						'<td></td>',
+						'<td> <i class="fa fa-chevron-circle-down fa-lg" aria-hidden="true" style="cursor: pointer;"></i> </td>',
+						product.productId,
+						product.name,
+						product.origin,
+						product.supplier,
+						product.price,
+						product.weight,
+						product.dateRegistered,
+						product.expiredDate,
+						product.status
+					] ).draw();
+
+					$inventoryTableBody.find("tr:last td:eq(0)>input[type='checkbox']").click(function () {
+						if ($("#inventoryTable").find("tr:not(:first) input.checkbox-template:checked").length > 0) {
+
+							$("a#delete-selected-product").removeClass("text-muted").addClass("text-red").css("cursor", "pointer")
+																										.css("pointer-events", "auto");
+						} else {
+
+							$("a#delete-selected-product").removeClass("red-text").addClass("text-muted").css("cursor", "not-allowed")
+																										.css("pointer-events", "none");
+						}
+					});
+
+				}
+
+
+			}, "json");
+
+		}, 1000);
+
+
+	});
+
 
 	$('.fa-chevron-circle-down').click(function () { 
 		var parentRow = $(this).closest('tr');
-
 
 		var row = table.row(parentRow);
 
@@ -52,14 +163,233 @@ $(document).ready(function (){
 			row.child.hide();
 			});
 		} else {
-			var rowProductRowCollapse = $("#collapsingInventoryProductTemplateUnposted").html();
-			row.child(rowProductRowCollapse, 'no-padding').show();
-			$(this).removeClass("fa-chevron-circle-down").addClass("fa-chevron-circle-up");
-			$('div.slider', row.child()).slideDown(function () {
+			var rowProductRowCollapseRawTemplate = $("#collapsingInventoryProductTemplate").html();
+			
+			$.post("/FBExportSystem/admin/inventory/get-product-details", {
+				id : row.data()[2]
+			}, function (response) {
 
-			$(this).parent().removeAttr('class').parent().removeAttr('class');
-			});
-			$('div.slider').css("display", "flex");
+				var rowProductRowCollapseTemplate  = _.template(rowProductRowCollapseRawTemplate);
+
+				var productImageLink = response.productImageLink;
+				var previewImageLinks = response.previewImageLinks;
+
+				var productImageIds = [
+					productImageLink.substring(productImageLink.lastIndexOf("/") + 1, productImageLink.lastIndexOf(".")),
+					previewImageLinks[0].substring(previewImageLinks[0].lastIndexOf("/") + 1, previewImageLinks[0].lastIndexOf(".")),
+					previewImageLinks[1].substring(previewImageLinks[1].lastIndexOf("/") + 1, previewImageLinks[1].lastIndexOf(".")),
+					previewImageLinks[2].substring(previewImageLinks[2].lastIndexOf("/") + 1, previewImageLinks[2].lastIndexOf("."))
+				];
+
+				console.log(productImageIds);
+
+				var rowProductRowCollapse = rowProductRowCollapseTemplate({
+					productImageId1 : productImageIds[0],
+					productImageId2 : productImageIds[1],
+					productImageId3 : productImageIds[2],
+					productImageId4 : productImageIds[3],
+
+					productImageLink1 : productImageLink,
+					productImageLink2 : previewImageLinks[0],
+					productImageLink3 : previewImageLinks[1],
+					productImageLink4 : previewImageLinks[2],
+
+					name : response.name,
+					origin : response.origin,
+					productDescription : response.description,
+					supplier : response.supplier,
+					supplierContactNumber  : response.supplierContactNumber,
+					supplierAddress : response.supplierAddress,
+					dateOfDelivery : response.dateOfDelivery,
+					status : response.status
+				});
+
+				row.child(rowProductRowCollapse, 'no-padding').show();
+
+				$(row.child()).find(".btn-delete").click(function () {
+					 
+					var $deleteButton = $(this);
+					var $deletedProductChildRow = $(this).closest("tr");
+					var $deletedProductRow = $deletedProductChildRow.prev();
+					var deletedProductId = $deletedProductRow.find("td:eq(2)").html();
+
+					alertify.okBtn("Delete")
+							.cancelBtn("Cancel")
+							.confirm("Delete this product?", function () {
+								
+								$deleteButton.attr("disabled", "");
+								$deleteButton.css("cursor", "not-allowed");
+
+								iziToast.error({
+									icon : "",
+									message : "deleting product..",
+									timeout : false,
+									close : false,
+									onOpening : function (instance, toast) {
+
+										$.post("/FBExportSystem/admin/inventory/delete-product", {
+											id : deletedProductId
+										}, function () {
+
+											console.log("delete");
+											$deletedProductRow.fadeOut("slow", function () {
+												$(this).remove();
+												
+											});
+
+											$deletedProductChildRow.fadeOut("slow", function () {
+												$(this).remove();
+											});
+
+											table.rows().invalidate();
+
+											$(toast).fadeOut("slow", function () {
+												$(this).remove();
+											});
+
+											
+										});
+
+									}
+								});
+
+							});
+
+
+					$(".alertify").css("z-index", "10");
+
+
+				});
+
+
+
+				$(row.child()).find(".btn-post-unpost").click(function () {
+					// window.alert("delete ?" + $(this).closest("tr").prev().find("td:eq(2)").html());
+					 //class="btn bg-dark text-white float-right mr-1"
+					var $buttonPost = $(this);
+					var $postProductChildRow = $(this).closest("tr");
+					var $postProductRow = $postProductChildRow.prev();
+
+					var productId = $postProductRow.find("td:eq(2)").html();
+
+					if ($buttonPost.hasClass("bg-green")) {
+						
+						alertify.okBtn("Post")
+								.cancelBtn("Cancel")
+								.confirm("Post this product?", function () {
+
+									$buttonPost.attr("disabled", "");
+									$buttonPost.css("cursor", "not-allowed");
+
+									iziToast.show({
+										message: 'posting product...',
+										icon : "",
+										timeout : false,
+										close : false,
+										onOpening : function (instance, toast) {
+
+											setTimeout(function () {
+												$.post("/FBExportSystem/admin/inventory/post-product", {
+													id : productId
+												}, function () {
+
+													$buttonPost.removeAttr("class");
+													$buttonPost.html("");
+													$buttonPost.append("Unpost <i class='fa fa-clipboard ml-1' aria-hidden='true'></i>");
+													$buttonPost.addClass("btn bg-dark text-white float-right mr-1");
+
+													$postProductRow.find("td:eq(10)").html("Posted");
+
+													iziToast.success({
+														timeout : 2000,
+														progressBar : false,
+														message : "Product posted"
+													});
+
+													$buttonPost.removeAttr("disabled");
+													$buttonPost.css("cursor", "pointer");
+
+													$(toast).fadeOut("slow", function () {
+														$(this).remove();
+													});
+
+												});
+
+											}, 1000);
+
+										}
+									});
+								
+								});
+
+					} else if ($buttonPost.hasClass("bg-dark")) {
+
+						alertify.okBtn("Unpost")
+								.cancelBtn("Cancel")
+								.confirm("Unpost this product?", function () {
+
+									$buttonPost.attr("disabled", "");
+									$buttonPost.css("cursor", "not-allowed");
+
+									iziToast.show({
+										message: 'unposting product...',
+										icon : "",
+										timeout : false,
+										close : false,
+										onOpening : function (instance, toast) {
+
+											setTimeout(function () {
+
+												$.post("/FBExportSystem/admin/inventory/unpost-product", {
+													id : productId
+												}, function () {
+
+													$buttonPost.removeAttr("class");
+													$buttonPost.html("");
+													$buttonPost.append("Post <i class='fa fa-clipboard ml-1' aria-hidden='true'></i>");
+													$buttonPost.addClass("btn bg-green float-right mr-1");
+
+													$postProductRow.find("td:eq(10)").html("Unposted");
+
+													iziToast.success({
+														timeout : 2000,
+														progressBar : false,
+														message : "Product unposted"
+													});
+
+													$buttonPost.removeAttr("disabled");
+													$buttonPost.css("cursor", "pointer");
+
+													$(toast).fadeOut("slow", function () {
+														$(this).remove();
+													});
+
+												});	
+
+											}, 1000);
+
+										}
+									});
+
+								});
+
+					}
+
+					 $(".alertify").css("z-index", "10");
+
+					 
+
+				});
+				
+				$(this).removeClass("fa-chevron-circle-down").addClass("fa-chevron-circle-up");
+					$('div.slider', row.child()).slideDown(function () {
+					$(this).parent().removeAttr('class').parent().removeAttr('class');
+				});
+				
+				$('div.slider').css("display", "flex");		
+			}, "json");
+
+		
 		}
 
 	});
@@ -70,17 +400,156 @@ $(document).ready(function (){
 							.prop("checked", $(this).prop("checked"));
 
 
+
+		if ($(this).is(":checked")) {
+
+			$("a#delete-selected-product").removeClass("text-muted").addClass("text-red").css("cursor", "pointer")
+																						 .css("pointer-events", "auto");		
+
+		} else {
+			$("a#delete-selected-product").removeClass("red-text").addClass("text-muted").css("cursor", "not-allowed")
+																					 	 .css("pointer-events", "none");
+		}
+
 	});
 
 	$(".checkbox-delete").change(function () { 
 
-	if ($("#inventoryTable").find("tr:not(:first) input.checkbox-template:checked").length > 0) {
+		console.log("tae2");
 
-		$("a#deleteProduct").removeClass("text-muted").addClass("text-red").css("cursor", "pointer");
-	} else {
+		if ($("#inventoryTable").find("tr:not(:first) input.checkbox-template:checked").length > 0) {
 
-		$("a#deleteProduct").removeClass("red-text").addClass("text-muted").css("cursor", "not-allowed");
-	}
+			$("a#delete-selected-product").removeClass("text-muted").addClass("text-red").css("cursor", "pointer")
+																						.css("pointer-events", "auto");
+		} else {
+
+			$("a#delete-selected-product").removeClass("red-text").addClass("text-muted").css("cursor", "not-allowed")
+																						.css("pointer-events", "none");
+		}
+	});
+
+	$("#delete-selected-product").click(function () {
+
+		var $inventoryTable = $("#inventoryTable");
+		var ifEmpty = $inventoryTable.find("tbody tr:eq(0)> td").hasClass("dataTables_empty");
+
+		console.log(ifEmpty);
+
+		alertify.okBtn("Delete")
+				.cancelBtn("Cancel")
+				.confirm("Delete all selected product?", function () {
+
+					if (!ifEmpty) {
+
+						iziToast.show({
+										message: 'deleting selected product...',
+										icon : "",
+										timeout : false,
+										close : false,
+										onOpening : function (instance, toast) {
+
+										
+											var deletedJSONId = {
+												deletedIds : []
+											};
+
+											$inventoryTable.find("tbody tr").each(function () {
+
+												var $deletedRow = $(this);
+
+							
+												if($(this).find("input[type='checkbox']").is(":checked")) {
+													console.log($(this).find("td:eq(2)").html());
+													
+
+													// var $childRow = $deletedRow.next();
+
+
+													// if (!$childRow.hasClass("odd") || !$childRow.hasClass("even")) {
+													// 	$childRow.fadeOut("slow");	
+													// }
+
+													// $deletedRow.fadeOut("slow");
+
+													deletedJSONId.deletedIds.push($(this).find("td:eq(2)").html());
+
+												}
+											});
+
+											console.log(JSON.stringify(deletedJSONId));
+
+											$.post("/FBExportSystem/admin/inventory/delete-selected-product", 
+												{
+													ids : JSON.stringify(deletedJSONId)
+												}, function () {
+
+													$inventoryTable.find("tbody tr").each(function () {
+
+														var $deletedRow = $(this);
+
+									
+														if($(this).find("input[type='checkbox']").is(":checked")) {
+															console.log($(this).find("td:eq(2)").html());
+
+															var $childRow = $deletedRow.next();
+
+															if (!$childRow.hasClass("odd") || !$childRow.hasClass("even")) {
+																$childRow.fadeOut("slow");	
+															}
+
+															$deletedRow.fadeOut("slow");
+
+														}
+
+													});
+
+													$(toast).fadeOut("slow", function () {
+															$(this).remove();
+													});
+
+													iziToast.success({
+															timeout : 2000,
+															progressBar : false,
+															message : "Selected product deleted"
+													});
+													
+												});
+
+											$("#checkbox-all").prop("checked", false);
+											
+											$("a#delete-selected-product").removeClass("red-text").addClass("text-muted").css("cursor", "not-allowed")
+																														.css("pointer-events", "none");
+
+										}
+								});
+
+					} else {
+						console.log("ada");
+						alertify.alert("Select a product first");
+
+						$("#checkbox-all").prop("checked", false);
+
+						$("a#delete-selected-product").removeClass("red-text").addClass("text-muted").css("cursor", "not-allowed")
+																									 .css("pointer-events", "none");
+
+						$(".alertify").css("z-index", "10");
+					}
+																														
+					
+
+						// $.post("/FBExportSystem/admin/inventory/delete-product", {
+						// 	id : $(this).find("td:eq(2)").html()
+						// }, function () {
+						// 	$deletedRow.hide();
+						// });
+					
+				
+
+
+		});
+
+		$(".alertify").css("z-index", "10");
+	
 	});
 	
 	

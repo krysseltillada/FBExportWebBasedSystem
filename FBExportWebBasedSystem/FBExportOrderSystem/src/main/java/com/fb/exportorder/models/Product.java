@@ -7,6 +7,7 @@ import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Temporal;
@@ -29,7 +30,7 @@ public class Product {
 	private String supplierContactNumber;
 	private String supplierAddress;
 	
-	private Money price;
+	private double price;
 	
 	private double weight;
 	
@@ -51,7 +52,7 @@ public class Product {
 	
 	private boolean isPosted;
 	
-	@ElementCollection
+	@ElementCollection(fetch = FetchType.EAGER)
 	private List<String> previewImageLinks;
 
 	public Long getProductId() {
@@ -94,11 +95,11 @@ public class Product {
 		this.supplierAddress = supplierAddress;
 	}
 
-	public Money getPrice() {
+	public double getPrice() {
 		return price;
 	}
 
-	public void setPrice(Money price) {
+	public void setPrice(double price) {
 		this.price = price;
 	}
 
@@ -180,6 +181,16 @@ public class Product {
 
 	public void setPosted(boolean isPosted) {
 		this.isPosted = isPosted;
+	}
+
+	@Override
+	public String toString() {
+		return "Product [productId=" + productId + ", name=" + name + ", origin=" + origin + ", supplier=" + supplier
+				+ ", supplierContactNumber=" + supplierContactNumber + ", supplierAddress=" + supplierAddress
+				+ ", price=" + price + ", weight=" + weight + ", dateRegistered=" + dateRegistered + ", dateOfDelivery="
+				+ dateOfDelivery + ", expiredDate=" + expiredDate + ", status=" + status + ", description="
+				+ description + ", productImageLink=" + productImageLink + ", isPosted=" + isPosted
+				+ ", previewImageLinks=" + previewImageLinks + "]";
 	}
 	
 	

@@ -1,10 +1,13 @@
 package com.fb.exportorder;
 
+import javax.persistence.EntityManagerFactory;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.ResourceBundleMessageSource;
 import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.jpa.JpaTransactionManager;
+import org.springframework.orm.jpa.vendor.HibernateJpaSessionFactoryBean;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
@@ -20,6 +23,13 @@ public class ApplicationConfiguration {
 		ResourceBundleMessageSource messageSource = new ResourceBundleMessageSource();
 		messageSource.setBasenames("messages");
 		return messageSource;
+	}
+	
+	@Bean
+	public HibernateJpaSessionFactoryBean sessionFactory(EntityManagerFactory emf) {
+	    HibernateJpaSessionFactoryBean fact = new HibernateJpaSessionFactoryBean();
+	    fact.setEntityManagerFactory(emf);
+	    return fact;
 	}
 	
 	@Bean

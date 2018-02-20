@@ -33,5 +33,30 @@ public class DeleteImage {
 		}
 						
 	}
+	
+	public static void deleteProductImageNonHash (String filename) {
+		
+		List <String> fileTypes = new ArrayList<String>() {{
+			add(".png");
+			add(".jpg");
+		}};
+		
+		File deletedFile = null;
+		
+		for (String fileType : fileTypes) {
+		
+			
+			deletedFile	= FileSystems.getDefault().getPath("src\\main\\webapp\\products\\" + filename + fileType).toFile();
+			
+			System.out.println(deletedFile.getAbsolutePath());
+			
+			if (deletedFile.exists()) {
+				deletedFile.delete();
+				break;
+			}
+		
+		}
+						
+	}
 
 }

@@ -76,13 +76,14 @@ $(document).ready(function () {
 				method : "DELETE"
     		},
 			autoUpload : false,
-			debug : true,
+			debug : false,
 			callbacks : {
 				onComplete : function (id, name, responseJSON, maybeXhr) {
-	
+					console.log(responseJSON);
+					$("#" + id).val(responseJSON.productImageLink);
 				},
 				onCancel : function (id, name) {
-
+					$("#" + id).remove();
 				},
 				onError : function (id, name, reason, maybeXhrOrXdr) {
 
@@ -111,7 +112,7 @@ $(document).ready(function () {
 
 				},
 				onSubmitted : function (id, name) {
-					console.log(name + " uploading");
+					$(".qq-uploader-selector").append("<input type = 'hidden' id = '" + id + "' name = 'profileImageLinks[]' value = '' />");
 				},
 				onUpload (id, name) {
 					console.log(name + " before uploading");
@@ -131,11 +132,8 @@ $(document).ready(function () {
 			
 			event.preventDefault();
 
-			var imageUploadCount = $("body ul.qq-upload-list li[qq-file-id]").children().length / 6;
 			
-			if (imageUploadCount >= 3 && isThreeImagesUploaded)  {
-				console.log("form submit!!");
-
+		
 				var product = {
 					isImageEmpty : ($("input[name='product-image']")[0].files.length == 0 ? "true" : "false"),
 					name : $("input[name='product-name']").val(),
@@ -144,10 +142,11 @@ $(document).ready(function () {
 					deliveryDate : $("input[name='delivery-date']").val(),
 					price : $("input[name='price']").val(),
 					weight : $("input[name='weight']").val(),
-					description : $("input[name='description']").val(),
+					description : $("textarea[name='description']").val(),
 					supplier : $("input[name='supplier']").val(),
 					supplierContactNumber : $("input[name='supplier-contact-number']").val(),
-					supplierAddress : $("input[name='supplier-address']").val()
+					supplierAddress : $("textarea[name='supplier-address']").val(),
+					
 				};
 
 				console.log(product);
@@ -158,7 +157,17 @@ $(document).ready(function () {
 					},function (response) {
 
 							if (response.status == "success") {
-								//$("form[action]").submit();
+								var imageUploadCount = $("body ul.qq-upload-list li[qq-file-id]").children().length / 6;
+
+								if (imageUploadCount >= 3 && isThreeImagesUploaded)  {
+									console.log("form submit!!");
+									$("form[action]").submit();
+								} else {
+									$("#upload-message").addClass("text-danger");
+									$("#upload-message").html("<strong> *required to upload 3 images </strong>");
+									$("#upload-message").css("display", "inline");
+								}
+
 							} else {
 								$("html, body").animate({ scrollTop: 0 }, 
 														"fast", function () {
@@ -183,17 +192,6 @@ $(document).ready(function () {
 							}
 
 				}, "json");
-
-				
-			}
-			else {
-
-				$("#upload-message").addClass("text-danger");
-				$("#upload-message").html("<strong> *required to upload 3 images </strong>");
-				$("#upload-message").css("display", "inline");
-				
-
-			}
 
 		});
 		

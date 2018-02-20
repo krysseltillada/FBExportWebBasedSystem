@@ -51,7 +51,7 @@
 	                    <div class = "col-lg-4">
 	                        <div class = "form-group">
 	                        <label class="form-control-label">Expired Date</label>
-	                        <input class = "text-center form-control" type="text" id="expiredDatePicker" placeholder="2011/04/25" name = "expired-date" >
+	                        <input class = "text-center form-control" type="text" id="expiredDatePicker" name = "expired-date" >
 	                        </div>
 	                    </div>
 	                    <div class = "col-lg-4">
@@ -96,7 +96,7 @@
 	                    <div class = "col-lg-4">
 	                    <div class="form-group">
 	                    <label class="form-control-label">Date of Delivery</label>
-	                    <input class = "text-center form-control" type="text" id="deliveryDatePicker" placeholder="2011/04/25" name = "delivery-date" >
+	                    <input class = "text-center form-control" type="text" id="deliveryDatePicker" name = "delivery-date" >
 	                    </div>
 	                </div>
 	                </div>

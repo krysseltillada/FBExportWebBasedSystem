@@ -1,3 +1,19 @@
+// Configure Underscore.js template syntax to avoid conflict with JSP syntax.
+//
+// Use templates like:
+//
+//      {{= value }}
+//   or {{ statement }}
+//   or {{- HTML-escaped text }}
+//
+
+
+$(function () {
+  _.templateSettings.interpolate = /\{\{=([^-][\S\s]+?)\}\}/g;
+  _.templateSettings.evaluate = /\{\{([^-=][\S\s]+?)\}\}/g;
+  _.templateSettings.escape = /\{\{-([^=][\S\s]+?)\}\}/g;
+});
+
 $(document).ready(function () {
 
     setInterval(function () {
