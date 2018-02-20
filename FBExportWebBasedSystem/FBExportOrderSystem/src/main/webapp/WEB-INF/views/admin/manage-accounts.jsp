@@ -52,7 +52,7 @@
                                 <td><input type="text" id="minAgeClient" name="minAgeClient"></td>
                                 <td>Country:</td>
                                 <td>
-                                    <select class="browser-default" id = "countryClient" style="width: 75%;">
+                                    <select class="browser-default country" id = "countryClient" style="width: 75%;">
                                         <option value="All" selected>All</option>
                                     </select>
                                 </td>
@@ -171,7 +171,7 @@
                                         <div class="form-group">
 	                                        <div class = "form-inline">
 	                                                <label for = "countryClientEdit" class = "mr-3 form-control-label"> Country: </label>
-	                                                <select class="browser-default" name="countryClientEdit" id = "countryClientEdit" style="width: 75%;" required>
+	                                                <select class="browser-default country" name="countryClientEdit" id = "countryClientEdit" style="width: 75%;" required>
 	                                                    <option value="" disabled selected>Choose your country</option>
 	                                                </select>
 	                                        </div>
@@ -191,7 +191,7 @@
 	                                        </div>
                                         </div>
                                         <div class="form-group">
-                                            <select class="browser-default" id = "countryCodeClientEdit" name="countryCodeClientEdit" required>
+                                            <select class="browser-default countryCode" id = "countryCodeClientEdit" name="countryCodeClientEdit" required>
                                                 <option value="" disabled selected>Country Code</option>
                                             </select>
                                             <input type="text" id="phonenumberClientEdit" placeholder="Your phone number" class="form-control" name="phonenumberClientEdit" required />
@@ -346,7 +346,7 @@
                             <td><input type="text" id="minAgeEmployee" name="minAgeEmployee"></td>
                             <td>Country:</td>
                             <td>
-                                <select class="browser-default" id = "countryEmployee" style="width: 75%;">
+                                <select class="browser-default country" id = "countryEmployee" style="width: 75%;">
                                     <option value="All" selected>All</option>
                                 </select>
                             </td>
@@ -507,7 +507,7 @@
                                 <div class="form-group">
                                     <div class = "form-inline">
                                             <label for = "countryEmployeeEdit" class = "mr-3 form-control-label"> Country: </label>
-                                            <select class="browser-default" id = "countryEmployeeEdit" name = "countryEmployeeEdit" style="width: 75%;" required>
+                                            <select class="browser-default country" id = "countryEmployeeEdit" name = "countryEmployeeEdit" style="width: 75%;" required>
                                                 <option value="" disabled selected>Choose your country</option>
                                             </select>
                                     </div>
@@ -527,7 +527,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                        <select class="browser-default" id = "countryCodeEmployeeEdit" name = "countryCodeEmployeeEdit" required>
+                                        <select class="browser-default countryCode" id = "countryCodeEmployeeEdit" name = "countryCodeEmployeeEdit" required>
                                             <option value="" disabled selected>Country Code</option>
                                         </select>
                                         <input type="text" id="phonenumberEmployeeEdit" name="phonenumberEmployeeEdit" placeholder="Your phone number" class="form-control" required />
@@ -635,7 +635,7 @@
                                 <div class="form-group">
                                     <div class = "form-inline">
                                             <label for = "countryEmployeeAdd" class = "mr-3 form-control-label"> Country: </label>
-                                            <select class="browser-default" name="countryEmployeeAdd" id = "countryEmployeeAdd" style="width: 75%;" required>
+                                            <select class="browser-default country" name="countryEmployeeAdd" id = "countryEmployeeAdd" style="width: 75%;" required>
                                                 <option value="" disabled selected>Choose your country</option>
                                             </select>
                                     </div>
@@ -655,7 +655,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                        <select class="browser-default" id = "countryCodeEmployeeAdd" name="countryCodeEmployeeAdd" required>
+                                        <select class="browser-default countryCode" id = "countryCodeEmployeeAdd" name="countryCodeEmployeeAdd" required>
                                             <option value="" disabled selected>Country Code</option>
                                         </select>
                                         <input type="text" id="phonenumberEmployeeAdd" name="phonenumberEmployeeAdd" placeholder="Your phone number" class="form-control" required />
@@ -808,7 +808,7 @@
                             <td><input type="text" id="minAgeAdmin" name="minAgeAdmin"></td>
                             <td>Country:</td>
                             <td>
-                                <select class="browser-default" id = "countryAdmin" style="width: 75%;">
+                                <select class="browser-default country" id = "countryAdmin" style="width: 75%;">
                                     <option value="All" selected>All</option>
                                 </select>
                             </td>
@@ -969,7 +969,7 @@
                                 <div class="form-group">
                                     <div class = "form-inline">
                                             <label for = "countryAdminEdit" class = "mr-3 form-control-label"> Country: </label>
-                                            <select class="browser-default" id = "countryAdminEdit" name = "countryAdminEdit" style="width: 75%;" required>
+                                            <select class="browser-default country" id = "countryAdminEdit" name = "countryAdminEdit" style="width: 75%;" required>
                                                 <option value="" disabled selected>Choose your country</option>
                                             </select>
                                     </div>
@@ -989,7 +989,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                        <select class="browser-default" id = "countryCodeAdminEdit" name = "countryCodeAdminEdit" required>
+                                        <select class="browser-default countryCode" id = "countryCodeAdminEdit" name = "countryCodeAdminEdit" required>
                                             <option value="" disabled selected>Country Code</option>
                                         </select>
                                         <input type="text" id="phonenumberAdminEdit" name="phonenumberAdminEdit" placeholder="Your phone number" class="form-control" required />

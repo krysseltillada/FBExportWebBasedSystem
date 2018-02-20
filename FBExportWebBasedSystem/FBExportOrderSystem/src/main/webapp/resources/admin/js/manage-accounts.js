@@ -181,51 +181,6 @@ $(document).ready(function () {
 
 
       /*Country Edit Client*/
-      $("#countryCodeClientEdit").ready(function () {
-          $.ajax({
-              url : "https://restcountries.eu/rest/v2/all",
-              dataType : "json",
-              success : function (restCountriesData) {
-
-
-                  for (var i = 0; i != restCountriesData.length; ++i) {
-                      var countryLetterCode = restCountriesData[i].alpha2Code;
-                      var countryCode = restCountriesData[i].callingCodes[0];
-
-                      if (countryCode.length > 0)
-                          $("#countryCodeClientEdit").append('<option value = "' + countryCode + '">+' + countryCode + ' (' + countryLetterCode + ') </option');
-
-                  }
-
-
-              }
-          });
-      });
-
-      $('#countryClientEdit').ready(function () {
-
-         $.ajax(
-             {
-                 url : "https://restcountries.eu/rest/v2/all",
-                 dataType : "json",
-                 success : function (responseData) {
-
-                     for (var i = 0; i != responseData.length; ++i) {
-
-                          if (responseData[i].alpha2Code.length > 0) {
-                              var country = responseData[i].name;
-                              var countryCode = responseData[i].alpha2Code;
-                              $('#countryClientEdit').append('<option value = "'+ country + '">' + country + ' (' + countryCode + ')</option>');
-                          }
-
-                     }
-
-
-
-                 }
-             }
-         );
-      });
 
       $('#countryClientEdit').change(function () {
 
@@ -337,29 +292,6 @@ $(document).ready(function () {
       
       $("#filterCustomerStatus").on("change", function(){
     	  clienttable.draw();
-      });
-
-      $('#countryClient').ready(function () {
-
-         $.ajax(
-             {
-                 url : "https://restcountries.eu/rest/v2/all",
-                 dataType : "json",
-                 success : function (responseData) {
-
-                     for (var i = 0; i != responseData.length; ++i) {
-
-                          if (responseData[i].alpha2Code.length > 0) {
-                              var country = responseData[i].name;
-                              var countryCode = responseData[i].alpha2Code;
-                              $('#countryClient').append('<option value = "'+ country + '">' + country + ' (' + countryCode + ')</option>');
-                          }
-
-                     }
-
-                 }
-             }
-         );
       });
 
       /*CLIENT FILTER*/
@@ -677,75 +609,11 @@ $(document).ready(function () {
         	  employeetable.draw();
           });
 
-      $('#countryEmployee').ready(function () {
-
-         $.ajax(
-             {
-                 url : "https://restcountries.eu/rest/v2/all",
-                 dataType : "json",
-                 success : function (responseData) {
-
-                     for (var i = 0; i != responseData.length; ++i) {
-
-                          if (responseData[i].alpha2Code.length > 0) {
-                              var country = responseData[i].name;
-                              var countryCode = responseData[i].alpha2Code;
-                              $('#countryEmployee').append('<option value = "'+ country + '">' + country + ' (' + countryCode + ')</option>');
-                          }
-
-                     }
-
-                 }
-             }
-         );
-      });
+     
       //Filter EMPLOYEE
 
 
       /*Country Edit Employee*/
-      $("#countryCodeEmployeeEdit").ready(function () {
-          $.ajax({
-              url : "https://restcountries.eu/rest/v2/all",
-              dataType : "json",
-              success : function (restCountriesData) {
-
-
-                  for (var i = 0; i != restCountriesData.length; ++i) {
-                      var countryLetterCode = restCountriesData[i].alpha2Code;
-                      var countryCode = restCountriesData[i].callingCodes[0];
-
-                      if (countryCode.length > 0)
-                          $("#countryCodeEmployeeEdit").append('<option value = "' + countryCode + '">+' + countryCode + ' (' + countryLetterCode + ') </option');
-
-                  }
-
-
-              }
-          });
-      });
-
-      $('#countryEmployeeEdit').ready(function () {
-
-         $.ajax(
-             {
-                 url : "https://restcountries.eu/rest/v2/all",
-                 dataType : "json",
-                 success : function (responseData) {
-
-                     for (var i = 0; i != responseData.length; ++i) {
-
-                          if (responseData[i].alpha2Code.length > 0) {
-                              var country = responseData[i].name;
-                              var countryCode = responseData[i].alpha2Code;
-                              $('#countryEmployeeEdit').append('<option value = "'+ country + '">' + country + ' (' + countryCode + ')</option>');
-                          }
-
-                     }
-
-                 }
-             }
-         );
-      });
 
       $('#countryEmployeeEdit').change(function () {
 
@@ -765,51 +633,6 @@ $(document).ready(function () {
 
 
       /*Country Add Employee*/
-      $("#countryCodeEmployeeAdd").ready(function () {
-          $.ajax({
-              url : "https://restcountries.eu/rest/v2/all",
-              dataType : "json",
-              success : function (restCountriesData) {
-
-
-                  for (var i = 0; i != restCountriesData.length; ++i) {
-                      var countryLetterCode = restCountriesData[i].alpha2Code;
-                      var countryCode = restCountriesData[i].callingCodes[0];
-
-                      if (countryCode.length > 0)
-                          $("#countryCodeEmployeeAdd").append('<option value = "' + countryCode + '">+' + countryCode + ' (' + countryLetterCode + ') </option');
-
-                  }
-
-
-              }
-          });
-      });
-
-      $('#countryEmployeeAdd').ready(function () {
-
-         $.ajax(
-             {
-                 url : "https://restcountries.eu/rest/v2/all",
-                 dataType : "json",
-                 success : function (responseData) {
-
-                     for (var i = 0; i != responseData.length; ++i) {
-
-                          if (responseData[i].alpha2Code.length > 0) {
-                              var country = responseData[i].name;
-                              var countryCode = responseData[i].alpha2Code;
-                              $('#countryEmployeeAdd').append('<option value = "'+ country + '">' + country + ' (' + countryCode + ')</option>');
-                          }
-
-                     }
-
-
-
-                 }
-             }
-         );
-      });
 
       $('#countryEmployeeAdd').change(function () {
 
@@ -1207,75 +1030,10 @@ $(document).ready(function () {
         	  admintable.draw();
           });
           
-      $('#countryAdmin').ready(function () {
-
-         $.ajax(
-             {
-                 url : "https://restcountries.eu/rest/v2/all",
-                 dataType : "json",
-                 success : function (responseData) {
-
-                     for (var i = 0; i != responseData.length; ++i) {
-
-                          if (responseData[i].alpha2Code.length > 0) {
-                              var country = responseData[i].name;
-                              var countryCode = responseData[i].alpha2Code;
-                              $('#countryAdmin').append('<option value = "'+ country + '">' + country + ' (' + countryCode + ')</option>');
-                          }
-
-                     }
-
-                 }
-             }
-         );
-      });
       //Filter ADMIN
 
 
       /*Country Edit Admin*/
-      $("#countryCodeAdminEdit").ready(function () {
-          $.ajax({
-              url : "https://restcountries.eu/rest/v2/all",
-              dataType : "json",
-              success : function (restCountriesData) {
-
-
-                  for (var i = 0; i != restCountriesData.length; ++i) {
-                      var countryLetterCode = restCountriesData[i].alpha2Code;
-                      var countryCode = restCountriesData[i].callingCodes[0];
-
-                      if (countryCode.length > 0)
-                          $("#countryCodeAdminEdit").append('<option value = "' + countryCode + '">+' + countryCode + ' (' + countryLetterCode + ') </option');
-
-                  }
-
-
-              }
-          });
-      });
-
-      $('#countryAdminEdit').ready(function () {
-
-         $.ajax(
-             {
-                 url : "https://restcountries.eu/rest/v2/all",
-                 dataType : "json",
-                 success : function (responseData) {
-
-                     for (var i = 0; i != responseData.length; ++i) {
-
-                          if (responseData[i].alpha2Code.length > 0) {
-                              var country = responseData[i].name;
-                              var countryCode = responseData[i].alpha2Code;
-                              $('#countryAdminEdit').append('<option value = "'+ country + '">' + country + ' (' + countryCode + ')</option>');
-                          }
-
-                     }
-
-                 }
-             }
-         );
-      });
 
       $('#countryAdminEdit').change(function () {
 
@@ -1295,51 +1053,6 @@ $(document).ready(function () {
 
 
       /*Country Add Admin*/
-      $("#countryCodeAdminAdd").ready(function () {
-          $.ajax({
-              url : "https://restcountries.eu/rest/v2/all",
-              dataType : "json",
-              success : function (restCountriesData) {
-
-
-                  for (var i = 0; i != restCountriesData.length; ++i) {
-                      var countryLetterCode = restCountriesData[i].alpha2Code;
-                      var countryCode = restCountriesData[i].callingCodes[0];
-
-                      if (countryCode.length > 0)
-                          $("#countryCodeAdminAdd").append('<option value = "' + countryCode + '">+' + countryCode + ' (' + countryLetterCode + ') </option');
-
-                  }
-
-
-              }
-          });
-      });
-
-      $('#countryAdminAdd').ready(function () {
-
-         $.ajax(
-             {
-                 url : "https://restcountries.eu/rest/v2/all",
-                 dataType : "json",
-                 success : function (responseData) {
-
-                     for (var i = 0; i != responseData.length; ++i) {
-
-                          if (responseData[i].alpha2Code.length > 0) {
-                              var country = responseData[i].name;
-                              var countryCode = responseData[i].alpha2Code;
-                              $('#countryAdminAdd').append('<option value = "'+ country + '">' + country + ' (' + countryCode + ')</option>');
-                          }
-
-                     }
-
-
-
-                 }
-             }
-         );
-      });
 
       $('#countryAdminAdd').change(function () {
 
