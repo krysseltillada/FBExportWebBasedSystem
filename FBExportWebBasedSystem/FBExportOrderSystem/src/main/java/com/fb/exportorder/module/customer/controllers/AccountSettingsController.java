@@ -32,6 +32,7 @@ public class AccountSettingsController {
 	
 	@RequestMapping("/account-settings")
 	public String accountSettings(Model model, HttpSession session) {
+		
 		model.addAttribute(customerService.getCustomerById((Long)session.getAttribute("customerId")));
 		
 		return "account-settings";

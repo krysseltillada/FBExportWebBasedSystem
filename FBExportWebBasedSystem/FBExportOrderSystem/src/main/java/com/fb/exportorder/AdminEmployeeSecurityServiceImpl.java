@@ -11,13 +11,13 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.fb.exportorder.models.Employee;
-import com.fb.exportorder.module.admin.repository.EmployeeRepository;
+import com.fb.exportorder.module.admin.repository.ManageEmployeeRepository;
 
 @Service("adminEmployeeUserDetailsService")
 public class AdminEmployeeSecurityServiceImpl implements UserDetailsService{
 
 	@Autowired
-	private EmployeeRepository employeeRepository;
+	private ManageEmployeeRepository employeeRepository;
 	
 	private UserDetails setUserDetailsBuilder (Employee employee) {
 		

@@ -14,7 +14,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fb.exportorder.models.customer.Activity;
 import com.fb.exportorder.models.customer.Customer;
 import com.fb.exportorder.module.customer.repository.ActivityRepository;

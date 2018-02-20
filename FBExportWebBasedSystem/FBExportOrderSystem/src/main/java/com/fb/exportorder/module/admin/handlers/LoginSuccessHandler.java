@@ -16,14 +16,14 @@ import org.springframework.stereotype.Component;
 
 import com.fb.exportorder.models.Employee;
 import com.fb.exportorder.models.customer.Customer;
-import com.fb.exportorder.module.admin.repository.EmployeeRepository;
+import com.fb.exportorder.module.admin.repository.ManageEmployeeRepository;
 
 
 @Component("adminLoginSuccessHandler")
 public class LoginSuccessHandler implements AuthenticationSuccessHandler{
 
 	@Autowired
-	EmployeeRepository employeeRepository;
+	ManageEmployeeRepository employeeRepository;
 	
 	@Override
 	public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication auth)

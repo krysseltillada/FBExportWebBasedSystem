@@ -98,6 +98,15 @@ public class MultiHttpSecurityConfig {
     @Order(1)
     public static class AdminSecurityConfiguration extends WebSecurityConfigurerAdapter {
     	
+    	//AJAX needs to ignore
+    	private static final String[] CSRF_IGNORE_URLS = {
+    			  "/admin/show-customer-activity", 
+				  "/admin/enabled-customer",
+				  "/admin/enabled-employee",
+				  "/admin/enabled-admin",
+				  "/admin/add-product/add-preview-images",
+				  "/admin/add-product/delete-preview-images/**"};
+    	
     	@Autowired
     	@Qualifier("adminEmployeeUserDetailsService")
     	UserDetailsService userDetailService;
@@ -136,8 +145,8 @@ public class MultiHttpSecurityConfig {
 	    		.and()
 	    		.exceptionHandling().accessDeniedPage("/error")
 	    		.and()
-	    		.csrf().ignoringAntMatchers("/admin/add-product/add-preview-images", "/admin/add-product/delete-preview-images/**");
-        
+	    		.csrf().ignoringAntMatchers(CSRF_IGNORE_URLS);
+
         }
     }
 }

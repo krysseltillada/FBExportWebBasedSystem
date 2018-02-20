@@ -116,3 +116,61 @@ background: #34495E;
 color: #3498db;
 }
 /*Profile picture upload Employee Edit*/
+
+/*Profile picture upload Admin Edit*/
+
+.fileAdminEdit {
+position: relative;
+}
+.fileAdminEdit label {
+background-color: #3498db;
+padding: 5px 20px;
+color: #fff;
+font-weight: bold;
+font-size: .9em;
+transition: all .4s;
+}
+.fileAdminEdit input {
+
+position: absolute;
+display: inline-block;
+left: 0;
+top: 0;
+opacity: 0.01;
+cursor: pointer;
+}
+.fileAdminEdit input:hover + label,
+.fileAdminEdit input:focus + label {
+background: #34495E;
+color: #3498db;
+}
+/*Profile picture upload Admin Edit*/
+
+/*Profile picture upload Admin Add*/
+
+.fileAdminAdd {
+position: relative;
+}
+.fileAdminAdd label {
+background-color: #3498db;
+padding: 5px 20px;
+color: #fff;
+font-weight: bold;
+font-size: .9em;
+transition: all .4s;
+}
+.fileAdminAdd input {
+
+position: absolute;
+display: inline-block;
+left: 0;
+top: 0;
+opacity: 0.01;
+cursor: pointer;
+}
+.fileAdminAdd input:hover + label,
+.fileAdminAdd input:focus + label {
+background: #34495E;
+color: #3498db;
+}
+/*Profile picture upload Admin Add*/
