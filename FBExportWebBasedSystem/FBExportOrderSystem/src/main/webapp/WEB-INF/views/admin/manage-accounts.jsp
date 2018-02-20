@@ -1097,7 +1097,7 @@
                                 <div class="form-group">
                                     <div class = "form-inline">
                                             <label for = "countryAdminAdd" class = "mr-3 form-control-label"> Country: </label>
-                                            <select class="browser-default" name="countryAdminAdd" id = "countryAdminAdd" style="width: 75%;" required>
+                                            <select class="browser-default country" name="countryAdminAdd" id = "countryAdminAdd" style="width: 75%;" required>
                                                 <option value="" disabled selected>Choose your country</option>
                                             </select>
                                     </div>
@@ -1117,7 +1117,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                        <select class="browser-default" id = "countryCodeAdminAdd" name="countryCodeAdminAdd" required>
+                                        <select class="browser-default countryCode" id = "countryCodeAdminAdd" name="countryCodeAdminAdd" required>
                                             <option value="" disabled selected>Country Code</option>
                                         </select>
                                         <input type="text" id="phonenumberAdminAdd" name="phonenumberAdminAdd" placeholder="Your phone number" class="form-control" required />
