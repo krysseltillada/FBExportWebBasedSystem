@@ -1,15 +1,12 @@
 package com.fb.exportorder;
 
-import javax.servlet.ServletContext;
-
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.web.session.HttpSessionEventPublisher;
-import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
+import com.fb.exportorder.module.admin.handlers.AdminControllerRequestHandlerInterceptor;
 import com.fb.exportorder.module.customer.handlers.ControllerRequestHandlerInterceptor;
 
 @Configuration
@@ -20,9 +17,15 @@ public class WebConfiguration extends WebMvcConfigurerAdapter {
 		return new ControllerRequestHandlerInterceptor();
 	}
 	
+	@Bean
+	AdminControllerRequestHandlerInterceptor adminControllerRequestHandlerInterceptor() {
+		return new AdminControllerRequestHandlerInterceptor();
+	}
+	
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
 		registry.addInterceptor(controllerRequestHandlerInterceptor());
+		registry.addInterceptor(adminControllerRequestHandlerInterceptor());
 	}
 	
 	@Bean

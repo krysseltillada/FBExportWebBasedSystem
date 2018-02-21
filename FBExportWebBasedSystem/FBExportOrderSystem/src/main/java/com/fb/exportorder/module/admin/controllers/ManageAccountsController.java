@@ -65,15 +65,6 @@ public class ManageAccountsController {
 		return "manage-accounts";
 	}
 	
-	@RequestMapping("/admin/dashboard")
-	public String dashboard() {
-		return "dashboard";
-	}
-	
-	@RequestMapping("/admin/login")
-	public String login() {
-		return "admin-login";
-	}
 	
 	@RequestMapping(value="/admin/show-customer-activity", method=RequestMethod.POST)
 	@ResponseBody

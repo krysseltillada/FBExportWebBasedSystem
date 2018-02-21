@@ -31,10 +31,9 @@
                     <span class = "mr-2"> to </span>
                     <input class = "text-center mr-2 p-0 form-control form-control-sm" style = "width: 150px;" type="text" id="maxDatePicker">
                     <select class = "custom-select mt-2 mr-3 form-control-sm" id = "dateFilterType" style = "width: 170px;">
-                        <option value = "DateExpired">Date Expired</option>
                         <option value = "DateRegistered">Date Registered</option>
+                        <option value = "DateExpired">Date Expired</option>
                         <option value = "DateOfDelivery">Date Of Delivery</option>
-                        <option value = "All" selected> All </option>
                     </select>
                     <label class = "mr-2">
                         Status:
@@ -61,14 +60,14 @@
                     </form>
                     <form class="form-inline ml-2 mt-1">
                     <label class = "mr-2"> Price: </label>
-                    <input class = "text-center mr-2 p-0 form-control form-control-sm" id = "minPrice" style = "width: 150px;" type = "text" placeholder="0,00.00">
+                    <input class = "text-center mr-2 p-0 form-control form-control-sm" id = "minPrice" style = "width: 150px;" type = "text" placeholder="0">
                     <span class = "mr-2"> to </span>
-                    <input class = "text-center mr-3 p-0 form-control form-control-sm" id = "maxPrice" style = "width: 150px;" type = "text" placeholder="1,000.00">
+                    <input class = "text-center mr-3 p-0 form-control form-control-sm" id = "maxPrice" style = "width: 150px;" type = "text" placeholder="1000">
 
                     <label class = "mr-2"> Weight: </label>
-                    <input class = "text-center mr-2 p-0 form-control form-control-sm" id = "minWeight" style = "width: 150px;" type = "text" placeholder="0kg">
+                    <input class = "text-center mr-2 p-0 form-control form-control-sm" id = "minWeight" style = "width: 150px;" type = "text" placeholder="0">
                     <span class = "mr-2"> to </span>
-                    <input class = "text-center mr-2 p-0 form-control form-control-sm" id = "maxWeight" style = "width: 150px;" type = "text" placeholder="100kg">
+                    <input class = "text-center mr-2 p-0 form-control form-control-sm" id = "maxWeight" style = "width: 150px;" type = "text" placeholder="100">
 
                     <button type="button" class="btn btn-primary btn-sm pl-4 pr-4 pt-0 pb-0 mr-1 btn-filter">Filter</button>
                     <button type="button" class="btn btn-secondary btn-sm pl-4 pr-4 pt-0 pb-0" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">Close</button>

@@ -83,6 +83,7 @@ $(document).ready(function () {
 					$("#" + id).val(responseJSON.productImageLink);
 				},
 				onCancel : function (id, name) {
+					console.log("cancel");
 					$("#" + id).remove();
 				},
 				onError : function (id, name, reason, maybeXhrOrXdr) {
@@ -120,6 +121,9 @@ $(document).ready(function () {
 				
 				 onSubmitDelete: function(id) {
 					this.setDeleteFileParams({filename: this.getName(id)}, id)
+				},
+				onDeleteComplete : function (id) {
+					$("#" + id).remove();
 				}
 			}
 		});
@@ -157,7 +161,7 @@ $(document).ready(function () {
 					},function (response) {
 
 							if (response.status == "success") {
-								var imageUploadCount = $("body ul.qq-upload-list li[qq-file-id]").children().length / 6;
+								var imageUploadCount = $("body input[name='profileImageLinks[]']").length;
 
 								if (imageUploadCount >= 3 && isThreeImagesUploaded)  {
 									console.log("form submit!!");

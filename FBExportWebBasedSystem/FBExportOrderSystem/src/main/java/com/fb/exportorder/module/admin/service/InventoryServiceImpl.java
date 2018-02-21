@@ -220,7 +220,7 @@ public class InventoryServiceImpl implements InventoryService {
 	@Override
 	public void deleteSelectedProduct(List<Long> ids) {
 		for (long id : ids) 
-			inventoryRepository.delete(id);
+			deleteProduct(id);
 	}
 
 	@Override
@@ -234,11 +234,33 @@ public class InventoryServiceImpl implements InventoryService {
 										double minWeight,
 										double maxWeight) {
 		
+		String dateFilterQuery =  (StringUtils.equals(dateFilterType, "DateExpired")) ?    "p.expiredDate" :
+								  (StringUtils.equals(dateFilterType, "DateRegistered")) ? "p.dateRegistered" : 
+																						    "p.dateOfDelivery" ;
+		
+		String statusFilterQuery = (status != ProductStatus.ALL) ? " AND p.status = '" + status.name() + "'": StringUtils.EMPTY;
+		
+		
+		String priceFilterQuery = (minPrice < maxPrice && maxPrice > minPrice) ? " AND p.price BETWEEN :minPrice AND :maxPrice" : StringUtils.EMPTY;
+		String weightFilterQuery = (minWeight < maxWeight && maxWeight > minWeight) ? " AND p.weight BETWEEN :minWeight AND :maxWeight" : StringUtils.EMPTY;
+		
 		Query filterQuery = sessionFactory.getCurrentSession()
-					  					  .createQuery("SELECT p FROM Product p WHERE p." + dateFilterType + " BETWEEN :minDate AND :maxDate");
+					  					  .createQuery("SELECT p FROM Product p WHERE " + dateFilterQuery + " BETWEEN :minDate AND :maxDate " + statusFilterQuery + priceFilterQuery + weightFilterQuery);
+		
+		System.out.println(filterQuery.getQueryString());
 		
 		filterQuery.setParameter("minDate", minDate);
 		filterQuery.setParameter("maxDate", maxDate);
+
+		if (minPrice < maxPrice && maxPrice > minPrice) {
+			filterQuery.setParameter("minPrice", minPrice);
+			filterQuery.setParameter("maxPrice", maxPrice);
+		}
+		
+		if (minWeight < maxWeight && maxWeight > minWeight) {
+			filterQuery.setParameter("minWeight", minWeight);
+			filterQuery.setParameter("maxWeight", maxWeight);
+		}
 		
 		return (List<Product>)filterQuery.list();
 		

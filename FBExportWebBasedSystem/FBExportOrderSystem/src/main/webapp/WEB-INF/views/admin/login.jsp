@@ -27,7 +27,7 @@
 	      }
 	
 	      #login-banner{
-	        background-image: url("resources/admin/img/project-6.jpg");
+	        background-image: url("<c:url value = '/resources/admin/img/project-6.jpg' />");
 	      }
 
     	</style>
@@ -66,7 +66,10 @@
 		                    
 		                    <input type="submit" class="btn btn-primary float-right" value = "Login" />
 		                    <!-- This should be submit button but I replaced it with <a> for demo purposes-->
-		                    <a href="#" class="forgot-pass pull-left">Forgot Password?</a>
+		                    
+		                    <c:if test = "${not empty loginErrorMessage}">
+		               			<span class = "text-red mt-2 pull-left" style = "font-size: 15px;"> <strong> *${loginErrorMessage} </strong> </span>
+		               		</c:if>
 		                    
 		                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 		                    

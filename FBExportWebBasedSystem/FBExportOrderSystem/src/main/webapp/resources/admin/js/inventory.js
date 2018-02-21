@@ -1,158 +1,6 @@
 $(document).ready(function (){
-	
-	$( "#minDatePicker" ).flatpickr({
-		minDate : "today",
-		onChange : function (selectedDates, date) {
-			
-			$("#maxDatePicker").flatpickr({
-				defaultDate : date,
-				minDate : date
-			})
-		}
-	});
 
-	$( "#maxDatePicker" ).flatpickr({
-		minDate : "today"
-	});
-
-	$("#minPrice").keypress(function (event) {
-		var keyCode = event.keyCode;
-
-        if ( keyCode < 48 || keyCode > 57 )
-            return false;
-	});
-
-	$("#maxPrice").keypress(function (event) {
-		var keyCode = event.keyCode;
-
-        if ( keyCode < 48 || keyCode > 57 )
-            return false;
-	});
-
-	$("#minWeight").keypress(function (event) {
-		var keyCode = event.keyCode;
-
-		if ( keyCode < 48 || keyCode > 57 )
-			return false;
-	});
-
-	$("#maxWeight").keypress(function (event) {
-		var keyCode = event.keyCode;
-
-        if ( keyCode < 48 || keyCode > 57 )
-            return false;
-	});
-
-	$.post("/FBExportSystem/admin/inventory/get-product-details", {
-		id : "1"
-	}, function (response) {
-		console.log(response);
-	}, "json");
-	
-	var table = $('#inventoryTable').DataTable( { 
-		"processing" : true,
-		"columns": [
-		{
-				'searchable': false,
-				'orderable': false,
-				'className': 'dt-body-center',
-				'render': function (data, type, full, meta){
-					return '<input id="checkboxCustom1" type="checkbox" value="" class="checkbox-template checkbox-delete">';
-				}
-		},
-		{"orderable" : false},
-		null,
-		null,
-		null,
-		null,
-		null,
-		null,
-		null,
-		null,
-		null
-		],
-		"order" : []
-		}
-	);
-
-	$(".btn-filter").click(function () {
-		console.log("filter");
-
-		var productStatus = $("input[name='status']:checked").val() != undefined ? $("input[name='status']:checked").val() : "";  
-
-		var filter = {
-			minDate : $("#minDatePicker").val(),
-			maxDate : $("#maxDatePicker").val(),
-			dateFilterType : $("#dateFilterType").val(),
-			status : productStatus,
-			minPrice : $("#minPrice").val(),
-			maxPrice : $("#maxPrice").val(),
-			minWeight : $("#minWeight").val(),
-			maxWeight : $("#maxWeight").val()
-		};
-
-		var filterLoaderTemplate = $("#filterLoaderTemplate").html();
-
-		table.clear().draw();
-
-		$("#inventoryTable tbody").html(filterLoaderTemplate);
-
-		setTimeout(function () {
-
-			console.log(filter);
-
-			$.get("/FBExportSystem/admin/inventory/filter-products", {
-				filterData : JSON.stringify(filter) 
-			}, function (response) {
-
-				var rowProductRawTemplate = $("#rowProductTemplate").html();
-				var $inventoryTableBody = $("#inventoryTable tbody");
-				console.log(response);
-
-				$(".filter-loader").remove();
-
-				for (var i = 0; i != response.length; ++i) {
-					
-					var product = response[i];
-
-					table.row.add( [
-						'<td></td>',
-						'<td> <i class="fa fa-chevron-circle-down fa-lg" aria-hidden="true" style="cursor: pointer;"></i> </td>',
-						product.productId,
-						product.name,
-						product.origin,
-						product.supplier,
-						product.price,
-						product.weight,
-						product.dateRegistered,
-						product.expiredDate,
-						product.status
-					] ).draw();
-
-					$inventoryTableBody.find("tr:last td:eq(0)>input[type='checkbox']").click(function () {
-						if ($("#inventoryTable").find("tr:not(:first) input.checkbox-template:checked").length > 0) {
-
-							$("a#delete-selected-product").removeClass("text-muted").addClass("text-red").css("cursor", "pointer")
-																										.css("pointer-events", "auto");
-						} else {
-
-							$("a#delete-selected-product").removeClass("red-text").addClass("text-muted").css("cursor", "not-allowed")
-																										.css("pointer-events", "none");
-						}
-					});
-
-				}
-
-
-			}, "json");
-
-		}, 1000);
-
-
-	});
-
-
-	$('.fa-chevron-circle-down').click(function () { 
+	var getMoreProductDetails = function () { 
 		var parentRow = $(this).closest('tr');
 
 		var row = table.row(parentRow);
@@ -201,7 +49,8 @@ $(document).ready(function (){
 					supplierContactNumber  : response.supplierContactNumber,
 					supplierAddress : response.supplierAddress,
 					dateOfDelivery : response.dateOfDelivery,
-					status : response.status
+					status : response.status,
+					editAddressLink : "http://localhost:" + location.port + "/FBExportSystem/admin/inventory/edit-product/" + response.productId
 				});
 
 				row.child(rowProductRowCollapse, 'no-padding').show();
@@ -232,16 +81,17 @@ $(document).ready(function (){
 										}, function () {
 
 											console.log("delete");
+											
+
+											$deletedProductChildRow.fadeOut("slow");
+
+
+
 											$deletedProductRow.fadeOut("slow", function () {
-												$(this).remove();
-												
+												console.log($deletedProductChildRow.html());
+												console.log($deletedProductRow.html());
+												table.row($deletedProductRow).remove().draw();
 											});
-
-											$deletedProductChildRow.fadeOut("slow", function () {
-												$(this).remove();
-											});
-
-											table.rows().invalidate();
 
 											$(toast).fadeOut("slow", function () {
 												$(this).remove();
@@ -392,7 +242,179 @@ $(document).ready(function (){
 		
 		}
 
+	};
+
+
+
+	var maxDatePicker = flatpickr("#maxDatePicker", {
+		minDate : "today",
+		onChange : function (selectedDates, date) {
+			var minTempDate = $("#minDatePicker").val();
+			minDatePicker.config.maxDate = date;
+			$("#minDatePicker").val(minTempDate);
+		},
+		onReady : function () {
+			$("#maxDatePicker").val(flatpickr.formatDate(new Date(), "Y-m-d"));
+		}
 	});
+	
+	var minDatePicker = flatpickr("#minDatePicker", {
+		onChange : function (selectedDates, date) {
+			var maxTempDate = $("#maxDatePicker").val();
+			maxDatePicker.config.minDate = date;
+			$("#maxDatePicker").val(maxTempDate);
+		},
+		onReady : function () {
+			$("#minDatePicker").val(flatpickr.formatDate(new Date(), "Y-m-d"));
+		}
+	});
+
+	$("#minPrice").keypress(function (event) {
+		var keyCode = event.keyCode;
+
+        if ( keyCode < 48 || keyCode > 57 )
+            return false;
+	});
+
+	$("#maxPrice").keypress(function (event) {
+		var keyCode = event.keyCode;
+
+        if ( keyCode < 48 || keyCode > 57 )
+            return false;
+	});
+
+	$("#minWeight").keypress(function (event) {
+		var keyCode = event.keyCode;
+
+		if ( keyCode < 48 || keyCode > 57 )
+			return false;
+	});
+
+	$("#maxWeight").keypress(function (event) {
+		var keyCode = event.keyCode;
+
+        if ( keyCode < 48 || keyCode > 57 )
+            return false;
+	});
+
+	$.post("/FBExportSystem/admin/inventory/get-product-details", {
+		id : "1"
+	}, function (response) {
+		console.log(response);
+	}, "json");
+	
+	var table = $('#inventoryTable').DataTable( { 
+		"processing" : true,
+		"columns": [
+		{
+				'searchable': false,
+				'orderable': false,
+				'className': 'dt-body-center',
+				'render': function (data, type, full, meta){
+					return '<input id="checkboxCustom1" type="checkbox" value="" class="checkbox-template checkbox-delete">';
+				}
+		},
+		{"orderable" : false},
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null
+		],
+		"order" : [],
+		"lengthMenu" : [5, 10, 25]
+		}
+	);
+
+	$(".btn-filter").click(function () {
+		console.log("filter");
+
+		var productStatus = $("input[name='status']:checked").val() != undefined ? $("input[name='status']:checked").val() : "";  
+
+		var filter = {
+			minDate : $("#minDatePicker").val(),
+			maxDate : $("#maxDatePicker").val(),
+			dateFilterType : $("#dateFilterType").val(),
+			status : productStatus,
+			minPrice : $("#minPrice").val(),
+			maxPrice : $("#maxPrice").val(),
+			minWeight : $("#minWeight").val(),
+			maxWeight : $("#maxWeight").val()
+		};
+
+		var filterLoaderTemplate = $("#filterLoaderTemplate").html();
+
+		table.clear().draw();
+
+		$("#inventoryTable tbody").html(filterLoaderTemplate);
+
+		$("a#delete-selected-product").removeClass("red-text").addClass("text-muted").css("cursor", "not-allowed")
+																					 .css("pointer-events", "none");
+
+		$("#checkbox-all").prop("checked", false);
+
+		setTimeout(function () {
+
+			console.log(filter);
+
+			$.get("/FBExportSystem/admin/inventory/filter-products", {
+				filterData : JSON.stringify(filter) 
+			}, function (response) {
+
+				var rowProductRawTemplate = $("#rowProductTemplate").html();
+				var $inventoryTableBody = $("#inventoryTable tbody");
+				console.log(response);
+
+				$(".filter-loader").remove();
+
+				for (var i = 0; i != response.length; ++i) {
+					
+					var product = response[i];
+
+					table.row.add( [
+						'<td></td>',
+						'<td> <i class="fa fa-chevron-circle-down fa-lg" aria-hidden="true" style="cursor: pointer;"></i> </td>',
+						product.productId,
+						product.name,
+						product.origin,
+						product.supplier,
+						product.price,
+						product.weight,
+						product.dateRegistered,
+						product.expiredDate,
+						(product.status == "POSTED") ? "Posted" : (product.status == "UNPOSTED") ? "Unposted" : "Expired" 
+					] ).draw();
+
+					$inventoryTableBody.find(".fa-chevron-circle-down").click(getMoreProductDetails);
+
+					$inventoryTableBody.find("tr:last td:eq(0)>input[type='checkbox']").click(function () {
+						if ($("#inventoryTable").find("tr:not(:first) input.checkbox-template:checked").length > 0) {
+
+							$("a#delete-selected-product").removeClass("text-muted").addClass("text-red").css("cursor", "pointer")
+																										.css("pointer-events", "auto");
+						} else {
+
+							$("a#delete-selected-product").removeClass("red-text").addClass("text-muted").css("cursor", "not-allowed")
+																										.css("pointer-events", "none");
+						}
+					});
+
+				}
+
+
+			}, "json");
+
+		}, 1000);
+
+
+	});
+
+
+	$('.fa-chevron-circle-down').click(getMoreProductDetails);
 
 	$("#checkbox-all").click(function () { 
 
@@ -459,18 +481,8 @@ $(document).ready(function (){
 
 							
 												if($(this).find("input[type='checkbox']").is(":checked")) {
-													console.log($(this).find("td:eq(2)").html());
 													
-
-													// var $childRow = $deletedRow.next();
-
-
-													// if (!$childRow.hasClass("odd") || !$childRow.hasClass("even")) {
-													// 	$childRow.fadeOut("slow");	
-													// }
-
-													// $deletedRow.fadeOut("slow");
-
+													$(this).find("input[type='checkbox']").attr("disabled", "disabled");
 													deletedJSONId.deletedIds.push($(this).find("td:eq(2)").html());
 
 												}
@@ -489,19 +501,24 @@ $(document).ready(function (){
 
 									
 														if($(this).find("input[type='checkbox']").is(":checked")) {
-															console.log($(this).find("td:eq(2)").html());
+															
 
 															var $childRow = $deletedRow.next();
 
-															if (!$childRow.hasClass("odd") || !$childRow.hasClass("even")) {
-																$childRow.fadeOut("slow");	
+															if (!$childRow.hasClass("odd") && !$childRow.hasClass("even")) {
+																$childRow.fadeOut("slow");
 															}
 
-															$deletedRow.fadeOut("slow");
+
+															$deletedRow.fadeOut("slow", function () {
+																table.row($deletedRow).remove().draw();
+															});
 
 														}
 
 													});
+
+												
 
 													$(toast).fadeOut("slow", function () {
 															$(this).remove();
@@ -534,18 +551,7 @@ $(document).ready(function (){
 
 						$(".alertify").css("z-index", "10");
 					}
-																														
-					
-
-						// $.post("/FBExportSystem/admin/inventory/delete-product", {
-						// 	id : $(this).find("td:eq(2)").html()
-						// }, function () {
-						// 	$deletedRow.hide();
-						// });
-					
-				
-
-
+														
 		});
 
 		$(".alertify").css("z-index", "10");

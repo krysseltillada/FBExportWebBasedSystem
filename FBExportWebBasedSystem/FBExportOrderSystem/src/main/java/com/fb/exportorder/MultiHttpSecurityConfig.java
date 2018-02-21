@@ -117,6 +117,10 @@ public class MultiHttpSecurityConfig {
     	@Autowired
     	@Qualifier("adminLoginSuccessHandler")
     	com.fb.exportorder.module.admin.handlers.LoginSuccessHandler loginSuccessHandler;
+    	
+    	@Autowired
+    	@Qualifier("adminLoginFailureHandler")
+    	com.fb.exportorder.module.admin.handlers.LoginFailureHandler loginFailureHandler;
 
     	@Override
 	   	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
@@ -138,6 +142,7 @@ public class MultiHttpSecurityConfig {
 	    		.formLogin()
 	    		.loginPage("/admin/login")
 	    		.successHandler(loginSuccessHandler)
+	    		.failureHandler(loginFailureHandler)
 	    		.and()
 	    		.logout()
 	    		.logoutUrl("/admin/sign-out")

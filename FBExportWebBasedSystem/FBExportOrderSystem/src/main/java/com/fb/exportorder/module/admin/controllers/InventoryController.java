@@ -2,7 +2,9 @@ package com.fb.exportorder.module.admin.controllers;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -226,8 +228,9 @@ public class InventoryController {
 		
 		String strStatus = (String)filterDataJSON.get("status");
 		
-		ProductStatus status = (strStatus.equals("Posted")) ? ProductStatus.POSTED :
-							   (strStatus.equals("Unposted") ? ProductStatus.UNPOSTED : ProductStatus.EXPIRED);
+		ProductStatus status = strStatus.equals("Posted") ?  ProductStatus.POSTED :
+							   strStatus.equals("Unposted") ? ProductStatus.UNPOSTED : 
+							   strStatus.equals("Expired") ? ProductStatus.EXPIRED : ProductStatus.ALL;
 		
 		double minPrice = StringUtils.isBlank((String)filterDataJSON.get("minPrice")) ? 0 : 
 																						Double.parseDouble((String)filterDataJSON.get("minPrice"));
@@ -240,26 +243,30 @@ public class InventoryController {
 		
 		double maxWeight = StringUtils.isBlank((String)filterDataJSON.get("maxWeight")) ? 0 : 
 																						Double.parseDouble((String)filterDataJSON.get("maxWeight"));
-		//TODO make this filter function work
 		
+		Date minDate = (StringUtils.isNotBlank((String)filterDataJSON.get("minDate"))) ? dateFormat.parse((String)filterDataJSON.get("minDate")) :
+																						 new Date();
 		
-		List<Product> products = inventoryService.filterProducts(dateFormat.parse((String)filterDataJSON.get("minDate")),
-																 dateFormat.parse((String)filterDataJSON.get("maxDate")),
-																 (String)filterDataJSON.get("dateFilterType"),
-																 status,
-																 minPrice,
-																 maxPrice,
-																 minWeight,
-																 maxWeight
-																 );
-																 
+		Date maxDate = (StringUtils.isNotBlank((String)filterDataJSON.get("maxDate"))) ? dateFormat.parse((String)filterDataJSON.get("maxDate")) :
+			 																			 new Date();
+		
+		String dateFilterType = (String)filterDataJSON.get("dateFilterType");
 	
-		
-		for (Product product : products) 
-			System.out.println(product);
-		
-		return null;
+		return inventoryService.filterProducts(minDate,
+											   maxDate,
+											   dateFilterType,
+											   status,
+											   minPrice,
+											   maxPrice,
+											   minWeight,
+											   maxWeight);
 		
 	}
 
+	@RequestMapping("/admin/inventory/edit-product/{product-id}")
+	public String editProduct(@PathVariable("product-id") String productId) {
+		System.out.println(productId);
+		return "edit-product";
+	}
+	
 }
