@@ -123,7 +123,7 @@
                         <div class = "col-md-11 form-inline mb-2">
 
                             <div class="form-group form-sm">
-                                <input min = "1" name="age" type="number" class="with-gap" placeholder="your age" id = "age" required />
+                                <input min = "1" value = "18" name="age" type="number" class="with-gap" placeholder="your age" id = "age" required />
                             </div>
 
                         </div>
