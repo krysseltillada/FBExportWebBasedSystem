@@ -58,5 +58,19 @@ public class DeleteImage {
 		}
 						
 	}
+	
+	public static void deleteProductImageNonHashNonType (String filename) {
+		
+			File deletedFile = null;
+			
+			deletedFile	= FileSystems.getDefault().getPath("src\\main\\webapp\\products\\" + filename).toFile();
+				
+			System.out.println(deletedFile.getAbsolutePath());
+				
+			if (deletedFile.exists()) {
+				deletedFile.delete();
+			}
+			
+	}
 
 }

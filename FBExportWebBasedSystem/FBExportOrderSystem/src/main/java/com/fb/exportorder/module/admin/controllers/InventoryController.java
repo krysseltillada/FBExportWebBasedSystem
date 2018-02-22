@@ -6,6 +6,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -78,9 +79,7 @@ public class InventoryController {
 		
 	}
 	
-	@RequestMapping(value = "/admin/add-product/validate", method = RequestMethod.POST)
-	@ResponseBody
-	public String validate(@RequestParam String productJSONString) {
+	private String validateProduct (String productJSONString) {
 		
 		List<String> errorMessages = null;
 		
@@ -89,7 +88,7 @@ public class InventoryController {
 			JSONObject jsonRawObject = (JSONObject)new JSONParser().parse(productJSONString);
 		
 		
-			errorMessages = inventoryService.validate((String)jsonRawObject.get("isImageEmpty"), 
+			errorMessages = inventoryService.validate((String)jsonRawObject.getOrDefault("isImageEmpty", StringUtils.EMPTY), 
 													  (String)jsonRawObject.get("name"), 
 													  (String)jsonRawObject.get("origin"), 
 													  (String)jsonRawObject.get("expiredDate"), 
@@ -116,9 +115,13 @@ public class InventoryController {
 		}
 		
 		return validateResponse.toJSONString();
-		
 	}
 	
+	@RequestMapping(value = "/admin/add-product/validate", method = RequestMethod.POST)
+	@ResponseBody
+	public String validateAdd(@RequestParam String productJSONString) {
+		return validateProduct(productJSONString);
+	}
 	
 	@RequestMapping(value = "/admin/add-product/delete-preview-images/{qquuid}",
 		        	method = { RequestMethod.DELETE })
@@ -158,7 +161,7 @@ public class InventoryController {
 		
 		  inventoryService.addProduct(productImage, productName, origin, expiredDate, deliveryDate, price, weight, description, supplier, supplierContactNumber, supplierAddress, postThisProduct, profileImageLinks);
 		  
-		  attributes.addAttribute("successMessage", "Product has been added");
+		  attributes.addFlashAttribute("successMessage", "Product has been added");
 		  
 		  return "redirect:/admin/inventory";
           
@@ -264,9 +267,59 @@ public class InventoryController {
 	}
 
 	@RequestMapping("/admin/inventory/edit-product/{product-id}")
-	public String editProduct(@PathVariable("product-id") String productId) {
-		System.out.println(productId);
-		return "edit-product";
+	public String editProduct(@PathVariable("product-id") String productId,
+														  Model model) {
+		
+		
+		Product editedProduct = inventoryService.getProductById(Long.parseLong(productId));
+		
+		if (Objects.nonNull(editedProduct)) {
+			model.addAttribute(editedProduct);
+			return "edit-product";
+		}
+		
+		return "redirect:/error";
+	}
+	
+	@RequestMapping(value = "/admin/inventory/edit-product/{product-id}/edit", method = RequestMethod.POST)
+	public String editProductEdit(@PathVariable("product-id") String productId,
+								  @RequestParam(name = "product-image") MultipartFile productImage,
+								  @RequestParam("product-name") String productName,
+								  @RequestParam String origin,
+								  @RequestParam("expired-date") String expiredDate,
+								  @RequestParam("delivery-date") String deliveryDate,
+								  @RequestParam String price,
+								  @RequestParam String weight,
+								  @RequestParam String description,
+								  @RequestParam String supplier,
+								  @RequestParam("supplier-contact-number") String 	supplierContactNumber,
+								  @RequestParam("supplier-address") String supplierAddress,
+								  @RequestParam("profileImageLinks") MultipartFile[] previewImages,
+								  RedirectAttributes attributes) {
+		
+		inventoryService.editProduct(Long.parseLong(productId), 
+									 productImage, 
+									 productName, 
+									 origin, 
+									 expiredDate, 
+									 deliveryDate, 
+									 price, 
+									 weight, 
+									 description, 
+									 supplier, 
+									 supplierContactNumber, 
+									 supplierAddress, 
+									 previewImages);
+	
+		attributes.addFlashAttribute("successMessage", "Product Successfully edited");
+		
+		return "redirect:/admin/inventory";
+	}
+	
+	@RequestMapping(value = "/admin/edit-product/validate", method = RequestMethod.POST)
+	@ResponseBody
+	public String validateEdit(@RequestParam String productJSONString) {
+		return validateProduct(productJSONString);
 	}
 	
 }

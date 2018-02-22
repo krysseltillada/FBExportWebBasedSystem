@@ -149,7 +149,7 @@ $(document).ready(function () {
 					description : $("textarea[name='description']").val(),
 					supplier : $("input[name='supplier']").val(),
 					supplierContactNumber : $("input[name='supplier-contact-number']").val(),
-					supplierAddress : $("textarea[name='supplier-address']").val(),
+					supplierAddress : $("textarea[name='supplier-address']").val()
 					
 				};
 

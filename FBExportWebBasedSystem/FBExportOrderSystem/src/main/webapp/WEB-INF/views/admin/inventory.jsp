@@ -148,12 +148,12 @@
     </div>
 </section>     
 
-<c:if test = "${not empty param.successMessage}">
+<c:if test = "${not empty successMessage}">
 	<script>
 	
 		document.addEventListener("DOMContentLoaded", function(event) { 
 			iziToast.success({
-				message : "${param.successMessage}",
+				message : "${successMessage}",
 				timeout : 1000,
 				position :"bottomRight"
 			});

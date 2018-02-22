@@ -65,6 +65,58 @@ $(document).ready(function () {
     
 
 	$( "#expiredDatePicker" ).flatpickr();
-    $( "#deliveryDatePicker" ).flatpickr();
+	$( "#deliveryDatePicker" ).flatpickr();
+	
+	$("input[type=submit]").click(function (event) {
+		event.preventDefault();
+
+		var product = {
+					name : $("input[name='product-name']").val(),
+					origin : $("input[name='origin']").val(),
+					expiredDate : $("input[name='expired-date']").val(),
+					deliveryDate : $("input[name='delivery-date']").val(),
+					price : $("input[name='price']").val(),
+					weight : $("input[name='weight']").val(),
+					description : $("textarea[name='description']").val(),
+					supplier : $("input[name='supplier']").val(),
+					supplierContactNumber : $("input[name='supplier-contact-number']").val(),
+					supplierAddress : $("textarea[name='supplier-address']").val()	
+				};
+
+		$.post("/FBExportSystem/admin/edit-product/validate", {
+			productJSONString : JSON.stringify(product)
+		}, function (response) {
+
+			if (response.status == "success") {
+				console.log("success");
+				$("form[action]").submit();
+			
+			} else {
+
+				$("html, body").animate({ scrollTop: 0 }, 
+										"fast", function () {
+											$("span.errorMessage").html("*" + response.message);
+
+											$("#errorMessage").removeClass("animated");
+											$("#errorMessage").removeClass("shake");
+
+											var prevClassVal = $("#errorMessage").attr("class");
+
+											console.log(prevClassVal);
+
+											$("#errorMessage").removeAttr("class");
+											
+											$("#errorMessage").css("display", "inline");
+											
+											$("#errorMessage").addClass(prevClassVal);
+											$("#errorMessage").addClass("animated shake");
+										
+										});
+
+			}
+
+		}, "json");
+		
+	});
 
 });

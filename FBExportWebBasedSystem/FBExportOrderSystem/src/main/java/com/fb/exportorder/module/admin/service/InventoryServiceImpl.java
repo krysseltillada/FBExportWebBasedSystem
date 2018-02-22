@@ -54,9 +54,13 @@ public class InventoryServiceImpl implements InventoryService {
 		
 		List<String> errorMessages = new ArrayList<String>();
 		
-		if (Boolean.parseBoolean(isImageEmpty))
-			errorMessages.add("required product image");
-		 
+		if (StringUtils.isNotBlank(isImageEmpty)) {
+		
+			if (Boolean.parseBoolean(isImageEmpty))
+				errorMessages.add("required product image");
+			
+		}
+			
 		if (StringUtils.isBlank(productName) || !StringUtils.isAlphaSpace(productName))
 			errorMessages.add("product name cannot be empty and cannot contain number or symbols");
 		
@@ -162,8 +166,6 @@ public class InventoryServiceImpl implements InventoryService {
 			newProduct.setProductImageLink(productImageLink);
 			
 			inventoryRepository.save(newProduct);
-			
-			
 		
 	}
 
@@ -263,6 +265,66 @@ public class InventoryServiceImpl implements InventoryService {
 		}
 		
 		return (List<Product>)filterQuery.list();
+		
+	}
+
+	@Override
+	public void editProduct(long productId, MultipartFile productImage, String productName, String origin, String expiredDate,
+			String deliveryDate, String price, String weight, String description, String supplier,
+			String supplierContactNumber, String supplierAddress,
+			MultipartFile[] previewImages) {
+		
+			Product editedProduct = inventoryRepository.findOne(productId);
+		
+			if (!productImage.isEmpty()) {
+				
+				String prevProductImageLink = editedProduct.getProductImageLink();
+				String prevProductImageFilename = prevProductImageLink.substring(prevProductImageLink.lastIndexOf("/") + 1);
+				
+				System.out.println(prevProductImageFilename);
+				
+				DeleteImage.deleteProductImageNonHashNonType(prevProductImageFilename);
+				editedProduct.setProductImageLink(UploadImage.uploadProductImageNonHash(prevProductImageFilename, 
+													  									productImage));
+				
+			}
+			
+			editedProduct.setName(productName);
+			editedProduct.setOrigin(origin);
+
+			try {
+				editedProduct.setExpiredDate(dateFormat.parse(expiredDate));
+				editedProduct.setDateOfDelivery(dateFormat.parse(deliveryDate));
+			} catch (ParseException e) {
+				e.printStackTrace();
+			}
+			
+			editedProduct.setPrice(Double.parseDouble(price));
+			editedProduct.setWeight(Double.parseDouble(weight));
+			editedProduct.setDescription(description);
+			editedProduct.setSupplier(supplier);
+			editedProduct.setSupplierContactNumber(supplierContactNumber);
+			editedProduct.setSupplierAddress(supplierAddress);
+			
+			for (int i = 0; i != previewImages.length; ++i) {
+				
+				if (!previewImages[i].isEmpty()) {
+					
+					String prevProductImageLink = editedProduct.getPreviewImageLinks().get(i);
+					
+					String prevProductImageFilename = prevProductImageLink.substring(prevProductImageLink.lastIndexOf("/") + 1);
+					
+					System.out.println(prevProductImageFilename);
+					
+					DeleteImage.deleteProductImageNonHashNonType(prevProductImageFilename);
+					editedProduct.getPreviewImageLinks().set(i, (UploadImage.uploadProductImageNonHash(prevProductImageFilename, 
+														  											   previewImages[i])));
+					
+				}
+				
+			}
+			
+			inventoryRepository.save(editedProduct);
 		
 	}
 	

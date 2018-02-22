@@ -43,6 +43,20 @@ public interface InventoryService {
 								   String postThisProduct,
 								   List<String> productImageLinks);
 	
+	public void editProduct (long productId,
+							 MultipartFile productImage, 
+							 String productName,
+							 String origin,
+							 String expiredDate,
+							 String deliveryDate,
+							 String price,
+							 String weight,
+							 String description,
+							 String supplier,
+							 String supplierContactNumber,
+							 String supplierAddress,
+							 MultipartFile[] previewImages);
+	
 	public List<String> validate (String productImage,
 						   String productName,
 						   String origin,
