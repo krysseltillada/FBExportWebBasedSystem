@@ -330,6 +330,46 @@ $(document).ready(function (){
 		}
 	);
 
+	$(".btn-clear").click(function () {
+
+		maxDatePicker = flatpickr("#maxDatePicker", {
+			minDate : "today",
+			onChange : function (selectedDates, date) {
+				var minTempDate = $("#minDatePicker").val();
+				minDatePicker.config.maxDate = date;
+				$("#minDatePicker").val(minTempDate);
+			},
+			onReady : function () {
+				$("#maxDatePicker").val(flatpickr.formatDate(new Date(), "Y-m-d"));
+			}
+		});
+
+
+		minDatePicker = flatpickr("#minDatePicker", {
+			onChange : function (selectedDates, date) {
+				var maxTempDate = $("#maxDatePicker").val();
+				maxDatePicker.config.minDate = date;
+				$("#maxDatePicker").val(maxTempDate);
+			},
+			onReady : function () {
+				$("#minDatePicker").val(flatpickr.formatDate(new Date(), "Y-m-d"));
+			}
+		});
+
+		$("#dateFilterType").val("DateRegistered");
+
+		$("input[name=status]:checked").closest("label").removeClass("active");
+
+		$("input[name=status]:eq(3)").prop("checked", true);
+		$("input[name=status]:eq(3)").closest("label").addClass("active");
+		
+		$("#minPrice").val("");
+		$("#maxPrice").val("");
+		$("#minWeight").val("");
+		$("#maxWeight").val("");
+
+	});
+
 	$(".btn-filter").click(function () {
 		console.log("filter");
 

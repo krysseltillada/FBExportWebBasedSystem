@@ -279,7 +279,7 @@ public class InventoryServiceImpl implements InventoryService {
 			if (!productImage.isEmpty()) {
 				
 				String prevProductImageLink = editedProduct.getProductImageLink();
-				String prevProductImageFilename = prevProductImageLink.substring(prevProductImageLink.lastIndexOf("/") + 1);
+				String prevProductImageFilename = prevProductImageLink.substring(prevProductImageLink.lastIndexOf("/") + 1, prevProductImageLink.lastIndexOf("."));
 				
 				System.out.println(prevProductImageFilename);
 				
@@ -312,7 +312,7 @@ public class InventoryServiceImpl implements InventoryService {
 					
 					String prevProductImageLink = editedProduct.getPreviewImageLinks().get(i);
 					
-					String prevProductImageFilename = prevProductImageLink.substring(prevProductImageLink.lastIndexOf("/") + 1);
+					String prevProductImageFilename = prevProductImageLink.substring(prevProductImageLink.lastIndexOf("/") + 1, prevProductImageLink.lastIndexOf("."));
 					
 					System.out.println(prevProductImageFilename);
 					

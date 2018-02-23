@@ -52,9 +52,7 @@ $(document).ready(function () {
 		minDate : "today"
 	});
 
-    $( "#deliveryDatePicker" ).flatpickr({
-		minDate : "today"
-	});
+    $( "#deliveryDatePicker" ).flatpickr();
 
 	var isThreeImagesUploaded = false;
 
