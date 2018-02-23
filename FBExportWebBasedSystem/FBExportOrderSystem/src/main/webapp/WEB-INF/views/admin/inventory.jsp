@@ -70,8 +70,9 @@
                     <input class = "text-center mr-2 p-0 form-control form-control-sm" id = "maxWeight" style = "width: 150px;" type = "text" placeholder="100">
 
                     <button type="button" class="btn btn-primary btn-sm pl-4 pr-4 pt-0 pb-0 mr-1 btn-filter">Filter</button>
-                    <button type="button" class="btn btn-secondary btn-sm pl-4 pr-4 pt-0 pb-0" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">Close</button>
-
+                    <!-- <button type="button" class="btn btn-secondary btn-sm pl-4 pr-4 pt-0 pb-0" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">Close</button>  -->
+                    <button type="button" class="btn btn-secondary btn-sm pl-4 pr-4 pt-0 pb-0 btn-clear">Clear</button>
+					
                     </form>
                 </div>
                 </div>

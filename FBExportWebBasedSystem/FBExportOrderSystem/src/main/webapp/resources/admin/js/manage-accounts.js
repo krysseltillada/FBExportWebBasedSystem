@@ -3,6 +3,8 @@ $(document).ready(function () {
     
     /*CLIENT TABLE*/
 
+    
+
       var clienttable = $('#client-table').DataTable({
         "scrollX": true,
         "columns": [

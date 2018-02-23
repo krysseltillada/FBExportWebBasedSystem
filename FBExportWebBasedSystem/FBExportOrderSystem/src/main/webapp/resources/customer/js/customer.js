@@ -375,7 +375,7 @@ $(document).ready(function () {
 
                                     }, 1000);
 
-                                     var token = $("meta[name='_csrf']").attr("content");
+                                    var token = $("meta[name='_csrf']").attr("content");
                                     var header = $("meta[name='_csrf_header']").attr("content");
                                     $(document).ajaxSend(function(e, xhr, options) {
                                         xhr.setRequestHeader(header, token);
