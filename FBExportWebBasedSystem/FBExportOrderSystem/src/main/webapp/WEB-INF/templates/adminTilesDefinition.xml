@@ -33,7 +33,7 @@
 			
 			<add-attribute value = "/resources/admin/js/pace.min.js" />
 			<add-attribute value = "https://use.fontawesome.com/38a955adbf.js" />
-			<add-attribute value = "/resources/admin/js/jquery-1.12.4.min.js" />
+			<add-attribute value = "https://code.jquery.com/jquery-1.12.4.min.js" />
 			<add-attribute value = "/resources/admin/vendor/popper.js/umd/popper.min.js" />
 			<add-attribute value = "/resources/admin/vendor/bootstrap/js/bootstrap.min.js" />
 			<add-attribute value = "/resources/admin/vendor/jquery.cookie/jquery.cookie.js"/>

@@ -14,12 +14,10 @@
 					<hr />
 					
 			        <ol class="carousel-indicators">
-			            <li data-target="#carousel-example-2" data-slide-to="0" class="active"></li>
-			            <li data-target="#carousel-example-2" data-slide-to="1"></li>
-			            <li data-target="#carousel-example-2" data-slide-to="2"></li>
+			        	<c:forEach var = "circleIndicatorCount" begin = "0" end = "${fn:length(mostPopularProductList) -1}">
+				            <li data-target="#popularProductsCarousel" data-slide-to="${circleIndicatorCount}" ${(circleIndicatorCount eq 0) ? 'class = "active"' : ''}></li>
+			            </c:forEach>
 			        </ol>
-			
-					
 			
 			        	<div class="carousel-inner" role="listbox">
 			        
