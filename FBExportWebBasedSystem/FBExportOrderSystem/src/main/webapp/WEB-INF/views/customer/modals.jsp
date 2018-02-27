@@ -253,7 +253,7 @@
 	            <!--Footer-->
 	            <div class="modal-footer">
 	                <button type="button" class="btn btn-outline-primary" data-dismiss="modal">Close</button>
-	                <button class="btn btn-primary">Place Order</button>
+	                <button class="btn btn-primary btn-place-order">Place Order</button>
 	            </div>
 	        </div>
 	    </div>

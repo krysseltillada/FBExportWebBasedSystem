@@ -137,6 +137,10 @@
 			<add-attribute value = "/resources/customer/css/table-body-scroll.css" />
 		</put-list-attribute>
 		
+		<put-list-attribute name = "javascriptfiles" inherit = "true">
+			<add-attribute value = "/resources/customer/js/place-order.js" />
+		</put-list-attribute>
+		
 		
 	</definition>
 	

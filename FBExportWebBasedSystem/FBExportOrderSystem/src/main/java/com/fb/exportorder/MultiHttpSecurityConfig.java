@@ -69,7 +69,8 @@ public class MultiHttpSecurityConfig {
         					 "/notifications",
         					 "/your-address",
         					 "/account-settings",
-        					 "/edit-account")
+        					 "/edit-account",
+        					 "/place-order")
         		.hasAuthority("CUSTOMER")
         		.and()
         		.authorizeRequests()

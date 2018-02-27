@@ -51,7 +51,7 @@ public class Order	 {
 	private int totalItems;
 	private double totalWeight;
 	
-	private Money totalPrice;
+	private double totalPrice;
 	
 	@Temporal(TemporalType.DATE)
 	private Date dateOrdered;
@@ -112,11 +112,11 @@ public class Order	 {
 		this.totalWeight = totalWeight;
 	}
 
-	public Money getTotalPrice() {
+	public double getTotalPrice() {
 		return totalPrice;
 	}
 
-	public void setTotalPrice(Money totalPrice) {
+	public void setTotalPrice(double totalPrice) {
 		this.totalPrice = totalPrice;
 	}
 
@@ -127,7 +127,6 @@ public class Order	 {
 	public void setDateOrdered(Date dateOrdered) {
 		this.dateOrdered = dateOrdered;
 	}
-	
 	
 	
 }

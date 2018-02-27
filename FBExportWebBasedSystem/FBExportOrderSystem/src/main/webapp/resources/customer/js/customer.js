@@ -294,6 +294,12 @@ $(document).ready(function () {
        
     });
 
+    $(".btn-place-order").click(function () {
+    
+        location.href = "/FBExportSystem/place-order";
+
+    });
+
     $("#quantity").tooltip({
         trigger : 'manual',
         offset : '0px 9px'
@@ -344,11 +350,11 @@ $(document).ready(function () {
             ph -> empty it
             china -> 1.0.63.255
             japan -> 1.0.31.255
-
+            vietnam -> 1.52.0.0 -> no currency rate
         */
 
         $.ajax({
-            url: "http://ip-api.com/json/1.0.31.255",
+            url: "http://ip-api.com/json/",
             jsonpCallback: "callback",
             dataType: "json",
             success: function( location ) {
@@ -394,7 +400,11 @@ $(document).ready(function () {
                                             }
                                         }
 
-                                        console.log(currentCurrency);
+                                        if(currentCurrency.length <= 0) {
+                                            toastr.warning("No rates for " + location.country + " Currency switching to US Dollar");
+                                            currentCurrency = "USD";
+                                        }
+
 
                                         $(".card-product").each(function () {
 
@@ -415,6 +425,22 @@ $(document).ready(function () {
                                             $currency.html(currentCurrency);
                                             
                                         });
+
+                                        $("#cartItemTable>tbody>tr").each(function () {
+                                            console.log($(this).find("td:eq(1)").html());
+
+                                            var $priceRow = $(this).find("td:eq(1)");
+
+                                            console.log(currentCurrency);
+                                            
+                                            var phpPriceToCurrentPrice = formatMoney(fx($priceRow.html()).from("PHP").to(currentCurrency), "", "%v");
+
+                                            $priceRow.html(phpPriceToCurrentPrice);
+
+                                        });
+
+                                        $("#placeOrdertotalPrice").html(formatMoney(fx($("#placeOrdertotalPrice").html()).from("PHP").to(currentCurrency), "", "%v"));
+                                        $("#placeOrderCurrency").html(currentCurrency);
 
                                         _.each($("div#shoppingModalCart div.modal-body>table>tbody").children(), function (productCartItem, i) {
 
