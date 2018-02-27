@@ -226,7 +226,6 @@
                                     <th> </th>
                                     <th>Image</th>
                                     <th>Username</th>
-                                    <th>Password</th>
                                     <th>First Name</th>
                                     <th>Middle Name</th>
                                     <th>Last Name</th>
@@ -248,7 +247,6 @@
                                 <th></th>
                                 <th>Image</th>
                                 <th>Username</th>
-                                <th>Password</th>
                                 <th>First Name</th>
                                 <th>Middle Name</th>
                                 <th>Last Name</th>
@@ -273,7 +271,6 @@
 			                                <td><i class="fa fa-chevron-circle-down fa-lg" aria-hidden="true" style="cursor: pointer;" id="showActivity"></i></td>
 			                                <td><img src="<c:out value = '${customer.profileImageLink}' />" height="100" width="100"/></td>
 			                                <td class="usernameCustomerRow"><c:out value = "${customer.username} " /></td>
-			                                <td><c:out value = "${customer.password}" /></td>
 			                                <td><c:out value = "${customer.firstname}" /></td>
 			                                <td><c:out value = "${customer.middlename}" /></td>
 			                                <td><c:out value = "${customer.lastname}" /> </td>
@@ -690,7 +687,6 @@
                                 <tr>
                                     <th>Image</th>
                                     <th>Username</th>
-                                    <th>Password</th>
                                     <th>First Name</th>
                                     <th>Middle Name</th>
                                     <th>Last Name</th>
@@ -711,7 +707,6 @@
                                 <tr>
                                 <th>Image</th>
                                 <th>Username</th>
-                                <th>Password</th>
                                 <th>First Name</th>
                                 <th>Middle Name</th>
                                 <th>Last Name</th>
@@ -735,7 +730,6 @@
 					        		<tr>
 		                                <td><img src="<c:out value = '${employee.profileImageLink}' />" height="100" width="100"/></td>
 		                                <td class="usernameEmployeeRow"><c:out value = "${employee.username} " /></td>
-		                                <td><c:out value = "${employee.password}" /></td>
 		                                <td><c:out value = "${employee.firstname}" /></td>
 		                                <td><c:out value = "${employee.middlename}" /></td>
 		                                <td><c:out value = "${employee.lastname}" /> </td>
@@ -752,17 +746,37 @@
 		
 		                                <td>
 		                                	<c:choose>
-		                                		<c:when test="${not employee.enabled}">
-		                                			<label class="switch">
-		                                        		<input type="checkbox" name="isActive" id="isActive">
-		                                        		<span class="slider round"></span>
-		                                    		</label>
+		                                		<c:when test="${!sessionScope.employeeId.equals(employee.id)}">
+		                                			<c:choose>
+				                                		<c:when test="${not employee.enabled}">
+				                                			<label class="switch">
+				                                        		<input type="checkbox" name="isActive" id="isActive">
+				                                        		<span class="slider round"></span>
+				                                    		</label>
+				                                		</c:when>
+				                                		<c:otherwise>
+				                                			<label class="switch">
+						                                        <input type="checkbox" checked name="isActive" id="isActive">
+						                                        <span class="slider round"></span>
+						                                    </label>
+				                                		</c:otherwise>
+				                                	</c:choose>
 		                                		</c:when>
 		                                		<c:otherwise>
-		                                			<label class="switch">
-				                                        <input type="checkbox" checked name="isActive" id="isActive">
-				                                        <span class="slider round"></span>
-				                                    </label>
+		                                			<c:choose>
+				                                		<c:when test="${not employee.enabled}">
+				                                			<label class="switch">
+				                                        		<input type="checkbox" name="isActive" id="isActive" disabled >
+				                                        		<span class="slider round"></span>
+				                                    		</label>
+				                                		</c:when>
+				                                		<c:otherwise>
+				                                			<label class="switch">
+						                                        <input type="checkbox" checked name="isActive" id="isActive" disabled >
+						                                        <span class="slider round"></span>
+						                                    </label>
+				                                		</c:otherwise>
+				                                	</c:choose>
 		                                		</c:otherwise>
 		                                	</c:choose>
 		                                    
@@ -1152,7 +1166,6 @@
                                 <tr>
                                     <th>Image</th>
                                     <th>Username</th>
-                                    <th>Password</th>
                                     <th>First Name</th>
                                     <th>Middle Name</th>
                                     <th>Last Name</th>
@@ -1173,7 +1186,6 @@
                                 <tr>
                                 <th>Image</th>
                                 <th>Username</th>
-                                <th>Password</th>
                                 <th>First Name</th>
                                 <th>Middle Name</th>
                                 <th>Last Name</th>
@@ -1197,7 +1209,6 @@
 					        		<tr>
 		                                <td><img src="<c:out value = '${employee.profileImageLink}' />" height="100" width="100"/></td>
 		                                <td class="usernameAdminRow"><c:out value = "${employee.username} " /></td>
-		                                <td><c:out value = "${employee.password}" /></td>
 		                                <td><c:out value = "${employee.firstname}" /></td>
 		                                <td><c:out value = "${employee.middlename}" /></td>
 		                                <td><c:out value = "${employee.lastname}" /> </td>
@@ -1214,17 +1225,37 @@
 		
 		                                <td>
 		                                	<c:choose>
-		                                		<c:when test="${not employee.enabled}">
-		                                			<label class="switch">
-		                                        		<input type="checkbox" name="isActive" id="isActive">
-		                                        		<span class="slider round"></span>
-		                                    		</label>
+		                                		<c:when test="${!sessionScope.employeeId.equals(employee.id)}">
+		                                			<c:choose>
+				                                		<c:when test="${not employee.enabled}">
+				                                			<label class="switch">
+				                                        		<input type="checkbox" name="isActive" id="isActive">
+				                                        		<span class="slider round"></span>
+				                                    		</label>
+				                                		</c:when>
+				                                		<c:otherwise>
+				                                			<label class="switch">
+						                                        <input type="checkbox" checked name="isActive" id="isActive">
+						                                        <span class="slider round"></span>
+						                                    </label>
+				                                		</c:otherwise>
+				                                	</c:choose>
 		                                		</c:when>
 		                                		<c:otherwise>
-		                                			<label class="switch">
-				                                        <input type="checkbox" checked name="isActive" id="isActive">
-				                                        <span class="slider round"></span>
-				                                    </label>
+		                                			<c:choose>
+				                                		<c:when test="${not employee.enabled}">
+				                                			<label class="switch">
+				                                        		<input type="checkbox" name="isActive" id="isActive" disabled >
+				                                        		<span class="slider round"></span>
+				                                    		</label>
+				                                		</c:when>
+				                                		<c:otherwise>
+				                                			<label class="switch">
+						                                        <input type="checkbox" checked name="isActive" id="isActive" disabled >
+						                                        <span class="slider round"></span>
+						                                    </label>
+				                                		</c:otherwise>
+				                                	</c:choose>
 		                                		</c:otherwise>
 		                                	</c:choose>
 		                                    
