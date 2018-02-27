@@ -9,6 +9,8 @@ public class ApplicationStart extends ContextLoaderListener{
 	@Override
 	public void contextDestroyed(ServletContextEvent event) {
 		// TODO Auto-generated method stub
+		
+		
 		super.contextDestroyed(event);
 	}
 

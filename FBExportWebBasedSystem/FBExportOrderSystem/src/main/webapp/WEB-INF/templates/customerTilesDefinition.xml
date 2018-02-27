@@ -57,7 +57,9 @@
 			<add-attribute value = "/resources/customer/js/moment-timezone-with-data.js" />
 			<add-attribute value = "/resources/customer/js/math.js" />
 			<add-attribute value = "/resources/customer/js/accounting.js" />
+			<add-attribute value = "/resources/customer/js/money.js" />
 			<add-attribute value = "/resources/customer/js/underscore.js" />
+			<add-attribute value = "/resources/customer/js/js.cookie.js" />
 			<add-attribute value = "/resources/customer/js/utilities.js" />
 			<add-attribute value = "/resources/customer/js/customer.js" />
 		</put-list-attribute>

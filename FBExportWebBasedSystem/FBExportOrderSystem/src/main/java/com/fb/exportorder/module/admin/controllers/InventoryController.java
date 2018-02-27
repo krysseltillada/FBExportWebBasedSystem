@@ -79,6 +79,8 @@ public class InventoryController {
 		
 	}
 	
+	// TODO REMOVE EXPIRED FEATURE
+	
 	private String validateProduct (String productJSONString) {
 		
 		List<String> errorMessages = null;
@@ -91,7 +93,6 @@ public class InventoryController {
 			errorMessages = inventoryService.validate((String)jsonRawObject.getOrDefault("isImageEmpty", StringUtils.EMPTY), 
 													  (String)jsonRawObject.get("name"), 
 													  (String)jsonRawObject.get("origin"), 
-													  (String)jsonRawObject.get("expiredDate"), 
 													  (String)jsonRawObject.get("deliveryDate"), 
 													  (String)jsonRawObject.get("price"), 
 													  (String)jsonRawObject.get("weight"), 
@@ -144,7 +145,6 @@ public class InventoryController {
 	public String addProductAdd (@RequestParam(name = "product-image", required = false) MultipartFile productImage,
 							   @RequestParam("product-name") String productName,
 							   @RequestParam String origin,
-							   @RequestParam("expired-date") String expiredDate,
 							   @RequestParam("delivery-date") String deliveryDate,
 							   @RequestParam String price,
 							   @RequestParam String weight,
@@ -159,7 +159,7 @@ public class InventoryController {
 		  for (String profileImageLink : profileImageLinks)
 			  System.out.println(profileImageLink);
 		
-		  inventoryService.addProduct(productImage, productName, origin, expiredDate, deliveryDate, price, weight, description, supplier, supplierContactNumber, supplierAddress, postThisProduct, profileImageLinks);
+		  inventoryService.addProduct(productImage, productName, origin, deliveryDate, price, weight, description, supplier, supplierContactNumber, supplierAddress, postThisProduct, profileImageLinks);
 		  
 		  attributes.addFlashAttribute("successMessage", "Product has been added");
 		  
@@ -232,8 +232,7 @@ public class InventoryController {
 		String strStatus = (String)filterDataJSON.get("status");
 		
 		ProductStatus status = strStatus.equals("Posted") ?  ProductStatus.POSTED :
-							   strStatus.equals("Unposted") ? ProductStatus.UNPOSTED : 
-							   strStatus.equals("Expired") ? ProductStatus.EXPIRED : ProductStatus.ALL;
+							   strStatus.equals("Unposted") ? ProductStatus.UNPOSTED : ProductStatus.ALL;
 		
 		double minPrice = StringUtils.isBlank((String)filterDataJSON.get("minPrice")) ? 0 : 
 																						Double.parseDouble((String)filterDataJSON.get("minPrice"));
@@ -286,7 +285,6 @@ public class InventoryController {
 								  @RequestParam(name = "product-image") MultipartFile productImage,
 								  @RequestParam("product-name") String productName,
 								  @RequestParam String origin,
-								  @RequestParam("expired-date") String expiredDate,
 								  @RequestParam("delivery-date") String deliveryDate,
 								  @RequestParam String price,
 								  @RequestParam String weight,
@@ -301,7 +299,6 @@ public class InventoryController {
 									 productImage, 
 									 productName, 
 									 origin, 
-									 expiredDate, 
 									 deliveryDate, 
 									 price, 
 									 weight, 

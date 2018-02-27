@@ -17,8 +17,8 @@
 			<add-attribute value = "/resources/admin/vendor/font-awesome/css/font-awesome.min.css" />
 			<add-attribute value = "/resources/admin/css/fontastic.css" />
 			<add-attribute value = "https://fonts.googleapis.com/css?family=Poppins:300,400,700" />
-			<add-attribute value = "https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css" />
-			<add-attribute value = "https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" />
+			<add-attribute value = "/resources/admin/css/flatpickr.min.css" />
+			<add-attribute value = "/resources/admin/css/dataTables.bootstrap4.min.css" />
 			<add-attribute value = "http://netdna.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" />
 			<add-attribute value = "/resources/admin/css/style.default.css" />
 			<add-attribute value = "/resources/admin/css/pace-themes/pace-theme-minimal.css" />
@@ -33,14 +33,16 @@
 			
 			<add-attribute value = "/resources/admin/js/pace.min.js" />
 			<add-attribute value = "https://use.fontawesome.com/38a955adbf.js" />
-			<add-attribute value = "http://code.jquery.com/jquery-1.12.4.min.js" />
+			<add-attribute value = "/resources/admin/js/jquery-1.12.4.min.js" />
 			<add-attribute value = "/resources/admin/vendor/popper.js/umd/popper.min.js" />
 			<add-attribute value = "/resources/admin/vendor/bootstrap/js/bootstrap.min.js" />
 			<add-attribute value = "/resources/admin/vendor/jquery.cookie/jquery.cookie.js"/>
 			<add-attribute value = "/resources/admin/vendor/chart.js/Chart.min.js" />
 			<add-attribute value = "/resources/admin/vendor/jquery-validation/jquery.validate.min.js" />
-			<add-attribute value = "https://cdn.jsdelivr.net/npm/flatpickr" />
-			<add-attribute value = "https://code.jquery.com/ui/1.12.1/jquery-ui.js" />
+			<add-attribute value = "/resources/admin/js/flatpickr.js" />
+			<add-attribute value = "/resources/admin/js/jquery-ui.js" />
+			<add-attribute value = "/resources/admin/js/jquery.dataTables.min.js" />
+			<add-attribute value = "/resources/admin/js/dataTables.bootstrap4.min.js" />	
 			<add-attribute value = "/resources/admin/js/timepicki.js" />
 			<add-attribute value = "/resources/admin/js/underscore.js" />
 			<add-attribute value = "/resources/admin/js/moment.js" />
@@ -78,13 +80,7 @@
 		<put-attribute name = "main" value = "/WEB-INF/views/admin/inventory.jsp" />
 		<put-attribute name = "sideBarActiveLink" value = "inventory" />
 		
-		<put-list-attribute name = "cssfiles" inherit = "true">
-			<add-attribute value = "https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css" />
-		</put-list-attribute>
-		
 		<put-list-attribute name = "javascriptfiles" inherit = "true">
-			<add-attribute value = "https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js" />
-			<add-attribute value = "https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js" />	
 			<add-attribute value = "/resources/admin/js/inventory.js" />	
 		</put-list-attribute>
 	
@@ -128,13 +124,7 @@
 		<put-attribute name = "main" value = "/WEB-INF/views/admin/order.jsp" />
 		<put-attribute name = "sideBarActiveLink" value = "orders" />
 		
-		<put-list-attribute name = "cssfiles" inherit = "true">
-			<add-attribute value = "https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css" />
-		</put-list-attribute>
-		
 		<put-list-attribute name = "javascriptfiles" inherit = "true">
-			<add-attribute value = "https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js" />
-			<add-attribute value = "https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js" />
 			<add-attribute value = "/resources/admin/js/order.js" />	
 		</put-list-attribute>
 		
@@ -146,13 +136,10 @@
 		<put-attribute name = "sideBarActiveLink" value = "manage-accounts" />
 		
 		<put-list-attribute name = "cssfiles" inherit = "true">
-			<add-attribute value = "https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css" />
 			<add-attribute value = "/resources/admin/css/manage-accounts.css" />
 		</put-list-attribute>
 		
 		<put-list-attribute name = "javascriptfiles" inherit = "true">
-			<add-attribute value = "https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js" />
-			<add-attribute value = "https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js" />
 			<add-attribute value = "/resources/admin/js/manage-accounts.js" />	
 		</put-list-attribute>
 		
@@ -163,13 +150,7 @@
 		<put-attribute name = "main" value = "/WEB-INF/views/admin/report-logs.jsp" />
 		<put-attribute name = "sideBarActiveLink" value = "report-logs" />
 		
-		<put-list-attribute name = "cssfiles" inherit = "true">
-			<add-attribute value = "https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css" />
-		</put-list-attribute>
-		
 		<put-list-attribute name = "javascriptfiles" inherit = "true">
-			<add-attribute value = "https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js" />
-			<add-attribute value = "https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js" />
 			<add-attribute value = "/resources/admin/js/report-logs.js" />
 		</put-list-attribute>
 	

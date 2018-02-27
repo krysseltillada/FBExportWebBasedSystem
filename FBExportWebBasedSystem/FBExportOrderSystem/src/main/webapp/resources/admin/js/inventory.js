@@ -425,7 +425,7 @@ $(document).ready(function (){
 						product.price,
 						product.weight,
 						product.dateRegistered,
-						product.expiredDate,
+						product.dateOfDelivery,
 						(product.status == "POSTED") ? "Posted" : (product.status == "UNPOSTED") ? "Unposted" : "Expired" 
 					] ).draw();
 

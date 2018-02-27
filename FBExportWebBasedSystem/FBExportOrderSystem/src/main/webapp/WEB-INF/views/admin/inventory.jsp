@@ -32,7 +32,6 @@
                     <input class = "text-center mr-2 p-0 form-control form-control-sm" style = "width: 150px;" type="text" id="maxDatePicker">
                     <select class = "custom-select mt-2 mr-3 form-control-sm" id = "dateFilterType" style = "width: 170px;">
                         <option value = "DateRegistered">Date Registered</option>
-                        <option value = "DateExpired">Date Expired</option>
                         <option value = "DateOfDelivery">Date Of Delivery</option>
                     </select>
                     <label class = "mr-2">
@@ -48,7 +47,7 @@
                         <input type="radio" name="status" autocomplete="off" value = "Unposted"> Unposted
                         </label>
                         <label class="btn btn-danger text-white btn-sm p-0 pl-3 pr-3">
-                        <input type="radio" name="status" autocomplete="off" value = "Expired"> Expired
+                        <input type="radio" name="status" autocomplete="off" value = "Outofstock"> Out of Stock
                         </label>
                         <label class="btn btn-primary text-white btn-sm p-0 pl-3 pr-3 active">
                         <input type="radio" name="status" autocomplete="off" value = "All" checked> All
@@ -96,7 +95,7 @@
                             <th> Price </th>
                             <th> Weight </th>
                             <th> Date Registered </th>
-                            <th>Expired Date</th>
+                            <th> Date Of Delivery</th>
                             <th>Status</th>
                         </tr>
                     </thead>
@@ -111,7 +110,7 @@
                             <th> Price </th>
                             <th> Weight </th>
                             <th> Date Registered  </th>
-                            <th>Expired Date</th>
+                            <th> Date Of Delivery</th>
                             <th>Status</th>
                         </tr>
                     </tfoot>
@@ -127,10 +126,10 @@
 	                            <td>${product.name}</td>
 	                            <td>${product.origin}</td>
 	                            <td>${product.supplier}</td>
-	                            <td>${product.price}</td>
-	                            <td>${product.weight}</td>
+	                            <td><fmt:formatNumber type="currency" currencyCode = "PHP" value="${product.price}" /></td>
+	                            <td>${product.weight} KILO</td>
 	                            <td>${product.dateRegistered}</td>
-	                            <td>${product.expiredDate}</td>
+	                            <td>${product.dateOfDelivery}</td>
 	                            <td>${( product.status eq 'POSTED' ? "Posted" : "Unposted")  }</td>
 	
 	                        </tr>

@@ -1,6 +1,7 @@
 package com.fb.exportorder.module.admin.service;
 
 import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
@@ -18,12 +19,14 @@ import org.hibernate.Query;
 import org.hibernate.SessionFactory;
 import org.javamoney.moneta.Money;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.fb.exportorder.models.Product;
+import com.fb.exportorder.models.customer.Rating;
 import com.fb.exportorder.models.enums.ProductStatus;
 import com.fb.exportorder.module.admin.repository.InventoryRepository;
 import com.fb.exportorder.utilities.DeleteImage;
@@ -43,7 +46,6 @@ public class InventoryServiceImpl implements InventoryService {
 	public List<String> validate (String isImageEmpty,
 								  String productName,
 								  String origin,
-								  String expiredDate,
 								  String deliveryDate,
 								  String price,
 								  String weight,
@@ -67,15 +69,6 @@ public class InventoryServiceImpl implements InventoryService {
 		if (StringUtils.isBlank(origin) || !StringUtils.isAlphaSpace(origin))
 			errorMessages.add("origin cannot be empty and cannot contain symbols");
 		
-		try {
-			
-			if (StringUtils.isEmpty(expiredDate))
-				throw new ParseException("", 0);
-			
-			dateFormat.parse(expiredDate);
-		} catch (ParseException e) {
-			errorMessages.add("invalid expired date");
-		}
 		
 		try {
 			Money.of(new BigDecimal(price), "PHP");
@@ -120,7 +113,6 @@ public class InventoryServiceImpl implements InventoryService {
 	public void addProduct(MultipartFile productImage,
 			 					   String productName,
 			 					   String origin,
-			 					   String expiredDate,
 			 					   String deliveryDate,
 			 					   String price,
 			 					   String weight,
@@ -130,11 +122,7 @@ public class InventoryServiceImpl implements InventoryService {
 			 					   String supplierAddress,
 			 					   String postThisProduct,
 			 					   List<String> productImageLinks) {
-		
-			String name = productImage.getOriginalFilename().substring(0, productImage.getOriginalFilename().indexOf("."));
-		
-		
-			
+
 			Product newProduct = new Product();
 			
 			
@@ -142,13 +130,13 @@ public class InventoryServiceImpl implements InventoryService {
 			newProduct.setOrigin(origin);
 
 			try {
-				newProduct.setExpiredDate(dateFormat.parse(expiredDate));
 				newProduct.setDateOfDelivery(dateFormat.parse(deliveryDate));
 				newProduct.setDateRegistered(Date.from(LocalDate.now().atStartOfDay().atZone(ZoneId.systemDefault()).toInstant()));
 			} catch (ParseException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+			
 			
 			newProduct.setPrice(Double.parseDouble(price));
 			newProduct.setWeight(Double.parseDouble(weight));
@@ -157,8 +145,19 @@ public class InventoryServiceImpl implements InventoryService {
 			newProduct.setSupplierContactNumber(supplierContactNumber);
 			newProduct.setSupplierAddress(supplierAddress);
 			newProduct.setPreviewImageLinks(productImageLinks);
+			
 			newProduct.setStatus(Objects.nonNull(postThisProduct) ? ProductStatus.POSTED : ProductStatus.UNPOSTED);
 
+			if (newProduct.getStatus() == ProductStatus.POSTED)
+				newProduct.setDatePosted(Date.from(LocalDate.now().atStartOfDay().atZone(ZoneId.systemDefault()).toInstant()));
+			
+			
+			Rating rating = new Rating();
+			
+			rating.setProduct(newProduct);
+			
+			newProduct.setRating(rating);
+			
 			newProduct = inventoryRepository.save(newProduct);
 			
 			String productImageLink = UploadImage.uploadProductImage(Long.toString(newProduct.getProductId()), productImage);
@@ -203,6 +202,7 @@ public class InventoryServiceImpl implements InventoryService {
 		Product postProduct = inventoryRepository.findOne(id);
 		
 		postProduct.setStatus(ProductStatus.POSTED);
+		postProduct.setDatePosted(Date.from(LocalDate.now().atStartOfDay().atZone(ZoneId.systemDefault()).toInstant()));
 		
 		inventoryRepository.save(postProduct);
 		
@@ -236,8 +236,7 @@ public class InventoryServiceImpl implements InventoryService {
 										double minWeight,
 										double maxWeight) {
 		
-		String dateFilterQuery =  (StringUtils.equals(dateFilterType, "DateExpired")) ?    "p.expiredDate" :
-								  (StringUtils.equals(dateFilterType, "DateRegistered")) ? "p.dateRegistered" : 
+		String dateFilterQuery =  (StringUtils.equals(dateFilterType, "DateExpired")) ?    "p.expiredDate" : 
 																						    "p.dateOfDelivery" ;
 		
 		String statusFilterQuery = (status != ProductStatus.ALL) ? " AND p.status = '" + status.name() + "'": StringUtils.EMPTY;
@@ -269,7 +268,7 @@ public class InventoryServiceImpl implements InventoryService {
 	}
 
 	@Override
-	public void editProduct(long productId, MultipartFile productImage, String productName, String origin, String expiredDate,
+	public void editProduct(long productId, MultipartFile productImage, String productName, String origin, 
 			String deliveryDate, String price, String weight, String description, String supplier,
 			String supplierContactNumber, String supplierAddress,
 			MultipartFile[] previewImages) {
@@ -293,7 +292,6 @@ public class InventoryServiceImpl implements InventoryService {
 			editedProduct.setOrigin(origin);
 
 			try {
-				editedProduct.setExpiredDate(dateFormat.parse(expiredDate));
 				editedProduct.setDateOfDelivery(dateFormat.parse(deliveryDate));
 			} catch (ParseException e) {
 				e.printStackTrace();
@@ -326,6 +324,94 @@ public class InventoryServiceImpl implements InventoryService {
 			
 			inventoryRepository.save(editedProduct);
 		
+	}
+
+	// MAKE PAGINATION ON NEWEST WORK
+	
+	@Override
+	public List<Product> getNewLatestProduct(int records, int offset) {
+		
+		List<Object[]> rawResultSet = inventoryRepository.getLatestNewProductsRecordsAndOffset(records, offset);
+		List<Product> productList = new ArrayList<Product>();
+		
+		
+		for (Object[] rawRow : rawResultSet) {
+			
+			Product product = new Product();
+			
+			product.setProductId(((BigInteger)rawRow[0]).longValue());
+			product.setDateOfDelivery((Date)rawRow[1]);
+			product.setDateRegistered((Date)rawRow[2]);
+			product.setDatePosted((Date)rawRow[3]);
+			product.setDescription((String)rawRow[4]);
+			product.setPosted((boolean)rawRow[5]); 
+			product.setName((String)rawRow[6]);
+			product.setOrigin((String)rawRow[7]);
+			product.setPrice((double)rawRow[8]);
+			product.setProductImageLink((String)rawRow[9]);
+			
+			product.setStatus(ProductStatus.valueOf((String)rawRow[10]));
+			product.setSupplier((String)rawRow[11]);
+			product.setSupplierAddress((String)rawRow[12]);
+			product.setSupplierContactNumber((String)rawRow[13]);
+			product.setWeight((double)rawRow[14]);
+
+			productList.add(product);
+			
+			
+		}
+		
+		return productList;
+	}
+
+	@Override
+	public int getNewLatestProductCount() {
+		return (int) inventoryRepository.getLatestNewProductsCount();
+	}
+
+	@Override
+	public List<Product> getMostViewedProduct(int records, int offset) {
+		List<Object[]> rawResultSet = inventoryRepository.getMostViewedProductsRecordsAndOffset(records, offset);
+		List<Product> productList = new ArrayList<Product>();
+		
+		
+		for (Object[] rawRow : rawResultSet) {
+			
+			Product product = new Product();
+			
+			product.setProductId(((BigInteger)rawRow[0]).longValue());
+			product.setDateOfDelivery((Date)rawRow[1]);
+			product.setDateRegistered((Date)rawRow[2]);
+			product.setDatePosted((Date)rawRow[3]);
+			product.setDescription((String)rawRow[4]);
+			product.setPosted((boolean)rawRow[5]); 
+			product.setName((String)rawRow[6]);
+			product.setOrigin((String)rawRow[7]);
+			product.setPrice((double)rawRow[8]);
+			product.setProductImageLink((String)rawRow[9]);
+			
+			product.setStatus(ProductStatus.valueOf((String)rawRow[10]));
+			product.setSupplier((String)rawRow[11]);
+			product.setSupplierAddress((String)rawRow[12]);
+			product.setSupplierContactNumber((String)rawRow[13]);
+			product.setWeight((double)rawRow[14]);
+
+			productList.add(product);
+			
+			
+		}
+		
+		return productList;
+	}
+
+	@Override
+	public int getMostViewedProductCount() {
+		return (int) inventoryRepository.getMostViewedProductsCount();
+	}
+
+	@Override
+	public List<Product> getMostPopularProduct() {
+		return inventoryRepository.getMostPopularProducts(new PageRequest(0, 3));
 	}
 	
 	

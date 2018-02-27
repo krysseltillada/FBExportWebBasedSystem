@@ -48,10 +48,7 @@ $(document).ready(function () {
 		readURL(this);
 	}); 
 
-	$( "#expiredDatePicker" ).flatpickr({
-		minDate : "today"
-	});
-
+	
     $( "#deliveryDatePicker" ).flatpickr();
 
 	var isThreeImagesUploaded = false;
@@ -134,13 +131,10 @@ $(document).ready(function () {
 			
 			event.preventDefault();
 
-			
-		
 				var product = {
 					isImageEmpty : ($("input[name='product-image']")[0].files.length == 0 ? "true" : "false"),
 					name : $("input[name='product-name']").val(),
 					origin : $("input[name='origin']").val(),
-					expiredDate : $("input[name='expired-date']").val(),
 					deliveryDate : $("input[name='delivery-date']").val(),
 					price : $("input[name='price']").val(),
 					weight : $("input[name='weight']").val(),

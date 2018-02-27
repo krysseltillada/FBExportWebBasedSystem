@@ -1,12 +1,13 @@
  <script id = "cartItemTemplate" type = "text/template">
 
     <tr>
-        <th scope="row">1</th>
-        <td><img src="{{=productImage}}" width="50" height="50" class="float-left" alt="placeholder"></td>
+        <td><img src="{{=productImage}}" width="50" height="50" class="float-left"></td>
         <td>{{=productName}}</td>
         <td>{{=totalPrice}}</td>
-        <td>{{=totalMass}}</td>
-        <td class="text-center"><a><i class="fa fa-remove text"></i></a></td>
+		<td>{{=totalWeight}} {{=weightType}}</td>
+		<td class="text-center"><a class = "delete-cart-item"><i class="fa fa-remove text"></i></a></td>
+		
+		<input type = "hidden" id = "item-id" value = "{{=itemId}}" />
     </tr>
 
 </script>
@@ -67,4 +68,61 @@
 			</div>
 		</div>
 	</div>
+</script>
+
+<script id = "productCardTemplate" type = "text/template">
+
+	<div class = "col-md-4">
+		<div class="card card-product hoverable">
+
+			<span style = "position: absolute; color: white; left: 180px; width: 40%; overflow: hidden; padding: 5px; text-align: center; border: 1px solid white;" class = "rgba-black-strong">
+					<span id = "price">{{=price}}</span>  <span id = "currency">PHP</span>
+			</span>
+
+			<span style = "position: absolute; color: white; left: 180px; top: 36px; width: 40%; padding: 3px 5px 3px 5px; text-align: center; border-width: 0px 1px 1px 1px; border-color: white; border-style: solid;" class = "rgba-black-strong">
+					Per <span> Kilograms </span>
+			</span>
+
+			<span style = "position: absolute; color: white;  top: 170px;  max-width: 200px; max-height: 30px; padding: 3px 5px 3px 5px; text-align: center; border: 1px solid white;" class = "rgba-black-strong">
+					{{=origin}}
+			</span>
+
+			<img src="/FBExportSystem{{=productImageLink}}" alt="{{=name}}" height = "200" />
+
+
+			<div class="card-body">
+
+
+				<h4 class="card-title"> <a href = "#" class = "black-text"> {{=name}} </a> </h4>
+
+				<hr class = "m-0"/>
+
+				<p class="card-text mt-2" style = "height: 63px; max-height: 63px; overflow-y: auto;">{{=description}}</p>
+
+				<hr class = "m-0"/>
+
+				<div class = "mt-1">
+
+					{{ if (!isCustomerLoggedIn) { }}
+					<a href="/FBExportSystem/login" class="btn btn-primary" style = "position: relative; left: -8px; top: -4px; padding: 8px 10px 8px 10px;">
+			                            <i class="fa fa-cart-plus mr-1 mb-1" aria-hidden="true"></i>
+			                            Login to add</a>
+
+					{{  } else {  }}
+					<button type = "button" href="#" class="btn btn-primary btnProductItemAddToCart" style = "position: relative; left: -8px; top: -4px; padding: 8px 10px 8px 10px;">
+						<i class="fa fa-cart-plus mr-1 mb-1" aria-hidden="true"></i>
+						Add to cart</button>
+					{{ } }}
+
+
+					<span style = "font-size: 12px; position: absolute; top: 155px;" class = "black-text"> Stocks: <span id = "product-stock-status">{{=stockStatus}} </span> </span>
+	                <span style = "font-size: 12px; position: absolute; top: 174px;" class = "black-text"> Posted on: <span id = "product-date-posted">{{=postedDate}}</span> </span>
+
+					<input type = "hidden" value = "{{=productId}}" id = "product-id" />
+				</div>
+			</div>
+
+		</div>
+	</div>
+
 </script>

@@ -6,6 +6,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
+import org.hibernate.SessionFactory;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -15,9 +16,12 @@ import org.springframework.stereotype.Service;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fb.exportorder.models.customer.Activity;
+import com.fb.exportorder.models.customer.Cart;
 import com.fb.exportorder.models.customer.Customer;
+import com.fb.exportorder.models.customer.Item;
 import com.fb.exportorder.module.customer.repository.ActivityRepository;
 import com.fb.exportorder.module.customer.repository.CustomerRepository;
+import com.fb.exportorder.module.customer.repository.ItemRepository;
 import com.mysql.jdbc.StringUtils;
 
 @Service
@@ -28,6 +32,9 @@ public class CustomerServiceImpl implements CustomerService {
 	
 	@Autowired
 	ActivityRepository activityRepository;
+	
+	@Autowired
+	ItemRepository itemRepository;
 	
 	@Override
 	public Customer getCustomerById(long customerId) {
@@ -115,6 +122,37 @@ public class CustomerServiceImpl implements CustomerService {
 		
 	}
 
-	
+	@Override
+	public long addToCart(Item item, long customerId) {
+
+		Customer currentCustomer = customerRepository.findOne(customerId);
+		
+		currentCustomer.getCart()
+					   .addItem(item);
+		
+		Cart saveCart = customerRepository.save(currentCustomer).getCart();  
+		Item currentItemAdded = saveCart.getItems().get(saveCart.getItems().size() - 1);
+					   
+		return currentItemAdded.getItemId();
+		
+	}
+
+	@Override
+	public void removeToCart(Item item, long customerId) {
+		
+		Customer currentCustomer = customerRepository.findOne(customerId);
+		
+		currentCustomer.getCart()
+					   .removeItem(item);
+					   
+		
+		customerRepository.save(currentCustomer).getCart();  
+		
+	}
+
+	@Override
+	public Item getItemById(long id) {
+		return itemRepository.findOne(id);
+	}
 
 }

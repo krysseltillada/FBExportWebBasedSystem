@@ -22,7 +22,8 @@ public class Customer extends Account {
 	private List<Order> orders;
 	
 	@OneToOne
-	private Cart cart;
+	@Cascade(value=org.hibernate.annotations.CascadeType.ALL)
+	private Cart cart = new Cart();
 	
 	@OneToMany(cascade=CascadeType.ALL)
 	@Cascade({org.hibernate.annotations.CascadeType.DELETE,
@@ -71,5 +72,6 @@ public class Customer extends Account {
 		this.activities = activities;
 	}
 	
+
 	
 }

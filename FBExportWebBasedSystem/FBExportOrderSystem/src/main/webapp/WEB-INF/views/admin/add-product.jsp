@@ -48,12 +48,7 @@
 	                    </div>
 	                    </div>
 	                    <div class = "row">
-	                    <div class = "col-lg-4">
-	                        <div class = "form-group">
-	                        <label class="form-control-label">Expired Date</label>
-	                        <input class = "text-center form-control" type="text" id="expiredDatePicker" name = "expired-date" >
-	                        </div>
-	                    </div>
+	                   
 	                    <div class = "col-lg-4">
 	                        <div class="form-group">
 	                            <label class="form-control-label">Price</label>

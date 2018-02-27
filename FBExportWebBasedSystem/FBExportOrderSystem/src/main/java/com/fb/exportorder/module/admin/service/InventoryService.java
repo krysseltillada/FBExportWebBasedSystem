@@ -32,7 +32,6 @@ public interface InventoryService {
 	public void addProduct (MultipartFile productImage,
 								   String productName,
 								   String origin,
-								   String expiredDate,
 								   String deliveryDate,
 								   String price,
 								   String weight,
@@ -47,7 +46,6 @@ public interface InventoryService {
 							 MultipartFile productImage, 
 							 String productName,
 							 String origin,
-							 String expiredDate,
 							 String deliveryDate,
 							 String price,
 							 String weight,
@@ -60,7 +58,6 @@ public interface InventoryService {
 	public List<String> validate (String productImage,
 						   String productName,
 						   String origin,
-						   String expiredDate,
 						   String deliveryDate,
 						   String price,
 						   String weight,
@@ -68,4 +65,12 @@ public interface InventoryService {
 						   String supplier,
 						   String supplierContactNumber,
 						   String supplierAddress);
+	
+	public List<Product> getNewLatestProduct(int records, int offset);
+	public int getNewLatestProductCount();
+	
+	public List<Product> getMostViewedProduct(int records, int offset);
+	public int getMostViewedProductCount();
+	
+	public List<Product> getMostPopularProduct();
 }

@@ -1,5 +1,6 @@
 package com.fb.exportorder.models.customer;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -9,6 +10,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import org.hibernate.annotations.Cascade;
+
 @Entity
 public class Cart {
 	
@@ -17,7 +20,11 @@ public class Cart {
 	private Long cartId;
 	
 	@OneToMany(cascade=CascadeType.ALL)
-	List<Item> items;
+	@Cascade({org.hibernate.annotations.CascadeType.DELETE,
+        org.hibernate.annotations.CascadeType.MERGE,
+        org.hibernate.annotations.CascadeType.PERSIST,
+        org.hibernate.annotations.CascadeType.DELETE_ORPHAN})
+	List<Item> items = new ArrayList<Item>();
 
 	public List<Item> getItems() {
 		return items;
@@ -26,5 +33,16 @@ public class Cart {
 	public void setItems(List<Item> items) {
 		this.items = items;
 	}
+	
+	public Cart addItem (Item item) {
+		items.add(item);
+		return this;
+	}
+	
+	public Cart removeItem (Item item) {
+		items.remove(item);
+		return this;
+	}
 
+	
 }

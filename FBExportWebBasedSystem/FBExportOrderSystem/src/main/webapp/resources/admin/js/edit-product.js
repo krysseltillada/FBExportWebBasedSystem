@@ -64,7 +64,6 @@ $(document).ready(function () {
     }); 
     
 
-	$( "#expiredDatePicker" ).flatpickr();
 	$( "#deliveryDatePicker" ).flatpickr();
 	
 	$("input[type=submit]").click(function (event) {
@@ -73,7 +72,6 @@ $(document).ready(function () {
 		var product = {
 					name : $("input[name='product-name']").val(),
 					origin : $("input[name='origin']").val(),
-					expiredDate : $("input[name='expired-date']").val(),
 					deliveryDate : $("input[name='delivery-date']").val(),
 					price : $("input[name='price']").val(),
 					weight : $("input[name='weight']").val(),

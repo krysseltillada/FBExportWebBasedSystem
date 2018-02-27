@@ -29,6 +29,7 @@ import com.fb.exportorder.models.Authorities;
 import com.fb.exportorder.models.Contact;
 import com.fb.exportorder.models.ShippingAddress;
 import com.fb.exportorder.models.customer.Activity;
+import com.fb.exportorder.models.customer.Cart;
 import com.fb.exportorder.models.customer.Customer;
 import com.fb.exportorder.models.enums.Gender;
 import com.fb.exportorder.module.customer.repository.CustomerRepository;
@@ -183,18 +184,6 @@ public class CustomerSignUpServiceImpl implements CustomerSignUpService {
 			authorities.setAuthority("CUSTOMER");
 			authorities.setAccount(customer);
 				
-			for (int i = 0; i != 5; ++i) {
-					
-				Activity act = new Activity();
-					
-				act.setDate(new Date());
-				act.setDescription("tae tae");
-				act.setHeader("tng ina tng ina" + i);
-				act.setCustomer(customer);
-					
-				customer.getActivities()
-						.add(act);
-			}
 				
 			customer.setProfileImageLink(profileImageLink);
 				

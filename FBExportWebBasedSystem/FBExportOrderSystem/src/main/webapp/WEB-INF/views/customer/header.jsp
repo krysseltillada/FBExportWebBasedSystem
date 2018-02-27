@@ -56,15 +56,18 @@
                             </button>
                         </form>
                     </li>
+                    
+                    <security:authorize access = "hasAuthority('CUSTOMER')">
 
-                    <li class="nav-item">
-                        <a href="#" id="cart" class = "text-white mt-2 m-0">
-                            <i class="fa fa-shopping-cart"></i> Cart
-                            <span class="badge light-blue lighten-2 productCartHeaderItemCount" style = "margin-left: 5px;">0</span>
-                        </a>
-
-
-                    </li>
+	                    <li class="nav-item">
+	                        <a href="#" id="cart" class = "text-white mt-2 m-0" style = "pointer-events: none;">
+	                            <i class="fa fa-shopping-cart"></i> Cart
+	                            <span class="badge light-blue lighten-2 productCartHeaderItemCount" style = "margin-left: 5px; display: none;">0</span>
+	                        </a>
+	                    </li>
+                    
+                    </security:authorize>
+                    
                 </ul>
             </div>
         </div>

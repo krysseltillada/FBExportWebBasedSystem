@@ -3,6 +3,7 @@ package com.fb.exportorder.models;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -10,11 +11,14 @@ import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Lob;
+import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 import org.javamoney.moneta.Money;
 
+import com.fb.exportorder.models.customer.Rating;
 import com.fb.exportorder.models.enums.ProductStatus;
 
 @Entity
@@ -41,11 +45,12 @@ public class Product {
 	private Date dateOfDelivery;
 	
 	@Temporal(TemporalType.DATE)
-	private Date expiredDate;
+	private Date datePosted;
 	
 	@Enumerated(EnumType.STRING)
 	private ProductStatus status;
 	
+	@Lob
 	private String description;
 	
 	private String productImageLink;
@@ -54,6 +59,9 @@ public class Product {
 	
 	@ElementCollection(fetch = FetchType.EAGER)
 	private List<String> previewImageLinks;
+	
+	@OneToOne(cascade=CascadeType.ALL)
+	private Rating rating;
 
 	public Long getProductId() {
 		return productId;
@@ -127,14 +135,6 @@ public class Product {
 		this.dateOfDelivery = dateOfDelivery;
 	}
 
-	public Date getExpiredDate() {
-		return expiredDate;
-	}
-
-	public void setExpiredDate(Date expiredDate) {
-		this.expiredDate = expiredDate;
-	}
-
 	public ProductStatus getStatus() {
 		return status;
 	}
@@ -182,13 +182,31 @@ public class Product {
 	public void setPosted(boolean isPosted) {
 		this.isPosted = isPosted;
 	}
+	
+	public Rating getRating() {
+		return rating;
+	}
+
+	public void setRating(Rating rating) {
+		this.rating = rating;
+	}
+	
+	
+
+	public Date getDatePosted() {
+		return datePosted;
+	}
+
+	public void setDatePosted(Date datePosted) {
+		this.datePosted = datePosted;
+	}
 
 	@Override
 	public String toString() {
 		return "Product [productId=" + productId + ", name=" + name + ", origin=" + origin + ", supplier=" + supplier
 				+ ", supplierContactNumber=" + supplierContactNumber + ", supplierAddress=" + supplierAddress
 				+ ", price=" + price + ", weight=" + weight + ", dateRegistered=" + dateRegistered + ", dateOfDelivery="
-				+ dateOfDelivery + ", expiredDate=" + expiredDate + ", status=" + status + ", description="
+				+ dateOfDelivery + ", status=" + status + ", description="
 				+ description + ", productImageLink=" + productImageLink + ", isPosted=" + isPosted
 				+ ", previewImageLinks=" + previewImageLinks + "]";
 	}

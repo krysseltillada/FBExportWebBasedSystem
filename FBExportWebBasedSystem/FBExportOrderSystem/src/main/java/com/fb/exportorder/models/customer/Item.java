@@ -1,5 +1,6 @@
 package com.fb.exportorder.models.customer;
 
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -20,8 +21,10 @@ public class Item {
 	@OneToOne
 	private Product product;
 
-	private Money price;
-	private double weight;
+	private double price;
+	
+	@Embedded
+	private Weight weight;
 	
 	public Product getProduct() {
 		return product;
@@ -29,17 +32,27 @@ public class Item {
 	public void setProduct(Product product) {
 		this.product = product;
 	}
-	public Money getPrice() {
+	public double getPrice() {
 		return price;
 	}
-	public void setPrice(Money price) {
+	public void setPrice(double price) {
 		this.price = price;
 	}
-	public double getWeight() {
+	public Weight getWeight() {
 		return weight;
 	}
-	public void setWeight(double weight) {
+	public void setWeight(Weight weight) {
 		this.weight = weight;
 	}
+	public Long getItemId() {
+		return itemId;
+	}
+	public void setItemId(Long itemId) {
+		this.itemId = itemId;
+	}
+	
+	
+	
+	
 
 }
