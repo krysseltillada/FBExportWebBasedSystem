@@ -108,7 +108,8 @@ public class MultiHttpSecurityConfig {
 				  "/admin/enabled-employee",
 				  "/admin/enabled-admin",
 				  "/admin/add-product/add-preview-images",
-				  "/admin/add-product/delete-preview-images/**"};
+				  "/admin/add-product/delete-preview-images/**",
+				  "/admin/orders"};
     	
     	@Autowired
     	@Qualifier("adminEmployeeUserDetailsService")
