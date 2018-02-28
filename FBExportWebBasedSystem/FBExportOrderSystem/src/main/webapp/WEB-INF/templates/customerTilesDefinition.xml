@@ -141,7 +141,16 @@
 			<add-attribute value = "/resources/customer/js/place-order.js" />
 		</put-list-attribute>
 		
+	</definition>
+	
+	<definition name = "order-success" extends = "customerBaseTemplate">
 		
+		<put-attribute name = "main" value = "/WEB-INF/views/customer/order-success.jsp" /> 
+		
+		<put-list-attribute name = "cssfiles" inherit = "true">
+			<add-attribute value = "/resources/customer/css/table-body-scroll.css" />
+		</put-list-attribute>
+	
 	</definition>
 	
 	<definition name = "login" extends = "customerBaseTemplate">

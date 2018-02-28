@@ -43,6 +43,14 @@ public class Cart {
 		items.remove(item);
 		return this;
 	}
-
+	
+	public Cart clearItems () {
+		items.clear();
+		return this;
+	}
+	
+	public int getItemCount() {
+		return items.size();
+	}
 	
 }

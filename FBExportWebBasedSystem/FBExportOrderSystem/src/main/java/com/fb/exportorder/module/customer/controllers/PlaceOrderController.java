@@ -11,12 +11,24 @@ import org.jscience.physics.amount.Amount;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.fb.exportorder.models.ShippingAddress;
+import com.fb.exportorder.models.customer.Cart;
+import com.fb.exportorder.models.customer.Customer;
 import com.fb.exportorder.models.customer.Item;
+import com.fb.exportorder.models.customer.Order;
 import com.fb.exportorder.models.customer.Weight;
+import com.fb.exportorder.models.enums.OrderStatus;
+import com.fb.exportorder.models.enums.PaymentMethod;
 import com.fb.exportorder.models.enums.WeightType;
 import com.fb.exportorder.module.customer.service.CustomerService;
+import com.fb.exportorder.module.customer.service.OrderService;
 import com.fb.exportorder.module.customer.service.YourAddressService;
 
 @Controller
@@ -27,6 +39,9 @@ public class PlaceOrderController {
 	
 	@Autowired
 	YourAddressService yourAddressService;
+	
+	@Autowired
+	OrderService orderService;
 	
 	@RequestMapping("/place-order")
 	public String placeOrder (Model model, HttpSession session) {
@@ -72,6 +87,39 @@ public class PlaceOrderController {
 		
 		
 		return "place-order";
+	}
+	
+	@RequestMapping(value = "/place-order/order", method = RequestMethod.POST)
+	public String order (@RequestParam("shipping-address") String shippingAddressId,
+						 @RequestParam("payment-method")   String paymentMethod,
+						 @RequestParam("total-price-approx") double totalPriceApprox,
+						 @RequestParam("total-weight-approx") double totalWeightApprox,
+														   HttpSession session, 
+														   RedirectAttributes attributes) {
+		
+		long customerId = (long)session.getAttribute("customerId");
+		long shippingAddressIdL = Long.parseLong(shippingAddressId);
+		
+		Customer customerOrdered = customerService.getCustomerById(customerId);
+		ShippingAddress selectedShippingAddress = yourAddressService.getAddressById(shippingAddressIdL);
+		
+		attributes.addFlashAttribute("order", orderService.order(customerOrdered,
+																 selectedShippingAddress,
+																 PaymentMethod.valueOf(paymentMethod),
+																 totalPriceApprox,
+																 totalWeightApprox));
+		
+		return "redirect:/order-success";
+	}
+	
+	@RequestMapping("/order-success")
+	public String orderSuccess (HttpSession session,
+								@ModelAttribute("order") Order order,
+														 Model model) {
+		
+		model.addAttribute(order);
+		
+		return "order-success";
 	}
 
 }

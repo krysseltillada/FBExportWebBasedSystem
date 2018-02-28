@@ -10,4 +10,5 @@ public interface YourAddressService {
 	public String deleteAddress(long customerId, long addressId);
 	public void setDefaultShippingAddress(long prevShippingAddressId, long newShippingAddressId);
 	public List<String> editShippingAddress(ShippingAddress shippingAddress, long shippingAddressId, long customerId);
+	public ShippingAddress getAddressById(long id);
 }

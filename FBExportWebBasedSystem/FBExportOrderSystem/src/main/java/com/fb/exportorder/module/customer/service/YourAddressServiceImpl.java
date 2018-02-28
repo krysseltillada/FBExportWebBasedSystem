@@ -175,6 +175,11 @@ public class YourAddressServiceImpl implements YourAddressService {
 		
 		return errorMessages;
 	}
+
+	@Override
+	public ShippingAddress getAddressById(long id) {
+		return shippingAddressRepository.findOne(id);
+	}
 	
 
 }

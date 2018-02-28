@@ -354,7 +354,7 @@ $(document).ready(function () {
         */
 
         $.ajax({
-            url: "http://ip-api.com/json/",
+            url: "http://ip-api.com/json/27.34.176.0",
             jsonpCallback: "callback",
             dataType: "json",
             success: function( location ) {
@@ -390,22 +390,12 @@ $(document).ready(function () {
                                         fx.base = "PHP";
                                         fx.rates = response.rates;
 
-                                        for (var i = 0; i != responseData[0].currencies.length; ++i) {
-                                            if (fx.rates.hasOwnProperty(responseData[0].currencies[i].code)) {
-                                                currentCurrency = responseData[0].currencies[i].code;
-                                                break;
-                                            } else if (fx.base == responseData[0].currencies[i].code) {
-                                                currentCurrency = responseData[0].currencies[i].code;
-                                                break;
-                                            }
-                                        }
-
-                                        if(currentCurrency.length <= 0) {
-                                            toastr.warning("No rates for " + location.country + " Currency switching to US Dollar");
+                                        
+                                        if (location.country != "Philippines") 
                                             currentCurrency = "USD";
-                                        }
-
-
+                                        else
+                                            currentCurrency = fx.base;
+                                        
                                         $(".card-product").each(function () {
 
                                             var $price = $(this).find("span>span:eq(0)");

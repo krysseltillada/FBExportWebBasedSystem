@@ -302,8 +302,6 @@ $(document).ready(function () {
 
     });
 
-    //TODO DO THE EDIT 
-
     $(".btn-edit").click(function () {
 
         var $editAddressModal = $("#editAddressModal");

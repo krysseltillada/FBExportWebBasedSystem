@@ -15,6 +15,7 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import org.hibernate.annotations.Cascade;
 import org.javamoney.moneta.Money;
 
 import com.fb.exportorder.models.Shipping;
@@ -34,6 +35,7 @@ public class Order	 {
 	Customer customer;
 	
 	@OneToOne
+	@Cascade(value=org.hibernate.annotations.CascadeType.ALL)
 	Cart cart;
 	
 	@Enumerated(EnumType.STRING)
@@ -55,6 +57,9 @@ public class Order	 {
 	
 	@Temporal(TemporalType.DATE)
 	private Date dateOrdered;
+	
+	@Temporal(TemporalType.DATE)
+	private Date expectedDate;
 
 	public Long getOrderId() {
 		return orderId;
@@ -127,6 +132,32 @@ public class Order	 {
 	public void setDateOrdered(Date dateOrdered) {
 		this.dateOrdered = dateOrdered;
 	}
+
+	public PaymentMethod getPaymentMethod() {
+		return paymentMethod;
+	}
+
+	public void setPaymentMethod(PaymentMethod paymentMethod) {
+		this.paymentMethod = paymentMethod;
+	}
+
+	public OrderStatus getOrderStatus() {
+		return orderStatus;
+	}
+
+	public void setOrderStatus(OrderStatus orderStatus) {
+		this.orderStatus = orderStatus;
+	}
+
+	public Date getExpectedDate() {
+		return expectedDate;
+	}
+
+	public void setExpectedDate(Date expectedDate) {
+		this.expectedDate = expectedDate;
+	}
+	
+	
 	
 	
 }

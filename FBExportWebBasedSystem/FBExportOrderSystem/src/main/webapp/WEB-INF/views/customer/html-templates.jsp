@@ -126,3 +126,30 @@
 	</div>
 
 </script>
+
+<script id = "shippingAddressPlaceOrderTemplate" type = "text/template">
+
+	<span class="flex-column align-items-start">
+		<div class="z-depth-1 border-light mb-2 waves-effect shipping-address-radio-button" style=" height: 10rem;">
+			<div class="card-header pt-2 pb-2" style="font-size: 14px;">
+				<strong> {{=addressType}}'s Address </strong>
+				<input class="float-right mt-1" type="radio" name = "shipping-address" value="{{=shippingAddressId}}" required>
+			</div>
+
+			<div class="card-body pt-3">
+
+				<div class="card-text">
+					<ul class="list-unstyled" style="font-size: 14px;">
+						<li> <strong> {{=receiverFullName}} </strong> </li>
+						<li> {{=zipcode}} {{=address}} {{=city}} </li>
+						<li> {{=country}} </li>
+						<li> Phone number: (+{{=countryCode}}) {{=phoneNumber}} </li>
+					</ul>
+
+				</div>
+
+			</div>
+		</div>
+	</span>
+
+</script>
