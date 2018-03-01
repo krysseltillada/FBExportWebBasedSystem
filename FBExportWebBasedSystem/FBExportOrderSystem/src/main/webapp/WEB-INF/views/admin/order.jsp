@@ -113,7 +113,7 @@
 	                                    <td></td>
 	                                    <td> <i class="fa fa-chevron-circle-down fa-lg" aria-hidden="true" style="cursor: pointer;"></i> </td>
 	                                    <td>
-	                                        <h3><span class="badge badge-success p-1">Order#${order.orderId}</span></h3>
+	                                        <h3> <span class="badge badge-success p-1">Order# <span id = "orderId">${order.orderId}</span> </span> </h3>
 	                                        <span style = "font-size: 13px;">
 	                                            <strong> by: </strong> <strong> <a href = "#"> ${order.customer.firstname} ${order.customer.middlename} ${order.customer.lastname} </a> </strong>
 	                                            <br />
@@ -128,8 +128,13 @@
 	                                        
 	                                            <h6>                                             
 	                                                <div class="btn-group dropdown-select">
-	                                                    <button type="button" style = "background-color: #FFC107;" class="btn btn-sm text-white dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-	                                                    Pending
+	                                                    <button type="button" 
+	                                                    		style = "background-color: ${orderStatusColorMap[order.orderStatus]};" 
+	                                                    		class="btn btn-sm text-white dropdown-toggle" 
+	                                                    		data-toggle="dropdown" 
+	                                                    		aria-haspopup="true" 
+	                                                    		aria-expanded="false">
+	                                                    		${orderStatusMessageMap[order.orderStatus]}
 	                                                    </button>
 	                                                    <div class="dropdown-menu">
 	                                                    <h6 class="dropdown-header">Mark as</h6>
@@ -169,7 +174,7 @@
 	                                            
 	                                            <br/>
 	                                            
-	                                            <strong> Address <span style = "font-size: 12px;"> (User account) </span>:  
+	                                            <strong> Address <span style = "font-size: 12px;"> (${order.shippingAddress.addressType}) </span>:  
 	                                            </strong> <br />
 	                                            
 	                                            <span style = "font-size: 12px;">
@@ -197,12 +202,12 @@
 	
 	                                            <strong> Weight: </strong> <br />
 	                                            <span style = "font-size: 12px;">
-	                                            	${order.totalWeight} KILO 
+	                                            	<fmt:formatNumber value = "${order.totalWeight}" maxFractionDigits="1" /> KILO 
 	                                            </span> <br />
 	
 	                                            <strong> Price: </strong> <br />
 	                                            <span style = "font-size: 12px;">
-	                                            	${order.totalPrice} PHP
+	                                            	<fmt:formatNumber value = "${order.totalPrice}" type = "currency" currencyCode="PHP" /> 
 	                                            </span>
 	                                        </span>
 	
@@ -214,13 +219,20 @@
 	
 	                                            <strong> Ordered: </strong> <br />
 	                                            <span style = "font-size: 12px;">
-	                                                ${order.dateOrdered}
+	                                                <fmt:formatDate value = "${order.dateOrdered}" dateStyle = "LONG" type = "date" />
 	                                            </span>
 	                                            <br />
 	
 	                                            <strong> Expected: </strong> <br />
 	                                            <span style = "font-size: 12px;">
-	                                                November 28 1998
+	                                                <c:choose>
+	                                                	<c:when test = "${not empty order.expectedDate}">
+	                                                		<fmt:formatDate value="${order.expectedDate}" dateStyle="LONG" type="date"/>
+	                                                	</c:when>
+	                                                	<c:otherwise>
+	                                                		None
+	                                                	</c:otherwise>
+	                                                </c:choose>
 	                                            </span>
 	                                            <br />
 	

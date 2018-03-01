@@ -21,7 +21,7 @@ public class SystemLog {
 	private Long systemLogId;
 	
 	@Enumerated(EnumType.STRING)
-	ActionType actionType;
+	private ActionType actionType;
 	
 	private String description;
 	

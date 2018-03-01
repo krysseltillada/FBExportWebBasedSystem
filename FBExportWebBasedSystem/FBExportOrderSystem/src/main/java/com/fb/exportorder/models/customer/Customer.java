@@ -11,6 +11,7 @@ import javax.persistence.OneToOne;
 
 import org.hibernate.annotations.Cascade;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fb.exportorder.models.Account;
 import com.fb.exportorder.models.ShippingAddress;
@@ -19,6 +20,7 @@ import com.fb.exportorder.models.ShippingAddress;
 public class Customer extends Account {
 	
 	@OneToMany(cascade=CascadeType.ALL, mappedBy="customer")
+	@JsonIgnore
 	private List<Order> orders;
 	
 	@OneToOne
@@ -30,7 +32,7 @@ public class Customer extends Account {
         org.hibernate.annotations.CascadeType.MERGE,
         org.hibernate.annotations.CascadeType.PERSIST,
         org.hibernate.annotations.CascadeType.DELETE_ORPHAN})
-	List <ShippingAddress> shippingAddresses = new ArrayList<>();
+	private List <ShippingAddress> shippingAddresses = new ArrayList<>();
 
 	@OneToMany(cascade=CascadeType.ALL, mappedBy="customer")
 	@Cascade({org.hibernate.annotations.CascadeType.DELETE,
@@ -38,7 +40,7 @@ public class Customer extends Account {
 	          org.hibernate.annotations.CascadeType.PERSIST,
 	          org.hibernate.annotations.CascadeType.DELETE_ORPHAN})
 	@JsonManagedReference
-	List <Activity> activities = new ArrayList<>();
+	private List <Activity> activities = new ArrayList<>();
 	
 	public List<Order> getOrders() {
 		return orders;

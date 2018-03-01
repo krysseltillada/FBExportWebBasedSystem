@@ -7,30 +7,34 @@
 
           <ul class="nav nav-tabs" role="tablist">
             <li class="nav-item">
-              <a class="nav-link active" data-toggle="tab" href="#items-order-tab" role="tab">Items</a>
+              <a class="nav-link active" data-toggle="tab" href="#items-order-tab-id-{{=order.orderId}}" role="tab">Items</a>
             </li>
+
+            {{ if (order.shipping) { }}
+                <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#shipping-order-tab-id-{{=order.orderId}}" role="tab">Shipping</a>
+                </li>
+            {{ } }}
+
             <li class="nav-item">
-              <a class="nav-link" data-toggle="tab" href="#shipping-order-tab" role="tab">Shipping</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" data-toggle="tab" href="#shipping-instructions-tab" role="tab">Shipping instructions</a>
+              <a class="nav-link" data-toggle="tab" href="#shipping-instructions-tab-id-{{=order.orderId}}" role="tab">Shipping instructions</a>
             </li>
           </ul>
 
           <div class="tab-content" style = "border-bottom: 1px solid #DDDDDD; border-left: 1px solid #DDDDDD; border-right: 1px solid #DDDDDD;">
-            <div class="tab-pane active" id="items-order-tab" role="tabpanel">
+            <div class="tab-pane active" id="items-order-tab-id-{{=order.orderId}}" role="tabpanel">
              
               <div class = "p-3">
-                <h5> 12 Items ordered </h5>
+                <h5> {{=order.cart.itemCount}} Items ordered </h5>
                 <table class="table" style = "border-bottom: 1px solid #E9ECEF; border-left: 1px solid #E9ECEF; border-right: 1px solid #E9ECEF;">
+
                             <thead>
                               <tr>
                                 <th></th>
                                 <th></th>
                                 <th>Item Name</th>
-                                <th>Quantity</th>
-                                <th>Total weight</th>
-                                <th>Total Price </th>
+                                <th>Weight</th>
+                                <th>Price </th>
                               </tr>
                             </thead>
                             <tfoot>
@@ -38,220 +42,194 @@
                                 <th></th>
                                 <th></th>
                                 <th></th>
-                                <th></th>
-                                <th>Total: 2000 KILO</th>
-                                <th>Total: 200,000,000 PHP </th>
+                                <th>Total: {{=order.totalWeight.toFixed(1)}} KILO</th>
+                                <th>Total: {{=order.totalPrice.toFixed(2)}} PHP </th>
                               </tr>
                             </tfoot>
                             <tbody>
-                              <tr>
-                                <th scope="row">1</th>
-                                <td>
-                                  <img src = "img/project-1.jpg" width = "40" height = "40" />
-                                </td>
-                                <td>
-                                  Puffer Fish <br />
-                                  150 KILO / PC
-                                </td>
-                                <td>
-                                  <input class = "text-center" type="text" value = "20" style = "width: 60px;" readonly>
-                                </td>
-                                <td>
-                                  <input class = "text-center" type="text" value = "200 KILO" style = "width: 90px;" readonly>
-                                </td>
-                                <td>200 PHP</td>
-                              </tr>
-                              <tr>
-                                <th scope="row">2</th>
-                                <td>
-                                  <img src = "img/project-1.jpg" width = "40" height = "40" />
-                                </td>
-                                <td>
-                                  Puffer Fish <br />
-                                  150 KILO / PC
-                                </td>
-                                <td>
-                                  <input class = "text-center" type="text" value = "20" style = "width: 60px;" readonly>
-                                </td>
-                                <td>
-                                  <input class = "text-center" type="text" value = "200 KILO" style = "width: 90px;" readonly>
-                                </td>
-                                <td>200 PHP</td>
-                              </tr>
-                              <tr>
-                                <th scope="row">3</th>
-                                <td>
-                                  <img src = "img/project-1.jpg" width = "40" height = "40" />
-                                </td>
-                                <td>
-                                  Puffer Fish <br />
-                                  150 KILO / PC
-                                </td>
-                                <td>
-                                  <input class = "text-center" type="text" value = "20" style = "width: 60px;" readonly>
-                                </td>
-                                <td>
-                                  <input class = "text-center" type="text" value = "200 KILO" style = "width: 90px;" readonly>
-                                </td>
-                                <td>200 PHP</td>
-                              </tr>
+
+                                {{ for (var cartItemIndex = 0; cartItemIndex != cartItems.length; ++cartItemIndex ) { }}
+
+                                    {{ var item = cartItems[cartItemIndex]; }}
+
+                                    <tr>
+                                        <th scope="row">1</th>
+                                        <td>
+                                            <img src = "/FBExportSystem/{{=item.product.productImageLink}}" width = "40" height = "40" />
+                                        </td>
+                                        <td>
+                                            {{=item.product.name}} <br />
+                                            {{=item.product.price.toFixed(2)}} PHP PER KILO
+                                        </td>
+                                    
+                                        <td>
+                                            <input class = "text-center" type="text" value = "{{=item.weight.weight.toFixed(1)}} {{=item.weight.weightType}}" style = "width: 90px;" readonly>
+                                        </td>
+                                        <td>{{=item.price.toFixed(2)}} PHP</td>
+                                    </tr>
+                                {{ } }}
+                             
                             </tbody>
                 </table>
               </div>
             </div>
-            <div class="tab-pane" id="shipping-order-tab" role="tabpanel">
-              <div class = "p-4">
 
-                <div>
-                  <i class="fa fa-chevron-circle-down fa-lg mr-1" aria-hidden="true"
-                      data-toggle="collapse" href="#shippingInformationCollapseItem " role="button" aria-expanded="false" aria-controls="shippingInformationCollapseItem" style = "cursor: pointer;"></i>
-                  <span class = "h5-responsive"> <strong> Shipping information </strong> </span>
-                  <span class = "float-right"> 
-                    <a class = "blue-text" id = "updateShipping" href = "javascript:void()"> Update Shipping </a> 
-                    <i class="fa fa-refresh ml-1" aria-hidden="true"></i>
-                  </span>
-               
-                </div>
+            {{ if (order.shipping) { }}
+                <div class="tab-pane" id="shipping-order-tab-id-{{=order.orderId}}" role="tabpanel">
+                    <div class = "p-4">
 
-                <hr class = "mt-1" />
-
-                <div class="collapse.show multi-collapse" id="shippingInformationCollapseItem">
-
-
-                  <div class = "row no-gutters">
-                      <div class = "col-8">
-                          <strong> Address <i class="fa fa-address-book-o" aria-hidden="true"></i> </strong> :  Rivera compound saint joseph subdivision pulang lupa 2 
-                      </div>
-                      <div class = "col-4">
-                          <strong> Zipcode <i class="fa fa-home" aria-hidden="true"></i>: </strong>  1742 
-                      </div>
-                  </div>
-                  <div class = "row no-gutters">
-                      <div class = "col-8">
-                          <strong> Country <i class="fa fa-globe" aria-hidden="true"></i> : </strong> Phillipines
-                      </div>
-                      <div class = "col-4">
-                          <strong> City <i class="fa fa-map" aria-hidden="true"></i> : </strong> Las pinas city 
-                      </div>
-                  </div>
-                  <div class = "row no-gutters">
-                      <div class = "col-8">
-                          <strong> Shipment status : </strong>  On Cargo Ship <i class="fa fa-ship" aria-hidden="true"></i>
-                      </div>
-                      <div class = "col-4">
-                          <strong> Your Phone number <i class="fa fa-mobile-phone" aria-hidden="true"></i> : </strong> 09151829105 
-                      </div>
-                  </div>
-                  <div class = "row no-gutters">
-                      <div class = "col-8">
-                          <strong> Departure : </strong>  November 11 2018
-                      </div>
-                      <div class = "col-4">
-                          <strong> Arrival : </strong> November 30 2018 
-                      </div>
-                  </div>
-
-                  <br />
-
-                  <div>
-                      <i class="fa fa-chevron-circle-down fa-lg mr-1" aria-hidden="true"
-                          data-toggle="collapse" href="#vesselStatusCollapseItem " role="button" aria-expanded="false" aria-controls="vesselStatusCollapseItem" style = "cursor: pointer;"></i>
-                      <span class = "h5-responsive"> <strong> Vessel Status </strong> </span>
-                      <span class = "float-right" style = "font-size: 14px;">
-                          <i class="fa fa-map-marker" aria-hidden="true"></i>
-                          <a class = "blue-text" href = "javascript:void(0)" id = "updateVesselStatus"> Update status </a>
-                      </span>
-                  </div>
-
-                  <hr class = "mt-1" />
-
-                  <div class="collapse" id="vesselStatusCollapseItem">
-
-                      <div class = "row no-gutters">
-                          <div class = "col-8">
-                              <strong> Vessel name: </strong> AQUA JEWEL 
-                          </div>
-                          <div class = "col-4">
-                              <strong> IMO Number: </strong> 8976671
-                          </div>
-                      </div>
-
-                      <div class = "row no-gutters">
-                          <div class = "col-8">
-                              <strong> MMSI Number: </strong> 239981000 
-                          </div>
-                            <div class = "col-4">
-                              <strong> Destination: </strong> Madagascar 
-                          </div>
-                          
-                      </div>
-
+                        <div>
+                        <i class="fa fa-chevron-circle-down fa-lg mr-1" aria-hidden="true"
+                            data-toggle="collapse" href="#shippingInformationCollapseItem " role="button" aria-expanded="false" aria-controls="shippingInformationCollapseItem" style = "cursor: pointer;"></i>
+                        <span class = "h5-responsive"> <strong> Shipping information </strong> </span>
+                        <span class = "float-right"> 
+                            <a class = "blue-text" id = "updateShipping" href = "javascript:void()"> Update Shipping </a> 
+                            <i class="fa fa-refresh ml-1" aria-hidden="true"></i>
+                        </span>
                     
+                        </div>
 
-                      <hr class = "mt-1" />
+                        <hr class = "mt-1" />
 
-                      <div class = "row">
-
-                          <div class = "col shipTrackingMap">
-
-                          </div>
+                        <div class="collapse.show multi-collapse" id="shippingInformationCollapseItem">
 
 
-                      </div>
+                        <div class = "row no-gutters">
+                            <div class = "col-8">
+                                <strong> Address <i class="fa fa-address-book-o" aria-hidden="true"></i> </strong> :  Rivera compound saint joseph subdivision pulang lupa 2 
+                            </div>
+                            <div class = "col-4">
+                                <strong> Zipcode <i class="fa fa-home" aria-hidden="true"></i>: </strong>  1742 
+                            </div>
+                        </div>
+                        <div class = "row no-gutters">
+                            <div class = "col-8">
+                                <strong> Country <i class="fa fa-globe" aria-hidden="true"></i> : </strong> Phillipines
+                            </div>
+                            <div class = "col-4">
+                                <strong> City <i class="fa fa-map" aria-hidden="true"></i> : </strong> Las pinas city 
+                            </div>
+                        </div>
+                        <div class = "row no-gutters">
+                            <div class = "col-8">
+                                <strong> Shipment status : </strong>  On Cargo Ship <i class="fa fa-ship" aria-hidden="true"></i>
+                            </div>
+                            <div class = "col-4">
+                                <strong> Your Phone number <i class="fa fa-mobile-phone" aria-hidden="true"></i> : </strong> 09151829105 
+                            </div>
+                        </div>
+                        <div class = "row no-gutters">
+                            <div class = "col-8">
+                                <strong> Departure : </strong>  November 11 2018
+                            </div>
+                            <div class = "col-4">
+                                <strong> Arrival : </strong> November 30 2018 
+                            </div>
+                        </div>
 
-                  </div>
+                        <br />
 
+                        <div>
+                            <i class="fa fa-chevron-circle-down fa-lg mr-1" aria-hidden="true"
+                                data-toggle="collapse" href="#vesselStatusCollapseItem " role="button" aria-expanded="false" aria-controls="vesselStatusCollapseItem" style = "cursor: pointer;"></i>
+                            <span class = "h5-responsive"> <strong> Vessel Status </strong> </span>
+                            <span class = "float-right" style = "font-size: 14px;">
+                                <i class="fa fa-map-marker" aria-hidden="true"></i>
+                                <a class = "blue-text" href = "javascript:void(0)" id = "updateVesselStatus"> Update status </a>
+                            </span>
+                        </div>
+
+                        <hr class = "mt-1" />
+
+                        <div class="collapse" id="vesselStatusCollapseItem">
+
+                            <div class = "row no-gutters">
+                                <div class = "col-8">
+                                    <strong> Vessel name: </strong> AQUA JEWEL 
+                                </div>
+                                <div class = "col-4">
+                                    <strong> IMO Number: </strong> 8976671
+                                </div>
+                            </div>
+
+                            <div class = "row no-gutters">
+                                <div class = "col-8">
+                                    <strong> MMSI Number: </strong> 239981000 
+                                </div>
+                                    <div class = "col-4">
+                                    <strong> Destination: </strong> Madagascar 
+                                </div>
+                                
+                            </div>
+
+                            
+
+                            <hr class = "mt-1" />
+
+                            <div class = "row">
+
+                                <div class = "col shipTrackingMap">
+
+                                </div>
+
+
+                            </div>
+
+                        </div>
+
+                        </div>
+
+                        <div>
+                            <i class="fa fa-chevron-circle-down fa-lg mr-1 collapsed" aria-hidden="true" data-toggle="collapse" href="#shippingLogCollapseItem " role="button" aria-expanded="false" aria-controls="orderCollapseItem5" style="cursor: pointer;"></i>
+                            <span class="h5-responsive"> <strong> Shipping Log </strong> </span>
+                        </div>
+
+                        <hr class="mt-1">
+
+                        <div class="collapse.show multi-collapse collapse" id="shippingLogCollapseItem" style="">
+                            <div class="list-group">
+                                <span class="list-group-item list-group-item-action flex-column align-items-start">
+                                    <div class="d-flex w-100 justify-content-between">
+                                    <h5 class="mb-1">Delivered already</h5>
+                                    <small>Nov 28 1998 - 12:00 PM</small>
+                                    </div>
+                                    <p class="mb-1">delivered the product already</p>
+                                    <small>Phillipines ncr las pinas city</small>
+                                </span>
+                                <span href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+                                    <div class="d-flex w-100 justify-content-between">
+                                    <h5 class="mb-1">Delivered already</h5>
+                                    <small>Nov 28 1998 - 12:00 PM</small>
+                                    </div>
+                                    <p class="mb-1">delivered the product already</p>
+                                    <small>Phillipines ncr las pinas city</small>
+                                </span>
+                                <span href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+                                    <div class="d-flex w-100 justify-content-between">
+                                    <h5 class="mb-1">Delivered already</h5>
+                                    <small>Nov 28 1998 - 12:00 PM</small>
+                                    </div>
+                                    <p class="mb-1">delivered the product already</p>
+                                    <small>Phillipines ncr las pinas city</small>
+                                </span>
+
+
+                            </div>
+                        </div>
+
+
+
+                        
+                    </div>
                 </div>
+            {{ } }}
 
-                  <div>
-                      <i class="fa fa-chevron-circle-down fa-lg mr-1 collapsed" aria-hidden="true" data-toggle="collapse" href="#shippingLogCollapseItem " role="button" aria-expanded="false" aria-controls="orderCollapseItem5" style="cursor: pointer;"></i>
-                      <span class="h5-responsive"> <strong> Shipping Log </strong> </span>
-                  </div>
-
-                  <hr class="mt-1">
-
-                  <div class="collapse.show multi-collapse collapse" id="shippingLogCollapseItem" style="">
-                      <div class="list-group">
-                          <span class="list-group-item list-group-item-action flex-column align-items-start">
-                              <div class="d-flex w-100 justify-content-between">
-                              <h5 class="mb-1">Delivered already</h5>
-                              <small>Nov 28 1998 - 12:00 PM</small>
-                              </div>
-                              <p class="mb-1">delivered the product already</p>
-                              <small>Phillipines ncr las pinas city</small>
-                          </span>
-                          <span href="#" class="list-group-item list-group-item-action flex-column align-items-start">
-                              <div class="d-flex w-100 justify-content-between">
-                              <h5 class="mb-1">Delivered already</h5>
-                              <small>Nov 28 1998 - 12:00 PM</small>
-                              </div>
-                              <p class="mb-1">delivered the product already</p>
-                              <small>Phillipines ncr las pinas city</small>
-                          </span>
-                          <span href="#" class="list-group-item list-group-item-action flex-column align-items-start">
-                              <div class="d-flex w-100 justify-content-between">
-                              <h5 class="mb-1">Delivered already</h5>
-                              <small>Nov 28 1998 - 12:00 PM</small>
-                              </div>
-                              <p class="mb-1">delivered the product already</p>
-                              <small>Phillipines ncr las pinas city</small>
-                          </span>
-
-
-                      </div>
-                  </div>
-
-
-
-                
-              </div>
-            </div>
-            <div class = "tab-pane" id = "shipping-instructions-tab" role="tabpanel">
+            <div class = "tab-pane" id = "shipping-instructions-tab-id-{{=order.orderId}}" role="tabpanel">
               <div class = "p-4">
                 <h5> Shipping instructions: </h5>
                 <hr class="mt-1">
                 <span> 
-                  please place the cargo at the right hand side of the area
+                  {{=order.shippingAddress.shippingInstructions}}
                 </span>
               </div>
             </div>

@@ -8,11 +8,22 @@ import com.fb.exportorder.models.customer.Order;
 import com.fb.exportorder.models.enums.PaymentMethod;
 
 public interface OrderService {
-	public Order order (Customer customer, 
-						ShippingAddress shippingAddress, 
-						PaymentMethod paymethod,
-						double totalPrice,
-						double totalWeight);
+	Order order (Customer customer, 
+				 ShippingAddress shippingAddress, 
+				 PaymentMethod paymethod,
+				 double totalPrice,
+				 double totalWeight);
 	
-	public List<Order> getAllOrders ();
+	List<Order> getAllOrders ();
+	
+	Order getOrderById(long id);
+	
+//	void markPending(Order order);
+//	void markApproved(Order order);
+//	void markRejected(Order order);
+//	void markReceived(Order order);
+//	void markToShip(Order order);
+	
+	
+	
 }

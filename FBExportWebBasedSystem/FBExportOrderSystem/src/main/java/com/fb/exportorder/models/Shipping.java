@@ -25,7 +25,7 @@ public class Shipping {
 	private Long shippingId;
 	
 	@Enumerated(EnumType.STRING)
-	ShipmentStatus shipmentStatus;
+	private ShipmentStatus shipmentStatus;
 	
 	@ElementCollection
 	private List<VesselStatus> vesselStatus;

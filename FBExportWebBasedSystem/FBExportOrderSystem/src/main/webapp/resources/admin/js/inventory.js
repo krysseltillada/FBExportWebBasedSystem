@@ -304,6 +304,10 @@ $(document).ready(function (){
 	}, "json");
 	
 	var table = $('#inventoryTable').DataTable( { 
+		"language" : {
+        "emptyTable" : "No products found",
+        "zeroRecords" : "No products found"
+        },
 		"processing" : true,
 		"columns": [
 		{

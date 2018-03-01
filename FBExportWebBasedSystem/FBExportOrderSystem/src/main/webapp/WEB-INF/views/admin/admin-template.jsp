@@ -139,7 +139,7 @@
 				       <li ${ (sideBarActiveLink eq "dashboard") ? "class = 'active'" : ''}><a href="<c:url value = '/admin/dashboard' />"> <i class="icon-presentation"></i>Dashboard </a></li>
 				       <li ${ (sideBarActiveLink eq "inventory") ? "class = 'active'" : ''}><a href="<c:url value = '/admin/inventory' />"> <i class="icon-padnote"></i>Inventory </a></li>
 				       <li ${ (sideBarActiveLink eq "orders") ? "class = 'active'" : ''}><a href="<c:url value = '/admin/orders' />"> <i class="fa fa-list-alt" aria-hidden="true"></i> Orders </a></li>
-				       <li ${ (sideBarActiveLink eq "manage-accounts") ? "class = 'active'" : ''}><a href="<c:url value = '/admin/manage-accounts' />"> <i class="fa fa-list-alt" aria-hidden="true"></i> Manage Accounts </a></li>
+				       <li ${ (sideBarActiveLink eq "manage-accounts") ? "class = 'active'" : ''}><a href="<c:url value = '/admin/manage-accounts' />"> <i class="fa fa-users"></i> Manage Accounts </a></li>
 				       <li ${ (sideBarActiveLink eq "report-logs") ? "class = 'active'" : ''}><a href="index.html"> <i class="fa fa-file-text" aria-hidden="true"></i> Report logs </a></li>
 				       <li ${ (sideBarActiveLink eq "system-settings") ? "class = 'active'" : ''}><a href="index.html"> <i class="fa fa-cog" aria-hidden="true"></i> System Settings </a></li>
 				    </ul>

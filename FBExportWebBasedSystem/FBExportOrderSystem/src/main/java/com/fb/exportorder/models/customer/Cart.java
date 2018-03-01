@@ -24,7 +24,7 @@ public class Cart {
         org.hibernate.annotations.CascadeType.MERGE,
         org.hibernate.annotations.CascadeType.PERSIST,
         org.hibernate.annotations.CascadeType.DELETE_ORPHAN})
-	List<Item> items = new ArrayList<Item>();
+	private List<Item> items = new ArrayList<Item>();
 
 	public List<Item> getItems() {
 		return items;

@@ -32,23 +32,26 @@ public class Order	 {
 	private Long orderId;
 	
 	@ManyToOne
-	Customer customer;
+	private Customer customer;
 	
 	@OneToOne
 	@Cascade(value=org.hibernate.annotations.CascadeType.ALL)
-	Cart cart;
+	private Cart cart;
 	
 	@Enumerated(EnumType.STRING)
-	PaymentMethod paymentMethod;
+	private PaymentMethod paymentMethod;
 	
 	@Enumerated(EnumType.STRING)
-	OrderStatus orderStatus;
+	private OrderStatus orderStatus;
 	
 	@OneToOne
-	ShippingAddress shippingAddress;
+	private ShippingAddress shippingAddress;
 	
 	@OneToOne
-	Shipping shipping;
+	private Shipping shipping;
+	
+	private String message;
+	private String reason;
 	
 	private int totalItems;
 	private double totalWeight;
@@ -156,8 +159,22 @@ public class Order	 {
 	public void setExpectedDate(Date expectedDate) {
 		this.expectedDate = expectedDate;
 	}
-	
-	
+
+	public String getMessage() {
+		return message;
+	}
+
+	public void setMessage(String message) {
+		this.message = message;
+	}
+
+	public String getReason() {
+		return reason;
+	}
+
+	public void setReason(String reason) {
+		this.reason = reason;
+	}
 	
 	
 }

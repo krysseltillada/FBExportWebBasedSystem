@@ -6,7 +6,7 @@
 
 	<definition name = "adminBaseTemplate" template = "/WEB-INF/views/admin/admin-template.jsp">
 		
-		<put-attribute name="mainNavBar" value = "/WEB-INF/views/admin/main-nav-bar.jsp" />
+		<put-attribute name ="mainNavBar" value = "/WEB-INF/views/admin/main-nav-bar.jsp" />
 		<put-attribute name = "sideBar" value = "/WEB-INF/views/admin/side-bar.jsp" />
 		<put-attribute name = "footer" value = "/WEB-INF/views/admin/footer.jsp" />
 		<put-attribute name = "main" value = "/WEB-INF/views/admin/dashboard.jsp" />
@@ -47,8 +47,11 @@
 			<add-attribute value = "/resources/admin/js/underscore.js" />
 			<add-attribute value = "/resources/admin/js/moment.js" />
 			<add-attribute value = "/resources/admin/js/collections.js" />
+			<add-attribute value = "/resources/admin/js/math.js" />
+			<add-attribute value = "/resources/admin/js/accounting.js" />
 			<add-attribute value = "/resources/admin/js/alertify.js" />
 			<add-attribute value = "/resources/admin/js/iziToast.js" />
+			<add-attribute value = "/resources/admin/js/utilities.js" />
 			<add-attribute value = "/resources/admin/js/front.js" />
 			<add-attribute value = "/resources/admin/js/admin.js" />
 		

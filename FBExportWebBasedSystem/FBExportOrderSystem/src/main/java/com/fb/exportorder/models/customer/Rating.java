@@ -28,7 +28,7 @@ public class Rating {
 	private Product product;
 	
 	@OneToMany(cascade=CascadeType.ALL)
-	List <Review> reviews = new ArrayList<Review>();
+	private List <Review> reviews = new ArrayList<Review>();
 
 	public Long getRatingId() {
 		return ratingId;

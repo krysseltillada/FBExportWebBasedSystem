@@ -72,7 +72,8 @@ public class MultiHttpSecurityConfig {
         					 "/edit-account",
         					 "/place-order",
         					 "/place-order/order",
-        					 "/order-success")
+        					 "/order-success",
+        					 "/order-list")
         		.hasAuthority("CUSTOMER")
         		.and()
         		.authorizeRequests()
@@ -108,8 +109,7 @@ public class MultiHttpSecurityConfig {
 				  "/admin/enabled-employee",
 				  "/admin/enabled-admin",
 				  "/admin/add-product/add-preview-images",
-				  "/admin/add-product/delete-preview-images/**",
-				  "/admin/orders"};
+				  "/admin/add-product/delete-preview-images/**"};
     	
     	@Autowired
     	@Qualifier("adminEmployeeUserDetailsService")
@@ -142,7 +142,8 @@ public class MultiHttpSecurityConfig {
         					 "/admin/add-product/add",
         					 "/admin/add-product/add-preview-images",
         					 "/admin/inventory/edit-product/*",
-        					 "/admin/manage-accounts").hasAnyAuthority("ADMIN", "EMPLOYEE")
+        					 "/admin/manage-accounts",
+        					 "/admin/orders").hasAnyAuthority("ADMIN", "EMPLOYEE")
         		.and()
 	    		.formLogin()
 	    		.loginPage("/admin/login")

@@ -1,3 +1,5 @@
+ <%@ include file = "../../lib/tags/tag-libraries.jsp" %>
+ 
  <main>
 
     <div class = "container mt-4">
@@ -58,7 +60,7 @@
                 <div class = "mb-4">
 
                     <div class="list-group">
-                        <a href="#" class="list-group-item">
+                        <a href="<c:url value = '/view-profile' />" class="list-group-item">
                             <i class="fa fa-user mr-2" aria-hidden="true"></i>
                             View Profile
                         </a>
@@ -66,23 +68,23 @@
                             <i class="fa fa-bell mr-2" aria-hidden="true"></i>
                             Notifications
                         </a>
-                        <a href="#" class="list-group-item active">
-                            <i class="fa fa-reorder mr-2" aria-hidden="true"></i>
+                        <a href="<c:url value = '/view-profile' />" class="list-group-item active">
+                            <i class="fa fa-reorder mr-2" aria-hidsden="true"></i>
                             Order Lists
                         </a>
                         <a href="#" class="list-group-item">
                             <i class="fa fa-ship mr-2" aria-hidden="true"></i>
                             Shipping
                         </a>
-                        <a href="#" class="list-group-item">
+                        <a href="<c:url value = '/your-address' />" class="list-group-item">
                             <i class="fa fa-address-card mr-2" aria-hidden="true"></i>
                             Your Addresses
                         </a>
-                        <a href="#" class="list-group-item">
+                        <a href="<c:url value = '/account-settings' />" class="list-group-item">
                             <i class="fa fa-gear mr-2" aria-hidden="true"></i>
                             Account Settings
                         </a>
-                        <a href="#" class="list-group-item">
+                        <a href="<c:url value = '/sign-out' />" class="list-group-item">
                             <i class="fa fa-sign-out mr-2" aria-hidden="true"></i>
                             Sign out
                         </a>
@@ -308,11 +310,11 @@
                                                             <strong> Country(city): </strong> <br />
                                                             United States(New york)
                                                         </p>
-
+                                                        <!-- 
                                                         <p>
                                                             <strong> Expected date: </strong> <br />
                                                             NOVEMBER 29 1998
-                                                        </p>
+                                                        </p> -->
                                                     </div>
                                                 </div>
                                             </div>
@@ -470,10 +472,10 @@
                                                             United States(New york)
                                                         </p>
 
-                                                        <p>
+                                                        <!-- <p>
                                                             <strong> Expected date: </strong> <br />
                                                             NOVEMBER 29 1998
-                                                        </p>
+                                                        </p> -->
                                                     </div>
                                                 </div>
                                             </div>
@@ -641,10 +643,10 @@
                                                             United States(New york)
                                                         </p>
 
-                                                        <p>
+                                                        <!-- <p>
                                                             <strong> Expected date: </strong> <br />
                                                             NOVEMBER 29 1998
-                                                        </p>
+                                                        </p> -->
                                             </div>
                                         </div>
 
@@ -1140,10 +1142,10 @@
                                                             United States(New york)
                                                         </p>
 
-                                                        <p>
+                                                        <!-- <p>
                                                             <strong> Expected date: </strong> <br />
                                                             NOVEMBER 29 1998
-                                                        </p>
+                                                        </p> -->
                                             </div>
                                         </div>
 

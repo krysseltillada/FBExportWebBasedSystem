@@ -47,10 +47,10 @@ public abstract class Account {
 	 private Gender gender;
 	 
 	 @Embedded
-	 Address address;
+	 private Address address;
 	 
 	 @Embedded
-	 Contact contact;
+	 private Contact contact;
 	 
 	 private int age;
 
