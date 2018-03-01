@@ -23,8 +23,8 @@ import com.fb.exportorder.models.ShippingAddress;
 import com.fb.exportorder.models.enums.OrderStatus;
 import com.fb.exportorder.models.enums.PaymentMethod;
 
-@Entity(name = "`Order`")
-@Table(name = "`Order`")
+@Entity(name = "Orders")
+@Table(name = "Orders")
 public class Order	 {
 
 	@Id

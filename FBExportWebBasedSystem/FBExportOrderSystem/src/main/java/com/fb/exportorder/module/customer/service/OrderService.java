@@ -1,5 +1,7 @@
 package com.fb.exportorder.module.customer.service;
 
+import java.util.List;
+
 import com.fb.exportorder.models.ShippingAddress;
 import com.fb.exportorder.models.customer.Customer;
 import com.fb.exportorder.models.customer.Order;
@@ -11,4 +13,6 @@ public interface OrderService {
 						PaymentMethod paymethod,
 						double totalPrice,
 						double totalWeight);
+	
+	public List<Order> getAllOrders ();
 }

@@ -1,6 +1,7 @@
 package com.fb.exportorder.module.customer.service;
 
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -59,6 +60,12 @@ public class OrderServiceImpl implements OrderService {
 		newOrder.setDateOrdered(new Date());
 		
 		return orderRepository.save(newOrder);
+	}
+
+
+	@Override
+	public List<Order> getAllOrders() {
+		return (List<Order>) orderRepository.findAll();
 	}
 
 }
