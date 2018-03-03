@@ -18,11 +18,19 @@ public interface OrderService {
 	
 	Order getOrderById(long id);
 	
-//	void markPending(Order order);
-//	void markApproved(Order order);
-//	void markRejected(Order order);
-//	void markReceived(Order order);
+	void markPending(Order order);
+	void markApproved(Order order, String message);
+	void markRejected(Order order, String reason);
+	void markReceived(Order order);
 //	void markToShip(Order order);
+	
+	List<String> addToShipInformation(String shipmentStatus,
+								      String departureDate,
+									  String arrivalDate,
+									  String vesselName,
+									  String mmsiNumber,
+									  String imoNumber,
+									  String destination);
 	
 	
 	

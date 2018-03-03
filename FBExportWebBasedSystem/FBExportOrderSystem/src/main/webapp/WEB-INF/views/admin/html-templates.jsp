@@ -75,6 +75,7 @@
             </div>
 
             {{ if (order.shipping) { }}
+
                 <div class="tab-pane" id="shipping-order-tab-id-{{=order.orderId}}" role="tabpanel">
                     <div class = "p-4">
 

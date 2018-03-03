@@ -149,7 +149,9 @@
 </section>     
 
 <c:if test = "${not empty successMessage}">
+	
 	<script>
+	
 	
 		document.addEventListener("DOMContentLoaded", function(event) { 
 			iziToast.success({

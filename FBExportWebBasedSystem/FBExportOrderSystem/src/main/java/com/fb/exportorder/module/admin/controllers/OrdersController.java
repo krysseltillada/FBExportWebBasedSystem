@@ -1,8 +1,12 @@
 package com.fb.exportorder.module.admin.controllers;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -56,5 +60,42 @@ public class OrdersController {
 	public Order getOrderDetails (@RequestParam String id) {
 		return orderService.getOrderById(Long.parseLong(id));
 	}
+	
+	@RequestMapping(value = "/admin/orders/add-to-ship-information", method = RequestMethod.POST)
+	@ResponseBody
+	public String addToShipInformation (@RequestParam String toShipInformationJSON) {
+		
+		JSONObject toShipInformation = null;
+		List<String> errorMessages = null;
+		
+		try {
+			toShipInformation = (JSONObject)new JSONParser().parse(toShipInformationJSON);
+			
+			errorMessages = orderService.addToShipInformation((String)toShipInformation.get("shipmentStatus"), 
+															  (String)toShipInformation.get("departureDate"), 
+															  (String)toShipInformation.get("arrivalDate"), 
+															  (String)toShipInformation.get("vesselName"), 
+															  (String)toShipInformation.get("mmsiNumber"), 
+															  (String)toShipInformation.get("imoNumber"), 
+															  (String)toShipInformation.get("destination"));	
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		JSONObject responseMessage = new JSONObject();
+		
+		if (errorMessages.isEmpty())
+			responseMessage.put("status", "success");
+		else {
+			responseMessage.put("status", "error");
+			responseMessage.put("message", errorMessages.get(0));
+		}
+		
+		return responseMessage.toJSONString();
+	}
+	
+	
+	
 
 }
