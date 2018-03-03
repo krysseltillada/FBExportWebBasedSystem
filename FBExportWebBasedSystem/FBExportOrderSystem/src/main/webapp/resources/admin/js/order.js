@@ -7,7 +7,7 @@ $(document).ready(function () {
 
     var orderStatusColors = new Map({ 
                                     "To Ship" : "#796AEE",
-                                    "Received" : "#0275D8",
+                                    // "Received" : "#0275D8",
                                     "Rejected" : "#D9534F",
                                     "Approved": "#5CB85C",
                                     "Pending": "#FFC107" 
@@ -120,6 +120,7 @@ $(document).ready(function () {
     $("div.dropdown-select").on("show.bs.dropdown", function () {
         
         var $dropdownMenu = $(this).find("div.dropdown-menu");
+        var $dropDownSelect = $(this);
 
         console.log("open");
 
@@ -130,7 +131,7 @@ $(document).ready(function () {
 
                             var orderStatus = $(this).html();
                             var $dropDownSelectButton = $(this).parent().parent().find("button");
-                            var $btnOrderStatus = $(".dropdown-select button.dropdown-toggle");
+                            var $btnOrderStatus = $dropDownSelect.find("button.dropdown-toggle");
 
                             alertify.okBtn("Mark it")
                                     .confirm("Mark it as " + orderStatus + "?", function (ev) {
@@ -174,11 +175,42 @@ $(document).ready(function () {
 
                                                         $btnOrderStatus.attr("disabled", "disabled");
 
-                                                        $dropDownSelectButton.html(orderStatus);
+                                                        iziToast.show({
+                                                                message: 'approving order...',
+                                                                icon : "",
+                                                                timeout : false,
+                                                                close : false,
+                                                                onOpening : function (instance, toast) {
 
-                                                        $dropDownSelectButton.css("background-color", orderStatusColors.get(orderStatus));
-                                                        $dropDownSelectButton.css("border-color", orderStatusColors.get(orderStatus));
+                                                                setTimeout(function () {
 
+                                                                    $.post("/FBExportSystem/admin/orders/markApproved", {
+                                                                        id : $btnOrderStatus.closest("tr").find("#orderId").html(),
+                                                                        message : val
+                                                                    }, function (response) {
+
+                                                                        $(toast).fadeOut("slow", function () {
+                                                                                $(this).remove();
+                                                                        });
+
+                                                                        iziToast.success({
+                                                                                timeout : 2000,
+                                                                                progressBar : false,
+                                                                                message : "order is approved"
+                                                                        });
+
+                                                                        $btnOrderStatus.removeAttr("disabled");
+
+                                                                        $dropDownSelectButton.html(orderStatus);
+
+                                                                        $dropDownSelectButton.css("background-color", orderStatusColors.get(orderStatus));
+                                                                        $dropDownSelectButton.css("border-color", orderStatusColors.get(orderStatus));
+
+                                                                    });
+
+                                                                }, 1000);
+
+                                                        }});
 
                                             });
 
@@ -188,15 +220,48 @@ $(document).ready(function () {
                                                     .defaultValue("your order has been rejected")  
                                                     .prompt("provide a reason for rejection to the customer", function (val, event) {
 
+                                                        $btnOrderStatus.attr("disabled", "disabled");
+                                                        
+                                                        iziToast.show({
+                                                                message: 'rejecting order...',
+                                                                icon : "",
+                                                                timeout : false,
+                                                                close : false,
+                                                                onOpening : function (instance, toast) {
+
+                                                                    setTimeout(function () {
+
+                                                                    $.post("/FBExportSystem/admin/orders/markRejected", {
+                                                                            id : $btnOrderStatus.closest("tr").find("#orderId").html(),
+                                                                            reason : val
+                                                                        }, function (response) {
+
+                                                                            $(toast).fadeOut("slow", function () {
+                                                                                    $(this).remove();
+                                                                            });
+
+                                                                            iziToast.success({
+                                                                                    timeout : 2000,
+                                                                                    progressBar : false,
+                                                                                    message : "order is rejected"
+                                                                            });
+
+                                                                            $btnOrderStatus.removeAttr("disabled");
+
+                                                                            $dropDownSelectButton.html(orderStatus);
+
+                                                                            $dropDownSelectButton.css("background-color", orderStatusColors.get(orderStatus));
+                                                                            $dropDownSelectButton.css("border-color", orderStatusColors.get(orderStatus));
+
+                                                                        });
+
+                                                                    }, 1000);
+
+                                                                }
+                                                         });
+
                                                         console.log(val);
 
-                                                        $btnOrderStatus.attr("disabled", "disabled");
-
-
-                                                        $dropDownSelectButton.html(orderStatus);
-
-                                                        $dropDownSelectButton.css("background-color", orderStatusColors.get(orderStatus));
-                                                        $dropDownSelectButton.css("border-color", orderStatusColors.get(orderStatus));
                                             });
 
                                             break;
@@ -215,10 +280,42 @@ $(document).ready(function () {
 
                                     $btnOrderStatus.attr("disabled", "disabled");
 
-                                    $dropDownSelectButton.html(orderStatus);
+                                    iziToast.show({
+                                                message: orderStatus + ' order...',
+                                                icon : "",
+                                                timeout : false,
+                                                close : false,
+                                                onOpening : function (instance, toast) {
 
-                                    $dropDownSelectButton.css("background-color", orderStatusColors.get(orderStatus));
-                                    $dropDownSelectButton.css("border-color", orderStatusColors.get(orderStatus));
+                                                    setTimeout(function () {
+                                                
+                                                        $.post("/FBExportSystem/admin/orders/mark" + orderStatus, {
+                                                            id : $btnOrderStatus.closest("tr").find("#orderId").html()
+                                                        }, function (response) {
+
+                                                            $(toast).fadeOut("slow", function () {
+                                                                    $(this).remove();
+                                                            });
+
+                                                            iziToast.success({
+                                                                    timeout : 2000,
+                                                                    progressBar : false,
+                                                                    message : "order is " + orderStatus
+                                                            });
+
+                                                            $btnOrderStatus.removeAttr("disabled");
+
+                                                            $dropDownSelectButton.html(orderStatus);
+
+                                                            $dropDownSelectButton.css("background-color", orderStatusColors.get(orderStatus));
+                                                            $dropDownSelectButton.css("border-color", orderStatusColors.get(orderStatus));
+
+                                                        });
+
+                                                    }, 1000);
+
+                                    }});
+                                   
                                 }
 
                             });

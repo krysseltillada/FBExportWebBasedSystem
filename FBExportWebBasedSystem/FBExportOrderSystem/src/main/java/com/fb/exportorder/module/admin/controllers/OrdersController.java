@@ -93,7 +93,46 @@ public class OrdersController {
 		}
 		
 		return responseMessage.toJSONString();
+	
 	}
+	
+	@RequestMapping(value = "/admin/orders/markApproved", method = RequestMethod.POST)
+	@ResponseBody
+	public String markApproved (@RequestParam String id, @RequestParam String message) {
+		
+		orderService.markApproved(orderService.getOrderById(Long.parseLong(id)), 
+								  message);
+		
+		return "";
+	}
+	
+	@RequestMapping(value = "/admin/orders/markRejected", method = RequestMethod.POST)
+	@ResponseBody
+	public String markRejected (@RequestParam String id, @RequestParam String reason) {
+		
+		orderService.markRejected(orderService.getOrderById(Long.parseLong(id)), 
+								  reason);
+		
+		return "";
+	}
+	
+	@RequestMapping(value = "/admin/orders/markPending", method = RequestMethod.POST)
+	@ResponseBody
+	public String markPending (@RequestParam String id) {
+		
+		orderService.markPending(orderService.getOrderById(Long.parseLong(id)));
+		return "";
+	}
+	
+	@RequestMapping(value = "/admin/orders/markReceived", method = RequestMethod.POST)
+	@ResponseBody
+	public String markReceived (@RequestParam String id) {
+		
+		orderService.markReceived(orderService.getOrderById(Long.parseLong(id)));
+		return "";
+	}
+	
+	
 	
 	
 	

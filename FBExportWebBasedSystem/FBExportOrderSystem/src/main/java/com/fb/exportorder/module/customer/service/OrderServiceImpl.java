@@ -176,7 +176,9 @@ public class OrderServiceImpl implements OrderService {
 
 	@Override
 	public void markPending(Order order) {
-		order.setOrderStatus(OrderStatus.REJECTED);
+		order.setOrderStatus(OrderStatus.PENDING);
+		order.setMessage(StringUtils.EMPTY);
+		order.setReason(StringUtils.EMPTY);
 		orderRepository.save(order);
 	}
 
@@ -184,6 +186,8 @@ public class OrderServiceImpl implements OrderService {
 	@Override
 	public void markReceived(Order order) {
 		order.setOrderStatus(OrderStatus.RECEIVED);
+		order.setMessage(StringUtils.EMPTY);
+		order.setReason(StringUtils.EMPTY);
 		orderRepository.save(order);
 	}
 
