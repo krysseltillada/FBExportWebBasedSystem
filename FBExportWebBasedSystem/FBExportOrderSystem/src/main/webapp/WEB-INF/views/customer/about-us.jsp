@@ -10,7 +10,7 @@
             <div class="col-md-7 mb-2 smooth-scroll wow fadeIn" data-wow-delay="0.2s">
 
                 <!--Heading-->
-                <h3 class="mb-3">Welcome to Fong Bros International Corporation</h3>
+                <h3 class="mb-3"><img src = "/FBExportSystem/resources/company-logo.png" alt="Company Logo" height="100" width="100" /> Fong Bros International Corporation</h3>
                 <!--Description-->
                 <h4 class="mb-5">We Provide High Quality services</h4>
                 <!--Content-->

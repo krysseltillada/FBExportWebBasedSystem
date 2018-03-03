@@ -15,6 +15,8 @@
 	    <meta name="description" content="">
 	    <meta name="viewport" content="width=device-width, initial-scale=1">
 	    <meta name="robots" content="all,follow">
+	    <link rel="short icon" href="/FBExportSystem/resources/admin/company_logo_icon.ico"/>
+	    
 		
 		<c:forEach var = "cssfile" items = "${cssfiles}">
 			<link href = "<c:url value = '${cssfile}' />" rel = "stylesheet" type = "text/css" />
