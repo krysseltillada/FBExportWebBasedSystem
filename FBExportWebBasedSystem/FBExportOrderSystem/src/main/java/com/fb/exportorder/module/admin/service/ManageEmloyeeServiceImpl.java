@@ -152,12 +152,12 @@ public class ManageEmloyeeServiceImpl implements ManageEmployeeService {
 					Path path = FileSystems.getDefault().getPath("src\\main\\webapp\\profile-img\\" + profileImageFilename);
 					Files.write(path, imageBytes);
 					
-					profileImageLink = serverDomainName + "/profile-img/" + profileImageFilename;
+					profileImageLink = "/profile-img/" + profileImageFilename;
 				
 				} else {
 					
-					profileImageLink = (employee.getGender() == Gender.MALE) ? serverDomainName + "/resources/admin/img/profile-male.jpg" :
-																			   serverDomainName + "/resources/admin/img/profile-female.jpg";
+					profileImageLink = (employee.getGender() == Gender.MALE) ? "/resources/admin/img/profile-male.jpg" :
+																			   "/resources/admin/img/profile-female.jpg";
 				}
 				
 				if(role.equals("EMPLOYEE")) {
@@ -256,7 +256,7 @@ public class ManageEmloyeeServiceImpl implements ManageEmployeeService {
 					Path path = FileSystems.getDefault().getPath("src\\main\\webapp\\profile-img\\" + profileImageFilename);
 					Files.write(path, imageBytes);
 					
-					profileImageLink = serverDomainName + "/profile-img/" + profileImageFilename;
+					profileImageLink = "/profile-img/" + profileImageFilename;
 					employee.setProfileImageLink(profileImageLink);
 					
 					employeeRepository.save(employee);

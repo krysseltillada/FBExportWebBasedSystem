@@ -269,7 +269,7 @@
 						        	<c:forEach var = "customer" items = "${customerList}">
 						        		<tr>
 			                                <td><i class="fa fa-chevron-circle-down fa-lg" aria-hidden="true" style="cursor: pointer;" id="showActivity"></i></td>
-			                                <td><img src="<c:out value = '${customer.profileImageLink}' />" height="100" width="100"/></td>
+			                                <td><img src="<c:url value = '${customer.profileImageLink}' />" height="100" width="100"/></td>
 			                                <td class="usernameCustomerRow"><c:out value = "${customer.username} " /></td>
 			                                <td><c:out value = "${customer.firstname}" /></td>
 			                                <td><c:out value = "${customer.middlename}" /></td>
@@ -728,7 +728,7 @@
         	
 					        	<c:forEach var = "employee" items = "${employeeList}">
 					        		<tr>
-		                                <td><img src="<c:out value = '${employee.profileImageLink}' />" height="100" width="100"/></td>
+		                                <td><img src="<c:url value = '${employee.profileImageLink}' />" height="100" width="100"/></td>
 		                                <td class="usernameEmployeeRow"><c:out value = "${employee.username} " /></td>
 		                                <td><c:out value = "${employee.firstname}" /></td>
 		                                <td><c:out value = "${employee.middlename}" /></td>
@@ -1207,7 +1207,7 @@
         	
 					        	<c:forEach var = "employee" items = "${adminList}">
 					        		<tr>
-		                                <td><img src="<c:out value = '${employee.profileImageLink}' />" height="100" width="100"/></td>
+		                                <td><img src="<c:url value = '${employee.profileImageLink}' />" height="100" width="100"/></td>
 		                                <td class="usernameAdminRow"><c:out value = "${employee.username} " /></td>
 		                                <td><c:out value = "${employee.firstname}" /></td>
 		                                <td><c:out value = "${employee.middlename}" /></td>
