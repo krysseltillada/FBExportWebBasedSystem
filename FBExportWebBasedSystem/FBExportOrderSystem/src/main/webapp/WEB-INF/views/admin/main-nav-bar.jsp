@@ -10,8 +10,7 @@
 	            <!-- Navbar Brand -->
 	            <a href="<c:url value = '/admin/dashboard' />" class="navbar-brand">
 	                <div class="brand-text brand-big">
-	                <img class="pb-1 mr-1" src = "https://dt-cdn.net/assets/images/gfx/icons/tech/trello-586abec645.svg" width = "30" height = "30" />
-	                <span>  Fong Bros International Corporation </span>
+	                <span> <img alt="Company Logo" width="30" height="30" src="<c:url value = '/resources/admin/company-logo.png' /> ">  Fong Bros International Corporation </span>
 	                </div>
 	                <div class="brand-text brand-small">
 	                <strong>FB</strong>

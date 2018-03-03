@@ -67,7 +67,7 @@
 
     <div class="footer-copyright elegant-color-dark">
         <div class="container-fluid wow fadeIn">
-            <span class = "text-white"> © 2017 Copyright: </span> <a href="/"> Fong bros International Corporation.  </a>
+            <span class = "text-white"> &copy; <script>document.write(new Date().getFullYear())</script> Copyright: </span> <a href="/"> Fong bros International Corporation.  </a>
 
         </div>
     </div>

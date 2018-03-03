@@ -14,7 +14,7 @@
 	    <title>Fong Bros</title>
 	    <meta name="description" content="">
 	    <meta name="viewport" content="width=device-width, initial-scale=1">
-	    <link rel="short icon" href="/FBExportSystem/resources/admin/company_logo_icon.ico"/>
+		<link rel="short icon" href="<c:url value = '/resources/admin/company_logo_icon.ico' /> "/>	    
 
 	    <meta name="robots" content="all,follow">
 	    <meta name="_csrf" content="${_csrf.token}"/>
@@ -143,7 +143,7 @@
 				       <li ${ (sideBarActiveLink eq "orders") ? "class = 'active'" : ''}><a href="<c:url value = '/admin/orders' />"> <i class="fa fa-list-alt" aria-hidden="true"></i> Orders </a></li>
 				       <li ${ (sideBarActiveLink eq "manage-accounts") ? "class = 'active'" : ''}><a href="<c:url value = '/admin/manage-accounts' />"> <i class="fa fa-users"></i> Manage Accounts </a></li>
 				       <li ${ (sideBarActiveLink eq "report-logs") ? "class = 'active'" : ''}><a href="index.html"> <i class="fa fa-file-text" aria-hidden="true"></i> Report logs </a></li>
-				       <li ${ (sideBarActiveLink eq "system-settings") ? "class = 'active'" : ''}><a href="index.html"> <i class="fa fa-cog" aria-hidden="true"></i> System Settings </a></li>
+				       <li ${ (sideBarActiveLink eq "system-settings") ? "class = 'active'" : ''}><a href="<c:url value = '/admin/system-settings' />"> <i class="fa fa-cog" aria-hidden="true"></i> System Settings </a></li>
 				    </ul>
 				
 				</nav>						

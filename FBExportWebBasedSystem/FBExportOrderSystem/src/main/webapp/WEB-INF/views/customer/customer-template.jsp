@@ -13,7 +13,7 @@
 		<meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <link rel="short icon" href="/FBExportSystem/resources/company_logo_icon.ico"/>
+        <link rel="short icon" href="<c:url value = '/resources/company_logo_icon.ico'/>"/>
         
         <meta name="_csrf" content="${_csrf.token}"/>
   		<meta name="_csrf_header" content="${_csrf.headerName}"/>

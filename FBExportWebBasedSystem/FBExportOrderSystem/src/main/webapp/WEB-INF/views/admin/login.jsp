@@ -15,8 +15,7 @@
 	    <meta name="description" content="">
 	    <meta name="viewport" content="width=device-width, initial-scale=1">
 	    <meta name="robots" content="all,follow">
-	    <link rel="short icon" href="/FBExportSystem/resources/admin/company_logo_icon.ico"/>
-	    
+		<link rel="short icon" href="<c:url value= '/resources/admin/company_logo_icon.ico' /> "/>	    
 		
 		<c:forEach var = "cssfile" items = "${cssfiles}">
 			<link href = "<c:url value = '${cssfile}' />" rel = "stylesheet" type = "text/css" />
@@ -58,11 +57,11 @@
 		                  <i class="fa fa-user-circle fa-5x" style="font-size: 100px; color: grey; margin-bottom: 15px;  " aria-hidden="true"></i>
 		                  <form action = "<c:url value = '/admin/login' />" id="login-form" method="post">
 		                    <div class="form-group">
-		                      <input id="login-username" type="text" name="username" required="" class="input-material">
+		                      <input id="login-username" type="text" name="username" required class="input-material">
 		                      <label for="login-username" class="label-material">User Name</label>
 		                    </div>
 		                    <div class="form-group text-left">
-		                      <input id="login-password" type="password" name="password" required="" class="input-material">
+		                      <input id="login-password" type="password" name="password" required class="input-material">
 		                      <label for="login-password" class="label-material">Password</label>
 		                    </div>
 		                    
