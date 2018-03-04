@@ -1,5 +1,7 @@
 package com.fb.exportorder.module.admin.controllers;
 
+import java.io.File;
+import java.nio.file.FileSystems;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -15,6 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.fb.exportorder.models.SystemSettings;
 import com.fb.exportorder.module.admin.service.SystemSettingsService;
+import com.fb.exportorder.utilities.SystemSettingsBackup;
 
 @Controller
 public class SystemSettingsController {
@@ -45,7 +48,6 @@ public class SystemSettingsController {
 	@RequestMapping(value="/admin/edit-system-settings", method=RequestMethod.POST)
 	@ResponseBody
 	public String editSystemSettings(String systemBackupTimeInput, String systemLogoutTime) {
-		
 		try {
 			SystemSettings systemSettings = systemSettingsService.findAll().get(0);
 			
@@ -67,5 +69,19 @@ public class SystemSettingsController {
 		}
 		
 		return "Success";
+	}
+	
+	@RequestMapping(value="/admin/restore-data", method=RequestMethod.POST)
+	@ResponseBody
+	public String restoreData() {
+		SystemSettingsBackup backup = new SystemSettingsBackup();
+		return backup.restoreData();
+	}
+	
+	@RequestMapping(value="/admin/backup-data", method=RequestMethod.POST)
+	@ResponseBody
+	public String backupData() {
+		SystemSettingsBackup backup = new SystemSettingsBackup();
+		return backup.backupData("fbexport");
 	}
 }

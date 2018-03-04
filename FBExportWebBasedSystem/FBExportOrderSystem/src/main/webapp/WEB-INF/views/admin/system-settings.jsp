@@ -13,7 +13,6 @@
     </header>
 
     <section class = "no-padding-top p-0">
-        
         <div class = "row">
             <div class = "col-lg">
             <div class = "card mb-0">
@@ -44,8 +43,8 @@
 		                    <input name="systemBackupTimeInput" type = "text" id="backtime" value = "${systemSettings[0]}:${systemSettings[1]} ${systemSettings[3]}" class = "form-control timepicker mr-2" 
 		                            data-timepicki-tim="${systemSettings[0]}" data-timepicki-mini="${systemSettings[1]}" data-timepicki-meri="${systemSettings[3]}"  style = "width: 100px;" />
 		                    
-		                    <button type="button" class="btn btn-primary btn-sm mr-1">Backup data</button>
-		                    <button type="button" class="btn btn-primary btn-sm">Restore data</button>
+		                    <button type="button" class="btn btn-primary btn-sm mr-1" id="btnBackupData">Backup data</button>
+		                    <button type="button" class="btn btn-primary btn-sm" id="btnRestoreData">Restore data</button>
 		
 		                </div>
 		
