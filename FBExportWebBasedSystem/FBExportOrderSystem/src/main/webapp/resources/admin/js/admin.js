@@ -71,4 +71,45 @@ $(document).ready(function () {
         );
     });
     
+    /*Logout Time*/
+    if(window.location.pathname != "/FBExportSystem/admin/" && window.location.pathname != "/FBExportSystem/admin/login/" && window.location.pathname != "/FBExportSystem/admin" && window.location.pathname != "/FBExportSystem/admin/login"){
+    	console.log(window.location.pathname);
+    	var timeoutID;
+        
+        function setup() {
+            this.addEventListener("mousemove", resetTimer, false);
+            this.addEventListener("mousedown", resetTimer, false);
+            this.addEventListener("keypress", resetTimer, false);
+            this.addEventListener("DOMMouseScroll", resetTimer, false);
+            this.addEventListener("mousewheel", resetTimer, false);
+            this.addEventListener("touchmove", resetTimer, false);
+            this.addEventListener("MSPointerMove", resetTimer, false);
+         
+            startTimer();
+        }
+        setup();
+         
+        function startTimer() {
+            // wait before calling goInactive
+            timeoutID = window.setTimeout(goInactive, 2000);
+        }
+         
+        function resetTimer(e) {
+            window.clearTimeout(timeoutID);
+         
+            goActive();
+        }
+         
+        function goInactive() {
+            console.log("IN ACTIVE");
+        }
+         
+        function goActive() {
+            console.log("ACTIVE");
+                 
+            startTimer();
+        }
+    }
+    /*Logout Time*/
+    
 });

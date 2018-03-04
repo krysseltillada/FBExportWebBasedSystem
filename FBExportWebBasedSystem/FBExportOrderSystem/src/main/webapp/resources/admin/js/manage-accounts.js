@@ -322,7 +322,7 @@ $(document).ready(function () {
     		  type: "POST",
     	      enctype: 'multipart/form-data',
     	      url : "/FBExportSystem/admin/edit-customer",
-    	      processData: false,  // Important!
+    	      processData: false,
     	      contentType: false,
     	      cache: false,
               data : formData,
