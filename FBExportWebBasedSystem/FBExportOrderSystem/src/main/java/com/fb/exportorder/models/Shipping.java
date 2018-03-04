@@ -1,10 +1,12 @@
 package com.fb.exportorder.models;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.ElementCollection;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -27,11 +29,11 @@ public class Shipping {
 	@Enumerated(EnumType.STRING)
 	private ShipmentStatus shipmentStatus;
 	
-	@ElementCollection
-	private List<VesselStatus> vesselStatus;
+	@Embedded
+	private VesselStatus vesselStatus;
 	
 	@OneToMany(cascade=CascadeType.ALL)
-	private List<ShippingLog> shippingLog;
+	private List<ShippingLog> shippingLog = new ArrayList<ShippingLog>();
 	
 	@Temporal(TemporalType.DATE)
 	private Date departureDate;
@@ -58,11 +60,11 @@ public class Shipping {
 		this.shipmentStatus = shipmentStatus;
 	}
 
-	public List<VesselStatus> getVesselStatus() {
+	public VesselStatus getVesselStatus() {
 		return vesselStatus;
 	}
 
-	public void setVesselStatus(List<VesselStatus> vesselStatus) {
+	public void setVesselStatus(VesselStatus vesselStatus) {
 		this.vesselStatus = vesselStatus;
 	}
 

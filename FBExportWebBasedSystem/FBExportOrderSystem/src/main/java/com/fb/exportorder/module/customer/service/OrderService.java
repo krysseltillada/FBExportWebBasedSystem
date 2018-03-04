@@ -22,15 +22,19 @@ public interface OrderService {
 	void markApproved(Order order, String message);
 	void markRejected(Order order, String reason);
 	void markReceived(Order order);
-//	void markToShip(Order order);
+	void markToShip(Order order);
 	
-	List<String> addToShipInformation(String shipmentStatus,
+	List<String> addToShipInformation(long id,
+									  String shipmentStatus,
+									  String expectedDate,
 								      String departureDate,
 									  String arrivalDate,
 									  String vesselName,
 									  String mmsiNumber,
 									  String imoNumber,
 									  String destination);
+	
+	boolean checkIfShippingExists (long id);
 	
 	
 	

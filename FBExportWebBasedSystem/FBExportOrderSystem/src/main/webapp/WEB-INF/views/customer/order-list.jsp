@@ -168,7 +168,7 @@
 			                                                        Print <i class="fa fa-caret-down" aria-hidden="true"></i> |
 			                                                    </a>
 			
-			                                                    <a href = "#"> Cancel </a>
+			                                                    <a href = "javascript:void(0)" class = "btn-cancel-order" > Cancel </a>
 			                                                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
 			                                                    <a class="dropdown-item" href="#">Print order</a>
 			                                                    <a class="dropdown-item disabled" href="#">Print receipt</a>
@@ -330,7 +330,7 @@
 																<a href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 																	Print <i class="fa fa-caret-down" aria-hidden="true"></i> |
 																</a>
-																<a href = "#"> Cancel </a>
+																<a href = "javascript:void(0)" class = "btn-cancel-order"> Cancel </a>
 															<div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
 																<a class="dropdown-item" href="#">Print order</a>
 																<a class="dropdown-item disabled" href="#">Print receipt</a>

@@ -47,7 +47,8 @@ public class Order	 {
 	@OneToOne
 	private ShippingAddress shippingAddress;
 	
-	@OneToOne
+	@OneToOne(orphanRemoval = true)
+	@Cascade(value=org.hibernate.annotations.CascadeType.ALL)
 	private Shipping shipping;
 	
 	private String message;
@@ -60,9 +61,6 @@ public class Order	 {
 	
 	@Temporal(TemporalType.DATE)
 	private Date dateOrdered;
-	
-	@Temporal(TemporalType.DATE)
-	private Date expectedDate;
 
 	public Long getOrderId() {
 		return orderId;
@@ -152,13 +150,6 @@ public class Order	 {
 		this.orderStatus = orderStatus;
 	}
 
-	public Date getExpectedDate() {
-		return expectedDate;
-	}
-
-	public void setExpectedDate(Date expectedDate) {
-		this.expectedDate = expectedDate;
-	}
 
 	public String getMessage() {
 		return message;

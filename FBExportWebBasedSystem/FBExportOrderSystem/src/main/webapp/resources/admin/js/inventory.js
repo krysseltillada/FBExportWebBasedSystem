@@ -1,5 +1,20 @@
 $(document).ready(function (){
 
+	var checkAllowDelete = function () {
+
+		
+
+		if ($("#inventoryTable").find("tr:not(:first) input.checkbox-template:checked").length > 0) {
+
+			$("a#delete-selected-product").removeClass("text-muted").addClass("text-red").css("cursor", "pointer")
+																						.css("pointer-events", "auto");
+		} else {
+
+			$("a#delete-selected-product").removeClass("red-text").addClass("text-muted").css("cursor", "not-allowed")
+																						.css("pointer-events", "none");
+		}
+	};
+
 	var getMoreProductDetails = function () { 
 		var parentRow = $(this).closest('tr');
 
@@ -330,7 +345,11 @@ $(document).ready(function (){
 		null
 		],
 		"order" : [],
-		"lengthMenu" : [5, 10, 25]
+		"lengthMenu" : [5, 10, 25],
+		"fnDrawCallback" : function (oSettings) {
+				checkAllowDelete();
+				console.log("tae");
+			}
 		}
 	);
 
@@ -458,7 +477,7 @@ $(document).ready(function (){
 	});
 
 
-	$('.fa-chevron-circle-down').click(getMoreProductDetails);
+	$('#inventoryTable').on("click", ".fa-chevron-circle-down", getMoreProductDetails);
 
 	$("#checkbox-all").click(function () { 
 
@@ -467,31 +486,15 @@ $(document).ready(function (){
 
 
 
-		if ($(this).is(":checked")) {
-
-			$("a#delete-selected-product").removeClass("text-muted").addClass("text-red").css("cursor", "pointer")
-																						 .css("pointer-events", "auto");		
-
-		} else {
-			$("a#delete-selected-product").removeClass("red-text").addClass("text-muted").css("cursor", "not-allowed")
-																					 	 .css("pointer-events", "none");
-		}
+		checkAllowDelete();
 
 	});
 
-	$(".checkbox-delete").change(function () { 
+	$("#inventoryTable").on("change", ".checkbox-delete", function () { 
 
 		console.log("tae2");
 
-		if ($("#inventoryTable").find("tr:not(:first) input.checkbox-template:checked").length > 0) {
-
-			$("a#delete-selected-product").removeClass("text-muted").addClass("text-red").css("cursor", "pointer")
-																						.css("pointer-events", "auto");
-		} else {
-
-			$("a#delete-selected-product").removeClass("red-text").addClass("text-muted").css("cursor", "not-allowed")
-																						.css("pointer-events", "none");
-		}
+		checkAllowDelete();
 	});
 
 	$("#delete-selected-product").click(function () {

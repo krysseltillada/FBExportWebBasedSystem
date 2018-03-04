@@ -236,7 +236,7 @@ public class InventoryServiceImpl implements InventoryService {
 										double minWeight,
 										double maxWeight) {
 		
-		String dateFilterQuery =  (StringUtils.equals(dateFilterType, "DateExpired")) ?    "p.expiredDate" : 
+		String dateFilterQuery =  (StringUtils.equals(dateFilterType, "DateRegistered")) ?  "p.dateRegistered" : 
 																						    "p.dateOfDelivery" ;
 		
 		String statusFilterQuery = (status != ProductStatus.ALL) ? " AND p.status = '" + status.name() + "'": StringUtils.EMPTY;
@@ -263,7 +263,12 @@ public class InventoryServiceImpl implements InventoryService {
 			filterQuery.setParameter("maxWeight", maxWeight);
 		}
 		
-		return (List<Product>)filterQuery.list();
+		List<Product> filteredProducts = (List<Product>)filterQuery.list();
+		
+		for (Product p : filteredProducts) 
+			p.getRating().getReviews().size();
+		
+		return filteredProducts;
 		
 	}
 

@@ -80,114 +80,273 @@
                     <div class = "p-4">
 
                         <div>
-                        <i class="fa fa-chevron-circle-down fa-lg mr-1" aria-hidden="true"
-                            data-toggle="collapse" href="#shippingInformationCollapseItem " role="button" aria-expanded="false" aria-controls="shippingInformationCollapseItem" style = "cursor: pointer;"></i>
-                        <span class = "h5-responsive"> <strong> Shipping information </strong> </span>
-                        <span class = "float-right"> 
-                            <a class = "blue-text" id = "updateShipping" href = "javascript:void()"> Update Shipping </a> 
-                            <i class="fa fa-refresh ml-1" aria-hidden="true"></i>
-                        </span>
-                    
-                        </div>
-
-                        <hr class = "mt-1" />
-
-                        <div class="collapse.show multi-collapse" id="shippingInformationCollapseItem">
-
-
-                        <div class = "row no-gutters">
-                            <div class = "col-8">
-                                <strong> Address <i class="fa fa-address-book-o" aria-hidden="true"></i> </strong> :  Rivera compound saint joseph subdivision pulang lupa 2 
-                            </div>
-                            <div class = "col-4">
-                                <strong> Zipcode <i class="fa fa-home" aria-hidden="true"></i>: </strong>  1742 
-                            </div>
-                        </div>
-                        <div class = "row no-gutters">
-                            <div class = "col-8">
-                                <strong> Country <i class="fa fa-globe" aria-hidden="true"></i> : </strong> Phillipines
-                            </div>
-                            <div class = "col-4">
-                                <strong> City <i class="fa fa-map" aria-hidden="true"></i> : </strong> Las pinas city 
-                            </div>
-                        </div>
-                        <div class = "row no-gutters">
-                            <div class = "col-8">
-                                <strong> Shipment status : </strong>  On Cargo Ship <i class="fa fa-ship" aria-hidden="true"></i>
-                            </div>
-                            <div class = "col-4">
-                                <strong> Your Phone number <i class="fa fa-mobile-phone" aria-hidden="true"></i> : </strong> 09151829105 
-                            </div>
-                        </div>
-                        <div class = "row no-gutters">
-                            <div class = "col-8">
-                                <strong> Departure : </strong>  November 11 2018
-                            </div>
-                            <div class = "col-4">
-                                <strong> Arrival : </strong> November 30 2018 
-                            </div>
-                        </div>
-
-                        <br />
-
-                        <div>
                             <i class="fa fa-chevron-circle-down fa-lg mr-1" aria-hidden="true"
-                                data-toggle="collapse" href="#vesselStatusCollapseItem " role="button" aria-expanded="false" aria-controls="vesselStatusCollapseItem" style = "cursor: pointer;"></i>
-                            <span class = "h5-responsive"> <strong> Vessel Status </strong> </span>
-                            <span class = "float-right" style = "font-size: 14px;">
-                                <i class="fa fa-map-marker" aria-hidden="true"></i>
-                                <a class = "blue-text" href = "javascript:void(0)" id = "updateVesselStatus"> Update status </a>
+                                data-toggle="collapse" href="#shippingInformationCollapseItem-id-{{=order.orderId}}" role="button" aria-expanded="false" aria-controls="shippingInformationCollapseItem-id-{{=order.orderId}}" style = "cursor: pointer;"></i>
+                            <span class = "h5-responsive"> <strong> Shipping information </strong> </span>
+                            <span class = "float-right"> 
+                                <a class = "blue-text" data-toggle="collapse" href="#updateShipping-id-{{=order.orderId}}" 
+                                   role="button" aria-expanded="false" aria-controls="updateShipping-id-{{=order.orderId}}"> Update Shipping </a> 
+                                <i class="fa fa-refresh ml-1" aria-hidden="true"></i>
                             </span>
                         </div>
 
                         <hr class = "mt-1" />
 
-                        <div class="collapse" id="vesselStatusCollapseItem">
+                        
+                        <div class="collapse.show multi-collapse" id="shippingInformationCollapseItem-id-{{=order.orderId}}">
 
-                            <div class = "row no-gutters">
-                                <div class = "col-8">
-                                    <strong> Vessel name: </strong> AQUA JEWEL 
-                                </div>
-                                <div class = "col-4">
-                                    <strong> IMO Number: </strong> 8976671
-                                </div>
-                            </div>
-
-                            <div class = "row no-gutters">
-                                <div class = "col-8">
-                                    <strong> MMSI Number: </strong> 239981000 
-                                </div>
-                                    <div class = "col-4">
-                                    <strong> Destination: </strong> Madagascar 
-                                </div>
-                                
-                            </div>
-
+                            <div class="collapse" id="updateShipping-id-{{=order.orderId}}" style="">
                             
+                                <p class="mb-1"> <strong> Update shipping information<i class="fa fa-refresh ml-1" aria-hidden="true"></i> </strong> 
+                                <strong> <span id="errorMessage" class="float-right text-red" style="display: none;"> *error</span> </strong> </p>
+                            
+                                <hr class="mt-1">
+
+                                <div class="form-group">
+                                    <label>Shipment status: </label>
+                                    <select id="shipmentStatusComboBox" class="form-control">
+                                        <option disabled="" selected=""> shipment status </option> 
+                                        <option value="On Cargo Ship">On Cargo Ship</option>
+                                        <option value="On Truck">On Truck</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    
+                                    <div class="form-group">
+                                    <label>Expected Date: </label>
+                                    <input id="expectedDatePicker" type="text" placeholder="Expected date" class="mr-2 form-control flatpickr-input" readonly="readonly">
+                                    </div>
+                                    
+                                </div>
+
+                                <div class="form-group">       
+
+                                    <label>Departure and arrival date: </label>
+                                    <div class="form-inline">
+                                        <div class="form-group">
+                                            <input id="departureDatePicker" type="text" placeholder="Departure date" class="mr-2 form-control flatpickr-input" readonly="readonly">
+                                        </div>
+                                        <div class="form-group">
+                                            <input id="arrivalDatePicker" type="text" placeholder="Arrival date" class="form-control flatpickr-input" readonly="readonly">
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+            
+                                <div class="collapse" id="vesselStatusCollapseDiv-id-{{=order.orderId}}">
+                                
+                                    <h5> Vessel status </h5>
+                                    <hr class="mt-2">
+                        
+                                    <div class="form-horizontal">
+                                        <div class="form-group row">
+                                        <label class="col-sm-3 form-control-label">Vessel name</label>
+                                        <div class="col-sm-9 pl-0">
+                                            <input id="vessel-name" type="text" placeholder="vessel name" class="form-control form-control-success">
+                                        </div>
+                                        </div>
+                                        <div class="form-group row">
+                                        <label class="col-sm-3 form-control-label">MMSI Number</label>
+                                        <div class="col-sm-9 pl-0">
+                                            <input id="mmsi-number" type="text" placeholder="mmsi number" class="form-control form-control-warning">
+                                        </div>
+                                        </div>
+                                        <div class="form-group row">
+                                        <label class="col-sm-3 form-control-label">IMO Number</label>
+                                        <div class="col-sm-9 pl-0">
+                                            <input id="imo-number" type="text" placeholder="imo number" class="form-control form-control-warning">
+                                        </div>
+                                        </div>
+                                        <div class="form-group row">
+                                        <label class="col-sm-3 form-control-label">Destination</label>
+                                        <div class="col-sm-9 pl-0">
+                                            <input id="destination" type="text" placeholder="destination" class="form-control form-control-warning">
+                                        </div>
+                                        </div>
+                                        
+                                    </div>
+                                    
+                                </div>
+    
+                                <hr>
+        
+                                <div class="form-group row">       
+                                    <div class="col-sm-9 offset-sm-3">
+                                        <button id="btn-update-shipping-info" class="btn btn-primary float-right ml-2" > Update </button>
+                                        <button id="btn-cancel-shipping-info" class="btn btn-primary float-right" data-toggle="collapse" href="#updateShipping-id-{{=order.orderId}}" 
+                                                role="button" aria-expanded="false" aria-controls="updateShipping-id-{{=order.orderId}}"> Cancel </button>
+                                    </div>
+                                </div>
+    
+    		                    <hr>
+    				
+                        </div>
+
+
+                        <div class = "row no-gutters">
+                            <div class = "col-8">
+                                <strong> Address <i class="fa fa-address-book-o" aria-hidden="true"></i> </strong> :  {{=order.shippingAddress.address.address}}
+                            </div>
+                            <div class = "col-4">
+                                <strong> Zipcode <i class="fa fa-home" aria-hidden="true"></i>: </strong>  {{=order.shippingAddress.address.zipCode}}
+                            </div>
+                        </div>
+                        <div class = "row no-gutters">
+                            <div class = "col-8">
+                                <strong> Country <i class="fa fa-globe" aria-hidden="true"></i> : </strong> {{=order.shippingAddress.address.country}}
+                            </div>
+                            <div class = "col-4">
+                                <strong> City <i class="fa fa-map" aria-hidden="true"></i> : </strong> {{=order.shippingAddress.address.city}} 
+                            </div>
+                        </div>
+                        <div class = "row no-gutters">
+                            <div class = "col-8">
+                                <strong> Shipment status : </strong> 
+                                {{ if (order.shipping.shipmentStatus == 'ON_CARGO_SHIP') { }}
+                                    On Cargo Ship <i class="fa fa-ship" aria-hidden="true"></i>
+                                {{  } else if (order.shipping.shipmentStatus == 'ON_TRUCK') { }}
+                                    On Truck <i class="fa fa-truck" aria-hidden="true"></i>
+                                {{ } }}
+                            </div>
+                            <div class = "col-4">
+                                <strong> Your Phone number <i class="fa fa-mobile-phone" aria-hidden="true"></i> : </strong> (+{{=order.shippingAddress.contact.countryCode}}) {{=order.shippingAddress.contact.phoneNumber}}  
+                            </div>
+                        </div>
+                        <div class = "row no-gutters">
+                            <div class = "col-8">
+                                <strong> Departure : </strong>  {{=order.shipping.departureDate}}
+                            </div>
+                            <div class = "col-4">
+                                <strong> Arrival : </strong> {{=order.shipping.arrivalDate}}
+                            </div>
+                        </div>
+
+                        <br />
+
+                        {{ if (order.shipping.shipmentStatus == 'ON_CARGO_SHIP') { }}
+
+                            <div>
+                                <i class="fa fa-chevron-circle-down fa-lg mr-1" aria-hidden="true"
+                                    data-toggle="collapse" href="#vesselStatusCollapseItem-id-{{=order.orderId}}" role="button" aria-expanded="false" aria-controls="vesselStatusCollapseItem-id-{{=order.orderId}}" style = "cursor: pointer;"></i>
+                                <span class = "h5-responsive"> <strong> Vessel Status </strong> </span>
+                                <span class = "float-right" style = "font-size: 14px;">
+                                    <i class="fa fa-map-marker" aria-hidden="true"></i>
+                                    <a class = "blue-text" href = "javascript:void(0)" id = "updateVesselStatus"> Update status </a>
+                                </span>
+                            </div>
 
                             <hr class = "mt-1" />
 
-                            <div class = "row">
+                            <div class="collapse" id="vesselStatusCollapseItem-id-{{=order.orderId}}">
 
-                                <div class = "col shipTrackingMap">
+                                <div class = "row no-gutters">
+                                    <div class = "col-8">
+                                        <strong> Vessel name: </strong> {{=order.shipping.vesselStatus.vesselName}} 
+                                    </div>
+                                    <div class = "col-4">
+                                        <strong> IMO Number: </strong> {{=order.shipping.vesselStatus.imoNumber}}
+                                    </div>
+                                </div>
+
+                                <div class = "row no-gutters">
+                                    <div class = "col-8">
+                                        <strong> MMSI Number: </strong> {{=order.shipping.vesselStatus.mmsiNumber}} 
+                                    </div>
+                                        <div class = "col-4">
+                                        <strong> Destination: </strong> {{=order.shipping.vesselStatus.destination}} 
+                                    </div>
+                                    
+                                </div>
+
+                                <hr class = "mt-1" />
+
+                                <div class = "row">
+
+                                    <div class = "col shipTrackingMap">
+
+                                    </div>
+
 
                                 </div>
 
-
                             </div>
 
-                        </div>
+                        {{ } }}
 
                         </div>
 
                         <div>
-                            <i class="fa fa-chevron-circle-down fa-lg mr-1 collapsed" aria-hidden="true" data-toggle="collapse" href="#shippingLogCollapseItem " role="button" aria-expanded="false" aria-controls="orderCollapseItem5" style="cursor: pointer;"></i>
+                            <i class="fa fa-chevron-circle-down fa-lg mr-1 collapsed" aria-hidden="true" data-toggle="collapse" href="#shippingLogCollapseItem-id-{{=order.orderId}}" role="button" aria-expanded="false" aria-controls="shippingLogCollapseItem-id-{{=order.orderId}}" style="cursor: pointer;"></i>
                             <span class="h5-responsive"> <strong> Shipping Log </strong> </span>
+                            <span class = "float-right" style = "font-size: 14px;">
+                               
+                                <a class = "blue-text" id = "updateShippingLog"
+                                   data-toggle="collapse" href="#addShippingLog-id-{{=order.orderId}}" role="button" aria-expanded="false" aria-controls="addShippingLog-id-{{=order.orderId}}"> Update Shipping Log </a>
+                                <i class="fa fa-refresh ml-1" aria-hidden="true"></i>
+                            </span>
                         </div>
 
                         <hr class="mt-1">
 
-                        <div class="collapse.show multi-collapse collapse" id="shippingLogCollapseItem" style="">
+                        <div class="collapse.show multi-collapse collapse" id="shippingLogCollapseItem-id-{{=order.orderId}}" style="">
+
+                            <div class="collapse" id="addShippingLog-id-{{=order.orderId}}" style="">
+                                <p class="mb-1"> <strong> Update shipping log  <i class="fa fa-refresh ml-1" aria-hidden="true"></i> </strong> 
+                                <strong> <span id = "errorMessage" class="float-right text-red" style = "display: none;"> *error</span> </strong> </p>
+                                
+                                <hr class="mt-1">
+                                
+                                <div class="form-horizontal">
+                                    <div class="form-group row">
+                                        <label class="col-sm-2 form-control-label"> Header:</label>
+                                        <div class="col-sm-10">
+                                            <input id="shippingLogHeader" type="text" placeholder="Header" class="form-control form-control-success">
+                                        </div>
+                                    </div>
+                                
+                                    <div class="form-group row">
+                                        <label class="col-sm-2 form-control-label"> Description:</label>
+                                        <div class="col-sm-10">
+                                            <textarea id="shippingLogDescription" class="form-control" rows="3" cols="103" placeholder="Description"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-2 form-control-label"> Address:</label>
+                                        <div class="col-sm-10">
+                                            <textarea id="shippingLogAddress" class="form-control" rows="3" cols="103" placeholder="Address"></textarea>
+                                        </div>
+                                    </div>
+                                
+                                    <div class="form-group row">
+                                        <label class="col-sm-2 form-control-label"> Date:</label>
+                                        <div class="col-sm-10">
+                                            <input id="shippingLogDatePicker" type="text" placeholder = "Date" class="form-control form-control-success">
+                                        </div>
+                                    </div>
+                                                
+                                    <div class="form-group row">
+                                        <label class="col-sm-2 form-control-label"> Time:</label>
+                                        <div class="col-sm-10">
+                                            <input id="shippingLogTimePicker" type="text" placeholder = "Time" class="form-control form-control-success">
+                                        </div>
+                                    </div>
+                                
+                                    <hr class="mt-1">
+                                
+                                    <div class="form-group row">       
+                                        <div class="col-sm-9 offset-sm-3">
+                                            <button id = "btn-update-shipping-log" class="btn btn-primary float-right ml-2"> Update </button>
+                                            <button id = "btn-cancel-shipping-log" class="btn btn-primary float-right"> Cancel </button>
+                                        </div>
+                                    </div>
+
+                                    <hr class="mt-1">
+                                
+                                </div>
+    
+                            </div>
+
                             <div class="list-group">
                                 <span class="list-group-item list-group-item-action flex-column align-items-start">
                                     <div class="d-flex w-100 justify-content-between">
@@ -197,24 +356,6 @@
                                     <p class="mb-1">delivered the product already</p>
                                     <small>Phillipines ncr las pinas city</small>
                                 </span>
-                                <span href="#" class="list-group-item list-group-item-action flex-column align-items-start">
-                                    <div class="d-flex w-100 justify-content-between">
-                                    <h5 class="mb-1">Delivered already</h5>
-                                    <small>Nov 28 1998 - 12:00 PM</small>
-                                    </div>
-                                    <p class="mb-1">delivered the product already</p>
-                                    <small>Phillipines ncr las pinas city</small>
-                                </span>
-                                <span href="#" class="list-group-item list-group-item-action flex-column align-items-start">
-                                    <div class="d-flex w-100 justify-content-between">
-                                    <h5 class="mb-1">Delivered already</h5>
-                                    <small>Nov 28 1998 - 12:00 PM</small>
-                                    </div>
-                                    <p class="mb-1">delivered the product already</p>
-                                    <small>Phillipines ncr las pinas city</small>
-                                </span>
-
-
                             </div>
                         </div>
 
@@ -244,9 +385,304 @@
       </div> 
 </script>
 
+<script id = "shippingDivOrderTemplate" type = "text/template">
+
+    <div class="tab-pane" id="shipping-order-tab-id-{{=order.orderId}}" role="tabpanel">
+        <div class = "p-4">
+
+            <div>
+                <i class="fa fa-chevron-circle-down fa-lg mr-1" aria-hidden="true"
+                    data-toggle="collapse" href="#shippingInformationCollapseItem " role="button" aria-expanded="false" aria-controls="shippingInformationCollapseItem" style = "cursor: pointer;"></i>
+                <span class = "h5-responsive"> <strong> Shipping information </strong> </span>
+                <span class = "float-right"> 
+                    <a class = "blue-text" data-toggle="collapse" href="#updateShipping-id-{{=order.orderId}}" 
+                        role="button" aria-expanded="false" aria-controls="updateShipping-id-{{=order.orderId}}"> Update Shipping </a> 
+                    <i class="fa fa-refresh ml-1" aria-hidden="true"></i>
+                </span>
+            </div>
+
+            <hr class = "mt-1" />
+
+            
+
+            <div class="collapse.show multi-collapse" id="shippingInformationCollapseItem">
+
+                    <div class="collapse" id="updateShipping-id-{{=order.orderId}}" style="">
+                                
+                        <p class="mb-1"> <strong> Update shipping information<i class="fa fa-refresh ml-1" aria-hidden="true"></i> </strong> 
+                        <strong> <span id="errorMessage" class="float-right text-red" style="display: none;"> *error</span> </strong> </p>
+                    
+                        <hr class="mt-1">
+
+                        <div class="form-group">
+                            <label>Shipment status: </label>
+                            <select id="shipmentStatusComboBox" class="form-control">
+                                <option disabled="" selected=""> shipment status </option> 
+                                <option value="On Cargo Ship">On Cargo Ship</option>
+                                <option value="On Truck">On Truck</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            
+                            <div class="form-group">
+                            <label>Expected Date: </label>
+                            <input id="expectedDatePicker" type="text" placeholder="Expected date" class="mr-2 form-control flatpickr-input" readonly="readonly">
+                            </div>
+                            
+                        </div>
+
+                        <div class="form-group">       
+
+                            <label>Departure and arrival date: </label>
+                            <div class="form-inline">
+                                <div class="form-group">
+                                    <input id="departureDatePicker" type="text" placeholder="Departure date" class="mr-2 form-control flatpickr-input" readonly="readonly">
+                                </div>
+                                <div class="form-group">
+                                    <input id="arrivalDatePicker" type="text" placeholder="Arrival date" class="form-control flatpickr-input" readonly="readonly">
+                                </div>
+                            </div>
+                            
+                        </div>
+
+                        <div class="collapse" id="vesselStatusCollapseDiv-id-{{=order.orderId}}">
+                        
+                            <h5> Vessel status </h5>
+                            <hr class="mt-2">
+                
+                            <div class="form-horizontal">
+                                <div class="form-group row">
+                                <label class="col-sm-3 form-control-label">Vessel name</label>
+                                <div class="col-sm-9 pl-0">
+                                    <input id="vessel-name" type="text" placeholder="vessel name" class="form-control form-control-success">
+                                </div>
+                                </div>
+                                <div class="form-group row">
+                                <label class="col-sm-3 form-control-label">MMSI Number</label>
+                                <div class="col-sm-9 pl-0">
+                                    <input id="mmsi-number" type="text" placeholder="mmsi number" class="form-control form-control-warning">
+                                </div>
+                                </div>
+                                <div class="form-group row">
+                                <label class="col-sm-3 form-control-label">IMO Number</label>
+                                <div class="col-sm-9 pl-0">
+                                    <input id="imo-number" type="text" placeholder="imo number" class="form-control form-control-warning">
+                                </div>
+                                </div>
+                                <div class="form-group row">
+                                <label class="col-sm-3 form-control-label">Destination</label>
+                                <div class="col-sm-9 pl-0">
+                                    <input id="destination" type="text" placeholder="destination" class="form-control form-control-warning">
+                                </div>
+                                </div>
+                                
+                            </div>
+                            
+                        </div>
+
+                        <hr>
+
+                        <div class="form-group row">       
+                            <div class="col-sm-9 offset-sm-3">
+                                <button id="btn-update-shipping-info" class="btn btn-primary float-right ml-2"> Update </button>
+                                <button id="btn-cancel-shipping-info" class="btn btn-primary float-right" data-toggle="collapse" href="#updateShipping-id-{{=order.orderId}}" 
+                                        role="button" aria-expanded="false" aria-controls="updateShipping-id-{{=order.orderId}}"> Cancel </button>
+                            </div>
+                        </div>
+
+                        <hr>
+            
+                </div>
+
+
+                <div class = "row no-gutters">
+                    <div class = "col-8">
+                        <strong> Address <i class="fa fa-address-book-o" aria-hidden="true"></i> </strong> :  {{=order.shippingAddress.address.address}} 
+                    </div>
+                    <div class = "col-4">
+                        <strong> Zipcode <i class="fa fa-home" aria-hidden="true"></i>: </strong>  {{=order.shippingAddress.address.zipCode}} 
+                    </div>
+                </div>
+                <div class = "row no-gutters">
+                    <div class = "col-8">
+                        <strong> Country <i class="fa fa-globe" aria-hidden="true"></i> : </strong> {{=order.shippingAddress.address.country}}
+                    </div>
+                    <div class = "col-4">
+                        <strong> City <i class="fa fa-map" aria-hidden="true"></i> : </strong> {{=order.shippingAddress.address.city}}
+                    </div>
+                </div>
+                <div class = "row no-gutters">
+                    <div class = "col-8">
+                        <strong> Shipment status : </strong>  
+                        
+                        {{ if (order.shipping.shipmentStatus == 'ON_CARGO_SHIP') { }}
+                            On Cargo Ship <i class="fa fa-ship" aria-hidden="true"></i>
+                        {{  } else if (order.shipping.shipmentStatus == 'ON_TRUCK') { }}
+                            On Truck <i class="fa fa-truck" aria-hidden="true"></i>
+                        {{ } }}
+                    </div>
+                    <div class = "col-4">
+                        <strong> Your Phone number <i class="fa fa-mobile-phone" aria-hidden="true"></i> :</strong>  (+{{=order.shippingAddress.contact.countryCode}}) {{=order.shippingAddress.contact.phoneNumber}} 
+                    </div>
+                </div>
+                <div class = "row no-gutters">
+                    <div class = "col-8">
+                        <strong> Departure : </strong>  {{=order.shipping.departureDate}}
+                    </div>
+                    <div class = "col-4">
+                        <strong> Arrival : </strong> {{=order.shipping.arrivalDate}} 
+                    </div>
+                </div>
+
+                <br />
+
+                {{ if (order.shipping.shipmentStatus == 'ON_CARGO_SHIP') { }}
+
+                    <div>
+                        <i class="fa fa-chevron-circle-down fa-lg mr-1" aria-hidden="true"
+                            data-toggle="collapse" href="#vesselStatusCollapseItem " role="button" aria-expanded="false" aria-controls="vesselStatusCollapseItem" style = "cursor: pointer;"></i>
+                        <span class = "h5-responsive"> <strong> Vessel Status </strong> </span>
+                        <span class = "float-right" style = "font-size: 14px;">
+                            <i class="fa fa-map-marker" aria-hidden="true"></i>
+                            <a class = "blue-text" href = "javascript:void(0)" id = "updateVesselStatus"> Update status </a>
+                        </span>
+                    </div>
+
+                    <hr class = "mt-1" />
+
+                    <div class="collapse" id="vesselStatusCollapseItem">
+
+                        <div class = "row no-gutters">
+                            <div class = "col-8">
+                                <strong> Vessel name: </strong> {{=order.shipping.vesselStatus.vesselName}} 
+                            </div>
+                            <div class = "col-4">
+                                <strong> IMO Number: </strong> {{=order.shipping.vesselStatus.imoNumber}}
+                            </div>
+                        </div>
+
+                        <div class = "row no-gutters">
+                            <div class = "col-8">
+                                <strong> MMSI Number: </strong> {{=order.shipping.vesselStatus.mmsiNumber}} 
+                            </div>
+                                <div class = "col-4">
+                                <strong> Destination: </strong> {{=order.shipping.vesselStatus.destination}} 
+                            </div>
+                            
+                        </div>
+
+                        
+
+                        <hr class = "mt-1" />
+
+                        <div class = "row">
+
+                            <div class = "col shipTrackingMap">
+
+                            </div>
+
+
+                        </div>
+
+                    </div>
+
+                {{ } }}
+
+            </div>
+
+            <div>
+                <i class="fa fa-chevron-circle-down fa-lg mr-1 collapsed" aria-hidden="true" data-toggle="collapse" href="#shippingLogCollapseItem-id-{{=order.orderId}}" role="button" aria-expanded="false" aria-controls="shippingLogCollapseItem-id-{{=order.orderId}}" style="cursor: pointer;"></i>
+                <span class="h5-responsive"> <strong> Shipping Log </strong> </span>
+                <span class = "float-right" style = "font-size: 14px;">
+                    
+                    <a class = "blue-text" id = "updateShippingLog"
+                        data-toggle="collapse" href="#addShippingLog-id-{{=order.orderId}}" role="button" aria-expanded="false" aria-controls="addShippingLog-id-{{=order.orderId}}"> Update Shipping Log </a>
+                    <i class="fa fa-refresh ml-1" aria-hidden="true"></i>
+                </span>
+            </div>
+
+            <hr class="mt-1">
+
+            <div class="collapse.show multi-collapse collapse" id="shippingLogCollapseItem-id-{{=order.orderId}}" style="">
+
+                <div class="collapse" id="addShippingLog-id-{{=order.orderId}}" style="">
+                    <p class="mb-1"> <strong> Update shipping log  <i class="fa fa-refresh ml-1" aria-hidden="true"></i> </strong> 
+                    <strong> <span id = "errorMessage" class="float-right text-red" style = "display: none;"> *error</span> </strong> </p>
+                    
+                    <hr class="mt-1">
+                    
+                    <div class="form-horizontal">
+                        <div class="form-group row">
+                            <label class="col-sm-2 form-control-label"> Header:</label>
+                            <div class="col-sm-10">
+                                <input id="shippingLogHeader" type="text" placeholder="Header" class="form-control form-control-success">
+                            </div>
+                        </div>
+                    
+                        <div class="form-group row">
+                            <label class="col-sm-2 form-control-label"> Description:</label>
+                            <div class="col-sm-10">
+                                <textarea id="shippingLogDescription" class="form-control" rows="3" cols="103" placeholder="Description"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-2 form-control-label"> Address:</label>
+                            <div class="col-sm-10">
+                                <textarea id="shippingLogAddress" class="form-control" rows="3" cols="103" placeholder="Address"></textarea>
+                            </div>
+                        </div>
+                    
+                        <div class="form-group row">
+                            <label class="col-sm-2 form-control-label"> Date:</label>
+                            <div class="col-sm-10">
+                                <input id="shippingLogDatePicker" type="text" placeholder = "Date" class="form-control form-control-success">
+                            </div>
+                        </div>
+                                    
+                        <div class="form-group row">
+                            <label class="col-sm-2 form-control-label"> Time:</label>
+                            <div class="col-sm-10">
+                                <input id="shippingLogTimePicker" type="text" placeholder = "Time" class="form-control form-control-success">
+                            </div>
+                        </div>
+                    
+                        <hr class="mt-1">
+                    
+                        <div class="form-group row">       
+                            <div class="col-sm-9 offset-sm-3">
+                                <button id = "btn-update-shipping-log" class="btn btn-primary float-right ml-2"> Update </button>
+                                <button id = "btn-cancel-shipping-log" class="btn btn-primary float-right"> Cancel </button>
+                            </div>
+                        </div>
+
+                        <hr class="mt-1">
+                    
+                    </div>
+
+                </div>
+
+                <div class="list-group">
+                    <span class="list-group-item list-group-item-action flex-column align-items-start">
+                        <div class="d-flex w-100 justify-content-between">
+                        <h5 class="mb-1">Delivered already</h5>
+                        <small>Nov 28 1998 - 12:00 PM</small>
+                        </div>
+                        <p class="mb-1">delivered the product already</p>
+                        <small>Phillipines ncr las pinas city</small>
+                    </span>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+
+</script>
+
 <script id = "shipMapTrackingTemplate" type = "text/template">
     <iframe name="marinetraffic" id="marinetraffic" width="100%" height="450" scrolling="no" frameborder="0"
-            src="http://www.marinetraffic.com/en/ais/embed/zoom:5/centery:37.446/centerx:24.9467/maptype:1/shownames:true/mmsi:239981000/shipid:0/fleet:/fleet_id:/vtypes:/showmenu:true/remember:false">
+            src="http://www.marinetraffic.com/en/ais/embed/zoom:5/centery:37.446/centerx:24.9467/maptype:1/shownames:true/mmsi:{{=mmsi}}/shipid:0/fleet:/fleet_id:/vtypes:/showmenu:true/remember:false">
             Browser does not support embedded objects.&lt;br/&gt;Visit directly &lt;a href="http://www.marinetraffic.com/"&gt;www.marinetraffic.com&lt;/a&gt;
     </iframe> 
 </script>

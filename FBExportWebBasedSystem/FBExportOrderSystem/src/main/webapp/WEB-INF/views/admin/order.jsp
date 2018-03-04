@@ -113,7 +113,10 @@
 	                                    <td></td>
 	                                    <td> <i class="fa fa-chevron-circle-down fa-lg" aria-hidden="true" style="cursor: pointer;"></i> </td>
 	                                    <td>
-	                                        <h3> <span class="badge badge-success p-1">Order# <span id = "orderId">${order.orderId}</span> </span> </h3>
+	                                        <h3> 
+	                                        	<span class="badge badge-success p-1">Order# <span id = "orderId">${order.orderId}</span> </span> 
+	                                        	<input id = "orderId-${order.orderId}" type = "hidden" />
+	                                        	</h3>
 	                                        <span style = "font-size: 13px;">
 	                                            <strong> by: </strong> <strong> <a href = "#"> ${order.customer.firstname} ${order.customer.middlename} ${order.customer.lastname} </a> </strong>
 	                                            <br />
@@ -147,10 +150,17 @@
 	                                            <strong> Shipment: </strong> <br />
 	                                            <c:choose>
 	                                            	<c:when test = "${not empty order.shipping}">
-	                                            		On Cargo Ship <i class="fa fa-ship ml-1" aria-hidden="true"></i>
+	                                            		<c:choose>
+	                                            			<c:when test = "${order.shipping.shipmentStatus eq 'ON_CARGO_SHIP'}">
+	                                            				<span id = "shipmentStatus">On Cargo Ship <i class="fa fa-ship ml-1" aria-hidden="true"></i></span>
+	                                            			</c:when>
+	                                            			<c:when test = "${order.shipping.shipmentStatus eq 'ON_TRUCK'}">
+	                                            				<span id = "shipmentStatus">On Truck <i class="fa fa-truck ml-1" aria-hidden="true"></i></span>
+	                                            			</c:when>
+	                                            		</c:choose>
 	                                            	</c:when>
 	                                            	<c:otherwise>
-	                                            		Shipment status not defined.
+	                                            		<span id = "shipmentStatus">Shipment status not defined.</span>
 	                                            	</c:otherwise>
 												</c:choose>
 												
@@ -226,8 +236,8 @@
 	                                            <strong> Expected: </strong> <br />
 	                                            <span style = "font-size: 12px;">
 	                                                <c:choose>
-	                                                	<c:when test = "${not empty order.expectedDate}">
-	                                                		<fmt:formatDate value="${order.expectedDate}" dateStyle="LONG" type="date"/>
+	                                                	<c:when test = "${not empty order.shipping}">
+	                                                		<fmt:formatDate value="${order.shipping.expectedDate}" dateStyle="LONG" type="date"/>
 	                                                	</c:when>
 	                                                	<c:otherwise>
 	                                                		None
@@ -257,6 +267,7 @@
 </section>  
 
 <div id="toShipInformationModal" tabindex="-1" role="dialog" aria-labelledby="toShipInformationModalLabel" aria-hidden="true" class="modal fade text-left">
+    <input type = "hidden" id = "orderModalId" value = "" />
     <div role="document" class="modal-dialog">
         <div class="modal-content">
         <div class="modal-header">
@@ -277,8 +288,17 @@
                 </select>
                 
             </div>
+            <div class="form-group">
+                
+                <div class="form-group">
+                   <label>Expected Date: </label>
+                   <input id="expectedDatePicker" type="text" placeholder="Expected date" class="mr-2 form-control">
+                </div>
+                
+            </div>
             <div class="form-group">       
 
+				<label>Departure and arrival date: </label>
                 <div class = "form-inline">
                     <div class="form-group">
                     	<input id="departureDatePicker" type="text" placeholder="Departure date" class="mr-2 form-control">

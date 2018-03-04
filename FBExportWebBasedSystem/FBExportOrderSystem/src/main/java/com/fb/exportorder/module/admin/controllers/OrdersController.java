@@ -37,7 +37,7 @@ public class OrdersController {
 	}};
 	
 	Map<OrderStatus, String> orderStatusMessage = new HashMap<OrderStatus, String>(){{
-		put(OrderStatus.TO_SHIP, "To ship");
+		put(OrderStatus.TO_SHIP, "To Ship");
 		put(OrderStatus.RECEIVED, "Received");
 		put(OrderStatus.REJECTED, "Rejected");
 		put(OrderStatus.APPROVED, "Approved");
@@ -71,7 +71,9 @@ public class OrdersController {
 		try {
 			toShipInformation = (JSONObject)new JSONParser().parse(toShipInformationJSON);
 			
-			errorMessages = orderService.addToShipInformation((String)toShipInformation.get("shipmentStatus"), 
+			errorMessages = orderService.addToShipInformation(Long.parseLong((String)toShipInformation.get("orderId")),
+															  (String)toShipInformation.get("shipmentStatus"),
+															  (String)toShipInformation.get("expectedDate"),
 															  (String)toShipInformation.get("departureDate"), 
 															  (String)toShipInformation.get("arrivalDate"), 
 															  (String)toShipInformation.get("vesselName"), 
@@ -85,9 +87,11 @@ public class OrdersController {
 		
 		JSONObject responseMessage = new JSONObject();
 		
-		if (errorMessages.isEmpty())
+		System.out.println("run");
+		
+		if (errorMessages.isEmpty()) {
 			responseMessage.put("status", "success");
-		else {
+		}else {
 			responseMessage.put("status", "error");
 			responseMessage.put("message", errorMessages.get(0));
 		}
@@ -130,6 +134,20 @@ public class OrdersController {
 		
 		orderService.markReceived(orderService.getOrderById(Long.parseLong(id)));
 		return "";
+	}
+	
+	@RequestMapping(value = "/admin/orders/markToShip", method = RequestMethod.POST)
+	@ResponseBody
+	public String markToShip (@RequestParam String id) {
+		
+		orderService.markToShip(orderService.getOrderById(Long.parseLong(id)));
+		return "";
+	}
+	
+	@RequestMapping(value = "/admin/orders/checkShippingExists", method = RequestMethod.POST)
+	@ResponseBody
+	public boolean checkShippingExists (@RequestParam String orderId) {
+		return orderService.checkIfShippingExists(Long.parseLong(orderId));
 	}
 	
 	
