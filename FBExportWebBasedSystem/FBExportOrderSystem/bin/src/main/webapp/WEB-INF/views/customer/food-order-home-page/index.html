@@ -1249,7 +1249,7 @@
 
             </main>    -->
 
-             <!-- order list <main>
+              order list <main>
 
                     <div class = "container">
 
@@ -1347,6 +1347,7 @@
 
                                 <div class="row">
                                     <div class="col-md-12">
+                                        
 
                                         <ul class="nav nav-tabs">
                                             <li class="nav-item">
@@ -1358,7 +1359,11 @@
                                             <li class="nav-item">
                                                 <a class="nav-link" href="#">Cancelled orders</a>
                                             </li>
+                                            <li class="nav-item dropdown">
+                                                <a class = "btn btn-primary waves-effect waves-light p-2 m-0"> Refresh  <i class="fa fa-refresh ml-2" aria-hidden="true"></i> </a>
+                                            </li>
                                         </ul>
+
 
                                         
 
@@ -1959,7 +1964,7 @@
 
                                                                     <a href="#">Rate</a> |
 
-                                                                     <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                                                                         <a class="dropdown-item" href="#">Print order</a>
                                                                         <a class="dropdown-item" href="#">Print receipt</a>
                                                                         <a class="dropdown-item" href="#">Print shipping information</a>
@@ -2401,6 +2406,576 @@
                                                     </div>
                                                 </div>
 
+                                                <span class="list-group-item flex-column align-items-start black-text">
+
+                                                    <div class = "row">
+
+                                                        <div class = "col-9">
+                                                            <div class = "row" style = "font-size: 13px;">
+                                                                <div class = "col-1">
+                                                                      <i class="fa fa-chevron-circle-down fa-lg" aria-hidden="true"
+                                                                         data-toggle="collapse" href="#orderCollapseItem7" role="button" aria-expanded="false" aria-controls="orderCollapseItem6" style = "cursor: pointer;"></i>
+                                                                </div>
+                                                                <div class = "col-sm-2">
+
+                                                                    <strong> ORDER ID: </strong> <br />
+                                                                        123123123
+                                                                </div>
+                                                                <div class = "col-sm-3">
+                                                                    <strong> TOTAL PRICE: </strong> <br />
+                                                                        155000 php
+                                                                </div>
+                                                                <div class = "col-sm-3">
+                                                                    <strong> PAYMENT METHOD: </strong> <br />
+                                                                        PAY ON CASH
+                                                                </div>
+                                                                <div class = "col-sm-3">
+                                                                    <strong> DATE ORDERED: </strong> <br />
+                                                                        NOVEMBER 28 1998
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class = "col-sm-3">
+                                                            <h6 class = "mb-0">
+                                                                <strong>
+                                                                    Status:
+                                                                    <span class = "brown-text"> Returned </strong>
+                                                            </h6>
+
+                                                            <div class="dropdown blue-text" style = "font-size: 13px;">
+                                                                <i class="fa fa-print" aria-hidden="true"></i>
+                                                                <a href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                                     Print <i class="fa fa-caret-down" aria-hidden="true"></i> |
+                                                                </a>
+                                                                <a href = "#"> Reason </a>
+                                                                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                                                    <a class="dropdown-item" href="#">Print order</a>
+                                                                    <a class="dropdown-item" href="#">Print receipt</a>
+                                                                    <a class="dropdown-item" href="#">Print shipping information</a>
+                                                                    <a class="dropdown-item" href="#">Print shipping log</a>
+                                                                </div>
+                                                            </div>
+
+
+                                                        </div>
+                                                    </div>
+
+                                                </span>
+
+                                                <div class="collapse multi-collapse" id="orderCollapseItem7" style = "border-left: 1px solid #DFDFDF; border-right: 1px solid #DFDFDF;">
+
+                                                    <div class = "ml-3 mr-3 mt-3 mb-2">
+
+                                                        <div class = "row">
+                                                            <div class = "col-sm-8">
+
+                                                                <h6>
+                                                                    <strong> 3 Items ordered </strong>
+                                                                </h6>
+
+                                                            </div>
+                                                            <div class = "col-sm-4">
+                                                                  <div style = "font-size: 14px;">
+                                                                        <a class = "disabled grey-text"> Shipping information </a> |
+                                                                        <a class = "disabled grey-text"> Shipping log </a>
+                                                                  </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <hr class = "mt-0" />
+
+                                                        <div class = "row">
+                                                            <div class = "col-sm-7">
+
+                                                                <div>
+
+                                                                    <table class="table table-sm tableBodyScroll mb-0"  style = "border: 1px solid #DFDFDF;">
+                                                                        <thead>
+                                                                            <tr>
+                                                                            <th>#</th>
+                                                                            <th>Item Name</th>
+                                                                            <th> Quantity </th>
+                                                                            <th> Total Weight </th>
+                                                                            <th> Total Price</th>
+                                                                            </tr>
+                                                                        </thead>
+                                                                        <tbody>
+                                                                            <tr>
+                                                                                <th scope="row">
+                                                                                    <img src = "puffer-fish.jpg" width = "40" height = "40" />
+                                                                                </th>
+                                                                                <td>Puffer fish <br />
+                                                                                    150 KILO / PC
+                                                                                </td>
+                                                                                <td>
+                                                                                    20
+                                                                                </td>
+                                                                                <td>
+                                                                                    1000 PHP
+                                                                                </td>
+                                                                                <td>120 KILO</td>
+                                                                            </tr>
+                                                                            
+                                                                            
+
+                                                                        </tbody>
+                                                                        <tfoot>
+                                                                            <tr>
+                                                                                <th></th>
+                                                                                <th></th>
+                                                                                <th></th>
+                                                                                <th>Total: 200 KILO </th>
+                                                                                <th>Total: 120,000,000 PHP </th>
+                                                                            </tr>
+
+                                                                        </tfoot>
+                                                                    </table>
+
+                                                                </div>
+                                                            </div>
+                                                            <div class = "col-sm-5" style = "font-size: 14px;">
+                                                                         <p>
+                                                                            <strong> Receiver's name:  </strong> 
+                                                                            Judy Ann Mari N. Ando <br />
+                                                                        </p>
+                                                                        <p>
+                                                                            <strong> Shipping Instructions:  </strong> <br />
+                                                                            please place the cargo at the right hand side of the area
+                                                                        </p>
+                                                                        <p>
+                                                                            <strong> Shipping Address: </strong> <br />
+                                                                            1700 blk 7 saint joseph subd pulanglupa 2 las pinas city
+                                                                        </p>
+
+                                                                        <p>
+                                                                            <strong> Country(city): </strong> <br />
+                                                                            United States(New york)
+                                                                        </p>
+
+                                                                        <p>
+                                                                            <strong> Expected date: </strong> <br />
+                                                                            NOVEMBER 29 1998
+                                                                        </p>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+
+                                                <span class="list-group-item flex-column align-items-start black-text" >
+
+                                                    <div class = "row">
+
+                                                        <div class = "col-9">
+                                                            <div class = "row" style = "font-size: 13px;">
+                                                                <div class = "col-1">
+                                                                       <i class="fa fa-chevron-circle-down fa-lg" aria-hidden="true"
+                                                                          data-toggle="collapse" href="#orderCollapseItem8" role="button" aria-expanded="false" aria-controls="orderCollapseItem1" style = "cursor: pointer;"></i>
+                                                                </div>
+                                                                <div class = "col-sm-2">
+                                                                    <strong> ORDER ID: </strong> <br />
+                                                                        123123123
+                                                                </div>
+                                                                <div class = "col-sm-3">
+                                                                    <strong> TOTAL PRICE: </strong> <br />
+                                                                        155000 php
+                                                                </div>
+                                                                <div class = "col-sm-3">
+                                                                    <strong> PAYMENT METHOD: </strong> <br />
+                                                                        PAY ON CASH
+                                                                </div>
+                                                                <div class = "col-sm-3">
+                                                                    <strong> DATE ORDERED: </strong> <br />
+                                                                        NOVEMBER 28 1998
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class = "col-sm-3">
+                                                            <h6 class = "mb-0">
+                                                                <strong>
+                                                                    Status:
+                                                                    <span class = "red-text"> Cancelled </strong>
+                                                            </h6>
+
+                                                            <div class="dropdown blue-text" style = "font-size: 13px;">
+                                                                 <i class="fa fa-print" aria-hidden="true"></i>
+                                                                 <a href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                                     Print <i class="fa fa-caret-down" aria-hidden="true"></i> |
+                                                                 </a>
+
+                                                                 <a href = "#"> Reason </a>
+                                                                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                                                    <a class="dropdown-item" href="#">Print order</a>
+                                                                    <a class="dropdown-item disabled" href="#">Print receipt</a>
+                                                                    <a class="dropdown-item disabled" href="#">Print shipping information</a>
+                                                                    <a class="dropdown-item disabled" href="#">Print shipping log</a>
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+
+                                                </span>
+
+                                                <div class="collapse multi-collapse" id="orderCollapseItem8" style = "border-left: 1px solid #DFDFDF; border-right: 1px solid #DFDFDF;">
+
+                                                    <div class = "ml-3 mr-3 mt-3 mb-2">
+
+                                                        <div class = "row">
+                                                            <div class = "col-sm-8">
+
+                                                                <h6>
+                                                                    <strong> 3 Items ordered </strong>
+                                                                </h6>
+
+                                                            </div>
+                                                            <div class = "col-sm-4">
+                                                                  <div style = "font-size: 14px;">
+                                                                        <a class = "disabled grey-text"> Shipping information </a> |
+                                                                        <a class = "disabled grey-text"> Shipping log </a>
+                                                                  </div>
+                                                            </div>
+                                                        </div>
+
+                                                         <hr class = "mt-0" />
+
+                                                        <div class = "row">
+                                                            <div class = "col-sm">
+
+                                                                <div class = "row">
+                                                                    <div class = "col-sm-7">
+
+                                                                        <div>
+
+                                                                            <table class="table table-sm tableBodyScroll mb-0"  style = "border: 1px solid #DFDFDF;">
+                                                                                <thead>
+                                                                                    <tr>
+                                                                                    <th>#</th>
+                                                                                    <th>Item Name</th>
+                                                                                    <th> Quantity </th>
+                                                                                    <th> Total Weight </th>
+                                                                                    <th> Total Price</th>
+                                                                                    </tr>
+                                                                                </thead>
+                                                                                <tbody>
+                                                                                    <tr>
+                                                                                        <th scope="row">
+                                                                                            <img src = "puffer-fish.jpg" width = "40" height = "40" />
+                                                                                        </th>
+
+                                                                                        <td>Puffer fish <br />
+                                                                                            150 KILO / PC
+                                                                                        </td>
+                                                                                        <td>
+                                                                                            20
+                                                                                        </td>
+                                                                                        <td>
+                                                                                            1000 PHP
+                                                                                        </td>
+                                                                                        <td>120 KILO</td>
+                                                                                    </tr>
+                                                                                    <tr>
+                                                                                        <th scope="row">
+                                                                                            <img src = "puffer-fish.jpg" width = "40" height = "40" />
+                                                                                        </th>
+                                                                                        <td>Puffer fish <br />
+                                                                                            150 KILO / PC
+                                                                                        </td>
+                                                                                        <td>
+                                                                                            20
+                                                                                        </td>
+                                                                                        <td>
+                                                                                            1000 PHP
+                                                                                        </td>
+                                                                                        <td>120 KILO</td>
+                                                                                    </tr>
+                                                                                    <tr>
+                                                                                        <th scope="row">
+                                                                                            <img src = "puffer-fish.jpg" width = "40" height = "40" />
+                                                                                        </th>
+                                                                                        <td>Puffer fish <br />
+                                                                                            150 KILO / PC
+                                                                                        </td>
+                                                                                        <td>
+                                                                                            20
+                                                                                        </td>
+                                                                                        <td>
+                                                                                            1000 PHP
+                                                                                        </td>
+                                                                                        <td>120 KILO</td>
+                                                                                    </tr>
+                                                                                    <tr>
+                                                                                        <th scope="row">
+                                                                                            <img src = "puffer-fish.jpg" width = "40" height = "40" />
+                                                                                        </th>
+                                                                                        <td>Puffer fish <br />
+                                                                                            150 KILO / PC
+                                                                                        </td>
+                                                                                        <td>
+                                                                                            20
+                                                                                        </td>
+                                                                                        <td>
+                                                                                            1000 PHP
+                                                                                        </td>
+                                                                                        <td>120 KILO</td>
+                                                                                    </tr>
+                                                                                    
+                                                                                  
+
+                                                                                </tbody>
+                                                                                <tfoot>
+                                                                                    <tr>
+                                                                                        <th></th>
+                                                                                        <th></th>
+                                                                                        <th></th>
+                                                                                        <th>Total: 200 KILO </th>
+                                                                                        <th>Total: 120,000,000 PHP </th>
+                                                                                    </tr>
+
+                                                                                </tfoot>
+                                                                            </table>
+
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class = "col-sm-5" style = "font-size: 14px;">
+                                                                         <p>
+                                                                            <strong> Receiver's name:  </strong> 
+                                                                            Judy Ann Mari N. Ando <br />
+                                                                        </p>
+                                                                        <p>
+                                                                            <strong> Shipping Instructions:  </strong> <br />
+                                                                            please place the cargo at the right hand side of the area
+                                                                        </p>
+                                                                        <p>
+                                                                            <strong> Shipping Address: </strong> <br />
+                                                                            1700 blk 7 saint joseph subd pulanglupa 2 las pinas city
+                                                                        </p>
+
+                                                                        <p>
+                                                                            <strong> Country(city): </strong> <br />
+                                                                            United States(New york)
+                                                                        </p>
+
+                                                                        <p>
+                                                                            <strong> Expected date: </strong> <br />
+                                                                            NOVEMBER 29 1998
+                                                                        </p>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+
+                                                <span class="list-group-item flex-column align-items-start black-text" >
+
+                                                    <div class = "row">
+
+                                                        <div class = "col-9">
+                                                            <div class = "row" style = "font-size: 13px;">
+                                                                <div class = "col-1">
+                                                                       <i class="fa fa-chevron-circle-down fa-lg" aria-hidden="true"
+                                                                          data-toggle="collapse" href="#orderCollapseItem9" role="button" aria-expanded="false" aria-controls="orderCollapseItem1" style = "cursor: pointer;"></i>
+                                                                </div>
+                                                                <div class = "col-sm-2">
+                                                                    <strong> ORDER ID: </strong> <br />
+                                                                        123123123
+                                                                </div>
+                                                                <div class = "col-sm-3">
+                                                                    <strong> TOTAL PRICE: </strong> <br />
+                                                                        155000 php
+                                                                </div>
+                                                                <div class = "col-sm-3">
+                                                                    <strong> PAYMENT METHOD: </strong> <br />
+                                                                        PAY ON CASH
+                                                                </div>
+                                                                <div class = "col-sm-3">
+                                                                    <strong> DATE ORDERED: </strong> <br />
+                                                                        NOVEMBER 28 1998
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class = "col-sm-3">
+                                                            <h6 class = "mb-0">
+                                                                <strong>
+                                                                    Status:
+                                                                    <span class = "pink-text"> Refund </strong>
+                                                            </h6>
+
+                                                            <div class="dropdown blue-text" style = "font-size: 13px;">
+                                                                 <i class="fa fa-print" aria-hidden="true"></i>
+                                                                 <a href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                                     Print <i class="fa fa-caret-down" aria-hidden="true"></i> |
+                                                                 </a>
+
+                                                                 <a href = "#"> Reason </a>
+                                                                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                                                    <a class="dropdown-item" href="#">Print order</a>
+                                                                    <a class="dropdown-item" href="#">Print receipt</a>
+                                                                    <a class="dropdown-item disabled" href="#">Print shipping information</a>
+                                                                    <a class="dropdown-item disabled" href="#">Print shipping log</a>
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+
+                                                </span>
+
+                                                <div class="collapse multi-collapse" id="orderCollapseItem9" style = "border-left: 1px solid #DFDFDF; border-right: 1px solid #DFDFDF;">
+
+                                                    <div class = "ml-3 mr-3 mt-3 mb-2">
+
+                                                        <div class = "row">
+                                                            <div class = "col-sm-8">
+
+                                                                <h6>
+                                                                    <strong> 3 Items ordered </strong>
+                                                                </h6>
+
+                                                            </div>
+                                                            <div class = "col-sm-4">
+                                                                  <div style = "font-size: 14px;">
+                                                                        <a class = "disabled grey-text"> Shipping information </a> |
+                                                                        <a class = "disabled grey-text"> Shipping log </a>
+                                                                  </div>
+                                                            </div>
+                                                        </div>
+
+                                                         <hr class = "mt-0" />
+
+                                                        <div class = "row">
+                                                            <div class = "col-sm">
+
+                                                                <div class = "row">
+                                                                    <div class = "col-sm-7">
+
+                                                                        <div>
+
+                                                                            <table class="table table-sm tableBodyScroll mb-0"  style = "border: 1px solid #DFDFDF;">
+                                                                                <thead>
+                                                                                    <tr>
+                                                                                    <th>#</th>
+                                                                                    <th>Item Name</th>
+                                                                                    <th> Quantity </th>
+                                                                                    <th> Total Weight </th>
+                                                                                    <th> Total Price</th>
+                                                                                    </tr>
+                                                                                </thead>
+                                                                                <tbody>
+                                                                                    <tr>
+                                                                                        <th scope="row">
+                                                                                            <img src = "puffer-fish.jpg" width = "40" height = "40" />
+                                                                                        </th>
+
+                                                                                        <td>Puffer fish <br />
+                                                                                            150 KILO / PC
+                                                                                        </td>
+                                                                                        <td>
+                                                                                            20
+                                                                                        </td>
+                                                                                        <td>
+                                                                                            1000 PHP
+                                                                                        </td>
+                                                                                        <td>120 KILO</td>
+                                                                                    </tr>
+                                                                                    <tr>
+                                                                                        <th scope="row">
+                                                                                            <img src = "puffer-fish.jpg" width = "40" height = "40" />
+                                                                                        </th>
+                                                                                        <td>Puffer fish <br />
+                                                                                            150 KILO / PC
+                                                                                        </td>
+                                                                                        <td>
+                                                                                            20
+                                                                                        </td>
+                                                                                        <td>
+                                                                                            1000 PHP
+                                                                                        </td>
+                                                                                        <td>120 KILO</td>
+                                                                                    </tr>
+                                                                                    <tr>
+                                                                                        <th scope="row">
+                                                                                            <img src = "puffer-fish.jpg" width = "40" height = "40" />
+                                                                                        </th>
+                                                                                        <td>Puffer fish <br />
+                                                                                            150 KILO / PC
+                                                                                        </td>
+                                                                                        <td>
+                                                                                            20
+                                                                                        </td>
+                                                                                        <td>
+                                                                                            1000 PHP
+                                                                                        </td>
+                                                                                        <td>120 KILO</td>
+                                                                                    </tr>
+                                                                                    <tr>
+                                                                                        <th scope="row">
+                                                                                            <img src = "puffer-fish.jpg" width = "40" height = "40" />
+                                                                                        </th>
+                                                                                        <td>Puffer fish <br />
+                                                                                            150 KILO / PC
+                                                                                        </td>
+                                                                                        <td>
+                                                                                            20
+                                                                                        </td>
+                                                                                        <td>
+                                                                                            1000 PHP
+                                                                                        </td>
+                                                                                        <td>120 KILO</td>
+                                                                                    </tr>
+                                                                                    
+                                                                                  
+
+                                                                                </tbody>
+                                                                                <tfoot>
+                                                                                    <tr>
+                                                                                        <th></th>
+                                                                                        <th></th>
+                                                                                        <th></th>
+                                                                                        <th>Total: 200 KILO </th>
+                                                                                        <th>Total: 120,000,000 PHP </th>
+                                                                                    </tr>
+
+                                                                                </tfoot>
+                                                                            </table>
+
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class = "col-sm-5" style = "font-size: 14px;">
+                                                                         <p>
+                                                                            <strong> Receiver's name:  </strong> 
+                                                                            Judy Ann Mari N. Ando <br />
+                                                                        </p>
+                                                                        <p>
+                                                                            <strong> Shipping Instructions:  </strong> <br />
+                                                                            please place the cargo at the right hand side of the area
+                                                                        </p>
+                                                                        <p>
+                                                                            <strong> Shipping Address: </strong> <br />
+                                                                            1700 blk 7 saint joseph subd pulanglupa 2 las pinas city
+                                                                        </p>
+
+                                                                        <p>
+                                                                            <strong> Country(city): </strong> <br />
+                                                                            United States(New york)
+                                                                        </p>
+
+                                                                        <p>
+                                                                            <strong> Expected date: </strong> <br />
+                                                                            NOVEMBER 29 1998
+                                                                        </p>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+
                                             </div>
 
 
@@ -2456,7 +3031,7 @@
                         <hr />
                     </div> 
                 
-            </main>       -->
+            </main>       
 
             <!-- account settings <main>
 
@@ -2981,7 +3556,7 @@
 
             </main>      -->
 
-            <main>
+            <!-- shipping <main>
 
                     <div class = "container">
 
@@ -3230,7 +3805,7 @@
 
 
 
-            </main>     
+            </main>      -->
 
              <!-- <div class = "container">
 
@@ -4758,6 +5333,10 @@
 
 
         <script>
+
+             $(document).ready(function () {
+        $('.dropdown-toggle').dropdown();
+    });
 
 
 

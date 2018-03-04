@@ -24,6 +24,7 @@
 			<add-attribute value = "/resources/admin/css/pace-themes/pace-theme-minimal.css" />
 			<add-attribute value = "/resources/admin/fine-uploader/fine-uploader-new.css" />
 			<add-attribute value = "/resources/admin/css/alertify.css" />
+			<add-attribute value = "/resources/admin/css/mprogress.min.css" />
 			<add-attribute value = "/resources/admin/css/iziToast.css" />
 			<add-attribute value = "/resources/admin/css/animate.css" />
 			<add-attribute value = "/resources/admin/css/admin.css" />
@@ -46,6 +47,7 @@
 			<add-attribute value = "/resources/admin/js/timepicki.js" />
 			<add-attribute value = "/resources/admin/js/underscore.js" />
 			<add-attribute value = "/resources/admin/js/moment.js" />
+			<add-attribute value = "/resources/admin/js/mprogress.min.js" />
 			<add-attribute value = "/resources/admin/js/collections.js" />
 			<add-attribute value = "/resources/admin/js/math.js" />
 			<add-attribute value = "/resources/admin/js/accounting.js" />

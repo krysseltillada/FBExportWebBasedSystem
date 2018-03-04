@@ -26,10 +26,16 @@ public class AdminControllerRequestHandlerInterceptor extends HandlerInterceptor
 					
 					System.out.println(session.getAttribute("employeeName"));
 					
+					System.out.println(request.getRequestURI());
+					
 					if (StringUtils.equals(request.getRequestURI(), 
 										   "/FBExportSystem/admin/login") || 
 						StringUtils.equals(request.getRequestURI(), 
-									   	   "/FBExportSystem/admin")) {
+									   	   "/FBExportSystem/admin") ||
+						StringUtils.equals(request.getRequestURI(), 
+								   "/FBExportSystem/admin/login/") || 
+						StringUtils.equals(request.getRequestURI(), 
+									   	   "/FBExportSystem/admin/")) {
 						response.sendRedirect("/FBExportSystem/admin/dashboard");
 					}
 					

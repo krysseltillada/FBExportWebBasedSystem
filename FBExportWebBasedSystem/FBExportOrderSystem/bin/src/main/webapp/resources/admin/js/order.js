@@ -9,6 +9,8 @@ $(document).ready(function () {
                                     "Pending": "#FFC107" 
                                     });
 
+    
+
 
     var table = $('#orderTable').DataTable( {
         "language" : {

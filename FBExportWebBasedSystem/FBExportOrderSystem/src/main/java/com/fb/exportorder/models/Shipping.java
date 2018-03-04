@@ -41,5 +41,63 @@ public class Shipping {
 	
 	@Temporal(TemporalType.DATE)
 	private Date expectedDate;
+
+	public Long getShippingId() {
+		return shippingId;
+	}
+
+	public void setShippingId(Long shippingId) {
+		this.shippingId = shippingId;
+	}
+
+	public ShipmentStatus getShipmentStatus() {
+		return shipmentStatus;
+	}
+
+	public void setShipmentStatus(ShipmentStatus shipmentStatus) {
+		this.shipmentStatus = shipmentStatus;
+	}
+
+	public List<VesselStatus> getVesselStatus() {
+		return vesselStatus;
+	}
+
+	public void setVesselStatus(List<VesselStatus> vesselStatus) {
+		this.vesselStatus = vesselStatus;
+	}
+
+	public List<ShippingLog> getShippingLog() {
+		return shippingLog;
+	}
+
+	public void setShippingLog(List<ShippingLog> shippingLog) {
+		this.shippingLog = shippingLog;
+	}
+
+	public Date getDepartureDate() {
+		return departureDate;
+	}
+
+	public void setDepartureDate(Date departureDate) {
+		this.departureDate = departureDate;
+	}
+
+	public Date getArrivalDate() {
+		return arrivalDate;
+	}
+
+	public void setArrivalDate(Date arrivalDate) {
+		this.arrivalDate = arrivalDate;
+	}
+
+	public Date getExpectedDate() {
+		return expectedDate;
+	}
+
+	public void setExpectedDate(Date expectedDate) {
+		this.expectedDate = expectedDate;
+	}
+	
+	
 	
 }

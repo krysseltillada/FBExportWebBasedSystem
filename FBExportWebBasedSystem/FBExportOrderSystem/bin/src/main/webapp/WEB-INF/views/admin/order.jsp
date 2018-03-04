@@ -237,3 +237,78 @@
 
     </div>
 </section>  
+
+<div id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left show">
+    <div role="document" class="modal-dialog">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h4 id="exampleModalLabel" class="modal-title">Ship to status information <i class="fa fa-ship ml-2" aria-hidden="true"></i> </h4>
+            <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
+        </div>
+        <div class="modal-body">
+
+            <h5> Shipping information </h5>
+            <hr class = "mt-2" />
+
+            <div class="form-group">
+                <label>Shipment status: </label>
+                <select name="account" class="form-control">
+                <option>On Cargo Ship</option>
+                <option>On Truck</option>
+                </select>
+                
+            </div>
+            <div class="form-group">       
+
+                <div class = "form-inline">
+                    <div class="form-group">
+                    <input id="inlineFormInput" type="text" placeholder="Departure date" class="mr-2 form-control">
+                    </div>
+                    <div class="form-group">
+                    <input id="inlineFormInput1" type="text" placeholder="Arrival date" class="form-control">
+                    </div>
+                </div>
+                
+            </div>
+
+            <h5> Vessel status </h5>
+            <hr class = "mt-2" />
+
+            <div class="form-horizontal">
+                <div class="form-group row">
+                <label class="col-sm-3 form-control-label">Vessel name</label>
+                <div class="col-sm-9 pl-0">
+                    <input id="inputHorizontalSuccess" type="text" placeholder="vessel name" class="form-control form-control-success">
+                </div>
+                </div>
+                <div class="form-group row">
+                <label class="col-sm-3 form-control-label">MMSI Number</label>
+                <div class="col-sm-9 pl-0">
+                    <input id="inputHorizontalWarning" type="text" placeholder="mmsi number" class="form-control form-control-warning">
+                </div>
+                </div>
+                <div class="form-group row">
+                <label class="col-sm-3 form-control-label">IMO Number</label>
+                <div class="col-sm-9 pl-0">
+                    <input id="inputHorizontalWarning" type="text" placeholder="imo number" class="form-control form-control-warning">
+                </div>
+                </div>
+                <div class="form-group row">
+                <label class="col-sm-3 form-control-label">Destination</label>
+                <div class="col-sm-9 pl-0">
+                    <input id="inputHorizontalWarning" type="text" placeholder="destination" class="form-control form-control-warning">
+                </div>
+                </div>
+                
+            </div>
+
+                
+            
+        </div>
+        <div class="modal-footer">
+            <button type="button" data-dismiss="modal" class="btn btn-secondary">Cancel</button>
+            <button type="button" class="btn btn-primary">Save</button>
+        </div>
+        </div>
+    </div>
+</div>
