@@ -1,13 +1,17 @@
 package com.fb.exportorder.module.admin.controllers;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.fb.exportorder.models.SystemSettings;
 import com.fb.exportorder.module.admin.service.SystemSettingsService;
@@ -36,5 +40,32 @@ public class SystemSettingsController {
 		model.addAttribute("logoutTime", systemSettings.getLogoutTime().getMinutes());
 		
 		return "system-settings";
+	}
+	
+	@RequestMapping(value="/admin/edit-system-settings", method=RequestMethod.POST)
+	@ResponseBody
+	public String editSystemSettings(String systemBackupTimeInput, String systemLogoutTime) {
+		
+		try {
+			SystemSettings systemSettings = systemSettingsService.findAll().get(0);
+			
+			Date logoutTime = new Date();
+			logoutTime.setHours(0);
+			logoutTime.setMinutes(Integer.parseInt(systemLogoutTime));
+			logoutTime.setSeconds(0);
+			
+			SimpleDateFormat timeFormat = new SimpleDateFormat("hh:mm aa");
+			Date systemBackupTime = timeFormat.parse(systemBackupTimeInput);
+			
+			systemSettings.setLogoutTime(logoutTime);
+			systemSettings.setSystemBackupTime(systemBackupTime);
+			
+			systemSettingsService.addSystemSettings(systemSettings);
+		
+		} catch (ParseException e) {
+			return "Error";
+		}
+		
+		return "Success";
 	}
 }
