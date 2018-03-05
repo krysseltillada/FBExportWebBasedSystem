@@ -115,7 +115,8 @@
 		
 	</head>
 	<body>
-	
+		<input type="hidden" value="${sessionScope.logoutTime}" id="logoutTime"/>
+		
 		<div class="loader" style="position: fixed; left: 50%; top: 25%; z-index: 9999; display: none;">Loading...</div>
 			
 		<div class = "page">

@@ -7,6 +7,9 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
@@ -47,8 +50,10 @@ public class SystemSettingsController {
 	
 	@RequestMapping(value="/admin/edit-system-settings", method=RequestMethod.POST)
 	@ResponseBody
-	public String editSystemSettings(String systemBackupTimeInput, String systemLogoutTime) {
+	public String editSystemSettings(String systemBackupTimeInput, String systemLogoutTime, HttpServletRequest request) {
 		try {
+			HttpSession session = request.getSession();
+			
 			SystemSettings systemSettings = systemSettingsService.findAll().get(0);
 			
 			Date logoutTime = new Date();
@@ -63,6 +68,8 @@ public class SystemSettingsController {
 			systemSettings.setSystemBackupTime(systemBackupTime);
 			
 			systemSettingsService.addSystemSettings(systemSettings);
+			
+			session.setAttribute("logoutTime", logoutTime.getMinutes());
 		
 		} catch (ParseException e) {
 			return "Error";

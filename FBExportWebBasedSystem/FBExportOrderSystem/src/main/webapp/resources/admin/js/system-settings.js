@@ -39,6 +39,8 @@ $(document).ready(function () {
             		    title: 'SUCCESS',
             		    message: "You've successfully update system settings!",
             		});
+            		
+            		location.reload();
             	}else{
             		hidePreLoader();
             		iziToast.error({
