@@ -1,5 +1,7 @@
 <%@ include file = "../../lib/tags/tag-libraries.jsp" %>
 
+<div class="loader">Loading...</div>
+
 <header class="page-header pb-3">
     <div class="container-fluid">
 

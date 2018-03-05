@@ -2,6 +2,7 @@ package com.fb.exportorder;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 
 import javax.annotation.PostConstruct;
 
@@ -25,10 +26,31 @@ public class ScheduledTasks {
 	
     @Scheduled(fixedRate = 59000)
     public void reportCurrentTime() {
+    	if(systemSettingsService.findAll().size() == 0) {
+			settings = new SystemSettings();
+			
+    		Date backupTime = new Date();
+    		backupTime.setHours(0);
+    		backupTime.setMinutes(0);
+    		backupTime.setSeconds(0);
+    		settings.setSystemBackupTime(backupTime);
+    	   
+    	   
+    	   
+    		Date logoutTime = new Date();
+    		logoutTime.setHours(0);
+    		logoutTime.setMinutes(3);
+    		logoutTime.setSeconds(0);
+    		settings.setLogoutTime(logoutTime);
+    		
+    		systemSettingsService.addSystemSettings(settings);
+    	}
     	settings = systemSettingsService.findAll().get(0);
+    	
     	String formattedTime = dateFormat.format(settings.getSystemBackupTime().getTime());
     	String currentTime = dateFormat.format(Calendar.getInstance().getTime());
     	if(formattedTime.equals(currentTime))
     		backup.backupData("fbexport");
+    	
     }
 }
