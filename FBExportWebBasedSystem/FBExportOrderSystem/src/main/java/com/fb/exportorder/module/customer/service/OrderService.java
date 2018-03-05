@@ -8,6 +8,16 @@ import com.fb.exportorder.models.customer.Order;
 import com.fb.exportorder.models.enums.PaymentMethod;
 
 public interface OrderService {
+	
+	public List<String> validate (String shipmentStatus,
+			  String departureDate,
+			  String expectedDate,
+			  String arrivalDate,
+			  String vesselName,
+			  String mmsiNumber,
+			  String imoNumber,
+			  String destination);
+	
 	Order order (Customer customer, 
 				 ShippingAddress shippingAddress, 
 				 PaymentMethod paymethod,

@@ -44,8 +44,8 @@ public class OrderServiceImpl implements OrderService {
 	}
 	
 	public List<String> validate (String shipmentStatus,
-								  String departureDate,
 								  String expectedDate,
+								  String departureDate,
 								  String arrivalDate,
 								  String vesselName,
 								  String mmsiNumber,
@@ -158,8 +158,8 @@ public class OrderServiceImpl implements OrderService {
 
 
 	@Override
-	public List<String> addToShipInformation(long id, String shipmentStatus, String departureDate, 
-										     String expectedDate, String arrivalDate, String vesselName,
+	public List<String> addToShipInformation(long id, String shipmentStatus, String expectedDate, 
+										     String departureDate, String arrivalDate, String vesselName,
 										     String mmsiNumber, String imoNumber, String destination) {
 		
 		List<String> errorMessages = validate(shipmentStatus, 

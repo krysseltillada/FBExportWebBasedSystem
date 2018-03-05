@@ -1,6 +1,8 @@
 
 $(document).ready(function () {
 
+    var shipTrackingMapRawTemplate = $("#shipMapTrackingTemplate").html();
+
     var checkAllowDelete = function () {
 
 		
@@ -16,7 +18,7 @@ $(document).ready(function () {
 		}
 	};
 
-    var toShipInformationModalProgressBarConfig = {
+    var modalProgressBarConfig = {
             template : 3
     };
 
@@ -100,9 +102,9 @@ $(document).ready(function () {
             destination : $("#toShipInformationModal #destination").val()
         };
 
-        toShipInformationModalProgressBarConfig.parent = "#toShipInformationModal .modal-content";
+        modalProgressBarConfig.parent = "#toShipInformationModal .modal-content";
 
-        var toShipInformationModalProgressBar = new Mprogress(toShipInformationModalProgressBarConfig);
+        var toShipInformationModalProgressBar = new Mprogress(modalProgressBarConfig);
 
         toShipInformationModalProgressBar.start();
 
@@ -148,7 +150,243 @@ $(document).ready(function () {
                                    order : response
                                 }));
 
+                                $orderDetailsRow.find("#shipmentStatusComboBox").change(function () {
+                                    console.log($(this).closest("tr").prev().find("#orderId").html());
+
+                                    if ($(this).val() == "On Cargo Ship") {
+                                        $("#vesselStatusCollapseDiv-id-" + toShipInformation.orderId).collapse("show");
+                                    } else {
+                                        $("#vesselStatusCollapseDiv-id-" + toShipInformation.orderId).collapse("hide");
+                                    }
+                                });
+
+                                $orderDetailsRow.find("#expectedDatePicker").flatpickr();
+                                $orderDetailsRow.find("#departureDatePicker").flatpickr();
+                                $orderDetailsRow.find("#arrivalDatePicker").flatpickr();   
+                                $orderDetailsRow.find("#shippingLogDatePicker").flatpickr();
+                                $orderDetailsRow.find("#shippingLogTimePicker").flatpickr({
+                                    enableTime : true,
+                                    dateFormat : "h:i K",
+                                    noCalendar : true,
+                                    time_24hr : false
+                                });
+
+                                $orderDetailsRow.find("#btn-update-shipping-info").click(function () {
+
+                                    var $btnUpdateShippingInfo = $(this);
+
+                                    var $updateShippingDiv = $btnUpdateShippingInfo.closest("div#updateShipping-id-" + toShipInformation.orderId);
+                                    var $shippingInformationDiv = $updateShippingDiv.closest("div#shippingInformationCollapseItem-id-" + toShipInformation.orderId);
+                                    var id = toShipInformation.orderId;
+                            
+                                    var shippingInformation = {
+                                        orderId : id,
+                                        shipmentStatus : $updateShippingDiv.find("#shipmentStatusComboBox").val(),
+                                        expectedDate : $updateShippingDiv.find("#expectedDatePicker").val(),
+                                        departureDate : $updateShippingDiv.find("#departureDatePicker").val(),
+                                        arrivalDate : $updateShippingDiv.find("#arrivalDatePicker").val(),
+                                        vesselName : $updateShippingDiv.find("#vessel-name").val(),
+                                        mmsiNumber : $updateShippingDiv.find("#mmsi-number").val(),
+                                        imoNumber : $updateShippingDiv.find("#imo-number").val(),
+                                        destination : $updateShippingDiv.find("#destination").val()
+                                    };
+
+                                    console.log(shippingInformation);
+
+                                    
+                                    $.post("/FBExportSystem/admin/orders/validateShippingInformation", {
+                                        shippingInformationJSON : JSON.stringify(shippingInformation)
+                                    },
+                                    function (response) {
+
+                                        if (response.status == "success") {
+
+                                            $btnUpdateShippingInfo.attr("disabled", "disabled");
+
+                                            $.post("/FBExportSystem/admin/orders/updateShippingInformation", {
+                                                shippingInformationJSON : JSON.stringify(shippingInformation)
+                                            }, function () {
+
+                                                $btnUpdateShippingInfo.removeAttr("disabled");
+                                                $updateShippingDiv.find("#errorMessage").hide();
+                                                
+                                                switch (shippingInformation.shipmentStatus) {
+
+                                                case "On Cargo Ship":
+
+                                                    if ($shippingInformationDiv.find("#vesselStatusCollapseItem-id-" + shippingInformation.orderId).length <= 0) {
+                                                        console.log("can add vessel status div");
+
+                                                        var vesselStatusDivRawTemplate = $("#vesselStatusDivTemplate").html();
+                                                        var vesselStatusDivTemplate = _.template(vesselStatusDivRawTemplate);
+
+                                                        $shippingInformationDiv.find("br").after(vesselStatusDivTemplate({
+                                                            orderId : shippingInformation.orderId,
+                                                            vesselName : shippingInformation.vesselName,
+                                                            imoNumber : shippingInformation.imoNumber,
+                                                            mmsiNumber : shippingInformation.mmsiNumber,
+                                                            destination : shippingInformation.destination
+                                                        }));
+
+
+                                                        $shippingInformationDiv.find("#updateVesselStatus").click(function () {
+                                                            var marineTrafficLiveMapFrame = $(this).parent().parent().parent().find("#marinetraffic").get(0);
+                                                            marineTrafficLiveMapFrame.src = marineTrafficLiveMapFrame.src;
+                                                        });
+
+                                                        $shippingInformationDiv.find("#vesselStatusCollapseItem-id-" + shippingInformation.orderId).on("shown.bs.collapse", function () {
+                                                            var shipTrackingMapTemplate = _.template(shipTrackingMapRawTemplate);
+                                                            var a = $(this).find(".shipTrackingMap").append(shipTrackingMapTemplate({
+                                                                mmsi : shippingInformation.mmsiNumber
+                                                            }));
+                                                            
+                                                            $(a).find("iframe").on("load", function () {
+                                                                console.log("ate 2");
+                                                            });
+                                                        });
+
+                                                        $shippingInformationDiv.find("#vesselStatusCollapseItem-id-" + shippingInformation.orderId).on("hidden.bs.collapse", function () {
+                                                            $(this).find(".shipTrackingMap").html("");
+                                                        });
+                                                        
+                                                        
+                                                        
+                                                    } else {
+
+                                                        var $vesselStatusCollapseDiv =  $shippingInformationDiv.find("#vesselStatusCollapseItem-id-" + shippingInformation.orderId);
+
+                                                        $vesselStatusCollapseDiv.find("#vesselName").html(shippingInformation.vesselName);
+                                                        $vesselStatusCollapseDiv.find("#imoNumber").html(shippingInformation.imoNumber);
+                                                        $vesselStatusCollapseDiv.find("#mmsiNumber").html(shippingInformation.mmsiNumber);
+                                                        $vesselStatusCollapseDiv.find("#destination").html(shippingInformation.destination);
+
+                                                        if ($vesselStatusCollapseDiv.find("#marinetraffic").length > 0) {
+
+                                                            $vesselStatusCollapseDiv.find(".shipTrackingMap").html("");
+
+                                                            var shipTrackingMapTemplate = _.template(shipTrackingMapRawTemplate);
+                                                            var a = $vesselStatusCollapseDiv.find(".shipTrackingMap").append(shipTrackingMapTemplate({
+                                                                mmsi : shippingInformation.mmsiNumber
+                                                            }));
+                                                            
+                                                            $(a).find("iframe").on("load", function () {
+                                                                console.log("ate 2");
+                                                            });
+
+                                                        }
+
+
+                                                    }
+
+                                                    $shippingInformationDiv.find("#shipmentStatus").html(shippingInformation.shipmentStatus + ' <i class="fa fa-ship" aria-hidden="true"></i>');
+                                                    $shippingInformationDiv.find("#departureDate").html(shippingInformation.departureDate);
+                                                    $shippingInformationDiv.find("#arrivalDate").html(shippingInformation.arrivalDate);
+                                                    $shippingInformationDiv.closest("tr").prev().find("#shipmentStatus").html(shippingInformation.shipmentStatus + ' <i class="fa fa-ship" aria-hidden="true"></i>');
+                                                    $shippingInformationDiv.closest("tr").prev().find("td:eq(6) span>span:eq(1)").html(shippingInformation.expectedDate);
+
+                                                break;
+
+                                                case "On Truck":
+
+                                                    if ($shippingInformationDiv.find("#vesselStatusCollapseItem-id-" + shippingInformation.orderId).length > 0) {
+                                                        var $vesselStatusHeaderDiv = $shippingInformationDiv.find("i.fa-chevron-circle-down").parent();
+                                                        var $vesselStatusHR = $vesselStatusHeaderDiv.next();
+                                                        var $vesselStatusDiv = $vesselStatusHR.next();
+
+                                                        $vesselStatusHeaderDiv.remove();
+                                                        $vesselStatusHR.remove();
+                                                        $vesselStatusDiv.remove();
+
+                                                    }
+
+                                                    $shippingInformationDiv.find("#shipmentStatus").html(shippingInformation.shipmentStatus + ' <i class="fa fa-truck" aria-hidden="true"></i>');
+                                                    $shippingInformationDiv.find("#departureDate").html(shippingInformation.departureDate);
+                                                    $shippingInformationDiv.find("#arrivalDate").html(shippingInformation.arrivalDate);
+                                                    $shippingInformationDiv.closest("tr").prev().find("#shipmentStatus").html(shippingInformation.shipmentStatus + ' <i class="fa fa-truck" aria-hidden="true"></i>');
+                                                    $shippingInformationDiv.closest("tr").prev().find("td:eq(6) span>span:eq(1)").html(shippingInformation.expectedDate);
+
+                                                break;
+
+                                                }
+
+                                            });
+
+                                            $btnUpdateShippingInfo.closest("div.collapse").collapse("hide");
+
+                                            $updateShippingDiv.find("#shipmentStatusComboBox option:eq(0)").prop("selected", true);
+                                            $updateShippingDiv.find("#vesselStatusCollapseDiv").collapse("hide");
+                                            $updateShippingDiv.find("#expectedDatePicker").val("");
+                                            $updateShippingDiv.find("#departureDatePicker").val("");
+                                            $updateShippingDiv.find("#arrivalDatePicker").val("");
+                                            $updateShippingDiv.find("#vessel-name").val("");
+                                            $updateShippingDiv.find("#mmsi-number").val("");
+                                            $updateShippingDiv.find("#imo-number").val("");
+                                            $updateShippingDiv.find("#destination").val("");
+
+
+
+                                        } else {
+
+                                            $updateShippingDiv.find("#errorMessage").html("*" + response.message);
+                                            $updateShippingDiv.find("#errorMessage").show();
+                    
+                                        }
+
+
+                                    }, "json");
+
+
+                                    console.log($(this).closest("tr").prev().find("#orderId").html());
+
+                                    
+
+                                });
+
+
+                                $orderDetailsRow.find("#btn-cancel-shipping-info").click(function () {
+
+                                    $(this).closest("div.collapse").collapse("hide");
+
+                                    var $shippingUpdateDiv = $(this).closest("#updateShipping-id-" + toShipInformation.orderId);
                                 
+                                    $shippingUpdateDiv.find("#shipmentStatusComboBox option:eq(0)").prop("selected", true);
+                                    $shippingUpdateDiv.find("#vesselStatusCollapseDiv").collapse("hide");
+                                    $shippingUpdateDiv.find("#expectedDatePicker").val("");
+                                    $shippingUpdateDiv.find("#departureDatePicker").val("");
+                                    $shippingUpdateDiv.find("#arrivalDatePicker").val("");
+                                    $shippingUpdateDiv.find("#vessel-name").val("");
+                                    $shippingUpdateDiv.find("#mmsi-number").val("");
+                                    $shippingUpdateDiv.find("#imo-number").val("");
+                                    $shippingUpdateDiv.find("#destination").val("");
+                                
+                                });
+                                
+                                $orderDetailsRow.find("#updateVesselStatus").click(function () {
+                                    var marineTrafficLiveMapFrame = $(this).parent().parent().parent().find("#marinetraffic").get(0);
+                                    marineTrafficLiveMapFrame.src = marineTrafficLiveMapFrame.src;
+                                
+                                    console.log("update");
+                                
+                                });
+
+
+                                $orderDetailsRow.find("#vesselStatusCollapseItem-id-" + toShipInformation.orderId).on("shown.bs.collapse", function () {
+                                
+                                    var shipTrackingMapTemplate = _.template(shipTrackingMapRawTemplate);
+                                    var a = $(this).find(".shipTrackingMap").append(shipTrackingMapTemplate({
+                                        mmsi : response.shipping.vesselStatus.mmsiNumber
+                                    }));
+                                    
+                                    $(a).find("iframe").on("load", function () {
+                                        console.log("ate 2");
+                                    });
+
+                                });
+
+                                $orderDetailsRow.find("#vesselStatusCollapseItem-id-" + toShipInformation.orderId).on("hidden.bs.collapse", function () {
+                                    $(this).find(".shipTrackingMap").html("");
+                                });
+
                             }
 
                             var $dropDownSelectButton = $currentOrderRow.find("button.dropdown-toggle")
@@ -703,7 +941,7 @@ $(document).ready(function () {
         } else {
         
             var rowProductRowCollapse = $("#collapsingOrderDiv").html();
-            var shipTrackingMapRawTemplate = $("#shipMapTrackingTemplate").html();
+           
 
             var orderId = $(this).closest("tr").find("#orderId").html();
 
@@ -745,6 +983,209 @@ $(document).ready(function () {
                     }
                 });
 
+                $(row.child()).find("#expectedDatePicker").flatpickr();
+                $(row.child()).find("#departureDatePicker").flatpickr();
+                $(row.child()).find("#arrivalDatePicker").flatpickr();
+
+                $(row.child()).find("#shippingLogDatePicker").flatpickr();
+                $(row.child()).find("#shippingLogTimePicker").flatpickr({
+                    enableTime : true,
+                    dateFormat : "h:i K",
+                    noCalendar : true,
+                    time_24hr : false
+                });
+
+                $(row.child()).find("#btn-update-shipping-info").click(function () {
+
+                    var $btnUpdateShippingInfo = $(this);
+
+                    var $updateShippingDiv = $btnUpdateShippingInfo.closest("div#updateShipping-id-" + orderId);
+                    var $shippingInformationDiv = $updateShippingDiv.closest("div#shippingInformationCollapseItem-id-" + orderId);
+                    var id = orderId;
+
+                    var shippingInformation = {
+                        orderId : id,
+                        shipmentStatus : $updateShippingDiv.find("#shipmentStatusComboBox").val(),
+                        expectedDate : $updateShippingDiv.find("#expectedDatePicker").val(),
+                        departureDate : $updateShippingDiv.find("#departureDatePicker").val(),
+                        arrivalDate : $updateShippingDiv.find("#arrivalDatePicker").val(),
+                        vesselName : $updateShippingDiv.find("#vessel-name").val(),
+                        mmsiNumber : $updateShippingDiv.find("#mmsi-number").val(),
+                        imoNumber : $updateShippingDiv.find("#imo-number").val(),
+                        destination : $updateShippingDiv.find("#destination").val()
+                    };
+
+                    console.log(shippingInformation);
+
+                    
+                    $.post("/FBExportSystem/admin/orders/validateShippingInformation", {
+                        shippingInformationJSON : JSON.stringify(shippingInformation)
+                    },
+                    function (response) {
+
+                        if (response.status == "success") {
+
+                            $btnUpdateShippingInfo.attr("disabled", "disabled");
+
+                            $.post("/FBExportSystem/admin/orders/updateShippingInformation", {
+                                shippingInformationJSON : JSON.stringify(shippingInformation)
+                            }, function () {
+
+                                $btnUpdateShippingInfo.removeAttr("disabled");
+                                $updateShippingDiv.find("#errorMessage").hide();
+                                
+                                switch (shippingInformation.shipmentStatus) {
+
+                                    case "On Cargo Ship":
+
+                                        if ($shippingInformationDiv.find("#vesselStatusCollapseItem-id-" + orderId).length <= 0) {
+                                            console.log("can add vessel status div");
+
+                                            var vesselStatusDivRawTemplate = $("#vesselStatusDivTemplate").html();
+                                            var vesselStatusDivTemplate = _.template(vesselStatusDivRawTemplate);
+
+                                            $shippingInformationDiv.find("br").after(vesselStatusDivTemplate({
+                                                orderId : shippingInformation.orderId,
+                                                vesselName : shippingInformation.vesselName,
+                                                imoNumber : shippingInformation.imoNumber,
+                                                mmsiNumber : shippingInformation.mmsiNumber,
+                                                destination : shippingInformation.destination
+                                            }));
+
+
+                                            $shippingInformationDiv.find("#updateVesselStatus").click(function () {
+                                                var marineTrafficLiveMapFrame = $(this).parent().parent().parent().find("#marinetraffic").get(0);
+                                                marineTrafficLiveMapFrame.src = marineTrafficLiveMapFrame.src;
+                                            });
+
+                                            $shippingInformationDiv.find("#vesselStatusCollapseItem-id-" + shippingInformation.orderId).on("shown.bs.collapse", function () {
+                                                var shipTrackingMapTemplate = _.template(shipTrackingMapRawTemplate);
+                                                var a = $(this).find(".shipTrackingMap").append(shipTrackingMapTemplate({
+                                                    mmsi : shippingInformation.mmsiNumber
+                                                }));
+                                                
+                                                $(a).find("iframe").on("load", function () {
+                                                    console.log("ate 2");
+                                                });
+                                            });
+
+                                            $shippingInformationDiv.find("#vesselStatusCollapseItem-id-" + shippingInformation.orderId).on("hidden.bs.collapse", function () {
+                                                $(this).find(".shipTrackingMap").html("");
+                                            });
+                                            
+                                            
+                                            
+                                        } else {
+
+                                            var $vesselStatusCollapseDiv =  $shippingInformationDiv.find("#vesselStatusCollapseItem-id-" + shippingInformation.orderId);
+
+                                            $vesselStatusCollapseDiv.find("#vesselName").html(shippingInformation.vesselName);
+                                            $vesselStatusCollapseDiv.find("#imoNumber").html(shippingInformation.imoNumber);
+                                            $vesselStatusCollapseDiv.find("#mmsiNumber").html(shippingInformation.mmsiNumber);
+                                            $vesselStatusCollapseDiv.find("#destination").html(shippingInformation.destination);
+
+                                            if ($vesselStatusCollapseDiv.find("#marinetraffic").length > 0) {
+
+                                                $vesselStatusCollapseDiv.find(".shipTrackingMap").html("");
+
+                                                var shipTrackingMapTemplate = _.template(shipTrackingMapRawTemplate);
+                                                var a = $vesselStatusCollapseDiv.find(".shipTrackingMap").append(shipTrackingMapTemplate({
+                                                    mmsi : shippingInformation.mmsiNumber
+                                                }));
+                                                
+                                                $(a).find("iframe").on("load", function () {
+                                                    console.log("ate 2");
+                                                });
+
+                                            }
+
+
+                                        }
+
+                                        $shippingInformationDiv.find("#shipmentStatus").html(shippingInformation.shipmentStatus + ' <i class="fa fa-ship" aria-hidden="true"></i>');
+                                        $shippingInformationDiv.find("#departureDate").html(shippingInformation.departureDate);
+                                        $shippingInformationDiv.find("#arrivalDate").html(shippingInformation.arrivalDate);
+                                        $shippingInformationDiv.closest("tr").prev().find("#shipmentStatus").html(shippingInformation.shipmentStatus + ' <i class="fa fa-ship" aria-hidden="true"></i>');
+                                        $shippingInformationDiv.closest("tr").prev().find("td:eq(6) span>span:eq(1)").html(shippingInformation.expectedDate);
+
+                                    break;
+
+                                    case "On Truck":
+
+                                        if ($shippingInformationDiv.find("#vesselStatusCollapseItem-id-" + orderId).length > 0) {
+                                            var $vesselStatusHeaderDiv = $shippingInformationDiv.find("i.fa-chevron-circle-down").parent();
+                                            var $vesselStatusHR = $vesselStatusHeaderDiv.next();
+                                            var $vesselStatusDiv = $vesselStatusHR.next();
+
+                                            $vesselStatusHeaderDiv.remove();
+                                            $vesselStatusHR.remove();
+                                            $vesselStatusDiv.remove();
+
+                                        }
+
+                                        $shippingInformationDiv.find("#shipmentStatus").html(shippingInformation.shipmentStatus + ' <i class="fa fa-truck" aria-hidden="true"></i>');
+                                        $shippingInformationDiv.find("#departureDate").html(shippingInformation.departureDate);
+                                        $shippingInformationDiv.find("#arrivalDate").html(shippingInformation.arrivalDate);
+                                        $shippingInformationDiv.closest("tr").prev().find("#shipmentStatus").html(shippingInformation.shipmentStatus + ' <i class="fa fa-truck" aria-hidden="true"></i>');
+                                        $shippingInformationDiv.closest("tr").prev().find("td:eq(6) span>span:eq(1)").html(shippingInformation.expectedDate);
+
+                                    break;
+
+                                }
+
+                            });
+
+                            $btnUpdateShippingInfo.closest("div.collapse").collapse("hide");
+
+                            $updateShippingDiv.find("#shipmentStatusComboBox option:eq(0)").prop("selected", true);
+                            $updateShippingDiv.find("#vesselStatusCollapseDiv").collapse("hide");
+                            $updateShippingDiv.find("#expectedDatePicker").val("");
+                            $updateShippingDiv.find("#departureDatePicker").val("");
+                            $updateShippingDiv.find("#arrivalDatePicker").val("");
+                            $updateShippingDiv.find("#vessel-name").val("");
+                            $updateShippingDiv.find("#mmsi-number").val("");
+                            $updateShippingDiv.find("#imo-number").val("");
+                            $updateShippingDiv.find("#destination").val("");
+
+
+
+                        } else {
+
+                            $updateShippingDiv.find("#errorMessage").html("*" + response.message);
+                            $updateShippingDiv.find("#errorMessage").show();
+    
+                        }
+
+
+                    }, "json");
+
+
+                    console.log($(this).closest("tr").prev().find("#orderId").html());
+
+                     
+
+                });
+
+
+                $(row.child()).find("#btn-cancel-shipping-info").click(function () {
+
+                    $(this).closest("div.collapse").collapse("hide");
+
+                    var $shippingUpdateDiv = $(this).closest("#updateShipping-id-" + orderId);
+                
+                    $shippingUpdateDiv.find("#shipmentStatusComboBox option:eq(0)").prop("selected", true);
+                    $shippingUpdateDiv.find("#vesselStatusCollapseDiv").collapse("hide");
+                    $shippingUpdateDiv.find("#expectedDatePicker").val("");
+                    $shippingUpdateDiv.find("#departureDatePicker").val("");
+                    $shippingUpdateDiv.find("#arrivalDatePicker").val("");
+                    $shippingUpdateDiv.find("#vessel-name").val("");
+                    $shippingUpdateDiv.find("#mmsi-number").val("");
+                    $shippingUpdateDiv.find("#imo-number").val("");
+                    $shippingUpdateDiv.find("#destination").val("");
+                
+                });
+
+
                 $(row.child()).find("#vesselStatusCollapseItem-id-" + response.orderId).on("hidden.bs.collapse", function () {
                     $(this).find(".shipTrackingMap").html("");
                 });
@@ -755,8 +1196,9 @@ $(document).ready(function () {
                 });
 
                 $(row.child()).find("#btn-cancel-shipping-log").click(function () {
-                    console.log($(this).closest("tr").prev().find("#orderId").html());
+
                     $(this).closest("div.collapse").collapse("hide");
+
                 });
 
                 $(this).removeClass("fa-chevron-circle-down").addClass("fa-chevron-circle-up");

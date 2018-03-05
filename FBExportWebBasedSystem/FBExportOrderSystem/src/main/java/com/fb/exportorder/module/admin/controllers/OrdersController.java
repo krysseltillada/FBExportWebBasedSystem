@@ -1,9 +1,11 @@
 package com.fb.exportorder.module.admin.controllers;
 
+import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.commons.lang3.StringUtils;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
@@ -15,8 +17,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.fb.exportorder.models.Shipping;
+import com.fb.exportorder.models.VesselStatus;
 import com.fb.exportorder.models.customer.Order;
 import com.fb.exportorder.models.enums.OrderStatus;
+import com.fb.exportorder.models.enums.ShipmentStatus;
+import com.fb.exportorder.module.admin.service.ShippingService;
 import com.fb.exportorder.module.customer.service.OrderService;
 
 @Controller
@@ -26,6 +32,9 @@ public class OrdersController {
 	
 	@Autowired
 	OrderService orderService;
+	
+	@Autowired
+	ShippingService shippingService;
 	
 	Map<OrderStatus, String> orderStatusColor = new HashMap<OrderStatus, String>(){{
 		put(OrderStatus.TO_SHIP, "#796AEE");
@@ -44,6 +53,8 @@ public class OrdersController {
 		put(OrderStatus.PENDING, "Pending");
 		
 	}};
+	
+	SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 	
 	@RequestMapping("/admin/orders")
 	public String orders(Model model) {
@@ -99,6 +110,98 @@ public class OrdersController {
 		return responseMessage.toJSONString();
 	
 	}
+	
+	@RequestMapping(value = "/admin/orders/validateShippingInformation", method = RequestMethod.POST)
+	@ResponseBody
+	public String validateShippingInformation(@RequestParam String shippingInformationJSON) {
+		
+		JSONObject toShipInformation = null;
+		List<String> errorMessages = null;
+		
+		try {
+			toShipInformation = (JSONObject)new JSONParser().parse(shippingInformationJSON);
+			
+			errorMessages = orderService.validate((String)toShipInformation.get("shipmentStatus"),
+												  (String)toShipInformation.get("expectedDate"),
+												  (String)toShipInformation.get("departureDate"), 
+												  (String)toShipInformation.get("arrivalDate"), 
+												  (String)toShipInformation.get("vesselName"), 
+												  (String)toShipInformation.get("mmsiNumber"), 
+												  (String)toShipInformation.get("imoNumber"), 
+												  (String)toShipInformation.get("destination"));	
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		JSONObject responseMessage = new JSONObject();
+		
+		System.out.println("run");
+		
+		if (errorMessages.isEmpty()) {
+			responseMessage.put("status", "success");
+		}else {
+			responseMessage.put("status", "error");
+			responseMessage.put("message", errorMessages.get(0));
+		}
+		
+		return responseMessage.toJSONString();
+		
+	}
+	
+	@RequestMapping(value = "/admin/orders/updateShippingInformation", method = RequestMethod.POST)
+	@ResponseBody
+	public String updateShippingInformation(@RequestParam String shippingInformationJSON) {
+		
+		JSONObject updateShippingInformation = null;
+		
+		try {
+			
+			updateShippingInformation = (JSONObject)new JSONParser().parse(shippingInformationJSON);
+			
+			long orderId = Long.parseLong((String)updateShippingInformation.get("orderId"));
+			Shipping updatedShipping = new Shipping();
+			
+			ShipmentStatus updatedShipmentStatus = 
+					StringUtils.equals((String)updateShippingInformation.get("shipmentStatus"), "On Cargo Ship") ? ShipmentStatus.ON_CARGO_SHIP :
+				  																						 		   ShipmentStatus.ON_TRUCK;
+			
+			updatedShipping.setShipmentStatus(updatedShipmentStatus);
+			
+			try {
+				updatedShipping.setExpectedDate(dateFormat.parse((String)updateShippingInformation.get("expectedDate")));
+				updatedShipping.setDepartureDate(dateFormat.parse((String)updateShippingInformation.get("departureDate")));
+				updatedShipping.setArrivalDate(dateFormat.parse((String)updateShippingInformation.get("arrivalDate")));
+			} catch (java.text.ParseException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			if (updatedShipmentStatus == ShipmentStatus.ON_CARGO_SHIP) {
+				
+				VesselStatus vesselStatus = new VesselStatus();
+				
+				vesselStatus.setVesselName((String)updateShippingInformation.get("vesselName"));
+				vesselStatus.setMmsiNumber((String)updateShippingInformation.get("mmsiNumber"));
+				vesselStatus.setImoNumber((String)updateShippingInformation.get("imoNumber"));
+				vesselStatus.setDestination((String)updateShippingInformation.get("destination"));
+				
+				updatedShipping.setVesselStatus(vesselStatus);
+				
+			}
+			
+			shippingService.updateShippingInformation(updatedShipping, 
+													  orderId);
+			
+				
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return "";
+	}
+	
 	
 	@RequestMapping(value = "/admin/orders/markApproved", method = RequestMethod.POST)
 	@ResponseBody

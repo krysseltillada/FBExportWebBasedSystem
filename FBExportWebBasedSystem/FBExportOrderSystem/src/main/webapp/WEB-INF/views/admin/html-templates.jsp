@@ -204,9 +204,9 @@
                             <div class = "col-8">
                                 <strong> Shipment status : </strong> 
                                 {{ if (order.shipping.shipmentStatus == 'ON_CARGO_SHIP') { }}
-                                    On Cargo Ship <i class="fa fa-ship" aria-hidden="true"></i>
+                                    <span id = "shipmentStatus">On Cargo Ship <i class="fa fa-ship" aria-hidden="true"></i></span>
                                 {{  } else if (order.shipping.shipmentStatus == 'ON_TRUCK') { }}
-                                    On Truck <i class="fa fa-truck" aria-hidden="true"></i>
+                                    <span id = "shipmentStatus">On Truck <i class="fa fa-truck" aria-hidden="true"></i></span>
                                 {{ } }}
                             </div>
                             <div class = "col-4">
@@ -215,10 +215,10 @@
                         </div>
                         <div class = "row no-gutters">
                             <div class = "col-8">
-                                <strong> Departure : </strong>  {{=order.shipping.departureDate}}
+                                <strong> Departure : </strong> <span id = "departureDate">{{=order.shipping.departureDate}}</span>
                             </div>
                             <div class = "col-4">
-                                <strong> Arrival : </strong> {{=order.shipping.arrivalDate}}
+                                <strong> Arrival : </strong> <span id = "arrivalDate">{{=order.shipping.arrivalDate}}</span>
                             </div>
                         </div>
 
@@ -242,19 +242,19 @@
 
                                 <div class = "row no-gutters">
                                     <div class = "col-8">
-                                        <strong> Vessel name: </strong> {{=order.shipping.vesselStatus.vesselName}} 
+                                        <strong> Vessel name: </strong> <span id = "vesselName">{{=order.shipping.vesselStatus.vesselName}}</span> 
                                     </div>
                                     <div class = "col-4">
-                                        <strong> IMO Number: </strong> {{=order.shipping.vesselStatus.imoNumber}}
+                                        <strong> IMO Number: </strong> <span id = "imoNumber">{{=order.shipping.vesselStatus.imoNumber}}</span>
                                     </div>
                                 </div>
 
                                 <div class = "row no-gutters">
                                     <div class = "col-8">
-                                        <strong> MMSI Number: </strong> {{=order.shipping.vesselStatus.mmsiNumber}} 
+                                        <strong> MMSI Number: </strong> <span id = "mmsiNumber">{{=order.shipping.vesselStatus.mmsiNumber}}</span> 
                                     </div>
                                         <div class = "col-4">
-                                        <strong> Destination: </strong> {{=order.shipping.vesselStatus.destination}} 
+                                        <strong> Destination: </strong> <span id = "destination">{{=order.shipping.vesselStatus.destination}}</span> 
                                     </div>
                                     
                                 </div>
@@ -392,7 +392,7 @@
 
             <div>
                 <i class="fa fa-chevron-circle-down fa-lg mr-1" aria-hidden="true"
-                    data-toggle="collapse" href="#shippingInformationCollapseItem " role="button" aria-expanded="false" aria-controls="shippingInformationCollapseItem" style = "cursor: pointer;"></i>
+                    data-toggle="collapse" href="#shippingInformationCollapseItem-id-{{=order.orderId}}" role="button" aria-expanded="false" aria-controls="shippingInformationCollapseItem-id-{{=order.orderId}}" style = "cursor: pointer;"></i>
                 <span class = "h5-responsive"> <strong> Shipping information </strong> </span>
                 <span class = "float-right"> 
                     <a class = "blue-text" data-toggle="collapse" href="#updateShipping-id-{{=order.orderId}}" 
@@ -405,7 +405,7 @@
 
             
 
-            <div class="collapse.show multi-collapse" id="shippingInformationCollapseItem">
+            <div class="collapse.show multi-collapse" id="shippingInformationCollapseItem-id-{{=order.orderId}}">
 
                     <div class="collapse" id="updateShipping-id-{{=order.orderId}}" style="">
                                 
@@ -517,9 +517,9 @@
                         <strong> Shipment status : </strong>  
                         
                         {{ if (order.shipping.shipmentStatus == 'ON_CARGO_SHIP') { }}
-                            On Cargo Ship <i class="fa fa-ship" aria-hidden="true"></i>
+                            <span id = "shipmentStatus">On Cargo Ship <i class="fa fa-ship" aria-hidden="true"></i></span>
                         {{  } else if (order.shipping.shipmentStatus == 'ON_TRUCK') { }}
-                            On Truck <i class="fa fa-truck" aria-hidden="true"></i>
+                            <span id = "shipmentStatus">On Truck <i class="fa fa-truck" aria-hidden="true"></i></span>
                         {{ } }}
                     </div>
                     <div class = "col-4">
@@ -528,10 +528,10 @@
                 </div>
                 <div class = "row no-gutters">
                     <div class = "col-8">
-                        <strong> Departure : </strong>  {{=order.shipping.departureDate}}
+                        <strong> Departure : </strong>  <span id = "departureDate">{{=order.shipping.departureDate}}</span>
                     </div>
                     <div class = "col-4">
-                        <strong> Arrival : </strong> {{=order.shipping.arrivalDate}} 
+                        <strong> Arrival : </strong> <span id = "arrivalDate">{{=order.shipping.arrivalDate}}</span>
                     </div>
                 </div>
 
@@ -541,7 +541,7 @@
 
                     <div>
                         <i class="fa fa-chevron-circle-down fa-lg mr-1" aria-hidden="true"
-                            data-toggle="collapse" href="#vesselStatusCollapseItem " role="button" aria-expanded="false" aria-controls="vesselStatusCollapseItem" style = "cursor: pointer;"></i>
+                            data-toggle="collapse" href="#vesselStatusCollapseItem-id-{{=order.orderId}}" role="button" aria-expanded="false" aria-controls="{{=order.orderId}}" style = "cursor: pointer;"></i>
                         <span class = "h5-responsive"> <strong> Vessel Status </strong> </span>
                         <span class = "float-right" style = "font-size: 14px;">
                             <i class="fa fa-map-marker" aria-hidden="true"></i>
@@ -551,23 +551,23 @@
 
                     <hr class = "mt-1" />
 
-                    <div class="collapse" id="vesselStatusCollapseItem">
+                    <div class="collapse" id="vesselStatusCollapseItem-id-{{=order.orderId}}">
 
                         <div class = "row no-gutters">
                             <div class = "col-8">
-                                <strong> Vessel name: </strong> {{=order.shipping.vesselStatus.vesselName}} 
+                                <strong> Vessel name: </strong> <span id = "vesselName">{{=order.shipping.vesselStatus.vesselName}}</span> 
                             </div>
                             <div class = "col-4">
-                                <strong> IMO Number: </strong> {{=order.shipping.vesselStatus.imoNumber}}
+                                <strong> IMO Number: </strong> <span id = "imoNumber">{{=order.shipping.vesselStatus.imoNumber}}</span>
                             </div>
                         </div>
 
                         <div class = "row no-gutters">
                             <div class = "col-8">
-                                <strong> MMSI Number: </strong> {{=order.shipping.vesselStatus.mmsiNumber}} 
+                                <strong> MMSI Number: </strong> <span id = "mmsiNumber">{{=order.shipping.vesselStatus.mmsiNumber}}</span> 
                             </div>
                                 <div class = "col-4">
-                                <strong> Destination: </strong> {{=order.shipping.vesselStatus.destination}} 
+                                <strong> Destination: </strong> <span id = "destination">{{=order.shipping.vesselStatus.destination}}</span>
                             </div>
                             
                         </div>
@@ -678,6 +678,55 @@
         </div>
     </div>
 
+</script>
+
+<script id = "vesselStatusDivTemplate" type = "text/template">
+    
+    <div>
+        <i class="fa fa-chevron-circle-down fa-lg mr-1" aria-hidden="true"
+            data-toggle="collapse" href="#vesselStatusCollapseItem-id-{{=orderId}}" role="button" aria-expanded="false" aria-controls="vesselStatusCollapseItem-id-{{=orderId}}" style = "cursor: pointer;"></i>
+        <span class = "h5-responsive"> <strong> Vessel Status </strong> </span>
+        <span class = "float-right" style = "font-size: 14px;">
+            <i class="fa fa-map-marker" aria-hidden="true"></i>
+            <a class = "blue-text" href = "javascript:void(0)" id = "updateVesselStatus"> Update status </a>
+        </span>
+    </div>
+
+    <hr class = "mt-1" />
+
+    <div class="collapse" id="vesselStatusCollapseItem-id-{{=orderId}}">
+
+        <div class = "row no-gutters">
+            <div class = "col-8">
+                <strong> Vessel name: </strong> <span id = "vesselName">{{=vesselName}}</span> 
+            </div>
+            <div class = "col-4">
+                <strong> IMO Number: </strong> <span id = "imoNumber">{{=imoNumber}}</span>
+            </div>
+        </div>
+
+        <div class = "row no-gutters">
+            <div class = "col-8">
+                <strong> MMSI Number: </strong> <span id = "mmsiNumber">{{=mmsiNumber}}</span> 
+            </div>
+                <div class = "col-4">
+                <strong> Destination: </strong> <span id = "destination">{{=destination}}</span> 
+            </div>
+            
+        </div>
+
+        <hr class = "mt-1" />
+
+        <div class = "row">
+
+            <div class = "col shipTrackingMap">
+
+            </div>
+
+
+        </div>
+
+    </div>
 </script>
 
 <script id = "shipMapTrackingTemplate" type = "text/template">
