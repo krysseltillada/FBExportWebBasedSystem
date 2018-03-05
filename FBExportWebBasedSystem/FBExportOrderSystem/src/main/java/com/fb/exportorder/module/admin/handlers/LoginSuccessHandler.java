@@ -2,6 +2,7 @@ package com.fb.exportorder.module.admin.handlers;
 
 import java.io.IOException;
 import java.util.Enumeration;
+import java.util.List;
 import java.util.Objects;
 
 import javax.servlet.ServletException;
@@ -15,8 +16,10 @@ import org.springframework.security.web.authentication.AuthenticationSuccessHand
 import org.springframework.stereotype.Component;
 
 import com.fb.exportorder.models.Employee;
+import com.fb.exportorder.models.SystemSettings;
 import com.fb.exportorder.models.customer.Customer;
 import com.fb.exportorder.module.admin.repository.ManageEmployeeRepository;
+import com.fb.exportorder.module.admin.repository.SystemSettingsRepository;
 
 
 @Component("adminLoginSuccessHandler")
@@ -24,6 +27,9 @@ public class LoginSuccessHandler implements AuthenticationSuccessHandler{
 
 	@Autowired
 	ManageEmployeeRepository employeeRepository;
+	
+	@Autowired
+	SystemSettingsRepository systemSettingsRepository;
 	
 	@Override
 	public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication auth)
@@ -65,6 +71,12 @@ public class LoginSuccessHandler implements AuthenticationSuccessHandler{
 		session.setAttribute("position", position);
 		session.setAttribute("employeeId", customerId);
 		session.setAttribute("employeeProfileImageLink", profileImageLink);
+		
+		
+		String time = ((List<SystemSettings>)systemSettingsRepository.findAll()).get(0).getLogoutTime().toString();
+		String[] timeSplit = time.split(":");
+		
+		session.setAttribute("logoutTime", timeSplit[1].charAt(1));
 		
 		response.sendRedirect(request.getServletContext().getContextPath() + "/admin/dashboard");
 		

@@ -24,7 +24,7 @@ $(document).ready(function () {
     
     function ajaxFormSystemSettings(){
     	var formData = new FormData($("#formSystemSettingsEdit")[0]);
-    	
+    	showPreLoader();
     	$.ajax({
     		type: 'POST',
     		url: "/FBExportSystem/admin/edit-system-settings",
@@ -34,17 +34,22 @@ $(document).ready(function () {
             data : formData,
             success: function(result){
             	if(result == "Success"){
+            		hidePreLoader();
             		iziToast.success({
             		    title: 'SUCCESS',
             		    message: "You've successfully update system settings!",
             		});
+            		
+            		location.reload();
             	}else{
+            		hidePreLoader();
             		iziToast.error({
             		    title: 'ERROR',
             		    message: 'Failed to update system settings!',
             		});
             	}
             },error: function(e){
+            	hidePreLoader();
             	console.log("ERROR: ",e);
             }
     	});
@@ -71,6 +76,7 @@ $(document).ready(function () {
     	    position: 'center',
     	    buttons: [
     	        ['<button><b>YES</b></button>', function (instance, toast) {
+    	        	showPreLoader();
     	        	$.ajax({
     	        		type: 'POST',
     	        		url: urlData,
@@ -83,14 +89,19 @@ $(document).ready(function () {
     	                		    title: 'SUCCESS',
     	                		    message: successMessage,
     	                		});
+    	                    	
+    	                		hidePreLoader();
     	                	}else{
     	                		iziToast.error({
     	                		    title: 'ERROR',
     	                		    message: result,
     	                		});
+    	                		hidePreLoader();
+
     	                	}
     	                },error: function(e){
     	                	console.log("ERROR: ",e);
+    	                	hidePreLoader();
     	                }
     	        	});
     	        	
@@ -112,5 +123,19 @@ $(document).ready(function () {
     	    }
     	});
     }
+    
+    /*PreLoader*/
+    function showPreLoader(){
+    	$(".loader").show();
+    	$("body").find("*").attr("disabled", "disabled");
+    	$("body").find("a").click(function (e) { e.preventDefault(); });
+    }
+    
+    function hidePreLoader(){
+    	$(".loader").hide();
+    	$("body").find("*").removeAttr("disabled");
+    	$("body").find("a").unbind("click");
+    }
+    /*PreLoader*/
     
 });

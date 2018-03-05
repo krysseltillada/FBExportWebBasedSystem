@@ -73,7 +73,7 @@ $(document).ready(function () {
     
     /*Logout Time*/
     if(window.location.pathname != "/FBExportSystem/admin/" && window.location.pathname != "/FBExportSystem/admin/login/" && window.location.pathname != "/FBExportSystem/admin" && window.location.pathname != "/FBExportSystem/admin/login"){
-    	console.log(window.location.pathname);
+    	
     	var timeoutID;
         
         function setup() {
@@ -91,7 +91,8 @@ $(document).ready(function () {
          
         function startTimer() {
             // wait before calling goInactive
-            timeoutID = window.setTimeout(goInactive, 2000);
+        	
+            timeoutID = window.setTimeout(goInactive, $("#logoutTime").val() * 60000);
         }
          
         function resetTimer(e) {
@@ -101,15 +102,16 @@ $(document).ready(function () {
         }
          
         function goInactive() {
-            console.log("IN ACTIVE");
+        	window.location.replace(window.location.origin + "/FBExportSystem/admin/sign-out");
         }
          
         function goActive() {
-            console.log("ACTIVE");
-                 
+        	console.log($("#logoutTime").val() * 60000);
             startTimer();
         }
     }
     /*Logout Time*/
+    
+    
     
 });

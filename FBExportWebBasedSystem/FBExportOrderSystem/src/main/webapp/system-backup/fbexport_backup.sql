@@ -88,7 +88,7 @@ DROP TABLE IF EXISTS `cart`;
 CREATE TABLE `cart` (
   `cart_id` bigint(20) NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`cart_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -97,7 +97,6 @@ CREATE TABLE `cart` (
 
 LOCK TABLES `cart` WRITE;
 /*!40000 ALTER TABLE `cart` DISABLE KEYS */;
-INSERT INTO `cart` VALUES (1),(2);
 /*!40000 ALTER TABLE `cart` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -230,7 +229,7 @@ CREATE TABLE `employee` (
 
 LOCK TABLES `employee` WRITE;
 /*!40000 ALTER TABLE `employee` DISABLE KEYS */;
-INSERT INTO `employee` VALUES (0,'qwe','qwe','Albania','5',23,'63','Admin1@gmail.com','09996668084','','qwe','MALE','qwe','qwe','$2a$10$E2d9Ww/uathdfPMpuxpRrOzwzTyC67n6bqG0PUncCSFgKduhsXY66',NULL,'Admin1','Admin');
+INSERT INTO `employee` VALUES (0,'Admin1','Admin','Admin','1700',23,'63','Admin1@gmail.com','09996668084','','Admin','MALE','Admin','Admin','$2a$10$w921HXavi.mOnflh.yIQNePCcnsgP50S7BwkZr9Zknd6IVzAcKflK',NULL,'Admin1','Admin');
 /*!40000 ALTER TABLE `employee` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -283,46 +282,6 @@ CREATE TABLE `item` (
 LOCK TABLES `item` WRITE;
 /*!40000 ALTER TABLE `item` DISABLE KEYS */;
 /*!40000 ALTER TABLE `item` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `order`
---
-
-DROP TABLE IF EXISTS `order`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `order` (
-  `order_id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `date_ordered` date DEFAULT NULL,
-  `order_status` varchar(255) DEFAULT NULL,
-  `payment_method` varchar(255) DEFAULT NULL,
-  `total_items` int(11) NOT NULL,
-  `total_price` tinyblob,
-  `total_weight` double NOT NULL,
-  `cart_cart_id` bigint(20) DEFAULT NULL,
-  `customer_id` bigint(20) DEFAULT NULL,
-  `shipping_shipping_id` bigint(20) DEFAULT NULL,
-  `shipping_address_shipping_address_id` bigint(20) DEFAULT NULL,
-  PRIMARY KEY (`order_id`),
-  KEY `FKicbyhu5mcwt6i7ojjmalpmy28` (`cart_cart_id`),
-  KEY `FK1oduxyuuo3n2g98l3j7754vym` (`customer_id`),
-  KEY `FKdubf3enj8ethssn7w0y8e7jve` (`shipping_shipping_id`),
-  KEY `FKqjfimc29ebno0th13quproc9g` (`shipping_address_shipping_address_id`),
-  CONSTRAINT `FK1oduxyuuo3n2g98l3j7754vym` FOREIGN KEY (`customer_id`) REFERENCES `customer` (`id`),
-  CONSTRAINT `FKdubf3enj8ethssn7w0y8e7jve` FOREIGN KEY (`shipping_shipping_id`) REFERENCES `shipping` (`shipping_id`),
-  CONSTRAINT `FKicbyhu5mcwt6i7ojjmalpmy28` FOREIGN KEY (`cart_cart_id`) REFERENCES `cart` (`cart_id`),
-  CONSTRAINT `FKqjfimc29ebno0th13quproc9g` FOREIGN KEY (`shipping_address_shipping_address_id`) REFERENCES `shipping_address` (`shipping_address_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `order`
---
-
-LOCK TABLES `order` WRITE;
-/*!40000 ALTER TABLE `order` DISABLE KEYS */;
-/*!40000 ALTER TABLE `order` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -395,7 +354,7 @@ CREATE TABLE `product` (
   PRIMARY KEY (`product_id`),
   KEY `FKg0klkuq150g13y1o1porbpxrj` (`rating_rating_id`),
   CONSTRAINT `FKg0klkuq150g13y1o1porbpxrj` FOREIGN KEY (`rating_rating_id`) REFERENCES `rating` (`rating_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -404,7 +363,6 @@ CREATE TABLE `product` (
 
 LOCK TABLES `product` WRITE;
 /*!40000 ALTER TABLE `product` DISABLE KEYS */;
-INSERT INTO `product` VALUES (1,'2018-03-01','2018-03-04','2018-03-04','asdasd','\0','Pro','Pro',200,'/products/c4ca4238a0b923820dcc509a6f75849b.jpg','POSTED','asdasd','asdasd','09996668084',400,1);
 /*!40000 ALTER TABLE `product` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -429,7 +387,6 @@ CREATE TABLE `product_preview_image_links` (
 
 LOCK TABLES `product_preview_image_links` WRITE;
 /*!40000 ALTER TABLE `product_preview_image_links` DISABLE KEYS */;
-INSERT INTO `product_preview_image_links` VALUES (1,'/products/e5880268faff22705099682e88580955.jpg'),(1,'/products/d1047811d401a3507f369f9eb3d8231d.jpg'),(1,'/products/036b9127110ed5dd72b80420edc7bbae.jpg');
 /*!40000 ALTER TABLE `product_preview_image_links` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -445,7 +402,7 @@ CREATE TABLE `rating` (
   `rate` double NOT NULL,
   `views` int(11) NOT NULL,
   PRIMARY KEY (`rating_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -454,7 +411,6 @@ CREATE TABLE `rating` (
 
 LOCK TABLES `rating` WRITE;
 /*!40000 ALTER TABLE `rating` DISABLE KEYS */;
-INSERT INTO `rating` VALUES (1,0,0);
 /*!40000 ALTER TABLE `rating` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -523,6 +479,10 @@ CREATE TABLE `shipping` (
   `departure_date` date DEFAULT NULL,
   `expected_date` date DEFAULT NULL,
   `shipment_status` varchar(255) DEFAULT NULL,
+  `destination` varchar(255) DEFAULT NULL,
+  `imo_number` varchar(255) DEFAULT NULL,
+  `mmsi_number` varchar(255) DEFAULT NULL,
+  `vessel_name` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`shipping_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -557,7 +517,7 @@ CREATE TABLE `shipping_address` (
   `receiver_full_name` varchar(255) DEFAULT NULL,
   `shipping_instructions` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`shipping_address_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -566,7 +526,6 @@ CREATE TABLE `shipping_address` (
 
 LOCK TABLES `shipping_address` WRITE;
 /*!40000 ALTER TABLE `shipping_address` DISABLE KEYS */;
-INSERT INTO `shipping_address` VALUES (1,'asdasd','asdasd','Azerbaijan','asdasd','User Account','880','amhbsmd@gmail.com','09996668084','','Customer Customer Customer','specify your shipping instructions by editing the card'),(2,'Customer1','Customer','Afghanistan','Custome','User Account','93','Customer1@gmail.com','09996668084','','Customer Customer Customer','specify your shipping instructions by editing the card');
 /*!40000 ALTER TABLE `shipping_address` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -691,7 +650,7 @@ CREATE TABLE `system_settings` (
   `logout_time` time DEFAULT '00:03:00',
   `system_backup_time` time DEFAULT '00:00:00',
   PRIMARY KEY (`system_settings_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -700,7 +659,7 @@ CREATE TABLE `system_settings` (
 
 LOCK TABLES `system_settings` WRITE;
 /*!40000 ALTER TABLE `system_settings` DISABLE KEYS */;
-INSERT INTO `system_settings` VALUES (4,'00:05:00','22:32:00');
+INSERT INTO `system_settings` VALUES (1,'00:03:00','12:00:00');
 /*!40000 ALTER TABLE `system_settings` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -741,4 +700,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-03-04 22:32:22
+-- Dump completed on 2018-03-05 22:14:10

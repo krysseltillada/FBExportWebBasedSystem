@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.PostPersist;
 import javax.persistence.PrePersist;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -50,24 +51,5 @@ public class SystemSettings {
 		this.systemBackupTime = systemBackupTime;
 	}
 	
-	@PrePersist
-	void preInsert() {
-	   if ( this.getSystemBackupTime() == null ) {
-		   Date backupTime = new Date();
-		   backupTime.setHours(0);
-		   backupTime.setMinutes(0);
-		   backupTime.setSeconds(0);
-		   this.setSystemBackupTime(backupTime);
-	   }
-	   
-	   if ( this.getLogoutTime() == null ) {
-		   Date logoutTime = new Date();
-		   logoutTime.setHours(0);
-		   logoutTime.setMinutes(3);
-		   logoutTime.setSeconds(0);
-		   this.setLogoutTime(logoutTime);
-	   }
-		   
-	}
 	
 }
