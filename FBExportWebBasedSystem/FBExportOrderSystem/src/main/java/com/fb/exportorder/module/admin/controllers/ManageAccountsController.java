@@ -3,6 +3,9 @@ package com.fb.exportorder.module.admin.controllers;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
@@ -217,7 +220,8 @@ public class ManageAccountsController {
 							   String newUsernameEmployeeEdit,
 							   String newRetypePasswordEmployeeEdit,
 							   String newPasswordEmployeeEdit,
-							   @RequestParam("fileEmployeeEdit") MultipartFile profileImage) {
+							   @RequestParam("fileEmployeeEdit") MultipartFile profileImage,
+							   HttpServletRequest request) {
 		
 		Employee employee = employeeService.getEmployeeByUsername(usernameEmployeeEdit);
 	
@@ -241,7 +245,8 @@ public class ManageAccountsController {
 							newEmailEmployeeEdit,
 							newUsernameEmployeeEdit,
 							newPasswordEmployeeEdit,
-							newRetypePasswordEmployeeEdit);
+							newRetypePasswordEmployeeEdit,
+							request);
 		
 	}
 	
@@ -321,7 +326,8 @@ public class ManageAccountsController {
 							   String newUsernameAdminEdit,
 							   String newRetypePasswordAdminEdit,
 							   String newPasswordAdminEdit,
-							   @RequestParam("fileAdminEdit") MultipartFile profileImage) {
+							   @RequestParam("fileAdminEdit") MultipartFile profileImage,
+							   HttpServletRequest request) {
 		
 		Employee admin = employeeService.getEmployeeByUsername(usernameAdminEdit);
 	
@@ -347,7 +353,8 @@ public class ManageAccountsController {
 							newEmailAdminEdit,
 							newUsernameAdminEdit,
 							newPasswordAdminEdit,
-							newRetypePasswordAdminEdit);
+							newRetypePasswordAdminEdit,
+							request);
 		
 	}
 	
@@ -429,7 +436,8 @@ public class ManageAccountsController {
 							   String newEmailEdit,
 							   String newUsernameEdit,
 							   String newPasswordEdit,
-							   String newRetypePasswordEdit) {
+							   String newRetypePasswordEdit,
+							   HttpServletRequest request) {
 		if(employee != null) {
 			
 			if(employee.getContact().getEmailAddress().equals(emailEdit)) {
@@ -467,9 +475,18 @@ public class ManageAccountsController {
 			}else {
 				return "[\"Email not found\"]";
 			}
+			
+			HttpSession session = request.getSession();
+			
+			session.setAttribute("employeeName", employee.getFirstname() + " " + employee.getLastname());
+			session.setAttribute("position", employee.getPosition());
+			session.setAttribute("employeeId", employee.getId());
+			session.setAttribute("employeeProfileImageLink", employee.getProfileImageLink());
 		}else {
 			return "[\"Username not found\"]";
 		}
+		
+		
 		
 		return "Success";
 	}
