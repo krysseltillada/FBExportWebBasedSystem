@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.fb.exportorder.models.SystemSettings;
 import com.fb.exportorder.module.admin.service.SystemSettingsService;
 import com.fb.exportorder.utilities.SystemSettingsBackup;
+import com.fb.exportorder.utilities.Time;
 
 @Controller
 public class SystemSettingsController {
@@ -69,7 +70,9 @@ public class SystemSettingsController {
 			
 			systemSettingsService.addSystemSettings(systemSettings);
 			
-			session.setAttribute("logoutTime", logoutTime.getMinutes());
+			
+			
+			session.setAttribute("logoutTime", Time.convertTimeToMilliseconds(logoutTime.getHours(), logoutTime.getMinutes(), logoutTime.getSeconds()));
 		
 		} catch (ParseException e) {
 			return "Error";

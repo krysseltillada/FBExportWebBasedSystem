@@ -279,10 +279,10 @@ $(document).ready(function () {
                                                     }
 
                                                     $shippingInformationDiv.find("#shipmentStatus").html(shippingInformation.shipmentStatus + ' <i class="fa fa-ship" aria-hidden="true"></i>');
-                                                    $shippingInformationDiv.find("#departureDate").html(shippingInformation.departureDate);
-                                                    $shippingInformationDiv.find("#arrivalDate").html(shippingInformation.arrivalDate);
+                                                    $shippingInformationDiv.find("#departureDate").html(moment(shippingInformation.departureDate).format("MMMM D, YYYY"));
+                                                    $shippingInformationDiv.find("#arrivalDate").html(moment(shippingInformation.arrivalDate).format("MMMM D, YYYY"));
+                                                    $shippingInformationDiv.closest("tr").prev().find("td:eq(6) span>span:eq(1)").html(moment(shippingInformation.expectedDate).format("MMMM D, YYYY"));
                                                     $shippingInformationDiv.closest("tr").prev().find("#shipmentStatus").html(shippingInformation.shipmentStatus + ' <i class="fa fa-ship" aria-hidden="true"></i>');
-                                                    $shippingInformationDiv.closest("tr").prev().find("td:eq(6) span>span:eq(1)").html(shippingInformation.expectedDate);
 
                                                 break;
 
@@ -300,10 +300,10 @@ $(document).ready(function () {
                                                     }
 
                                                     $shippingInformationDiv.find("#shipmentStatus").html(shippingInformation.shipmentStatus + ' <i class="fa fa-truck" aria-hidden="true"></i>');
-                                                    $shippingInformationDiv.find("#departureDate").html(shippingInformation.departureDate);
-                                                    $shippingInformationDiv.find("#arrivalDate").html(shippingInformation.arrivalDate);
+                                                    $shippingInformationDiv.find("#departureDate").html(moment(shippingInformation.departureDate).format("MMMM D, YYYY"));
+                                                    $shippingInformationDiv.find("#arrivalDate").html(moment(shippingInformation.arrivalDate).format("MMMM D, YYYY"));
+                                                    $shippingInformationDiv.closest("tr").prev().find("td:eq(6) span>span:eq(1)").html(moment(shippingInformation.expectedDate).format("MMMM D, YYYY"));
                                                     $shippingInformationDiv.closest("tr").prev().find("#shipmentStatus").html(shippingInformation.shipmentStatus + ' <i class="fa fa-truck" aria-hidden="true"></i>');
-                                                    $shippingInformationDiv.closest("tr").prev().find("td:eq(6) span>span:eq(1)").html(shippingInformation.expectedDate);
 
                                                 break;
 
@@ -952,6 +952,13 @@ $(document).ready(function () {
 
                 var rowProductRowCollapseTemplate = _.template(rowProductRowCollapse);
 
+                if (response.shipping) {
+
+                    response.shipping.departureDate = moment(response.shipping.departureDate).format("MMMM D, YYYY");
+                    response.shipping.arrivalDate = moment(response.shipping.arrivalDate).format("MMMM D, YYYY");
+
+                }
+
                 row.child(rowProductRowCollapseTemplate({
                     order : response,
                     cartItems : response.cart.items
@@ -1103,10 +1110,10 @@ $(document).ready(function () {
                                         }
 
                                         $shippingInformationDiv.find("#shipmentStatus").html(shippingInformation.shipmentStatus + ' <i class="fa fa-ship" aria-hidden="true"></i>');
-                                        $shippingInformationDiv.find("#departureDate").html(shippingInformation.departureDate);
-                                        $shippingInformationDiv.find("#arrivalDate").html(shippingInformation.arrivalDate);
+                                        $shippingInformationDiv.find("#departureDate").html(moment(shippingInformation.departureDate).format("MMMM D, YYYY"));
+                                        $shippingInformationDiv.find("#arrivalDate").html(moment(shippingInformation.arrivalDate).format("MMMM D, YYYY") );
+                                        $shippingInformationDiv.closest("tr").prev().find("td:eq(6) span>span:eq(1)").html(moment(shippingInformation.expectedDate).format("MMMM D, YYYY"));
                                         $shippingInformationDiv.closest("tr").prev().find("#shipmentStatus").html(shippingInformation.shipmentStatus + ' <i class="fa fa-ship" aria-hidden="true"></i>');
-                                        $shippingInformationDiv.closest("tr").prev().find("td:eq(6) span>span:eq(1)").html(shippingInformation.expectedDate);
 
                                     break;
 
@@ -1124,10 +1131,10 @@ $(document).ready(function () {
                                         }
 
                                         $shippingInformationDiv.find("#shipmentStatus").html(shippingInformation.shipmentStatus + ' <i class="fa fa-truck" aria-hidden="true"></i>');
-                                        $shippingInformationDiv.find("#departureDate").html(shippingInformation.departureDate);
-                                        $shippingInformationDiv.find("#arrivalDate").html(shippingInformation.arrivalDate);
+                                        $shippingInformationDiv.find("#departureDate").html(moment(shippingInformation.departureDate).format("MMMM D, YYYY"));
+                                        $shippingInformationDiv.find("#arrivalDate").html(moment(shippingInformation.arrivalDate).format("MMMM D, YYYY"));
+                                        $shippingInformationDiv.closest("tr").prev().find("td:eq(6) span>span:eq(1)").html(moment(shippingInformation.expectedDate).format("MMMM D, YYYY"));
                                         $shippingInformationDiv.closest("tr").prev().find("#shipmentStatus").html(shippingInformation.shipmentStatus + ' <i class="fa fa-truck" aria-hidden="true"></i>');
-                                        $shippingInformationDiv.closest("tr").prev().find("td:eq(6) span>span:eq(1)").html(shippingInformation.expectedDate);
 
                                     break;
 

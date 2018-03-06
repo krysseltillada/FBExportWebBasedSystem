@@ -1,6 +1,9 @@
 package com.fb.exportorder.module.admin.handlers;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.Enumeration;
 import java.util.List;
 import java.util.Objects;
@@ -17,9 +20,9 @@ import org.springframework.stereotype.Component;
 
 import com.fb.exportorder.models.Employee;
 import com.fb.exportorder.models.SystemSettings;
-import com.fb.exportorder.models.customer.Customer;
 import com.fb.exportorder.module.admin.repository.ManageEmployeeRepository;
 import com.fb.exportorder.module.admin.repository.SystemSettingsRepository;
+import com.fb.exportorder.utilities.Time;
 
 
 @Component("adminLoginSuccessHandler")
@@ -72,11 +75,17 @@ public class LoginSuccessHandler implements AuthenticationSuccessHandler{
 		session.setAttribute("employeeId", customerId);
 		session.setAttribute("employeeProfileImageLink", profileImageLink);
 		
+		Date logoutTime = ((List<SystemSettings>)systemSettingsRepository.findAll()).get(0).getLogoutTime();
 		
-		String time = ((List<SystemSettings>)systemSettingsRepository.findAll()).get(0).getLogoutTime().toString();
-		String[] timeSplit = time.split(":");
+		session.setAttribute("logoutTime", Time.convertTimeToMilliseconds(logoutTime.getHours(), logoutTime.getMinutes(), logoutTime.getSeconds()));
+	
 		
-		session.setAttribute("logoutTime", timeSplit[1].charAt(1));
+//		String time = ((List<SystemSettings>)systemSettingsRepository.findAll()).get(0).getLogoutTime().toString();
+//		String[] timeSplit = time.split(":");
+//		
+//		System.out.println(timeSplit[1].charAt(1));
+		
+//		session.setAttribute("logoutTime", timeSplit[1].charAt(1));
 		
 		response.sendRedirect(request.getServletContext().getContextPath() + "/admin/dashboard");
 		

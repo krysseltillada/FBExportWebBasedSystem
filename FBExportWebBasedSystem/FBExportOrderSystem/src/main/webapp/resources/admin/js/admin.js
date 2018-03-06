@@ -92,7 +92,7 @@ $(document).ready(function () {
         function startTimer() {
             // wait before calling goInactive
         	
-            timeoutID = window.setTimeout(goInactive, $("#logoutTime").val() * 60000);
+            timeoutID = window.setTimeout(goInactive, $("#logoutTime").val());
         }
          
         function resetTimer(e) {
@@ -106,7 +106,7 @@ $(document).ready(function () {
         }
          
         function goActive() {
-        	console.log($("#logoutTime").val() * 60000);
+        	console.log($("#logoutTime").val());
             startTimer();
         }
     }
