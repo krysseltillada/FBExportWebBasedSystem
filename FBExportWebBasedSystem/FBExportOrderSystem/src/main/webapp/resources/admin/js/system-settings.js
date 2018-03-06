@@ -34,13 +34,14 @@ $(document).ready(function () {
             data : formData,
             success: function(result){
             	if(result == "Success"){
+            		
             		hidePreLoader();
             		iziToast.success({
             		    title: 'SUCCESS',
             		    message: "You've successfully update system settings!",
             		});
-            		
             		location.reload();
+            		
             	}else{
             		hidePreLoader();
             		iziToast.error({

@@ -23,34 +23,40 @@ public class ScheduledTasks {
 	private SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm");
 	private SystemSettingsBackup backup = new SystemSettingsBackup();
 	private SystemSettings settings;
+	public static String formattedTime = "";
 	
     @Scheduled(fixedRate = 59000)
     public void reportCurrentTime() {
-    	if(systemSettingsService.findAll().size() == 0) {
-			settings = new SystemSettings();
-			
-    		Date backupTime = new Date();
-    		backupTime.setHours(0);
-    		backupTime.setMinutes(0);
-    		backupTime.setSeconds(0);
-    		settings.setSystemBackupTime(backupTime);
-    	   
-    	   
-    	   
-    		Date logoutTime = new Date();
-    		logoutTime.setHours(0);
-    		logoutTime.setMinutes(3);
-    		logoutTime.setSeconds(0);
-    		settings.setLogoutTime(logoutTime);
-    		
-    		systemSettingsService.addSystemSettings(settings);
-    	}
-    	settings = systemSettingsService.findAll().get(0);
     	
-    	String formattedTime = dateFormat.format(settings.getSystemBackupTime().getTime());
+    	if(ScheduledTasks.formattedTime.equals("")) {
+    		if(systemSettingsService.findAll().size() == 0) {
+    			settings = new SystemSettings();
+    			
+        		Date backupTime = new Date();
+        		backupTime.setHours(0);
+        		backupTime.setMinutes(0);
+        		backupTime.setSeconds(0);
+        		settings.setSystemBackupTime(backupTime);
+        	   
+        	   
+        	   
+        		Date logoutTime = new Date();
+        		logoutTime.setHours(0);
+        		logoutTime.setMinutes(3);
+        		logoutTime.setSeconds(0);
+        		settings.setLogoutTime(logoutTime);
+        		
+        		systemSettingsService.addSystemSettings(settings);
+        	}
+    		
+        	settings = systemSettingsService.findAll().get(0);
+        	ScheduledTasks.formattedTime = dateFormat.format(settings.getSystemBackupTime().getTime());
+    	}
+    	
     	String currentTime = dateFormat.format(Calendar.getInstance().getTime());
     	if(formattedTime.equals(currentTime))
     		backup.backupData("fbexport");
     	
+
     }
 }
