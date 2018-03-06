@@ -65,7 +65,7 @@ CREATE TABLE `authorities` (
   `authority` varchar(255) DEFAULT NULL,
   `account_id` bigint(20) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -74,7 +74,7 @@ CREATE TABLE `authorities` (
 
 LOCK TABLES `authorities` WRITE;
 /*!40000 ALTER TABLE `authorities` DISABLE KEYS */;
-INSERT INTO `authorities` VALUES (1,'ADMIN',0);
+INSERT INTO `authorities` VALUES (1,'ADMIN',0),(2,'EMPLOYEE',1);
 /*!40000 ALTER TABLE `authorities` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -229,7 +229,7 @@ CREATE TABLE `employee` (
 
 LOCK TABLES `employee` WRITE;
 /*!40000 ALTER TABLE `employee` DISABLE KEYS */;
-INSERT INTO `employee` VALUES (0,'Admin1','Admin','Admin','1700',23,'63','Admin1@gmail.com','09996668084','','Admin','MALE','Admin','Admin','$2a$10$w921HXavi.mOnflh.yIQNePCcnsgP50S7BwkZr9Zknd6IVzAcKflK',NULL,'Admin1','Admin');
+INSERT INTO `employee` VALUES (0,'Admin1','Admin','Afghanistan','1700',23,'63','Admin1@gmail.com','09996668084','','Alfred','MALE','Borja','Admin','$2a$10$Kxwf9GD2BVyykP9Mx3yrje/692ql8Y3jMIZl53oRtZHNNzsOrH8cu',NULL,'Admin1','Pro'),(1,'Employee1','Employee','Afghanistan','Employee1',18,'93','Employee1@gmail.com','09996668084','','First','MALE','Last','Employee','$2a$10$xAx8Zkkma11LN1Yhaig9yu22VWiej/vckZaO6uIfo70quuDfbc5MK','/resources/admin/img/profile-male.jpg','Employee1','CEO');
 /*!40000 ALTER TABLE `employee` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -253,6 +253,7 @@ CREATE TABLE `hibernate_sequences` (
 
 LOCK TABLES `hibernate_sequences` WRITE;
 /*!40000 ALTER TABLE `hibernate_sequences` DISABLE KEYS */;
+INSERT INTO `hibernate_sequences` VALUES ('account',1);
 /*!40000 ALTER TABLE `hibernate_sequences` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -354,7 +355,7 @@ CREATE TABLE `product` (
   PRIMARY KEY (`product_id`),
   KEY `FKg0klkuq150g13y1o1porbpxrj` (`rating_rating_id`),
   CONSTRAINT `FKg0klkuq150g13y1o1porbpxrj` FOREIGN KEY (`rating_rating_id`) REFERENCES `rating` (`rating_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -363,6 +364,7 @@ CREATE TABLE `product` (
 
 LOCK TABLES `product` WRITE;
 /*!40000 ALTER TABLE `product` DISABLE KEYS */;
+INSERT INTO `product` VALUES (1,'2018-03-07','2018-03-06','2018-03-06','qwe','\0','qwe','qwe',200,'/products/c4ca4238a0b923820dcc509a6f75849b.jpg','POSTED','qwe','qwe','09996668084',400,1);
 /*!40000 ALTER TABLE `product` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -387,6 +389,7 @@ CREATE TABLE `product_preview_image_links` (
 
 LOCK TABLES `product_preview_image_links` WRITE;
 /*!40000 ALTER TABLE `product_preview_image_links` DISABLE KEYS */;
+INSERT INTO `product_preview_image_links` VALUES (1,'/products/6ec6b0f7aa92f023e3c3b1ad23548109.jpg'),(1,'/products/9fd3cb4ccb470a37d4a22d72724ac8ea.jpg'),(1,'/products/7331960cb0c4278a6ff6de6d1a3b3352.jpg');
 /*!40000 ALTER TABLE `product_preview_image_links` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -402,7 +405,7 @@ CREATE TABLE `rating` (
   `rate` double NOT NULL,
   `views` int(11) NOT NULL,
   PRIMARY KEY (`rating_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -411,6 +414,7 @@ CREATE TABLE `rating` (
 
 LOCK TABLES `rating` WRITE;
 /*!40000 ALTER TABLE `rating` DISABLE KEYS */;
+INSERT INTO `rating` VALUES (1,0,0);
 /*!40000 ALTER TABLE `rating` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -659,7 +663,7 @@ CREATE TABLE `system_settings` (
 
 LOCK TABLES `system_settings` WRITE;
 /*!40000 ALTER TABLE `system_settings` DISABLE KEYS */;
-INSERT INTO `system_settings` VALUES (1,'00:03:00','12:00:00');
+INSERT INTO `system_settings` VALUES (1,'00:30:00','21:00:00');
 /*!40000 ALTER TABLE `system_settings` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -700,4 +704,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-03-05 22:14:10
+-- Dump completed on 2018-03-06 21:01:05

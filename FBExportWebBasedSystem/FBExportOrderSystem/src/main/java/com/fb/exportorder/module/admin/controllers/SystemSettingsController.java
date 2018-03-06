@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.fb.exportorder.ScheduledTasks;
 import com.fb.exportorder.models.SystemSettings;
 import com.fb.exportorder.module.admin.service.SystemSettingsService;
 import com.fb.exportorder.utilities.SystemSettingsBackup;
@@ -69,6 +70,9 @@ public class SystemSettingsController {
 			systemSettings.setSystemBackupTime(systemBackupTime);
 			
 			systemSettingsService.addSystemSettings(systemSettings);
+			
+			SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm");
+			ScheduledTasks.formattedTime = dateFormat.format(systemSettings.getSystemBackupTime().getTime());
 			
 			session.setAttribute("logoutTime", logoutTime.getMinutes());
 		
