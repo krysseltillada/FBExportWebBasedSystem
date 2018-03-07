@@ -1,5 +1,6 @@
 $(document).ready (function () {
     $('#systemLog').DataTable({
-        "order" : []
+        "order" : [],
+        "lengthMenu" : [5, 10, 25]
     });
 });

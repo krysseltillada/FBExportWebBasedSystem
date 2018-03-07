@@ -7,7 +7,7 @@
         <!--Section heading-->
         <h1 class="section-heading mt-5 pt-4 wow fadeIn" data-wow-delay="0.2s">Contact us</h1>
         <!--Section description-->
-        <p class="section-description mb-5 pb-5 wow fadeIn" data-wow-delay="0.2s">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugit, error amet numquam iure provident voluptate esse quasi, veritatis totam voluptas nostrum quisquam eum porro a pariatur accusamus veniam.</p>
+        <p class="section-description mb-5 pb-5 wow fadeIn" data-wow-delay="0.2s">Contact us to provide you with more information, answer any questions you may have and create an effective solution for your instructional needs.</p>
 
         </div>
 
@@ -88,13 +88,12 @@
                     <div class="col-md-4">
                         <a class="btn-floating btn-cyan-3  btn-cyan-3"><i class="fa fa-phone"></i></a>
                         <p>+ 01 234 567 89</p>
-                        <p>Mon - Fri, 8:00-22:00</p>
+                        <p>Mon - Fri, 8:00AM-5:00PM</p>
                     </div>
 
                     <div class="col-md-4">
                         <a class="btn-floating btn-cyan-3  btn-cyan-3"><i class="fa fa-envelope"></i></a>
-                        <p>info@gmail.com</p>
-                        <p>sale@gmail.com</p>
+                        <p>fongbrosinc@gmail.com</p>
                     </div>
                 </div>
 

@@ -16,9 +16,9 @@
                 <!--Description-->
                 <h4 class="mb-5">We Provide High Quality services</h4>
                 <!--Content-->
-                <p class="grey-text" align="justify">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nemo animi soluta ratione quisquam, dicta ab cupiditate iure eaque? Repellendus voluptatum, magni impedit eaque delectus, beatae maxime temporibus maiores quibusdam quasi. Rem magnam ad perferendis iusto sint tempora ea voluptatibus iure, animi excepturi modi aut possimus in hic molestias repellendus illo ullam odit quia velit. </p>
+                <p class="grey-text" align="justify">	The Fong Bros International Corporation is a marine product supplier that exports seafood products from the Philippines to other parts of Southeast Asia. We have many buying stations located here in Philippines that supplies them with the seafood products they export. The main office is located in Paranaque City, and their main way of transporting products is through Shipment.</p>
 
-                <p class="grey-text" align="justify">Qui expedita sit quo, maxime molestiae. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nemo animi soluta ratione quisquam, dicta ab cupiditate iure eaque repellendus voluptatum.</p>
+                <p class="grey-text" align="justify">	We deliver the best and quality products to our Customer and to maintain high standards for excellent value for money. We continue to develop relationship with out customers and suppliers, which has been the main foundation of our decades of success</p>
                 <br>
 
 
@@ -29,7 +29,7 @@
             <div class="col-lg-4 ml-lg-auto col-md-5 mb-5 wow fadeIn" data-wow-delay="0.3s">
 
                 <!--Image-->
-                <img src="https://mdbootstrap.com/img/Photos/Vertical/People/img%20%282%29.jpg" class="img-fluid">
+                <img src="<c:url value = '/resources/about-us-1.jpg' />" style="height:400px; width:400px;" class="img-fluid">
 
             </div>
             <!--/Second column-->
@@ -48,15 +48,14 @@
         <!--Section heading-->
         <h1 class="py-5 font-bold text-center">Why is it so great?</h1>
         <!--Section description-->
-        <p class="px-5 mb-5 pb-3 lead grey-text text-center">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
-        aliqua. Ut enim ad minim veniam.</p>
+        <p class="px-5 mb-5 pb-3 lead grey-text text-center">We are committed to provide the best quality product, timely delivery and assistance to our customers. We are rapidly expanding our target market from Southeast Asia Region.</p>
 
         <!--Grid row-->
         <div class="row pt-2">
 
         <!--Grid column-->
         <div class="col-lg-5 mb-r center-on-small-only">
-            <img src="https://mdbootstrap.com/img/Photos/Others/screens-section.jpg" alt="" class="img-fluid z-depth-0">
+            <img src="<c:url value = '/resources/about-us-2.jpg'/>" style="height:400px; width:400px;"  class="img-fluid z-depth-0">
         </div>
         <!--Grid column-->
 
@@ -69,9 +68,9 @@
                 <i class="fa fa-mail-forward fa-lg indigo-text"></i>
             </div>
             <div class="col-10">
-                <h5 class="font-bold text-left mb-3 dark-grey-text">Safety</h5>
-                <p class="grey-text text-left">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reprehenderit maiores nam, aperiam minima assumenda
-                deleniti hic.</p>
+                <h5 class="font-bold text-left mb-3 dark-grey-text">Provies High Quality Service</h5>
+                <p class="grey-text text-left">We believe that by providing our customers with the highest standard of service and range of seafood products.
+                .</p>
             </div>
             </div>
             <!--Grid row-->
@@ -82,9 +81,8 @@
                 <i class="fa fa-mail-forward fa-lg indigo-text"></i>
             </div>
             <div class="col-10">
-                <h5 class="font-bold text-left mb-3 dark-grey-text">Technology</h5>
-                <p class="grey-text text-left">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reprehenderit maiores nam, aperiam minima assumenda
-                deleniti hic.</p>
+                <h5 class="font-bold text-left mb-3 dark-grey-text">Provides High Quality Products</h5>
+                <p class="grey-text text-left">We're have an unrivaled desire to supply our customers with top quality fish & Seafood that has been prepared by our experienced qualified staff.</p>
             </div>
             </div>
             <!--Grid row-->
@@ -95,9 +93,8 @@
                 <i class="fa fa-mail-forward fa-lg indigo-text"></i>
             </div>
             <div class="col-10">
-                <h5 class="font-bold text-left mb-3 dark-grey-text">Finance</h5>
-                <p class="grey-text text-left">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reprehenderit maiores nam, aperiam minima assumenda
-                deleniti hic.</p>
+                <h5 class="font-bold text-left mb-3 dark-grey-text">Locally sourced quality fish and Seafood Products</h5>
+                <p class="grey-text text-left">Our produce arrives to us fresh from the sea so our customers can enjoy the best quality we can provide.</p>
             </div>
             </div>
             <!--Grid row-->

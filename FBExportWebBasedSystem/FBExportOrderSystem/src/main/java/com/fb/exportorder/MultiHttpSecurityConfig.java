@@ -144,7 +144,8 @@ public class MultiHttpSecurityConfig {
         					 "/admin/inventory/edit-product/*",
         					 "/admin/manage-accounts",
         					 "/admin/orders",
-        					 "/admin/system-settings").hasAnyAuthority("ADMIN", "EMPLOYEE")
+        					 "/admin/system-settings",
+        					 "/admin/report-logs").hasAnyAuthority("ADMIN", "EMPLOYEE")
         		.and()
 	    		.formLogin()
 	    		.loginPage("/admin/login")
