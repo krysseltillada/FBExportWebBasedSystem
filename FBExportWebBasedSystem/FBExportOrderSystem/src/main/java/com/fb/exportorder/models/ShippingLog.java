@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -20,14 +21,22 @@ public class ShippingLog {
 	private String header;
 	private String description;
 	
-	@Embedded
-	private Address address;
+	@Lob
+	private String address;
 	
 	@Temporal(TemporalType.DATE)
 	private Date date;
 	
 	@Temporal(TemporalType.TIME)
 	private Date time;
+
+	public Long getShippingLogId() {
+		return shippingLogId;
+	}
+
+	public void setShippingLogId(Long shippingLogId) {
+		this.shippingLogId = shippingLogId;
+	}
 
 	public String getHeader() {
 		return header;
@@ -45,11 +54,11 @@ public class ShippingLog {
 		this.description = description;
 	}
 
-	public Address getAddress() {
+	public String getAddress() {
 		return address;
 	}
 
-	public void setAddress(Address address) {
+	public void setAddress(String address) {
 		this.address = address;
 	}
 
@@ -68,5 +77,13 @@ public class ShippingLog {
 	public void setTime(Date time) {
 		this.time = time;
 	}
+
+	@Override
+	public String toString() {
+		return "ShippingLog [shippingLogId=" + shippingLogId + ", header=" + header + ", description=" + description
+				+ ", address=" + address + ", date=" + date + ", time=" + time + "]";
+	}
+	
+	
 
 }

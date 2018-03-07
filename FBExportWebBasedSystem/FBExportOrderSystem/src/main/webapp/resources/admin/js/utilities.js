@@ -4,11 +4,13 @@ var convertMass = function (from, to, value) {
 
 var formatMoney = function (val, sign, formatValue) {
 
-    console.log("taee");
-
     return accounting.formatMoney(val,
                                     {
                                         symbol : sign,
                                         format : formatValue
                                     });
+};
+
+var convertFlatpickrDateToSystemDate = function (date) {
+        return flatpickr.formatDate(flatpickr.parseDate(date, "F j, Y"), "Y-m-d");
 };

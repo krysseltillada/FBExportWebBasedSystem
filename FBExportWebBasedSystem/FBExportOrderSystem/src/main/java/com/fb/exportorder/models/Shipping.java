@@ -32,7 +32,7 @@ public class Shipping {
 	@Embedded
 	private VesselStatus vesselStatus;
 	
-	@OneToMany(cascade=CascadeType.ALL)
+	@OneToMany(cascade=CascadeType.ALL, orphanRemoval = true)
 	private List<ShippingLog> shippingLog = new ArrayList<ShippingLog>();
 	
 	@Temporal(TemporalType.DATE)

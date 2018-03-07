@@ -18,10 +18,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.fb.exportorder.models.Shipping;
+import com.fb.exportorder.models.ShippingLog;
 import com.fb.exportorder.models.VesselStatus;
 import com.fb.exportorder.models.customer.Order;
 import com.fb.exportorder.models.enums.OrderStatus;
 import com.fb.exportorder.models.enums.ShipmentStatus;
+import com.fb.exportorder.module.admin.service.ShippingLogService;
 import com.fb.exportorder.module.admin.service.ShippingService;
 import com.fb.exportorder.module.customer.service.OrderService;
 
@@ -35,6 +37,9 @@ public class OrdersController {
 	
 	@Autowired
 	ShippingService shippingService;
+	
+	@Autowired
+	ShippingLogService shippingLogService;
 	
 	Map<OrderStatus, String> orderStatusColor = new HashMap<OrderStatus, String>(){{
 		put(OrderStatus.TO_SHIP, "#796AEE");
@@ -55,6 +60,7 @@ public class OrdersController {
 	}};
 	
 	SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+	SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm");
 	
 	@RequestMapping("/admin/orders")
 	public String orders(Model model) {
@@ -200,6 +206,79 @@ public class OrdersController {
 		}
 		
 		return "";
+	}
+	
+	@RequestMapping(value = "/admin/orders/validateShippingLog", method = RequestMethod.POST)
+	@ResponseBody String validateShippingLog(@RequestParam String shippingLogJSON) {
+		
+		JSONObject shippingLog = null;
+		List<String> errorMessages = null;
+		
+		try {
+			shippingLog = (JSONObject)new JSONParser().parse(shippingLogJSON);
+			
+					
+			errorMessages = shippingLogService.validateShipping((String)shippingLog.get("header"), 
+															    (String)shippingLog.get("description"), 
+															    (String)shippingLog.get("address"), 
+															    (String)shippingLog.get("date"), 
+															    (String)shippingLog.get("time"));
+					
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		
+		JSONObject responseMessage = new JSONObject();
+		
+		System.out.println("run");
+		
+		if (errorMessages.isEmpty()) {
+			responseMessage.put("status", "success");
+		}else {
+			responseMessage.put("status", "error");
+			responseMessage.put("message", errorMessages.get(0));
+		}
+		
+		return responseMessage.toJSONString();
+	}
+	
+	@RequestMapping(value = "/admin/orders/addShippingLog", method = RequestMethod.POST)
+	@ResponseBody String addShippingLog(@RequestParam String shippingLogJSON) {
+		
+		JSONObject shippingLog = null;
+		long orderId = 0;
+		
+		try {
+			shippingLog = (JSONObject)new JSONParser().parse(shippingLogJSON);
+			
+			orderId = Long.parseLong((String)shippingLog.get("orderId"));
+
+			ShippingLog newShippingLog = new ShippingLog();
+			
+			newShippingLog.setHeader((String)shippingLog.get("header"));
+			newShippingLog.setDescription((String)shippingLog.get("description"));
+			newShippingLog.setAddress((String)shippingLog.get("address"));
+			
+			try {
+				newShippingLog.setDate(dateFormat.parse((String)shippingLog.get("date")));
+				newShippingLog.setTime(timeFormat.parse((String)shippingLog.get("time")));
+			} catch (java.text.ParseException e) {
+				e.printStackTrace();
+			}
+			
+			shippingLogService.addShippingLog(newShippingLog, 
+											  orderId);
+					
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		
+		return "";
+	}
+	
+	@RequestMapping(value = "/admin/orders/getShippingLog", method = RequestMethod.POST)
+	@ResponseBody List<ShippingLog> getShippingLog (@RequestParam String orderId) {
+		return shippingLogService.getShippingLogs(Long.parseLong((String)orderId));
 	}
 	
 	

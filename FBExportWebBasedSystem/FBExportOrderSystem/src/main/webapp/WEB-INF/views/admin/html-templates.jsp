@@ -348,14 +348,22 @@
                             </div>
 
                             <div class="list-group">
-                                <span class="list-group-item list-group-item-action flex-column align-items-start">
-                                    <div class="d-flex w-100 justify-content-between">
-                                    <h5 class="mb-1">Delivered already</h5>
-                                    <small>Nov 28 1998 - 12:00 PM</small>
-                                    </div>
-                                    <p class="mb-1">delivered the product already</p>
-                                    <small>Phillipines ncr las pinas city</small>
-                                </span>
+                                {{ for (var i = order.shipping.shippingLog.length - 1; i >= 0; --i) { }}
+                        
+                                    <span class="list-group-item list-group-item-action flex-column align-items-start">
+                                        
+                                        <div class="d-flex w-100 justify-content-between">
+                                        <input type = "hidden" value = "{{=order.shipping.shippingLog[i].shippingLogId}}" id = "shippingDeleteId" />
+                                        <h5 class="mb-1">{{=order.shipping.shippingLog[i].header}} <small>({{=order.shipping.shippingLog[i].date}} - {{=order.shipping.shippingLog[i].time}})</small></h5>
+                                        <button type="button" class="close delete-activity" aria-label="Close">
+			                                                            <span aria-hidden="true">&times;</span>
+			                                                    </button>
+                                        </div>
+                                        <p class="mb-1">{{=order.shipping.shippingLog[i].description}}</p>
+                                        <small>{{=order.shipping.shippingLog[i].address}}</small>
+                                    </span>
+
+                                {{ } }}
                             </div>
                         </div>
 
@@ -663,14 +671,21 @@
                 </div>
 
                 <div class="list-group">
-                    <span class="list-group-item list-group-item-action flex-column align-items-start">
-                        <div class="d-flex w-100 justify-content-between">
-                        <h5 class="mb-1">Delivered already</h5>
-                        <small>Nov 28 1998 - 12:00 PM</small>
-                        </div>
-                        <p class="mb-1">delivered the product already</p>
-                        <small>Phillipines ncr las pinas city</small>
-                    </span>
+
+                    {{ for (var i = 0; i != order.shipping.shippingLog.length; ++i) { }}
+                        
+                        <span class="list-group-item list-group-item-action flex-column align-items-start">
+                            
+                            <div class="d-flex w-100 justify-content-between">
+                            <h5 class="mb-1">{{=order.shipping.shippingLog[i].header}}</h5>
+                            <small>{{=order.shipping.shippingLog[i].date}} - {{=order.shipping.shippingLog[i].time}}</small>
+                            </div>
+                            <p class="mb-1">{{=order.shipping.shippingLog[i].description}}</p>
+                            <small>{{=order.shipping.shippingLog[i].address}}</small>
+                        </span>
+
+                    {{ } }}
+
                 </div>
             </div>
 
