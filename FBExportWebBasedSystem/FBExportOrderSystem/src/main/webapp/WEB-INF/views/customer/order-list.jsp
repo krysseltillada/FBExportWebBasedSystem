@@ -141,7 +141,7 @@
 			                                                </div>
 			                                                <div class = "col-sm-3">
 			                                                    <strong> TOTAL PRICE: </strong> <br />
-			                                                        <span>${order.totalPrice}</span> <span>php</span>
+			                                                        <span class = "price">${order.totalPrice}</span> <span>php</span>
 			                                                </div>
 			                                                <div class = "col-sm-3">
 			                                                    <strong> PAYMENT METHOD: </strong> <br />
@@ -237,7 +237,7 @@
 				                                                                        <td>${cartItem.weight.weight} ${cartItem.weight.weightType}</td>
 				                                                                       
 				                                                                        <td>
-				                                                                            <span>${cartItem.price}</span> <span>PHP</span>
+				                                                                            <span class = "price">${cartItem.price}</span> <span>PHP</span>
 				                                                                        </td>
 				                                                                    </tr>
 			                                                                    
@@ -248,8 +248,8 @@
 			                                                                    <tr>
 			                                                                        <th></th>
 			                                                                        <th></th>
-			                                                                        <th>Total: ${order.totalWeight} KILO </th>
-			                                                                        <th>Total: <span>${order.totalPrice}</span> <span>PHP</span> </th>
+			                                                                        <th>Total: <fmt:formatNumber value = "${order.totalWeight}" maxFractionDigits = "1" /> KILO </th>
+			                                                                        <th>Total: <span class = "price">${order.totalPrice}</span> <span>PHP</span> </th>
 			                                                                    </tr>
 			
 			                                                                </tfoot>
@@ -305,7 +305,7 @@
 															</div>
 															<div class = "col-sm-3">
 																<strong> TOTAL PRICE: </strong> <br />
-																	<span>${order.totalPrice}</span> <span>php</span>
+																	<span>${order.totalPrice}</span> <span>PHP</span>
 															</div>
 															<div class = "col-sm-3">
 																<strong> PAYMENT METHOD: </strong> <br />
@@ -482,7 +482,7 @@
 															</div>
 															<div class = "col-sm-3">
 																<strong> TOTAL PRICE: </strong> <br />
-																	<span>${order.totalPrice}</span> <span>php</span>
+																	<span class = "price">${order.totalPrice}</span> <span>PHP</span>
 															</div>
 															<div class = "col-sm-3">
 																<strong> PAYMENT METHOD: </strong> <br />
@@ -575,7 +575,7 @@
 				                                                                        <td>${cartItem.weight.weight} ${cartItem.weight.weightType}</td>
 				                                                                        
 				                                                                        <td>
-				                                                                            <span>${cartItem.price}</span> <span>PHP</span>
+				                                                                            <span class = "price">${cartItem.price}</span> <span>PHP</span>
 				                                                                        </td>
 				                                                                    </tr>
 			                                                                    
@@ -587,8 +587,8 @@
 																		<tr>
 																			<th></th>
 																			<th></th>
-																			<th>Total: ${order.totalWeight} KILO </th>
-			                                                                <th>Total: <span>${order.totalPrice}</span> <span>PHP</span> </th>
+																			<th>Total: <fmt:formatNumber value = "${order.totalWeight}" maxFractionDigits="1" /> KILO </th>
+			                                                                <th>Total: <span class = "price">${order.totalPrice}</span> <span>PHP</span> </th>
 																		</tr>
 			
 																	</tfoot>
@@ -621,7 +621,7 @@
 			
 													<div class = "row">
 														<div class = "col-sm-7">
-															<strong class = "ml-2 red-text" style = "font-size: 14px; position: relative; top: 15px;"> *reason: bad weather. </strong>
+															<strong class = "ml-2 red-text" style = "font-size: 14px; position: relative; top: 15px;"> *reason: ${order.reason} </strong>
 														</div>
 														<div class = "col-sm-5">
 															<button type="button" class="btn btn-primary float-right">Delete</button>
@@ -653,7 +653,7 @@
 															</div>
 															<div class = "col-sm-3">
 																<strong> TOTAL PRICE: </strong> <br />
-																	<span>${order.totalPrice}</span> <span>php</span>
+																	<span class = "price">${order.totalPrice}</span> <span>PHP</span>
 															</div>
 															<div class = "col-sm-3">
 																<strong> PAYMENT METHOD: </strong> <br />
@@ -763,7 +763,7 @@
 				                                                                        <td>${cartItem.weight.weight} ${cartItem.weight.weightType}</td>
 				                                                                        
 				                                                                        <td>
-				                                                                            <span>${cartItem.price}</span> <span>PHP</span>
+				                                                                            <span class = "price">${cartItem.price}</span> <span>PHP</span>
 				                                                                        </td>
 				                                                                    </tr>
 			                                                                    
@@ -775,8 +775,8 @@
 																		<tr>
 																			<th></th>
 																			<th></th>
-																			<th>Total: ${order.totalWeight} KILO </th>
-			                                                                <th>Total: <span>${order.totalPrice}</span> <span>PHP</span> </th>
+																			<th>Total: <fmt:formatNumber value = "${order.totalWeight}" maxFractionDigits = "1" /> KILO </th>
+			                                                                <th>Total: <span class = "price">${order.totalPrice}</span> <span>PHP</span> </th>
 																		</tr>
 			
 																	</tfoot>
@@ -834,7 +834,7 @@
 															</div>
 															<div class = "col-sm-3">
 																<strong> TOTAL PRICE: </strong> <br />
-																	<span>${order.totalPrice}</span> <span>php</span>
+																	<span class = "price">${order.totalPrice}</span> <span>PHP</span>
 															</div>
 															<div class = "col-sm-3">
 																<strong> PAYMENT METHOD: </strong> <br />
@@ -927,7 +927,7 @@
 				                                                                        <td>${cartItem.weight.weight} ${cartItem.weight.weightType}</td>
 				                                                                        
 				                                                                        <td>
-				                                                                            <span>${cartItem.price}</span> <span>PHP</span>
+				                                                                            <span class = "price">${cartItem.price}</span> <span>PHP</span>
 				                                                                        </td>
 				                                                                    </tr>
 			                                                                    
@@ -939,8 +939,8 @@
 																		<tr>
 																			<th></th>
 																			<th></th>
-																			<th>Total: ${order.totalWeight} KILO </th>
-			                                                                <th>Total: <span>${order.totalPrice}</span> <span>PHP</span> </th>
+																			<th>Total: <fmt:formatNumber value = "${order.totalWeight}" maxFractionDigits = "1" /> KILO </th>
+			                                                                <th>Total: <span class = "price">${order.totalPrice}</span> <span>PHP</span> </th>
 																		</tr>
 			
 																	</tfoot>
@@ -969,11 +969,22 @@
 			
 																	<p>
 																		<strong> Expected date: </strong> <br />
-																		NOVEMBER 29 1998
+																		<fmt:formatDate value = "${order.shipping.expectedDate}" dateStyle = "LONG" type = "date" />
 																	</p>
 														</div>
 													</div>
 			
+													<hr class = "m-0"/>
+			
+													<div class = "row">
+														<div class = "col-sm-9">
+															<strong class = "ml-2 blue-text" style = "font-size: 14px; position: relative; top: 15px;"> *reminder: click the received button if your order is receive. </strong>
+														</div>
+														<div class = "col-sm-3">
+															<button type="button" class="btn btn-primary float-right">Received</button>
+														</div>
+													</div>
+													
 												</div>
 											</div> 
                             				
@@ -998,7 +1009,7 @@
 															</div>
 															<div class = "col-sm-3">
 																<strong> TOTAL PRICE: </strong> <br />
-																	<span>${order.totalPrice}</span> <span>php</span>
+																	<span class = "price">${order.totalPrice}</span> <span>PHP</span>
 															</div>
 															<div class = "col-sm-3">
 																<strong> PAYMENT METHOD: </strong> <br />
@@ -1015,7 +1026,7 @@
 														<h6 class = "mb-0">
 															<strong>
 																Status:
-																<span class = "light-green-text"> Paid </strong>
+																<span class = "light-green-text"> Paid </span> </strong>
 														</h6>
 			
 														<div class="dropdown blue-text" style = "font-size: 13px;">
@@ -1090,20 +1101,19 @@
 				                                                                        <td>${cartItem.weight.weight} ${cartItem.weight.weightType}</td>
 				                                                                        
 				                                                                        <td>
-				                                                                            <span>${cartItem.price}</span> <span>PHP</span>
+				                                                                            <span class = "price">${cartItem.price}</span> <span>PHP</span>
 				                                                                        </td>
 				                                                                    </tr>
 			                                                                    
 			                                                            </c:forEach>
-																		
 			
 																	</tbody>
 																	<tfoot>
 																		<tr>
 																			<th></th>
 																			<th></th>
-																			<th>Total: ${order.totalWeight} KILO </th>
-			                                                                <th>Total: <span>${order.totalPrice}</span> <span>PHP</span> </th>
+																			<th>Total: <fmt:formatNumber value = "${order.totalWeight}" maxFractionDigits = "1" /> KILO </th>
+			                                                                <th>Total: <span class = "price">${order.totalPrice}</span> <span>PHP</span> </th>
 																		</tr>
 			
 																	</tfoot>
@@ -1129,11 +1139,6 @@
 			                                                            <strong> Country(city): </strong> <br />
 			                                                            ${order.shippingAddress.address.country}(${order.shippingAddress.address.city})
 			                                                        </p>
-			
-																	<p>
-																		<strong> Expected date: </strong> <br />
-																		NOVEMBER 29 1998
-																	</p> 
 														</div>
 													</div>
 			
@@ -1159,7 +1164,7 @@
 															</div>
 															<div class = "col-sm-3">
 																<strong> TOTAL PRICE: </strong> <br />
-																	<span>${order.totalPrice}</span> <span>php</span>
+																	<span class = "price">${order.totalPrice}</span> <span>PHP</span>
 															</div>
 															<div class = "col-sm-3">
 																<strong> PAYMENT METHOD: </strong> <br />
@@ -1249,7 +1254,7 @@
 				                                                                        <td>${cartItem.weight.weight} ${cartItem.weight.weightType}</td>
 				                                                                        
 				                                                                        <td>
-				                                                                            <span>${cartItem.price}</span> <span>PHP</span>
+				                                                                            <span class = "price">${cartItem.price}</span> <span>PHP</span>
 				                                                                        </td>
 				                                                                    </tr>
 			                                                                    
@@ -1261,8 +1266,8 @@
 																		<tr>
 																			<th></th>
 																			<th></th>
-																			<th>Total: ${order.totalWeight} KILO </th>
-			                                                                <th>Total: <span>${order.totalPrice}</span> <span>PHP</span> </th>
+																			<th>Total: <fmt:formatNumber value = "${order.totalWeight}" maxFractionDigits="1" /> KILO </th>
+			                                                                <th>Total: <span class = "price">${order.totalPrice}</span> <span>PHP</span> </th>
 																		</tr>
 			
 																	</tfoot>
@@ -1291,7 +1296,7 @@
 
 																	<p>
 																		<strong> Expected date: </strong> <br />
-																		NOVEMBER 29 1998
+																		<fmt:formatDate value ="${order.expectedDate}" type = "date" dateStyle = "LONG" />
 																	</p>
 														</div>
 													</div>
@@ -1318,7 +1323,7 @@
 															</div>
 															<div class = "col-sm-3">
 																<strong> TOTAL PRICE: </strong> <br />
-																	<span>${order.totalPrice}</span> <span>php</span>
+																	<span class = "price">${order.totalPrice}</span> <span>PHP</span>
 															</div>
 															<div class = "col-sm-3">
 																<strong> PAYMENT METHOD: </strong> <br />
@@ -1411,7 +1416,7 @@
 						                                                                        <td>${cartItem.weight.weight} ${cartItem.weight.weightType}</td>
 						                                                                        
 						                                                                        <td>
-						                                                                            <span>${cartItem.price}</span> <span>PHP</span>
+						                                                                            <span class = "price">${cartItem.price}</span> <span>PHP</span>
 						                                                                        </td>
 						                                                                    </tr>
 					                                                                    
@@ -1423,8 +1428,8 @@
 																				<tr>
 																					<th></th>
 																					<th></th>
-																					<th>Total: ${order.totalWeight} KILO </th>
-					                                                                <th>Total: <span>${order.totalPrice}</span> <span>PHP</span> </th>
+																					<th>Total: <fmt:formatNumber value="${order.totalWeight}" maxFractionDigits="1" /> KILO </th>
+					                                                                <th>Total: <span class = "price">${order.totalPrice}</span> <span>PHP</span> </th>
 																				</tr>
 					
 																			</tfoot>
@@ -1480,7 +1485,7 @@
 															</div>
 															<div class = "col-sm-3">
 																<strong> TOTAL PRICE: </strong> <br />
-																	<span>${order.totalPrice}</span> <span>php</span>
+																	<span class = "price">${order.totalPrice}</span> <span>PHP</span>
 															</div>
 															<div class = "col-sm-3">
 																<strong> PAYMENT METHOD: </strong> <br />
@@ -1497,7 +1502,7 @@
 														<h6 class = "mb-0">
 															<strong>
 																Status:
-																<span class = "pink-text"> Refund </strong>
+																<span class = "pink-text"> Refund </span> </strong>
 														</h6>
 
 														<div class="dropdown blue-text" style = "font-size: 13px;">
@@ -1573,7 +1578,7 @@
 						                                                                        <td>${cartItem.weight.weight} ${cartItem.weight.weightType}</td>
 						                                                                        
 						                                                                        <td>
-						                                                                            <span>${cartItem.price}</span> <span>PHP</span>
+						                                                                            <span class = "price">${cartItem.price}</span> <span>PHP</span>
 						                                                                        </td>
 						                                                                    </tr>
 					                                                                    
@@ -1585,8 +1590,8 @@
 																				<tr>
 																					<th></th>
 																					<th></th>
-																					<th>Total: ${order.totalWeight} KILO </th>
-					                                                                <th>Total: <span>${order.totalPrice}</span> <span>PHP</span> </th>
+																					<th>Total: <fmt:formatNumber value = "${order.totalWeight}" maxFractionDigits="1"/> KILO </th>
+					                                                                <th>Total: <span class = "price">${order.totalPrice}</span> <span>PHP</span> </th>
 																				</tr>
 					
 																			</tfoot>
@@ -1613,10 +1618,6 @@
 			                                                            ${order.shippingAddress.address.country}(${order.shippingAddress.address.city})
 			                                                        </p>
 
-																	<p>
-																		<strong> Expected date: </strong> <br />
-																		NOVEMBER 29 1998
-																	</p>
 																</div>
 															</div>
 														</div>
@@ -1632,8 +1633,6 @@
                             
                             	</c:forEach>
 							</div>
-							
-		 
 
                                 <div class="d-flex justify-content-center">
 
@@ -1641,31 +1640,50 @@
                                         <ul class="pagination pagination-circle pg-blue mb-0">
 
 
-                                            <li class="page-item disabled"><a class="page-link">First</a></li>
+                                            <li class="page-item ${currentPageCount eq 0 ? 'disabled' : ''}">
+                                            	<c:url value = "/order-list" var = "firstOrderPageLink" >
+	                                            	<c:param name="pageNumber" value="0" />
+	                                            </c:url>
+                                            	<a class="page-link" href = "${firstOrderPageLink}">First</a>
+                                            </li>
 
 
-                                            <li class="page-item disabled">
-                                                <a class="page-link" aria-label="Previous">
+                                            <li class="page-item ${currentPageCount eq 0 ? 'disabled' : ''}">
+                                            	<c:url value = "/order-list" var = "prevOrderPageLink" >
+	                                            	<c:param name="pageNumber" value="${currentPageCount - 1}" />
+	                                            </c:url>
+                                                <a class="page-link" aria-label="Previous" href = "${prevOrderPageLink}">
                                                     <span aria-hidden="true">&laquo;</span>
                                                     <span class="sr-only">Previous</span>
                                                 </a>
                                             </li>
 
-                                            <li class="page-item active"><a class="page-link">1</a></li>
-                                            <li class="page-item"><a class="page-link">2</a></li>
-                                            <li class="page-item"><a class="page-link">3</a></li>
-                                            <li class="page-item"><a class="page-link">4</a></li>
-                                            <li class="page-item"><a class="page-link">5</a></li>
+											<c:forEach var = "pageCount" begin = "0" end = "${pageNumber}">
+	                                            <li class="page-item ${pageCount eq currentPageCount ? 'active' : ''}">
+	                                            	<c:url value = "/order-list" var = "orderListPageLink" >
+	                                            		<c:param name="pageNumber" value="${pageCount}" />
+	                                            	</c:url>
+	                                            	<a class="page-link" href = "${orderListPageLink}">${pageCount + 1}</a>
+	                                            </li>
+                                            </c:forEach>
 
 
-                                            <li class="page-item">
-                                                <a class="page-link" aria-label="Next">
+                                            <li class="page-item ${currentPageCount eq pageNumber ? 'disabled' : ''}">
+                                            	<c:url value = "/order-list" var = "nextOrderPageLink" >
+	                                            	<c:param name="pageNumber" value="${currentPageCount + 1}" />
+	                                            </c:url>
+                                                <a class="page-link" aria-label="Next" href = "${nextOrderPageLink}">
                                                     <span aria-hidden="true">&raquo;</span>
                                                     <span class="sr-only">Next</span>
                                                 </a>
                                             </li>
 
-                                            <li class="page-item"><a class="page-link">Last</a></li>
+                                            <li class="page-item">
+                                            	<c:url value = "/order-list" var = "lastOrderPageLink" >
+	                                            	<c:param name="pageNumber" value="${pageNumber}" />
+	                                            </c:url>
+                                            	<a class="page-link" href = "${lastOrderPageLink}">Last</a>
+                                            </li>
 
                                         </ul>
                                     </nav>

@@ -30,9 +30,13 @@
                                     <option selected> All </option>
                                     <option>Pending</option>
                                     <option value="1">Approved</option>
-                                    <option value="2">Reject</option>
+                                    <option value="2">Rejected</option>
                                     <option value="3">To Ship</option>
                                     <option value="3">Received</option>
+                                    <option>Paid</option>
+                                    <option>Returned</option>
+                                    <option>Cancelled</option>
+                                    <option>Refund</option>
                                 </select>
 
                                 <label class="mr-sm-2" for="inlineFormCustomSelect">Shipment: </label>

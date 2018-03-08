@@ -4,6 +4,7 @@
     <div class = "container">
         <h2 class = "mb-0">
             <a class="navbar-brand" href="<c:url value = '/' />" style = "margin-top: 5px; margin-bottom: 5px; color:#000;">
+            	<img class = "mr-1" src="<c:url value = '/resources/company-logo.png' />" width="30" height="30">
                 Fong Bros International Corp
             </a>
         </h2>

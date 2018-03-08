@@ -440,6 +440,13 @@ $(document).ready(function () {
                                             $productCartItem.html(formatMoney(fx($productCartItem.html()).from("PHP").to(currentCurrency), "", "%v"));
                                         });
 
+                                        $(".price").each(function () {
+                                            console.log($(this).html());
+
+                                            $(this).html(formatMoney(fx($(this).html()).from("PHP").to(currentCurrency), "", "%v"))
+                                            $(this).next().html(currentCurrency);
+                                        });
+
                                         updateProductCartInfo();
 
                                         $("#see-more-most-viewed-products").removeAttr("disabled");

@@ -12,6 +12,7 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -19,6 +20,7 @@ import com.fb.exportorder.models.customer.Activity;
 import com.fb.exportorder.models.customer.Cart;
 import com.fb.exportorder.models.customer.Customer;
 import com.fb.exportorder.models.customer.Item;
+import com.fb.exportorder.models.customer.Order;
 import com.fb.exportorder.module.customer.repository.ActivityRepository;
 import com.fb.exportorder.module.customer.repository.CustomerRepository;
 import com.fb.exportorder.module.customer.repository.ItemRepository;
@@ -153,6 +155,16 @@ public class CustomerServiceImpl implements CustomerService {
 	@Override
 	public Item getItemById(long id) {
 		return itemRepository.findOne(id);
+	}
+
+	@Override
+	public List<Order> getOrdersByCustomerId(int pageNumber, long customerId) {
+		return customerRepository.getOrdersByCustomerId(customerId, new PageRequest(pageNumber, 5));
+	}
+
+	@Override
+	public int getOrderCountByCustomerId(long customerId) {
+		return customerRepository.findOne(customerId).getOrders().size();
 	}
 
 }

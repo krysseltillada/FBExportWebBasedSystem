@@ -6,6 +6,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fb.exportorder.models.customer.Activity;
 import com.fb.exportorder.models.customer.Customer;
 import com.fb.exportorder.models.customer.Item;
+import com.fb.exportorder.models.customer.Order;
 
 public interface CustomerService {
 	public Customer getCustomerById(long customerId);
@@ -15,4 +16,6 @@ public interface CustomerService {
 	public long addToCart(Item item, long customerId);
 	public void removeToCart(Item item, long customerId);
 	public Item getItemById(long id);
+	public List<Order> getOrdersByCustomerId(int pageNumber, long customerId);
+	public int getOrderCountByCustomerId(long customerId);
 }

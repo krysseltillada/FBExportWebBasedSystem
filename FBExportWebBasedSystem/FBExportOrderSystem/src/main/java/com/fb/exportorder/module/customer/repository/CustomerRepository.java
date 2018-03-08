@@ -13,6 +13,7 @@ import org.springframework.stereotype.Repository;
 
 import com.fb.exportorder.models.customer.Activity;
 import com.fb.exportorder.models.customer.Customer;
+import com.fb.exportorder.models.customer.Order;
 
 @Repository
 public interface CustomerRepository
@@ -42,5 +43,8 @@ public interface CustomerRepository
 	
 	@Query("SELECT COUNT (c.username) > 0 FROM Customer c WHERE c.username = :username")
 	boolean isUsernameExists (@Param("username") String username);
+	
+	@Query("SELECT c.orders FROM Customer c WHERE c.id = :customerId")
+	List<Order> getOrdersByCustomerId (@Param("customerId") long customerId, Pageable pageable);
 	
 }
