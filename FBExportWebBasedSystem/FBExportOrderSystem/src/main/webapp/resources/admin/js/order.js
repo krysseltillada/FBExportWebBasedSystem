@@ -436,6 +436,162 @@ $(document).ready(function () {
                                                 $(this).find(".shipTrackingMap").html("");
                                             });
 
+                                            $orderDetailsRow.find("#btn-update-shipping-log").click(function () {
+                                                
+                                                console.log($(this).closest("tr").prev().find("#orderId").html());
+
+                                                var $shippingLogDiv = $(this).closest("#shippingLogCollapseItem-id-" + toShipInformation.orderId);
+                                                var $btnUpdateShippingLog = $(this);
+                                                // $(this).closest("div.collapse").collapse("hide");
+
+                                                var shippingLog = {
+                                                    orderId : $(this).closest("tr").prev().find("#orderId").html(),
+                                                    header : $shippingLogDiv.find("#shippingLogHeader").val(),
+                                                    description : $shippingLogDiv.find("#shippingLogDescription").val(),
+                                                    address : $shippingLogDiv.find("#shippingLogAddress").val(),
+                                                    date : convertFlatpickrDateToSystemDate($shippingLogDiv.find("#shippingLogDatePicker").val()),
+                                                    time : $shippingLogDiv.find("#shippingLogTimePicker").val() 
+                                                };
+
+                                                $.post("/FBExportSystem/admin/orders/validateShippingLog", {
+                                                    shippingLogJSON : JSON.stringify(shippingLog)
+                                                }, function (response) {
+
+                                                    if (response.status == "success") {
+
+                                                        $shippingLogDiv.find("#errorMessage").hide();
+                                                        $btnUpdateShippingLog.attr("disabled", "disabled");
+
+                                                        $.post("/FBExportSystem/admin/orders/addShippingLog", {
+                                                            shippingLogJSON : JSON.stringify(shippingLog)
+                                                        }, function (response) {
+
+                                                            console.log(response);
+
+                                                            var shippingLogItemRawTemplate = $("#shippingLogItemTemplate").html();
+                                                            var $shippingLogList =  $shippingLogDiv.find("div.list-group");
+
+                                                            $shippingLogDiv.find("div:first").collapse("hide");
+
+                                                            if ($shippingLogList.find("div.row").length > 0) 
+                                                                $shippingLogList.find("div.row").remove();
+                                                            
+                                                            $shippingLogList.prepend(_.template(shippingLogItemRawTemplate)({
+                                                                shippingLogId : response.shippingLogId,
+                                                                header : shippingLog.header,
+                                                                date : $shippingLogDiv.find("#shippingLogDatePicker").val(),
+                                                                time : shippingLog.time,
+                                                                description : shippingLog.description,
+                                                                address : shippingLog.address
+                                                            }));
+
+                                                            $shippingLogList.find("span:first button.delete-shipping-log").click(function () {
+
+                                                                var $btnDeleteShippingLog = $(this);
+                                                                var $shippingLogItem = $btnDeleteShippingLog.closest("span");
+                                                                var $shippingLogItemList = $shippingLogItem.closest("div.list-group");
+                                                                var id = toShipInformation.orderId;
+
+
+                                                                alertify.okBtn("delete")
+                                                                        .confirm("delete shipping log?", function () {
+                                                                            $.post("/FBExportSystem/admin/orders/deleteShippingLog", {
+                                                                                shippingLogId : $btnDeleteShippingLog.closest("span").find("#shippingDeleteId").val(),
+                                                                                orderId : id
+                                                                            }, function () {
+                                                                                $shippingLogItem.remove();        
+
+                                                                                if ($shippingLogItemList.find("span").length <= 0) {
+                                                                                    $shippingLogItemList.append("<div class='row'>" +
+                                                                                                                "<div class='mx-auto mt-2'>" +
+                                                                                                                    "<h5> No shipping logs here </h5>" +
+                                                                                                                "</div>" +
+                                                                                                            "</div>");
+                                                                                }
+
+                                                                            });
+                                                                        });
+
+                                                                $(".alertify").css("z-index", "10");
+                                                                
+                                                            });
+
+                                                            $shippingLogDiv.find("#shippingLogHeader").val("");
+                                                            $shippingLogDiv.find("#shippingLogDescription").val("");
+                                                            $shippingLogDiv.find("#shippingLogAddress").val("");
+                                                            $shippingLogDiv.find("#shippingLogDatePicker").val("");
+                                                            $shippingLogDiv.find("#shippingLogTimePicker").val(""); 
+
+                                                            $btnUpdateShippingLog.removeAttr("disabled");
+
+                                                            iziToast.success({
+                                                                    timeout : 2000,
+                                                                    progressBar : false,
+                                                                    message : "shipping log is added"
+                                                            });
+                                                            
+                                                        }, "json");
+
+
+                                                    } else {
+                                                        $shippingLogDiv.find("#errorMessage").html("*" + response.message);
+                                                        $shippingLogDiv.find("#errorMessage").show();
+                                                    }
+
+                                                }, "json");
+
+                                                
+                                            });
+
+                                            $orderDetailsRow.find("#btn-cancel-shipping-log").click(function () {
+
+                                                $(this).closest("div.collapse").collapse("hide");
+
+                                                var $btnCancelShippingInfo = $(this);
+
+                                                var $shippingLogDiv = $(this).closest("#shippingLogCollapseItem-id-" + toShipInformation.orderId);
+
+                                                $shippingLogDiv.find("#errorMessage").html("").hide();
+
+                                                $shippingLogDiv.find("#shippingLogHeader").val("");
+                                                $shippingLogDiv.find("#shippingLogDescription").val("");
+                                                $shippingLogDiv.find("#shippingLogAddress").val("");
+                                                $shippingLogDiv.find("#shippingLogDatePicker").val("");
+                                                $shippingLogDiv.find("#shippingLogTimePicker").val(""); 
+
+                                            });
+
+                                            $orderDetailsRow.find("div#shippingLogCollapseItem-id-" + toShipInformation.orderId)
+                                                            .find("div.list-group span button.delete-shipping-log").click(function () {
+
+
+                                                                var $btnDeleteShippingLog = $(this);
+                                                                var $shippingLogItem = $btnDeleteShippingLog.closest("span");
+                                                                var $shippingLogItemList = $shippingLogItem.closest("div.list-group");
+
+                                                                alertify.okBtn("delete")
+                                                                        .confirm("delete shipping log?", function () {
+                                                                            $.post("/FBExportSystem/admin/orders/deleteShippingLog", {
+                                                                                shippingLogId : $btnDeleteShippingLog.closest("span").find("#shippingDeleteId").val(),
+                                                                                orderId : toShipInformation.orderId
+                                                                            }, function () {
+                                                                                $shippingLogItem.remove();        
+
+                                                                                if ($shippingLogItemList.find("span").length <= 0) {
+                                                                                    $shippingLogItemList.append("<div class='row'>" +
+                                                                                                                    "<div class='mx-auto mt-2'>" +
+                                                                                                                        "<h5> No shipping logs here </h5>" +
+                                                                                                                    "</div>" +
+                                                                                                                "</div>");
+                                                                                }
+
+                                                                            });
+                                                                        });
+
+                                                                $(".alertify").css("z-index", "10");
+
+                                            });
+
                                         }
 
                                         var $dropDownSelectButton = $currentOrderRow.find("button.dropdown-toggle")
@@ -1292,7 +1448,6 @@ $(document).ready(function () {
                 
                 });
 
-
                 $(row.child()).find("#vesselStatusCollapseItem-id-" + response.orderId).on("hidden.bs.collapse", function () {
                     $(this).find(".shipTrackingMap").html("");
                 });
@@ -1302,6 +1457,7 @@ $(document).ready(function () {
                     console.log($(this).closest("tr").prev().find("#orderId").html());
 
                     var $shippingLogDiv = $(this).closest("#shippingLogCollapseItem-id-" + response.orderId);
+                    var $btnUpdateShippingLog = $(this);
                     // $(this).closest("div.collapse").collapse("hide");
 
                     var shippingLog = {
@@ -1320,11 +1476,76 @@ $(document).ready(function () {
                         if (response.status == "success") {
 
                             $shippingLogDiv.find("#errorMessage").hide();
+                            $btnUpdateShippingLog.attr("disabled", "disabled");
 
                             $.post("/FBExportSystem/admin/orders/addShippingLog", {
                                 shippingLogJSON : JSON.stringify(shippingLog)
                             }, function (response) {
-                                console.log(response.orderId);
+
+                                console.log(response);
+
+                                var shippingLogItemRawTemplate = $("#shippingLogItemTemplate").html();
+                                var $shippingLogList =  $shippingLogDiv.find("div.list-group");
+
+                                $shippingLogDiv.find("div:first").collapse("hide");
+
+                                if ($shippingLogList.find("div.row").length > 0) 
+                                    $shippingLogList.find("div.row").remove();
+                                
+                                $shippingLogList.prepend(_.template(shippingLogItemRawTemplate)({
+                                    shippingLogId : response.shippingLogId,
+                                    header : shippingLog.header,
+                                    date : $shippingLogDiv.find("#shippingLogDatePicker").val(),
+                                    time : shippingLog.time,
+                                    description : shippingLog.description,
+                                    address : shippingLog.address
+                                }));
+
+                                $shippingLogList.find("span:first button.delete-shipping-log").click(function () {
+
+                                    var $btnDeleteShippingLog = $(this);
+                                    var $shippingLogItem = $btnDeleteShippingLog.closest("span");
+                                    var $shippingLogItemList = $shippingLogItem.closest("div.list-group");
+                                    var id = orderId;
+
+
+                                    alertify.okBtn("delete")
+                                            .confirm("delete shipping log?", function () {
+                                                $.post("/FBExportSystem/admin/orders/deleteShippingLog", {
+                                                    shippingLogId : $btnDeleteShippingLog.closest("span").find("#shippingDeleteId").val(),
+                                                    orderId : id
+                                                }, function () {
+                                                    $shippingLogItem.remove();        
+
+                                                    if ($shippingLogItemList.find("span").length <= 0) {
+                                                        $shippingLogItemList.append("<div class='row'>" +
+                                                                                    "<div class='mx-auto mt-2'>" +
+                                                                                        "<h5> No shipping logs here </h5>" +
+                                                                                    "</div>" +
+                                                                                "</div>");
+                                                    }
+
+                                                });
+                                            });
+
+                                    $(".alertify").css("z-index", "10");
+                                    
+                                });
+
+                                $shippingLogDiv.find("#shippingLogHeader").val("");
+                                $shippingLogDiv.find("#shippingLogDescription").val("");
+                                $shippingLogDiv.find("#shippingLogAddress").val("");
+                                $shippingLogDiv.find("#shippingLogDatePicker").val("");
+                                $shippingLogDiv.find("#shippingLogTimePicker").val(""); 
+
+                                $btnUpdateShippingLog.removeAttr("disabled");
+
+                                iziToast.success({
+                                        timeout : 2000,
+                                        progressBar : false,
+                                        message : "shipping log is added"
+                                });
+                                
                             }, "json");
 
 
@@ -1338,9 +1559,51 @@ $(document).ready(function () {
                     
                 });
 
+                $(row.child()).find("div#shippingLogCollapseItem-id-" + response.orderId)
+                              .find("div.list-group span button.delete-shipping-log").click(function () {
+
+                                var $btnDeleteShippingLog = $(this);
+                                var $shippingLogItem = $btnDeleteShippingLog.closest("span");
+                                var $shippingLogItemList = $shippingLogItem.closest("div.list-group");
+
+                                alertify.okBtn("delete")
+                                        .confirm("delete shipping log?", function () {
+                                            $.post("/FBExportSystem/admin/orders/deleteShippingLog", {
+                                                shippingLogId : $btnDeleteShippingLog.closest("span").find("#shippingDeleteId").val(),
+                                                orderId : response.orderId
+                                            }, function () {
+                                                $shippingLogItem.remove();        
+
+                                                if ($shippingLogItemList.find("span").length <= 0) {
+                                                    $shippingLogItemList.append("<div class='row'>" +
+                                                                                "<div class='mx-auto mt-2'>" +
+                                                                                    "<h5> No shipping logs here </h5>" +
+                                                                                "</div>" +
+                                                                            "</div>");
+                                                }
+
+                                            });
+                                        });
+
+                                $(".alertify").css("z-index", "10");
+
+                });
+
                 $(row.child()).find("#btn-cancel-shipping-log").click(function () {
 
                     $(this).closest("div.collapse").collapse("hide");
+
+                    var $btnCancelShippingInfo = $(this);
+
+                    var $shippingLogDiv = $(this).closest("#shippingLogCollapseItem-id-" + response.orderId);
+
+                    $shippingLogDiv.find("#errorMessage").html("").hide();
+
+                    $shippingLogDiv.find("#shippingLogHeader").val("");
+                    $shippingLogDiv.find("#shippingLogDescription").val("");
+                    $shippingLogDiv.find("#shippingLogAddress").val("");
+                    $shippingLogDiv.find("#shippingLogDatePicker").val("");
+                    $shippingLogDiv.find("#shippingLogTimePicker").val(""); 
 
                 });
 

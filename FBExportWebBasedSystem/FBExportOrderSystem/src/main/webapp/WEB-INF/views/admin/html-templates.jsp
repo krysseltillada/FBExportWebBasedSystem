@@ -347,21 +347,34 @@
     
                             </div>
 
-                            <div class="list-group">
-                                {{ for (var i = order.shipping.shippingLog.length - 1; i >= 0; --i) { }}
-                        
-                                    <span class="list-group-item list-group-item-action flex-column align-items-start">
-                                        
-                                        <div class="d-flex w-100 justify-content-between">
-                                        <input type = "hidden" value = "{{=order.shipping.shippingLog[i].shippingLogId}}" id = "shippingDeleteId" />
-                                        <h5 class="mb-1">{{=order.shipping.shippingLog[i].header}} <small>({{=order.shipping.shippingLog[i].date}} - {{=order.shipping.shippingLog[i].time}})</small></h5>
-                                        <button type="button" class="close delete-activity" aria-label="Close">
-			                                                            <span aria-hidden="true">&times;</span>
-			                                                    </button>
+                            <div class="list-group" style = "max-height: 286px; overflow-y: auto;">
+
+                                {{ if (order.shipping.shippingLog.length > 0) { }}
+
+                                    {{ for (var i = order.shipping.shippingLog.length - 1; i >= 0; --i) { }}
+                            
+                                        <span class="list-group-item list-group-item-action flex-column align-items-start">
+                                            
+                                            <div class="d-flex w-100 justify-content-between">
+                                            <input type = "hidden" value = "{{=order.shipping.shippingLog[i].shippingLogId}}" id = "shippingDeleteId" />
+                                            <h5 class="mb-1">{{=order.shipping.shippingLog[i].header}} <small> ({{=order.shipping.shippingLog[i].date}} - {{=order.shipping.shippingLog[i].time}})</small></h5>
+                                            <button type="button" class="close delete-shipping-log" aria-label="Close">
+                                                                            <span aria-hidden="true">&times;</span>
+                                                                    </button>
+                                            </div>
+                                            <p class="mb-1">{{=order.shipping.shippingLog[i].description}}</p>
+                                            <small>{{=order.shipping.shippingLog[i].address}}</small>
+                                        </span>
+
+                                    {{ } }}
+
+                                {{ } else { }}
+
+                                    <div class="row">
+                                        <div class="mx-auto mt-2">
+                                            <h5> No shipping logs here </h5>
                                         </div>
-                                        <p class="mb-1">{{=order.shipping.shippingLog[i].description}}</p>
-                                        <small>{{=order.shipping.shippingLog[i].address}}</small>
-                                    </span>
+                                    </div>
 
                                 {{ } }}
                             </div>
@@ -670,21 +683,13 @@
 
                 </div>
 
-                <div class="list-group">
+                <div class="list-group" style = "max-height: 286px; overflow-y: auto;">
 
-                    {{ for (var i = 0; i != order.shipping.shippingLog.length; ++i) { }}
-                        
-                        <span class="list-group-item list-group-item-action flex-column align-items-start">
-                            
-                            <div class="d-flex w-100 justify-content-between">
-                            <h5 class="mb-1">{{=order.shipping.shippingLog[i].header}}</h5>
-                            <small>{{=order.shipping.shippingLog[i].date}} - {{=order.shipping.shippingLog[i].time}}</small>
-                            </div>
-                            <p class="mb-1">{{=order.shipping.shippingLog[i].description}}</p>
-                            <small>{{=order.shipping.shippingLog[i].address}}</small>
-                        </span>
-
-                    {{ } }}
+                    <div class="row">
+                        <div class="mx-auto mt-2">
+                            <h5> No shipping logs here </h5>
+                        </div>
+                    </div>
 
                 </div>
             </div>
@@ -749,6 +754,20 @@
             src="http://www.marinetraffic.com/en/ais/embed/zoom:5/centery:37.446/centerx:24.9467/maptype:1/shownames:true/mmsi:{{=mmsi}}/shipid:0/fleet:/fleet_id:/vtypes:/showmenu:true/remember:false">
             Browser does not support embedded objects.&lt;br/&gt;Visit directly &lt;a href="http://www.marinetraffic.com/"&gt;www.marinetraffic.com&lt;/a&gt;
     </iframe> 
+</script>
+
+<script id = "shippingLogItemTemplate" type = "text/template">
+    <span class="list-group-item list-group-item-action flex-column align-items-start">
+        <div class="d-flex w-100 justify-content-between">
+        <input type="hidden" value="{{=shippingLogId}}" id="shippingDeleteId">
+        <h5 class="mb-1">{{=header}}<small> ({{=date}} - {{=time}})</small></h5>
+        <button type="button" class="close delete-shipping-log" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                </button>
+        </div>
+        <p class="mb-1">{{=description}}</p>
+        <small>{{=address}}</small>
+    </span>
 </script>
 
 <script id = "collapsingInventoryProductTemplate" type = "text/template"> 

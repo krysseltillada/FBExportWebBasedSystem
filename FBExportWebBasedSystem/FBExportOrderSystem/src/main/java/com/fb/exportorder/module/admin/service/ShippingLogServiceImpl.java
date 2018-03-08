@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 import com.fb.exportorder.models.ShippingLog;
 import com.fb.exportorder.models.customer.Order;
+import com.fb.exportorder.module.admin.repository.ShippingLogRepository;
 import com.fb.exportorder.module.customer.repository.OrderRepository;
 
 @Service
@@ -23,6 +24,9 @@ public class ShippingLogServiceImpl implements ShippingLogService {
 	
 	@Autowired
 	OrderRepository orderRepository;
+	
+	@Autowired
+	ShippingLogRepository shippingLogRepository;
 	
 	private SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 	private SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm");
@@ -57,20 +61,41 @@ public class ShippingLogServiceImpl implements ShippingLogService {
 	}
 
 	@Override
-	public void addShippingLog(ShippingLog shippingLog, long id) {
+	public long addShippingLog(ShippingLog shippingLog, long id) {
 		
 		Order currentOrder = orderRepository.findOne(id);
 		
+		List<ShippingLog> shippingLogList = currentOrder.getShipping()
+														.getShippingLog();
+		
+		shippingLogList.add(shippingLog);
+		
+		orderRepository.save(currentOrder);
+		
+		return shippingLogList.get(shippingLogList.size() - 1).getShippingLogId();
+	}
+
+	@Override
+	public List<ShippingLog> getShippingLogs(long id) {
+		return orderRepository.findOne(id).getShipping().getShippingLog();
+	}
+
+	@Override
+	public void deleteShippingLog(long id, long orderId) {
+		
+		Order currentOrder = orderRepository.findOne(orderId);
+		
 		currentOrder.getShipping()
-					.getShippingLog().add(shippingLog);
+					.getShippingLog()
+					.remove(shippingLogRepository.findOne(id));
 		
 		orderRepository.save(currentOrder);
 		
 	}
 
 	@Override
-	public List<ShippingLog> getShippingLogs(long id) {
-		return orderRepository.findOne(id).getShipping().getShippingLog();
+	public ShippingLog getShippingLogById(long id) {
+		return shippingLogRepository.findOne(id);
 	}
 
 }

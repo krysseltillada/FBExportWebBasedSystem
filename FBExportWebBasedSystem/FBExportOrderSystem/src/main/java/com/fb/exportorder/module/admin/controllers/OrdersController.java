@@ -247,6 +247,7 @@ public class OrdersController {
 		
 		JSONObject shippingLog = null;
 		long orderId = 0;
+		long shippingLogId = 0;
 		
 		try {
 			shippingLog = (JSONObject)new JSONParser().parse(shippingLogJSON);
@@ -266,12 +267,22 @@ public class OrdersController {
 				e.printStackTrace();
 			}
 			
-			shippingLogService.addShippingLog(newShippingLog, 
-											  orderId);
+			shippingLogId = shippingLogService.addShippingLog(newShippingLog, 
+															  orderId);
 					
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
+		
+		return "{\"shippingLogId\" : " + shippingLogId + "}";
+	}
+	
+	@RequestMapping(value = "/admin/orders/deleteShippingLog", method = RequestMethod.POST)
+	@ResponseBody String deleteShippingLog(@RequestParam String shippingLogId,
+										   @RequestParam String orderId) {
+		
+		shippingLogService.deleteShippingLog(Long.parseLong(shippingLogId), 
+											 Long.parseLong(orderId));
 		
 		return "";
 	}

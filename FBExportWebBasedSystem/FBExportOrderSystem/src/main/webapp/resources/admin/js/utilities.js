@@ -12,5 +12,8 @@ var formatMoney = function (val, sign, formatValue) {
 };
 
 var convertFlatpickrDateToSystemDate = function (date) {
-        return flatpickr.formatDate(flatpickr.parseDate(date, "F j, Y"), "Y-m-d");
+        if (date.length > 0) 
+            return flatpickr.formatDate(flatpickr.parseDate(date, "F j, Y"), "Y-m-d");
+        else 
+            return "";
 };

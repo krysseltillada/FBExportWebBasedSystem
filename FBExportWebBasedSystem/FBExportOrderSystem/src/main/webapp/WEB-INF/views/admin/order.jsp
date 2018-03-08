@@ -87,22 +87,22 @@
                                 <tr>
                                     <th> <input type="checkbox" value="" class="checkbox-template checkbox-delete" id = "checkbox-all"> </th>
                                     <th> </th>
-                                    <th> Order</th>
+                                    <th> Order <i class="fa fa-list-alt ml-1" aria-hidden="true"></i></th>
                                     <th> Status <i class="fa fa-tasks ml-1" aria-hidden="true"></i> </th>
-                                    <th> Shipping Address </th>
-                                    <th> Total </th>
-                                    <th> Date </th>
+                                    <th> Shipping Address <i class="fa fa-address-card ml-1" aria-hidden="true"></i></th>
+                                    <th> Total <i class="fa fa-box ml-1" aria-hidden="true"></i></th>
+                                    <th> Date <i class="fa fa-calendar-alt" aria-hidden="true"></i></th>
                                 </tr>
                             </thead>
                             <tfoot>
                                 <tr>
                                     <th></th>
                                     <th> </th>
-                                    <th> Order </th>
-                                    <th> Status </th>
-                                    <th> Shipping address </th>
-                                    <th> Total </th> 
-                                    <th> Date </th>
+                                    <th> Order <i class="fa fa-list-alt ml-1" aria-hidden="true"></i></th>
+                                    <th> Status <i class="fa fa-tasks ml-1" aria-hidden="true"></i> </th>
+                                    <th> Shipping Address <i class="fa fa-address-card ml-1" aria-hidden="true"></i></th>
+                                    <th> Total <i class="fa fa-box ml-1" aria-hidden="true"></i></th>
+                                    <th> Date <i class="fa fa-calendar-alt" aria-hidden="true"></i></th>
                                 </tr>
                             </tfoot>
                             <tbody>

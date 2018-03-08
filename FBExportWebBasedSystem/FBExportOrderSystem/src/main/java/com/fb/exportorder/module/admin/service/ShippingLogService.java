@@ -12,9 +12,12 @@ public interface ShippingLogService {
 										  String date,
 										  String time);
 	
-	public void addShippingLog (ShippingLog shippingLog,
+	public long addShippingLog (ShippingLog shippingLog,
 								long id);
 	
 	public List<ShippingLog> getShippingLogs(long id);
+	public ShippingLog getShippingLogById(long id);
+	
+	public void deleteShippingLog (long id, long orderId);
 
 }
