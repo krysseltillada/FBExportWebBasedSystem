@@ -65,7 +65,7 @@ CREATE TABLE `authorities` (
   `authority` varchar(255) DEFAULT NULL,
   `account_id` bigint(20) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -74,7 +74,7 @@ CREATE TABLE `authorities` (
 
 LOCK TABLES `authorities` WRITE;
 /*!40000 ALTER TABLE `authorities` DISABLE KEYS */;
-INSERT INTO `authorities` VALUES (1,'ADMIN',0),(2,'EMPLOYEE',1);
+INSERT INTO `authorities` VALUES (1,'ADMIN',0),(2,'EMPLOYEE',1),(3,'CUSTOMER',32768);
 /*!40000 ALTER TABLE `authorities` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -88,7 +88,7 @@ DROP TABLE IF EXISTS `cart`;
 CREATE TABLE `cart` (
   `cart_id` bigint(20) NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`cart_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -97,6 +97,7 @@ CREATE TABLE `cart` (
 
 LOCK TABLES `cart` WRITE;
 /*!40000 ALTER TABLE `cart` DISABLE KEYS */;
+INSERT INTO `cart` VALUES (1);
 /*!40000 ALTER TABLE `cart` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -164,6 +165,7 @@ CREATE TABLE `customer` (
 
 LOCK TABLES `customer` WRITE;
 /*!40000 ALTER TABLE `customer` DISABLE KEYS */;
+INSERT INTO `customer` VALUES (32768,'Address1','City','Andorra','1700',18,'1242','Customer1@gmail.com','09996668084','','Customer','MALE','Customer','Customer','$2a$10$dulcsaPU2zERhXMau6KjhuabhMY78otZjx6AVdo37nL0Bne3P3QH2','/resources/customer/img/profile-male.jpg','Customer1',1);
 /*!40000 ALTER TABLE `customer` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -190,6 +192,7 @@ CREATE TABLE `customer_shipping_addresses` (
 
 LOCK TABLES `customer_shipping_addresses` WRITE;
 /*!40000 ALTER TABLE `customer_shipping_addresses` DISABLE KEYS */;
+INSERT INTO `customer_shipping_addresses` VALUES (32768,1);
 /*!40000 ALTER TABLE `customer_shipping_addresses` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -253,7 +256,7 @@ CREATE TABLE `hibernate_sequences` (
 
 LOCK TABLES `hibernate_sequences` WRITE;
 /*!40000 ALTER TABLE `hibernate_sequences` DISABLE KEYS */;
-INSERT INTO `hibernate_sequences` VALUES ('account',1);
+INSERT INTO `hibernate_sequences` VALUES ('account',2);
 /*!40000 ALTER TABLE `hibernate_sequences` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -521,7 +524,7 @@ CREATE TABLE `shipping_address` (
   `receiver_full_name` varchar(255) DEFAULT NULL,
   `shipping_instructions` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`shipping_address_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -530,6 +533,7 @@ CREATE TABLE `shipping_address` (
 
 LOCK TABLES `shipping_address` WRITE;
 /*!40000 ALTER TABLE `shipping_address` DISABLE KEYS */;
+INSERT INTO `shipping_address` VALUES (1,'Address1','City','Andorra','1700','User Account','1242','Customer1@gmail.com','09996668084','','Customer Customer Customer','specify your shipping instructions by editing the card');
 /*!40000 ALTER TABLE `shipping_address` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -663,7 +667,7 @@ CREATE TABLE `system_settings` (
 
 LOCK TABLES `system_settings` WRITE;
 /*!40000 ALTER TABLE `system_settings` DISABLE KEYS */;
-INSERT INTO `system_settings` VALUES (1,'00:30:00','21:00:00');
+INSERT INTO `system_settings` VALUES (1,'00:03:00','21:00:00');
 /*!40000 ALTER TABLE `system_settings` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -704,4 +708,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-03-06 21:01:05
+-- Dump completed on 2018-03-08 21:00:32

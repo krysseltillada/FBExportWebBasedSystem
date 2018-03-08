@@ -1,22 +1,25 @@
+<%@ include file = "../../lib/tags/tag-libraries.jsp" %>
+
 <div class = "container" style="margin-top: 40px;">
-
-    <div class = "row mx-auto">
-
-
-        <div class = "col">
+	<div class = "col">
             <header style = "margin-bottom: 10px;">
                 <h1> Product Information </h1>
                 <hr />
             </header>
         </div>
+        
+    <div class = "row mx-auto">
 
+		<c:if test='${not empty product}' >
+		        
         <!--Carousel Wrapper-->
-        <div id="carousel-example-1z" class="carousel slide carousel-fade" data-ride="carousel">
+        <div id="carousel-example-1z" class="carousel slide carousel-fade col-12" data-ride="carousel" >
             <!--Indicators-->
             <ol class="carousel-indicators">
                 <li data-target="#carousel-example-1z" data-slide-to="0" class="active"></li>
                 <li data-target="#carousel-example-1z" data-slide-to="1"></li>
                 <li data-target="#carousel-example-1z" data-slide-to="2"></li>
+                <li data-target="#carousel-example-1z" data-slide-to="3"></li>
             </ol>
             <!--/.Indicators-->
 
@@ -26,50 +29,66 @@
                 <!--First slide-->
                 <div class="carousel-item active">
                     <span style = "position: absolute; right:0px; color: white; width: 40%; overflow: hidden; padding: 5px; text-align: center; border: 1px solid white;" class = "rgba-black-strong">
-                        200.00 php
+                        ${product.price} php
                     </span>
 
                     <span style = "position: absolute; right:0px; color: white; top: 36px; width: 40%; padding: 3px 5px 3px 5px; text-align: center; border-width: 0px 1px 1px 1px; border-color: white; border-style: solid;" class = "rgba-black-strong">
                         per <span> kilograms </span>
                     </span>
                     <span style = "position: absolute; color: white; bottom: 0px;  width: 40%; max-height: 30px; padding: 3px 5px 3px 5px; text-align: center; border: 1px solid white;" class = "rgba-black-strong">
-                        Laguna oh laguna laguna
+                        ${product.origin}
                     </span>
 
-                    <img class="d-block w-100" src="https://mdbootstrap.com/img/Photos/Slides/img%20(130).jpg" alt="First slide">
+                    <img style="width: 100%; height: 450px;" src="<c:url value = '${product.productImageLink}' />" alt="First slide">
                 </div>
                 <!--/First slide-->
                 <!--Second slide-->
                 <div class="carousel-item">
                     <span style = "position: absolute; right:0px; color: white; width: 40%; overflow: hidden; padding: 5px; text-align: center; border: 1px solid white;" class = "rgba-black-strong">
-                        200.00 php
+                        ${product.price} php
                     </span>
 
                     <span style = "position: absolute; right:0px; color: white; top: 36px; width: 40%; padding: 3px 5px 3px 5px; text-align: center; border-width: 0px 1px 1px 1px; border-color: white; border-style: solid;" class = "rgba-black-strong">
                         per <span> kilograms </span>
                     </span>
                     <span style = "position: absolute; color: white; bottom: 0px;  width: 40%; max-height: 30px; padding: 3px 5px 3px 5px; text-align: center; border: 1px solid white;" class = "rgba-black-strong">
-                        Laguna oh laguna laguna
+                        ${product.origin}
                     </span>
-                    <img class="d-block w-100" src="https://mdbootstrap.com/img/Photos/Slides/img%20(129).jpg" alt="Second slide">
+                    <img style="width: 100%; height: 450px;" src="<c:url value = '${product.previewImageLinks.get(0)}' />" alt="Second slide">
                 </div>
                 <!--/Second slide-->
                 <!--Third slide-->
                 <div class="carousel-item">
                     <span style = "position: absolute; right:0px; color: white; width: 40%; overflow: hidden; padding: 5px; text-align: center; border: 1px solid white;" class = "rgba-black-strong">
-                        200.00 php
+                        ${product.price} php
                     </span>
 
                     <span style = "position: absolute; right:0px; color: white; top: 36px; width: 40%; padding: 3px 5px 3px 5px; text-align: center; border-width: 0px 1px 1px 1px; border-color: white; border-style: solid;" class = "rgba-black-strong">
                         per <span> kilograms </span>
                     </span>
                     <span style = "position: absolute; color: white; bottom: 0px; width: 40%; max-height: 30px; padding: 3px 5px 3px 5px; text-align: center; border: 1px solid white;" class = "rgba-black-strong">
-                        Laguna oh laguna laguna
+                        ${product.origin}
                     </span>
-                    <img class="d-block w-100" src="https://mdbootstrap.com/img/Photos/Slides/img%20(70).jpg" alt="Third slide">
+                    <img style="width: 100%; height: 450px;" src="<c:url value = '${product.previewImageLinks.get(1)}' />" alt="Third slide">
 
                 </div>
                 <!--/Third slide-->
+                <!--4th slide-->
+                <div class="carousel-item">
+                    <span style = "position: absolute; right:0px; color: white; width: 40%; overflow: hidden; padding: 5px; text-align: center; border: 1px solid white;" class = "rgba-black-strong">
+                        ${product.price} php
+                    </span>
+
+                    <span style = "position: absolute; right:0px; color: white; top: 36px; width: 40%; padding: 3px 5px 3px 5px; text-align: center; border-width: 0px 1px 1px 1px; border-color: white; border-style: solid;" class = "rgba-black-strong">
+                        per <span> kilograms </span>
+                    </span>
+                    <span style = "position: absolute; color: white; bottom: 0px; width: 40%; max-height: 30px; padding: 3px 5px 3px 5px; text-align: center; border: 1px solid white;" class = "rgba-black-strong">
+                        ${product.origin}
+                    </span>
+                    <img style="width: 100%; height: 450px;" src="<c:url value = '${product.previewImageLinks.get(2)}' />" alt="Third slide">
+
+                </div>
+                <!--/4th slide-->
             </div>
             <!--/.Slides-->
             <!--Controls-->
@@ -89,21 +108,34 @@
 
         <!--Content-->
         <div class="text-center card-body">
-            <h4 class="card-title"> <a href = "#" class = " black-text"> Puffer fish </a> </h4>
+            <h4 class="card-title"> ${product.name} </h4>
             <p class="card-text">
-                <i class="fa fa-quote-left"></i> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod eos id officiis hic tenetur quae
-                quaerat ad velit ab. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore cum accusamus eveniet
-                molestias voluptatum inventore laboriosam labore sit, aspernatur praesentium iste impedit quidem dolor
-                veniam.</p>
+                <i class="fa fa-quote-left"></i> ${product.description} </p>
+				
+				<c:choose>
+					<c:when test="${product.weight <= 0}">
+						<h4><b class = "red-text"> *Out of Stock </b> </h4><br>			
+					</c:when>
+					<c:otherwise>
+						<h4><b class = "green-text"> *On Stock </b> </h4><br>
+					</c:otherwise>
+				</c:choose>
+                <span class = "black-text"> Posted on: ${datePosted} </span><br>
 
-                <span> Fresh until: <span class = "red-text"> nov 28 2017 </span> </span><br>
-                <span class = "black-text"> Posted on: nov 19 2017 </span><br>
-
-
-
+			</c:if>
+			
+			<security:authorize access = "hasAuthority('CUSTOMER')">
             <button type = "button" href="#" class="btn btn-primary btnProductItemAddToCart" style = "margin-top:25px;">
                 <i class="fa fa-cart-plus mr-1 mb-1" aria-hidden="true"></i>
                 Add to cart</button>
+            </security:authorize>
+            <security:authorize access= "!hasAuthority('CUSTOMER')">
+            <br>
+            <a href="<c:url value = '/login' />" class="btn btn-primary" style = "position: relative; left: -8px; top: -4px; padding: 8px 10px 8px 10px;">
+					                            <i class="fa fa-cart-plus mr-1 mb-1" aria-hidden="true"></i>
+					                            Login to add</a>
+            </security:authorize>
+            
             <hr>
             <div class="container">
             <div class="row">
@@ -211,7 +243,7 @@
             </div>
 
             </div>
-
+			<security:authorize access = "hasAuthority('CUSTOMER')">
             <div class="md-form">
 
             <textarea id="textarea-char-counter" class="md-textarea" length="120"></textarea>
@@ -252,6 +284,7 @@
 
 
             </div>
+            </security:authorize>
 
             <br>
             <h4>Reviews<h4>
