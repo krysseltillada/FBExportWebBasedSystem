@@ -1,7 +1,13 @@
 package com.fb.exportorder.module.customer.controllers;
 
+import static org.mockito.Matchers.intThat;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,6 +17,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.fb.exportorder.models.Product;
+import com.fb.exportorder.models.customer.Customer;
+import com.fb.exportorder.models.customer.Rating;
+import com.fb.exportorder.models.customer.Review;
+import com.fb.exportorder.module.customer.service.CustomerService;
 import com.fb.exportorder.module.customer.service.ProductService;
 
 @Controller
@@ -18,6 +28,9 @@ public class ViewProductController {
 	
 	@Autowired
 	private ProductService productService;
+	
+	@Autowired
+	private CustomerService customerService;
 	
 	private SimpleDateFormat dateFormat = new SimpleDateFormat("MMMM dd, yyyy");
 	
@@ -28,12 +41,61 @@ public class ViewProductController {
 		
 		Date datePosted = product.getDatePosted();
 		
-		if(product == null) {
+		if(product == null) 
 			return "redirect:/";
-		}
+		
+		
+		Rating rating = productService.findRatingById(id);
+		int view = rating.getViews() + 1;
+		rating.setViews(view);
+		
+		productService.saveRating(rating);
 		
 		model.addAttribute("product", product);
 		model.addAttribute("datePosted", dateFormat.format(datePosted).toString());
 		return "view-product";
+	}
+	
+	@RequestMapping(value="/review-product/{id}", method=RequestMethod.POST)
+	public String productReview(@PathVariable long id,
+								double rating,
+								String review,
+								HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		
+		Customer customer = customerService.getCustomerById(Long.parseLong(session.getAttribute("customerId").toString()));
+		
+		List<Review> reviewList = productService.findAllByUsername(customer.getUsername());
+		if(reviewList.isEmpty()) {
+			reviewList.add(addReview(review, rating, customer.getUsername()));
+		}else {
+			for(Review rev : reviewList) {
+				rev.setRate(rating);
+				
+				productService.saveReview(rev);
+			}
+			
+			reviewList.add(addReview(review, rating, customer.getUsername()));
+		}
+		
+		Rating ratings = productService.findRatingById(id);
+		ratings.setReviews(reviewList);
+		
+		productService.saveRating(ratings);
+		
+		return "redirect:/view-product/"+id;
+	}
+	
+	public Review addReview(String review, double rating, String username) {
+		Review reviews = new Review();
+		
+		reviews.setDescription(review);
+		reviews.setRate(rating);
+		reviews.setUsername(username);
+		reviews.setDate(new Date());
+		
+		productService.saveReview(reviews);
+	
+		return reviews;
 	}
 }

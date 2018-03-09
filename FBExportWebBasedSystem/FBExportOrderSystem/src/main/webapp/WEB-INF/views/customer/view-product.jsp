@@ -1,5 +1,7 @@
 <%@ include file = "../../lib/tags/tag-libraries.jsp" %>
 
+<c:if test='${not empty product}' >
+
 <div class = "container" style="margin-top: 40px;">
 	<div class = "col">
             <header style = "margin-bottom: 10px;">
@@ -10,7 +12,7 @@
         
     <div class = "row mx-auto">
 
-		<c:if test='${not empty product}' >
+		
 		        
         <!--Carousel Wrapper-->
         <div id="carousel-example-1z" class="carousel slide carousel-fade col-12" data-ride="carousel" >
@@ -122,7 +124,7 @@
 				</c:choose>
                 <span class = "black-text"> Posted on: ${datePosted} </span><br>
 
-			</c:if>
+	
 			
 			<security:authorize access = "hasAuthority('CUSTOMER')">
             <button type = "button" href="#" class="btn btn-primary btnProductItemAddToCart" style = "margin-top:25px;">
@@ -244,46 +246,50 @@
 
             </div>
 			<security:authorize access = "hasAuthority('CUSTOMER')">
-            <div class="md-form">
+				
+            	<form id="reviewProduct" method="POST" action="<c:url value = '/review-product/${product.productId}' />">
+            		<div class="md-form">
 
-            <textarea id="textarea-char-counter" class="md-textarea" length="120"></textarea>
-            <label for="textarea-char-counter">Add Review</label>
-            </div>
-
-            <div class="text-right">
-                <div class="star-rating">
-                <input id="star-1" class="star-radio" type="radio" name="rating" value="star-1">
-                <label class="star" for="star-1">
-                    <i class="fa fa-star fa-lg"> </i>
-                </label>
-
-                <input id="star-2" class="star-radio" type="radio" name="rating" value="star-2">
-                <label class="star" for="star-2">
-                    <i class="fa fa-star fa-lg"> </i>
-                </label>
-
-                <input id="star-3" class="star-radio" type="radio" name="rating" value="star-3">
-                <label class="star" for="star-3">
-                    <i class="fa fa-star fa-lg"> </i>
-                </label>
-
-                <input id="star-4" class="star-radio" type="radio" name="rating" value="star-4">
-                <label class="star" for="star-4">
-                    <i class="fa fa-star fa-lg"> </i>
-                </label>
-
-                <input id="star-5" class="star-radio" type="radio" name="rating" value="star-5">
-                <label class="star" for="star-5">
-                    <i class="fa fa-star fa-lg"> </i>
-                </label>
-
-                </div>
-
-                <!-- Default button -->
-                <button type="button" class="btn btn-default">Post Review</button>
-
-
-            </div>
+		            <textarea id="textarea-char-counter" class="md-textarea" name="review" length="120"></textarea>
+		            <label for="textarea-char-counter">Add Review</label>
+		            </div>
+		
+		            <div class="text-right">
+		                <div class="star-rating">
+		                <input id="star-5" class="star-radio" type="radio" name="rating" value="5">
+		                <label class="star" for="star-5">
+		                    <i class="fa fa-star fa-lg"> </i>
+		                </label>
+		
+		                <input id="star-4" class="star-radio" type="radio" name="rating" value="4">
+		                <label class="star" for="star-4">
+		                    <i class="fa fa-star fa-lg"> </i>
+		                </label>
+		
+		                <input id="star-3" class="star-radio" type="radio" name="rating" value="3">
+		                <label class="star" for="star-3">
+		                    <i class="fa fa-star fa-lg"> </i>
+		                </label>
+		
+		                <input id="star-2" class="star-radio" type="radio" name="rating" value="2">
+		                <label class="star" for="star-2">
+		                    <i class="fa fa-star fa-lg"> </i>
+		                </label>
+		
+		                <input id="star-1" class="star-radio" type="radio" name="rating" value="1">
+		                <label class="star" for="star-1">
+		                    <i class="fa fa-star fa-lg"> </i>
+		                </label>
+		
+		                </div>
+		
+		                <!-- Default button -->
+		                <input type="submit" class="btn btn-default" value="Post Review" />
+		
+						<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+		            </div>
+            	</form>
+            	
             </security:authorize>
 
             <br>
@@ -375,3 +381,5 @@
 <button type="button" class="btn btn-default btn-lg btn-block">Show more comments</button>
 <hr>
 </div>
+
+</c:if>
