@@ -258,29 +258,67 @@
 		            <label for="textarea-char-counter">Add Review</label>
 		            </div>
 		            
+		            <div id="errorReview">
+		            </div>
+		            
 		            <div class="text-right">
 		                <div class="star-rating">
-		                <input id="star-5" class="star-radio" type="radio" name="rating" value="5">
+		                <c:choose>
+		                	<c:when test="${starRate eq 5.0}">
+		                		<input id="star-5" class="star-radio" type="radio" name="rating" value="5" checked >
+		                	</c:when>
+		                	<c:otherwise>
+		                	    <input id="star-5" class="star-radio" type="radio" name="rating" value="5"  >
+		                	</c:otherwise>
+		                </c:choose>
 		                <label class="star" for="star-5">
 		                    <i class="fa fa-star fa-lg"> </i>
 		                </label>
 		
-		                <input id="star-4" class="star-radio" type="radio" name="rating" value="4">
+		                <c:choose>
+		                	<c:when test="${starRate eq 4.0}">
+		                		<input id="star-4" class="star-radio" type="radio" name="rating" value="4" checked >
+		                	</c:when>
+		                	<c:otherwise>
+		                	    <input id="star-4" class="star-radio" type="radio" name="rating" value="4"  >
+		                	</c:otherwise>
+		                </c:choose>
 		                <label class="star" for="star-4">
 		                    <i class="fa fa-star fa-lg"> </i>
 		                </label>
 		
-		                <input id="star-3" class="star-radio" type="radio" name="rating" value="3">
+		                <c:choose>
+		                	<c:when test="${starRate eq 3.0}">
+		                		<input id="star-3" class="star-radio" type="radio" name="rating" value="3" checked >
+		                	</c:when>
+		                	<c:otherwise>
+		                	    <input id="star-3" class="star-radio" type="radio" name="rating" value="3"  >
+		                	</c:otherwise>
+		                </c:choose>
 		                <label class="star" for="star-3">
 		                    <i class="fa fa-star fa-lg"> </i>
 		                </label>
 		
-		                <input id="star-2" class="star-radio" type="radio" name="rating" value="2">
+		                <c:choose>
+		                	<c:when test="${starRate eq 2.0}">
+		                		<input id="star-2" class="star-radio" type="radio" name="rating" value="2" checked >
+		                	</c:when>
+		                	<c:otherwise>
+		                	    <input id="star-2" class="star-radio" type="radio" name="rating" value="2"  >
+		                	</c:otherwise>
+		                </c:choose>
 		                <label class="star" for="star-2">
 		                    <i class="fa fa-star fa-lg"> </i>
 		                </label>
 		
-		                <input id="star-1" class="star-radio" type="radio" name="rating" value="1">
+		                <c:choose>
+		                	<c:when test="${starRate eq 1.0}">
+		                		<input id="star-1" class="star-radio" type="radio" name="rating" value="1" checked >
+		                	</c:when>
+		                	<c:otherwise>
+		                	    <input id="star-1" class="star-radio" type="radio" name="rating" value="1"  >
+		                	</c:otherwise>
+		                </c:choose>
 		                <label class="star" for="star-1">
 		                    <i class="fa fa-star fa-lg"> </i>
 		                </label>
@@ -310,30 +348,32 @@
         		<c:if test="${not empty customerList}">
         			<c:forEach items="${customerList}" var="customer">
         				<c:if test="${customer.username eq review.username}">
-        					<!--Grid row-->
-					        <div class="row mt-3">
+        					<div id="comments">
+        						<!--Grid row-->
+						        <div class="row mt-3">
+						
+						            <!--Grid column-->
+						            <div class="col-lg-3 text-center">
+						                <!--Featured image-->
+						                <img src="<c:url value="${customer.profileImageLink}" />" width="100" height="100" class="rounded-circle" alt="<c:out value="${customer.username}" />" >
+						            </div>
+						            <!--Grid column-->
+						
+						            <!--Grid column-->
+						            <div class="col-lg-9 col-xl-9">
+						                <h3 class="mb-3 font-bold dark-grey-text">
+						                </h3>
+						                <p class="grey-text">${review.description}</p>
+						                <p>by
+						                <a class="font-bold dark-grey-text">${review.username}</a>, <fmt:formatDate type="both" dateStyle="long" timeStyle="medium" value="${review.date}" /></p>
+						            </div>
+						            <!--Grid column-->
 					
-					            <!--Grid column-->
-					            <div class="col-lg-3 text-center">
-					                <!--Featured image-->
-					                <img src="<c:url value="${customer.profileImageLink}" />" width="100" height="100" class="rounded-circle" alt="<c:out value="${customer.username}" />" >
-					            </div>
-					            <!--Grid column-->
-					
-					            <!--Grid column-->
-					            <div class="col-lg-9 col-xl-9">
-					                <h3 class="mb-3 font-bold dark-grey-text">
-					                </h3>
-					                <p class="grey-text">${review.description}</p>
-					                <p>by
-					                <a class="font-bold dark-grey-text">${review.username}</a>, <fmt:formatDate type="both" dateStyle="long" timeStyle="medium" value="${review.date}" /></p>
-					            </div>
-					            <!--Grid column-->
-				
-					        </div>
-					        <!--Grid row-->
-					
-					        <hr class="mb-5">
+						        </div>
+						        <!--Grid row-->
+						
+						        <hr class="mb-5">
+        					</div>
         				</c:if>
         			</c:forEach>	
         		</c:if>

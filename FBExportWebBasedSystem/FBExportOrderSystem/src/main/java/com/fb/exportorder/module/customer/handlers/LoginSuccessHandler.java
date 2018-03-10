@@ -65,6 +65,7 @@ public class LoginSuccessHandler implements AuthenticationSuccessHandler {
 		session.setAttribute("customerName", name);
 		session.setAttribute("customerId", customerId);
 		session.setAttribute("customerProfileImageLink", profileImageLink);
+		session.setAttribute("customerUsername", customer.getUsername());
 		
 		response.sendRedirect(request.getServletContext().getContextPath() + "/");
 		

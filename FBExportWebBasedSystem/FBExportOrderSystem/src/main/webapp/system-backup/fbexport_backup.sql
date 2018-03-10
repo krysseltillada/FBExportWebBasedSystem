@@ -65,7 +65,7 @@ CREATE TABLE `authorities` (
   `authority` varchar(255) DEFAULT NULL,
   `account_id` bigint(20) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -74,7 +74,7 @@ CREATE TABLE `authorities` (
 
 LOCK TABLES `authorities` WRITE;
 /*!40000 ALTER TABLE `authorities` DISABLE KEYS */;
-INSERT INTO `authorities` VALUES (1,'ADMIN',0),(2,'EMPLOYEE',1),(3,'CUSTOMER',32768);
+INSERT INTO `authorities` VALUES (1,'ADMIN',0),(2,'EMPLOYEE',1),(3,'CUSTOMER',32768),(4,'CUSTOMER',65536);
 /*!40000 ALTER TABLE `authorities` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -88,7 +88,7 @@ DROP TABLE IF EXISTS `cart`;
 CREATE TABLE `cart` (
   `cart_id` bigint(20) NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`cart_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -97,7 +97,7 @@ CREATE TABLE `cart` (
 
 LOCK TABLES `cart` WRITE;
 /*!40000 ALTER TABLE `cart` DISABLE KEYS */;
-INSERT INTO `cart` VALUES (1);
+INSERT INTO `cart` VALUES (1),(2);
 /*!40000 ALTER TABLE `cart` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -165,7 +165,7 @@ CREATE TABLE `customer` (
 
 LOCK TABLES `customer` WRITE;
 /*!40000 ALTER TABLE `customer` DISABLE KEYS */;
-INSERT INTO `customer` VALUES (32768,'Address1','City','Andorra','1700',18,'1242','Customer1@gmail.com','09996668084','','Customer','MALE','Customer','Customer','$2a$10$dulcsaPU2zERhXMau6KjhuabhMY78otZjx6AVdo37nL0Bne3P3QH2','/resources/customer/img/profile-male.jpg','Customer1',1);
+INSERT INTO `customer` VALUES (32768,'Address1','City','Andorra','1700',18,'1242','Customer1@gmail.com','09996668084','','Customer','FEMALE','Customer','Customer','$2a$10$dulcsaPU2zERhXMau6KjhuabhMY78otZjx6AVdo37nL0Bne3P3QH2','/resources/customer/img/profile-female.jpg','Customer1',1),(65536,'Customer2','Customer','Antigua and Barbuda','Custome',18,'1242','Customer2@gmail.com','09996668084','','Customer','MALE','Customer','Customer','$2a$10$bhn7dklmjWG4cw3z8PTaRe3qh0dmWXXM/XJ/wigZAQuuzLGRHawOC','/resources/customer/img/profile-male.jpg','Customer2',2);
 /*!40000 ALTER TABLE `customer` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -192,7 +192,7 @@ CREATE TABLE `customer_shipping_addresses` (
 
 LOCK TABLES `customer_shipping_addresses` WRITE;
 /*!40000 ALTER TABLE `customer_shipping_addresses` DISABLE KEYS */;
-INSERT INTO `customer_shipping_addresses` VALUES (32768,1);
+INSERT INTO `customer_shipping_addresses` VALUES (32768,1),(65536,2);
 /*!40000 ALTER TABLE `customer_shipping_addresses` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -256,7 +256,7 @@ CREATE TABLE `hibernate_sequences` (
 
 LOCK TABLES `hibernate_sequences` WRITE;
 /*!40000 ALTER TABLE `hibernate_sequences` DISABLE KEYS */;
-INSERT INTO `hibernate_sequences` VALUES ('account',2);
+INSERT INTO `hibernate_sequences` VALUES ('account',3);
 /*!40000 ALTER TABLE `hibernate_sequences` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -417,7 +417,7 @@ CREATE TABLE `rating` (
 
 LOCK TABLES `rating` WRITE;
 /*!40000 ALTER TABLE `rating` DISABLE KEYS */;
-INSERT INTO `rating` VALUES (1,0,0),(2,0,0);
+INSERT INTO `rating` VALUES (1,9,197),(2,0,47);
 /*!40000 ALTER TABLE `rating` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -444,6 +444,7 @@ CREATE TABLE `rating_reviews` (
 
 LOCK TABLES `rating_reviews` WRITE;
 /*!40000 ALTER TABLE `rating_reviews` DISABLE KEYS */;
+INSERT INTO `rating_reviews` VALUES (1,62),(1,63),(1,64),(1,65),(1,66),(1,67),(1,68),(1,69),(1,70);
 /*!40000 ALTER TABLE `rating_reviews` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -461,7 +462,7 @@ CREATE TABLE `review` (
   `rate` double NOT NULL,
   `username` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`review_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=71 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -470,7 +471,7 @@ CREATE TABLE `review` (
 
 LOCK TABLES `review` WRITE;
 /*!40000 ALTER TABLE `review` DISABLE KEYS */;
-INSERT INTO `review` VALUES (1,'2018-03-09 20:48:45','Sample Review',4,'Customer1');
+INSERT INTO `review` VALUES (62,'2018-03-16 09:53:50','comment 1',5,'Customer1'),(63,'2018-03-10 09:54:10','comment 2',5,'Customer1'),(64,'2018-03-10 09:54:51','comment 3',4,'Customer2'),(65,'2018-03-10 09:55:16','comment 4',4,'Customer2'),(66,'2018-03-10 19:12:02','Comment 5',5,'Customer1'),(67,'2018-03-10 20:26:06','dfghjk',5,'Customer1'),(68,'2018-03-10 20:46:21','Sample',5,'Customer1'),(69,'2018-03-10 20:48:45','Sample 2',5,'Customer1'),(70,'2018-03-10 20:55:03','test!',5,'Customer1');
 /*!40000 ALTER TABLE `review` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -525,7 +526,7 @@ CREATE TABLE `shipping_address` (
   `receiver_full_name` varchar(255) DEFAULT NULL,
   `shipping_instructions` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`shipping_address_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -534,7 +535,7 @@ CREATE TABLE `shipping_address` (
 
 LOCK TABLES `shipping_address` WRITE;
 /*!40000 ALTER TABLE `shipping_address` DISABLE KEYS */;
-INSERT INTO `shipping_address` VALUES (1,'Address1','City','Andorra','1700','User Account','1242','Customer1@gmail.com','09996668084','','Customer Customer Customer','specify your shipping instructions by editing the card');
+INSERT INTO `shipping_address` VALUES (1,'Address1','City','Andorra','1700','User Account','1242','Customer1@gmail.com','09996668084','','Customer Customer Customer','specify your shipping instructions by editing the card'),(2,'Customer2','Customer','Antigua and Barbuda','Custome','User Account','1242','Customer2@gmail.com','09996668084','','Customer Customer Customer','specify your shipping instructions by editing the card');
 /*!40000 ALTER TABLE `shipping_address` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -709,4 +710,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-03-09 21:00:58
+-- Dump completed on 2018-03-10 21:00:56

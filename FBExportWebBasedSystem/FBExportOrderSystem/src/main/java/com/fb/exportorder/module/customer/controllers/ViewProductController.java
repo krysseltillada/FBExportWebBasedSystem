@@ -22,6 +22,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.fb.exportorder.models.Product;
 import com.fb.exportorder.models.customer.Customer;
@@ -29,6 +30,7 @@ import com.fb.exportorder.models.customer.Rating;
 import com.fb.exportorder.models.customer.Review;
 import com.fb.exportorder.module.customer.service.CustomerService;
 import com.fb.exportorder.module.customer.service.ProductService;
+import com.google.gson.Gson;
 
 @Controller
 public class ViewProductController {
@@ -43,7 +45,8 @@ public class ViewProductController {
 	
 	@RequestMapping(value="/view-product/{id}", method=RequestMethod.GET)
 	public String viewProduct(@PathVariable long id,
-							  Model model) {
+							  Model model,
+							  HttpServletRequest request) {
 		Product product = productService.findProductById(id);
 		
 		Date datePosted = product.getDatePosted();
@@ -72,6 +75,24 @@ public class ViewProductController {
 			
 		});
 		
+		HttpSession session = request.getSession();
+		
+		if(session.getAttribute("customerId") != null) {
+			double rate = 0.0;
+			
+			int i = 0;
+			while(i < reviewList.size() ) {
+				Review review = reviewList.get(i);
+				if(review.getUsername().equals(session.getAttribute("customerUsername"))) {
+					rate = review.getRate();
+					break;
+				}
+			}
+			
+			model.addAttribute("starRate", rate);
+		}
+		
+		
 		model.addAttribute("customerList", customerList);
 		model.addAttribute("reviewList", reviewList);
 		model.addAttribute("product", product);
@@ -80,11 +101,18 @@ public class ViewProductController {
 	}
 	
 	@RequestMapping(value="/review-product/{id}", method=RequestMethod.POST)
+	@ResponseBody
 	public String productReview(@PathVariable long id,
-								double rating,
+								Double rating,
 								String review,
 								HttpServletRequest request,
 								Model model) {
+		List<String> errors = validate(rating, review);
+		if(!errors.isEmpty()) {
+			Gson gson = new Gson();
+			String json = gson.toJson(errors);
+			return json;
+		}
 		
 		HttpSession session = request.getSession();
 		
@@ -119,7 +147,7 @@ public class ViewProductController {
 		
 		productService.saveRating(ratings);
 		
-		return "redirect:/view-product/"+id;
+		return "Success";
 	}
 	
 	public Review addReview(String review, double rating, String username) {
@@ -133,6 +161,18 @@ public class ViewProductController {
 		productService.saveReview(reviews);
 	
 		return reviews;
+	}
+	
+	public List<String> validate(Double rate, String review){
+		List<String> errors = new ArrayList<>();
+		
+		if(rate == null)
+			errors.add("Please rate the product.");
+		
+		if(StringUtils.isEmpty(review))
+			errors.add("Please add your review, comment or feedback.");
+		
+		return errors;
 	}
 	
 }
