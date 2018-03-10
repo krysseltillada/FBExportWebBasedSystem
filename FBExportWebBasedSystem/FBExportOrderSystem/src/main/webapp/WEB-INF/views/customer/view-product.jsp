@@ -31,7 +31,8 @@
                 <!--First slide-->
                 <div class="carousel-item active">
                     <span style = "position: absolute; right:0px; color: white; width: 40%; overflow: hidden; padding: 5px; text-align: center; border: 1px solid white;" class = "rgba-black-strong">
-                        ${product.price} php
+                        <span id = "price">${product.price}</span> <span id = "currency">PHP</span>
+			            <input type = "hidden" id = "real-price-approx" value = "" />
                     </span>
 
                     <span style = "position: absolute; right:0px; color: white; top: 36px; width: 40%; padding: 3px 5px 3px 5px; text-align: center; border-width: 0px 1px 1px 1px; border-color: white; border-style: solid;" class = "rgba-black-strong">
@@ -47,7 +48,8 @@
                 <!--Second slide-->
                 <div class="carousel-item">
                     <span style = "position: absolute; right:0px; color: white; width: 40%; overflow: hidden; padding: 5px; text-align: center; border: 1px solid white;" class = "rgba-black-strong">
-                        ${product.price} php
+                        <span id = "price">${product.price}</span> <span id = "currency">PHP</span>
+			            <input type = "hidden" id = "real-price-approx" value = "" />
                     </span>
 
                     <span style = "position: absolute; right:0px; color: white; top: 36px; width: 40%; padding: 3px 5px 3px 5px; text-align: center; border-width: 0px 1px 1px 1px; border-color: white; border-style: solid;" class = "rgba-black-strong">
@@ -62,7 +64,8 @@
                 <!--Third slide-->
                 <div class="carousel-item">
                     <span style = "position: absolute; right:0px; color: white; width: 40%; overflow: hidden; padding: 5px; text-align: center; border: 1px solid white;" class = "rgba-black-strong">
-                        ${product.price} php
+                        <span id = "price">${product.price}</span> <span id = "currency">PHP</span>
+			            <input type = "hidden" id = "real-price-approx" value = "" />
                     </span>
 
                     <span style = "position: absolute; right:0px; color: white; top: 36px; width: 40%; padding: 3px 5px 3px 5px; text-align: center; border-width: 0px 1px 1px 1px; border-color: white; border-style: solid;" class = "rgba-black-strong">
@@ -78,7 +81,8 @@
                 <!--4th slide-->
                 <div class="carousel-item">
                     <span style = "position: absolute; right:0px; color: white; width: 40%; overflow: hidden; padding: 5px; text-align: center; border: 1px solid white;" class = "rgba-black-strong">
-                        ${product.price} php
+                        <span id = "price">${product.price}</span> <span id = "currency">PHP</span>
+			            <input type = "hidden" id = "real-price-approx" value = "" />
                     </span>
 
                     <span style = "position: absolute; right:0px; color: white; top: 36px; width: 40%; padding: 3px 5px 3px 5px; text-align: center; border-width: 0px 1px 1px 1px; border-color: white; border-style: solid;" class = "rgba-black-strong">

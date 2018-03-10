@@ -417,6 +417,26 @@ $(document).ready(function () {
                                             $currency.html(currentCurrency);
                                             
                                         });
+                                        
+                                        $(".carousel-item").each(function () {
+
+                                            var $price = $(this).find("span>span:eq(0)");
+                                            var $currency = $(this).find("span>span:eq(1)");
+                                            var $realPriceApprox = $(this).find("#real-price-approx");
+
+                                            var basePrice = $price.html();
+
+                                            var basePriceToCurrent = fx(basePrice).from("PHP").to(currentCurrency);
+                                            
+                                            $price.html(formatMoney(basePriceToCurrent,
+                                                                    currency,
+                                                                    "%v"));
+
+                                            $realPriceApprox.val(basePriceToCurrent);
+                                            
+                                            $currency.html(currentCurrency);
+                                            
+                                        });
 
                                         $("#cartItemTable>tbody>tr").each(function () {
                                             console.log($(this).find("td:eq(1)").html());

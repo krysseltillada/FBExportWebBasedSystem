@@ -20,5 +20,7 @@ $(document).ready(function () {
 
         showAddToCartModal(productItem);
     });
+    
+    
 
 });
