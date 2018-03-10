@@ -253,7 +253,7 @@
 		            <textarea id="textarea-char-counter" class="md-textarea" name="review" length="120"></textarea>
 		            <label for="textarea-char-counter">Add Review</label>
 		            </div>
-		
+		            
 		            <div class="text-right">
 		                <div class="star-rating">
 		                <input id="star-5" class="star-radio" type="radio" name="rating" value="5">
@@ -282,6 +282,7 @@
 		                </label>
 		
 		                </div>
+		               
 		
 		                <!-- Default button -->
 		                <input type="submit" class="btn btn-default" value="Post Review" />

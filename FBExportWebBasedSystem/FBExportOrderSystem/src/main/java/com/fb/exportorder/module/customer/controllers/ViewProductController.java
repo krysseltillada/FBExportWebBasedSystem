@@ -3,12 +3,14 @@ package com.fb.exportorder.module.customer.controllers;
 import static org.mockito.Matchers.intThat;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -60,26 +62,39 @@ public class ViewProductController {
 	public String productReview(@PathVariable long id,
 								double rating,
 								String review,
-								HttpServletRequest request) {
+								HttpServletRequest request,
+								Model model) {
+		
 		HttpSession session = request.getSession();
 		
 		Customer customer = customerService.getCustomerById(Long.parseLong(session.getAttribute("customerId").toString()));
-		
+		Rating ratings = productService.findRatingById(id);
+
 		List<Review> reviewList = productService.findAllByUsername(customer.getUsername());
-		if(reviewList.isEmpty()) {
-			reviewList.add(addReview(review, rating, customer.getUsername()));
-		}else {
+		
+		if(!reviewList.isEmpty()) {
+			double rate = ratings.getRate();
+			rate = (rate - reviewList.get(0).getRate()) + rating;
+			ratings.setRate(rate);
+			
 			for(Review rev : reviewList) {
 				rev.setRate(rating);
 				
 				productService.saveReview(rev);
 			}
 			
-			reviewList.add(addReview(review, rating, customer.getUsername()));
+			
+		}else {
+			double rate = ratings.getRate();
+			rate += rating;
+			ratings.setRate(rate);
+			
 		}
 		
-		Rating ratings = productService.findRatingById(id);
-		ratings.setReviews(reviewList);
+		reviewList.add(addReview(review, rating, customer.getUsername()));
+		
+		reviewList.removeAll(ratings.getReviews());
+		ratings.getReviews().addAll(reviewList);
 		
 		productService.saveRating(ratings);
 		
@@ -98,4 +113,5 @@ public class ViewProductController {
 	
 		return reviews;
 	}
+	
 }
