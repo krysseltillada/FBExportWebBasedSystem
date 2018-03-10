@@ -137,11 +137,11 @@
 			                                                </div>
 			                                                <div class = "col-sm-2">
 			                                                    <strong> ORDER ID: </strong> <br />
-			                                                        ${order.orderId}
+			                                                    <span id = "orderId">${order.orderId}</span>
 			                                                </div>
 			                                                <div class = "col-sm-3">
 			                                                    <strong> TOTAL PRICE: </strong> <br />
-			                                                        <span class = "price">${order.totalPrice}</span> <span>php</span>
+			                                                        <span class = "price">${order.totalPrice}</span> <span>PHP</span>
 			                                                </div>
 			                                                <div class = "col-sm-3">
 			                                                    <strong> PAYMENT METHOD: </strong> <br />
@@ -159,7 +159,7 @@
 			                                            <h6 class = "mb-0">
 			                                                <strong>
 			                                                    Status:
-			                                                    <span class = "orange-text"> Pending </span> </strong>
+			                                                    <span id = "orderStatus" class = "orange-text"> Pending </span> </strong>
 			                                            </h6>
 			
 			                                            <div class="dropdown blue-text" style = "font-size: 13px;">
@@ -168,7 +168,7 @@
 			                                                        Print <i class="fa fa-caret-down" aria-hidden="true"></i> |
 			                                                    </a>
 			
-			                                                    <a href = "javascript:void(0)" class = "btn-cancel-order" > Cancel </a>
+			                                               	<a href = "javascript:void(0)" class = "btn-cancel-order" > Cancel </a>
 			                                                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
 			                                                    <a class="dropdown-item" href="#">Print order</a>
 			                                                    <a class="dropdown-item disabled" href="#">Print receipt</a>
@@ -436,10 +436,6 @@
 			                                                            ${order.shippingAddress.address.country}(${order.shippingAddress.address.city})
 			                                                        </p>
 			
-																	<p>
-																		<strong> Expected date: </strong> <br />
-																		NOVEMBER 29 1998
-																	</p> 
 																</div>
 															</div>
 														</div>
@@ -1319,7 +1315,7 @@
 															<div class = "col-sm-2">
 			
 																<strong> ORDER ID: </strong> <br />
-																	${order.orderId}
+																<span id = "orderId">${order.orderId}</span>
 															</div>
 															<div class = "col-sm-3">
 																<strong> TOTAL PRICE: </strong> <br />
@@ -1349,7 +1345,12 @@
 																	Print <i class="fa fa-caret-down" aria-hidden="true"></i> |
 																</a>
 
-																<a href = "#"> Reason </a>
+																<a href = "javascript:void(0)" 
+																   data-toggle="popover" 
+																   data-trigger="focus"
+																   title="Reason" 
+																   data-content="${order.reason}"> Reason </a>
+																   
 															<div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
 																<a class="dropdown-item" href="#">Print order</a>
 																<a class="dropdown-item disabled" href="#">Print receipt</a>
@@ -1460,6 +1461,15 @@
 															</div>
 														</div>
 
+													</div>
+													
+													<hr class = "m-0"/>
+			
+													<div class = "row">
+														
+														<div class = "col-sm-12">
+															<button type="button" class="btn btn-primary float-right btn-delete-order">Delete</button>
+														</div>
 													</div>
 
 												</div>

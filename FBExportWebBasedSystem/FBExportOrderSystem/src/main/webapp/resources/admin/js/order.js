@@ -1,6 +1,10 @@
 
 $(document).ready(function () {
 
+    $('[data-toggle="popover"]').popover({
+        placement : "top"
+    });	
+
     var shipTrackingMapRawTemplate = $("#shipMapTrackingTemplate").html();
 
     var checkAllowDelete = function () {

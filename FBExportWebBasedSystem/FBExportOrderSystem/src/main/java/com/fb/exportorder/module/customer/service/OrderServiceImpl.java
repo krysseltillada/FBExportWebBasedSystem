@@ -271,4 +271,19 @@ public class OrderServiceImpl implements OrderService {
 		orderRepository.save(order);
 	}
 
+	@Override
+	public void markCancelled(Order order, String reason) {
+		order.setOrderStatus(OrderStatus.CANCELLED);
+		order.setReason(reason);
+		orderRepository.save(order);
+	}
+
+	@Override
+	public void markDeleted(Order order) {
+		order.setOrderStatus(OrderStatus.DELETED);
+		order.setReason(StringUtils.EMPTY);
+		order.setMessage(StringUtils.EMPTY);
+		orderRepository.save(order);
+	}
+
 }

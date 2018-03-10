@@ -47,7 +47,8 @@ public class OrdersController {
 		put(OrderStatus.REJECTED, "#D9534F");
 		put(OrderStatus.APPROVED, "#5CB85C");
 		put(OrderStatus.PENDING, "#FFC107");
-		
+		put(OrderStatus.CANCELLED, "#D9534F");
+		put(OrderStatus.DELETED, "#B3B6B9");
 	}};
 	
 	Map<OrderStatus, String> orderStatusMessage = new HashMap<OrderStatus, String>(){{
@@ -56,7 +57,8 @@ public class OrdersController {
 		put(OrderStatus.REJECTED, "Rejected");
 		put(OrderStatus.APPROVED, "Approved");
 		put(OrderStatus.PENDING, "Pending");
-		
+		put(OrderStatus.CANCELLED, "Cancelled");
+		put(OrderStatus.DELETED, "Deleted");
 	}};
 	
 	SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");

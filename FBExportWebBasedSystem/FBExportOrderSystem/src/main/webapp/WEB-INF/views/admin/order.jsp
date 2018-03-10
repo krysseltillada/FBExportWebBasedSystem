@@ -132,6 +132,17 @@
 	
 	                                        <div style = "font-size: 13px;">
 	                                            <strong> Order: </strong> 
+	                                            
+	                                            <c:if test = "${order.orderStatus eq 'CANCELLED'}">
+	                                            
+		                                            <a href = "javascript:void(0)" 
+		                                               data-toggle="popover" 
+		                                               data-trigger="focus" 
+		                                               title="" 
+		                                               data-content="${order.reason}" 
+		                                               data-original-title="Reason"> (view reason) </a>
+		                                               
+	                                             </c:if>
 	                                        
 	                                            <h6>                                             
 	                                                <div class="btn-group dropdown-select">

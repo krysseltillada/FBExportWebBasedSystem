@@ -16,6 +16,6 @@ public interface CustomerService {
 	public long addToCart(Item item, long customerId);
 	public void removeToCart(Item item, long customerId);
 	public Item getItemById(long id);
-	public List<Order> getOrdersByCustomerId(int pageNumber, long customerId);
-	public int getOrderCountByCustomerId(long customerId);
+	public List<Order> getOrdersByCustomerIdNotDeleted(int pageNumber, long customerId);
+	public int getOrderCountByCustomerIdNotDeleted(long customerId);
 }
