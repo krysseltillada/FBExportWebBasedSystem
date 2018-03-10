@@ -303,30 +303,37 @@
     <!-- COMMENTS -->
         <c:if test="${not empty reviewList}">
         	<c:forEach items="${reviewList}" var="review">
-		        		<!--Grid row-->
-			        	<div class="row mt-3">
-			
-			            <!--Grid column-->
-			            <div class="col-lg-3 text-center">
-			                <!--Featured image-->
-			                <img src="https://mdbootstrap.com/img/Photos/Others/images/31.jpg" width="100" height="100" class="rounded-circle" alt="Second sample image" >
-			            </div>
-			            <!--Grid column-->
-			
-			            <!--Grid column-->
-			            <div class="col-lg-9 col-xl-9">
-			                <h3 class="mb-3 font-bold dark-grey-text">
-			                </h3>
-			                <p class="grey-text">${review.description}</p>
-			                <p>by
-			                <a class="font-bold dark-grey-text">${review.username}</a>, <fmt:formatDate type="both" dateStyle="long" timeStyle="medium" value="${review.date}" /></p>
-			            </div>
-			            <!--Grid column-->
-		
-			        </div>
-			        <!--Grid row-->
-			
-			        <hr class="mb-5">
+        		<c:if test="${not empty customerList}">
+        			<c:forEach items="${customerList}" var="customer">
+        				<c:if test="${customer.username eq review.username}">
+        					<!--Grid row-->
+					        <div class="row mt-3">
+					
+					            <!--Grid column-->
+					            <div class="col-lg-3 text-center">
+					                <!--Featured image-->
+					                <img src="<c:url value="${customer.profileImageLink}" />" width="100" height="100" class="rounded-circle" alt="<c:out value="${customer.username}" />" >
+					            </div>
+					            <!--Grid column-->
+					
+					            <!--Grid column-->
+					            <div class="col-lg-9 col-xl-9">
+					                <h3 class="mb-3 font-bold dark-grey-text">
+					                </h3>
+					                <p class="grey-text">${review.description}</p>
+					                <p>by
+					                <a class="font-bold dark-grey-text">${review.username}</a>, <fmt:formatDate type="both" dateStyle="long" timeStyle="medium" value="${review.date}" /></p>
+					            </div>
+					            <!--Grid column-->
+				
+					        </div>
+					        <!--Grid row-->
+					
+					        <hr class="mb-5">
+        				</c:if>
+        			</c:forEach>	
+        		</c:if>
+		    	
 			       
         	</c:forEach>
         	

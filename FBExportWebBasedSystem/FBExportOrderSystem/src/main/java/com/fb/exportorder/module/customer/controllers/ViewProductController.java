@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -57,8 +58,21 @@ public class ViewProductController {
 		
 		productService.saveRating(rating);
 		/*increment the review count*/
+		
 		List<Review> reviewList = rating.getReviews();
 		Collections.reverse(reviewList);
+		
+		List<Customer> customerList = new ArrayList<>();
+		
+		rating.getReviews().forEach((review) -> {
+			Customer c = productService.findCustomerByUsername(review.getUsername());
+			if(!customerList.contains(c)) {
+				customerList.add(c);
+			}
+			
+		});
+		
+		model.addAttribute("customerList", customerList);
 		model.addAttribute("reviewList", reviewList);
 		model.addAttribute("product", product);
 		model.addAttribute("datePosted", dateFormat.format(datePosted).toString());

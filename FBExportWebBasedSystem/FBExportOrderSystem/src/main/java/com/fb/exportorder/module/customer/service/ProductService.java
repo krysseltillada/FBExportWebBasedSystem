@@ -2,6 +2,8 @@ package com.fb.exportorder.module.customer.service;
 
 import java.util.List;
 
+import org.springframework.data.repository.query.Param;
+
 import com.fb.exportorder.models.Product;
 import com.fb.exportorder.models.customer.Customer;
 import com.fb.exportorder.models.customer.Rating;
@@ -19,4 +21,6 @@ public interface ProductService {
 	public void saveReview(Review review);
 	
 	public List<Review> findAllByUsername(String Username);
+	
+	public Customer findCustomerByUsername(String username);
 }

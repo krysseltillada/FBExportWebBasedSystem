@@ -13,6 +13,7 @@ import com.fb.exportorder.models.Product;
 import com.fb.exportorder.models.customer.Customer;
 import com.fb.exportorder.models.customer.Rating;
 import com.fb.exportorder.models.customer.Review;
+import com.fb.exportorder.module.customer.repository.CustomerRepository;
 import com.fb.exportorder.module.customer.repository.ProductRepository;
 import com.fb.exportorder.module.customer.repository.RatingRepository;
 import com.fb.exportorder.module.customer.repository.ReviewRepository;
@@ -28,6 +29,9 @@ public class ProductServiceImpl implements ProductService {
 	
 	@Autowired
 	private ReviewRepository reviewRepository;
+	
+	@Autowired
+	private CustomerRepository customerRepository;
 
 	@Override
 	public Product findProductById(long id) {
@@ -58,5 +62,10 @@ public class ProductServiceImpl implements ProductService {
 	public List<Review> findAllByUsername(String username) {
 		return reviewRepository.findReviewByUsername(username);
 	}
-	
+
+	@Override
+	public Customer findCustomerByUsername(String username) {
+		return customerRepository.findAccountByUsername(username);
+	}
+
 }
