@@ -2,8 +2,11 @@ package com.fb.exportorder.module.customer.controllers;
 
 import static org.mockito.Matchers.intThat;
 
+import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
@@ -11,6 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.apache.commons.lang3.StringUtils;
+import org.assertj.core.util.Lists;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -34,7 +38,7 @@ public class ViewProductController {
 	@Autowired
 	private CustomerService customerService;
 	
-	private SimpleDateFormat dateFormat = new SimpleDateFormat("MMMM dd, yyyy");
+	private DateFormat dateFormat = new SimpleDateFormat("MMMM dd, yyyy");
 	
 	@RequestMapping(value="/view-product/{id}", method=RequestMethod.GET)
 	public String viewProduct(@PathVariable long id,
@@ -46,13 +50,16 @@ public class ViewProductController {
 		if(product == null) 
 			return "redirect:/";
 		
-		
+		/*increment the review count*/
 		Rating rating = productService.findRatingById(id);
 		int view = rating.getViews() + 1;
 		rating.setViews(view);
 		
 		productService.saveRating(rating);
-		
+		/*increment the review count*/
+		List<Review> reviewList = rating.getReviews();
+		Collections.reverse(reviewList);
+		model.addAttribute("reviewList", reviewList);
 		model.addAttribute("product", product);
 		model.addAttribute("datePosted", dateFormat.format(datePosted).toString());
 		return "view-product";

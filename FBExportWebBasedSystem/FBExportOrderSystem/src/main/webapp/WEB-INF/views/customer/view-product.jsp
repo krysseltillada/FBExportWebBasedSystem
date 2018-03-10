@@ -297,89 +297,43 @@
             <h4>Reviews<h4>
         </div>
 
-        <!-- COMMENTS -->
-        <!--Grid row-->
-        <div class="row">
-
-            <!--Grid column-->
-            <div class="col-lg-3 text-center">
-                <!--Featured image-->
-                <img src="https://mdbootstrap.com/img/Photos/Others/images/31.jpg" width="100" height="100" class="rounded-circle" alt="Second sample image" >
-            </div>
-            <!--Grid column-->
-
-            <!--Grid column-->
-            <div class="col-lg-9 col-xl-9">
-                <h3 class="mb-3 font-bold dark-grey-text">
-                </h3>
-                <p class="grey-text">At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque
-                corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident et dolorum fuga.</p>
-                <p>by
-                <a class="font-bold dark-grey-text">Jessica Clark</a>, 24/08/2018</p>
-            </div>
-            <!--Grid column-->
-
-        </div>
-        <!--Grid row-->
-
-        <hr class="mb-5">
-
-        <!--Grid row-->
-        <div class="row mt-3">
-
-        <!--Grid column-->
-        <div class="col-lg-3 text-center">
-            <!--Featured image-->
-            <img src="https://mdbootstrap.com/img/Photos/Others/images/31.jpg" width="100" height="100" class="rounded-circle" alt="Second sample image" >
-        </div>
-        <!--Grid column-->
-
-        <!--Grid column-->
-        <div class="col-lg-9 col-xl-9">
-            <h3 class="mb-3 font-bold dark-grey-text">
-            </h3>
-            <p class="grey-text">At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque
-            corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident et dolorum fuga.</p>
-            <p>by
-            <a class="font-bold dark-grey-text">Jessica Clark</a>, 24/08/2018</p>
-        </div>
-        <!--Grid column-->
-
-        </div>
-        <!--Grid row-->
-
-        <hr class="mb-5">
-
-        <!--Grid row-->
-        <div class="row">
-
-            <!--Grid column-->
-            <div class="col-lg-3 text-center">
-                <!--Featured image-->
-                <img src="https://mdbootstrap.com/img/Photos/Others/images/31.jpg" width="100" height="100" class="rounded-circle" alt="Second sample image" >
-            </div>
-            <!--Grid column-->
-
-            <!--Grid column-->
-            <div class="col-lg-9 col-xl-9">
-                <h3 class="mb-3 font-bold dark-grey-text">
-                </h3>
-                <p class="grey-text">At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque
-                corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident et dolorum fuga.</p>
-                <p>by
-                <a class="font-bold dark-grey-text">Jessica Clark</a>, 24/08/2018</p>
-            </div>
-            <!--Grid column-->
-
-        </div>
-        <!--Grid row-->
-
-
-        <!-- COMMENTS -->
-
 
     </div>
-<button type="button" class="btn btn-default btn-lg btn-block">Show more comments</button>
+    
+    <!-- COMMENTS -->
+        <c:if test="${not empty reviewList}">
+        	<c:forEach items="${reviewList}" var="review">
+		        		<!--Grid row-->
+			        	<div class="row mt-3">
+			
+			            <!--Grid column-->
+			            <div class="col-lg-3 text-center">
+			                <!--Featured image-->
+			                <img src="https://mdbootstrap.com/img/Photos/Others/images/31.jpg" width="100" height="100" class="rounded-circle" alt="Second sample image" >
+			            </div>
+			            <!--Grid column-->
+			
+			            <!--Grid column-->
+			            <div class="col-lg-9 col-xl-9">
+			                <h3 class="mb-3 font-bold dark-grey-text">
+			                </h3>
+			                <p class="grey-text">${review.description}</p>
+			                <p>by
+			                <a class="font-bold dark-grey-text">${review.username}</a>, <fmt:formatDate type="both" dateStyle="long" timeStyle="medium" value="${review.date}" /></p>
+			            </div>
+			            <!--Grid column-->
+		
+			        </div>
+			        <!--Grid row-->
+			
+			        <hr class="mb-5">
+			       
+        	</c:forEach>
+        	
+        </c:if>
+
+        <!-- COMMENTS -->
+	<button type="button" class="btn btn-default btn-lg btn-block">Show more comments</button>
 <hr>
 </div>
 
