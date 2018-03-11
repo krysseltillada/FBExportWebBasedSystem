@@ -433,9 +433,11 @@
 			
 			                                                        <p>
 			                                                            <strong> Country(city): </strong> <br />
-			                                                            ${order.shippingAddress.address.country} <span id = "city">(${order.shippingAddress.address.city})</span>
+			                                                            <span id = "country">${order.shippingAddress.address.country}</span> (<span id = "city">${order.shippingAddress.address.city}</span>)
 			                                                        </p>
-			
+			                                                        
+			                                                        <input type = "hidden" id = "phone-number" value = "+${order.shippingAddress.contact.countryCode}) ${order.shippingAddress.contact.phoneNumber}" />
+						
 																</div>
 															</div>
 														</div>
@@ -567,11 +569,8 @@
 				                                                                        <th scope="row">
 				                                                                            <img src = "<c:url value = '${cartItem.product.productImageLink}' />" width = "40" height = "40" />
 				                                                                        </th>
-				
-				                                                                        <td>
-				                                                                        	${cartItem.product.name} 
-				                                                                        </td>
-				                                                                       
+
+				                                                                        <td>${cartItem.product.name}</td>
 				                                                                        <td>${cartItem.weight.weight} ${cartItem.weight.weightType}</td>
 				                                                                        
 				                                                                        <td>

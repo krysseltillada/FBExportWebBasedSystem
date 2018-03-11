@@ -389,89 +389,7 @@ $(document).ready(function () {
                                     $.get("https://api.fixer.io/latest?base=PHP", function (response) {
                                         console.log(response);
 
-                                        $(".paypal-button").each(function (ind, elem) {
-			
-                                            console.log($(this).closest("div.multi-collapse").prev().find(".price").html() + " tae");
-                                        
-                                            paypal.Button.render({
-                                                env: 'sandbox', // Or 'sandbox',
-
-                                                style: {
-                                                color: 'blue',
-                                                size: 'small',
-                                                shape : 'rect',
-                                                size : 'small',
-                                                label : 'pay',
-                                                tagline : 'false'
-                                                },
-                                                
-                                                commit : true,
-                                                
-                                                client: {
-                                                    sandbox:    'AQNTbQBVVlGXxzbWa9o9poVa187KefuAwZ3EuUxn7uH2cCUxXkUCqhIPW2f0Eh6FW6_MSNGxwlIv3bSD'
-                                                },
-
-                                                payment: function(data, actions) {
-                                                console.log(data);
-                                                return actions.payment.create({
-                                                    payment: {
-                                                        intent : "sale",
-                                                        transactions: [
-                                                            {
-                                                                amount: { 
-                                                                    total: "360", 
-                                                                    currency: 'PHP',
-                                                                    details : {
-                                                                    subtotal : "360"
-                                                                    }
-                                                                },
-                                                                
-                                                                description : "tae",
-                                                                invoice_number : "1",
-                                                                item_list : {	
-                                                                    items : [
-                                                                    {name : "tae", price : "120", currency : "PHP", quantity : "1"},
-                                                                    {name : "tae", price : "120", currency : "PHP", quantity : "1"},
-                                                                    {name : "tae", price : "120", currency : "PHP", quantity : "1"}
-                                                                    ],
-                                                                    shipping_address : {
-                                                                        recipient_name: "Brian Robinson",
-                                                                        line1: "4th Floor",
-                                                                        line2: "Unit #34",
-                                                                        city: "San Jose",
-                                                                        country_code: "US",
-                                                                        postal_code: "95131",
-                                                                        phone: "011862212345678",
-                                                                        state: "CA"
-                                                                    }
-                                                                }
-                                                                
-                                                            }
-                                                        ],
-                                                        note_to_payer: "Contact us for any regardings on your payment",
-                                                    }
-                                                });
-                                                },
-
-                                                onAuthorize: function(data, actions) {
-                                                    return actions.payment.execute().then(function(payment) {
-                                                    
-                                                    });
-                                                },
-
-                                                onCancel: function(data, actions) {
-                                                /* 
-                                                    * Buyer cancelled the payment 
-                                                    */
-                                                },
-
-                                                onError: function(err) {
-                                                /* 
-                                                    * An error occurred during the transaction 
-                                                    */
-                                                }
-                                            }, elem);
-                                        });
+                                        console.log(responseData);
 
                                         fx.base = "PHP";
                                         fx.rates = response.rates;
@@ -531,6 +449,121 @@ $(document).ready(function () {
                                             $(this).next().html(currentCurrency);
                                         });
 
+                                         $(".paypal-button").each(function (ind, elem) {
+
+                                            
+            
+                                            var $divOrderCollapse = $(this).closest("div.multi-collapse");
+                                            
+                                            var country = $divOrderCollapse.find("#country").html();
+
+                                            $.ajax({
+
+                                                url : "https://restcountries.eu/rest/v2/name/" + country,
+                                                success : function (responseData) {
+
+                                                    var countryCode = responseData[0].alpha2Code;
+
+                                                    var totalPrice = $divOrderCollapse.prev().find(".price").html();
+                                            
+                                                    var $itemsOrderedTable = $divOrderCollapse.find("table");
+
+                                                    var itemsOrdered = [];
+
+                                                    console.log(countryCode + " code");
+
+                                                    var shippingDetails = {
+                                                        recipient_name : $divOrderCollapse.find("#receiverFullName").html(),
+                                                        line1 : $divOrderCollapse.find("#address").html(),
+                                                        city : $divOrderCollapse.find("#city").html(),
+                                                        postal_code : $divOrderCollapse.find("#zipCode").html(),
+                                                        phone : $divOrderCollapse.find("#phone-number").html(),
+                                                        country_code : countryCode
+                                                    };
+                                                
+                                                    $itemsOrderedTable.find("tbody").find("tr").each(function (ind, elem) {
+                                                        
+                                                        var itemOrdered = {
+                                                            name : $(elem).find("td:eq(0)").html().trim() + " (" + $(elem).find("td:eq(1)").html() + ")",
+                                                            price : $(elem).find("td:eq(2)>span.price").html(),
+                                                            currency : currentCurrency,
+                                                            quantity : "1"
+                                                        }
+
+
+                                                        itemsOrdered.push(itemOrdered);
+
+                                                        console.log(itemOrdered);
+                                                        
+                                                    });
+                                                    
+                                                    paypal.Button.render({
+                                                        env: 'sandbox', // Or 'sandbox',
+
+                                                        style: {
+                                                        color: 'blue',
+                                                        size: 'small',
+                                                        shape : 'rect',
+                                                        size : 'small',
+                                                        label : 'pay'
+                                                        },
+                                                        
+                                                        commit : true,
+                                                        
+                                                        client: {
+                                                            sandbox:    'AQNTbQBVVlGXxzbWa9o9poVa187KefuAwZ3EuUxn7uH2cCUxXkUCqhIPW2f0Eh6FW6_MSNGxwlIv3bSD'
+                                                        },
+
+                                                        payment: function(data, actions) {
+
+                                                        return actions.payment.create({
+                                                            payment: {
+                                                                intent : "sale",
+                                                                transactions: [
+                                                                    {
+                                                                        amount: { 
+                                                                            total: totalPrice, 
+                                                                            currency: currentCurrency,
+                                                                            details : {
+                                                                            subtotal : totalPrice
+                                                                            }
+                                                                        },
+                                                                        
+                                                                        item_list : {	
+                                                                            items : itemsOrdered,
+                                                                            shipping_address : shippingDetails
+                                                                            
+                                                                        }
+                                                                        
+                                                                    }
+                                                                ],
+                                                                note_to_payer: "Contact us for any regardings on your payment",
+                                                            }
+                                                        });
+                                                        },
+
+                                                        onAuthorize: function(data, actions) {
+                                                            return actions.payment.execute().then(function(payment) {
+                                                                console.log("done payment");
+                                                            });
+                                                        },
+
+                                                        onCancel: function(data, actions) {
+                                                        /* 
+                                                            * Buyer cancelled the payment 
+                                                            */
+                                                        },
+
+                                                        onError: function(err) {
+                                                        /* 
+                                                            * An error occurred during the transaction 
+                                                            */
+                                                        }
+                                                    }, elem);
+                                            }});
+
+                                        });
+
 
                                         updateProductCartInfo();
 
@@ -539,16 +572,15 @@ $(document).ready(function () {
                                         $(".btnProductItemAddToCart").removeAttr("disabled");
                                         $("#cart").css("pointer-events", "auto");
 
+                                        var token = $("meta[name='_csrf']").attr("content");
+                                        var header = $("meta[name='_csrf_header']").attr("content");
+                                        $(document).ajaxSend(function(e, xhr, options) {
+                                            xhr.setRequestHeader(header, token);
+                                        });
                                         
                                     }, "json");
 
-                                    
-
-                                    var token = $("meta[name='_csrf']").attr("content");
-                                    var header = $("meta[name='_csrf_header']").attr("content");
-                                    $(document).ajaxSend(function(e, xhr, options) {
-                                        xhr.setRequestHeader(header, token);
-                                    });
+                                   
 
                             }
                         });
