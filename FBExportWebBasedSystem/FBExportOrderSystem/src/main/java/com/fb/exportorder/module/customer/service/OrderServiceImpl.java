@@ -279,11 +279,13 @@ public class OrderServiceImpl implements OrderService {
 	}
 
 	@Override
-	public void markDeleted(Order order) {
-		order.setOrderStatus(OrderStatus.DELETED);
-		order.setReason(StringUtils.EMPTY);
+	public void reOrder(Order order) {
+		order.setOrderStatus(OrderStatus.PENDING);
 		order.setMessage(StringUtils.EMPTY);
+		order.setReason(StringUtils.EMPTY);
 		orderRepository.save(order);
 	}
+
+	
 
 }

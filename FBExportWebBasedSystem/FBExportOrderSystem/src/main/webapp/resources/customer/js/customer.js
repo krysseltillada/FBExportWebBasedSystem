@@ -354,7 +354,7 @@ $(document).ready(function () {
         */
 
         $.ajax({
-            url: "http://ip-api.com/json/27.34.176.0",
+            url: "http://ip-api.com/json/",
             jsonpCallback: "callback",
             dataType: "json",
             success: function( location ) {
@@ -388,6 +388,90 @@ $(document).ready(function () {
 
                                     $.get("https://api.fixer.io/latest?base=PHP", function (response) {
                                         console.log(response);
+
+                                        $(".paypal-button").each(function (ind, elem) {
+			
+                                            console.log($(this).closest("div.multi-collapse").prev().find(".price").html() + " tae");
+                                        
+                                            paypal.Button.render({
+                                                env: 'sandbox', // Or 'sandbox',
+
+                                                style: {
+                                                color: 'blue',
+                                                size: 'small',
+                                                shape : 'rect',
+                                                size : 'small',
+                                                label : 'pay',
+                                                tagline : 'false'
+                                                },
+                                                
+                                                commit : true,
+                                                
+                                                client: {
+                                                    sandbox:    'AQNTbQBVVlGXxzbWa9o9poVa187KefuAwZ3EuUxn7uH2cCUxXkUCqhIPW2f0Eh6FW6_MSNGxwlIv3bSD'
+                                                },
+
+                                                payment: function(data, actions) {
+                                                console.log(data);
+                                                return actions.payment.create({
+                                                    payment: {
+                                                        intent : "sale",
+                                                        transactions: [
+                                                            {
+                                                                amount: { 
+                                                                    total: "360", 
+                                                                    currency: 'PHP',
+                                                                    details : {
+                                                                    subtotal : "360"
+                                                                    }
+                                                                },
+                                                                
+                                                                description : "tae",
+                                                                invoice_number : "1",
+                                                                item_list : {	
+                                                                    items : [
+                                                                    {name : "tae", price : "120", currency : "PHP", quantity : "1"},
+                                                                    {name : "tae", price : "120", currency : "PHP", quantity : "1"},
+                                                                    {name : "tae", price : "120", currency : "PHP", quantity : "1"}
+                                                                    ],
+                                                                    shipping_address : {
+                                                                        recipient_name: "Brian Robinson",
+                                                                        line1: "4th Floor",
+                                                                        line2: "Unit #34",
+                                                                        city: "San Jose",
+                                                                        country_code: "US",
+                                                                        postal_code: "95131",
+                                                                        phone: "011862212345678",
+                                                                        state: "CA"
+                                                                    }
+                                                                }
+                                                                
+                                                            }
+                                                        ],
+                                                        note_to_payer: "Contact us for any regardings on your payment",
+                                                    }
+                                                });
+                                                },
+
+                                                onAuthorize: function(data, actions) {
+                                                    return actions.payment.execute().then(function(payment) {
+                                                    
+                                                    });
+                                                },
+
+                                                onCancel: function(data, actions) {
+                                                /* 
+                                                    * Buyer cancelled the payment 
+                                                    */
+                                                },
+
+                                                onError: function(err) {
+                                                /* 
+                                                    * An error occurred during the transaction 
+                                                    */
+                                                }
+                                            }, elem);
+                                        });
 
                                         fx.base = "PHP";
                                         fx.rates = response.rates;
@@ -446,6 +530,7 @@ $(document).ready(function () {
                                             $(this).html(formatMoney(fx($(this).html()).from("PHP").to(currentCurrency), "", "%v"))
                                             $(this).next().html(currentCurrency);
                                         });
+
 
                                         updateProductCartInfo();
 

@@ -301,11 +301,11 @@
 															<div class = "col-sm-2">
 			
 																<strong> ORDER ID: </strong> <br />
-																	${order.orderId}
+																<span id = "orderId">${order.orderId}</span>
 															</div>
 															<div class = "col-sm-3">
 																<strong> TOTAL PRICE: </strong> <br />
-																	<span>${order.totalPrice}</span> <span>PHP</span>
+																<span class = "price">${order.totalPrice}</span> <span>PHP</span>
 															</div>
 															<div class = "col-sm-3">
 																<strong> PAYMENT METHOD: </strong> <br />
@@ -322,7 +322,7 @@
 														<h6 class = "mb-0">
 															<strong>
 																Status:
-																<span class = "green-text"> Approved </span> </strong>
+																<span id = "orderStatus" class = "green-text"> Approved </span> </strong>
 														</h6>
 			
 														<div class="dropdown blue-text" style = "font-size: 13px;">
@@ -330,7 +330,7 @@
 																<a href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 																	Print <i class="fa fa-caret-down" aria-hidden="true"></i> |
 																</a>
-																<a href = "javascript:void(0)" class = "btn-cancel-order"> Cancel </a>
+																<a href = "javascript:void(0)" class = "btn-cancel-approved-order"> Cancel </a>
 															<div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
 																<a class="dropdown-item" href="#">Print order</a>
 																<a class="dropdown-item disabled" href="#">Print receipt</a>
@@ -397,7 +397,7 @@
 				                                                                        <td>${cartItem.weight.weight} ${cartItem.weight.weightType}</td>
 				                                                                        
 				                                                                        <td>
-				                                                                            <span>${cartItem.price}</span> <span>PHP</span>
+				                                                                            <span class = "price">${cartItem.price}</span> <span>PHP</span>
 				                                                                        </td>
 				                                                                    </tr>
 			                                                                    
@@ -408,8 +408,8 @@
 																				<tr>
 																					<th></th>
 																					<th></th>
-																					<th>Total: ${order.totalWeight} KILO </th>
-			                                                                        <th>Total: <span>${order.totalPrice}</span> <span>PHP</span> </th>
+																					<th>Total: <fmt:formatNumber value = "${order.totalWeight}" maxFractionDigits = "1" /> KILO </th>
+			                                                                        <th>Total: <span class = "price">${order.totalPrice}</span> <span>PHP</span> </th>
 																				</tr>
 			
 																			</tfoot>
@@ -419,8 +419,8 @@
 																</div>
 																<div class = "col-sm-5" style = "font-size: 14px;">
 																	<p>
-																		<strong> Receiver's name:  </strong> 
-																		${order.shippingAddress.receiverFullName} <br />
+																		<strong> Receiver's name (${order.shippingAddress.addressType}'s Address):  </strong>  <br />
+																		<span id = "receiverFullName">${order.shippingAddress.receiverFullName}</span> <br />
 																	</p>
 																	<p>
 																		<strong> Shipping Instructions:  </strong> <br />
@@ -428,12 +428,12 @@
 																	</p>
 																	<p>
 			                                                            <strong> Shipping Address: </strong> <br />
-			                                                            ${order.shippingAddress.address.zipCode} ${order.shippingAddress.address.address}
+			                                                            <span id = "zipCode">${order.shippingAddress.address.zipCode}</span> <span id = "address">${order.shippingAddress.address.address}</span>
 			                                                        </p>
 			
 			                                                        <p>
 			                                                            <strong> Country(city): </strong> <br />
-			                                                            ${order.shippingAddress.address.country}(${order.shippingAddress.address.city})
+			                                                            ${order.shippingAddress.address.country} <span id = "city">(${order.shippingAddress.address.city})</span>
 			                                                        </p>
 			
 																</div>
@@ -441,17 +441,20 @@
 														</div>
 			
 													</div>
+													
+													<c:if test = "${order.paymentMethod eq 'PAYPAL'}">
 			
-													<hr class = "m-0"/>
-			
-													<div class = "row">
-														<div class = "col-sm-9">
-															<strong class = "ml-2 red-text" style = "font-size: 14px; position: relative; top: 15px;"> *reminder: ${order.message} </strong>
+														<hr class = "m-0"/>
+				
+														<div class = "row">
+															<div class = "col-sm-9">
+																<strong class = "ml-2 red-text" style = "font-size: 14px; position: relative; top: 15px;"> *reminder: ${order.message} </strong>
+															</div>
+															<div class = "col-sm-3 mt-2 paypal-button">
+															</div>
 														</div>
-														<div class = "col-sm-3">
-															<button type="button" class="btn btn-primary float-right">Pay order</button>
-														</div>
-													</div>
+													
+													</c:if>
 			
 												</div>
 											</div>  
@@ -474,7 +477,7 @@
 															<div class = "col-sm-2">
 			
 																<strong> ORDER ID: </strong> <br />
-																	${order.orderId}
+																<span id = "orderId">${order.orderId}</span>
 															</div>
 															<div class = "col-sm-3">
 																<strong> TOTAL PRICE: </strong> <br />
@@ -495,16 +498,17 @@
 														<h6 class = "mb-0">
 															<strong>
 																Status:
-																<span class = "red-text"> Rejected </span> </strong>
+																<span id = "orderStatus" class = "red-text"> Rejected </span> </strong>
 														</h6>
 			
 														<div class="dropdown blue-text" style = "font-size: 13px;">
 																<i class="fa fa-print" aria-hidden="true"></i>
 																<a href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-																	Print <i class="fa fa-caret-down" aria-hidden="true"></i> |
+																	Print <i class="fa fa-caret-down" aria-hidden="true"></i> 
 																</a>
-																<a href = "#"> Reorder </a> |
-																<a href = "#"> Delete </a>
+																<span>|</span>
+																<a class = "btn-reorder" href = "javascript:void(0)"> Reorder </a> <span>|</span>
+																<a class = "btn-cancel-rejected-order" href = "javascript:void(0)"> Cancel </a>
 															<div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
 																<a class="dropdown-item" href="#">Print order</a>
 																<a class="dropdown-item disabled" href="#">Print receipt</a>
@@ -620,8 +624,8 @@
 															<strong class = "ml-2 red-text" style = "font-size: 14px; position: relative; top: 15px;"> *reason: ${order.reason} </strong>
 														</div>
 														<div class = "col-sm-5">
-															<button type="button" class="btn btn-primary float-right">Delete</button>
-															<button type="button" class="btn btn-primary float-right">Reorder</button>
+															<button type="button" class="btn btn-primary float-right btn-cancel-rejected-order">Cancel</button>
+															<button type="button" class="btn btn-primary float-right btn-reorder">Reorder</button>
 														</div>
 													</div>
 			
@@ -855,8 +859,7 @@
 															<a href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 																	Print <i class="fa fa-caret-down" aria-hidden="true"></i> |
 															</a>
-															<a href = "#"> Details </a> |
-															<a class = "disabled grey-text"> Cancel </a>
+															<a href = "#"> Details </a> 
 															<div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
 																<a class="dropdown-item" href="#">Print order</a>
 																<a class="dropdown-item" href="#">Print receipt</a>
@@ -1462,15 +1465,6 @@
 														</div>
 
 													</div>
-													
-													<hr class = "m-0"/>
-			
-													<div class = "row">
-														
-														<div class = "col-sm-12">
-															<button type="button" class="btn btn-primary float-right btn-delete-order">Delete</button>
-														</div>
-													</div>
 
 												</div>
 											</div>
@@ -1716,3 +1710,4 @@
     </div> 
 
 </main>  
+

@@ -47,10 +47,4 @@ public interface CustomerRepository
 	@Query("SELECT c.orders FROM Customer c WHERE c.id = :customerId")
 	List<Order> getOrdersByCustomerId (@Param("customerId") long customerId, Pageable pageable);
 	
-	@Query("SELECT o FROM Orders o WHERE o.orderStatus <> 'DELETED' AND o.customer.id = :customerId")
-	List<Order> getOrdersByCustomerIdNotDeleted(@Param("customerId") long customerId, Pageable pageable);
-	
-	@Query("SELECT COUNT(o) FROM Orders o WHERE o.orderStatus <> 'DELETED' AND o.customer.id = :customerId")
-	int getOrdersCountByCustomerIdNotDeleted(@Param("customerId") long customerId);
-	
 }

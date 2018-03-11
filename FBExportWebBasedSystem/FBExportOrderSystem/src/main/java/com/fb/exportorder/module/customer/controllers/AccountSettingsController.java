@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.fb.exportorder.models.Address;
 import com.fb.exportorder.models.Contact;
@@ -55,7 +56,7 @@ public class AccountSettingsController {
 															  @RequestParam("country-code") String countryCode,
 															  @RequestParam("phone-number") String phoneNumber,
 															  @RequestParam("email-address") String emailAddress, 
-															  Model model, HttpSession session) {
+															  Model model, HttpSession session, RedirectAttributes redirectAttribute) {
 		
 		Customer editedCustomer = new Customer();
 		Address editedAddress = new Address();
@@ -87,8 +88,8 @@ public class AccountSettingsController {
 		List<String> errorMessages = accountSettingsService.editAccount(editedCustomer, oldpassword, profileImage, session);
 
 		if (errorMessages.isEmpty()) {
-			model.addAttribute("successMessage", "Successfully Edited the account");
-			return "forward:/account-settings";
+			redirectAttribute.addFlashAttribute("successMessage", "Successfully Edited the account");
+			return "redirect:/account-settings";
 		}
 		
 		model.addAttribute("errorMessages", errorMessages);

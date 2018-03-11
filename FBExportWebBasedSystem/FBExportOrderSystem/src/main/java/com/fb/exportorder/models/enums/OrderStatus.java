@@ -9,6 +9,5 @@ public enum OrderStatus {
 	PAID,
 	RETURNED,
 	CANCELLED,
-	REFUND,
-	DELETED
+	REFUND
 }

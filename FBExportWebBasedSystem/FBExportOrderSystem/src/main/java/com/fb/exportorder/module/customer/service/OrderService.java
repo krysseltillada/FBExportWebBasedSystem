@@ -34,7 +34,8 @@ public interface OrderService {
 	void markReceived(Order order);
 	void markToShip(Order order);
 	void markCancelled(Order order, String reason);
-	void markDeleted(Order order);
+	
+	void reOrder(Order order);
 	
 	List<String> addToShipInformation(long id,
 									  String shipmentStatus,

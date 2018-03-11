@@ -158,13 +158,13 @@ public class CustomerServiceImpl implements CustomerService {
 	}
 
 	@Override
-	public List<Order> getOrdersByCustomerIdNotDeleted(int pageNumber, long customerId) {
-		return customerRepository.getOrdersByCustomerIdNotDeleted(customerId, new PageRequest(pageNumber, 5));
+	public List<Order> getOrdersByCustomerId(int pageNumber, long customerId) {
+		return customerRepository.getOrdersByCustomerId(customerId, new PageRequest(pageNumber, 5));
 	}
 
 	@Override
-	public int getOrderCountByCustomerIdNotDeleted(long customerId) {
-		return customerRepository.getOrdersCountByCustomerIdNotDeleted(customerId);
+	public int getOrderCountByCustomerId(long customerId) {
+		return customerRepository.findOne(customerId).getOrders().size();
 	}
 
 }

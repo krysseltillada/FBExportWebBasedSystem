@@ -33,10 +33,10 @@ public class OrderListController {
 		
 		long customerId = (long)session.getAttribute("customerId");
 		
-		List<Order> orderList = customerService.getOrdersByCustomerIdNotDeleted(pageNumber, customerId);
+		List<Order> orderList = customerService.getOrdersByCustomerId(pageNumber, customerId);
 		
 		model.addAttribute("currentPageCount", pageNumber);
-		model.addAttribute("pageNumber", (int)(customerService.getOrderCountByCustomerIdNotDeleted(customerId) / ORDER_ITEMS_COUNT));
+		model.addAttribute("pageNumber", (int)(customerService.getOrderCountByCustomerId(customerId) / ORDER_ITEMS_COUNT));
 		model.addAttribute(orderList);
 		
 		return "order-list";
@@ -54,15 +54,14 @@ public class OrderListController {
 		return "";
 	}
 	
-	@RequestMapping("/order-list/markDeleted")
+	@RequestMapping("/order-list/reorder")
 	@ResponseBody
-	public String markDeleted(@RequestParam String orderId) {
+	public String reorder(@RequestParam String orderId) {
 		
-		orderService.markDeleted(orderService.getOrderById(Long.parseLong(orderId)));
-
+		orderService.reOrder(orderService.getOrderById(Long.parseLong(orderId)));
+		
 		return "";
 	}
-	
 	
 
 }
