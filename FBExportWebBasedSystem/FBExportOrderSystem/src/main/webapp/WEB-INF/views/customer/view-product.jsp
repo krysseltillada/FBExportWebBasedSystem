@@ -343,12 +343,13 @@
     </div>
     
     <!-- COMMENTS -->
+    <div id="comments">
         <c:if test="${not empty reviewList}">
         	<c:forEach items="${reviewList}" var="review">
         		<c:if test="${not empty customerList}">
         			<c:forEach items="${customerList}" var="customer">
         				<c:if test="${customer.username eq review.username}">
-        					<div id="comments">
+        					
         						<!--Grid row-->
 						        <div class="row mt-3">
 						
@@ -373,7 +374,7 @@
 						        <!--Grid row-->
 						
 						        <hr class="mb-5">
-        					</div>
+        					
         				</c:if>
         			</c:forEach>	
         		</c:if>
@@ -382,7 +383,7 @@
         	</c:forEach>
         	
         </c:if>
-
+	</div>
         <!-- COMMENTS -->
 	<button type="button" class="btn btn-default btn-lg btn-block">Show more comments</button>
 <hr>

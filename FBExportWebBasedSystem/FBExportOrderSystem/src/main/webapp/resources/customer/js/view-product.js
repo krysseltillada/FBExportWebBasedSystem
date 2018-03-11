@@ -53,7 +53,7 @@ $(document).ready(function () {
 						    "<h3 class='mb-3 font-bold dark-grey-text'>"+
 						    "</h3>"+
 						    "<p class='grey-text'>"+$("#textarea-char-counter").val()+"</p>"+
-						                "<p>by<a class='font-bold dark-grey-text'> Sample</a>, "+ moment().format('MMMM D, YYYY h:mm:ss A') +"</p>"+
+						                "<p>by<a class='font-bold dark-grey-text'> "+$("#customerUsername").val()+" </a>, "+ moment().format('MMMM D, YYYY h:mm:ss A') +"</p>"+
 						    "</div>"+
             		 		"</div>" +
             		 		"<hr class='mb-5'>"+

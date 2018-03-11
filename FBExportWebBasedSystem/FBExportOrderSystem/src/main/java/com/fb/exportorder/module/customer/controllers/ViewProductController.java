@@ -87,6 +87,7 @@ public class ViewProductController {
 					rate = review.getRate();
 					break;
 				}
+				++i;
 			}
 			
 			model.addAttribute("starRate", rate);
@@ -118,8 +119,8 @@ public class ViewProductController {
 		
 		Customer customer = customerService.getCustomerById(Long.parseLong(session.getAttribute("customerId").toString()));
 		Rating ratings = productService.findRatingById(id);
-
-		List<Review> reviewList = productService.findAllByUsername(customer.getUsername());
+		
+		List<Review> reviewList = ratings.getReviews();
 		
 		if(!reviewList.isEmpty()) {
 			double rate = ratings.getRate();
@@ -142,8 +143,8 @@ public class ViewProductController {
 		
 		reviewList.add(addReview(review, rating, customer.getUsername()));
 		
-		reviewList.removeAll(ratings.getReviews());
-		ratings.getReviews().addAll(reviewList);
+		//reviewList.removeAll(ratings.getReviews());
+		//ratings.getReviews().addAll(reviewList);
 		
 		productService.saveRating(ratings);
 		

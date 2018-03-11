@@ -60,6 +60,7 @@
 	                    <li class="nav-item">
 	
 	                        <a class="nav-link waves-effect waves-light white-text" href="<c:url value = '/view-profile' />">
+	                            <input type="hidden" id="customerUsername" value="${sessionScope.customerUsername}"/>
 	                            <span class = "font-weight-bold"> Welcome ${sessionScope.customerName}!</span>
 	                            <img class = "ml-1" src = "<c:url value = '${sessionScope.customerProfileImageLink}' />" height = "20" width = "20" alt = "profile image" id="profileImage"/>
 	                        </a>
