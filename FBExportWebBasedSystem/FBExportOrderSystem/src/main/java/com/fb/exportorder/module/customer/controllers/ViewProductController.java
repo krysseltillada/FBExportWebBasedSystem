@@ -118,7 +118,14 @@ public class ViewProductController {
 		
 		List<Review> reviewList = productService.findAllByUsername(customer.getUsername());
 		
-		if(!reviewList.isEmpty()) {
+		if((ratings.getRate() == 0 ) || reviewList.isEmpty()) {
+
+			double rates = ratings.getRate();
+			rates += rating;
+			ratings.setRate(rates);
+			System.out.println("Pasok " + rates);
+			
+		} else{
 			double rate = ratings.getRate();
 			for(Review rev : reviewList) {
 				for(Review r : ratings.getReviews()) {
@@ -129,13 +136,9 @@ public class ViewProductController {
 					}
 				}
 			}
-			
-		
-		}else{
-			double rates = ratings.getRate();
-			rates += rating;
-			ratings.setRate(rates);
 		}
+		
+		System.out.println(ratings.getRate() +"========================================");
 		
 		
 		addReview(review, rating, customer.getUsername(), ratings);
@@ -146,7 +149,7 @@ public class ViewProductController {
 	public void addReview(String review, double rate, String username, Rating ratings) {
 		Rating rating = ratings;
 		Review rev = new Review();
-		
+	
 		
 		rev.setDescription(review);
 		rev.setRate(rate);
