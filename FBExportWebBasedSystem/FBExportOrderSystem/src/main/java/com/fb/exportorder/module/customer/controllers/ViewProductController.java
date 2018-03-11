@@ -1,21 +1,16 @@
 package com.fb.exportorder.module.customer.controllers;
 
-import static org.mockito.Matchers.intThat;
-
 import java.text.DateFormat;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.apache.commons.lang3.StringUtils;
-import org.assertj.core.util.Lists;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -118,50 +113,49 @@ public class ViewProductController {
 		HttpSession session = request.getSession();
 		
 		Customer customer = customerService.getCustomerById(Long.parseLong(session.getAttribute("customerId").toString()));
+		
 		Rating ratings = productService.findRatingById(id);
 		
-		List<Review> reviewList = ratings.getReviews();
+		List<Review> reviewList = productService.findAllByUsername(customer.getUsername());
 		
 		if(!reviewList.isEmpty()) {
 			double rate = ratings.getRate();
-			rate = (rate - reviewList.get(0).getRate()) + rating;
-			ratings.setRate(rate);
-			
 			for(Review rev : reviewList) {
-				rev.setRate(rating);
-				
-				productService.saveReview(rev);
+				for(Review r : ratings.getReviews()) {
+					if(rev.getReviewId().equals(r.getReviewId())) {
+						ratings.setRate((rate - rev.getRate()) + rating);
+						
+						rev.setRate(rating);
+					}
+				}
 			}
 			
-			
-		}else {
-			double rate = ratings.getRate();
-			rate += rating;
-			ratings.setRate(rate);
-			
+		
+		}else{
+			double rates = ratings.getRate();
+			rates += rating;
+			ratings.setRate(rates);
 		}
 		
-		reviewList.add(addReview(review, rating, customer.getUsername()));
 		
-		//reviewList.removeAll(ratings.getReviews());
-		//ratings.getReviews().addAll(reviewList);
-		
-		productService.saveRating(ratings);
+		addReview(review, rating, customer.getUsername(), ratings);
 		
 		return "Success";
 	}
 	
-	public Review addReview(String review, double rating, String username) {
-		Review reviews = new Review();
+	public void addReview(String review, double rate, String username, Rating ratings) {
+		Rating rating = ratings;
+		Review rev = new Review();
 		
-		reviews.setDescription(review);
-		reviews.setRate(rating);
-		reviews.setUsername(username);
-		reviews.setDate(new Date());
 		
-		productService.saveReview(reviews);
-	
-		return reviews;
+		rev.setDescription(review);
+		rev.setRate(rate);
+		rev.setUsername(username);
+		rev.setDate(new Date());
+		
+		rating.getReviews().add(rev);
+		
+		productService.saveRating(rating);
 	}
 	
 	public List<String> validate(Double rate, String review){
