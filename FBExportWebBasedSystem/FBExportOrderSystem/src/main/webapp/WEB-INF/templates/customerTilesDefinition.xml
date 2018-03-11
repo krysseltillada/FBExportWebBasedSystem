@@ -157,6 +157,12 @@
 	
 	</definition>
 	
+	<definition name = "payment-receipt" extends = "customerBaseTemplate">
+		
+		<put-attribute name = "main" value = "/WEB-INF/views/customer/payment-receipt.jsp" />
+		
+	</definition>
+	
 	<definition name = "login" extends = "customerBaseTemplate">
 		<put-attribute name = "main" value = "/WEB-INF/views/customer/login.jsp" />
 		

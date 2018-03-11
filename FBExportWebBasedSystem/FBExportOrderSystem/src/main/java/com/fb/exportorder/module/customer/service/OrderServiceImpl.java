@@ -286,6 +286,15 @@ public class OrderServiceImpl implements OrderService {
 		orderRepository.save(order);
 	}
 
+	@Override
+	public void markPaid(Order order) {
+		
+		order.setOrderStatus(OrderStatus.PAID);
+		order.setDatePaid(new Date());
+		orderRepository.save(order);
+		
+	}
+
 	
 
 }

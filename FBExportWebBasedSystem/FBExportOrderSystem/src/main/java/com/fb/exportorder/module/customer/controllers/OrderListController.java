@@ -54,6 +54,15 @@ public class OrderListController {
 		return "";
 	}
 	
+	@RequestMapping("/order-list/markPaid")
+	@ResponseBody
+	public String markPaid(@RequestParam String orderId) {
+		
+		orderService.markPaid(orderService.getOrderById(Long.parseLong(orderId)));
+		
+		return "";
+	}
+	
 	@RequestMapping("/order-list/reorder")
 	@ResponseBody
 	public String reorder(@RequestParam String orderId) {

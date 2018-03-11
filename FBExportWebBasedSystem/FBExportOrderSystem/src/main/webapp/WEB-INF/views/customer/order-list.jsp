@@ -286,7 +286,7 @@
 			                                </div>
 			
 										</c:when>
-										
+										 kryssel
 										<c:when test = "${order.orderStatus eq 'APPROVED'}">
 
 											<span class="list-group-item flex-column align-items-start black-text" >
@@ -436,7 +436,7 @@
 			                                                            <span id = "country">${order.shippingAddress.address.country}</span> (<span id = "city">${order.shippingAddress.address.city}</span>)
 			                                                        </p>
 			                                                        
-			                                                        <input type = "hidden" id = "phone-number" value = "+${order.shippingAddress.contact.countryCode}) ${order.shippingAddress.contact.phoneNumber}" />
+			                                                        <input type = "hidden" id = "phone-number" value = "${order.shippingAddress.contact.phoneNumber}" />
 						
 																</div>
 															</div>

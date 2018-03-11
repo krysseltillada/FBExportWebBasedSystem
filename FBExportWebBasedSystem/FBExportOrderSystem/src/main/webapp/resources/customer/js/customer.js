@@ -464,22 +464,17 @@ $(document).ready(function () {
 
                                                     var countryCode = responseData[0].alpha2Code;
 
-                                                    var totalPrice = $divOrderCollapse.prev().find(".price").html();
+                                                    var $orderItemDiv = $divOrderCollapse.prev();
+
+                                                    var totalPrice = $orderItemDiv.find(".price").html();
+                                                    var oid = $orderItemDiv.find("#orderId").html();
+
+                                                    console.log(oid);
                                             
                                                     var $itemsOrderedTable = $divOrderCollapse.find("table");
 
                                                     var itemsOrdered = [];
 
-                                                    console.log(countryCode + " code");
-
-                                                    var shippingDetails = {
-                                                        recipient_name : $divOrderCollapse.find("#receiverFullName").html(),
-                                                        line1 : $divOrderCollapse.find("#address").html(),
-                                                        city : $divOrderCollapse.find("#city").html(),
-                                                        postal_code : $divOrderCollapse.find("#zipCode").html(),
-                                                        phone : $divOrderCollapse.find("#phone-number").html(),
-                                                        country_code : countryCode
-                                                    };
                                                 
                                                     $itemsOrderedTable.find("tbody").find("tr").each(function (ind, elem) {
                                                         
@@ -530,21 +525,32 @@ $(document).ready(function () {
                                                                         },
                                                                         
                                                                         item_list : {	
-                                                                            items : itemsOrdered,
-                                                                            shipping_address : shippingDetails
-                                                                            
+                                                                            items : itemsOrdered
                                                                         }
                                                                         
                                                                     }
                                                                 ],
-                                                                note_to_payer: "Contact us for any regardings on your payment",
+                                                                note_to_payer: "Contact us on any regardings on your payment",
+                                                            },
+                                                            experience : {
+                                                                input_fields : {
+                                                                    no_shipping : 1
+                                                                },
+                                                                presentation : {
+                                                                    brand_name : "Fong Bros International Corp"
+                                                                }
                                                             }
                                                         });
                                                         },
 
                                                         onAuthorize: function(data, actions) {
                                                             return actions.payment.execute().then(function(payment) {
-                                                                console.log("done payment");
+  
+                                                                $.post("/FBExportSystem/order-list/markPaid", {
+                                                                    orderId : oid
+                                                                }, function () {
+                                                                    window.location = "payment-receipt?orderId=" + oid;
+                                                                });
                                                             });
                                                         },
 
@@ -555,6 +561,8 @@ $(document).ready(function () {
                                                         },
 
                                                         onError: function(err) {
+
+                                                            console.log(err);
                                                         /* 
                                                             * An error occurred during the transaction 
                                                             */

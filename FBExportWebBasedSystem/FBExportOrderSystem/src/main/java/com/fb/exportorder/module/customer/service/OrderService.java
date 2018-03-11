@@ -34,6 +34,7 @@ public interface OrderService {
 	void markReceived(Order order);
 	void markToShip(Order order);
 	void markCancelled(Order order, String reason);
+	void markPaid(Order order);
 	
 	void reOrder(Order order);
 	

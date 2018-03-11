@@ -61,6 +61,9 @@ public class Order	 {
 	
 	@Temporal(TemporalType.DATE)
 	private Date dateOrdered;
+	
+	@Temporal(TemporalType.DATE)
+	private Date datePaid;
 
 	public Long getOrderId() {
 		return orderId;
@@ -132,6 +135,15 @@ public class Order	 {
 
 	public void setDateOrdered(Date dateOrdered) {
 		this.dateOrdered = dateOrdered;
+	}
+	
+
+	public Date getDatePaid() {
+		return datePaid;
+	}
+
+	public void setDatePaid(Date datePaid) {
+		this.datePaid = datePaid;
 	}
 
 	public PaymentMethod getPaymentMethod() {
