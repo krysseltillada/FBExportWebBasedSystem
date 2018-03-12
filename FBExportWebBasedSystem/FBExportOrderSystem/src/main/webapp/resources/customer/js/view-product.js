@@ -1,5 +1,36 @@
 $(document).ready(function () {
 	
+	var averageRating = $("#averateRating").text();
+	
+	if(averageRating <= 0.0)
+		showStars("fa-star-o","fa-star-o","fa-star-o","fa-star-o","fa-star-o");
+	else if(averageRating == 1.0)
+		showStars("fa-star","fa-star-o","fa-star-o","fa-star-o","fa-star-o");
+	else if(averageRating == 2.0)
+		showStars("fa-star","fa-star","fa-star-o","fa-star-o","fa-star-o");
+	else if(averageRating == 3.0)
+		showStars("fa-star","fa-star","fa-star","fa-star-o","fa-star-o");
+	else if(averageRating == 4.0)
+		showStars("fa-star","fa-star","fa-star","fa-star","fa-star-o");
+	else if(averageRating == 5.0)
+		showStars("fa-star","fa-star","fa-star","fa-star","fa-star");
+	else if(averageRating > 1.0 && averageRating < 2.0)
+		showStars("fa-star","fa-star-half-o","fa-star-o","fa-star-o","fa-star-o");
+	else if(averageRating > 2.0 && averageRating < 3.0)
+		showStars("fa-star","fa-star","fa-star-half-o","fa-star-o","fa-star-o");
+	else if(averageRating > 3.0 && averageRating < 4.0)
+		showStars("fa-star","fa-star","fa-star","fa-star-half-o","fa-star-o");
+	else if(averageRating > 4.0 && averageRating < 5.0)
+		showStars("fa-star","fa-star","fa-star","fa-star","fa-star-half-o");
+	
+	function showStars(s1, s2, s3, s4, s5){
+		$("#star1").attr("class", "fa "+s1+" yellow-text fa-2x ");
+		$("#star2").attr("class", "fa "+s2+" yellow-text fa-2x ");
+		$("#star3").attr("class", "fa "+s3+" yellow-text fa-2x ");
+		$("#star4").attr("class", "fa "+s4+" yellow-text fa-2x ");
+		$("#star5").attr("class", "fa "+s5+" yellow-text fa-2x ");
+	}
+	
     $(".btnProductItemAddToCart").click(function (event) {
         var $card = $(event.currentTarget).parent().parent().parent();
         var $cardBody = $card.find("div.card-body");
