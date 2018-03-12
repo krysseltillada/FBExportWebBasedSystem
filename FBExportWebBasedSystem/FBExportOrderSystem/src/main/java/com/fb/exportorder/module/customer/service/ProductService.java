@@ -17,6 +17,8 @@ public interface ProductService {
 	
 	public void saveRating(Rating rating);
 	
+	public void deleteReviewById(long productid, long reviewid);
+	
 	public void saveReview(Rating ratings, Double rating, List<Review> reviewList, String review, String username);
 	
 	public List<Review> findAllByUsername(String Username);

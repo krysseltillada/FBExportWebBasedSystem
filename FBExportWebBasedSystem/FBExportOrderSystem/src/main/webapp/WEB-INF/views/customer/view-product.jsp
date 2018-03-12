@@ -114,6 +114,7 @@
 
         <!--Content-->
         <div class="text-center card-body">
+        	<input type="hidden" value="${product.productId}" id="productId"/>
             <h4 class="card-title"> ${product.name} </h4>
             <p class="card-text">
                 <i class="fa fa-quote-left"></i> ${product.description} </p>
@@ -354,6 +355,7 @@
         				<c:if test="${customer.username eq review.username}">
         					
         						<!--Grid row-->
+        						<div>
 						        <div class="row mt-3">
 						
 						            <!--Grid column-->
@@ -365,18 +367,27 @@
 						
 						            <!--Grid column-->
 						            <div class="col-lg-9 col-xl-9">
+						            	<c:if test="${sessionScope.customerUsername eq review.username}">
+						            		<button type="button" class="close deleteReview" aria-label="Close" style="cursor: pointer;"><span aria-hidden="true">&times;</span></button>
+						            	</c:if>
+						            	
+						            	<input class="reviewId" type="text" value="${review.reviewId}"/>
 						                <h3 class="mb-3 font-bold dark-grey-text">
 						                </h3>
 						                <p class="grey-text">${review.description}</p>
 						                <p>by
 						                <a class="font-bold dark-grey-text">${review.username}</a>, <fmt:formatDate type="both" dateStyle="long" timeStyle="medium" value="${review.date}" /></p>
+						            	
+						            	
 						            </div>
 						            <!--Grid column-->
-					
+									
 						        </div>
+						        <hr class="mb-5">
+						       </div>
 						        <!--Grid row-->
 						
-						        <hr class="mb-5">
+						        
         					
         				</c:if>
         			</c:forEach>	

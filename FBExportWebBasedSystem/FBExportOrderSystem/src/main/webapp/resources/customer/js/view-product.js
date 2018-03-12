@@ -86,45 +86,29 @@ $(document).ready(function () {
       	    	  $("#errorReview").empty();
 
          		 alertify.success("You've successfully post a review.");
-         		 
+         		
+         		 var jsonLastReviewId = JSON.parse(result);
+         		 alert(jsonLastReviewId["lastReviewId"]);
          		 $("#comments").prepend("<div>" +
          		 		"<div class='row mt-3'>" +
          		 		"<div class='col-lg-3 text-center'>"+
          		 		"<img src='"+$("#profileImage").attr("src")+"' width='100' height='100' class='rounded-circle' alt='Sample' >"+
          		 		"</div>"+
          		 		"<div class='col-lg-9 col-xl-9'>"+
+	            		"<button type='button' class='close deleteReview' aria-label='Close' style='cursor: pointer;'><span aria-hidden='true'>&times;</span></button>"+
+	            			"<input class='reviewId' type='text' value='"+jsonLastReviewId["lastReviewId"]+"'/>"+
 						    "<h3 class='mb-3 font-bold dark-grey-text'>"+
 						    "</h3>"+
 						    "<p class='grey-text'>"+$("#textarea-char-counter").val()+"</p>"+
-						                "<p>by<a class='font-bold dark-grey-text'> "+$("#customerUsername").val()+" </a>, "+ moment().format('MMMM D, YYYY h:mm:ss A') +"</p>"+
+						    "<p>by<a class='font-bold dark-grey-text'> "+$("#customerUsername").val()+" </a>, "+ moment().format('MMMM D, YYYY h:mm:ss A') +"</p>"+
 						    "</div>"+
-         		 		"</div>" +
+         		 		"</div>"+
          		 		"<hr class='mb-5'>"+
          		 		"</div>");
          		 
          		 $("#textarea-char-counter").val("");
          		 
-         		 var jsonData = JSON.parse(result);
-         		 var total = jsonData["CountTotal"];
-         		 
-         		 $.each(jsonData, function (index, value) {
-         			 
-         			 if(index == "Average"){
-         				 $("#averageRating").text(value.toFixed(2));
-         				 changeStar();
-         			 }else if(index == "Count5.0"){
-         				 showRates("#count5-progress", "#count5-rate",value,total);
-         			 }else if(index == "Count4.0"){
-         				 showRates("#count4-progress", "#count4-rate",value,total);
-         			 }else if(index == "Count3.0"){
-         				 showRates("#count3-progress", "#count3-rate",value,total);
-         			 }else if(index == "Count2.0"){
-         				 showRates("#count2-progress", "#count2-rate",value,total);
-         			 }else if(index == "Count1.0"){
-         				 showRates("#count1-progress", "#count1-rate",value,total);
-         			 }
-         			 
-    	    		});
+         		 updateRating(result);
             	}
             	
             },error: function(e){
@@ -138,5 +122,65 @@ $(document).ready(function () {
     	$(progress).css("width", ((value / total ) * 100).toFixed(1)+"%");
 		 $(rate).text(((value / total ) * 100).toFixed(1)+"%");
     }
-
+    
+    $(".deleteReview").click(function(){
+    	
+    	var deleteReview = $(this);
+    	var reviewId = $(this).next().val();
+    	var productId = $("#productId").val();
+    	
+    	alertify.confirm("Are you sure you want to delete review?",
+    		function(){
+    			
+    		$.ajax({
+        		type: 'POST',
+        		url: "/FBExportSystem/delete-review/"+productId+"/"+reviewId,
+        		processData: false,
+      	      	contentType: false,
+      	      	cache: false,
+      	      	data: reviewId,
+                success: function(result){
+                	
+    		    	alertify.success("You've successfully delete review.");
+    		    	
+    		    	deleteReview.parent().parent().parent().remove();
+                	updateRating(result);
+                },error: function(e){
+                	console.log("ERROR: ",e);
+                }
+        	});
+    		
+		  	},
+		  	function(){/*Cancel*/});
+    	 
+    });
+    
+    function updateRating(result){
+    	var jsonData = JSON.parse(result);
+		 var total = jsonData["CountTotal"];
+		 
+		 $.each(jsonData, function (index, value) {
+			 
+			 if(index == "Average"){
+				 $("#averageRating").text(value.toFixed(2));
+				 changeStar();
+			 }else if(index == "Count5.0"){
+				 showRates("#count5-progress", "#count5-rate",value,total);
+			 }else if(index == "Count4.0"){
+				 showRates("#count4-progress", "#count4-rate",value,total);
+			 }else if(index == "Count3.0"){
+				 showRates("#count3-progress", "#count3-rate",value,total);
+			 }else if(index == "Count2.0"){
+				 showRates("#count2-progress", "#count2-rate",value,total);
+			 }else if(index == "Count1.0"){
+				 showRates("#count1-progress", "#count1-rate",value,total);
+			 }
+			 
+   		});
+   	
+    }
+    
+    function sample(){
+    	alert("Hello");
+    }
 });

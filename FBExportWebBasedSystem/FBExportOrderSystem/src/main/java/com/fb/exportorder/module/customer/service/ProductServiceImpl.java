@@ -56,6 +56,7 @@ public class ProductServiceImpl implements ProductService {
 		mapAverage.put("Count4.0", 0.0);
 		mapAverage.put("Count5.0", 0.0);
 		mapAverage.put("Average", 0.0);
+		mapAverage.put("lastReviewId", 0.0);
 	}
 
 	@Override
@@ -143,7 +144,7 @@ public class ProductServiceImpl implements ProductService {
 	@Override
 	public double getAverage(List<Review> reviewList) {
 			
-		mapAverage.forEach((k,v) -> mapAverage.put(k, 0.0));
+		mapAverage.forEach((k,v) -> { if(!k.equals("lastReviewId")) mapAverage.put(k, 0.0); });
 		
 		Collection<Review> reviewCollection = reviewList.stream()
 				   .<Map<String, Review>> collect(HashMap::new,(m,e)->m.put(e.getUsername(), e), Map::putAll)
@@ -187,16 +188,35 @@ public class ProductServiceImpl implements ProductService {
 	public void addReview(String review, double rate, String username, Rating ratings) {
 		Rating rating = ratings;
 		Review rev = new Review();
-	
+		List<Review> reviewList = rating.getReviews();
 		
 		rev.setDescription(review);
 		rev.setRate(rate);
 		rev.setUsername(username);
 		rev.setDate(new Date());
 		
-		rating.getReviews().add(rev);
+		reviewList.add(rev);
 		
 		ratingRepository.save(rating);
+		
+		Rating r = ratingRepository.findOne(rating.getRatingId());
+		long id = r.getReviews().get(reviewList.size() - 1).getReviewId();
+
+		mapAverage.put("lastReviewId", Double.valueOf(id));
+		System.out.println(mapAverage.get("lastReviewId"));
+	}
+
+	@Override
+	public void deleteReviewById(long ratingid, long reviewid) {
+		Rating rating = ratingRepository.findOne(ratingid);
+		List<Review> reviewList = rating.getReviews();
+		
+		reviewList.remove(reviewRepository.findOne(reviewid));
+		
+		ratingRepository.save(rating);
+		
+		getAverage(rating.getReviews());
+		
 	}
 
 }

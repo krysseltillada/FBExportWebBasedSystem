@@ -417,7 +417,7 @@ CREATE TABLE `rating` (
 
 LOCK TABLES `rating` WRITE;
 /*!40000 ALTER TABLE `rating` DISABLE KEYS */;
-INSERT INTO `rating` VALUES (1,9,197),(2,0,47);
+INSERT INTO `rating` VALUES (1,10,76),(2,5,6);
 /*!40000 ALTER TABLE `rating` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -444,7 +444,7 @@ CREATE TABLE `rating_reviews` (
 
 LOCK TABLES `rating_reviews` WRITE;
 /*!40000 ALTER TABLE `rating_reviews` DISABLE KEYS */;
-INSERT INTO `rating_reviews` VALUES (1,62),(1,63),(1,64),(1,65),(1,66),(1,67),(1,68),(1,69),(1,70);
+INSERT INTO `rating_reviews` VALUES (1,371),(1,372),(1,373),(1,374),(1,375),(1,376),(1,377),(1,378),(1,379),(1,380),(1,381),(1,382),(1,383),(1,384),(1,385),(1,386),(1,387),(1,388),(1,389),(1,390),(1,391),(1,392),(1,393),(1,394),(1,395),(1,396),(1,397),(1,398),(1,399),(1,400),(1,401),(1,402),(1,405),(2,404),(2,406);
 /*!40000 ALTER TABLE `rating_reviews` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -462,7 +462,7 @@ CREATE TABLE `review` (
   `rate` double NOT NULL,
   `username` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`review_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=71 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=408 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -471,7 +471,7 @@ CREATE TABLE `review` (
 
 LOCK TABLES `review` WRITE;
 /*!40000 ALTER TABLE `review` DISABLE KEYS */;
-INSERT INTO `review` VALUES (62,'2018-03-16 09:53:50','comment 1',5,'Customer1'),(63,'2018-03-10 09:54:10','comment 2',5,'Customer1'),(64,'2018-03-10 09:54:51','comment 3',4,'Customer2'),(65,'2018-03-10 09:55:16','comment 4',4,'Customer2'),(66,'2018-03-10 19:12:02','Comment 5',5,'Customer1'),(67,'2018-03-10 20:26:06','dfghjk',5,'Customer1'),(68,'2018-03-10 20:46:21','Sample',5,'Customer1'),(69,'2018-03-10 20:48:45','Sample 2',5,'Customer1'),(70,'2018-03-10 20:55:03','test!',5,'Customer1');
+INSERT INTO `review` VALUES (371,'2018-03-12 15:39:06','hj',5,'Customer1'),(372,'2018-03-12 15:40:57','asd',5,'Customer2'),(373,'2018-03-12 15:42:12','asdasd',5,'Customer2'),(374,'2018-03-12 15:45:39','asdasd',5,'Customer2'),(375,'2018-03-12 15:46:01','ghj',5,'Customer2'),(376,'2018-03-12 15:46:35','gh',5,'Customer2'),(377,'2018-03-12 15:48:19','asdasd',5,'Customer2'),(378,'2018-03-12 15:49:05','asdasdasd',5,'Customer2'),(379,'2018-03-12 15:49:12','asdasd',5,'Customer2'),(380,'2018-03-12 15:49:44','asdasd',5,'Customer2'),(381,'2018-03-12 15:49:52','asdasd',5,'Customer2'),(382,'2018-03-12 15:50:00','asd',5,'Customer2'),(383,'2018-03-12 15:50:53','asdasd',5,'Customer2'),(384,'2018-03-12 15:51:20','asdasdasd',5,'Customer2'),(385,'2018-03-12 15:52:02','asdasdasd',5,'Customer2'),(386,'2018-03-12 15:53:29','asd',5,'Customer2'),(387,'2018-03-12 16:01:03','adasd',5,'Customer2'),(388,'2018-03-12 16:01:31','asdasdasd',5,'Customer2'),(389,'2018-03-12 16:02:36','zxc',5,'Customer2'),(390,'2018-03-12 16:08:50','asdasd',5,'Customer2'),(391,'2018-03-12 16:11:19','asdasd',5,'Customer2'),(392,'2018-03-12 16:11:32','asdasdasdasd',5,'Customer2'),(393,'2018-03-12 16:12:15','asdasd',5,'Customer2'),(394,'2018-03-12 16:12:22','asdasd',5,'Customer2'),(395,'2018-03-12 16:12:36','asdasd',5,'Customer2'),(396,'2018-03-12 16:13:22','asdasd',5,'Customer2'),(397,'2018-03-12 16:13:45','asdasd',5,'Customer2'),(398,'2018-03-12 16:17:48','asd',5,'Customer2'),(399,'2018-03-12 16:22:47','asdasdasd',5,'Customer1'),(400,'2018-03-12 16:23:16','asdasdasd',5,'Customer1'),(401,'2018-03-12 16:23:30','asdasd',5,'Customer1'),(402,'2018-03-12 16:23:39','asdasdasd',5,'Customer1'),(403,'2018-03-12 16:23:46','asdas',5,'Customer1'),(404,'2018-03-12 16:33:46','asdasd',5,'Customer1'),(405,'2018-03-12 18:06:46','TEST',5,'Customer2'),(406,'2018-03-12 18:07:05','test1',1,'Customer2'),(407,'2018-03-12 20:01:42','asdasd',5,'Customer1');
 /*!40000 ALTER TABLE `review` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -710,4 +710,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-03-10 21:00:56
+-- Dump completed on 2018-03-12 21:01:09

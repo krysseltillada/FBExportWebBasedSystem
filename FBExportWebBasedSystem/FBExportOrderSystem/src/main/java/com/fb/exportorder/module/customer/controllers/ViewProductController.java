@@ -80,6 +80,18 @@ public class ViewProductController {
 		return "view-product";
 	}
 	
+	@RequestMapping(value="/delete-review/{productid}/{reviewid}", method=RequestMethod.POST)
+	@ResponseBody
+	public String deleteProductReview(@PathVariable long productid,
+									  @PathVariable long reviewid) {
+		productService.deleteReviewById(productid, reviewid);
+		
+		Gson jsonRate = new Gson();
+		String rateJson = jsonRate.toJson(productService.getMapAverage());
+		
+		return rateJson;
+	}
+	
 	@RequestMapping(value="/review-product/{id}", method=RequestMethod.POST)
 	@ResponseBody
 	public String productReview(@PathVariable long id,
