@@ -72,5 +72,16 @@ public class OrderListController {
 		return "";
 	}
 	
+	@RequestMapping("/order-list/refund")
+	@ResponseBody
+	public String refund(@RequestParam String orderId,
+						 @RequestParam String reason) {
+		
+		orderService.refund(orderService.getOrderById(Long.parseLong(orderId)), 
+							reason);
+		
+		return "";
+	}
+	
 
 }

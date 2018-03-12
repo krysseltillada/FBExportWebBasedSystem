@@ -36,6 +36,7 @@ public interface OrderService {
 	void markCancelled(Order order, String reason);
 	void markPaid(Order order);
 	
+	void refund(Order order, String reason);
 	void reOrder(Order order);
 	
 	List<String> addToShipInformation(long id,

@@ -6,10 +6,10 @@ $(document).ready(function () {
 	// REJECTED, /
 	// RECEIVED, dynamic
 	// TO_SHIP,
-	// PAID,
+	// PAID /
 	// RETURNED, dynamic
 	// CANCELLED /
-	// REFUND dynamic
+	// REFUND /
 
 	// $(".paypal-button").each(function (ind, elem) {
 			
@@ -110,7 +110,9 @@ $(document).ready(function () {
 		alertify.okBtn("yes")
 				.confirm("are you sure you want to cancel your order?", function () {
 
-					alertify.defaultValue("wrong order")
+					alertify.reset()
+							.okBtn("send")
+							.defaultValue("wrong order")
 							.prompt("tell us your reason for cancellation", function (val, ev) {
 
 						$.post("/FBExportSystem/order-list/markCancelled", {
@@ -156,7 +158,9 @@ $(document).ready(function () {
 			alertify.okBtn("yes")
 					.confirm("are you sure you want to cancel your order?", function () {
 
-						alertify.defaultValue("wrong order")
+						alertify.reset()
+								.okBtn("send")
+								.defaultValue("wrong order")
 								.prompt("tell us your reason for cancellation", function (val, ev) {
 
 							$.post("/FBExportSystem/order-list/markCancelled", {
@@ -203,7 +207,9 @@ $(document).ready(function () {
 			alertify.okBtn("yes")
 					.confirm("are you sure you want to cancel your order?", function () {
 
-						alertify.defaultValue("wrong order")
+						alertify.reset()
+								.okBtn("send")
+								.defaultValue("wrong order")
 								.prompt("tell us your reason for cancellation", function (val, ev) {
 
 							$.post("/FBExportSystem/order-list/markCancelled", {
@@ -261,7 +267,9 @@ $(document).ready(function () {
 		alertify.okBtn("yes")
 				.confirm("are you sure you want to cancel your order?", function () {
 
-					alertify.defaultValue("wrong order")
+					alertify.reset()
+							.okBtn("send")
+							.defaultValue("wrong order")
 							.prompt("tell us your reason for cancellation", function (val, ev) {
 
 						$.post("/FBExportSystem/order-list/markCancelled", {
@@ -409,6 +417,51 @@ $(document).ready(function () {
 					}
 
 				});
+	});
+
+	$(".btn-refund-order").click(function () {
+		
+		
+		var $btnRefundOrder = $(this);
+		var $divOrderItem = $btnRefundOrder.closest("span.list-group-item");
+
+		alertify.okBtn("refund")
+				.confirm("are you sure you want to refund this order?", function () {
+
+					alertify.reset()
+							.okBtn("send")
+							.prompt("tell us the reason for your refund", function (val, ev) {
+							
+							$.post("/FBExportSystem/order-list/refund", {
+								orderId : $divOrderItem.find("#orderId").html(),
+								reason : val,
+							}, function () {
+
+								var $refundLinkBtn = $divOrderItem.find("a.btn-refund-order");
+								var $orderStatus = $divOrderItem.find("#orderStatus");
+
+								$orderStatus.removeClass("light-green-text");
+								$orderStatus.addClass("pink-text");
+								$orderStatus.html("Refund");
+
+								$refundLinkBtn.off("click");
+
+								$refundLinkBtn.html("Reason");
+
+								$refundLinkBtn.attr("data-toggle", "popover")
+											.attr("data-trigger", "focus")
+											.attr("title", "")
+											.attr("data-content", val)
+											.attr("data-original-title", "Reason");
+								
+								reInitializePopover();
+
+							});
+
+					});
+
+				});
+
 	});
 			
 

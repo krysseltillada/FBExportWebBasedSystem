@@ -49,6 +49,7 @@ public class OrdersController {
 		put(OrderStatus.PENDING, "#FFC107");
 		put(OrderStatus.CANCELLED, "#D9534F");
 		put(OrderStatus.PAID, "#91C361");
+		put(OrderStatus.REFUND, "#EA1E63");
 	}};
 	
 	Map<OrderStatus, String> orderStatusMessage = new HashMap<OrderStatus, String>(){{
@@ -59,6 +60,7 @@ public class OrdersController {
 		put(OrderStatus.PENDING, "Pending");
 		put(OrderStatus.CANCELLED, "Cancelled");
 		put(OrderStatus.PAID, "Paid");
+		put(OrderStatus.REFUND, "Refund");
 	}};
 	
 	SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
@@ -338,6 +340,7 @@ public class OrdersController {
 		orderService.markToShip(orderService.getOrderById(Long.parseLong(id)));
 		return "";
 	}
+	
 	
 	@RequestMapping(value = "/admin/orders/checkShippingExists", method = RequestMethod.POST)
 	@ResponseBody

@@ -73,7 +73,8 @@ public class MultiHttpSecurityConfig {
         					 "/place-order",
         					 "/place-order/order",
         					 "/order-success",
-        					 "/order-list")
+        					 "/order-list",
+        					 "/payment-receipt")
         		.hasAuthority("CUSTOMER")
         		.and()
         		.authorizeRequests()

@@ -286,7 +286,6 @@
 			                                </div>
 			
 										</c:when>
-										 kryssel
 										<c:when test = "${order.orderStatus eq 'APPROVED'}">
 
 											<span class="list-group-item flex-column align-items-start black-text" >
@@ -1003,7 +1002,7 @@
 															<div class = "col-sm-2">
 			
 																<strong> ORDER ID: </strong> <br />
-																	${order.orderId}
+																<span id = "orderId">${order.orderId}</span>
 															</div>
 															<div class = "col-sm-3">
 																<strong> TOTAL PRICE: </strong> <br />
@@ -1024,7 +1023,7 @@
 														<h6 class = "mb-0">
 															<strong>
 																Status:
-																<span class = "light-green-text"> Paid </span> </strong>
+																<span id = "orderStatus" class = "light-green-text"> Paid </span> <a style = "font-size: 13px;" href = "<c:url value = '/payment-receipt?orderId=${order.orderId}' />">  (Receipt) </a> </strong>
 														</h6>
 			
 														<div class="dropdown blue-text" style = "font-size: 13px;">
@@ -1032,7 +1031,7 @@
 															<a href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 																	Print <i class="fa fa-caret-down" aria-hidden="true"></i> |
 															</a>
-															<a href = "#"> Refund </a>
+															<a href = "javascript:void(0)" class = "btn-refund-order"> Refund </a>
 															<div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
 																<a class="dropdown-item" href="#">Print order</a>
 																<a class="dropdown-item" href="#">Print receipt</a>
@@ -1505,7 +1504,7 @@
 														<h6 class = "mb-0">
 															<strong>
 																Status:
-																<span class = "pink-text"> Refund </span> </strong>
+																<span class = "pink-text"> Refund </span> <a style = "font-size: 13px;" href = "<c:url value = '/payment-receipt?orderId=${order.orderId}' />"> (Refund)</a></strong>
 														</h6>
 
 														<div class="dropdown blue-text" style = "font-size: 13px;">
@@ -1513,8 +1512,13 @@
 																<a href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 																	Print <i class="fa fa-caret-down" aria-hidden="true"></i> |
 																</a>
+																
+																<a href = "javascript:void(0)" 
+																   data-toggle="popover" 
+																   data-trigger="focus"
+																   title="Reason" 
+																   data-content="${order.reason}"> Reason </a>
 
-																<a href = "#"> Reason </a>
 															<div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
 																<a class="dropdown-item" href="#">Print order</a>
 																<a class="dropdown-item" href="#">Print receipt</a>

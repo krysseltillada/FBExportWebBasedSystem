@@ -295,6 +295,15 @@ public class OrderServiceImpl implements OrderService {
 		
 	}
 
+	@Override
+	public void refund(Order order, String reason) {
+		
+		order.setOrderStatus(OrderStatus.REFUND);
+		order.setReason(reason);
+		orderRepository.save(order);
+		
+	}
+
 	
 
 }
