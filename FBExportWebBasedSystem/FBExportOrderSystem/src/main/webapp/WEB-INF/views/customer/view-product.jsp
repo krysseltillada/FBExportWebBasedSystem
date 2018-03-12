@@ -148,7 +148,7 @@
                 <div class="col-sm-3" style="margin-bottom:30px;">
                 <br>
                 <h4>Customer Feedback</h4>
-                <h1 id="averateRating"><c:out value='${averageRate}' /></h1>
+                <h1 id="averageRating"><fmt:formatNumber type="number" minFractionDigits="2" maxFractionDigits="2"  value='${averageRate}' /></h1>
                 <!--Review-->
                 <div id="averageStars">
                 	<i id="star1"> </i>
@@ -163,7 +163,7 @@
                 <div class="row">
                     <div class="col-sm-9">
                     <div class="progress" style="height: 20px;">
-                        <div class="progress-bar" role="progressbar" style="width: <c:out value = '${rates.get("Count5.0") div rates.get("CountTotal") * 100 }'/>%; height: 20px;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                        <div id="count5-progress" class="progress-bar" role="progressbar" style="width: <c:out value = '${rates.get("Count5.0") div rates.get("CountTotal") * 100 }'/>%; height: 20px;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                     </div>
                     </div>
 
@@ -173,7 +173,7 @@
                     <i class="fa fa-star yellow-text fa-lg"> </i>
                     <i class="fa fa-star yellow-text fa-lg"> </i>
                     <i class="fa fa-star yellow-text fa-lg"> </i>
-                    <fmt:formatNumber type="number" minFractionDigits="1" maxFractionDigits="1" value='${rates.get("Count5.0") eq 0.0 ? 0.0 : rates.get("Count5.0") div rates.get("CountTotal") * 100 }' />%
+                    <span id="count5-rate"><fmt:formatNumber type="number" minFractionDigits="1" maxFractionDigits="1" value='${rates.get("Count5.0") eq 0.0 ? 0.0 : rates.get("Count5.0") div rates.get("CountTotal") * 100 }' />% </span>
                    
                     </div>
                 </div>
@@ -181,7 +181,7 @@
                 <div class="row">
                     <div class="col-sm-9">
                     <div class="progress" style="height: 20px;">
-                        <div class="progress-bar" role="progressbar" style="width: <c:out value = '${rates.get("Count4.0") eq 0.0 ? 0.0 : rates.get("Count4.0") div rates.get("CountTotal") * 100 }'/>%; height: 20px;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                        <div id="count4-progress" class="progress-bar" role="progressbar" style="width: <c:out value = '${rates.get("Count4.0") eq 0.0 ? 0.0 : rates.get("Count4.0") div rates.get("CountTotal") * 100 }'/>%; height: 20px;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                     </div>
                     </div>
 
@@ -191,14 +191,14 @@
                     <i class="fa fa-star yellow-text fa-lg"> </i>
                     <i class="fa fa-star yellow-text fa-lg"> </i>
                     <i class="fa fa-star grey-text fa-lg"> </i>
-                    <fmt:formatNumber type="number" minFractionDigits="1" maxFractionDigits="1" value='${rates.get("Count4.0") eq 0.0 ? 0.0 : rates.get("Count4.0") div rates.get("CountTotal") * 100 }' />%
+                    <span id="count4-rate"><fmt:formatNumber type="number" minFractionDigits="1" maxFractionDigits="1" value='${rates.get("Count4.0") eq 0.0 ? 0.0 : rates.get("Count4.0") div rates.get("CountTotal") * 100 }' />% </span>
                     </div>
                 </div>
 
                 <div class="row">
                     <div class="col-sm-9">
                     <div class="progress" style="height: 20px;">
-                        <div class="progress-bar" role="progressbar" style="width: <c:out value = '${rates.get("Count3.0") div rates.get("CountTotal") * 100 }'/>%; height: 20px;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                        <div id="count3-progress" class="progress-bar" role="progressbar" style="width: <c:out value = '${rates.get("Count3.0") div rates.get("CountTotal") * 100 }'/>%; height: 20px;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                     </div>
                     </div>
 
@@ -208,14 +208,14 @@
                     <i class="fa fa-star yellow-text fa-lg"> </i>
                     <i class="fa fa-star grey-text fa-lg"> </i>
                     <i class="fa fa-star grey-text fa-lg"> </i>
-                    <fmt:formatNumber type="number" minFractionDigits="1" maxFractionDigits="1" value='${rates.get("Count3.0") eq 0.0 ? 0.0 : rates.get("Count3.0") div rates.get("CountTotal") * 100 }' />%
+                    <span id="count3-rate"><fmt:formatNumber type="number" minFractionDigits="1" maxFractionDigits="1" value='${rates.get("Count3.0") eq 0.0 ? 0.0 : rates.get("Count3.0") div rates.get("CountTotal") * 100 }' />% </span>
                     </div>
                 </div>
 
                 <div class="row">
                     <div class="col-sm-9">
                     <div class="progress" style="height: 20px;">
-                        <div class="progress-bar" role="progressbar" style="width: <c:out value = '${rates.get("Count2.0") div rates.get("CountTotal") * 100 }'/>%; height: 20px;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                        <div id="count2-progress" class="progress-bar" role="progressbar" style="width: <c:out value = '${rates.get("Count2.0") div rates.get("CountTotal") * 100 }'/>%; height: 20px;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                     </div>
                     </div>
 
@@ -225,14 +225,14 @@
                     <i class="fa fa-star grey-text fa-lg"> </i>
                     <i class="fa fa-star grey-text fa-lg"> </i>
                     <i class="fa fa-star grey-text fa-lg"> </i>
-                    <fmt:formatNumber type="number" minFractionDigits="1" maxFractionDigits="1" value='${rates.get("Count2.0") eq 0.0 ? 0.0 : rates.get("Count2.0") div rates.get("CountTotal") * 100 }' />%
+                    <span id="count2-rate"><fmt:formatNumber type="number" minFractionDigits="1" maxFractionDigits="1" value='${rates.get("Count2.0") eq 0.0 ? 0.0 : rates.get("Count2.0") div rates.get("CountTotal") * 100 }' />% </span>
                     </div>
                 </div>
 
                 <div class="row">
                     <div class="col-sm-9">
                     <div class="progress" style="height: 20px;">
-                        <div class="progress-bar" role="progressbar" style="width: <c:out value = '${rates.get("Count1.0") div rates.get("CountTotal") * 100 }'/>%; height: 20px;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                        <div id="count1-progress" class="progress-bar" role="progressbar" style="width: <c:out value = '${rates.get("Count1.0") div rates.get("CountTotal") * 100 }'/>%; height: 20px;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                     </div>
                     </div>
 
@@ -242,7 +242,7 @@
                     <i class="fa fa-star grey-text fa-lg"> </i>
                     <i class="fa fa-star grey-text fa-lg"> </i>
                     <i class="fa fa-star grey-text fa-lg"> </i>
-                    <fmt:formatNumber type="number" minFractionDigits="1" maxFractionDigits="1" value='${rates.get("Count1.0") eq 0.0 ? 0.0 : rates.get("Count1.0") div rates.get("CountTotal") * 100 }' />%
+                    <span id="count1-rate"><fmt:formatNumber type="number" minFractionDigits="1" maxFractionDigits="1" value='${rates.get("Count1.0") eq 0.0 ? 0.0 : rates.get("Count1.0") div rates.get("CountTotal") * 100 }' />% </span>
                     </div>
                 </div>
                 </div>

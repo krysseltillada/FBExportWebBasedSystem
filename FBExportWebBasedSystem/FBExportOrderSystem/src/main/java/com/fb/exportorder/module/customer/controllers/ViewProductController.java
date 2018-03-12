@@ -47,6 +47,7 @@ public class ViewProductController {
 	
 	@PostConstruct
 	public void init() {
+		mapAverage.put("CountTotal", 0.0);
 		mapAverage.put("1.0", 0.0);
 		mapAverage.put("2.0", 0.0);
 		mapAverage.put("3.0", 0.0);
@@ -58,7 +59,7 @@ public class ViewProductController {
 		mapAverage.put("Count3.0", 0.0);
 		mapAverage.put("Count4.0", 0.0);
 		mapAverage.put("Count5.0", 0.0);
-		mapAverage.put("CountTotal", 0.0);
+		mapAverage.put("Average", 0.0);
 	}
 	
 	@RequestMapping(value="/view-product/{id}", method=RequestMethod.GET)
@@ -133,6 +134,7 @@ public class ViewProductController {
 		if(!errors.isEmpty()) {
 			Gson gson = new Gson();
 			String json = gson.toJson(errors);
+			System.out.println(json);
 			return json;
 		}
 		
@@ -167,7 +169,12 @@ public class ViewProductController {
 		
 		addReview(review, rating, customer.getUsername(), ratings);
 		
-		return "Success";
+		getAverage(ratings.getReviews());
+		
+		Gson jsonRate = new Gson();
+		String rateJson = jsonRate.toJson(mapAverage);
+		
+		return rateJson;
 	}
 	
 	public void addReview(String review, double rate, String username, Rating ratings) {
@@ -216,6 +223,8 @@ public class ViewProductController {
 		});
 		
 		double average = ((5 * mapAverage.get("5.0")) + (4 * mapAverage.get("4.0")) + (3 * mapAverage.get("3.0")) + (2 * mapAverage.get("2.0")) + (1 * mapAverage.get("1.0"))) / mapAverage.get("Total");
+		
+		mapAverage.put("Average", Double.parseDouble(String.format("%.2f", average)));
 		
 		return average;
 	}
