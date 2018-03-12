@@ -43,24 +43,6 @@ public class ViewProductController {
 	private CustomerService customerService;
 	
 	private DateFormat dateFormat = new SimpleDateFormat("MMMM dd, yyyy");
-	private Map<String, Double> mapAverage = new HashMap<>();
-	
-	@PostConstruct
-	public void init() {
-		mapAverage.put("CountTotal", 0.0);
-		mapAverage.put("1.0", 0.0);
-		mapAverage.put("2.0", 0.0);
-		mapAverage.put("3.0", 0.0);
-		mapAverage.put("4.0", 0.0);
-		mapAverage.put("5.0", 0.0);
-		mapAverage.put("Total", 0.0);
-		mapAverage.put("Count1.0", 0.0);
-		mapAverage.put("Count2.0", 0.0);
-		mapAverage.put("Count3.0", 0.0);
-		mapAverage.put("Count4.0", 0.0);
-		mapAverage.put("Count5.0", 0.0);
-		mapAverage.put("Average", 0.0);
-	}
 	
 	@RequestMapping(value="/view-product/{id}", method=RequestMethod.GET)
 	public String viewProduct(@PathVariable long id,
@@ -75,49 +57,24 @@ public class ViewProductController {
 		
 		/*increment the review count*/
 		Rating rating = productService.findRatingById(id);
-		int view = rating.getViews() + 1;
-		rating.setViews(view);
 		
 		productService.saveRating(rating);
 		/*increment the review count*/
 		
-		List<Review> reviewList = rating.getReviews();
-		Collections.reverse(reviewList);
-		
-		List<Customer> customerList = new ArrayList<>();
-		
-		rating.getReviews().forEach((review) -> {
-			Customer c = productService.findCustomerByUsername(review.getUsername());
-			if(!customerList.contains(c)) {
-				customerList.add(c);
-			}
-			
-		});
+		List<Customer> customerList = productService.sortedCustomerComments(rating);
 		
 		HttpSession session = request.getSession();
 		
 		if(session.getAttribute("customerId") != null) {
-			double rate = 0.0;
-			
-			int i = 0;
-			while(i < reviewList.size() ) {
-				Review review = reviewList.get(i);
-				if(review.getUsername().equals(session.getAttribute("customerUsername"))) {
-					rate = review.getRate();
-					break;
-				}
-				++i;
-			}
-			
-			model.addAttribute("starRate", rate);
+			model.addAttribute("starRate", productService.getRate(session, rating));
 		}
 		
-		double average = getAverage(product.getRating().getReviews());
+		double average = productService.getAverage(product.getRating().getReviews());
 		
 		model.addAttribute("averageRate", Double.isNaN(average) ? 0.00 : Double.parseDouble(String.format("%.2f", average)) );
-		model.addAttribute("rates", mapAverage);
+		model.addAttribute("rates", productService.getMapAverage());
 		model.addAttribute("customerList", customerList);
-		model.addAttribute("reviewList", reviewList);
+		model.addAttribute("reviewList", rating.getReviews());
 		model.addAttribute("product", product);
 		model.addAttribute("datePosted", dateFormat.format(datePosted).toString());
 		return "view-product";
@@ -130,11 +87,10 @@ public class ViewProductController {
 								String review,
 								HttpServletRequest request,
 								Model model) {
-		List<String> errors = validate(rating, review);
+		List<String> errors = productService.validate(rating, review);
 		if(!errors.isEmpty()) {
 			Gson gson = new Gson();
 			String json = gson.toJson(errors);
-			System.out.println(json);
 			return json;
 		}
 		
@@ -146,87 +102,16 @@ public class ViewProductController {
 		
 		List<Review> reviewList = productService.findAllByUsername(customer.getUsername());
 		
-		if((ratings.getRate() == 0 ) || reviewList.isEmpty()) {
-
-			double rates = ratings.getRate();
-			rates += rating;
-			ratings.setRate(rates);
-			System.out.println("Pasok " + rates);
-			
-		} else{
-			double rate = ratings.getRate();
-			for(Review rev : reviewList) {
-				for(Review r : ratings.getReviews()) {
-					if(rev.getReviewId().equals(r.getReviewId())) {
-						ratings.setRate((rate - rev.getRate()) + rating);
-						
-						rev.setRate(rating);
-					}
-				}
-			}
-		}
+		productService.saveReview(ratings, rating, reviewList, review, customer.getUsername());
 		
-		
-		addReview(review, rating, customer.getUsername(), ratings);
-		
-		getAverage(ratings.getReviews());
+		productService.getAverage(ratings.getReviews());
 		
 		Gson jsonRate = new Gson();
-		String rateJson = jsonRate.toJson(mapAverage);
+		String rateJson = jsonRate.toJson(productService.getMapAverage());
 		
 		return rateJson;
 	}
 	
-	public void addReview(String review, double rate, String username, Rating ratings) {
-		Rating rating = ratings;
-		Review rev = new Review();
 	
-		
-		rev.setDescription(review);
-		rev.setRate(rate);
-		rev.setUsername(username);
-		rev.setDate(new Date());
-		
-		rating.getReviews().add(rev);
-		
-		productService.saveRating(rating);
-	}
-	
-	public List<String> validate(Double rate, String review){
-		List<String> errors = new ArrayList<>();
-		
-		if(rate == null)
-			errors.add("Please rate the product.");
-		
-		if(StringUtils.isEmpty(review))
-			errors.add("Please add your review, comment or feedback.");
-		
-		return errors;
-	}
-	
-	public double getAverage(List<Review> reviewList) {
-		
-		mapAverage.forEach((k,v) -> mapAverage.put(k, 0.0));
-		
-		Collection<Review> reviewCollection = reviewList.stream()
-				   .<Map<String, Review>> collect(HashMap::new,(m,e)->m.put(e.getUsername(), e), Map::putAll)
-				   .values();
-		
-		reviewCollection.forEach((review) ->{
-			double rate = review.getRate();
-			String countString = String.format("Count%s",String.valueOf(rate));
-			
-			mapAverage.put(String.valueOf(rate), mapAverage.get(String.valueOf(rate)) + rate);
-			mapAverage.put(countString, mapAverage.get(countString) + 1);
-			mapAverage.put("Total", mapAverage.get("Total") + rate);
-			mapAverage.put("CountTotal", mapAverage.get("CountTotal") + 1);
-		});
-		
-		double average = ((5 * mapAverage.get("5.0")) + (4 * mapAverage.get("4.0")) + (3 * mapAverage.get("3.0")) + (2 * mapAverage.get("2.0")) + (1 * mapAverage.get("1.0"))) / mapAverage.get("Total");
-		
-		mapAverage.put("Average", Double.parseDouble(String.format("%.2f", average)));
-		
-		return average;
-	}
 	
 }

@@ -1,8 +1,9 @@
 package com.fb.exportorder.module.customer.service;
 
 import java.util.List;
+import java.util.Map;
 
-import org.springframework.data.repository.query.Param;
+import javax.servlet.http.HttpSession;
 
 import com.fb.exportorder.models.Product;
 import com.fb.exportorder.models.customer.Customer;
@@ -16,11 +17,17 @@ public interface ProductService {
 	
 	public void saveRating(Rating rating);
 	
-	public Review findReviewById(long id);
-	
-	public void saveReview(Review review);
+	public void saveReview(Rating ratings, Double rating, List<Review> reviewList, String review, String username);
 	
 	public List<Review> findAllByUsername(String Username);
 	
-	public Customer findCustomerByUsername(String username);
+	public List<Customer> sortedCustomerComments(Rating rating);
+	
+	public double getRate(HttpSession session, Rating rating);
+	
+	public double getAverage(List<Review> reviewList);
+	
+	public Map<String, Double> getMapAverage();
+	
+	public List<String> validate(Double rate, String review);
 }
