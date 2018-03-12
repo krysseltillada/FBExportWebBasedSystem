@@ -88,7 +88,7 @@ $(document).ready(function () {
          		 alertify.success("You've successfully post a review.");
          		
          		 var jsonLastReviewId = JSON.parse(result);
-         		 alert(jsonLastReviewId["lastReviewId"]);
+         		 
          		 $("#comments").prepend("<div>" +
          		 		"<div class='row mt-3'>" +
          		 		"<div class='col-lg-3 text-center'>"+
@@ -96,7 +96,7 @@ $(document).ready(function () {
          		 		"</div>"+
          		 		"<div class='col-lg-9 col-xl-9'>"+
 	            		"<button type='button' class='close deleteReview' aria-label='Close' style='cursor: pointer;'><span aria-hidden='true'>&times;</span></button>"+
-	            			"<input class='reviewId' type='text' value='"+jsonLastReviewId["lastReviewId"]+"'/>"+
+	            			"<input class='reviewId' type='hidden' value='"+jsonLastReviewId["lastReviewId"]+"'/>"+
 						    "<h3 class='mb-3 font-bold dark-grey-text'>"+
 						    "</h3>"+
 						    "<p class='grey-text'>"+$("#textarea-char-counter").val()+"</p>"+
@@ -123,7 +123,7 @@ $(document).ready(function () {
 		 $(rate).text(((value / total ) * 100).toFixed(1)+"%");
     }
     
-    $(".deleteReview").click(function(){
+    $(document).on("click", ".deleteReview",function(){
     	
     	var deleteReview = $(this);
     	var reviewId = $(this).next().val();
@@ -180,7 +180,5 @@ $(document).ready(function () {
    	
     }
     
-    function sample(){
-    	alert("Hello");
-    }
+   
 });

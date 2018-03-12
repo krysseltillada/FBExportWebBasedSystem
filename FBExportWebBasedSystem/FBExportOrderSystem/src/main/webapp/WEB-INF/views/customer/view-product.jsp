@@ -371,7 +371,7 @@
 						            		<button type="button" class="close deleteReview" aria-label="Close" style="cursor: pointer;"><span aria-hidden="true">&times;</span></button>
 						            	</c:if>
 						            	
-						            	<input class="reviewId" type="text" value="${review.reviewId}"/>
+						            	<input class="reviewId" type="hidden" value="${review.reviewId}"/>
 						                <h3 class="mb-3 font-bold dark-grey-text">
 						                </h3>
 						                <p class="grey-text">${review.description}</p>
