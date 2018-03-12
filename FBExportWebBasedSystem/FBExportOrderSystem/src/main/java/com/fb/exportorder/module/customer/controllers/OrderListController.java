@@ -63,6 +63,15 @@ public class OrderListController {
 		return "";
 	}
 	
+	@RequestMapping("/order-list/markReceived")
+	@ResponseBody
+	public String markReceived(@RequestParam String orderId) {
+		
+		orderService.markReceived(orderService.getOrderById(Long.parseLong(orderId)));
+		
+		return "";
+	}
+	
 	@RequestMapping("/order-list/reorder")
 	@ResponseBody
 	public String reorder(@RequestParam String orderId) {

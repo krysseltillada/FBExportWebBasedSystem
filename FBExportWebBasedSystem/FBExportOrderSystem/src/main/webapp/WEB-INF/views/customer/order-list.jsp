@@ -14,7 +14,6 @@
             <div class = "col-sm-10">
                 
                 <form class = "form-inline float-right small">
-
                     
                     <label class="mr-sm-2" for="inlineFormCustomSelect">Filter by</label>
                     <select class="custom-select mb-2 mr-sm-2 mb-sm-0" id="inlineFormCustomSelect">
@@ -38,11 +37,8 @@
                         <option> Order id (latest)</option>
                         <option> Order id (oldest)</option>
                     </select>
-                    
 
-                    <button type="button" class="btn btn-primary pt-2 pb-2 pl-4 pr-4 mr-4">Filter</button>
-
-                    <input type="text" id="form1" class="form-control m-0 p-0" placeholder = "Order id">
+                    <input type="text" id="form1" class="form-control m-0 p-0 ml-5" placeholder = "Order id">
                     <button type="button" class="btn btn-primary pt-2 pb-2 pl-4 pr-4">Search</button>
                 </form>
             </div>
@@ -72,7 +68,7 @@
                             <i class="fa fa-reorder mr-2" aria-hidsden="true"></i>
                             Order Lists
                         </a>
-                        <a href="#" class="list-group-item">
+                        <a href="<c:url value = '/shipping'/>" class="list-group-item">
                             <i class="fa fa-ship mr-2" aria-hidden="true"></i>
                             Shipping
                         </a>
@@ -103,13 +99,14 @@
                             <li class="nav-item">
                                 <a class="nav-link active" href="#">Orders</a>
                             </li>
+                            <!-- 
                             <li class="nav-item">
                                 <a class="nav-link" href="#">Returned orders</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="#">Cancelled orders</a>
-                            </li>
-                            <li class="nav-item dropdown">
+                            </li>  -->
+                            <li class="nav-item dropdown ml-2">
                                 <a class = "btn btn-primary waves-effect waves-light p-2 m-0" href = "<c:url value = '/order-list' />"> Refresh  <i class="fa fa-refresh ml-2" aria-hidden="true"></i> </a>
                             </li>
                         </ul>
@@ -677,10 +674,8 @@
 																<a href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 																	Print <i class="fa fa-caret-down" aria-hidden="true"></i> |
 																</a>
-			
-																<a href="#">Rate</a> |
-			
-																	<div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+																
+																<div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
 																	<a class="dropdown-item" href="#">Print order</a>
 																	<a class="dropdown-item" href="#">Print receipt</a>
 																	<a class="dropdown-item" href="#">Print shipping information</a>
@@ -696,8 +691,8 @@
 																</a>
 			
 																<div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-																	<a class="dropdown-item" href="#">Return/Refund order</a>
-																	<a class="dropdown-item" href="#">Delete order</a>
+																	<a class="dropdown-item" href="javascript:void(0)">Rate order</a>
+																	<a class="dropdown-item" href="javascript:void(0)">Return order</a>
 																</div>
 			
 															</span>
@@ -828,7 +823,7 @@
 															<div class = "col-sm-2">
 			
 																<strong> ORDER ID: </strong> <br />
-																	${order.orderId}
+																	<span id = "orderId">${order.orderId}</span>
 															</div>
 															<div class = "col-sm-3">
 																<strong> TOTAL PRICE: </strong> <br />
@@ -849,7 +844,7 @@
 														<h6 class = "mb-0">
 															<strong>
 																Status:
-																<span class = "purple-text"> To Ship </span> </strong>
+																<span id = "orderStatus" class = "purple-text"> To Ship </span> </strong>
 														</h6>
 			
 														<div class="dropdown blue-text" style = "font-size: 13px;">
@@ -857,7 +852,7 @@
 															<a href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 																	Print <i class="fa fa-caret-down" aria-hidden="true"></i> |
 															</a>
-															<a href = "#"> Details </a> 
+															<a href = "<c:url value = '/shipping?orderId=${order.orderId}' />"> Details </a>
 															<div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
 																<a class="dropdown-item" href="#">Print order</a>
 																<a class="dropdown-item" href="#">Print receipt</a>
@@ -886,8 +881,8 @@
 														</div>
 														<div class = "col-sm-4">
 																<div style = "font-size: 14px;">
-																	<a href = "#"> Shipping information </a> |
-																	<a href = "#"> Shipping log </a>
+																	<a href = "<c:url value = '/shipping?orderId=${order.orderId}#shippingInformation'/>"> Shipping information </a> |
+																	<a href = "<c:url value = '/shipping?orderId=${order.orderId}#shippingLog' />"> Shipping log </a>
 																</div>
 														</div>
 													</div>
@@ -978,7 +973,7 @@
 															<strong class = "ml-2 blue-text" style = "font-size: 14px; position: relative; top: 15px;"> *reminder: click the received button if your order is receive. </strong>
 														</div>
 														<div class = "col-sm-3">
-															<button type="button" class="btn btn-primary float-right">Received</button>
+															<button type="button" class="btn btn-primary float-right btn-received-order">Received</button>
 														</div>
 													</div>
 													
@@ -1504,7 +1499,7 @@
 														<h6 class = "mb-0">
 															<strong>
 																Status:
-																<span class = "pink-text"> Refund </span> <a style = "font-size: 13px;" href = "<c:url value = '/payment-receipt?orderId=${order.orderId}' />"> (Refund)</a></strong>
+																<span class = "pink-text"> Refund </span> <a style = "font-size: 13px;" href = "<c:url value = '/payment-receipt?orderId=${order.orderId}' />"> (Receipt)</a></strong>
 														</h6>
 
 														<div class="dropdown blue-text" style = "font-size: 13px;">

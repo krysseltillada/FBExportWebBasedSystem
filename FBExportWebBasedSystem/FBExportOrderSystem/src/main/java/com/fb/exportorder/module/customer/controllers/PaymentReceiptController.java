@@ -24,7 +24,7 @@ public class PaymentReceiptController {
 		
 		Order paidOrder = orderService.getOrderById(Long.parseLong(orderId)); 
 
-		if (Objects.nonNull(paidOrder) && paidOrder.getOrderStatus() == OrderStatus.PAID) {
+		if (Objects.nonNull(paidOrder) && (paidOrder.getOrderStatus() == OrderStatus.PAID || paidOrder.getOrderStatus() == OrderStatus.REFUND)) {
 			model.addAttribute(paidOrder);
 			return "payment-receipt";
 		} 

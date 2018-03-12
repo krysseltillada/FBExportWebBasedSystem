@@ -30,7 +30,7 @@
                             <i class="fa fa-reorder mr-2" aria-hidden="true"></i>
                             Order Lists
                         </a>
-                        <a href="#" class="list-group-item">
+                        <a href="<c:url value = '/shipping' />" class="list-group-item">
                             <i class="fa fa-ship mr-2" aria-hidden="true"></i>
                             Shipping
                         </a>

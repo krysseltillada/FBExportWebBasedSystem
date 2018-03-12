@@ -5,7 +5,7 @@ $(document).ready(function () {
 	// APPROVED, /
 	// REJECTED, /
 	// RECEIVED, dynamic
-	// TO_SHIP,
+	// TO_SHIP /,
 	// PAID /
 	// RETURNED, dynamic
 	// CANCELLED /
@@ -463,6 +463,69 @@ $(document).ready(function () {
 				});
 
 	});
+
+	$(".btn-received-order").click(function () {
+		
+		var $btnReceivedOrder = $(this);
+
+		var $orderCollapseDiv =  $btnReceivedOrder.closest("div.multi-collapse"); 
+		var $orderItemDiv = $orderCollapseDiv.prev();
+		
+
+		alertify.okBtn("yes")
+				.confirm("mark the order as received?", function () {
+
+					$.post("/FBExportSystem/order-list/markReceived", {
+						orderId : $orderItemDiv.find("#orderId").html()
+					}, function () {
+
+						var $orderStatus = $orderItemDiv.find("#orderStatus");
+						var $aListDiv = $orderItemDiv.find("div.dropdown");
+						var $parentAListDiv = $aListDiv.parent();			
+							
+						$orderStatus.html("Received");
+						$orderStatus.removeClass("purple-text")
+									.addClass("blue-text");
+
+						$aListDiv.remove();
+
+						$parentAListDiv.append('<div class="blue-text" style="font-size: 13px;>' +
+																'<span class="dropdown">' +
+																	'<i class="fa fa-print" aria-hidden="true"></i>' +
+																	'<a href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">' +
+																		' Print <i class="fa fa-caret-down" aria-hidden="true"></i> | ' +
+																	'</a>' +
+																	'<div class="dropdown-menu" aria-labelledby="dropdownMenuLink">' +
+																		'<a class="dropdown-item" href="#">Print order</a>' + 
+																		'<a class="dropdown-item" href="#">Print receipt</a>' +
+																		'<a class="dropdown-item" href="#">Print shipping information</a>' +
+																		'<a class="dropdown-item" href="#">Print shipping log</a>' +
+																	'</div>' +
+																'</span>' +
+																'<span class="dropdown">' +
+																	'<a href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">' +
+																		'Options <i class="fa fa-caret-down" aria-hidden="true"></i>' + 
+																	'</a>' +
+																	'<div class="dropdown-menu" aria-labelledby="dropdownMenuLink">' +
+																		'<a class="dropdown-item" href="javascript:void(0)">Rate orderr</a>' +
+																		'<a class="dropdown-item" href="javascript:void(0)">Return order</a>' +
+																	'</div>' +
+																'</span>' +
+															'</div>');
+
+
+						var $hrRow = $orderCollapseDiv.find("div.row:eq(1)").next();
+						var $divRow = $hrRow.next();
+
+						$hrRow.remove();
+						$divRow.remove();
+
+					});
+					
+				});
+	});
+
+
 			
 
 	reInitializePopover();
