@@ -148,7 +148,7 @@
                 <div class="col-sm-3" style="margin-bottom:30px;">
                 <br>
                 <h4>Customer Feedback</h4>
-                <h1>4.5</h1>
+                <h1><c:out value='${averageRate}' /></h1>
                 <!--Review-->
                 <i class="fa fa-star yellow-text fa-2x"> </i>
                 <i class="fa fa-star yellow-text fa-2x"> </i>
@@ -161,7 +161,7 @@
                 <div class="row">
                     <div class="col-sm-9">
                     <div class="progress" style="height: 20px;">
-                        <div class="progress-bar" role="progressbar" style="width: 90%; height: 20px;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                        <div class="progress-bar" role="progressbar" style="width: <c:out value = '${rates.get("Count5.0") div rates.get("CountTotal") * 100 }'/>%; height: 20px;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                     </div>
                     </div>
 
@@ -171,14 +171,15 @@
                     <i class="fa fa-star yellow-text fa-lg"> </i>
                     <i class="fa fa-star yellow-text fa-lg"> </i>
                     <i class="fa fa-star yellow-text fa-lg"> </i>
-                    90%
+                    <fmt:formatNumber type="number" minFractionDigits="1" maxFractionDigits="1" value='${rates.get("Count5.0") div rates.get("CountTotal") * 100 }' />%
+                   
                     </div>
                 </div>
 
                 <div class="row">
                     <div class="col-sm-9">
                     <div class="progress" style="height: 20px;">
-                        <div class="progress-bar" role="progressbar" style="width: 65%; height: 20px;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                        <div class="progress-bar" role="progressbar" style="width: <c:out value = '${rates.get("Count4.0") div rates.get("CountTotal") * 100 }'/>%; height: 20px;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                     </div>
                     </div>
 
@@ -188,14 +189,14 @@
                     <i class="fa fa-star yellow-text fa-lg"> </i>
                     <i class="fa fa-star yellow-text fa-lg"> </i>
                     <i class="fa fa-star grey-text fa-lg"> </i>
-                    65%
+                    <fmt:formatNumber type="number" minFractionDigits="1" maxFractionDigits="1" value='${rates.get("Count4.0") div rates.get("CountTotal") * 100 }' />%
                     </div>
                 </div>
 
                 <div class="row">
                     <div class="col-sm-9">
                     <div class="progress" style="height: 20px;">
-                        <div class="progress-bar" role="progressbar" style="width: 45%; height: 20px;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                        <div class="progress-bar" role="progressbar" style="width: <c:out value = '${rates.get("Count3.0") div rates.get("CountTotal") * 100 }'/>%; height: 20px;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                     </div>
                     </div>
 
@@ -205,14 +206,14 @@
                     <i class="fa fa-star yellow-text fa-lg"> </i>
                     <i class="fa fa-star grey-text fa-lg"> </i>
                     <i class="fa fa-star grey-text fa-lg"> </i>
-                    45%
+                    <fmt:formatNumber type="number" minFractionDigits="1" maxFractionDigits="1" value='${rates.get("Count3.0") div rates.get("CountTotal") * 100 }' />%
                     </div>
                 </div>
 
                 <div class="row">
                     <div class="col-sm-9">
                     <div class="progress" style="height: 20px;">
-                        <div class="progress-bar" role="progressbar" style="width: 54%; height: 20px;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                        <div class="progress-bar" role="progressbar" style="width: <c:out value = '${rates.get("Count2.0") div rates.get("CountTotal") * 100 }'/>%; height: 20px;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                     </div>
                     </div>
 
@@ -222,14 +223,14 @@
                     <i class="fa fa-star grey-text fa-lg"> </i>
                     <i class="fa fa-star grey-text fa-lg"> </i>
                     <i class="fa fa-star grey-text fa-lg"> </i>
-                    54%
+                    <fmt:formatNumber type="number" minFractionDigits="1" maxFractionDigits="1" value='${rates.get("Count2.0") div rates.get("CountTotal") * 100 }' />%
                     </div>
                 </div>
 
                 <div class="row">
                     <div class="col-sm-9">
                     <div class="progress" style="height: 20px;">
-                        <div class="progress-bar" role="progressbar" style="width: 10%; height: 20px;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                        <div class="progress-bar" role="progressbar" style="width: <c:out value = '${rates.get("Count1.0") div rates.get("CountTotal") * 100 }'/>%; height: 20px;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                     </div>
                     </div>
 
@@ -239,7 +240,7 @@
                     <i class="fa fa-star grey-text fa-lg"> </i>
                     <i class="fa fa-star grey-text fa-lg"> </i>
                     <i class="fa fa-star grey-text fa-lg"> </i>
-                    10%
+                    <fmt:formatNumber type="number" minFractionDigits="1" maxFractionDigits="1" value='${rates.get("Count1.0") div rates.get("CountTotal") * 100 }' />%
                     </div>
                 </div>
                 </div>

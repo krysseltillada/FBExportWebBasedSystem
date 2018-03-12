@@ -3,10 +3,16 @@ package com.fb.exportorder.module.customer.controllers;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
+import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -37,6 +43,23 @@ public class ViewProductController {
 	private CustomerService customerService;
 	
 	private DateFormat dateFormat = new SimpleDateFormat("MMMM dd, yyyy");
+	private Map<String, Double> mapAverage = new HashMap<>();
+	
+	@PostConstruct
+	public void init() {
+		mapAverage.put("1.0", 0.0);
+		mapAverage.put("2.0", 0.0);
+		mapAverage.put("3.0", 0.0);
+		mapAverage.put("4.0", 0.0);
+		mapAverage.put("5.0", 0.0);
+		mapAverage.put("Total", 0.0);
+		mapAverage.put("Count1.0", 0.0);
+		mapAverage.put("Count2.0", 0.0);
+		mapAverage.put("Count3.0", 0.0);
+		mapAverage.put("Count4.0", 0.0);
+		mapAverage.put("Count5.0", 0.0);
+		mapAverage.put("CountTotal", 0.0);
+	}
 	
 	@RequestMapping(value="/view-product/{id}", method=RequestMethod.GET)
 	public String viewProduct(@PathVariable long id,
@@ -88,7 +111,10 @@ public class ViewProductController {
 			model.addAttribute("starRate", rate);
 		}
 		
+		double average = getAverage(product.getRating().getReviews());
 		
+		model.addAttribute("averageRate", Double.isNaN(average) ? 0.00 : Double.parseDouble(String.format("%.2f", average)) );
+		model.addAttribute("rates", mapAverage);
 		model.addAttribute("customerList", customerList);
 		model.addAttribute("reviewList", reviewList);
 		model.addAttribute("product", product);
@@ -138,8 +164,6 @@ public class ViewProductController {
 			}
 		}
 		
-		System.out.println(ratings.getRate() +"========================================");
-		
 		
 		addReview(review, rating, customer.getUsername(), ratings);
 		
@@ -171,6 +195,29 @@ public class ViewProductController {
 			errors.add("Please add your review, comment or feedback.");
 		
 		return errors;
+	}
+	
+	public double getAverage(List<Review> reviewList) {
+		
+		mapAverage.forEach((k,v) -> mapAverage.put(k, 0.0));
+		
+		Collection<Review> reviewCollection = reviewList.stream()
+				   .<Map<String, Review>> collect(HashMap::new,(m,e)->m.put(e.getUsername(), e), Map::putAll)
+				   .values();
+		
+		reviewCollection.forEach((review) ->{
+			double rate = review.getRate();
+			String countString = String.format("Count%s",String.valueOf(rate));
+			
+			mapAverage.put(String.valueOf(rate), mapAverage.get(String.valueOf(rate)) + rate);
+			mapAverage.put(countString, mapAverage.get(countString) + 1);
+			mapAverage.put("Total", mapAverage.get("Total") + rate);
+			mapAverage.put("CountTotal", mapAverage.get("CountTotal") + 1);
+		});
+		
+		double average = ((5 * mapAverage.get("5.0")) + (4 * mapAverage.get("4.0")) + (3 * mapAverage.get("3.0")) + (2 * mapAverage.get("2.0")) + (1 * mapAverage.get("1.0"))) / mapAverage.get("Total");
+		
+		return average;
 	}
 	
 }
