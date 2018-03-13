@@ -41,17 +41,22 @@ $(document).ready(function () {
         var $cardBody = $card.find("div.card-body");
 
         var $spansHeaderInfo = $card.find("div div div span");
-
+        
+        var currency = $card.find("span>span:eq(1)").html();
+        
         console.log($spansHeaderInfo.html());
 
         var productItem = {
             productImage : $card.find("img").attr("src"),
             price : $spansHeaderInfo.eq(0).text(),
             massType : $spansHeaderInfo.eq(1).find("span").text(),
-            origin : $spansHeaderInfo.eq(3).text(),
-            name : $cardBody.find("h4.card-title a").text(),
+            origin : $spansHeaderInfo.eq(5).text(),
+            name : $cardBody.find("h4.card-title").text(),
             description : $cardBody.find("p.card-text").text(),
-            expirationDate : $cardBody.find("span span.red-text").text()
+            productId : $cardBody.find("#productId").val(),
+            stockStatus : $cardBody.find("#product-stock-status").html(),
+            datePosted : $cardBody.find("#product-date-posted").html(),
+            realPriceApprox : $card.find("#real-price-approx").val()
         };
 
         showAddToCartModal(productItem);

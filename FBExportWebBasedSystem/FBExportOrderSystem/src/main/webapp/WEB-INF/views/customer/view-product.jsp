@@ -121,13 +121,13 @@
 				
 				<c:choose>
 					<c:when test="${product.weight <= 0}">
-						<h4><b class = "red-text"> *Out of Stock </b> </h4><br>			
+						<h4><b class = "red-text" id = "product-stock-status">Out of Stock</b> </h4><br>			
 					</c:when>
 					<c:otherwise>
-						<h4><b class = "green-text"> *On Stock </b> </h4><br>
+						<h4><b class = "green-text" id = "product-stock-status">On Stock</b> </h4><br>
 					</c:otherwise>
 				</c:choose>
-                <span class = "black-text"> Posted on: ${datePosted} </span><br>
+                <span class = "black-text"> Posted on: <span id="product-date-posted">${datePosted}</span> </span><br>
 
 	
 			
