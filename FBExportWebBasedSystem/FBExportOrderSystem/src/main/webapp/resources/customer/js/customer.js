@@ -549,7 +549,7 @@ $(document).ready(function () {
                                                                 $.post("/FBExportSystem/order-list/markPaid", {
                                                                     orderId : oid
                                                                 }, function () {
-                                                                    window.location = "payment-receipt?orderId=" + oid;
+                                                                    window.location = "/FBExportSystem/payment-receipt?orderId=" + oid;
                                                                 });
                                                             });
                                                         },

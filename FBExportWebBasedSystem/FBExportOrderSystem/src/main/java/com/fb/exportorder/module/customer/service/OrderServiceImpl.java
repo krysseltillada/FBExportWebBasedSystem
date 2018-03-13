@@ -8,8 +8,12 @@ import java.util.List;
 import java.util.Objects;
 
 import org.apache.commons.lang3.StringUtils;
+import org.hibernate.Query;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.fb.exportorder.models.Shipping;
 import com.fb.exportorder.models.ShippingAddress;
@@ -32,6 +36,9 @@ public class OrderServiceImpl implements OrderService {
 	
 	@Autowired
 	CustomerRepository customerRepository;
+	
+	@Autowired
+	SessionFactory sessionFactory;
 	
 	private SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 	
@@ -302,6 +309,68 @@ public class OrderServiceImpl implements OrderService {
 		order.setReason(reason);
 		orderRepository.save(order);
 		
+	}
+
+	@Override
+	public void reviewOrder(Order order, String review) {
+		
+		order.setReview(review);
+		orderRepository.save(order);
+		
+	}
+
+	@Override
+	public void returnRefundOrder(Order order, String reason) {
+		order.setReason(reason);
+		order.setOrderStatus(OrderStatus.RETURNED);
+		orderRepository.save(order);
+	}
+
+	@Override
+	@Transactional
+	public List<Order> filterAndSortByCustomer(long customerId, String filterBy, String sortBy, int pageNumber, int pageSize) {
+		// TODO Auto-generated method stub
+		
+		String filterByJPQL = (StringUtils.equals(filterBy, "Cash on delivery") || 
+							   StringUtils.equals(filterBy, "Paypal")) ? " AND o.paymentMethod = '" + filterBy.toUpperCase().replace(" ", "_") + "'" 
+							   : (StringUtils.equals(filterBy, "All")) ? "" : " AND o.orderStatus = '" + filterBy.toUpperCase().replace(" ", "_") + "'"; 
+		
+		String sortByJPQL = (StringUtils.equals(sortBy, "Date ordered(latest)") ? " ORDER BY o.dateOrdered DESC" :
+							 StringUtils.equals(sortBy, "Date ordered(oldest)") ? " ORDER BY o.dateOrdered ASC" :
+							 StringUtils.equals(sortBy, "Order id(latest)") ? " ORDER BY o.orderId DESC" :
+							 StringUtils.equals(sortBy, "Order id(oldest)") ? " ORDER BY o.orderId ASC" : "");
+		
+		System.out.println("SELECT o FROM Order o " + filterByJPQL + sortByJPQL);
+		
+		Session session = sessionFactory.getCurrentSession();
+		Query filterAndSortQuery = session.createQuery("FROM Orders o WHERE o.customer.id = '" + customerId + "'" + filterByJPQL + sortByJPQL);
+		
+		filterAndSortQuery.setFirstResult(pageNumber);
+		filterAndSortQuery.setMaxResults(pageSize);
+		
+		return (List<Order>)filterAndSortQuery.list();
+	}
+
+	@Override
+	@Transactional
+	public int filterAndSortByCustomerCount(long customerId, String filterBy, String sortBy) {
+		
+		String filterByJPQL = (StringUtils.equals(filterBy, "Cash on delivery") || 
+				   StringUtils.equals(filterBy, "Paypal")) ? " AND o.paymentMethod = '" + filterBy.toUpperCase().replace(" ", "_") + "'" 
+				   : (StringUtils.equals(filterBy, "All")) ? "" : " AND o.orderStatus = '" + filterBy.toUpperCase().replace(" ", "_") + "'"; 
+
+		String sortByJPQL = (StringUtils.equals(sortBy, "Date ordered(latest)") ? " ORDER BY o.dateOrdered DESC" :
+						 StringUtils.equals(sortBy, "Date ordered(oldest)") ? " ORDER BY o.dateOrdered ASC" :
+						 StringUtils.equals(sortBy, "Order id(latest)") ? " ORDER BY o.orderId DESC" :
+						 StringUtils.equals(sortBy, "Order id(oldest)") ? " ORDER BY o.orderId ASC" : "");
+		
+		System.out.println("SELECT o FROM Order o " + filterByJPQL + sortByJPQL);
+		
+		Session session = sessionFactory.getCurrentSession();
+		Query filterAndSortQuery = session.createQuery("FROM Orders o WHERE o.customer.id = '" + customerId + "'" + filterByJPQL + sortByJPQL);
+		
+		return ((List<Order>)filterAndSortQuery.list()).size();
+				
 	}
 
 	

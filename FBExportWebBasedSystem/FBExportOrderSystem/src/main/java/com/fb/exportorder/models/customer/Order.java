@@ -53,6 +53,7 @@ public class Order	 {
 	
 	private String message;
 	private String reason;
+	private String review;
 	
 	private int totalItems;
 	private double totalWeight;
@@ -178,6 +179,16 @@ public class Order	 {
 	public void setReason(String reason) {
 		this.reason = reason;
 	}
+
+	public String getReview() {
+		return review;
+	}
+
+	public void setReview(String review) {
+		this.review = review;
+	}
+	
+	
 	
 	
 }

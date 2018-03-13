@@ -6,7 +6,8 @@
             <div class = "col-lg">
                 <span class="h3 no-margin-bottom mr-2">Orders</span>
                 <span class = "small ml-2 float-right"> <a href = "javascript:void(0)" id = "deleteProduct" class = "text-muted" style = "cursor: not-allowed;"> Delete order <i class="fa fa-trash ml-1" aria-hidden="true"></i> </a> </span>
-                <span class = "small float-right"> <a data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample"> Filter Orders <i class="fa fa-filter ml-1" aria-hidden="true"></i> </a> </span>
+                <span class = "small ml-2 float-right"> <a data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample"> Filter Orders <i class="fa fa-filter ml-1" aria-hidden="true"></i> </a> </span>
+            	<span class = "small float-right"> <a href = "<c:url value = '/admin/orders' />"> Refresh orders <i class="fa fa-refresh ml-1" aria-hidden="true"></i> </a></span>
             </div>
         </div>
     </div>
@@ -133,14 +134,13 @@
 	                                        <div style = "font-size: 13px;">
 	                                            <strong> Order: </strong> 
 	                                            
-	                                            <c:if test = "${order.orderStatus eq 'CANCELLED'}">
+	                                            <c:if test = "${order.orderStatus eq 'CANCELLED' ||
+	                                            			    order.orderStatus eq 'RETURNED' ||
+	                                            			    order.orderStatus eq 'REFUND'}">
 	                                            
-		                                            <a href = "javascript:void(0)" 
-		                                               data-toggle="popover" 
-		                                               data-trigger="focus" 
-		                                               title="" 
-		                                               data-content="${order.reason}" 
-		                                               data-original-title="Reason"> (view reason) </a>
+		                                            <small> <a class = "btn-view-reason"
+		                                            		   href = "javascript:void(0)"
+		                                            		   data-value = "${order.reason}"> (view reason) </a> </small>
 		                                               
 	                                             </c:if>
 	                                        

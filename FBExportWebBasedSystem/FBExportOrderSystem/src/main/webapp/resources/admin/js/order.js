@@ -2,7 +2,8 @@
 $(document).ready(function () {
 
     $('[data-toggle="popover"]').popover({
-        placement : "top"
+        placement : "left",
+        offset : "40px 200px"
     });	
 
     var shipTrackingMapRawTemplate = $("#shipMapTrackingTemplate").html();
@@ -33,6 +34,11 @@ $(document).ready(function () {
                                     "Approved": "#5CB85C",
                                     "Pending": "#FFC107" 
                                     });
+
+    $(".btn-view-reason").click(function () {
+        alertify.alert("reason: " + $(this).attr("data-value"));
+        $(".alertify").css("z-index", "10");
+    });
 
 
     $("#shipmentStatusComboBox").change(function () {

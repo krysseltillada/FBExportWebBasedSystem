@@ -4,12 +4,12 @@ $(document).ready(function () {
     // PENDING, /
 	// APPROVED, /
 	// REJECTED, /
-	// RECEIVED, dynamic
+	// RECEIVED, /
 	// TO_SHIP /,
 	// PAID /
-	// RETURNED, dynamic
-	// CANCELLED /
-	// REFUND /
+	// RETURNED, / reason
+	// CANCELLED / reason
+	// REFUND / reason
 
 	// $(".paypal-button").each(function (ind, elem) {
 			
@@ -101,6 +101,18 @@ $(document).ready(function () {
 		});	
 	};
 
+	$(".btn-refresh").click(function () {
+		window.location = window.location;
+	});
+
+	$("#FilterBy").change(function () {
+		$("#filterForm").submit();
+	});
+
+	$("#SortBy").change(function () {
+		$("#filterForm").submit();
+	});
+
 	$(".btn-cancel-order").click(function () {
 		
 		var $orderDivItem = $(this).closest("span.list-group-item");
@@ -112,34 +124,40 @@ $(document).ready(function () {
 
 					alertify.reset()
 							.okBtn("send")
-							.defaultValue("wrong order")
 							.prompt("tell us your reason for cancellation", function (val, ev) {
 
-						$.post("/FBExportSystem/order-list/markCancelled", {
-							orderId : $orderDivItem.find("#orderId").html(),
-							reason : val							
-						}, function () {
+							if (val.length > 0) {
 
-							var $orderStatus = $orderDivItem.find("#orderStatus");
+								$.post("/FBExportSystem/order-list/markCancelled", {
+									orderId : $orderDivItem.find("#orderId").html(),
+									reason : val							
+								}, function () {
 
-							$orderStatus.html("Cancelled");
-							$orderStatus.removeClass("orange-text").addClass("red-text");
+									var $orderStatus = $orderDivItem.find("#orderStatus");
 
-							var $cancelLinkToReason = $orderDivItem.find("div.dropdown>a:eq(1)");
+									$orderStatus.html("Cancelled");
+									$orderStatus.removeClass("orange-text").addClass("red-text");
 
-							$cancelLinkToReason.html("Reason");
+									var $cancelLinkToReason = $orderDivItem.find("div.dropdown>a:eq(1)");
 
-							$cancelLinkToReason.attr("data-toggle", "popover")
-											   .attr("data-trigger", "focus")
-											   .attr("title", "")
-											   .attr("data-content", val)
-											   .attr("data-original-title", "Reason");
+									$cancelLinkToReason.html("Reason");
 
-							$cancelLinkToReason.off("click");
+									$cancelLinkToReason.attr("data-toggle", "popover")
+													.attr("data-trigger", "focus")
+													.attr("title", "")
+													.attr("data-content", val)
+													.attr("data-original-title", "Reason");
 
-							reInitializePopover();
-	
-						});
+									$cancelLinkToReason.off("click");
+
+									reInitializePopover();
+			
+								});
+
+							} else {
+								alertify.reset()
+										.alert("please provide a reason");
+							}
 
 					});
 
@@ -160,41 +178,49 @@ $(document).ready(function () {
 
 						alertify.reset()
 								.okBtn("send")
-								.defaultValue("wrong order")
 								.prompt("tell us your reason for cancellation", function (val, ev) {
 
-							$.post("/FBExportSystem/order-list/markCancelled", {
-								orderId : $orderDivItem.find("#orderId").html(),
-								reason : val							
-							}, function () {
+								if (val.length > 0) {
 
-								var $orderStatus = $orderDivItem.find("#orderStatus");
+									$.post("/FBExportSystem/order-list/markCancelled", {
+										orderId : $orderDivItem.find("#orderId").html(),
+										reason : val							
+									}, function () {
 
-								$orderStatus.html("Cancelled");
-		
-								var $cancelLinkToReason = $orderDivItem.find("div.dropdown>a:eq(1)");
+											var $orderStatus = $orderDivItem.find("#orderStatus");
 
-								$cancelLinkToReason.html("Reason");
+											$orderStatus.html("Cancelled");
+					
+											var $cancelLinkToReason = $orderDivItem.find("div.dropdown>a:eq(1)");
 
-								$cancelLinkToReason.attr("data-toggle", "popover")
-												.attr("data-trigger", "focus")
-												.attr("title", "")
-												.attr("data-content", val)
-												.attr("data-original-title", "Reason");
+											$cancelLinkToReason.html("Reason");
 
-								$cancelLinkToReason.off("click");
+											$cancelLinkToReason.attr("data-toggle", "popover")
+															.attr("data-trigger", "focus")
+															.attr("title", "")
+															.attr("data-content", val)
+															.attr("data-original-title", "Reason");
 
-								var $rowHR = $orderDivItem.next().find(">div").find("div.row:eq(1)").next();
-								var $rowDiv = $rowHR.next();
+											$cancelLinkToReason.off("click");
 
-								$rowHR.remove();
-								$rowDiv.remove();
-								$btnCancelRejectedOrder.prev().remove();
-								$btnCancelRejectedOrder.remove();
+											var $rowHR = $orderDivItem.next().find(">div").find("div.row:eq(1)").next();
+											var $rowDiv = $rowHR.next();
 
-								reInitializePopover();
-		
-							});
+											$rowHR.remove();
+											$rowDiv.remove();
+											$btnCancelRejectedOrder.prev().remove();
+											$btnCancelRejectedOrder.remove();
+
+											reInitializePopover();
+					
+										});
+
+								} else {
+
+									alertify.reset()
+											.alert("please provide a reason");
+								
+								}
 
 						});
 
@@ -209,45 +235,53 @@ $(document).ready(function () {
 
 						alertify.reset()
 								.okBtn("send")
-								.defaultValue("wrong order")
 								.prompt("tell us your reason for cancellation", function (val, ev) {
 
-							$.post("/FBExportSystem/order-list/markCancelled", {
-								orderId : $orderDivItem.find("#orderId").html(),
-								reason : val							
-							}, function () {
+								if (val.length > 0) {
 
-								var $orderStatus = $orderDivItem.find("#orderStatus");
+									$.post("/FBExportSystem/order-list/markCancelled", {
+										orderId : $orderDivItem.find("#orderId").html(),
+										reason : val							
+									}, function () {
 
-								$orderStatus.html("Cancelled");
-		
-								var $cancelLinkToReason = $orderDivItem.find("div.dropdown>a:eq(1)");
+										var $orderStatus = $orderDivItem.find("#orderStatus");
 
-								$cancelLinkToReason.html("Reason");
+										$orderStatus.html("Cancelled");
+				
+										var $cancelLinkToReason = $orderDivItem.find("div.dropdown>a:eq(1)");
 
-								$cancelLinkToReason.attr("data-toggle", "popover")
-												.attr("data-trigger", "focus")
-												.attr("title", "")
-												.attr("data-content", val)
-												.attr("data-original-title", "Reason");
+										$cancelLinkToReason.html("Reason");
 
-								$cancelLinkToReason.off("click");
+										$cancelLinkToReason.attr("data-toggle", "popover")
+														.attr("data-trigger", "focus")
+														.attr("title", "")
+														.attr("data-content", val)
+														.attr("data-original-title", "Reason");
 
-								var $rowHR = $orderDivItem.next().find(">div").find("div.row:eq(1)").next();
-								var $rowDiv = $rowHR.next();
+										$cancelLinkToReason.off("click");
 
-								$rowHR.remove();
-								$rowDiv.remove();
+										var $rowHR = $orderDivItem.next().find(">div").find("div.row:eq(1)").next();
+										var $rowDiv = $rowHR.next();
 
-								var $line = $cancelLinkToReason.next();
-								var $cancelLink = $line.next();
+										$rowHR.remove();
+										$rowDiv.remove();
 
-								$line.remove();
-								$cancelLink.remove();
+										var $line = $cancelLinkToReason.next();
+										var $cancelLink = $line.next();
 
-								reInitializePopover();
-		
-							});
+										$line.remove();
+										$cancelLink.remove();
+
+										reInitializePopover();
+				
+									});
+
+								} else {
+
+									alertify.reset()
+											.alert("please provide a reason");
+									 
+								}
 
 						});
 
@@ -269,42 +303,50 @@ $(document).ready(function () {
 
 					alertify.reset()
 							.okBtn("send")
-							.defaultValue("wrong order")
 							.prompt("tell us your reason for cancellation", function (val, ev) {
 
-						$.post("/FBExportSystem/order-list/markCancelled", {
-							orderId : $orderDivItem.find("#orderId").html(),
-							reason : val							
-						}, function () {
+							if (val.length > 0) {
 
-							var $orderStatus = $orderDivItem.find("#orderStatus");
+								$.post("/FBExportSystem/order-list/markCancelled", {
+									orderId : $orderDivItem.find("#orderId").html(),
+									reason : val							
+								}, function () {
 
-							$orderStatus.html("Cancelled");
-							$orderStatus.removeClass("green-text").addClass("red-text");
+									var $orderStatus = $orderDivItem.find("#orderStatus");
 
-							var $cancelLinkToReason = $orderDivItem.find("div.dropdown>a:eq(1)");
+									$orderStatus.html("Cancelled");
+									$orderStatus.removeClass("green-text").addClass("red-text");
 
-							$cancelLinkToReason.html("Reason");
+									var $cancelLinkToReason = $orderDivItem.find("div.dropdown>a:eq(1)");
 
-							$cancelLinkToReason.attr("data-toggle", "popover")
-												.attr("data-trigger", "focus")
-												.attr("title", "")
-												.attr("data-content", val)
-												.attr("data-original-title", "Reason");
+									$cancelLinkToReason.html("Reason");
 
-							$cancelLinkToReason.off("click");
+									$cancelLinkToReason.attr("data-toggle", "popover")
+														.attr("data-trigger", "focus")
+														.attr("title", "")
+														.attr("data-content", val)
+														.attr("data-original-title", "Reason");
 
-							var $divCollapseItem = $orderDivItem.next();
+									$cancelLinkToReason.off("click");
 
-							var $hr = $divCollapseItem.find(">div").find("div.row:eq(1)").next();
-							var $hrRow = $hr.next();
+									var $divCollapseItem = $orderDivItem.next();
 
-							$hr.remove();
-							$hrRow.remove();
+									var $hr = $divCollapseItem.find(">div").find("div.row:eq(1)").next();
+									var $hrRow = $hr.next();
 
-							reInitializePopover();
-	
-						});
+									$hr.remove();
+									$hrRow.remove();
+
+									reInitializePopover();
+			
+								});
+
+							} else {
+
+								alertify.reset()
+										.alert("please provide a reason");
+
+							}
 
 					});
 
@@ -431,32 +473,41 @@ $(document).ready(function () {
 					alertify.reset()
 							.okBtn("send")
 							.prompt("tell us the reason for your refund", function (val, ev) {
+
+							if (val.length > 0) {
 							
-							$.post("/FBExportSystem/order-list/refund", {
-								orderId : $divOrderItem.find("#orderId").html(),
-								reason : val,
-							}, function () {
+								$.post("/FBExportSystem/order-list/refund", {
+									orderId : $divOrderItem.find("#orderId").html(),
+									reason : val,
+								}, function () {
 
-								var $refundLinkBtn = $divOrderItem.find("a.btn-refund-order");
-								var $orderStatus = $divOrderItem.find("#orderStatus");
+									var $refundLinkBtn = $divOrderItem.find("a.btn-refund-order");
+									var $orderStatus = $divOrderItem.find("#orderStatus");
 
-								$orderStatus.removeClass("light-green-text");
-								$orderStatus.addClass("pink-text");
-								$orderStatus.html("Refund");
+									$orderStatus.removeClass("light-green-text");
+									$orderStatus.addClass("pink-text");
+									$orderStatus.html("Refund");
 
-								$refundLinkBtn.off("click");
+									$refundLinkBtn.off("click");
 
-								$refundLinkBtn.html("Reason");
+									$refundLinkBtn.html("Reason");
 
-								$refundLinkBtn.attr("data-toggle", "popover")
-											.attr("data-trigger", "focus")
-											.attr("title", "")
-											.attr("data-content", val)
-											.attr("data-original-title", "Reason");
-								
-								reInitializePopover();
+									$refundLinkBtn.attr("data-toggle", "popover")
+												.attr("data-trigger", "focus")
+												.attr("title", "")
+												.attr("data-content", val)
+												.attr("data-original-title", "Reason");
+									
+									reInitializePopover();
 
-							});
+								});
+
+							} else {
+
+								alertify.reset()
+										.alert("please provide a reason");
+
+							}
 
 					});
 
@@ -507,8 +558,8 @@ $(document).ready(function () {
 																		'Options <i class="fa fa-caret-down" aria-hidden="true"></i>' + 
 																	'</a>' +
 																	'<div class="dropdown-menu" aria-labelledby="dropdownMenuLink">' +
-																		'<a class="dropdown-item" href="javascript:void(0)">Rate orderr</a>' +
-																		'<a class="dropdown-item" href="javascript:void(0)">Return order</a>' +
+																		'<a class="dropdown-item btn-review-order" href="javascript:void(0)">Review orderr</a>' +
+																		'<a class="dropdown-item btn-return-order" href="javascript:void(0)">Return order</a>' +
 																	'</div>' +
 																'</span>' +
 															'</div>');
@@ -525,8 +576,80 @@ $(document).ready(function () {
 				});
 	});
 
+	$(".btn-review-order").click(function () {
 
-			
+		var $btnReviewOrder = $(this);
+		var $reviewOrderDiv = $btnReviewOrder.closest("span.list-group-item");
+
+
+		alertify.okBtn("send")
+				.prompt("tell us about the order", function (val, ev) {
+					console.log(val);
+
+					if (val.length > 0) {
+
+						$.post("/FBExportSystem/order-list/reviewOrder", {
+							orderId : $reviewOrderDiv.find("#orderId").html(),
+							review : val
+						}, function () {
+							toastr.success("order reviewed");
+						});
+
+					} else {
+						
+						alertify.reset()
+								.alert("please provide a review");
+
+					}
+
+				});
+	});
+
+	$(".btn-return-order").click(function () {
+
+		var $btnReturnOrder = $(this);
+		var $divOrderItem = $btnReturnOrder.closest("span.list-group-item");
+
+		alertify.okBtn("send")
+				.prompt("tell us the reason why you want to return your order", function (val, ev) {
+
+					if (val.length > 0) {
+
+						$.post("/FBExportSystem/order-list/returnOrder", 
+						{
+							orderId : $divOrderItem.find("#orderId").html(),
+							reason : val
+						},
+						function () {
+
+							var $dropDownOptionLink = $divOrderItem.find("span.dropdown:eq(1)");
+							var $orderStatus = $divOrderItem.find("#orderStatus");
+
+							$orderStatus.html("Returned");
+
+							$orderStatus.removeClass("blue-text")
+										.addClass("brown-text");
+
+							$dropDownOptionLink.html('<a href = "javascript:void(0)"' +
+														'data-toggle="popover"' + 
+														'data-trigger="focus"' +
+														'title="Reason"' +
+														'data-content="' + val + '"> Reason </a>');
+
+							reInitializePopover();
+
+
+						});
+					
+
+					} else {
+						alertify.reset()
+								.alert("please provide a reason");
+					}
+
+				});
+
+	});
 
 	reInitializePopover();
     

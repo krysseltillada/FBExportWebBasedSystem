@@ -39,6 +39,8 @@ public interface OrderService {
 	void refund(Order order, String reason);
 	void reOrder(Order order);
 	
+	void reviewOrder(Order order, String review);
+	void returnRefundOrder(Order order, String reason);
 	
 	List<String> addToShipInformation(long id,
 									  String shipmentStatus,
@@ -49,6 +51,9 @@ public interface OrderService {
 									  String mmsiNumber,
 									  String imoNumber,
 									  String destination);
+	
+	List<Order> filterAndSortByCustomer(long customerId, String filterBy, String sortBy, int pageNumber, int pageSize);
+	int filterAndSortByCustomerCount(long customerId, String filterBy, String sortBy);
 	
 	boolean checkIfShippingExists (long id);
 	

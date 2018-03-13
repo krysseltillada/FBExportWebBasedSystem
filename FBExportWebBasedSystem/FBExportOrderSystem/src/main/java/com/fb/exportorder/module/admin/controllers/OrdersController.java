@@ -50,6 +50,7 @@ public class OrdersController {
 		put(OrderStatus.CANCELLED, "#D9534F");
 		put(OrderStatus.PAID, "#91C361");
 		put(OrderStatus.REFUND, "#EA1E63");
+		put(OrderStatus.RETURNED, "#795548");
 	}};
 	
 	Map<OrderStatus, String> orderStatusMessage = new HashMap<OrderStatus, String>(){{
@@ -61,6 +62,7 @@ public class OrdersController {
 		put(OrderStatus.CANCELLED, "Cancelled");
 		put(OrderStatus.PAID, "Paid");
 		put(OrderStatus.REFUND, "Refund");
+		put(OrderStatus.RETURNED, "Returned");
 	}};
 	
 	SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
