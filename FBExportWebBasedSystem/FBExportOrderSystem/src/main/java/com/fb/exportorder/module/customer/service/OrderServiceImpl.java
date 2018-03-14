@@ -362,7 +362,7 @@ public class OrderServiceImpl implements OrderService {
 		String sortByJPQL = (StringUtils.equals(sortBy, "Date ordered(latest)") ? " ORDER BY o.dateOrdered DESC" :
 						 StringUtils.equals(sortBy, "Date ordered(oldest)") ? " ORDER BY o.dateOrdered ASC" :
 						 StringUtils.equals(sortBy, "Order id(latest)") ? " ORDER BY o.orderId DESC" :
-						 StringUtils.equals(sortBy, "Order id(oldest)") ? " ORDER BY o.orderId ASC" : "");
+						 StringUtils.equals(sortBy, "Order id(oldest)") ? " ORDER BY o.orderId ASC" : StringUtils.EMPTY);
 		
 		System.out.println("SELECT o FROM Order o " + filterByJPQL + sortByJPQL);
 		
@@ -371,6 +371,30 @@ public class OrderServiceImpl implements OrderService {
 		
 		return ((List<Order>)filterAndSortQuery.list()).size();
 				
+	}
+
+	@Override
+	public List<Order> filterAndSortByAdmin(String status, String shipment, String payment, String sortBy,
+											String sortOrder) {
+		
+		String filterByStatus = (!StringUtils.equals(status, "All")) ? "o.orderStatus ='" + status.toUpperCase().replace(" ", "_")  + "'" 
+																	 : StringUtils.EMPTY;
+		
+		String filterByShipment = (!StringUtils.equals(shipment, "All")) ? "o.shipping.shipping.shipmentStatus ='" + shipment.toUpperCase().replace(" ", "_") 
+																		 : StringUtils.EMPTY;
+		
+		String filterByPayment = (!StringUtils.equals(payment, "All")) ? "o.paymentMethod = '" + payment.toUpperCase().replace(" ", "_") 
+																	   : StringUtils.EMPTY;
+		
+//		String sortType = (StringUtils.equals(sortBy, "Order No")) ? "o.orderId" :
+//						  (StringUtils.equals(sortBy, "Date ordered")) ? "o.dateOrdered" :
+//						  (StringUtils.equals(sortBy, "Receive date")) ? "o."
+//		
+//		String sort = (!StringUtils.equals(sortOrder, "Unsorted")) ? " ORDER BY " 
+//																	: "";
+		
+		
+		return null;
 	}
 
 	

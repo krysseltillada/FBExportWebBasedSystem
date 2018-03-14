@@ -350,8 +350,18 @@ public class OrdersController {
 		return orderService.checkIfShippingExists(Long.parseLong(orderId));
 	}
 	
-	
-	
+	@RequestMapping(value = "/admin/orders/filter", method = RequestMethod.POST)
+	@ResponseBody
+	public List<Order> filterOrder (@RequestParam String status,
+								 	@RequestParam String shipment,
+								 	@RequestParam String payment,
+								 	@RequestParam String sortBy,
+								 	@RequestParam String sortByOrder) {
+		
+		orderService.filterAndSortByAdmin(status, shipment, payment, sortByOrder, sortByOrder);
+		
+		return null;
+	}
 	
 	
 

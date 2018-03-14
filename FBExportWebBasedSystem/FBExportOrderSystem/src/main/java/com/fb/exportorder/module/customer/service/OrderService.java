@@ -53,6 +53,8 @@ public interface OrderService {
 									  String destination);
 	
 	List<Order> filterAndSortByCustomer(long customerId, String filterBy, String sortBy, int pageNumber, int pageSize);
+	List<Order> filterAndSortByAdmin(String status, String shipment, String payment, String sortBy, String sortOrder);
+	
 	int filterAndSortByCustomerCount(long customerId, String filterBy, String sortBy);
 	
 	boolean checkIfShippingExists (long id);

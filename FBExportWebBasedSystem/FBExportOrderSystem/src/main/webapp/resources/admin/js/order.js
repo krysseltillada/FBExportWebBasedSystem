@@ -94,6 +94,28 @@ $(document).ready(function () {
     }
     );
 
+    var filterOrders = function (filterByStatus, 
+                                 filterByShipment, 
+                                 filterByPayment, 
+                                 sb, 
+                                 sbOrder) {
+
+         table.clear().draw();
+
+        $("#orderTable tbody").html($("#filterLoaderTemplate").html());
+
+        $.post("/FBExportSystem/admin/orders/filter", {
+            status : filterByStatus,
+            shipment : filterByShipment,
+            payment : filterByPayment,
+            sortBy : sb,
+            sortByOrder : sbOrder
+        }, function (response) {
+            console.log(response);
+        }, "json");
+
+    };
+
     $("#orderTable").on("hidden.bs.dropdown", "div.dropdown-select", function () {
         var $dropdownMenu = $(this);
 
@@ -1665,6 +1687,46 @@ $(document).ready(function () {
         $(this).find("#imo-number").val("");
         $(this).find("#destination").val("");
 
+    });
+
+    $("#filterByStatus").change(function () {
+        filterOrders($(this).val(),
+                     $("#filterByShipment").val(),
+                     $("#filterByPayment").val(),
+                     $("#sortBy").val(),
+                     $("#sortByOrder").val());
+    });
+
+    $("#filterByShipment").change(function () {
+        filterOrders($(this).val(),
+                     $("#filterByShipment").val(),
+                     $("#filterByPayment").val(),
+                     $("#sortBy").val(),
+                     $("#sortByOrder").val());
+    });
+
+    $("#filterByPayment").change(function () {
+        filterOrders($(this).val(),
+                     $("#filterByShipment").val(),
+                     $("#filterByPayment").val(),
+                     $("#sortBy").val(),
+                     $("#sortByOrder").val());
+    });
+
+    $("#sortBy").change(function () {
+        filterOrders($(this).val(),
+                     $("#filterByShipment").val(),
+                     $("#filterByPayment").val(),
+                     $("#sortBy").val(),
+                     $("#sortByOrder").val());
+    });
+
+    $("#sortByOrder").change(function () {
+        filterOrders($(this).val(),
+                     $("#filterByShipment").val(),
+                     $("#filterByPayment").val(),
+                     $("#sortBy").val(),
+                     $("#sortByOrder").val());
     });
 
 });

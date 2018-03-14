@@ -21,61 +21,61 @@
 
                 <div class = "col-lg-12 p-0 m-0">
                     <div class = "card m-0">
-                        <div class = "card-body pt-3 pb-3">
+                        <div class = "card-body pt-3 pb-3 pl-5">
 
-                            <form class="form-inline ml-2 small">
+                            <div class="form-inline ml-2 small">
                             
-                                <label class="mr-sm-2" for="inlineFormCustomSelect">Status: </label>
+                                <label class="mr-sm-2" for="filterByStatus">Status: </label>
                                 
-                                <select class="custom-select mb-2 mr-sm-3 mb-sm-0" id="inlineFormCustomSelect" style = "width: 115px;">
-                                    <option selected> All </option>
-                                    <option>Pending</option>
-                                    <option value="1">Approved</option>
-                                    <option value="2">Rejected</option>
-                                    <option value="3">To Ship</option>
-                                    <option value="3">Received</option>
-                                    <option>Paid</option>
-                                    <option>Returned</option>
-                                    <option>Cancelled</option>
-                                    <option>Refund</option>
+                                <select class="custom-select mb-2 mr-sm-3 mb-sm-0" id="filterByStatus" style = "width: 115px;">
+                                    <option value="All" selected> All </option>
+                                    <option value="Pending">Pending</option>
+                                    <option value="Approved">Approved</option>
+                                    <option value="Rejected">Rejected</option>
+                                    <option value="To Ship">To Ship</option>
+                                    <option value="Received">Received</option>
+                                    <option value="Paid">Paid</option>
+                                    <option value="Returned">Returned</option>
+                                    <option value="Cancelled">Cancelled</option>
+                                    <option value="Refund">Refund</option>
                                 </select>
 
-                                <label class="mr-sm-2" for="inlineFormCustomSelect">Shipment: </label>
+                                <label class="mr-sm-2" for="filterByShipment">Shipment: </label>
                                 
-                                <select class="custom-select mb-2 mr-sm-3 mb-sm-0" id="inlineFormCustomSelect" style = "width: 135px;">
-                                    <option selected> All </option>
-                                    <option value="1">On Cargo Ship</option>
-                                    <option value="2">On Truck</option>
+                                <select class="custom-select mb-2 mr-sm-3 mb-sm-0" id="filterByShipment" style = "width: 135px;">
+                                    <option value="All" selected> All </option>
+                                    <option value="On Cargo Ship">On Cargo Ship</option>
+                                    <option value="On Truck">On Truck</option>
                                 </select>
 
-                                <label class="mr-sm-2" for="inlineFormCustomSelect">Payment: </label>
+                                <label class="mr-sm-2" for="filterByPayment">Payment: </label>
                                 
-                                <select class="custom-select mb-2 mr-sm-3 mb-sm-0" id="inlineFormCustomSelect" style = "width: 150px;">
-                                    <option selected>All</option>
-                                    <option>Cash on delivery</option>
-                                    <option>Paypal</option>    
+                                <select class="custom-select mb-2 mr-sm-3 mb-sm-0" id="filterByPayment" style = "width: 150px;">
+                                    <option value="All" selected>All</option>
+                                    <option value="Cash on delivery">Cash on delivery</option>
+                                    <option value="Paypal">Paypal</option>    
                                 </select>
 
-                                <label class="mr-sm-2" for="inlineFormCustomSelect">Sort by: </label>
+                                <label class="mr-sm-2" for="sortBy">Sort by: </label>
                                 
-                                <select class="custom-select mb-2 mr-sm-1 mb-sm-0" id="inlineFormCustomSelect" style = "width: 140px;">
-                                    <option selected>Order No </option>
-                                    <option value="1">Date ordered</option>
-                                    <option value="1">Receive date</option>
-                                    <option value="2">Customer</option>
-                                    <option value="3">Price</option>
-                                    <option value="3">Weight</option>
-                                    <option value="3">Items</option>
+                                <select class="custom-select mb-2 mr-sm-1 mb-sm-0" id="sortBy" style = "width: 140px;">
+                                    <option value="Order No" selected>Order No </option>
+                                    <option value="Date ordered">Date ordered</option>
+                                    <option value="Receive date">Receive date</option>
+                                    <option value="Customer">Customer</option>
+                                    <option value="Price">Price</option>
+                                    <option value="Weight">Weight</option>
+                                    <option value="Items">Items</option>
                                 </select>
 
-                                <select class="custom-select mb-2 mb-sm-0" id="inlineFormCustomSelect" style = "width: 120px;">
-                                    <option selected>Unsorted </option>
-                                    <option>Ascending </option>
-                                    <option value="1">Descending</option>
+                                <select class="custom-select mb-2 mb-sm-0" id="sortByOrder" style = "width: 120px;">
+                                    <option value="Unsorted" selected>Unsorted </option>
+                                    <option value="Ascending">Ascending </option>
+                                    <option value="Descending">Descending</option>
                                 </select>
                             
 
-                            </form>
+                            </div>
                             
                         </div>
                     </div>
