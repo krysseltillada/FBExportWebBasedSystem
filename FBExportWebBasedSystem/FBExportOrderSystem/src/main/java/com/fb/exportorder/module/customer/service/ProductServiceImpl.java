@@ -1,5 +1,6 @@
 package com.fb.exportorder.module.customer.service;
 
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -15,10 +16,15 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.fb.exportorder.models.Address;
+import com.fb.exportorder.models.Contact;
 import com.fb.exportorder.models.Product;
+import com.fb.exportorder.models.customer.Cart;
 import com.fb.exportorder.models.customer.Customer;
 import com.fb.exportorder.models.customer.Rating;
 import com.fb.exportorder.models.customer.Review;
+import com.fb.exportorder.models.enums.Gender;
+import com.fb.exportorder.models.enums.ProductStatus;
 import com.fb.exportorder.module.customer.repository.CustomerRepository;
 import com.fb.exportorder.module.customer.repository.ProductRepository;
 import com.fb.exportorder.module.customer.repository.RatingRepository;
@@ -109,19 +115,22 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	@Override
-	public List<Customer> sortedCustomerComments(Rating rating) {
-		List<Review> reviewList = rating.getReviews();
-		Collections.reverse(reviewList);
+	public List<Customer> sortedCustomerComments(int records, int offset, long id) {
+		
+		List<Review> reviewList = this.getReviews(records, offset, id);
 		
 		List<Customer> customerList = new ArrayList<>();
 		
-		rating.getReviews().forEach((review) -> {
+		reviewList.forEach((review) -> {
+			System.out.println(review.getDescription() + " " + review.getDate().toString());
 			Customer c = customerRepository.findAccountByUsername(review.getUsername());
 			if(!customerList.contains(c)) {
 				customerList.add(c);
 			}
 			
 		});
+		
+		
 		return customerList;
 	}
 
@@ -217,6 +226,31 @@ public class ProductServiceImpl implements ProductService {
 		
 		getAverage(rating.getReviews());
 		
+	}
+
+	@Override
+	public List<Review> getReviews(int records, int offset, long id) {
+		List<Object[]> rawResultSet = reviewRepository.getCustomerReviewsRecordsAndOffset(records, offset, id);
+		List<Review> reviewList = new ArrayList<>();
+		
+		for (Object[] rawRow : rawResultSet) {
+			
+			Review review = new Review();
+			
+			review.setReviewId(((BigInteger)rawRow[0]).longValue());
+			review.setDate((Date)rawRow[1]);
+			review.setDescription((String)rawRow[2]);
+			review.setRate((double)rawRow[3]);
+			review.setUsername((String)rawRow[4]);
+			
+			reviewList.add(review);
+		}
+		return reviewList;
+	}
+
+	@Override
+	public int getReviewCount(long id) {
+		return reviewRepository.getReviewCount(id);
 	}
 
 }

@@ -185,5 +185,58 @@ $(document).ready(function () {
    	
     }
     
-   
+    /*Show more comments*/
+    $("#see-more-customer-review").click(function () {
+        
+        var currentPageCount = $("#comments:eq(0)").children().length;
+
+        $("#see-more-customer-review").hide();
+        $(".see-more-view-loader").css("display", "block");
+        
+        var productId = $("#productId").val();
+        var customerUsername = $("#customerUsername").val();
+
+        setTimeout(function () {
+            $.get("/FBExportSystem/see-more-review/"+productId, {
+                pageCount : currentPageCount 
+            }, function (response) {
+            	
+            	//if(response.length > 0){
+            		
+            	var jsonData = JSON.parse(JSON.stringify(response));
+           		 
+           		 $.each(jsonData, function (img, value) {
+           			$.each(value, function (index, val) {
+           				var buttonClose = val.username == customerUsername ? "<button type='button' class='close deleteReview' aria-label='Close' style='cursor: pointer;'><span aria-hidden='true'>&times;</span></button>" : "";
+           				$("#comments").append("<div>" +
+           	     		 		"<div class='row mt-3'>" +
+           	     		 		"<div class='col-lg-3 text-center'>"+
+           	     		 		"<img src='/FBExportSystem/"+img+"' width='100' height='100' class='rounded-circle' alt='Sample' >"+
+           	     		 		"</div>"+
+           	     		 		"<div class='col-lg-9 col-xl-9'>"+
+           	     		 		 buttonClose+
+           	            			"<input class='reviewId' type='hidden' value='"+val.reviewId+"'/>"+
+           	    				    "<h3 class='mb-3 font-bold dark-grey-text'>"+
+           	    				    "</h3>"+
+           	    				    "<p class='grey-text'>"+val.description+"</p>"+
+           	    				    "<p>by<a class='font-bold dark-grey-text'> "+val.username+"</a>, "+ moment(val.date).format('MMMM D, YYYY h:mm:ss A') +"</p>"+
+           	    				    "</div>"+
+           	     		 		"</div>"+
+           	     		 		"<hr class='mb-5'>"+
+           	     		 		"</div>");
+               		 });
+           		 });
+           		 		
+                            $("#see-more-customer-review").show();
+                            $(".see-more-view-loader").css("display", "none");
+                
+                            if(jQuery.isEmptyObject(response)){
+                            	$("#see-more-customer-review").hide();
+                            }
+
+            }, "json");
+        }, 1000);
+
+    });
+    /*Show more comments*/
 });

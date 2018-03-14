@@ -363,7 +363,6 @@ public class InventoryServiceImpl implements InventoryService {
 
 			productList.add(product);
 			
-			
 		}
 		
 		return productList;

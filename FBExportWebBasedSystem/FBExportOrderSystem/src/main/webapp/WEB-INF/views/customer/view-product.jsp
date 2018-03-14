@@ -340,7 +340,15 @@
             </security:authorize>
 
             <br>
-            <h4>Reviews<h4>
+          	
+    			<c:choose>
+    				<c:when test = "${fn:length(reviewList) > 0}">
+	            		<h4>Reviews<h4>
+	            	</c:when>
+	            	<c:otherwise>
+		        		<h4>No Reviews<h4>
+	    			</c:otherwise>
+    			</c:choose>
         </div>
 
 
@@ -348,59 +356,76 @@
     
     <!-- COMMENTS -->
     <div id="comments">
-        <c:if test="${not empty reviewList}">
-        	<c:forEach items="${reviewList}" var="review">
-        		<c:if test="${not empty customerList}">
-        			<c:forEach items="${customerList}" var="customer">
-        				<c:if test="${customer.username eq review.username}">
-        					
-        						<!--Grid row-->
-        						<div>
-						        <div class="row mt-3">
-						
-						            <!--Grid column-->
-						            <div class="col-lg-3 text-center">
-						                <!--Featured image-->
-						                <img src="<c:url value="${customer.profileImageLink}" />" width="100" height="100" class="rounded-circle" alt="<c:out value="${customer.username}" />" >
-						            </div>
-						            <!--Grid column-->
-						
-						            <!--Grid column-->
-						            <div class="col-lg-9 col-xl-9">
-						            	<c:if test="${sessionScope.customerUsername eq review.username}">
-						            		<button type="button" class="close deleteReview" aria-label="Close" style="cursor: pointer;"><span aria-hidden="true">&times;</span></button>
-						            	</c:if>
-						            	
-						            	<input class="reviewId" type="hidden" value="${review.reviewId}"/>
-						                <h3 class="mb-3 font-bold dark-grey-text">
-						                </h3>
-						                <p class="grey-text">${review.description}</p>
-						                <p>by
-						                <a class="font-bold dark-grey-text">${review.username}</a>, <fmt:formatDate type="both" dateStyle="long" timeStyle="medium" value="${review.date}" /></p>
-						            	
-						            	
-						            </div>
-						            <!--Grid column-->
-									
-						        </div>
-						        <hr class="mb-5">
-						       </div>
-						        <!--Grid row-->
-						
-						        
-        					
-        				</c:if>
-        			</c:forEach>	
-        		</c:if>
-		    	
-			       
-        	</c:forEach>
-        	
-        </c:if>
+    	<c:choose>
+    	
+    		<c:when test = "${fn:length(reviewList) > 0}">
+    			<c:if test="${not empty reviewList}">
+		        	<c:forEach items="${reviewList}" var="review">
+		        		<c:if test="${not empty customerList}">
+		        			<c:forEach items="${customerList}" var="customer">
+		        				<c:if test="${customer.username eq review.username}">
+		        					
+		        						<!--Grid row-->
+		        						<div>
+								        <div class="row mt-3">
+								
+								            <!--Grid column-->
+								            <div class="col-lg-3 text-center">
+								                <!--Featured image-->
+								                <img src="<c:url value="${customer.profileImageLink}" />" width="100" height="100" class="rounded-circle" alt="<c:out value="${customer.username}" />" >
+								            </div>
+								            <!--Grid column-->
+								
+								            <!--Grid column-->
+								            <div class="col-lg-9 col-xl-9">
+								            	<c:if test="${sessionScope.customerUsername eq review.username}">
+								            		<button type="button" class="close deleteReview" aria-label="Close" style="cursor: pointer;"><span aria-hidden="true">&times;</span></button>
+								            	</c:if>
+								            	
+								            	<input class="reviewId" type="hidden" value="${review.reviewId}"/>
+								                <h3 class="mb-3 font-bold dark-grey-text">
+								                </h3>
+								                <p class="grey-text">${review.description}</p>
+								                <p>by
+								                <a class="font-bold dark-grey-text">${review.username}</a>, <fmt:formatDate type="both" dateStyle="long" timeStyle="medium" value="${review.date}" /></p>
+								            	
+								            	
+								            </div>
+								            <!--Grid column-->
+											
+								        </div>
+								        <hr class="mb-5">
+								       </div>
+								        <!--Grid row-->
+		        				</c:if>
+		        			</c:forEach>	
+		        		</c:if>
+				    	
+					       
+		        	</c:forEach>
+		        	
+		        </c:if>
+    		</c:when>
+    		
+    		
+    	</c:choose>
+        
+      
 	</div>
+	
+	  <c:if test = "${reviewCount > 3}">
+
+		    <div class = "row">
+		        <button type="button" id = "see-more-customer-review" style="margin: 0 auto;" class="btn btn-default btn-lg btn-block">Show more comments</button>
+		    	<img class="see-more-view-loader mx-auto" style="display:none;" src="/FBExportSystem/resources/customer/img/loader.gif" height="50" width="50">
+		    </div>
+		    
+		    <hr>
+		    
+	    </c:if>
         <!-- COMMENTS -->
-	<button type="button" class="btn btn-default btn-lg btn-block">Show more comments</button>
-<hr>
+	
+
 </div>
 
 </c:if>

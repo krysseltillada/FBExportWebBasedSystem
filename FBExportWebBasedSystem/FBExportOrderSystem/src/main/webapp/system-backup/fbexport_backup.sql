@@ -88,7 +88,7 @@ DROP TABLE IF EXISTS `cart`;
 CREATE TABLE `cart` (
   `cart_id` bigint(20) NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`cart_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -97,7 +97,7 @@ CREATE TABLE `cart` (
 
 LOCK TABLES `cart` WRITE;
 /*!40000 ALTER TABLE `cart` DISABLE KEYS */;
-INSERT INTO `cart` VALUES (1),(2);
+INSERT INTO `cart` VALUES (1),(2),(3);
 /*!40000 ALTER TABLE `cart` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -276,7 +276,7 @@ CREATE TABLE `item` (
   PRIMARY KEY (`item_id`),
   KEY `FK6fok9mmtsmu22sejwqg8cq6u3` (`product_product_id`),
   CONSTRAINT `FK6fok9mmtsmu22sejwqg8cq6u3` FOREIGN KEY (`product_product_id`) REFERENCES `product` (`product_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -285,6 +285,7 @@ CREATE TABLE `item` (
 
 LOCK TABLES `item` WRITE;
 /*!40000 ALTER TABLE `item` DISABLE KEYS */;
+INSERT INTO `item` VALUES (5,200,1,'KILO',2),(6,200,1,'KILO',2),(7,200,1,'KILO',1),(15,200,1,'KILO',2),(16,200,1,'KILO',1);
 /*!40000 ALTER TABLE `item` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -319,7 +320,7 @@ CREATE TABLE `orders` (
   CONSTRAINT `FK89wuak53n6o826m6ltksv9gj9` FOREIGN KEY (`shipping_address_shipping_address_id`) REFERENCES `shipping_address` (`shipping_address_id`),
   CONSTRAINT `FK8o21kg6tvreikslhq6n0o5jxf` FOREIGN KEY (`shipping_shipping_id`) REFERENCES `shipping` (`shipping_id`),
   CONSTRAINT `FKtg32cl8e1f2afe83we3bqrw2h` FOREIGN KEY (`cart_cart_id`) REFERENCES `cart` (`cart_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -328,6 +329,7 @@ CREATE TABLE `orders` (
 
 LOCK TABLES `orders` WRITE;
 /*!40000 ALTER TABLE `orders` DISABLE KEYS */;
+INSERT INTO `orders` VALUES (1,'2018-03-13',NULL,'your order has been approved','APPROVED','PAYPAL',NULL,3,600,3,3,32768,NULL,1);
 /*!40000 ALTER TABLE `orders` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -358,7 +360,7 @@ CREATE TABLE `product` (
   PRIMARY KEY (`product_id`),
   KEY `FKg0klkuq150g13y1o1porbpxrj` (`rating_rating_id`),
   CONSTRAINT `FKg0klkuq150g13y1o1porbpxrj` FOREIGN KEY (`rating_rating_id`) REFERENCES `rating` (`rating_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -367,7 +369,7 @@ CREATE TABLE `product` (
 
 LOCK TABLES `product` WRITE;
 /*!40000 ALTER TABLE `product` DISABLE KEYS */;
-INSERT INTO `product` VALUES (1,'2018-03-07','2018-03-06','2018-03-06','qwe','\0','qwe','qwe',200,'/products/c4ca4238a0b923820dcc509a6f75849b.jpg','POSTED','qwe','qwe','09996668084',0,1),(2,'2018-03-09','2018-03-09','2018-03-09','\"But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness. No one rejects, dislikes, or avoids pleasure itself, because it is pleasure, but because those who do not know how to pursue pleasure rationally encounter consequences that are extremely painful. Nor again is there anyone who loves or pursues or desires to obtain pain of itself, because it is pain, but because occasionally circumstances occur in which toil and pain can procure him some great pleasure. To take a trivial example, which of us ever undertakes laborious physical exercise, except to obtain some advantage from it? But who has any right to find fault with a man who chooses to enjoy a pleasure that has no annoying consequences, or one who avoids a pain that produces no resultant pleasure?\"','\0','Product','Product',200,'/products/c81e728d9d4c2f636f067f89cc14862c.jpg','POSTED','Supplier','Supplier Address','09996668084',400,2);
+INSERT INTO `product` VALUES (1,'2018-03-07','2018-03-06','2018-03-06','qwe','\0','qwe','qwe',200,'/products/c4ca4238a0b923820dcc509a6f75849b.jpg','POSTED','qwe','qwe','09996668084',0,1),(2,'2018-03-09','2018-03-09','2018-03-09','\"But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness. No one rejects, dislikes, or avoids pleasure itself, because it is pleasure, but because those who do not know how to pursue pleasure rationally encounter consequences that are extremely painful. Nor again is there anyone who loves or pursues or desires to obtain pain of itself, because it is pain, but because occasionally circumstances occur in which toil and pain can procure him some great pleasure. To take a trivial example, which of us ever undertakes laborious physical exercise, except to obtain some advantage from it? But who has any right to find fault with a man who chooses to enjoy a pleasure that has no annoying consequences, or one who avoids a pain that produces no resultant pleasure?\"','\0','Product','Product',200,'/products/c81e728d9d4c2f636f067f89cc14862c.jpg','POSTED','Supplier','Supplier Address','09996668084',400,2),(3,'2018-03-15','2018-03-14','2018-03-14','qwe','\0','qwe','qwe',12,'/products/eccbc87e4b5ce2fe28308fd9f2a7baf3.png','POSTED','qwe','qwe','123',12,3),(4,'2018-03-16','2018-03-14','2018-03-14','qwe','\0','qwe','qwe',1234,'/products/a87ff679a2f3e71d9181a67b7542122c.png','POSTED','qwe','qwe','123',22,4),(5,'2018-03-30','2018-03-14','2018-03-14','qwe','\0','qwe','qwe',123,'/products/e4da3b7fbbce2345d7772b0674a318d5.jpg','POSTED','qwe','qwe','123',123,5);
 /*!40000 ALTER TABLE `product` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -392,7 +394,7 @@ CREATE TABLE `product_preview_image_links` (
 
 LOCK TABLES `product_preview_image_links` WRITE;
 /*!40000 ALTER TABLE `product_preview_image_links` DISABLE KEYS */;
-INSERT INTO `product_preview_image_links` VALUES (1,'/products/6ec6b0f7aa92f023e3c3b1ad23548109.jpg'),(1,'/products/9fd3cb4ccb470a37d4a22d72724ac8ea.jpg'),(1,'/products/7331960cb0c4278a6ff6de6d1a3b3352.jpg'),(2,'/products/11d7a985cef0e58c835d93ea08c8255c.jpg'),(2,'/products/bd1d25b9374c8240f7c7aff09ec8c328.jpg'),(2,'/products/b2feba2d22b42240629a6e733dddcc80.jpg');
+INSERT INTO `product_preview_image_links` VALUES (1,'/products/6ec6b0f7aa92f023e3c3b1ad23548109.jpg'),(1,'/products/9fd3cb4ccb470a37d4a22d72724ac8ea.jpg'),(1,'/products/7331960cb0c4278a6ff6de6d1a3b3352.jpg'),(2,'/products/11d7a985cef0e58c835d93ea08c8255c.jpg'),(2,'/products/bd1d25b9374c8240f7c7aff09ec8c328.jpg'),(2,'/products/b2feba2d22b42240629a6e733dddcc80.jpg'),(3,'/products/1c1a8888c6e64e18710ff0453a5aa986.jpg'),(3,'/products/1d8a7597997c1bf9aab503ac3aa5a9ad.jpg'),(3,'/products/87a2ad676c6862213c7bd187b1259f45.jpg'),(4,'/products/c0d8ab7b936375faf6ed48e7fcfab95b.jpg'),(4,'/products/f006d7cf79dda481d00283e9016ac945.jpg'),(4,'/products/4c81d91c1464b2c3d613a4f5056d0cbc.jpg'),(5,'/products/f25da5301aa957b9abfd9d66101263f8.jpg'),(5,'/products/22f1ef76995b6aca64d3ed3a9018ae22.jpg'),(5,'/products/4f1799ba87ead30921cd6ad4f0a7ad03.jpg');
 /*!40000 ALTER TABLE `product_preview_image_links` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -408,7 +410,7 @@ CREATE TABLE `rating` (
   `rate` double NOT NULL,
   `views` int(11) NOT NULL,
   PRIMARY KEY (`rating_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -417,7 +419,7 @@ CREATE TABLE `rating` (
 
 LOCK TABLES `rating` WRITE;
 /*!40000 ALTER TABLE `rating` DISABLE KEYS */;
-INSERT INTO `rating` VALUES (1,10,76),(2,5,6);
+INSERT INTO `rating` VALUES (1,7,209),(2,5,54),(3,0,2),(4,0,0),(5,0,0);
 /*!40000 ALTER TABLE `rating` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -444,7 +446,7 @@ CREATE TABLE `rating_reviews` (
 
 LOCK TABLES `rating_reviews` WRITE;
 /*!40000 ALTER TABLE `rating_reviews` DISABLE KEYS */;
-INSERT INTO `rating_reviews` VALUES (1,371),(1,372),(1,373),(1,374),(1,375),(1,376),(1,377),(1,378),(1,379),(1,380),(1,381),(1,382),(1,383),(1,384),(1,385),(1,386),(1,387),(1,388),(1,389),(1,390),(1,391),(1,392),(1,393),(1,394),(1,395),(1,396),(1,397),(1,398),(1,399),(1,400),(1,401),(1,402),(1,405),(2,404),(2,406);
+INSERT INTO `rating_reviews` VALUES (1,372),(1,373),(1,374),(1,375),(1,376),(1,377),(1,378),(1,379),(1,380),(1,381),(1,382),(1,383),(1,384),(1,385),(1,386),(1,387),(1,388),(1,389),(1,390),(1,391),(1,392),(1,393),(1,394),(1,395),(1,396),(1,397),(1,398),(1,405),(1,438),(1,439),(1,441),(1,442),(1,443),(1,444),(1,445),(1,446),(1,447),(1,448),(2,406),(2,426),(2,449),(2,450),(2,451),(2,452);
 /*!40000 ALTER TABLE `rating_reviews` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -462,7 +464,7 @@ CREATE TABLE `review` (
   `rate` double NOT NULL,
   `username` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`review_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=408 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=453 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -471,7 +473,7 @@ CREATE TABLE `review` (
 
 LOCK TABLES `review` WRITE;
 /*!40000 ALTER TABLE `review` DISABLE KEYS */;
-INSERT INTO `review` VALUES (371,'2018-03-12 15:39:06','hj',5,'Customer1'),(372,'2018-03-12 15:40:57','asd',5,'Customer2'),(373,'2018-03-12 15:42:12','asdasd',5,'Customer2'),(374,'2018-03-12 15:45:39','asdasd',5,'Customer2'),(375,'2018-03-12 15:46:01','ghj',5,'Customer2'),(376,'2018-03-12 15:46:35','gh',5,'Customer2'),(377,'2018-03-12 15:48:19','asdasd',5,'Customer2'),(378,'2018-03-12 15:49:05','asdasdasd',5,'Customer2'),(379,'2018-03-12 15:49:12','asdasd',5,'Customer2'),(380,'2018-03-12 15:49:44','asdasd',5,'Customer2'),(381,'2018-03-12 15:49:52','asdasd',5,'Customer2'),(382,'2018-03-12 15:50:00','asd',5,'Customer2'),(383,'2018-03-12 15:50:53','asdasd',5,'Customer2'),(384,'2018-03-12 15:51:20','asdasdasd',5,'Customer2'),(385,'2018-03-12 15:52:02','asdasdasd',5,'Customer2'),(386,'2018-03-12 15:53:29','asd',5,'Customer2'),(387,'2018-03-12 16:01:03','adasd',5,'Customer2'),(388,'2018-03-12 16:01:31','asdasdasd',5,'Customer2'),(389,'2018-03-12 16:02:36','zxc',5,'Customer2'),(390,'2018-03-12 16:08:50','asdasd',5,'Customer2'),(391,'2018-03-12 16:11:19','asdasd',5,'Customer2'),(392,'2018-03-12 16:11:32','asdasdasdasd',5,'Customer2'),(393,'2018-03-12 16:12:15','asdasd',5,'Customer2'),(394,'2018-03-12 16:12:22','asdasd',5,'Customer2'),(395,'2018-03-12 16:12:36','asdasd',5,'Customer2'),(396,'2018-03-12 16:13:22','asdasd',5,'Customer2'),(397,'2018-03-12 16:13:45','asdasd',5,'Customer2'),(398,'2018-03-12 16:17:48','asd',5,'Customer2'),(399,'2018-03-12 16:22:47','asdasdasd',5,'Customer1'),(400,'2018-03-12 16:23:16','asdasdasd',5,'Customer1'),(401,'2018-03-12 16:23:30','asdasd',5,'Customer1'),(402,'2018-03-12 16:23:39','asdasdasd',5,'Customer1'),(403,'2018-03-12 16:23:46','asdas',5,'Customer1'),(404,'2018-03-12 16:33:46','asdasd',5,'Customer1'),(405,'2018-03-12 18:06:46','TEST',5,'Customer2'),(406,'2018-03-12 18:07:05','test1',1,'Customer2'),(407,'2018-03-12 20:01:42','asdasd',5,'Customer1');
+INSERT INTO `review` VALUES (371,'2018-03-12 15:39:06','hj',5,'Customer1'),(372,'2018-03-12 15:40:57','asd',5,'Customer2'),(373,'2018-03-12 15:42:12','asdasd',5,'Customer2'),(374,'2018-03-12 15:45:39','asdasd',5,'Customer2'),(375,'2018-03-12 15:46:01','ghj',5,'Customer2'),(376,'2018-03-12 15:46:35','gh',5,'Customer2'),(377,'2018-03-12 15:48:19','asdasd',5,'Customer2'),(378,'2018-03-12 15:49:05','asdasdasd',5,'Customer2'),(379,'2018-03-12 15:49:12','asdasd',5,'Customer2'),(380,'2018-03-12 15:49:44','asdasd',5,'Customer2'),(381,'2018-03-12 15:49:52','asdasd',5,'Customer2'),(382,'2018-03-12 15:50:00','asd',5,'Customer2'),(383,'2018-03-12 15:50:53','asdasd',5,'Customer2'),(384,'2018-03-12 15:51:20','asdasdasd',5,'Customer2'),(385,'2018-03-12 15:52:02','asdasdasd',5,'Customer2'),(386,'2018-03-12 15:53:29','asd',5,'Customer2'),(387,'2018-03-12 16:01:03','adasd',5,'Customer2'),(388,'2018-03-12 16:01:31','asdasdasd',5,'Customer2'),(389,'2018-03-12 16:02:36','zxc',5,'Customer2'),(390,'2018-03-12 16:08:50','asdasd',5,'Customer2'),(391,'2018-03-12 16:11:19','asdasd',5,'Customer2'),(392,'2018-03-12 16:11:32','asdasdasdasd',5,'Customer2'),(393,'2018-03-12 16:12:15','asdasd',5,'Customer2'),(394,'2018-03-12 16:12:22','asdasd',5,'Customer2'),(395,'2018-03-12 16:12:36','asdasd',5,'Customer2'),(396,'2018-03-12 16:13:22','asdasd',5,'Customer2'),(397,'2018-03-12 16:13:45','asdasd',5,'Customer2'),(398,'2018-03-12 16:17:48','asd',5,'Customer2'),(399,'2018-03-12 16:22:47','asdasdasd',5,'Customer1'),(400,'2018-03-12 16:23:16','asdasdasd',5,'Customer1'),(401,'2018-03-12 16:23:30','asdasd',5,'Customer1'),(402,'2018-03-12 16:23:39','asdasdasd',5,'Customer1'),(403,'2018-03-12 16:23:46','asdas',5,'Customer1'),(404,'2018-03-12 16:33:46','asdasd',5,'Customer1'),(405,'2018-03-12 18:06:46','TEST',5,'Customer2'),(406,'2018-03-12 18:07:05','test1',1,'Customer2'),(407,'2018-03-12 20:01:42','asdasd',5,'Customer1'),(408,'2018-03-12 21:16:26','asdasdasdasdasd',3,'Customer1'),(409,'2018-03-12 21:29:21','asd',2,'Customer1'),(410,'2018-03-12 21:40:53','test1',2,'Customer1'),(411,'2018-03-12 21:45:36','hjkj',2,'Customer1'),(412,'2018-03-12 21:59:50','asdasd',2,'Customer1'),(413,'2018-03-12 22:10:02','fghj',2,'Customer1'),(414,'2018-03-12 22:12:58','asd',2,'Customer1'),(415,'2018-03-12 22:21:11','asdasdasd',2,'Customer1'),(416,'2018-03-12 22:32:57','test',2,'Customer1'),(417,'2018-03-12 22:33:48','jj',2,'Customer1'),(418,'2018-03-12 22:25:17','asdasdasdasd',5,'Customer1'),(419,'2018-03-12 22:26:48','asdasdasdasd',5,'Customer1'),(420,'2018-03-12 22:58:48','test1',4,'Customer1'),(421,'2018-03-12 22:59:03','terst2',4,'Customer1'),(422,'2018-03-12 22:59:18','gsfafsas',4,'Customer1'),(423,'2018-03-12 22:59:25','asdasdasd',4,'Customer1'),(424,'2018-03-12 22:59:30','dfghj',4,'Customer1'),(425,'2018-03-12 23:09:31','kll',4,'Customer1'),(426,'2018-03-12 23:13:16','ghj',5,'Customer1'),(427,'2018-03-12 23:14:17','test!',5,'Customer1'),(428,'2018-03-12 23:16:13','PUTANG INA GUMANA KA NAMAN!',3,'Customer1'),(429,'2018-03-12 23:17:37','asdasdasd',5,'Customer1'),(430,'2018-03-12 23:19:53','asdasdasd',3,'Customer1'),(431,'2018-03-12 23:20:29','ghj',3,'Customer1'),(432,'2018-03-12 23:29:03','ghj',5,'Customer1'),(433,'2018-03-12 23:30:27','asdasdasdasd',5,'Customer1'),(434,'2018-03-12 23:32:46','asdasd',5,'Customer1'),(435,'2018-03-12 23:34:06','asdasd',5,'Customer1'),(436,'2018-03-12 23:35:44','hjdajsads',5,'Customer1'),(437,'2018-03-12 23:38:52','MIC TEST!',3,'Customer1'),(438,'2018-03-14 23:12:07','asdasdasd',4,'Customer1'),(439,'2018-03-14 23:12:12','asdasdasd',4,'Customer1'),(440,'2018-03-14 23:12:16','test',4,'Customer1'),(441,'2018-03-14 23:12:19','asdasd',4,'Customer1'),(442,'2018-03-14 23:12:22','asdasd',4,'Customer1'),(443,'2018-03-14 23:12:25','asdasdasd',4,'Customer1'),(444,'2018-03-14 23:12:28','asdasdasd',4,'Customer1'),(445,'2018-03-14 23:12:31','zxczxczxc',4,'Customer1'),(446,'2018-03-14 23:12:34','qweasdg',4,'Customer1'),(447,'2018-03-14 23:12:38','axczsd',4,'Customer1'),(448,'2018-03-14 23:12:41','jhgf',4,'Customer1'),(449,'2018-03-14 23:16:52','asdasdasd',5,'Customer1'),(450,'2018-03-14 23:16:56','asdasd',5,'Customer1'),(451,'2018-03-14 23:16:59','asdasdasd',5,'Customer1'),(452,'2018-03-14 23:17:03','zxczxcz',5,'Customer1');
 /*!40000 ALTER TABLE `review` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -710,4 +712,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-03-12 21:01:09
+-- Dump completed on 2018-03-14 23:31:42

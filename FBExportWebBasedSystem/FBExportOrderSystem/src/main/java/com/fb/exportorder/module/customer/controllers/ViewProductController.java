@@ -23,6 +23,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.fb.exportorder.models.Product;
@@ -61,7 +62,7 @@ public class ViewProductController {
 		productService.saveRating(rating);
 		/*increment the review count*/
 		
-		List<Customer> customerList = productService.sortedCustomerComments(rating);
+		List<Customer> customerList = productService.sortedCustomerComments(3,0,id);
 		
 		HttpSession session = request.getSession();
 		
@@ -73,10 +74,14 @@ public class ViewProductController {
 		
 		model.addAttribute("averageRate", Double.isNaN(average) ? 0.00 : Double.parseDouble(String.format("%.2f", average)) );
 		model.addAttribute("rates", productService.getMapAverage());
-		model.addAttribute("customerList", customerList);
-		model.addAttribute("reviewList", rating.getReviews());
+		
 		model.addAttribute("product", product);
 		model.addAttribute("datePosted", dateFormat.format(datePosted).toString());
+		
+		model.addAttribute("reviewCount", productService.getReviewCount(id));
+		model.addAttribute("customerList", customerList);
+		model.addAttribute("reviewList", productService.getReviews(3, 0, id));
+		
 		return "view-product";
 	}
 	
@@ -124,6 +129,34 @@ public class ViewProductController {
 		return rateJson;
 	}
 	
+	@RequestMapping("/see-more-review/{id}")
+	@ResponseBody
+	public String seeMoreReview (@PathVariable long id,
+									   @RequestParam String pageCount) {
+		Gson gson = new Gson();
+		List<Review> reviewList = productService.getReviews(3, Integer.parseInt(pageCount), id);
+		List<Customer> customerList = productService.sortedCustomerComments(3, Integer.parseInt(pageCount), id);
+		
+		Map<String, List<Review>> customerReview = new HashMap<>();
+		
+		customerList.forEach((customer) -> {
+			customerReview.put(customer.getProfileImageLink(), new ArrayList<Review>());
+		});
+		
+		customerList.forEach((customer) -> {
+			reviewList.forEach((review) -> {
+				if(review.getUsername().equals(customer.getUsername())) {
+					customerReview.get(customer.getProfileImageLink()).add(review);
+				}
+			});
+		});
+		
+		String toStringJSON = gson.toJson(customerReview);
+		
+		System.out.println(toStringJSON);
+		
+		return toStringJSON;
+	}
 	
 	
 }

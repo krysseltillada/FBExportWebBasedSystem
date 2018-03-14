@@ -23,7 +23,7 @@ public interface ProductService {
 	
 	public List<Review> findAllByUsername(String Username);
 	
-	public List<Customer> sortedCustomerComments(Rating rating);
+	public List<Customer> sortedCustomerComments(int records, int offset,long id);
 	
 	public double getRate(HttpSession session, Rating rating);
 	
@@ -32,4 +32,9 @@ public interface ProductService {
 	public Map<String, Double> getMapAverage();
 	
 	public List<String> validate(Double rate, String review);
+	
+	public List<Review> getReviews(int records, int offset, long id);
+	
+	public int getReviewCount(long id);
+	
 }
