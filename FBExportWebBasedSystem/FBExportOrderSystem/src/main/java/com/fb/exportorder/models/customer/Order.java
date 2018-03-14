@@ -18,6 +18,7 @@ import javax.persistence.TemporalType;
 import org.hibernate.annotations.Cascade;
 import org.javamoney.moneta.Money;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fb.exportorder.models.Shipping;
 import com.fb.exportorder.models.ShippingAddress;
 import com.fb.exportorder.models.enums.OrderStatus;
@@ -65,7 +66,10 @@ public class Order	 {
 	
 	@Temporal(TemporalType.DATE)
 	private Date datePaid;
-
+	
+	@Temporal(TemporalType.DATE)
+	private Date dateReceived;
+	
 	public Long getOrderId() {
 		return orderId;
 	}
@@ -187,8 +191,14 @@ public class Order	 {
 	public void setReview(String review) {
 		this.review = review;
 	}
-	
-	
+
+	public Date getDateReceived() {
+		return dateReceived;
+	}
+
+	public void setDateReceived(Date dateReceived) {
+		this.dateReceived = dateReceived;
+	}
 	
 	
 }

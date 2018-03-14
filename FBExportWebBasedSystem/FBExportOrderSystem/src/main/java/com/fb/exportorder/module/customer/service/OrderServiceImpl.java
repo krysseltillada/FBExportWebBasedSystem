@@ -374,29 +374,74 @@ public class OrderServiceImpl implements OrderService {
 	}
 
 	@Override
+	@Transactional
 	public List<Order> filterAndSortByAdmin(String status, String shipment, String payment, String sortBy,
 											String sortOrder) {
+		
+		StringBuffer filterStatement = new StringBuffer();
+		
 		
 		String filterByStatus = (!StringUtils.equals(status, "All")) ? "o.orderStatus ='" + status.toUpperCase().replace(" ", "_")  + "'" 
 																	 : StringUtils.EMPTY;
 		
-		String filterByShipment = (!StringUtils.equals(shipment, "All")) ? "o.shipping.shipping.shipmentStatus ='" + shipment.toUpperCase().replace(" ", "_") 
+		
+		String filterByShipment = (!StringUtils.equals(shipment, "All")) ? ((StringUtils.isNotEmpty(filterByStatus)) ? "AND " : StringUtils.EMPTY) +  
+																		   "o.shipping.shipmentStatus ='" + shipment.toUpperCase().replace(" ", "_") + "'"
 																		 : StringUtils.EMPTY;
 		
-		String filterByPayment = (!StringUtils.equals(payment, "All")) ? "o.paymentMethod = '" + payment.toUpperCase().replace(" ", "_") 
+		
+		
+		String filterByPayment = (!StringUtils.equals(payment, "All")) ? ((StringUtils.isNotEmpty(filterByStatus) || StringUtils.isNotEmpty(filterByShipment)) ? "AND " : StringUtils.EMPTY) +
+																		 "o.paymentMethod = '" + payment.toUpperCase().replace(" ", "_") + "'"
 																	   : StringUtils.EMPTY;
 		
-//		String sortType = (StringUtils.equals(sortBy, "Order No")) ? "o.orderId" :
-//						  (StringUtils.equals(sortBy, "Date ordered")) ? "o.dateOrdered" :
-//						  (StringUtils.equals(sortBy, "Receive date")) ? "o."
-//		
-//		String sort = (!StringUtils.equals(sortOrder, "Unsorted")) ? " ORDER BY " 
-//																	: "";
+		
+		filterStatement.append(filterByStatus);
+		filterStatement.append(filterByShipment);
+		filterStatement.append(filterByPayment);
+		
+		if (StringUtils.isNoneBlank(filterStatement.toString())) 
+			filterStatement = new StringBuffer("WHERE " + filterStatement.toString());
+		
+	
+		
+		String sortType = (StringUtils.equals(sortBy, "Order No")) ? "o.orderId" :
+						  (StringUtils.equals(sortBy, "Date ordered")) ? "o.dateOrdered" :
+						  (StringUtils.equals(sortBy, "Receive date")) ? "o.dateReceived" :
+						  (StringUtils.equals(sortBy, "Customer")) ? "o.customer.firstname" :
+						  (StringUtils.equals(sortBy, "Total Price")) ? "o.totalPrice" :
+						  (StringUtils.equals(sortBy, "Total Weight")) ? "o.totalWeight" :
+						  (StringUtils.equals(sortBy, "Total Items")) ? "o.totalItems" : StringUtils.EMPTY;
+		
+		String sort = (StringUtils.equals(sortOrder, "Ascending")) ? " ORDER BY " + sortType + " ASC":
+					  (StringUtils.equals(sortOrder, "Descending")) ? " ORDER BY " + sortType + " DESC" : StringUtils.EMPTY;
 		
 		
-		return null;
-	}
+		String filterResultStatement = "SELECT o FROM Orders o  " + filterStatement.toString() + sort;
+		
+		System.out.println(filterResultStatement);
 
+		Query filterResultQuery = sessionFactory.getCurrentSession().createQuery(filterResultStatement);
+		
+		List<Order> filteredOrders = (List<Order>)filterResultQuery.list();
+		
+		for (Order order : filteredOrders) {
+			order.getCustomer().getAuthorities().size();
+			order.getCustomer().getActivities().size();
+			order.getCustomer().getShippingAddresses().size();
+			
+			if (Objects.nonNull(order.getShipping()))
+				order.getShipping().getShippingLog().size();
+				
+
+			for (Item item : order.getCart().getItems())
+				item.getProduct().getRating().getReviews().size();
+			
+		}
+		
+		return filteredOrders;
+		
+	}
 	
 
 }

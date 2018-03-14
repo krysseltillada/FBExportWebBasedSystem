@@ -1,5 +1,180 @@
 <%@ include file = "../../lib/tags/tag-libraries.jsp" %>
 
+<script id = "orderRowDiv" type = "text/template">
+    <tr>
+        <td></td>
+        <td> <i class="fa fa-chevron-circle-down fa-lg" aria-hidden="true" style="cursor: pointer;"></i> </td>
+        <td>
+            <h3> 
+                <span class="badge badge-success p-1">Order# <span id = "orderId">{{=order.orderId}}</span> </span> 
+                <input id = "orderId-{{=order.orderId}}" type = "hidden" />
+                </h3>
+            <span style = "font-size: 13px;">
+                <strong> by: </strong> <strong> <a href = "#"> {{=order.customer.firstname}} {{=order.customer.middlename}} {{=order.customer.lastname}} </a> </strong>
+                <br />
+                <strong> Payment: </strong> 
+                
+                {{ if (order.paymentMethod == 'CASH_ON_DELIVERY') { }}
+                    Cash on delivery <i class="fa fa-truck ml-1" aria-hidden="true"></i>
+                {{ } else { }}
+                    Paypal <i class="fa fa-paypal ml-1" aria-hidden="true"></i>
+                {{ } }}
+
+            </span>
+        </td>
+        <td> 
+
+            <div style = "font-size: 13px;">
+                <strong> Order: </strong> 
+
+                {{ if (order.orderStatus == 'CANCELLED' || order.orderStatus == 'RETURNED' || order.orderStatus == 'REFUND') { }}
+
+                    <small> <a class = "btn-view-reason"
+                                href = "javascript:void(0)"
+                                data-value = "{{=order.reason}}"> (view reason) </a> </small>
+
+                {{ } }}
+
+            
+                
+                {{ var orderStatusColor = (order.orderStatus == 'TO_SHIP') ? "#796AEE" : 
+                                          (order.orderStatus == 'RECEIVED') ? "#0275D8" :
+                                          (order.orderStatus == 'REJECTED') ? "#D9534F" : 
+                                          (order.orderStatus == 'APPROVED') ? "#5CB85C" :
+                                          (order.orderStatus == 'PENDING') ? "#FFC107" :
+                                          (order.orderStatus == 'CANCELLED') ? "#D9534F" :
+                                          (order.orderStatus == 'PAID') ? "#91C361" : 
+                                          (order.orderStatus == 'REFUND') ? "#EA1E63" : "#795548"; }}
+
+                {{ var orderStatusLabel = (order.orderStatus == 'TO_SHIP') ? "To ship" :
+                                          (order.orderStatus == 'RECEIVED') ? "Received" :
+                                          (order.orderStatus == 'REJECTED') ? "Rejected" :
+                                          (order.orderStatus == 'APPROVED') ? "Approved" :
+                                          (order.orderStatus == 'PENDING') ? "Pending" :
+                                          (order.orderStatus == 'CANCELLED') ? "Cancelled" :
+                                          (order.orderStatus == 'PAID') ? "Paid" :
+                                          (order.orderStatus == 'REFUND') ? "Refund" : "Returned"; }}
+            
+                <h6>                                             
+                    <div class="btn-group dropdown-select">
+                        <button type="button" 
+                                style = "background-color: {{=orderStatusColor}};" 
+                                class="btn btn-sm text-white dropdown-toggle" 
+                                data-toggle="dropdown" 
+                                aria-haspopup="true" 
+                                aria-expanded="false">
+                                {{=orderStatusLabel}}
+                        </button>
+                        <div class="dropdown-menu">
+                        <h6 class="dropdown-header">Mark as</h6>
+                        
+                        </div>
+                    </div>
+                </h6>
+
+
+                <strong> Shipment: </strong> <br />
+
+                {{ if (order.shipping) { }}
+
+                    {{ if (order.shipping.shipmentStatus == 'ON_CARGO_SHIP') { }}
+                        <span id = "shipmentStatus">On Cargo Ship <i class="fa fa-ship ml-1" aria-hidden="true"></i></span>
+                    {{ } else if (order.shipping.shipmentStatus == 'ON_TRUCK') { }}
+                        <span id = "shipmentStatus">On Truck <i class="fa fa-truck ml-1" aria-hidden="true"></i></span>
+                    {{ } }}
+
+                {{ } else { }}
+                    <span id = "shipmentStatus">Shipment status not defined.</span>
+                {{ } }}
+  
+            </div>
+
+        </td>
+        <td style = "max-width: 250px;">
+            <span style = "font-size: 14px;">
+                <strong> Receiver's name: </strong> 
+
+                <span style = "font-size: 12px;">
+                    {{=order.shippingAddress.receiverFullName}}
+                </span>
+                <br/>
+                
+                <strong> Phone number: </strong> 
+                
+                <span style = "font-size: 12px;">
+                    (+{{=order.shippingAddress.contact.countryCode}}) {{=order.shippingAddress.contact.phoneNumber}}
+                </span>
+                
+                <br/>
+                
+                <strong> Address <span style = "font-size: 12px;"> ({{=order.shippingAddress.addressType}}) </span>:  
+                </strong> <br />
+                
+                <span style = "font-size: 12px;">
+                    {{=order.shippingAddress.address.zipCode}} {{=order.shippingAddress.address.address}}
+                </span>
+                
+                <br />
+                
+                <strong> Country <span style = "font-size: 12px;"> (City) </span>:  </strong> <br />
+                <span style = "font-size: 12px;">
+                    {{=order.shippingAddress.address.country}}({{=order.shippingAddress.address.city}})
+                </span>
+            </span>
+
+            <br />
+        </td>
+        <td>
+
+            <span style = "font-size: 13px;"> 
+                <strong> Items: </strong> <br />
+                    <span style = "font-size: 12px;">
+                        {{=order.totalItems}} items
+                    </span>
+                <br />
+
+                <strong> Weight: </strong> <br />
+                <span style = "font-size: 12px;">
+                    {{=order.totalWeight}} KILO 
+                </span> <br />
+
+                <strong> Price: </strong> <br />
+                <span style = "font-size: 12px;">
+                    {{=order.totalPrice}}
+                </span>
+            </span>
+
+        </td>
+
+        <td>
+
+            <span style = "font-size: 13px;"> 
+
+                <strong> Ordered: </strong> <br />
+                <span style = "font-size: 12px;">
+                    {{=order.dateOrdered}}
+                </span>
+                <br />
+
+                <strong> Expected: </strong> <br />
+                <span style = "font-size: 12px;">
+
+                    {{ if (order.shipping) { }}
+                        {{=order.shipping.expectedDate}}
+                    {{ } else { }}
+                        None
+                    {{ } }}
+                  
+                </span>
+                <br />
+
+            </span>
+        
+        </td>
+        
+    </tr>
+</script>
+
 <script id = "collapsingOrderDiv" type = "text/template"> 
       <div class = "row slider pt-2 pb-2 pl-1 pr-1">
         

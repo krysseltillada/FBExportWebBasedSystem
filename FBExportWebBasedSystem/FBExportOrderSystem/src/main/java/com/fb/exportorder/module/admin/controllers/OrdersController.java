@@ -54,7 +54,7 @@ public class OrdersController {
 	}};
 	
 	Map<OrderStatus, String> orderStatusMessage = new HashMap<OrderStatus, String>(){{
-		put(OrderStatus.TO_SHIP, "To Ship");
+		put(OrderStatus.TO_SHIP, "To ship");
 		put(OrderStatus.RECEIVED, "Received");
 		put(OrderStatus.REJECTED, "Rejected");
 		put(OrderStatus.APPROVED, "Approved");
@@ -358,9 +358,8 @@ public class OrdersController {
 								 	@RequestParam String sortBy,
 								 	@RequestParam String sortByOrder) {
 		
-		orderService.filterAndSortByAdmin(status, shipment, payment, sortByOrder, sortByOrder);
+		return orderService.filterAndSortByAdmin(status, shipment, payment, sortBy, sortByOrder);
 		
-		return null;
 	}
 	
 	

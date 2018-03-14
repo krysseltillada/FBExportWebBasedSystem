@@ -104,16 +104,170 @@ $(document).ready(function () {
 
         $("#orderTable tbody").html($("#filterLoaderTemplate").html());
 
-        $.post("/FBExportSystem/admin/orders/filter", {
-            status : filterByStatus,
-            shipment : filterByShipment,
-            payment : filterByPayment,
-            sortBy : sb,
-            sortByOrder : sbOrder
-        }, function (response) {
-            console.log(response);
-        }, "json");
+        setTimeout(function () {
+            $.post("/FBExportSystem/admin/orders/filter", {
+                status : filterByStatus,
+                shipment : filterByShipment,
+                payment : filterByPayment,
+                sortBy : sb,
+                sortByOrder : sbOrder
+            }, function (response) {
 
+                console.log(response);
+
+                $("#orderTable tbody>tr:eq(0)").remove();
+                
+                for (var i = 0; i != response.length; ++i) {
+
+                    var order = response[i];
+
+                    var orderStatusColor = (order.orderStatus == 'TO_SHIP') ? "#796AEE" : 
+                                        (order.orderStatus == 'RECEIVED') ? "#0275D8" :
+                                        (order.orderStatus == 'REJECTED') ? "#D9534F" : 
+                                        (order.orderStatus == 'APPROVED') ? "#5CB85C" :
+                                        (order.orderStatus == 'PENDING') ? "#FFC107" :
+                                        (order.orderStatus == 'CANCELLED') ? "#D9534F" :
+                                        (order.orderStatus == 'PAID') ? "#91C361" : 
+                                        (order.orderStatus == 'REFUND') ? "#EA1E63" : "#795548"; 
+
+                    var orderStatusLabel = (order.orderStatus == 'TO_SHIP') ? "To ship" :
+                                        (order.orderStatus == 'RECEIVED') ? "Received" :
+                                        (order.orderStatus == 'REJECTED') ? "Rejected" :
+                                        (order.orderStatus == 'APPROVED') ? "Approved" :
+                                        (order.orderStatus == 'PENDING') ? "Pending" :
+                                        (order.orderStatus == 'CANCELLED') ? "Cancelled" :
+                                        (order.orderStatus == 'PAID') ? "Paid" :
+                                        (order.orderStatus == 'REFUND') ? "Refund" : "Returned"; 
+
+                    order.totalPrice = "PHP" + order.totalPrice.toFixed(2);
+                    order.dateOrdered = moment(order.dateOrdered).format("MMMM D, YYYY");
+
+                    if (order.shipping) 
+                        order.shipping.expectedDate = moment(order.shipping.expectedDate).format("MMMM D, YYYY");
+
+                    table.row.add([
+                        '<td></td>',
+                        '<td> <i class="fa fa-chevron-circle-down fa-lg" aria-hidden="true" style="cursor: pointer;"></i> </td>',
+                        '<td>' +
+                            '<h3>' + 
+                                '<span class="badge badge-success p-1">Order# <span id = "orderId">' + order.orderId +  '</span> </span>' +
+                                '<input id = "orderId-' + order.orderId + '" type = "hidden" />' + 
+                            '</h3>' +
+                            '<span style = "font-size: 13px;">' +
+                                '<strong> by: </strong> <strong> <a href = "#">' + order.customer.firstname + ' ' + order.customer.middlename  + ' ' + order.customer.lastname + '</a> </strong>' +
+                                '<br />' +
+                                '<strong> Payment: </strong>' + 
+                                ((order.paymentMethod == 'CASH_ON_DELIVERY') ? 'Cash on delivery <i class="fa fa-truck ml-1" aria-hidden="true"></i>' :
+                                                                            'Paypal <i class="fa fa-paypal ml-1" aria-hidden="true"></i>') +
+                            '</span>' +
+                        '</td>',
+                        '<td>' +
+                            '<div style = "font-size: 13px;">' +
+                                '<strong> Order: </strong>' +
+                                ((order.orderStatus == 'CANCELLED' || order.orderStatus == 'RETURNED' || order.orderStatus == 'REFUND') ? 
+                                        '<small> <a class = "btn-view-reason"' +
+                                                    'href = "javascript:void(0)"' +
+                                                    'data-value = "' + order.reason + '"> (view reason) </a> </small>' : '') +
+                                '<h6>' +                                             
+                                    '<div class="btn-group dropdown-select">' +
+                                        '<button type="button"' +
+                                                'style = "background-color: ' +  orderStatusColor + ';"' +
+                                                'class="btn btn-sm text-white dropdown-toggle"' +
+                                                'data-toggle="dropdown"' +
+                                                'aria-haspopup="true"' + 
+                                                'aria-expanded="false">' +
+                                                orderStatusLabel +
+                                        '</button>' +
+                                        '<div class="dropdown-menu">' +
+                                        '<h6 class="dropdown-header">Mark as</h6>' +
+                                        '</div>' +
+                                    '</div>' +
+                                '</h6>' +
+
+                                '<strong> Shipment: </strong> <br />' +
+
+                                ((order.shipping) ? ((order.shipping.shipmentStatus == 'ON_CARGO_SHIP') ? '<span id = "shipmentStatus">On Cargo Ship <i class="fa fa-ship ml-1" aria-hidden="true"></i></span>' :
+                                                                                                        '<span id = "shipmentStatus">On Truck <i class="fa fa-truck ml-1" aria-hidden="true"></i></span>') 
+                                                : '<span id = "shipmentStatus">Shipment status not defined.</span>') +
+                            '</div>' +
+                        '</td>',
+                        '<td style = "max-width: 250px;">' +
+                            '<span style = "font-size: 14px;">' +
+                                '<strong> Receiver\'s name: </strong>' +
+                                '<span style = "font-size: 12px;">' +
+                                    order.shippingAddress.receiverFullName +
+                                '</span>' +
+                                '<br/>' +
+
+                                '<strong> Phone number: </strong>' +
+                                
+                                '<span style = "font-size: 12px;">' +
+                                    '(+' + order.shippingAddress.contact.countryCode + ') ' + order.shippingAddress.contact.phoneNumber +
+                                '</span>' +
+                
+                                '<br/>' +
+                                
+                                '<strong> Address <span style = "font-size: 12px;"> (' + order.shippingAddress.addressType + ') </span>:' +
+                                '</strong> <br />' +
+                                
+                                '<span style = "font-size: 12px;">' +
+                                    order.shippingAddress.address.zipCode + ' ' + order.shippingAddress.address.address +
+                                '</span>' +
+                                
+                                '<br />' +
+                                
+                                '<strong> Country <span style = "font-size: 12px;"> (City) </span>:  </strong> <br />' +
+                                '<span style = "font-size: 12px;">' +
+                                    order.shippingAddress.address.country + '(' + order.shippingAddress.address.city + ')' +
+                                '</span>' +
+                            '</span>' +
+
+                            '<br />' +
+                        '</td>',
+                        '<td>' +
+                            '<span style = "font-size: 13px;">' +
+                                '<strong> Items: </strong> <br />' +
+                                    '<span style = "font-size: 12px;">' +
+                                        order.totalItems + ' items' +
+                                    '</span>' +
+                                '<br />' +
+
+                                '<strong> Weight: </strong> <br />' +
+                                '<span style = "font-size: 12px;">' +
+                                    order.totalWeight + ' KILO' + 
+                                '</span> <br />' +
+
+                                '<strong> Price: </strong> <br />' +
+                                '<span style = "font-size: 12px;">' +
+                                    order.totalPrice +
+                                '</span>' +
+                            '</span>' +
+                        '</td>',
+                        '<td>' +
+
+                            '<span style = "font-size: 13px;">' +
+
+                                '<strong> Ordered: </strong> <br />' +
+                                '<span style = "font-size: 12px;">' +
+                                    order.dateOrdered +
+                                '</span>' +
+                                '<br />' +
+
+                                '<strong> Expected: </strong> <br />' +
+                                '<span style = "font-size: 12px;">' +
+
+                                    ((order.shipping) ? order.shipping.expectedDate : 'None') +
+
+                                '</span>' +
+                                '<br />' +
+                            '</span>' +
+                        '</td>'
+                    ]).draw()
+                }
+
+            }, "json");
+        }, 1000);
+        
     };
 
     $("#orderTable").on("hidden.bs.dropdown", "div.dropdown-select", function () {
@@ -1690,7 +1844,7 @@ $(document).ready(function () {
     });
 
     $("#filterByStatus").change(function () {
-        filterOrders($(this).val(),
+        filterOrders($("#filterByStatus").val(),
                      $("#filterByShipment").val(),
                      $("#filterByPayment").val(),
                      $("#sortBy").val(),
@@ -1698,7 +1852,7 @@ $(document).ready(function () {
     });
 
     $("#filterByShipment").change(function () {
-        filterOrders($(this).val(),
+        filterOrders($("#filterByStatus").val(),
                      $("#filterByShipment").val(),
                      $("#filterByPayment").val(),
                      $("#sortBy").val(),
@@ -1706,7 +1860,7 @@ $(document).ready(function () {
     });
 
     $("#filterByPayment").change(function () {
-        filterOrders($(this).val(),
+        filterOrders($("#filterByStatus").val(),
                      $("#filterByShipment").val(),
                      $("#filterByPayment").val(),
                      $("#sortBy").val(),
@@ -1714,7 +1868,7 @@ $(document).ready(function () {
     });
 
     $("#sortBy").change(function () {
-        filterOrders($(this).val(),
+        filterOrders($("#filterByStatus").val(),
                      $("#filterByShipment").val(),
                      $("#filterByPayment").val(),
                      $("#sortBy").val(),
@@ -1722,7 +1876,7 @@ $(document).ready(function () {
     });
 
     $("#sortByOrder").change(function () {
-        filterOrders($(this).val(),
+        filterOrders($("#filterByStatus").val(),
                      $("#filterByShipment").val(),
                      $("#filterByPayment").val(),
                      $("#sortBy").val(),

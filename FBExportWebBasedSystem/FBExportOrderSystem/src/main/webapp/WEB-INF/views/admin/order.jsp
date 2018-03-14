@@ -63,9 +63,9 @@
                                     <option value="Date ordered">Date ordered</option>
                                     <option value="Receive date">Receive date</option>
                                     <option value="Customer">Customer</option>
-                                    <option value="Price">Price</option>
-                                    <option value="Weight">Weight</option>
-                                    <option value="Items">Items</option>
+                                    <option value="Total Price">Total Price</option>
+                                    <option value="Total Weight">Total Weight</option>
+                                    <option value="Total Items">Total Items</option>
                                 </select>
 
                                 <select class="custom-select mb-2 mb-sm-0" id="sortByOrder" style = "width: 120px;">
