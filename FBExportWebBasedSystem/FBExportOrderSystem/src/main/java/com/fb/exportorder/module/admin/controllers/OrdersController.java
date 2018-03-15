@@ -54,7 +54,7 @@ public class OrdersController {
 	}};
 	
 	Map<OrderStatus, String> orderStatusMessage = new HashMap<OrderStatus, String>(){{
-		put(OrderStatus.TO_SHIP, "To ship");
+		put(OrderStatus.TO_SHIP, "To Ship");
 		put(OrderStatus.RECEIVED, "Received");
 		put(OrderStatus.REJECTED, "Rejected");
 		put(OrderStatus.APPROVED, "Approved");

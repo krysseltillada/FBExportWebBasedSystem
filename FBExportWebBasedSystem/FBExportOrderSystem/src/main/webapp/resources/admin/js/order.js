@@ -262,7 +262,7 @@ $(document).ready(function () {
                                 '<br />' +
                             '</span>' +
                         '</td>'
-                    ]).draw()
+                    ]).invalidate().draw();
                 }
 
             }, "json");
@@ -782,7 +782,7 @@ $(document).ready(function () {
 
                                         var $dropDownSelectButton = $currentOrderRow.find("button.dropdown-toggle")
 
-                                        $dropDownSelectButton.html("To ship");
+                                        $dropDownSelectButton.html("To Ship");
 
                                         $dropDownSelectButton.css("background-color", orderStatusColors.get("To Ship"));
                                         $dropDownSelectButton.css("border-color", orderStatusColors.get("To Ship"));
@@ -798,6 +798,7 @@ $(document).ready(function () {
                                         });
 
                                         toShipInformationModalProgressBar.end();
+                                        table.rows().invalidate();
 
 
                                     }, "json");
@@ -836,9 +837,8 @@ $(document).ready(function () {
         
         var $dropdownMenu = $(this).find("div.dropdown-menu");
         var $dropDownSelect = $(this);
-        var orderId = $dropDownSelect.closest("tr").find("#orderId").html();
+        var oid = $dropDownSelect.closest("tr").find("#orderId").html();
 
-        
 
         console.log("open");
 
@@ -852,6 +852,8 @@ $(document).ready(function () {
                             var $btnOrderStatus = $dropDownSelect.find("button.dropdown-toggle");
                             var $row = $(this).closest("tr");
                             var $nextSiblingRow = $row.closest("tr").next();
+
+                            console.log($dropDownSelectButton);
 
                             alertify.okBtn("Mark it")
                                     .confirm("Mark it as " + orderStatus + "?", function (ev) {
@@ -885,8 +887,10 @@ $(document).ready(function () {
                                     switch (orderStatus) {
                                         case  "Approved":
 
+                                            console.log(oid);
+
                                             $.post("/FBExportSystem/admin/orders/checkShippingExists", {
-                                                orderId : $btnOrderStatus.closest("tr").find("#orderId").html()
+                                                orderId : oid
                                             }, function (isShippingExists) {
 
                                                 if (!isShippingExists) {
@@ -912,7 +916,7 @@ $(document).ready(function () {
                                                                         setTimeout(function () {
 
                                                                             $.post("/FBExportSystem/admin/orders/markApproved", {
-                                                                                id : $btnOrderStatus.closest("tr").find("#orderId").html(),
+                                                                                id : oid,
                                                                                 message : val
                                                                             }, function (response) {
 
@@ -932,6 +936,8 @@ $(document).ready(function () {
 
                                                                                 $dropDownSelectButton.css("background-color", orderStatusColors.get(orderStatus));
                                                                                 $dropDownSelectButton.css("border-color", orderStatusColors.get(orderStatus));
+
+                                                                                table.rows().invalidate();
 
                                                                             });
 
@@ -971,7 +977,7 @@ $(document).ready(function () {
                                                                                     setTimeout(function () {
 
                                                                                         $.post("/FBExportSystem/admin/orders/markApproved", {
-                                                                                            id : $btnOrderStatus.closest("tr").find("#orderId").html(),
+                                                                                            id : oid,
                                                                                             message : val
                                                                                         }, function (response) {
 
@@ -1000,6 +1006,8 @@ $(document).ready(function () {
                                                                                             $dropDownSelectButton.css("background-color", orderStatusColors.get(orderStatus));
                                                                                             $dropDownSelectButton.css("border-color", orderStatusColors.get(orderStatus));
 
+                                                                                            table.rows().invalidate();
+
                                                                                         });
 
                                                                                     }, 1000);
@@ -1022,7 +1030,7 @@ $(document).ready(function () {
                                         case "Rejected":
 
                                             $.post("/FBExportSystem/admin/orders/checkShippingExists", {
-                                                orderId : $btnOrderStatus.closest("tr").find("#orderId").html()
+                                                orderId : oid
                                             }, function (isShippingExists) {
                                                 if(!isShippingExists) {
 
@@ -1042,7 +1050,7 @@ $(document).ready(function () {
                                                                             setTimeout(function () {
 
                                                                             $.post("/FBExportSystem/admin/orders/markRejected", {
-                                                                                    id : $btnOrderStatus.closest("tr").find("#orderId").html(),
+                                                                                    id : oid,
                                                                                     reason : val
                                                                                 }, function (response) {
 
@@ -1062,6 +1070,8 @@ $(document).ready(function () {
 
                                                                                     $dropDownSelectButton.css("background-color", orderStatusColors.get(orderStatus));
                                                                                     $dropDownSelectButton.css("border-color", orderStatusColors.get(orderStatus));
+
+                                                                                    table.rows().invalidate();
 
                                                                                 });
 
@@ -1097,7 +1107,7 @@ $(document).ready(function () {
                                                                                         setTimeout(function () {
 
                                                                                         $.post("/FBExportSystem/admin/orders/markRejected", {
-                                                                                                id : $btnOrderStatus.closest("tr").find("#orderId").html(),
+                                                                                                id : oid,
                                                                                                 reason : val
                                                                                             }, function (response) {
 
@@ -1125,7 +1135,8 @@ $(document).ready(function () {
 
                                                                                                 $dropDownSelectButton.css("background-color", orderStatusColors.get(orderStatus));
                                                                                                 $dropDownSelectButton.css("border-color", orderStatusColors.get(orderStatus));
-
+                                                                                                // todo make all data rows searchable
+                                                                                                table.rows().invalidate();
                                                                                             });
 
                                                                                         }, 1000);
@@ -1149,15 +1160,16 @@ $(document).ready(function () {
 
                                         case "To Ship":
 
-                                             var id = orderId;
+                                             var id = oid;
 
                                              $.post("/FBExportSystem/admin/orders/checkShippingExists", {
                                                  orderId : id
                                              }, function (responseShippingExists) {
 
                                                 if (!responseShippingExists) {
-                                                    $("#toShipInformationModal").find("#orderModalId").val(orderId);
+                                                    $("#toShipInformationModal").find("#orderModalId").val(oid);
                                                     $("#toShipInformationModal").modal("show");
+
                                                 } else {
 
                                                 iziToast.show({
@@ -1170,7 +1182,7 @@ $(document).ready(function () {
                                                                 setTimeout(function () {
 
                                                                 $.post("/FBExportSystem/admin/orders/markToShip", {
-                                                                        id : $btnOrderStatus.closest("tr").find("#orderId").html()
+                                                                        id : oid
                                                                     }, function (response) {
 
                                                                         $(toast).fadeOut("slow", function () {
@@ -1189,6 +1201,8 @@ $(document).ready(function () {
 
                                                                         $dropDownSelectButton.css("background-color", orderStatusColors.get(orderStatus));
                                                                         $dropDownSelectButton.css("border-color", orderStatusColors.get(orderStatus));
+
+                                                                        table.rows().invalidate();
 
                                                                     });
 
@@ -1215,7 +1229,7 @@ $(document).ready(function () {
                                     if (orderStatus == "Pending") {
 
                                         $.post("/FBExportSystem/admin/orders/checkShippingExists", {
-                                                orderId : $btnOrderStatus.closest("tr").find("#orderId").html()
+                                                orderId : oid
                                             }, function (isShippingExists) {
 
                                                 if (!isShippingExists) {
@@ -1232,7 +1246,7 @@ $(document).ready(function () {
                                                                     setTimeout(function () {
                                                                 
                                                                         $.post("/FBExportSystem/admin/orders/mark" + orderStatus, {
-                                                                            id : $btnOrderStatus.closest("tr").find("#orderId").html()
+                                                                            id : oid
                                                                         }, function (response) {
 
                                                                             $(toast).fadeOut("slow", function () {
@@ -1251,6 +1265,8 @@ $(document).ready(function () {
 
                                                                             $dropDownSelectButton.css("background-color", orderStatusColors.get(orderStatus));
                                                                             $dropDownSelectButton.css("border-color", orderStatusColors.get(orderStatus));
+
+                                                                            table.rows().invalidate();
 
                                                                         });
 
@@ -1275,7 +1291,7 @@ $(document).ready(function () {
                                                                                 setTimeout(function () {
                                                                             
                                                                                     $.post("/FBExportSystem/admin/orders/mark" + orderStatus, {
-                                                                                        id : $btnOrderStatus.closest("tr").find("#orderId").html()
+                                                                                        id : oid
                                                                                     }, function (response) {
 
                                                                                         $(toast).fadeOut("slow", function () {
@@ -1303,6 +1319,8 @@ $(document).ready(function () {
                                                                                         $dropDownSelectButton.css("background-color", orderStatusColors.get(orderStatus));
                                                                                         $dropDownSelectButton.css("border-color", orderStatusColors.get(orderStatus));
 
+                                                                                        table.rows().invalidate();
+
                                                                                     });
 
                                                                                 }, 1000);
@@ -1316,11 +1334,10 @@ $(document).ready(function () {
                                                 }
                                         });
 
-                                        
-
                                     } 
                                    
                                 }
+
 
                             });
 

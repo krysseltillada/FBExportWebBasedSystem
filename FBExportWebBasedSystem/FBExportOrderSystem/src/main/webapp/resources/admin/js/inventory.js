@@ -178,6 +178,8 @@ $(document).ready(function (){
 														$(this).remove();
 													});
 
+													table.rows().invalidate();
+
 												});
 
 											}, 1000);
@@ -228,6 +230,8 @@ $(document).ready(function (){
 													$(toast).fadeOut("slow", function () {
 														$(this).remove();
 													});
+
+													table.rows().invalidate();
 
 												});	
 
