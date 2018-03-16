@@ -49,4 +49,6 @@ public interface OrderService {
 	
 	Map<String, Integer> getOrderCount();
 	
+	List<Order> getLatestOrders();
+	
 }

@@ -85,64 +85,23 @@
                     </h3>
                 </div>
                 <div class="card-body no-padding" style = "max-height: 305px; overflow-y: auto;">
-
-                    <div class="item">
-                    <div class="feed d-flex justify-content-between">
-                        <div class="feed-body d-flex justify-content-between"><a href="#" class="feed-profile"><img src="img/avatar-5.jpg" alt="person" class="img-fluid rounded-circle"></a>
-                        <div class="content">
-                            <h5>Aria Smith</h5><span>Posted a new blog </span>
-                            <div class="full-date"><small>Today 5:60 pm - 12.06.2014</small></div>
-                        </div>
-                        </div>
-                        <div class="date text-right"><small>5min ago</small></div>
-                    </div>
-                    </div>
-
-                    <div class="item">
-                    <div class="feed d-flex justify-content-between">
-                        <div class="feed-body d-flex justify-content-between"><a href="#" class="feed-profile"><img src="img/avatar-5.jpg" alt="person" class="img-fluid rounded-circle"></a>
-                        <div class="content">
-                            <h5>Aria Smith</h5><span>Posted a new blog </span>
-                            <div class="full-date"><small>Today 5:60 pm - 12.06.2014</small></div>
-                        </div>
-                        </div>
-                        <div class="date text-right"><small>5min ago</small></div>
-                    </div>
-                    </div>
-                    <div class="item">
-                    <div class="feed d-flex justify-content-between">
-                        <div class="feed-body d-flex justify-content-between"><a href="#" class="feed-profile"><img src="img/avatar-5.jpg" alt="person" class="img-fluid rounded-circle"></a>
-                        <div class="content">
-                            <h5>Aria Smith</h5><span>Posted a new blog </span>
-                            <div class="full-date"><small>Today 5:60 pm - 12.06.2014</small></div>
-                        </div>
-                        </div>
-                        <div class="date text-right"><small>5min ago</small></div>
-                    </div>
-                    </div>
-                    <div class="item">
-                    <div class="feed d-flex justify-content-between">
-                        <div class="feed-body d-flex justify-content-between"><a href="#" class="feed-profile"><img src="img/avatar-5.jpg" alt="person" class="img-fluid rounded-circle"></a>
-                        <div class="content">
-                            <h5>Aria Smith</h5><span>Posted a new blog </span>
-                            <div class="full-date"><small>Today 5:60 pm - 12.06.2014</small></div>
-                        </div>
-                        </div>
-                        <div class="date text-right"><small>5min ago</small></div>
-                    </div>
-                    </div>
-                    <div class="item">
-                    <div class="feed d-flex justify-content-between">
-                        <div class="feed-body d-flex justify-content-between"><a href="#" class="feed-profile"><img src="img/avatar-5.jpg" alt="person" class="img-fluid rounded-circle"></a>
-                        <div class="content">
-                            <h5>Aria Smith</h5><span>Posted a new blog </span>
-                            <div class="full-date"><small>Today 5:60 pm - 12.06.2014</small></div>
-                        </div>
-                        </div>
-                        <div class="date text-right"><small>5min ago</small></div>
-                    </div>
-                    </div>
-
+					
+					<c:if test="${not empty latestOrders}">
+						<c:forEach var="order" items="${latestOrders}">
+							<div class="item">
+			                    <div class="feed d-flex justify-content-between">
+			                        <div class="feed-body d-flex justify-content-between"><a href="#" class="feed-profile"><img src="<c:url value = '${order.getCustomer().getProfileImageLink()}' />" alt="${order.getCustomer().getUsername()}" class="img-fluid rounded-circle"></a>
+			                        <div class="content">
+			                            <h5>${order.getCustomer().getFirstname()} ${order.getCustomer().getLastname()}</h5><span>Status : ${ order.getOrderStatus() } </span>
+			                            <div class="full-date"><small>${order.getDateOrdered()}</small></div>
+			                        </div>
+			                        </div>
+			                        
+			                    </div>
+			                 </div>
+						</c:forEach>
+					</c:if>
+                    
 
                 </div>
                 </div>

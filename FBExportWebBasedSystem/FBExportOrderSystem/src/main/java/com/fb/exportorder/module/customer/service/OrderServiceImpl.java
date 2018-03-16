@@ -287,4 +287,9 @@ public class OrderServiceImpl implements OrderService {
 		return orderCount;
 	}
 
+	@Override
+	public List<Order> getLatestOrders() {
+		return orderRepository.getLatestOrders();
+	}
+
 }

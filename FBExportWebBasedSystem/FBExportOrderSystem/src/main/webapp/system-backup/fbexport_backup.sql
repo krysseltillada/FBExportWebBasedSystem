@@ -88,7 +88,7 @@ DROP TABLE IF EXISTS `cart`;
 CREATE TABLE `cart` (
   `cart_id` bigint(20) NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`cart_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -97,7 +97,7 @@ CREATE TABLE `cart` (
 
 LOCK TABLES `cart` WRITE;
 /*!40000 ALTER TABLE `cart` DISABLE KEYS */;
-INSERT INTO `cart` VALUES (1),(2),(3);
+INSERT INTO `cart` VALUES (1),(2),(3),(4),(5),(6);
 /*!40000 ALTER TABLE `cart` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -124,6 +124,7 @@ CREATE TABLE `cart_items` (
 
 LOCK TABLES `cart_items` WRITE;
 /*!40000 ALTER TABLE `cart_items` DISABLE KEYS */;
+INSERT INTO `cart_items` VALUES (4,18),(5,21),(5,22),(6,24);
 /*!40000 ALTER TABLE `cart_items` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -276,7 +277,7 @@ CREATE TABLE `item` (
   PRIMARY KEY (`item_id`),
   KEY `FK6fok9mmtsmu22sejwqg8cq6u3` (`product_product_id`),
   CONSTRAINT `FK6fok9mmtsmu22sejwqg8cq6u3` FOREIGN KEY (`product_product_id`) REFERENCES `product` (`product_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -285,7 +286,7 @@ CREATE TABLE `item` (
 
 LOCK TABLES `item` WRITE;
 /*!40000 ALTER TABLE `item` DISABLE KEYS */;
-INSERT INTO `item` VALUES (5,200,1,'KILO',2),(6,200,1,'KILO',2),(7,200,1,'KILO',1),(15,200,1,'KILO',2),(16,200,1,'KILO',1);
+INSERT INTO `item` VALUES (5,200,1,'KILO',2),(6,200,1,'KILO',2),(7,200,1,'KILO',1),(15,200,1,'KILO',2),(16,200,1,'KILO',1),(18,12,1,'KILO',3),(21,200,1,'KILO',2),(22,200,1,'KILO',2),(24,123.00000000000001,1,'KILO',5);
 /*!40000 ALTER TABLE `item` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -320,7 +321,7 @@ CREATE TABLE `orders` (
   CONSTRAINT `FK89wuak53n6o826m6ltksv9gj9` FOREIGN KEY (`shipping_address_shipping_address_id`) REFERENCES `shipping_address` (`shipping_address_id`),
   CONSTRAINT `FK8o21kg6tvreikslhq6n0o5jxf` FOREIGN KEY (`shipping_shipping_id`) REFERENCES `shipping` (`shipping_id`),
   CONSTRAINT `FKtg32cl8e1f2afe83we3bqrw2h` FOREIGN KEY (`cart_cart_id`) REFERENCES `cart` (`cart_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -329,7 +330,7 @@ CREATE TABLE `orders` (
 
 LOCK TABLES `orders` WRITE;
 /*!40000 ALTER TABLE `orders` DISABLE KEYS */;
-INSERT INTO `orders` VALUES (1,'2018-03-13',NULL,'your order has been approved','APPROVED','PAYPAL',NULL,3,600,3,3,32768,NULL,1);
+INSERT INTO `orders` VALUES (1,'2018-03-13',NULL,'your order has been approved','APPROVED','PAYPAL',NULL,3,600,3,3,32768,NULL,1),(2,'2018-03-15',NULL,NULL,'PENDING','CASH_ON_DELIVERY',NULL,1,12,1,4,65536,NULL,2),(3,'2018-03-15',NULL,'your order has been rejected','PENDING','PAYPAL',NULL,2,400,2,5,65536,NULL,2),(4,'2018-03-15',NULL,'your order has been rejected','REJECTED','PAYPAL',NULL,1,123.00000000000001,1,6,65536,NULL,2);
 /*!40000 ALTER TABLE `orders` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -419,7 +420,7 @@ CREATE TABLE `rating` (
 
 LOCK TABLES `rating` WRITE;
 /*!40000 ALTER TABLE `rating` DISABLE KEYS */;
-INSERT INTO `rating` VALUES (1,7,209),(2,5,56),(3,0,2),(4,0,0),(5,0,0);
+INSERT INTO `rating` VALUES (1,7,216),(2,5,62),(3,0,2),(4,0,0),(5,0,0);
 /*!40000 ALTER TABLE `rating` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -712,4 +713,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-03-15 21:00:55
+-- Dump completed on 2018-03-16 21:00:29
