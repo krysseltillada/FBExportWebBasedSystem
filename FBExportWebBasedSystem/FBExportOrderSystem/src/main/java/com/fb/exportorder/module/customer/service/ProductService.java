@@ -37,4 +37,6 @@ public interface ProductService {
 	
 	public int getReviewCount(long id);
 	
+	public Map<String, List<Review>> getCustomerReviews(List<Customer> customerList, List<Review> reviewList);
+	
 }

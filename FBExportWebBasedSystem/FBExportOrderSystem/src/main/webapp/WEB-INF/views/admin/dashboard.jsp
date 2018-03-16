@@ -1,3 +1,5 @@
+<%@ include file = "../../lib/tags/tag-libraries.jsp" %>
+
 <section class="dashboard-counts no-padding-bottom pt-0">
     <div class="container-fluid">
 
@@ -16,24 +18,23 @@
         </div>
 
         <div class="row bg-white has-shadow p-0" style = "font-size: 14px;">
-
+		
         <div class="col-xl-3 col-sm-4">
             <div class="item d-flex align-items-center">
-
                 <div class="icon bg-orange"><i class="fa fa-tasks" aria-hidden="true"></i></div>
                 <div class="title"><span>Pending<br>Orders</span>
                 </div>
-                <div class="number"><strong>25</strong></div>
-
+                <div class="number"><strong>${not empty orderCount.get('PENDING') ? orderCount.get('PENDING') : 0}</strong></div>
             </div>
         </div>
-
+        
+        
         <div class="col-xl-3 col-sm-4">
             <div class="item d-flex align-items-center">
             <div class="icon bg-green"><i class="fa fa-check" aria-hidden="true"></i></div>
             <div class="title"><span>Approved<br>Orders</span>
             </div>
-            <div class="number"><strong>70</strong></div>
+            <div class="number"><strong>${not empty orderCount.get('APPROVED') ? orderCount.get('APPROVED') : 0}</strong></div>
             </div>
         </div>
 
@@ -42,7 +43,7 @@
             <div class="icon bg-yellow"><i class="fa fa-usd" aria-hidden="true"></i></div>
             <div class="title"><span>Paid<br>Orders</span>
             </div>
-            <div class="number"><strong>40</strong></div>
+            <div class="number"><strong>${not empty orderCount.get('PAID') ? orderCount.get('PAID') : 0}</strong></div>
             </div>
         </div>
 
@@ -51,7 +52,7 @@
             <div class="icon bg-red"><i class="fa fa-times" aria-hidden="true"></i></div>
             <div class="title"><span>Disapproved<br>Orders</span>
             </div>
-            <div class="number"><strong>50</strong></div>
+            <div class="number"><strong>${not empty orderCount.get('REJECTED') ? orderCount.get('REJECTED') : 0}</strong></div>
             </div>
         </div>
 

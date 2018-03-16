@@ -1,10 +1,13 @@
 package com.fb.exportorder.module.customer.service;
 
+import java.math.BigInteger;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 
 import org.apache.commons.lang3.StringUtils;
@@ -18,6 +21,7 @@ import com.fb.exportorder.models.customer.Cart;
 import com.fb.exportorder.models.customer.Customer;
 import com.fb.exportorder.models.customer.Item;
 import com.fb.exportorder.models.customer.Order;
+import com.fb.exportorder.models.customer.Review;
 import com.fb.exportorder.models.enums.OrderStatus;
 import com.fb.exportorder.models.enums.PaymentMethod;
 import com.fb.exportorder.models.enums.ShipmentStatus;
@@ -269,6 +273,18 @@ public class OrderServiceImpl implements OrderService {
 	public void markToShip(Order order) {
 		order.setOrderStatus(OrderStatus.TO_SHIP);
 		orderRepository.save(order);
+	}
+
+	@Override
+	public Map<String, Integer> getOrderCount() {
+		List<Object[]> rawResultSet = orderRepository.getOrdersCount();
+		
+		Map<String, Integer> orderCount = new HashMap<>();
+		
+		for (Object[] rawRow : rawResultSet) {
+			orderCount.put(rawRow[1].toString() , Integer.valueOf(rawRow[0].toString()));
+		}
+		return orderCount;
 	}
 
 }

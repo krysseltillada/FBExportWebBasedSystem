@@ -253,4 +253,22 @@ public class ProductServiceImpl implements ProductService {
 		return reviewRepository.getReviewCount(id);
 	}
 
+	@Override
+	public Map<String, List<Review>> getCustomerReviews(List<Customer> customerList, List<Review> reviewList) {
+		Map<String, List<Review>> customerReview = new HashMap<>();
+		
+		customerList.forEach((customer) -> {
+			customerReview.put(customer.getProfileImageLink(), new ArrayList<Review>());
+		});
+		
+		customerList.forEach((customer) -> {
+			reviewList.forEach((review) -> {
+				if(review.getUsername().equals(customer.getUsername())) {
+					customerReview.get(customer.getProfileImageLink()).add(review);
+				}
+			});
+		});
+		return customerReview;
+	}
+
 }

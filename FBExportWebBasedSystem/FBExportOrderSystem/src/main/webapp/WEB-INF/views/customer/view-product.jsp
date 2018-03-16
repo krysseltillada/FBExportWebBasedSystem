@@ -132,15 +132,19 @@
 	
 			
 			<security:authorize access = "hasAuthority('CUSTOMER')">
-            <button type = "button" href="#" class="btn btn-primary btnProductItemAddToCart" style = "margin-top:25px;">
-                <i class="fa fa-cart-plus mr-1 mb-1" aria-hidden="true"></i>
-                Add to cart</button>
+					<c:if test="${product.weight > 0}">
+						<button type = "button" class="btn btn-primary btnProductItemAddToCart" style = "margin-top:25px;">
+                		<i class="fa fa-cart-plus mr-1 mb-1" aria-hidden="true"></i>
+                		Add to cart</button>
+					</c:if>
             </security:authorize>
             <security:authorize access= "!hasAuthority('CUSTOMER')">
             <br>
-            <a href="<c:url value = '/login' />" class="btn btn-primary" style = "position: relative; left: -8px; top: -4px; padding: 8px 10px 8px 10px;">
+            	<c:if test="${product.weight > 0}">
+            		<a href="<c:url value = '/login' />" class="btn btn-primary" style = "position: relative; left: -8px; top: -4px; padding: 8px 10px 8px 10px;">
 					                            <i class="fa fa-cart-plus mr-1 mb-1" aria-hidden="true"></i>
 					                            Login to add</a>
+            	</c:if>
             </security:authorize>
             
             <hr>

@@ -1,6 +1,7 @@
 package com.fb.exportorder.module.customer.service;
 
 import java.util.List;
+import java.util.Map;
 
 import com.fb.exportorder.models.ShippingAddress;
 import com.fb.exportorder.models.customer.Customer;
@@ -46,6 +47,6 @@ public interface OrderService {
 	
 	boolean checkIfShippingExists (long id);
 	
-	
+	Map<String, Integer> getOrderCount();
 	
 }

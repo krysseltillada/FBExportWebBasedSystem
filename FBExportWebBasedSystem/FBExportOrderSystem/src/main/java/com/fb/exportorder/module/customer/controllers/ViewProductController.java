@@ -137,21 +137,7 @@ public class ViewProductController {
 		List<Review> reviewList = productService.getReviews(3, Integer.parseInt(pageCount), id);
 		List<Customer> customerList = productService.sortedCustomerComments(3, Integer.parseInt(pageCount), id);
 		
-		Map<String, List<Review>> customerReview = new HashMap<>();
-		
-		customerList.forEach((customer) -> {
-			customerReview.put(customer.getProfileImageLink(), new ArrayList<Review>());
-		});
-		
-		customerList.forEach((customer) -> {
-			reviewList.forEach((review) -> {
-				if(review.getUsername().equals(customer.getUsername())) {
-					customerReview.get(customer.getProfileImageLink()).add(review);
-				}
-			});
-		});
-		
-		String toStringJSON = gson.toJson(customerReview);
+		String toStringJSON = gson.toJson(productService.getCustomerReviews(customerList, reviewList));
 		
 		System.out.println(toStringJSON);
 		
