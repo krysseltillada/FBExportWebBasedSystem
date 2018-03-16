@@ -39,4 +39,7 @@ public interface ProductService {
 	
 	public Map<String, List<Review>> getCustomerReviews(List<Customer> customerList, List<Review> reviewList);
 	
+	List<Rating> getTopThreeMostRatedProduct();
+	
+	List<Rating >getTopThreeMostViewedProduct();
 }

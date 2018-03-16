@@ -270,5 +270,14 @@ public class ProductServiceImpl implements ProductService {
 		});
 		return customerReview;
 	}
+	
+	@Override
+	public List<Rating> getTopThreeMostRatedProduct() {
+		return ratingRepository.getTopThreeMostRatedProduct();
+	}
 
+	@Override
+	public List<Rating> getTopThreeMostViewedProduct() {
+		return ratingRepository.getTopThreeMostViewedProduct();
+	}
 }
