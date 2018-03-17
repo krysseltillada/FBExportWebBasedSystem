@@ -200,5 +200,14 @@ public class Order	 {
 		this.dateReceived = dateReceived;
 	}
 	
+	public double getSubTotal() {
+		double subTotal = 0.0;
+		
+		for(Item itemOrdered : getCart().getItems()) 
+			subTotal += itemOrdered.getPrice();
+		
+		return subTotal;
+	}
+	
 	
 }

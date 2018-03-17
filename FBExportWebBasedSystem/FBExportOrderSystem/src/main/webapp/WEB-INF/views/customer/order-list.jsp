@@ -170,20 +170,11 @@
 					                                                    <span id = "orderStatus" class = "orange-text"> Pending </span> </strong>
 					                                            </h6>
 					
-					                                            <div class="dropdown blue-text" style = "font-size: 13px;">
-					                                                    <i class="fa fa-print" aria-hidden="true"></i>
-					                                                    <a href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-					                                                        Print <i class="fa fa-caret-down" aria-hidden="true"></i> |
-					                                                    </a>
-					
-					                                               	<a href = "javascript:void(0)" class = "btn-cancel-order" > Cancel </a>
-					                                                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-					                                                    <a class="dropdown-item" href="#">Print order</a>
-					                                                    <a class="dropdown-item disabled" href="#">Print receipt</a>
-					                                                    <a class="dropdown-item disabled" href="#">Print shipping information</a>
-					                                                    <a class="dropdown-item disabled" href="#">Print shipping log</a>
-					                                                </div>
-					                                            </div>
+					                                            <div style = "font-size: 13px;">
+					                                               	<a href = "javascript:void(0)" class = "btn-cancel-order" > Cancel Order
+					                                               		<i class="fa fa-times-circle-o" aria-hidden="true"></i>
+					                                               	</a>
+																</div>					                                                
 					
 					                                        </div>
 					                                    </div>
@@ -332,18 +323,10 @@
 																		<span id = "orderStatus" class = "green-text"> Approved </span> </strong>
 																</h6>
 					
-																<div class="dropdown blue-text" style = "font-size: 13px;">
-																		<i class="fa fa-print" aria-hidden="true"></i>
-																		<a href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-																			Print <i class="fa fa-caret-down" aria-hidden="true"></i> |
-																		</a>
-																		<a href = "javascript:void(0)" class = "btn-cancel-approved-order"> Cancel </a>
-																	<div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-																		<a class="dropdown-item" href="#">Print order</a>
-																		<a class="dropdown-item disabled" href="#">Print receipt</a>
-																		<a class="dropdown-item disabled" href="#">Print shipping information</a>
-																		<a class="dropdown-item disabled" href="#">Print shipping log</a>
-																	</div>
+																<div style = "font-size: 13px;">
+																	<a href = "javascript:void(0)" class = "btn-cancel-approved-order"> 
+																		Cancel Order <i class="fa fa-times-circle-o" aria-hidden="true"></i>
+																	</a>
 																</div>
 					
 					
@@ -510,20 +493,12 @@
 																		<span id = "orderStatus" class = "red-text"> Rejected </span> </strong>
 																</h6>
 					
-																<div class="dropdown blue-text" style = "font-size: 13px;">
-																		<i class="fa fa-print" aria-hidden="true"></i>
-																		<a href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-																			Print <i class="fa fa-caret-down" aria-hidden="true"></i> 
-																		</a>
-																		<span>|</span>
+																<div style = "font-size: 13px;">
 																		<a class = "btn-reorder" href = "javascript:void(0)"> Reorder </a> <span>|</span>
-																		<a class = "btn-cancel-rejected-order" href = "javascript:void(0)"> Cancel </a>
-																	<div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-																		<a class="dropdown-item" href="#">Print order</a>
-																		<a class="dropdown-item disabled" href="#">Print receipt</a>
-																		<a class="dropdown-item disabled" href="#">Print shipping information</a>
-																		<a class="dropdown-item disabled" href="#">Print shipping log</a>
-																	</div>
+																		<a class = "btn-cancel-rejected-order" href = "javascript:void(0)"> 
+																			Cancel Order
+																			<i class="fa fa-times-circle-o" aria-hidden="true"></i> 
+																		</a>
 																</div>
 					
 					
@@ -676,37 +651,16 @@
 																<h6 class = "mb-0">
 																	<strong>
 																		Status:
-																		<span id = "orderStatus" class = "blue-text"> Received </strong>
+																		<span id = "orderStatus" class = "blue-text"> Received </span> </strong>
 																</h6>
 					
-																	<div class="blue-text" style = "font-size: 13px;">
-																	<span class="dropdown">
-																		<i class="fa fa-print" aria-hidden="true"></i>
-																		<a href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-																			Print <i class="fa fa-caret-down" aria-hidden="true"></i> |
-																		</a>
-																		
-																		<div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-																			<a class="dropdown-item" href="#">Print order</a>
-																			<a class="dropdown-item" href="#">Print receipt</a>
-																			<a class="dropdown-item" href="#">Print shipping information</a>
-																			<a class="dropdown-item" href="#">Print shipping log</a>
-																		</div>
-					
-																	</span>
-					
-																	<span class="dropdown">
-					
-																		<a href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-																			Options <i class="fa fa-caret-down" aria-hidden="true"></i>
-																		</a>
-					
-																		<div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-																			<a class="dropdown-item btn-review-order" href="javascript:void(0)">Review order</a>
-																			<a class="dropdown-item btn-return-order" href="javascript:void(0)">Return order</a>
-																		</div>
-					
-																	</span>
+																<div class="blue-text" style = "font-size: 13px;">
+																	
+																	<div style = "font-size: 13px;">
+						                                               	<a class="btn-review-order" href="javascript:void(0)">Review order</a> |
+																		<a class="btn-return-order" href="javascript:void(0)">Return order</a>
+																	</div>		
+																	
 																</div>
 					
 					
@@ -858,18 +812,8 @@
 																		<span id = "orderStatus" class = "purple-text"> To Ship </span> </strong>
 																</h6>
 					
-																<div class="dropdown blue-text" style = "font-size: 13px;">
-																	<i class="fa fa-print" aria-hidden="true"></i>
-																	<a href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-																			Print <i class="fa fa-caret-down" aria-hidden="true"></i> |
-																	</a>
+																<div style = "font-size: 13px;">
 																	<a href = "<c:url value = '/shipping?orderId=${order.orderId}' />"> Details </a>
-																	<div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-																		<a class="dropdown-item" href="#">Print order</a>
-																		<a class="dropdown-item" href="#">Print receipt</a>
-																		<a class="dropdown-item" href="#">Print shipping information</a>
-																		<a class="dropdown-item" href="#">Print shipping log</a>
-																	</div>
 																</div>
 					
 					
@@ -1032,18 +976,8 @@
 																		<span id = "orderStatus" class = "light-green-text"> Paid </span> <a style = "font-size: 13px;" href = "<c:url value = '/payment-receipt?orderId=${order.orderId}' />">  (Receipt) </a> </strong>
 																</h6>
 					
-																<div class="dropdown blue-text" style = "font-size: 13px;">
-																	<i class="fa fa-print" aria-hidden="true"></i>
-																	<a href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-																			Print <i class="fa fa-caret-down" aria-hidden="true"></i> |
-																	</a>
+																<div style = "font-size: 13px;">
 																	<a href = "javascript:void(0)" class = "btn-refund-order"> Refund </a>
-																	<div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-																		<a class="dropdown-item" href="#">Print order</a>
-																		<a class="dropdown-item" href="#">Print receipt</a>
-																		<a class="dropdown-item disabled" href="#">Print shipping information</a>
-																		<a class="dropdown-item disabled" href="#">Print shipping log</a>
-																	</div>
 																</div>
 					
 					
@@ -1187,22 +1121,12 @@
 																		<span  class = "brown-text"> Returned </span> </strong>
 																</h6>
 		
-																<div class="dropdown blue-text" style = "font-size: 13px;">
-																	<i class="fa fa-print" aria-hidden="true"></i>
-																	<a href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-																			Print <i class="fa fa-caret-down" aria-hidden="true"></i> |
-																	</a>
+																<div class="blue-text" style = "font-size: 13px;">
 																	<a href = "javascript:void(0)" 
 																		   data-toggle="popover" 
 																		   data-trigger="focus"
 																		   title="Reason" 
 																		   data-content="${order.reason}"> Reason </a>
-																	<div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-																		<a class="dropdown-item" href="#">Print order</a>
-																		<a class="dropdown-item" href="#">Print receipt</a>
-																		<a class="dropdown-item" href="#">Print shipping information</a>
-																		<a class="dropdown-item" href="#">Print shipping log</a>
-																	</div>
 																</div>
 		
 		
@@ -1350,26 +1274,16 @@
 																		<span class = "red-text"> Cancelled </span> </strong>
 																</h6>
 		
-																<div class="dropdown blue-text" style = "font-size: 13px;">
-																		<i class="fa fa-print" aria-hidden="true"></i>
-																		<a href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-																			Print <i class="fa fa-caret-down" aria-hidden="true"></i> |
-																		</a>
+																<div style = "font-size: 13px;">
 		
-																		<a href = "javascript:void(0)" 
-																		   data-toggle="popover" 
-																		   data-trigger="focus"
-																		   title="Reason" 
-																		   data-content="${order.reason}"> Reason </a>
-																		   
-																	<div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-																		<a class="dropdown-item" href="#">Print order</a>
-																		<a class="dropdown-item disabled" href="#">Print receipt</a>
-																		<a class="dropdown-item disabled" href="#">Print shipping information</a>
-																		<a class="dropdown-item disabled" href="#">Print shipping log</a>
-																	</div>
+																	<a href = "javascript:void(0)" 
+																	   data-toggle="popover" 
+																	   data-trigger="focus"
+																	   title="Reason" 
+																	   data-content="${order.reason}"> Reason </a>
+																			   
 																</div>
-		
+																
 															</div>
 														</div>
 													</span>
@@ -1517,11 +1431,7 @@
 																		<span class = "pink-text"> Refund </span> <a style = "font-size: 13px;" href = "<c:url value = '/payment-receipt?orderId=${order.orderId}' />"> (Receipt)</a></strong>
 																</h6>
 		
-																<div class="dropdown blue-text" style = "font-size: 13px;">
-																		<i class="fa fa-print" aria-hidden="true"></i>
-																		<a href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-																			Print <i class="fa fa-caret-down" aria-hidden="true"></i> |
-																		</a>
+																<div style = "font-size: 13px;">
 																		
 																		<a href = "javascript:void(0)" 
 																		   data-toggle="popover" 
@@ -1529,12 +1439,6 @@
 																		   title="Reason" 
 																		   data-content="${order.reason}"> Reason </a>
 		
-																	<div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-																		<a class="dropdown-item" href="#">Print order</a>
-																		<a class="dropdown-item" href="#">Print receipt</a>
-																		<a class="dropdown-item disabled" href="#">Print shipping information</a>
-																		<a class="dropdown-item disabled" href="#">Print shipping log</a>
-																	</div>
 																</div>
 		
 															</div>

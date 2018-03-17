@@ -1,11 +1,13 @@
 package com.fb.exportorder.module.admin.controllers;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import org.apache.commons.lang3.StringUtils;
+import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
@@ -360,6 +362,32 @@ public class OrdersController {
 		
 		return orderService.filterAndSortByAdmin(status, shipment, payment, sortBy, sortByOrder);
 		
+	}
+	
+	@RequestMapping(value = "/admin/orders/deleteSelectedOrder", method = RequestMethod.POST)
+	@ResponseBody
+	public String deleteSelectedOrder (@RequestParam String deletedOrdersRawJSON) {
+		
+		try {
+			
+			JSONObject rawIds = (JSONObject)new JSONParser().parse(deletedOrdersRawJSON);
+			
+			JSONArray idsArray = (JSONArray)rawIds.get("deletedIds");
+			
+			List<Long> idsList = new ArrayList<Long>();
+			
+			for (int i = 0; i != idsArray.size(); ++i)
+				idsList.add(Long.parseLong((String)idsArray.get(i)));
+			
+			orderService.deleteSelectedOrder(idsList);
+			
+			
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return "";
 	}
 	
 	

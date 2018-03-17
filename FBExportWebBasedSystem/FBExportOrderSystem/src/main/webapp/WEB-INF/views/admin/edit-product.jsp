@@ -89,7 +89,7 @@
                     <div class = "col-lg-4">
                     <div class="form-group">
                     <label class="form-control-label">Date of Delivery</label>
-                    <input type="text" name = "delivery-date" value = "${product.dateOfDelivery}" class = "text-center form-control" id="deliveryDatePicker" placeholder="2011/04/25" required>
+                    <input type="text" name = "delivery-date" value = "<fmt:formatDate value = '${product.dateOfDelivery}' type = 'date' dateStyle = 'LONG' />" class = "text-center form-control" id="deliveryDatePicker" placeholder="2011/04/25" required>
                     </div>
                 </div>
                 </div>

@@ -442,6 +442,20 @@ public class OrderServiceImpl implements OrderService {
 		return filteredOrders;
 		
 	}
+
+	@Override
+	public void deleteOrder(long id) {
+		Order order = orderRepository.findOne(id);
+		orderRepository.delete(order);
+	}
+
+	@Override
+	public void deleteSelectedOrder(List<Long> ids) {
+		for (Long id : ids)
+			deleteOrder(id);
+	}
+	
+	
 	
 
 }

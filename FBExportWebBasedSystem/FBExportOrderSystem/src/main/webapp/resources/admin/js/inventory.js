@@ -63,7 +63,7 @@ $(document).ready(function (){
 					supplier : response.supplier,
 					supplierContactNumber  : response.supplierContactNumber,
 					supplierAddress : response.supplierAddress,
-					dateOfDelivery : response.dateOfDelivery,
+					dateOfDelivery : moment(response.dateOfDelivery).format("MMMM D, YYYY"),
 					status : response.status,
 					editAddressLink : "http://localhost:" + location.port + "/FBExportSystem/admin/inventory/edit-product/" + response.productId
 				});
@@ -267,24 +267,26 @@ $(document).ready(function (){
 
 	var maxDatePicker = flatpickr("#maxDatePicker", {
 		minDate : "today",
+		dateFormat : "F j, Y",
 		onChange : function (selectedDates, date) {
 			var minTempDate = $("#minDatePicker").val();
 			minDatePicker.config.maxDate = date;
 			$("#minDatePicker").val(minTempDate);
 		},
 		onReady : function () {
-			$("#maxDatePicker").val(flatpickr.formatDate(new Date(), "Y-m-d"));
+			$("#maxDatePicker").val(flatpickr.formatDate(new Date(), "F j, Y"));
 		}
 	});
 	
 	var minDatePicker = flatpickr("#minDatePicker", {
+		dateFormat : "F j, Y",	
 		onChange : function (selectedDates, date) {
 			var maxTempDate = $("#maxDatePicker").val();
 			maxDatePicker.config.minDate = date;
 			$("#maxDatePicker").val(maxTempDate);
 		},
 		onReady : function () {
-			$("#minDatePicker").val(flatpickr.formatDate(new Date(), "Y-m-d"));
+			$("#minDatePicker").val(flatpickr.formatDate(new Date(), "F j, Y"));
 		}
 	});
 
@@ -360,6 +362,7 @@ $(document).ready(function (){
 	$(".btn-clear").click(function () {
 
 		maxDatePicker = flatpickr("#maxDatePicker", {
+			dateFormat : "F j, Y",
 			minDate : "today",
 			onChange : function (selectedDates, date) {
 				var minTempDate = $("#minDatePicker").val();
@@ -367,19 +370,20 @@ $(document).ready(function (){
 				$("#minDatePicker").val(minTempDate);
 			},
 			onReady : function () {
-				$("#maxDatePicker").val(flatpickr.formatDate(new Date(), "Y-m-d"));
+				$("#maxDatePicker").val(flatpickr.formatDate(new Date(), "F j, Y"));
 			}
 		});
 
 
 		minDatePicker = flatpickr("#minDatePicker", {
+			dateFormat : "F j, Y",
 			onChange : function (selectedDates, date) {
 				var maxTempDate = $("#maxDatePicker").val();
 				maxDatePicker.config.minDate = date;
 				$("#maxDatePicker").val(maxTempDate);
 			},
 			onReady : function () {
-				$("#minDatePicker").val(flatpickr.formatDate(new Date(), "Y-m-d"));
+				$("#minDatePicker").val(flatpickr.formatDate(new Date(), "F j, Y"));
 			}
 		});
 
@@ -403,8 +407,8 @@ $(document).ready(function (){
 		var productStatus = $("input[name='status']:checked").val() != undefined ? $("input[name='status']:checked").val() : "";  
 
 		var filter = {
-			minDate : $("#minDatePicker").val(),
-			maxDate : $("#maxDatePicker").val(),
+			minDate : convertFlatpickrDateToSystemDate($("#minDatePicker").val()),
+			maxDate : convertFlatpickrDateToSystemDate($("#maxDatePicker").val()),
 			dateFilterType : $("#dateFilterType").val(),
 			status : productStatus,
 			minPrice : $("#minPrice").val(),
@@ -451,10 +455,10 @@ $(document).ready(function (){
 						product.supplier,
 						product.price,
 						product.weight,
-						product.dateRegistered,
-						product.dateOfDelivery,
+						moment(product.dateRegistered).format("MMMM D, YYYY"),
+						moment(product.dateOfDelivery).format("MMMM D, YYYY"),
 						(product.status == "POSTED") ? "Posted" : (product.status == "UNPOSTED") ? "Unposted" : "Expired" 
-					] ).draw();
+					] );
 
 					$inventoryTableBody.find(".fa-chevron-circle-down").click(getMoreProductDetails);
 
@@ -471,6 +475,8 @@ $(document).ready(function (){
 					});
 
 				}
+
+				table.rows().invalidate().draw();
 
 
 			}, "json");
@@ -494,9 +500,10 @@ $(document).ready(function (){
 
 	});
 
-	$("#inventoryTable").on("change", ".checkbox-delete", function () { 
+	$("#inventoryTable").on("change", ".checkbox-delete:not(#checkbox-all)", function () { 
 
-		console.log("tae2");
+		if ($("#checkbox-all").is(":checked")) 
+            $("#checkbox-all").prop("checked", false);
 
 		checkAllowDelete();
 	});
@@ -562,14 +569,12 @@ $(document).ready(function (){
 
 
 															$deletedRow.fadeOut("slow", function () {
-																table.row($deletedRow).remove().draw();
+																table.row($deletedRow).remove().draw(false);
 															});
 
 														}
 
 													});
-
-												
 
 													$(toast).fadeOut("slow", function () {
 															$(this).remove();

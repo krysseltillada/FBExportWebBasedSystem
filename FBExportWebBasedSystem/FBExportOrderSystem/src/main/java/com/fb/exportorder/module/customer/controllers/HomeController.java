@@ -88,7 +88,7 @@ public class HomeController {
 		
 		model.addAttribute("mostPopularProductList", inventoryService.getMostPopularProduct());
 		
-		model.addAttribute("mostViewedProductCount", inventoryService.getNewLatestProductCount());
+		model.addAttribute("mostViewedProductCount", inventoryService.getMostViewedProductCount());
 		model.addAttribute("mostViewedProductList", inventoryService.getMostViewedProduct(3, 0));
 		
 		model.addAttribute("newLatestProductCount", inventoryService.getNewLatestProductCount());

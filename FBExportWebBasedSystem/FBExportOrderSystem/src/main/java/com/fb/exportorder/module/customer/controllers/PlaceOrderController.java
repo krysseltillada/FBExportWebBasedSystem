@@ -48,8 +48,9 @@ public class PlaceOrderController {
 		
 		long customerId = (long) session.getAttribute("customerId");
 		
-		double totalWeight = 0;
-		double totalPrice = 0;
+		double totalWeight = 0.0;
+		double totalPrice = 0.0;
+		double subTotal = 0.0;
 		
 		List<Item> items = customerService.getCustomerById(customerId)
 										   .getCart()
@@ -76,12 +77,15 @@ public class PlaceOrderController {
 			
 		}
 		
+		subTotal = totalPrice;
+		
 		System.out.println(totalWeight);
 		
 		
 		model.addAttribute(yourAddressService.getAllAddressesById(customerId));
 		
 		model.addAttribute("totalWeight", totalWeight);
+		model.addAttribute("subTotal", subTotal);
 		model.addAttribute("totalPrice", totalPrice);
 		model.addAttribute("cartItemList", items);
 		
@@ -102,12 +106,15 @@ public class PlaceOrderController {
 		
 		Customer customerOrdered = customerService.getCustomerById(customerId);
 		ShippingAddress selectedShippingAddress = yourAddressService.getAddressById(shippingAddressIdL);
+		Order order = orderService.order(customerOrdered,
+										 selectedShippingAddress,
+										 PaymentMethod.valueOf(paymentMethod),
+										 totalPriceApprox,
+										 totalWeightApprox);
 		
-		attributes.addFlashAttribute("order", orderService.order(customerOrdered,
-																 selectedShippingAddress,
-																 PaymentMethod.valueOf(paymentMethod),
-																 totalPriceApprox,
-																 totalWeightApprox));
+		attributes.addFlashAttribute("subTotal", order.getSubTotal());
+		attributes.addFlashAttribute("order", order);
+		
 		
 		return "redirect:/order-success";
 	}
@@ -115,9 +122,13 @@ public class PlaceOrderController {
 	@RequestMapping("/order-success")
 	public String orderSuccess (HttpSession session,
 								@ModelAttribute("order") Order order,
+								@ModelAttribute("subTotal") double subTotal,
 														 Model model) {
 		
+		
+		
 		model.addAttribute(order);
+		model.addAttribute(subTotal);
 		
 		return "order-success";
 	}

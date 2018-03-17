@@ -108,10 +108,7 @@
 				                                    <i class="fa fa-chevron-circle-down fa-lg mr-1" aria-hidden="true"
 				                                        data-toggle="collapse" href="#shippingInformationCollapseItem " role="button" aria-expanded="false" aria-controls="shippingInformationCollapseItem" style = "cursor: pointer;"></i>
 				                                    <span class = "h5-responsive"> <strong> Shipping information </strong> </span>
-				                                    <span class = "float-right" style = "font-size: 16px;">
-				                                        <i class="fa fa-print" aria-hidden="true"></i>
-				                                        <a class = "blue-text" href = "#"> Print </a>
-				                                    </span>
+				                                    
 				                                </div>
 				
 				                                <hr class = "mt-1" />
@@ -221,10 +218,6 @@
 				                                    <i class="fa fa-chevron-circle-down fa-lg mr-1" aria-hidden="true"
 				                                        data-toggle="collapse" href="#shippingLogCollapseItem " role="button" aria-expanded="false" aria-controls="orderCollapseItem5" style = "cursor: pointer;"></i>
 				                                    <span class = "h5-responsive"> <strong> Shipping Log </strong> </span>
-				                                    <span class = "float-right" style = "font-size: 16px;">
-				                                        <i class="fa fa-print" aria-hidden="true"></i>
-				                                        <a class = "blue-text" href = "#"> Print </a>
-				                                    </span>
 				                                </div>
 				
 				                                <hr class = "mt-1" />
@@ -232,26 +225,44 @@
 				                                <div class="collapse.show multi-collapse" id="shippingLogCollapseItem">
 				                                    <div class="list-group" style = "max-height: 530px; overflow-y: auto;">
 				                                    
-				                                    	<c:forEach var="shippingLogItemIndex" begin="1" end="${fn:length(order.shipping.shippingLog)}" step="1">
-														   
-														   <c:set var="shippingLogItemIndexRev" value="${fn:length(order.shipping.shippingLog) - shippingLogItemIndex}" />
-														   
-														   <span class="list-group-item list-group-item-action flex-column align-items-start">
-					                                            
-					                                            <div class="d-flex w-100 justify-content-between">
-						                                            <h5 class="mb-1">${order.shipping.shippingLog[shippingLogItemIndexRev].header}</h5>
-						                                            <small>
-						                                            	<fmt:formatDate value="${order.shipping.shippingLog[shippingLogItemIndexRev].date}" type = "date" dateStyle = "LONG"/> -
-						                                            	${order.shipping.shippingLog[shippingLogItemIndexRev].time}
-						                                            </small>
-					                                            </div>
-					                                            
-					                                            <p class="mb-1">${order.shipping.shippingLog[shippingLogItemIndexRev].description}</p> 
-					                                            <small>${order.shipping.shippingLog[shippingLogItemIndexRev].address}</small>
-					                                        </span>
-														   
-														   
-														</c:forEach>
+				                                    	<c:choose>
+				                                    	
+				                                    		<c:when test = "${fn:length(order.shipping.shippingLog) > 0}">
+				                                    
+						                                    	<c:forEach var="shippingLogItemIndex" begin="1" end="${fn:length(order.shipping.shippingLog)}" step="1">
+																   
+																   <c:set var="shippingLogItemIndexRev" value="${fn:length(order.shipping.shippingLog) - shippingLogItemIndex}" />
+																   
+																   <span class="list-group-item list-group-item-action flex-column align-items-start">
+							                                            
+							                                            <div class="d-flex w-100 justify-content-between">
+								                                            <h5 class="mb-1">${order.shipping.shippingLog[shippingLogItemIndexRev].header}</h5>
+								                                            <small>
+								                                            	<fmt:formatDate value="${order.shipping.shippingLog[shippingLogItemIndexRev].date}" type = "date" dateStyle = "LONG"/> -
+								                                            	${order.shipping.shippingLog[shippingLogItemIndexRev].time}
+								                                            </small>
+							                                            </div>
+							                                            
+							                                            <p class="mb-1">${order.shipping.shippingLog[shippingLogItemIndexRev].description}</p> 
+							                                            <small>${order.shipping.shippingLog[shippingLogItemIndexRev].address}</small>
+							                                        </span>
+																   
+																   
+																</c:forEach>
+														
+															</c:when>
+															
+															<c:otherwise>
+															
+																<div class="row">
+							                                        <div class="mx-auto mt-2">
+							                                            <h5> No shipping logs here </h5>
+							                                        </div>
+							                                    </div>
+																
+															</c:otherwise>
+														
+														</c:choose>
 		
 				                                    </div>
 				                                </div>

@@ -49,7 +49,9 @@ $(document).ready(function () {
 	}); 
 
 	
-    $( "#deliveryDatePicker" ).flatpickr();
+    $( "#deliveryDatePicker" ).flatpickr({
+		dateFormat : "F j, Y"
+	});
 
 	var isThreeImagesUploaded = false;
 

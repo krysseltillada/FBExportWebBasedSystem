@@ -10,16 +10,15 @@ $(document).ready(function () {
 
     var checkAllowDelete = function () {
 
-		
+		if ($("#orderTable").find("tr:not(:first) input.checkbox-template:checked").length > 0) {
 
-		if ($("#inventoryTable").find("tr:not(:first) input.checkbox-template:checked").length > 0) {
-
-			$("a#delete-selected-product").removeClass("text-muted").addClass("text-red").css("cursor", "pointer")
-																						.css("pointer-events", "auto");
+			$("a#deleteOrder").removeClass("text-muted").addClass("text-red").css("cursor", "pointer")
+                                                                                         .css("pointer-events", "auto");
+                                                                                        
 		} else {
 
-			$("a#delete-selected-product").removeClass("red-text").addClass("text-muted").css("cursor", "not-allowed")
-																						.css("pointer-events", "none");
+			$("a#deleteOrder").removeClass("red-text").addClass("text-muted").css("cursor", "not-allowed")
+																						 .css("pointer-events", "none");
 		}
 	};
 
@@ -88,6 +87,7 @@ $(document).ready(function () {
         ],
         "order" : [],
         "fnDrawCallback" : function (oSettings) {
+                $("table input#checkbox-all").prop("checked", false);
 				checkAllowDelete();
 				console.log("tae");
 			}
@@ -2397,18 +2397,18 @@ $(document).ready(function () {
         $("#orderTable").find("tr:not(:first) input.checkbox-template")
                             .prop("checked", $(this).prop("checked"));
 
+        checkAllowDelete();
+
 
     });
 
-    $("#orderTable").on("change", ".checkbox-delete", function () {
+    $("#orderTable").on("change", ".checkbox-delete:not(#checkbox-all)", function () {
 
-        if ($("#orderTable").find("tr:not(:first) input.checkbox-template:checked").length > 0) {
+       if ($("#checkbox-all").is(":checked")) 
+            $("#checkbox-all").prop("checked", false);
+       
 
-            $("a#deleteProduct").removeClass("text-muted").addClass("text-red").css("cursor", "pointer");
-        } else {
-
-            $("a#deleteProduct").removeClass("red-text").addClass("text-muted").css("cursor", "not-allowed");
-        }
+       checkAllowDelete();
 
     });
 
@@ -2465,6 +2465,92 @@ $(document).ready(function () {
                      $("#filterByPayment").val(),
                      $("#sortBy").val(),
                      $("#sortByOrder").val());
+    });
+
+    $("#deleteOrder").click(function () {
+
+        var $orderTable = $("#orderTable");
+        var ifEmpty = $orderTable.find("tbody tr:eq(0)> td").hasClass("dataTables_empty");
+
+        alertify.okBtn("delete")
+                    .confirm("deleted selected orders?", function () {
+
+                        if (!ifEmpty) {
+
+                            iziToast.show({
+                                            message: 'deleting selected order...',
+                                            icon : "",
+                                            timeout : false,
+                                            close : false,
+                                            onOpening : function (instance, toast) {
+
+                                var deletedJSONId = {
+									deletedIds : []
+								};
+
+                                $(".checkbox-delete:not(#checkbox-all):checked").each(function () {
+                                    deletedJSONId.deletedIds.push($(this).closest("tr").find("#orderId").html());
+                                });    
+
+                                $.post("/FBExportSystem/admin/orders/deleteSelectedOrder", {
+                                    deletedOrdersRawJSON : JSON.stringify(deletedJSONId)
+                                }, function () {
+
+                                    $(".checkbox-delete:not(#checkbox-all):checked").each(function () {
+                                    
+                                        var $deletedRow = $(this).closest("tr");
+                                        var $childDeletedRow = $deletedRow.next();
+
+                                        if (!$childDeletedRow.hasClass("odd") && !$childDeletedRow.hasClass("even")) {
+                                            $childDeletedRow.fadeOut("slow", function () {
+                                                $(this).remove();
+                                            });
+                                        }
+
+                                        $deletedRow.fadeOut("slow", function () {
+                                            $(this).remove();
+                                            table.row($deletedRow).remove().draw(false);
+                                        });
+
+                                        
+                                    });    
+
+                                    $("#checkbox-all").prop("checked", false);
+
+                                    $("a#deleteOrder").removeClass("red-text").addClass("text-muted").css("cursor", "not-allowed")
+                                                                                                     .css("pointer-events", "none");
+
+                                    $(toast).fadeOut("slow", function () {
+                                            $(this).remove();
+                                    });
+
+                                    iziToast.success({
+                                            timeout : 2000,
+                                            progressBar : false,
+                                            message : "Selected order deleted"
+                                    });
+
+                                });
+                                                                     
+                            }});
+
+                        } else {
+
+                            alertify.alert("Select a order first");
+
+                            $("#checkbox-all").prop("checked", false);
+
+                            $("a#deleteOrder").removeClass("red-text").addClass("text-muted").css("cursor", "not-allowed")
+                                                                                             .css("pointer-events", "none");
+
+                            $(".alertify").css("z-index", "10");
+
+                        }
+                        
+                    });
+
+        $(".alertify").css("z-index", "10");
+       
     });
 
 });

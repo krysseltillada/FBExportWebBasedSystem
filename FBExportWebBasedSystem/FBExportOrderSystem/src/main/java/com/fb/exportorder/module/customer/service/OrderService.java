@@ -57,6 +57,9 @@ public interface OrderService {
 	
 	int filterAndSortByCustomerCount(long customerId, String filterBy, String sortBy);
 	
+	void deleteOrder (long id);
+	void deleteSelectedOrder(List<Long> ids);
+	
 	boolean checkIfShippingExists (long id);
 	
 	

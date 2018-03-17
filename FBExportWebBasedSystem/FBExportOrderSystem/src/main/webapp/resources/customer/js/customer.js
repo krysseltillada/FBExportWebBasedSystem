@@ -433,8 +433,11 @@ $(document).ready(function () {
 
                                         });
 
+                                        $("#placeOrderSubTotal").html(formatMoney(fx($("#placeOrderSubTotal").html()).from("PHP").to(currentCurrency), "", "%v"));
                                         $("#placeOrdertotalPrice").html(formatMoney(fx($("#placeOrdertotalPrice").html()).from("PHP").to(currentCurrency), "", "%v"));
                                         $("#placeOrderCurrency").html(currentCurrency);
+                                        $("#placeOrderSubtotalCurrency").html(currentCurrency);
+                                        $("#placeOrderShippingFeeCurrency").html(currentCurrency);
 
                                         _.each($("div#shoppingModalCart div.modal-body>table>tbody").children(), function (productCartItem, i) {
 
@@ -520,7 +523,8 @@ $(document).ready(function () {
                                                                             total: totalPrice, 
                                                                             currency: currentCurrency,
                                                                             details : {
-                                                                            subtotal : totalPrice
+                                                                                subtotal : totalPrice,
+                                                                            
                                                                             }
                                                                         },
                                                                         

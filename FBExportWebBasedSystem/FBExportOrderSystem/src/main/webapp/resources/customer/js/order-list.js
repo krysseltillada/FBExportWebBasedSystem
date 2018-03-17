@@ -1,100 +1,7 @@
 
 $(document).ready(function () {
 
-    // PENDING, /
-	// APPROVED, /
-	// REJECTED, /
-	// RECEIVED, /
-	// TO_SHIP /,
-	// PAID /
-	// RETURNED, / reason
-	// CANCELLED / reason
-	// REFUND / reason
-
-	// $(".paypal-button").each(function (ind, elem) {
-			
-	// 		console.log($(this).closest("div.multi-collapse").prev().find(".price").html() + " tae");
-		
-	// 		paypal.Button.render({
-	// 			env: 'sandbox', // Or 'sandbox',
-
-	// 			style: {
-	// 			color: 'blue',
-	// 			size: 'small',
-	// 			shape : 'rect',
-	// 			size : 'small',
-	// 			label : 'pay',
-	// 			tagline : 'false'
-	// 			},
-				
-	// 			commit : true,
-				
-	// 			client: {
-	// 				sandbox:    'AQNTbQBVVlGXxzbWa9o9poVa187KefuAwZ3EuUxn7uH2cCUxXkUCqhIPW2f0Eh6FW6_MSNGxwlIv3bSD'
-	// 			},
-
-	// 			payment: function(data, actions) {
-	// 			console.log(data);
-	// 			return actions.payment.create({
-	// 				payment: {
-	// 					intent : "sale",
-	// 					transactions: [
-	// 						{
-	// 							amount: { 
-	// 								total: "360", 
-	// 								currency: 'PHP',
-	// 								details : {
-	// 								subtotal : "360"
-	// 								}
-	// 							},
-								
-	// 							description : "tae",
-	// 							invoice_number : "1",
-	// 							item_list : {	
-	// 								items : [
-	// 								{name : "tae", price : "120", currency : "PHP", quantity : "1"},
-	// 								{name : "tae", price : "120", currency : "PHP", quantity : "1"},
-	// 								{name : "tae", price : "120", currency : "PHP", quantity : "1"}
-	// 								],
-	// 								shipping_address : {
-	// 									recipient_name: "Brian Robinson",
-	// 									line1: "4th Floor",
-	// 									line2: "Unit #34",
-	// 									city: "San Jose",
-	// 									country_code: "US",
-	// 									postal_code: "95131",
-	// 									phone: "011862212345678",
-	// 									state: "CA"
-	// 								}
-	// 							}
-								
-	// 						}
-	// 					],
-	// 					note_to_payer: "Contact us for any regardings on your payment",
-	// 				}
-	// 			});
-	// 			},
-
-	// 			onAuthorize: function(data, actions) {
-	// 				return actions.payment.execute().then(function(payment) {
-					
-	// 				});
-	// 			},
-
-	// 			onCancel: function(data, actions) {
-	// 			/* 
-	// 				* Buyer cancelled the payment 
-	// 				*/
-	// 			},
-
-	// 			onError: function(err) {
-	// 			/* 
-	// 				* An error occurred during the transaction 
-	// 				*/
-	// 			}
-	// 		}, elem);
-	// });
-	
+  
 	var reInitializePopover = function () {
 		$('[data-toggle="popover"]').popover({
 			placement : "top"
@@ -115,7 +22,8 @@ $(document).ready(function () {
 
 	$(".btn-cancel-order").click(function () {
 		
-		var $orderDivItem = $(this).closest("span.list-group-item");
+		var $btnCancelOrder = $(this);
+		var $orderDivItem = $btnCancelOrder.closest("span.list-group-item");
 
 		console.log($(this).closest("span.list-group-item").find("#orderId").html());
 
@@ -138,7 +46,7 @@ $(document).ready(function () {
 									$orderStatus.html("Cancelled");
 									$orderStatus.removeClass("orange-text").addClass("red-text");
 
-									var $cancelLinkToReason = $orderDivItem.find("div.dropdown>a:eq(1)");
+									var $cancelLinkToReason = $btnCancelOrder;
 
 									$cancelLinkToReason.html("Reason");
 
@@ -187,11 +95,13 @@ $(document).ready(function () {
 										reason : val							
 									}, function () {
 
+											// TODO RELOGIC THE FUNCTIONALITY OF ORDER LIST
+
 											var $orderStatus = $orderDivItem.find("#orderStatus");
 
 											$orderStatus.html("Cancelled");
 					
-											var $cancelLinkToReason = $orderDivItem.find("div.dropdown>a:eq(1)");
+											var $cancelLinkToReason = $btnCancelRejectedOrder;
 
 											$cancelLinkToReason.html("Reason");
 
@@ -208,8 +118,9 @@ $(document).ready(function () {
 
 											$rowHR.remove();
 											$rowDiv.remove();
+
 											$btnCancelRejectedOrder.prev().remove();
-											$btnCancelRejectedOrder.remove();
+											$btnCancelRejectedOrder.prev().remove();
 
 											reInitializePopover();
 					
@@ -248,7 +159,7 @@ $(document).ready(function () {
 
 										$orderStatus.html("Cancelled");
 				
-										var $cancelLinkToReason = $orderDivItem.find("div.dropdown>a:eq(1)");
+										var $cancelLinkToReason = $orderDivItem.find("a:eq(1)");
 
 										$cancelLinkToReason.html("Reason");
 
@@ -266,12 +177,9 @@ $(document).ready(function () {
 										$rowHR.remove();
 										$rowDiv.remove();
 
-										var $line = $cancelLinkToReason.next();
-										var $cancelLink = $line.next();
-
-										$line.remove();
-										$cancelLink.remove();
-
+										$cancelLinkToReason.prev().remove();
+										$cancelLinkToReason.prev().remove();
+										
 										reInitializePopover();
 				
 									});
@@ -294,7 +202,8 @@ $(document).ready(function () {
 
 	$(".btn-cancel-approved-order").click(function () {
 
-		var $orderDivItem = $(this).closest("span.list-group-item");
+		var $btnCancelApprovedOrder = $(this);
+		var $orderDivItem = $btnCancelApprovedOrder.closest("span.list-group-item");
 
 		console.log($(this).closest("span.list-group-item").find("#orderId").html());
 
@@ -317,7 +226,7 @@ $(document).ready(function () {
 									$orderStatus.html("Cancelled");
 									$orderStatus.removeClass("green-text").addClass("red-text");
 
-									var $cancelLinkToReason = $orderDivItem.find("div.dropdown>a:eq(1)");
+									var $cancelLinkToReason = $btnCancelApprovedOrder;
 
 									$cancelLinkToReason.html("Reason");
 
@@ -373,6 +282,7 @@ $(document).ready(function () {
 							$orderStatus.html("Pending");
 
 							$btnReorder.prev().remove();
+							$btnReorder.next().remove();
 							$btnReorder.remove();
 
 							var $divOrderCollapse = $divOrderItem.next();
@@ -393,34 +303,43 @@ $(document).ready(function () {
 								alertify.okBtn("yes")
 										.confirm("are you sure you want to cancel your order?", function () {
 
-											alertify.defaultValue("wrong order")
+											alertify.okBtn("send")
 													.prompt("tell us your reason for cancellation", function (val, ev) {
 
-												$.post("/FBExportSystem/order-list/markCancelled", {
-													orderId : $orderDivItem.find("#orderId").html(),
-													reason : val							
-												}, function () {
+													if (val.length > 0) {
 
-													var $orderStatus = $orderDivItem.find("#orderStatus");
+														$.post("/FBExportSystem/order-list/markCancelled", {
+															orderId : $orderDivItem.find("#orderId").html(),
+															reason : val							
+														}, function () {
 
-													$orderStatus.html("Cancelled");
-													$orderStatus.removeClass("orange-text").addClass("red-text");
+															var $orderStatus = $orderDivItem.find("#orderStatus");
 
-													var $cancelLinkToReason = $orderDivItem.find("div.dropdown>a:eq(1)");
+															$orderStatus.html("Cancelled");
+															$orderStatus.removeClass("orange-text").addClass("red-text");
 
-													$cancelLinkToReason.html("Reason");
+															var $cancelLinkToReason = $orderDivItem.find("a.btn-cancel-rejected-order");
 
-													$cancelLinkToReason.attr("data-toggle", "popover")
-																	.attr("data-trigger", "focus")
-																	.attr("title", "")
-																	.attr("data-content", val)
-																	.attr("data-original-title", "Reason");
+															$cancelLinkToReason.html("Reason");
 
-													$cancelLinkToReason.off("click");
+															$cancelLinkToReason.attr("data-toggle", "popover")
+																			.attr("data-trigger", "focus")
+																			.attr("title", "")
+																			.attr("data-content", val)
+																			.attr("data-original-title", "Reason");
 
-													reInitializePopover();
-							
-												});
+															$cancelLinkToReason.off("click");
+
+															reInitializePopover();
+									
+														});
+
+													} else {
+
+														alertify.reset()
+																.alert("please provide a reason");
+
+													}
 
 											});
 
@@ -446,6 +365,7 @@ $(document).ready(function () {
 							$orderStatus.html("Pending");
 
 							$divOrderItem.find(".btn-reorder").prev().remove();
+							$divOrderItem.find(".btn-reorder").next().remove();
 							$divOrderItem.find(".btn-reorder").remove();
 
 							var $hr = $divOrderCollapse.find(">div").find("div.row:eq(1)").next();
@@ -462,7 +382,6 @@ $(document).ready(function () {
 	});
 
 	$(".btn-refund-order").click(function () {
-		
 		
 		var $btnRefundOrder = $(this);
 		var $divOrderItem = $btnRefundOrder.closest("span.list-group-item");
@@ -521,7 +440,6 @@ $(document).ready(function () {
 
 		var $orderCollapseDiv =  $btnReceivedOrder.closest("div.multi-collapse"); 
 		var $orderItemDiv = $orderCollapseDiv.prev();
-		
 
 		alertify.okBtn("yes")
 				.confirm("mark the order as received?", function () {
@@ -531,7 +449,7 @@ $(document).ready(function () {
 					}, function () {
 
 						var $orderStatus = $orderItemDiv.find("#orderStatus");
-						var $aListDiv = $orderItemDiv.find("div.dropdown");
+						var $aListDiv = $orderItemDiv.find("a").parent();
 						var $parentAListDiv = $aListDiv.parent();			
 							
 						$orderStatus.html("Received");
@@ -540,29 +458,86 @@ $(document).ready(function () {
 
 						$aListDiv.remove();
 
-						$parentAListDiv.append('<div class="blue-text" style="font-size: 13px;>' +
-																'<span class="dropdown">' +
-																	'<i class="fa fa-print" aria-hidden="true"></i>' +
-																	'<a href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">' +
-																		' Print <i class="fa fa-caret-down" aria-hidden="true"></i> | ' +
-																	'</a>' +
-																	'<div class="dropdown-menu" aria-labelledby="dropdownMenuLink">' +
-																		'<a class="dropdown-item" href="#">Print order</a>' + 
-																		'<a class="dropdown-item" href="#">Print receipt</a>' +
-																		'<a class="dropdown-item" href="#">Print shipping information</a>' +
-																		'<a class="dropdown-item" href="#">Print shipping log</a>' +
-																	'</div>' +
-																'</span>' +
-																'<span class="dropdown">' +
-																	'<a href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">' +
-																		'Options <i class="fa fa-caret-down" aria-hidden="true"></i>' + 
-																	'</a>' +
-																	'<div class="dropdown-menu" aria-labelledby="dropdownMenuLink">' +
-																		'<a class="dropdown-item btn-review-order" href="javascript:void(0)">Review orderr</a>' +
-																		'<a class="dropdown-item btn-return-order" href="javascript:void(0)">Return order</a>' +
-																	'</div>' +
-																'</span>' +
-															'</div>');
+						$parentAListDiv.append('<div class="blue-text" style = "font-size: 13px;">' +
+													'<div style = "font-size: 13px;">' +
+														'<a class="btn-review-order" href="javascript:void(0)">Review order</a> | ' +
+														'<a class="btn-return-order" href="javascript:void(0)">Return order</a>' +
+													'</div>' +		
+												'</div>');
+
+						$parentAListDiv.find(".btn-review-order").click(function () {
+
+							var $btnReviewOrder = $(this);
+							var $reviewOrderDiv = $btnReviewOrder.closest("span.list-group-item");
+
+							alertify.okBtn("send")
+									.prompt("tell us about the order", function (val, ev) {
+										console.log(val);
+
+										if (val.length > 0) {
+
+											$.post("/FBExportSystem/order-list/reviewOrder", {
+												orderId : $reviewOrderDiv.find("#orderId").html(),
+												review : val
+											}, function () {
+												toastr.success("order reviewed");
+											});
+
+										} else {
+											
+											alertify.reset()
+													.alert("please provide a review");
+
+										}
+
+									});
+
+						});
+
+						$parentAListDiv.find(".btn-return-order").click(function () {
+							var $btnReturnOrder = $(this);
+							var $divOrderItem = $btnReturnOrder.closest("span.list-group-item");
+
+							alertify.okBtn("send")
+									.prompt("tell us the reason why you want to return your order", function (val, ev) {
+
+										if (val.length > 0) {
+
+											$.post("/FBExportSystem/order-list/returnOrder", 
+											{
+												orderId : $divOrderItem.find("#orderId").html(),
+												reason : val
+											},
+											function () {
+
+												var $dropDownOptionLink = $divOrderItem.find("a").parent();
+												var $orderStatus = $divOrderItem.find("#orderStatus");
+
+												$orderStatus.html("Returned");
+
+												$orderStatus.removeClass("blue-text")
+															.addClass("brown-text");
+
+												$dropDownOptionLink.html('<a href = "javascript:void(0)"' +
+																			'data-toggle="popover"' + 
+																			'data-trigger="focus"' +
+																			'title="Reason"' +
+																			'data-content="' + val + '"> Reason </a>');
+
+												reInitializePopover();
+
+
+											});
+										
+
+										} else {
+											alertify.reset()
+													.alert("please provide a reason");
+										}
+
+									});
+
+						});
 
 
 						var $hrRow = $orderCollapseDiv.find("div.row:eq(1)").next();
@@ -580,7 +555,6 @@ $(document).ready(function () {
 
 		var $btnReviewOrder = $(this);
 		var $reviewOrderDiv = $btnReviewOrder.closest("span.list-group-item");
-
 
 		alertify.okBtn("send")
 				.prompt("tell us about the order", function (val, ev) {
@@ -622,7 +596,7 @@ $(document).ready(function () {
 						},
 						function () {
 
-							var $dropDownOptionLink = $divOrderItem.find("span.dropdown:eq(1)");
+							var $dropDownOptionLink = $divOrderItem.find("a").parent();
 							var $orderStatus = $divOrderItem.find("#orderStatus");
 
 							$orderStatus.html("Returned");
