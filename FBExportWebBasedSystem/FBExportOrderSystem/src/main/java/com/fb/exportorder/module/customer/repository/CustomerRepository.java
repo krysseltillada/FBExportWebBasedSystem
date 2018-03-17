@@ -47,4 +47,7 @@ public interface CustomerRepository
 	@Query("SELECT c.orders FROM Customer c WHERE c.id = :customerId")
 	List<Order> getOrdersByCustomerId (@Param("customerId") long customerId, Pageable pageable);
 	
+	@Query(value="SELECT COUNT(*), c.online FROM customer c GROUP BY c.online", nativeQuery=true)
+	public List<Object[]> getOnlineUsersCount();
+	
 }

@@ -143,15 +143,15 @@
             <div class="statistics col-lg-3 col-12">
             <div class="statistic d-flex align-items-center bg-white has-shadow mb-2">
                 <div class="icon bg-red"><i class="fa fa-tasks"></i></div>
-                <div class="text"><strong>234</strong><br><small>online users</small></div>
+                <div class="text"><strong>${onlineUsers.get(true) > 0 ? onlineUsers.get(true) : 0}</strong><br><small>online users</small></div>
             </div>
             <div class="statistic d-flex align-items-center bg-white has-shadow mb-2">
                 <div class="icon bg-green"><i class="fa fa-calendar-o"></i></div>
-                <div class="text"><strong>152</strong><br><small>registered users</small></div>
+                <div class="text"><strong>${onlineUsers.get(true) > 0 ? onlineUsers.get(true) + orderCount.get(false)  : 0}</strong><br><small>registered users</small></div>
             </div>
             <div class="statistic d-flex align-items-center bg-white has-shadow">
                 <div class="icon bg-orange"><i class="fa fa-paper-plane-o"></i></div>
-                <div class="text"><strong>147</strong><br><small>offline users</small></div>
+                <div class="text"><strong>${onlineUsers.get(false) > 0 ? onlineUsers.get(false) : 0}</strong><br><small>offline users</small></div>
             </div>
             </div>
 

@@ -62,6 +62,9 @@ public class LoginSuccessHandler implements AuthenticationSuccessHandler{
 		String position = (Objects.nonNull(employee)) ? employee.getPosition() :
 														employeeByEmail.getPosition();
 		
+		String username = (Objects.nonNull(employee)) ? employee.getUsername() :
+														employeeByEmail.getUsername();
+		
 		String profileImageLink = (Objects.nonNull(employee)) ? employee.getProfileImageLink() :
 																employeeByEmail.getProfileImageLink();
 		
@@ -74,11 +77,18 @@ public class LoginSuccessHandler implements AuthenticationSuccessHandler{
 		session.setAttribute("position", position);
 		session.setAttribute("employeeId", customerId);
 		session.setAttribute("employeeProfileImageLink", profileImageLink);
+		session.setAttribute("employeeUsername", username);
 		
 		Date logoutTime = ((List<SystemSettings>)systemSettingsRepository.findAll()).get(0).getLogoutTime();
 		
 		session.setAttribute("logoutTime", Time.convertTimeToMilliseconds(logoutTime.getHours(), logoutTime.getMinutes(), logoutTime.getSeconds()));
-	
+		
+		if(Objects.nonNull(employee))
+			employee.setOnline(true);
+		else
+			employeeByEmail.setOnline(true);
+		
+		employeeRepository.save(employee);
 		
 //		String time = ((List<SystemSettings>)systemSettingsRepository.findAll()).get(0).getLogoutTime().toString();
 //		String[] timeSplit = time.split(":");

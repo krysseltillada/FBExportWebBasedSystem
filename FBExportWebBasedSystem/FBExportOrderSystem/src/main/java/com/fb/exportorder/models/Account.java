@@ -55,6 +55,8 @@ public abstract class Account {
 	 private int age;
 
 	 private boolean enabled;
+	 
+	 private boolean online;
 
 	 @OneToMany(cascade = CascadeType.ALL, mappedBy = "account")
 	 @JsonManagedReference
@@ -164,8 +166,13 @@ public abstract class Account {
 	public void setContact(Contact contact) {
 		this.contact = contact;
 	}
-	
-	
-	
+
+	public boolean isOnline() {
+		return online;
+	}
+
+	public void setOnline(boolean online) {
+		this.online = online;
+	}
 	
 }

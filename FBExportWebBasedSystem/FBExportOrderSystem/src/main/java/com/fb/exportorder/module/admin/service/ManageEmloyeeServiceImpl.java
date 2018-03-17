@@ -170,6 +170,7 @@ public class ManageEmloyeeServiceImpl implements ManageEmployeeService {
 				employee.getAuthorities().add(authorities);
 				employee.setProfileImageLink(profileImageLink);
 				employee.setEnabled(true);
+				employee.setOnline(false);
 				
 				employeeRepository.save(employee);
 				
@@ -301,6 +302,11 @@ public class ManageEmloyeeServiceImpl implements ManageEmployeeService {
 	public Employee getEmployeeByUsername(String username) {
 		
 		return employeeRepository.findAccountByUsername(username);
+	}
+
+	@Override
+	public void saveEmployee(Employee employee) {
+		employeeRepository.save(employee);
 	}
 
 }
