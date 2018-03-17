@@ -1,4 +1,4 @@
-package com.fb.exportorder;
+ package com.fb.exportorder;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -13,6 +13,5 @@ public class FbExportOrderSystemApplication  {
 		SpringApplication.run(FbExportOrderSystemApplication.class, args);
 	}
 
-	
 }
 	

@@ -26,6 +26,7 @@ public class DashboardController {
 		
 		model.addAttribute("mostRatedProduct",productService.getTopThreeMostRatedProduct());
 		model.addAttribute("mostViewedProduct",productService.getTopThreeMostViewedProduct());
+		model.addAttribute("mostPaidProduct",productService.getTopPaidProduct());
 		
 		return "dashboard";
 	}

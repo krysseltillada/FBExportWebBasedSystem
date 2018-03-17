@@ -93,7 +93,7 @@
 			<div class="card-body">
 
 
-				<h4 class="card-title"> <a href = "#" class = "black-text"> {{=name}} </a> </h4>
+				<h4 class="card-title"> <a href = "/FBExportSystem/view-product/{{=productId}}" class = "black-text"> {{=name}} </a> </h4>
 
 				<hr class = "m-0"/>
 

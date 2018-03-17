@@ -196,21 +196,26 @@
                 </h2>
             </div>
             <div class="card-body no-padding">
-                <div class="item d-flex align-items-center">
-                <div class="image"><img src="img/avatar-1.jpg" alt="..." class="img-fluid rounded-circle"></div>
-                <div class="text"><a href="#">
-                    <h3 class="h5">Lorem Ipsum Dolor</h3></a><small>Posted on 5th June 2017 by Aria Smith.   </small></div>
-                </div>
-                <div class="item d-flex align-items-center">
-                <div class="image"><img src="img/avatar-2.jpg" alt="..." class="img-fluid rounded-circle"></div>
-                <div class="text"><a href="#">
-                    <h3 class="h5">Lorem Ipsum Dolor</h3></a><small>Posted on 5th June 2017 by Frank Williams.   </small></div>
-                </div>
-                <div class="item d-flex align-items-center">
-                <div class="image"><img src="img/avatar-3.jpg" alt="..." class="img-fluid rounded-circle"></div>
-                <div class="text"><a href="#">
-                    <h3 class="h5">Lorem Ipsum Dolor</h3></a><small>Posted on 5th June 2017 by Ashley Wood.   </small></div>
-                </div>
+                <c:choose>
+            		<c:when test="${not empty mostPaidProduct}">
+	                	<c:forEach var="paid" items="${mostPaidProduct}">
+	                		<div class="item d-flex align-items-center">
+	                		<div class="image"><img style="width: 50px; height: 50px;" src="<c:url value='${paid.key.getProductImageLink()}' />" alt="${paid.key.getName()}" class="img-fluid rounded-circle"></div>
+			                	<div class="text">
+			                    	<a href="#"><h3 class="h5">${paid.key.getName()}</h3></a><small>Total Paid : ${paid.value}</small>
+			                	</div>
+			                </div>
+			                
+	                	</c:forEach>
+            		</c:when>
+            		<c:otherwise>
+	            		<div class="item d-flex align-items-center">
+	            			<div class="feed d-flex justify-content-between">
+					        	<h4>No Most Paid Products</h4>
+					        </div>
+					    </div>
+            		</c:otherwise>
+            	</c:choose>
             </div>
             </div>
         </div>

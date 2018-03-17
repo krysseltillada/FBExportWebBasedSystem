@@ -4,10 +4,14 @@ import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 
 import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpSession;
@@ -21,11 +25,13 @@ import com.fb.exportorder.models.Contact;
 import com.fb.exportorder.models.Product;
 import com.fb.exportorder.models.customer.Cart;
 import com.fb.exportorder.models.customer.Customer;
+import com.fb.exportorder.models.customer.Order;
 import com.fb.exportorder.models.customer.Rating;
 import com.fb.exportorder.models.customer.Review;
 import com.fb.exportorder.models.enums.Gender;
 import com.fb.exportorder.models.enums.ProductStatus;
 import com.fb.exportorder.module.customer.repository.CustomerRepository;
+import com.fb.exportorder.module.customer.repository.OrderRepository;
 import com.fb.exportorder.module.customer.repository.ProductRepository;
 import com.fb.exportorder.module.customer.repository.RatingRepository;
 import com.fb.exportorder.module.customer.repository.ReviewRepository;
@@ -44,6 +50,9 @@ public class ProductServiceImpl implements ProductService {
 	
 	@Autowired
 	private CustomerRepository customerRepository;
+	
+	@Autowired
+	private OrderRepository orderRepository;
 	
 	public Map<String, Double> mapAverage = new HashMap<>();
 	
@@ -280,4 +289,45 @@ public class ProductServiceImpl implements ProductService {
 	public List<Rating> getTopThreeMostViewedProduct() {
 		return ratingRepository.getTopThreeMostViewedProduct();
 	}
+
+	@Override
+	public Map<Product, Integer> getTopPaidProduct() {
+		List<Order> orderList = orderRepository.getMostPaidOrders();
+		
+		Map<Product, Integer> mostPaid = new HashMap<>();
+		
+		orderList.forEach((order) -> {
+			order.getCart().getItems().forEach((item) -> {
+				Product product = item.getProduct();
+				mostPaid.put(product, mostPaid.containsKey(product) ? mostPaid.get(product) + 1 : 1);
+			});
+		});
+		
+		return sortByComparator(mostPaid);
+	}
+	
+	private Map<Product, Integer> sortByComparator(Map<Product, Integer> unsortMap) {
+
+		    List<Entry<Product, Integer>> list = new LinkedList<Entry<Product, Integer>>(
+		        unsortMap.entrySet());
+
+		    Collections.sort(list, new Comparator<Entry<Product,Integer>>() {
+
+				@Override
+				public int compare(Entry<Product, Integer> o1, Entry<Product, Integer> o2) {
+					return o2.getValue().compareTo(o1.getValue());
+				}
+		    	
+		    });
+
+		    Map<Product, Integer> sortedMap = new LinkedHashMap<Product, Integer>();
+		    
+		    list.forEach((entry) -> {
+		    	if(sortedMap.size() < 3 ) {
+		    		sortedMap.put(entry.getKey(), entry.getValue());
+		    	}
+		    });
+		    
+		    return sortedMap;
+		  }
 }

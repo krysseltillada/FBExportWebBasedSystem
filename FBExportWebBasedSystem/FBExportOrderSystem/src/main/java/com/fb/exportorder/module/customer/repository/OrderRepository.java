@@ -17,4 +17,7 @@ public interface OrderRepository extends PagingAndSortingRepository<Order, Long>
 	@Query(value="SELECT * FROM orders o ORDER BY o.date_ordered DESC LIMIT 5", nativeQuery=true)
 	public List<Order> getLatestOrders();
 	
+	@Query(value="SELECT * FROM orders o WHERE o.order_status = 'PAID'", nativeQuery=true)
+	public List<Order> getMostPaidOrders();
+	
 }
