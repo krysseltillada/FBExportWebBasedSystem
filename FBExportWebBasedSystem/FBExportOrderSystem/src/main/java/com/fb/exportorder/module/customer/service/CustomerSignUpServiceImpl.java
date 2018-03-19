@@ -194,6 +194,7 @@ public class CustomerSignUpServiceImpl implements CustomerSignUpService {
 						.add(userAccountAddress);
 				
 			customer.setEnabled(true);
+			customer.setOnline(false);
 
 				
 			customerRepository.save(customer);

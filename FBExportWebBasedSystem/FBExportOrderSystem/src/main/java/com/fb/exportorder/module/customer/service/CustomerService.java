@@ -1,6 +1,7 @@
 package com.fb.exportorder.module.customer.service;
 
 import java.util.List;
+import java.util.Map;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fb.exportorder.models.customer.Activity;
@@ -18,4 +19,6 @@ public interface CustomerService {
 	public Item getItemById(long id);
 	public List<Order> getOrdersByCustomerId(int pageNumber, long customerId);
 	public int getOrderCountByCustomerId(long customerId);
+	public void saveCustomer(Customer customer);
+	public Map<Boolean, Integer> getOnlineUsersCount();
 }

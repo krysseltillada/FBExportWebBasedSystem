@@ -1,3 +1,5 @@
+<%@ include file = "../../lib/tags/tag-libraries.jsp" %>
+
 <section class="dashboard-counts no-padding-bottom pt-0">
     <div class="container-fluid">
 
@@ -16,24 +18,23 @@
         </div>
 
         <div class="row bg-white has-shadow p-0" style = "font-size: 14px;">
-
+		
         <div class="col-xl-3 col-sm-4">
             <div class="item d-flex align-items-center">
-
                 <div class="icon bg-orange"><i class="fa fa-tasks" aria-hidden="true"></i></div>
                 <div class="title"><span>Pending<br>Orders</span>
                 </div>
-                <div class="number"><strong>25</strong></div>
-
+                <div class="number"><strong>${not empty orderCount.get('PENDING') ? orderCount.get('PENDING') : 0}</strong></div>
             </div>
         </div>
-
+        
+        
         <div class="col-xl-3 col-sm-4">
             <div class="item d-flex align-items-center">
             <div class="icon bg-green"><i class="fa fa-check" aria-hidden="true"></i></div>
             <div class="title"><span>Approved<br>Orders</span>
             </div>
-            <div class="number"><strong>70</strong></div>
+            <div class="number"><strong>${not empty orderCount.get('APPROVED') ? orderCount.get('APPROVED') : 0}</strong></div>
             </div>
         </div>
 
@@ -42,7 +43,7 @@
             <div class="icon bg-yellow"><i class="fa fa-usd" aria-hidden="true"></i></div>
             <div class="title"><span>Paid<br>Orders</span>
             </div>
-            <div class="number"><strong>40</strong></div>
+            <div class="number"><strong>${not empty orderCount.get('PAID') ? orderCount.get('PAID') : 0}</strong></div>
             </div>
         </div>
 
@@ -51,7 +52,7 @@
             <div class="icon bg-red"><i class="fa fa-times" aria-hidden="true"></i></div>
             <div class="title"><span>Disapproved<br>Orders</span>
             </div>
-            <div class="number"><strong>50</strong></div>
+            <div class="number"><strong>${not empty orderCount.get('REJECTED') ? orderCount.get('REJECTED') : 0}</strong></div>
             </div>
         </div>
 
@@ -84,64 +85,33 @@
                     </h3>
                 </div>
                 <div class="card-body no-padding" style = "max-height: 305px; overflow-y: auto;">
-
-                    <div class="item">
-                    <div class="feed d-flex justify-content-between">
-                        <div class="feed-body d-flex justify-content-between"><a href="#" class="feed-profile"><img src="img/avatar-5.jpg" alt="person" class="img-fluid rounded-circle"></a>
-                        <div class="content">
-                            <h5>Aria Smith</h5><span>Posted a new blog </span>
-                            <div class="full-date"><small>Today 5:60 pm - 12.06.2014</small></div>
-                        </div>
-                        </div>
-                        <div class="date text-right"><small>5min ago</small></div>
-                    </div>
-                    </div>
-
-                    <div class="item">
-                    <div class="feed d-flex justify-content-between">
-                        <div class="feed-body d-flex justify-content-between"><a href="#" class="feed-profile"><img src="img/avatar-5.jpg" alt="person" class="img-fluid rounded-circle"></a>
-                        <div class="content">
-                            <h5>Aria Smith</h5><span>Posted a new blog </span>
-                            <div class="full-date"><small>Today 5:60 pm - 12.06.2014</small></div>
-                        </div>
-                        </div>
-                        <div class="date text-right"><small>5min ago</small></div>
-                    </div>
-                    </div>
-                    <div class="item">
-                    <div class="feed d-flex justify-content-between">
-                        <div class="feed-body d-flex justify-content-between"><a href="#" class="feed-profile"><img src="img/avatar-5.jpg" alt="person" class="img-fluid rounded-circle"></a>
-                        <div class="content">
-                            <h5>Aria Smith</h5><span>Posted a new blog </span>
-                            <div class="full-date"><small>Today 5:60 pm - 12.06.2014</small></div>
-                        </div>
-                        </div>
-                        <div class="date text-right"><small>5min ago</small></div>
-                    </div>
-                    </div>
-                    <div class="item">
-                    <div class="feed d-flex justify-content-between">
-                        <div class="feed-body d-flex justify-content-between"><a href="#" class="feed-profile"><img src="img/avatar-5.jpg" alt="person" class="img-fluid rounded-circle"></a>
-                        <div class="content">
-                            <h5>Aria Smith</h5><span>Posted a new blog </span>
-                            <div class="full-date"><small>Today 5:60 pm - 12.06.2014</small></div>
-                        </div>
-                        </div>
-                        <div class="date text-right"><small>5min ago</small></div>
-                    </div>
-                    </div>
-                    <div class="item">
-                    <div class="feed d-flex justify-content-between">
-                        <div class="feed-body d-flex justify-content-between"><a href="#" class="feed-profile"><img src="img/avatar-5.jpg" alt="person" class="img-fluid rounded-circle"></a>
-                        <div class="content">
-                            <h5>Aria Smith</h5><span>Posted a new blog </span>
-                            <div class="full-date"><small>Today 5:60 pm - 12.06.2014</small></div>
-                        </div>
-                        </div>
-                        <div class="date text-right"><small>5min ago</small></div>
-                    </div>
-                    </div>
-
+					
+					<c:choose>
+						<c:when test="${not empty latestOrders}">
+							<c:forEach var="order" items="${latestOrders}">
+								<div class="item">
+				                    <div class="feed d-flex justify-content-between">
+				                        <div class="feed-body d-flex justify-content-between"><a href="#" class="feed-profile"><img src="<c:url value = '${order.getCustomer().getProfileImageLink()}' />" alt="${order.getCustomer().getUsername()}" class="img-fluid rounded-circle"></a>
+				                        <div class="content">
+				                            <h5>${order.getCustomer().getFirstname()} ${order.getCustomer().getLastname()}</h5><span>Status : ${ order.getOrderStatus() } </span>
+				                            <div class="full-date"><small>${order.getDateOrdered()}</small></div>
+				                        </div>
+				                        </div>
+				                        
+				                    </div>
+				                 </div>
+							</c:forEach>
+						</c:when>
+						<c:otherwise>
+						<div class="item">
+				        	<div class="feed d-flex justify-content-between">
+				        		<h4>No Latest Orders</h4>
+				            </div>
+				        </div>
+							
+						</c:otherwise>
+					</c:choose>
+                    
 
                 </div>
                 </div>
@@ -149,51 +119,6 @@
             </div>
 
         </div>
-
-        </div>
-    </div>
-    </section>
-
-    <section class = "dashboard-counts no-padding-bottom pt-0">
-    <div class = "container-fluid">
-        <div class="row bg-white has-shadow p-0 mt-2" style = "font-size: 14px;">
-
-        <div class="col-xl-3 col-sm-6">
-            <div class="item d-flex align-items-center">
-            <div class="icon bg-violet"><i class="fa fa-ship" aria-hidden="true"></i></div>
-            <div class="title"><span>To ship <br>Orders</span>
-            </div>
-            <div class="number"><strong>25</strong></div>
-            </div>
-        </div>
-
-        <div class="col-xl-3 col-sm-6">
-            <div class="item d-flex align-items-center">
-            <div class="icon bg-blue"><i class="icon-padnote"></i></div>
-            <div class="title"><span>Received<br>Orders</span>
-            </div>
-            <div class="number"><strong>70</strong></div>
-            </div>
-        </div>
-
-        <div class="col-xl-3 col-sm-6">
-            <div class="item d-flex align-items-center">
-            <div class="icon bg-red"><i class="fa fa-times" aria-hidden="true"></i></div>
-            <div class="title"><span>Cancelled<br>Orders</span>
-            </div>
-            <div class="number"><strong>40</strong></div>
-            </div>
-        </div>
-
-            <div class="col-xl-3 col-sm-6">
-            <div class="item d-flex align-items-center">
-            <div class="icon bg-red"><i class="fa fa-arrow-left" aria-hidden="true"></i></div>
-            <div class="title"><span>Returned<br>Orders</span>
-            </div>
-            <div class="number"><strong>50</strong></div>
-            </div>
-        </div>
-
 
         </div>
     </div>
@@ -218,15 +143,15 @@
             <div class="statistics col-lg-3 col-12">
             <div class="statistic d-flex align-items-center bg-white has-shadow mb-2">
                 <div class="icon bg-red"><i class="fa fa-tasks"></i></div>
-                <div class="text"><strong>234</strong><br><small>online users</small></div>
+                <div class="text"><strong>${onlineUsers.get(true) > 0 ? onlineUsers.get(true) : 0}</strong><br><small>online users</small></div>
             </div>
             <div class="statistic d-flex align-items-center bg-white has-shadow mb-2">
                 <div class="icon bg-green"><i class="fa fa-calendar-o"></i></div>
-                <div class="text"><strong>152</strong><br><small>registered users</small></div>
+                <div class="text"><strong>${onlineUsers.get(true) > 0 ? onlineUsers.get(true) + orderCount.get(false)  : 0}</strong><br><small>registered users</small></div>
             </div>
             <div class="statistic d-flex align-items-center bg-white has-shadow">
                 <div class="icon bg-orange"><i class="fa fa-paper-plane-o"></i></div>
-                <div class="text"><strong>147</strong><br><small>offline users</small></div>
+                <div class="text"><strong>${onlineUsers.get(false) > 0 ? onlineUsers.get(false) : 0}</strong><br><small>offline users</small></div>
             </div>
             </div>
 
@@ -271,21 +196,26 @@
                 </h2>
             </div>
             <div class="card-body no-padding">
-                <div class="item d-flex align-items-center">
-                <div class="image"><img src="img/avatar-1.jpg" alt="..." class="img-fluid rounded-circle"></div>
-                <div class="text"><a href="#">
-                    <h3 class="h5">Lorem Ipsum Dolor</h3></a><small>Posted on 5th June 2017 by Aria Smith.   </small></div>
-                </div>
-                <div class="item d-flex align-items-center">
-                <div class="image"><img src="img/avatar-2.jpg" alt="..." class="img-fluid rounded-circle"></div>
-                <div class="text"><a href="#">
-                    <h3 class="h5">Lorem Ipsum Dolor</h3></a><small>Posted on 5th June 2017 by Frank Williams.   </small></div>
-                </div>
-                <div class="item d-flex align-items-center">
-                <div class="image"><img src="img/avatar-3.jpg" alt="..." class="img-fluid rounded-circle"></div>
-                <div class="text"><a href="#">
-                    <h3 class="h5">Lorem Ipsum Dolor</h3></a><small>Posted on 5th June 2017 by Ashley Wood.   </small></div>
-                </div>
+                <c:choose>
+            		<c:when test="${not empty mostPaidProduct}">
+	                	<c:forEach var="paid" items="${mostPaidProduct}">
+	                		<div class="item d-flex align-items-center">
+	                		<div class="image"><img style="width: 50px; height: 50px;" src="<c:url value='${paid.key.getProductImageLink()}' />" alt="${paid.key.getName()}" class="img-fluid rounded-circle"></div>
+			                	<div class="text">
+			                    	<a href="#"><h3 class="h5">${paid.key.getName()}</h3></a><small>Total Paid : ${paid.value}</small>
+			                	</div>
+			                </div>
+			                
+	                	</c:forEach>
+            		</c:when>
+            		<c:otherwise>
+	            		<div class="item d-flex align-items-center">
+	            			<div class="feed d-flex justify-content-between">
+					        	<h4>No Most Paid Products</h4>
+					        </div>
+					    </div>
+            		</c:otherwise>
+            	</c:choose>
             </div>
             </div>
         </div>
@@ -303,21 +233,26 @@
                 </h2>
             </div>
             <div class="card-body no-padding">
-                <div class="item d-flex align-items-center">
-                <div class="image"><img src="img/avatar-1.jpg" alt="..." class="img-fluid rounded-circle"></div>
-                <div class="text"><a href="#">
-                    <h3 class="h5">Lorem Ipsum Dolor</h3></a><small>Posted on 5th June 2017 by Aria Smith.   </small></div>
-                </div>
-                <div class="item d-flex align-items-center">
-                <div class="image"><img src="img/avatar-2.jpg" alt="..." class="img-fluid rounded-circle"></div>
-                <div class="text"><a href="#">
-                    <h3 class="h5">Lorem Ipsum Dolor</h3></a><small>Posted on 5th June 2017 by Frank Williams.   </small></div>
-                </div>
-                <div class="item d-flex align-items-center">
-                <div class="image"><img src="img/avatar-3.jpg" alt="..." class="img-fluid rounded-circle"></div>
-                <div class="text"><a href="#">
-                    <h3 class="h5">Lorem Ipsum Dolor</h3></a><small>Posted on 5th June 2017 by Ashley Wood.   </small></div>
-                </div>
+            	<c:choose>
+            		<c:when test="${not empty mostRatedProduct}">
+	                	<c:forEach var="rating" items="${mostRatedProduct}">
+	                		<div class="item d-flex align-items-center">
+	                		<div class="image"><img style="width: 50px; height: 50px;" src="<c:url value='${rating.getProduct().getProductImageLink()}' />" alt="${rating.getProduct().getName()}" class="img-fluid rounded-circle"></div>
+			                	<div class="text">
+			                    	<a href="#"><h3 class="h5">${rating.getProduct().getName()}</h3></a><small>Total Stars : <fmt:formatNumber value="${rating.getRate()}" type="NUMBER" minFractionDigits="0"></fmt:formatNumber></small><br><small>Total Views : ${rating.getViews()}</small>
+			                	</div>
+			                </div>
+			                
+	                	</c:forEach>
+            		</c:when>
+            		<c:otherwise>
+	            		<div class="item d-flex align-items-center">
+	            			<div class="feed d-flex justify-content-between">
+					        	<h4>No Most Rated Products</h4>
+					        </div>
+					    </div>
+            		</c:otherwise>
+            	</c:choose>
             </div>
             </div>
         </div>
@@ -331,21 +266,26 @@
                 </h2>
             </div>
             <div class="card-body no-padding">
-                <div class="item d-flex align-items-center">
-                <div class="image"><img src="img/avatar-1.jpg" alt="..." class="img-fluid rounded-circle"></div>
-                <div class="text"><a href="#">
-                    <h3 class="h5">Lorem Ipsum Dolor</h3></a><small>Posted on 5th June 2017 by Aria Smith.   </small></div>
-                </div>
-                <div class="item d-flex align-items-center">
-                <div class="image"><img src="img/avatar-2.jpg" alt="..." class="img-fluid rounded-circle"></div>
-                <div class="text"><a href="#">
-                    <h3 class="h5">Lorem Ipsum Dolor</h3></a><small>Posted on 5th June 2017 by Frank Williams.   </small></div>
-                </div>
-                <div class="item d-flex align-items-center">
-                <div class="image"><img src="img/avatar-3.jpg" alt="..." class="img-fluid rounded-circle"></div>
-                <div class="text"><a href="#">
-                    <h3 class="h5">Lorem Ipsum Dolor</h3></a><small>Posted on 5th June 2017 by Ashley Wood.   </small></div>
-                </div>
+                <c:choose>
+            		<c:when test="${not empty mostViewedProduct}">
+	                	<c:forEach var="views" items="${mostViewedProduct}">
+	                		<div class="item d-flex align-items-center">
+	                		<div class="image"><img style="width: 50px; height: 50px;" src="<c:url value='${views.getProduct().getProductImageLink()}' />" alt="${views.getProduct().getName()}" class="img-fluid rounded-circle"></div>
+			                	<div class="text">
+			                    	<a href="#"><h3 class="h5">${views.getProduct().getName()}</h3></a><small>Total Stars : <fmt:formatNumber value="${views.getRate()}" type="NUMBER" minFractionDigits="0"></fmt:formatNumber></small><br><small>Total Views : ${views.getViews()}</small>
+			                	</div>
+			                </div>
+			                
+	                	</c:forEach>
+            		</c:when>
+            		<c:otherwise>
+	            		<div class="item d-flex align-items-center">
+	            			<div class="feed d-flex justify-content-between">
+					        	<h4>No Most Viewed Products</h4>
+					        </div>
+					    </div>
+            		</c:otherwise>
+            	</c:choose>
             </div>
             </div>
         </div>

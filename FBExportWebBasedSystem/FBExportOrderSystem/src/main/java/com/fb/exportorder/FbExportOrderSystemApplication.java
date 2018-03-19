@@ -1,8 +1,7 @@
-package com.fb.exportorder;
+ package com.fb.exportorder;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.scheduling.annotation.EnableScheduling;
 
 @SpringBootApplication
@@ -13,6 +12,5 @@ public class FbExportOrderSystemApplication  {
 		SpringApplication.run(FbExportOrderSystemApplication.class, args);
 	}
 
-	
 }
 	

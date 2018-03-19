@@ -56,7 +56,8 @@ public class LoginSuccessHandler implements AuthenticationSuccessHandler {
 		String profileImageLink = (Objects.nonNull(customer)) ? customer.getProfileImageLink() :
 									 						    customerByEmail.getProfileImageLink();
 		
-	
+		String username = (Objects.nonNull(customer)) ? customer.getUsername() :
+														customerByEmail.getUsername();
 		
 		long customerId = (Objects.nonNull(customer)) ? customer.getId() :
 														customerByEmail.getId();
@@ -65,6 +66,14 @@ public class LoginSuccessHandler implements AuthenticationSuccessHandler {
 		session.setAttribute("customerName", name);
 		session.setAttribute("customerId", customerId);
 		session.setAttribute("customerProfileImageLink", profileImageLink);
+		session.setAttribute("customerUsername", username);
+		
+		if(Objects.nonNull(customer))
+			customer.setOnline(true);
+		else
+			customerByEmail.setOnline(true);
+		
+		customerRepository.save(customer);
 		
 		response.sendRedirect(request.getServletContext().getContextPath() + "/");
 		

@@ -3,7 +3,9 @@ package com.fb.exportorder.module.customer.service;
 import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 
 import org.hibernate.SessionFactory;
@@ -16,6 +18,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fb.exportorder.models.Product;
 import com.fb.exportorder.models.customer.Activity;
 import com.fb.exportorder.models.customer.Cart;
 import com.fb.exportorder.models.customer.Customer;
@@ -165,6 +168,26 @@ public class CustomerServiceImpl implements CustomerService {
 	@Override
 	public int getOrderCountByCustomerId(long customerId) {
 		return customerRepository.findOne(customerId).getOrders().size();
+	}
+
+	@Override
+	public void saveCustomer(Customer customer) {
+		customerRepository.save(customer);
+	}
+
+	@Override
+	public Map<Boolean, Integer> getOnlineUsersCount() {
+		List<Object[]> rawResultSet = customerRepository.getOnlineUsersCount();
+		
+		Map<Boolean, Integer> onlineUsers = new HashMap<>();
+		onlineUsers.put(true, 0);
+		onlineUsers.put(false, 0);
+		
+		for(Object[] data : rawResultSet) {
+			onlineUsers.put(Boolean.valueOf(data[1].toString()), Integer.parseInt(data[0].toString()));
+		}
+		
+		return onlineUsers;
 	}
 
 }
