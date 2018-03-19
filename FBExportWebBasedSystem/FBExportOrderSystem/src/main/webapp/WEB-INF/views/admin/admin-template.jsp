@@ -128,7 +128,7 @@
 				<nav class="side-navbar">
 
 				    <div class="sidebar-header d-flex align-items-center">
-				    <div class="avatar"><img src="https://scontent.fmnl4-3.fna.fbcdn.net/v/t1.0-1/c0.5.50.50/p50x50/20953362_1445195212229457_4994570052770081516_n.jpg?oh=1c7e4503215039586035544520617a1c&oe=5B4CB683" alt="..." class="img-fluid rounded-circle" /></div>
+				    <div class="avatar"><img src="<c:url value="${(not empty sessionScope.employeeProfileImageLink) ? sessionScope.employeeProfileImageLink  : sessionScope.employeeGender == 'MALE' ? '/FBExportSystem/resources/admin/img/profile-male.jpg' : '/FBExportSystem/resources/admin/img/profile-female.jpg'  }" />" class="img-fluid rounded-circle" style="width: 50px; height: 50px;" /></div>
 				    <div class="title">
 				        <h1 class="h4">${sessionScope.employeeName}</h1>
 				        <p>${sessionScope.position}</p>

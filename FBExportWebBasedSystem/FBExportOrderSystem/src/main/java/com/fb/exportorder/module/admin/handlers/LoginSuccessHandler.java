@@ -65,6 +65,9 @@ public class LoginSuccessHandler implements AuthenticationSuccessHandler{
 		String username = (Objects.nonNull(employee)) ? employee.getUsername() :
 														employeeByEmail.getUsername();
 		
+		String gender = (Objects.nonNull(employee)) ? employee.getGender().toString() :
+														employeeByEmail.getGender().toString();
+		
 		String profileImageLink = (Objects.nonNull(employee)) ? employee.getProfileImageLink() :
 																employeeByEmail.getProfileImageLink();
 		
@@ -78,6 +81,7 @@ public class LoginSuccessHandler implements AuthenticationSuccessHandler{
 		session.setAttribute("employeeId", customerId);
 		session.setAttribute("employeeProfileImageLink", profileImageLink);
 		session.setAttribute("employeeUsername", username);
+		session.setAttribute("employeeGender", gender);
 		
 		Date logoutTime = ((List<SystemSettings>)systemSettingsRepository.findAll()).get(0).getLogoutTime();
 		

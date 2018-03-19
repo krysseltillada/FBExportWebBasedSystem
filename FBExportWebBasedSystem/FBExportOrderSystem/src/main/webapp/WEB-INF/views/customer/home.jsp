@@ -110,7 +110,7 @@
 									<c:choose>
 			
 										<c:when test = "${isCustomerLoggedIn}">
-											<c:if test="${product.weight > 0}">
+											<c:if test="${product.status ne 'OUT_OF_STOCK'}">
 												<button type = "button" class="btn btn-primary btnProductItemAddToCart" style = "position: relative; left: -8px; top: -4px; padding: 8px 10px 8px 10px;" disabled>
 					                            <i class="fa fa-cart-plus mr-1 mb-1" aria-hidden="true"></i>
 					                            Add to cart</button>
@@ -118,7 +118,7 @@
 					                        
 				                        </c:when>
 				                        <c:otherwise>
-				                        	<c:if test="${product.weight > 0}">
+				                        	<c:if test="${product.status ne 'OUT_OF_STOCK'}">
 				                        		<a href="<c:url value = '/login' />" class="btn btn-primary" style = "position: relative; left: -8px; top: -4px; padding: 8px 10px 8px 10px;">
 					                            <i class="fa fa-cart-plus mr-1 mb-1" aria-hidden="true"></i>
 					                            Login to add</a>
@@ -128,7 +128,7 @@
 			                        </c:choose>
 			                           
 								
-									<span style = "font-size: 12px; position: absolute; top: 155px;" class = "black-text"> Stocks: <span id = "product-stock-status" style="color: ${(product.weight > 0 ) ? 'green' : 'red'}">${(product.weight > 0 ) ? 'On Stock' : 'Out of Stock'} </span> </span>
+									<span style = "font-size: 12px; position: absolute; top: 155px;" class = "black-text"> Stocks: <span id = "product-stock-status" style="color: ${(product.status != 'OUT_OF_STOCK' ) ? 'green' : 'red'}">${(product.status !='OUT_OF_STOCK' ) ? 'On Stock' : 'Out of Stock'} </span> </span>
 			                        <span style = "font-size: 12px; position: absolute; top: 174px;" class = "black-text"> Posted on: <span id = "product-date-posted">${product.datePosted}</span> </span>
 			                        
 			                        <input type = "hidden" value = "${product.productId}" id = "product-id" />
@@ -210,7 +210,7 @@
 			                        <c:choose>
 			
 										<c:when test = "${isCustomerLoggedIn}">
-											<c:if test="${product.weight > 0}">
+											<c:if test="${product.status ne 'OUT_OF_STOCK'}">
 												<button type = "button" class="btn btn-primary btnProductItemAddToCart" style = "position: relative; left: -8px; top: -4px; padding: 8px 10px 8px 10px;" disabled>
 					                            <i class="fa fa-cart-plus mr-1 mb-1" aria-hidden="true"></i>
 					                            Add to cart</button>
@@ -218,7 +218,7 @@
 					                        
 				                        </c:when>
 				                        <c:otherwise>
-				                        	<c:if test="${product.weight > 0}">
+				                        	<c:if test="${product.status ne 'OUT_OF_STOCK'}">
 				                        		<a href="<c:url value = '/login' />" class="btn btn-primary" style = "position: relative; left: -8px; top: -4px; padding: 8px 10px 8px 10px;">
 					                            <i class="fa fa-cart-plus mr-1 mb-1" aria-hidden="true"></i>
 					                            Login to add</a>
@@ -227,7 +227,7 @@
 				                            
 			                        </c:choose>
 			
-									<span style = "font-size: 12px; position: absolute; top: 155px;" class = "black-text"> Stocks: <span id = "product-stock-status" style="color: ${(product.weight > 0 ) ? 'green' : 'red'}">${(product.weight > 0 ) ? 'On Stock' : 'Out of Stock'} </span> </span>
+									<span style = "font-size: 12px; position: absolute; top: 155px;" class = "black-text"> Stocks: <span id = "product-stock-status" style="color: ${(product.status != 'OUT_OF_STOCK' ) ? 'green' : 'red'}">${(product.status ne 'OUT_OF_STOCK' ) ? 'On Stock' : 'Out of Stock'} </span> </span>
 			                        <span style = "font-size: 12px; position: absolute; top: 174px;" class = "black-text"> Posted on: <span id = "product-date-posted">${product.datePosted}</span> </span>
 			                        
 			                        <input type = "hidden" value = "${product.productId}" id = "product-id" />

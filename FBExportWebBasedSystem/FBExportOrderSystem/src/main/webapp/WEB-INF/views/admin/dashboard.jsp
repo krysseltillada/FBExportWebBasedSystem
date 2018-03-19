@@ -50,7 +50,7 @@
             <div class="col-xl-3 col-sm-6">
             <div class="item d-flex align-items-center">
             <div class="icon bg-red"><i class="fa fa-times" aria-hidden="true"></i></div>
-            <div class="title"><span>Disapproved<br>Orders</span>
+            <div class="title"><span>Rejected<br>Orders</span>
             </div>
             <div class="number"><strong>${not empty orderCount.get('REJECTED') ? orderCount.get('REJECTED') : 0}</strong></div>
             </div>
@@ -123,6 +123,51 @@
         </div>
     </div>
     </section>
+    
+    <section class = "dashboard-counts no-padding-bottom pt-0">
+            <div class = "container-fluid">
+                <div class="row bg-white has-shadow p-0 mt-2" style = "font-size: 14px;">
+
+                <div class="col-xl-3 col-sm-6">
+                  <div class="item d-flex align-items-center">
+                    <div class="icon bg-violet"><i class="fa fa-ship" aria-hidden="true"></i></div>
+                    <div class="title"><span>To ship <br>Orders</span>
+                    </div>
+                    <div class="number"><strong>${not empty orderCount.get('TO_SHIP') ? orderCount.get('TO_SHIP') : 0}</strong></div>
+                  </div>
+                </div>
+
+                <div class="col-xl-3 col-sm-6">
+                  <div class="item d-flex align-items-center">
+                    <div class="icon bg-blue"><i class="icon-padnote"></i></div>
+                    <div class="title"><span>Received<br>Orders</span>
+                    </div>
+                    <div class="number"><strong>${not empty orderCount.get('RECEIVED') ? orderCount.get('RECEIVED') : 0}</strong></div>
+                  </div>
+                </div>
+
+                <div class="col-xl-3 col-sm-6">
+                  <div class="item d-flex align-items-center">
+                    <div class="icon bg-red"><i class="fa fa-times" aria-hidden="true"></i></div>
+                    <div class="title"><span>Cancelled<br>Orders</span>
+                    </div>
+                    <div class="number"><strong>${not empty orderCount.get('CANCELLED') ? orderCount.get('CANCELLED') : 0}</strong></div>
+                  </div>
+                </div>
+
+                 <div class="col-xl-3 col-sm-6">
+                  <div class="item d-flex align-items-center">
+                    <div class="icon bg-red"><i class="fa fa-arrow-left" aria-hidden="true"></i></div>
+                    <div class="title"><span>Returned<br>Orders</span>
+                    </div>
+                    <div class="number"><strong>${not empty orderCount.get('RETURNED') ? orderCount.get('RETURNED') : 0}</strong></div>
+                  </div>
+                </div>
+
+
+              </div>
+            </div>
+          </section>
 
     <section class="dashboard-header pt-3 no-padding-bottom">
         <div class="container-fluid">
@@ -147,7 +192,7 @@
             </div>
             <div class="statistic d-flex align-items-center bg-white has-shadow mb-2">
                 <div class="icon bg-green"><i class="fa fa-calendar-o"></i></div>
-                <div class="text"><strong>${onlineUsers.get(true) > 0 ? onlineUsers.get(true) + orderCount.get(false)  : 0}</strong><br><small>registered users</small></div>
+                <div class="text"><strong>${onlineUsers.size()}</strong><br><small>registered users</small></div>
             </div>
             <div class="statistic d-flex align-items-center bg-white has-shadow">
                 <div class="icon bg-orange"><i class="fa fa-paper-plane-o"></i></div>

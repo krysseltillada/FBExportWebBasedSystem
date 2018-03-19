@@ -45,7 +45,7 @@ $(document).ready(function () {
                                 origin : response[i].origin,
                                 name : response[i].name,
                                 description : response[i].description,
-                                stockStatus : (response[i].status != 'OUT_OF_STOCK') ? 'On stock' : 'Out of stock',
+                                stockStatus : response[i].status,
                                 postedDate : response[i].datePosted,
                                 productId : response[i].productId,
                                 isCustomerLoggedIn : $("#customer-id").val()
@@ -132,7 +132,7 @@ $(document).ready(function () {
                                 origin : response[i].origin,
                                 name : response[i].name,
                                 description : response[i].description,
-                                stockStatus : (response[i].status != 'OUT_OF_STOCK') ? 'On stock' : 'Out of stock',
+                                stockStatus : response[i].status,
                                 postedDate : response[i].datePosted,
                                 productId : response[i].productId,
                                 isCustomerLoggedIn : $("#customer-id").val()

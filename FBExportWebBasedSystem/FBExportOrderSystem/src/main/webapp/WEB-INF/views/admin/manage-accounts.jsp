@@ -401,7 +401,7 @@
                             <div class="row">
                                 <div class="col-lg-6">
                                 <div class="form-group text-center">
-                                    <img class = "mb-2 rounded" style = "border: 1px solid #DDDDDD; width: 100px" id='img-uploadEmployeeEdit' src = "/../FBExportSystem/resources/admin/img/profile-male.jpg" />
+                                    <img class = "mb-2 rounded" style = "border: 1px solid #DDDDDD; width: 100px; height: 100px;" id='img-uploadEmployeeEdit' src = "/../FBExportSystem/resources/admin/img/profile-male.jpg" />
 
                                     <p class="fileEmployeeAdd">
                                     <input type="file" name="fileEmployeeEdit" id="fileEmployeeEdit" accept="image/x-png,image/jpeg" />
@@ -567,7 +567,7 @@
                             <div class="row">
                                 <div class="col-lg-6">
                                 <div class="form-group text-center">
-                                    <img class = "mb-2 rounded" style = "border: 1px solid #DDDDDD; width: 100px" id='img-uploadEmployeeAdd' src = "/../FBExportSystem/resources/admin/img/profile-male.jpg" />
+                                    <img class = "mb-2 rounded" style = "border: 1px solid #DDDDDD; width: 100px; height: 100px;" id='img-uploadEmployeeAdd' src = "/../FBExportSystem/resources/admin/img/profile-male.jpg" />
 
                                     <p class="fileEmployeeAdd">
                                     <input type="file" name="fileEmployeeAdd" id="fileEmployeeAdd" accept="image/x-png,image/jpeg" />
@@ -728,7 +728,7 @@
         	
 					        	<c:forEach var = "employee" items = "${employeeList}">
 					        		<tr>
-		                                <td><img src="<c:url value = '${employee.profileImageLink}' />" height="100" width="100"/></td>
+		                                <td><img src="<c:url value = "${(not empty employee.profileImageLink) ? employee.profileImageLink  : employee.gender == 'MALE' ? '/FBExportSystem/resources/admin/img/profile-male.jpg' : '/FBExportSystem/resources/admin/img/profile-female.jpg' }" />" height="100" width="100"/></td>
 		                                <td class="usernameEmployeeRow"><c:out value = "${employee.username} " /></td>
 		                                <td><c:out value = "${employee.firstname}" /></td>
 		                                <td><c:out value = "${employee.middlename}" /></td>
@@ -880,7 +880,7 @@
                             <div class="row">
                                 <div class="col-lg-6">
                                 <div class="form-group text-center">
-                                    <img class = "mb-2 rounded" style = "border: 1px solid #DDDDDD; width: 100px" id='img-uploadAdminEdit' src = "/../FBExportSystem/resources/admin/img/profile-male.jpg" />
+                                    <img class = "mb-2 rounded" style = "border: 1px solid #DDDDDD; width: 100px; height: 100px;" id='img-uploadAdminEdit' src = "/../FBExportSystem/resources/admin/img/profile-male.jpg" />
 
                                     <p class="fileAdminEdit">
                                     <input type="file" name="fileAdminEdit" id="fileAdminEdit" accept="image/x-png,image/jpeg" />
@@ -1046,7 +1046,7 @@
                             <div class="row">
                                 <div class="col-lg-6">
                                 <div class="form-group text-center">
-                                    <img class = "mb-2 rounded" style = "border: 1px solid #DDDDDD; width: 100px" id='img-uploadAdminAdd' src = "/../FBExportSystem/resources/admin/img/profile-male.jpg" />
+                                    <img class = "mb-2 rounded" style = "border: 1px solid #DDDDDD; width: 100px; height: 100px;" id='img-uploadAdminAdd' src = "/../FBExportSystem/resources/admin/img/profile-male.jpg" />
 
                                     <p class="fileAdminAdd">
                                     <input type="file" name="fileAdminAdd" id="fileAdminAdd" accept="image/x-png,image/jpeg" />
@@ -1207,7 +1207,7 @@
         	
 					        	<c:forEach var = "employee" items = "${adminList}">
 					        		<tr>
-		                                <td><img src="<c:url value = '${employee.profileImageLink}' />" height="100" width="100"/></td>
+		                                <td><img src="<c:url value = "${(not empty employee.profileImageLink) ? employee.profileImageLink  : employee.gender == 'MALE' ? '/FBExportSystem/resources/admin/img/profile-male.jpg' : '/FBExportSystem/resources/admin/img/profile-female.jpg' }" />" height="100" width="100"/></td>
 		                                <td class="usernameAdminRow"><c:out value = "${employee.username} " /></td>
 		                                <td><c:out value = "${employee.firstname}" /></td>
 		                                <td><c:out value = "${employee.middlename}" /></td>
