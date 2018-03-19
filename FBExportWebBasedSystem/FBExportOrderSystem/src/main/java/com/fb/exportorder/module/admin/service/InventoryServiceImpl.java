@@ -147,6 +147,8 @@ public class InventoryServiceImpl implements InventoryService {
 			if (newProduct.getStatus() == ProductStatus.POSTED)
 				newProduct.setDatePosted(Date.from(LocalDate.now().atStartOfDay().atZone(ZoneId.systemDefault()).toInstant()));
 			
+			if(newProduct.getWeight() <= 0.0)
+				newProduct.setStatus(ProductStatus.OUT_OF_STOCK);
 			
 			Rating rating = new Rating();
 			
@@ -193,15 +195,24 @@ public class InventoryServiceImpl implements InventoryService {
 	}
 
 	@Override
-	public void postProduct(long id) {
+	public String postProduct(long id) {
 		
 		Product postProduct = inventoryRepository.findOne(id);
 		
-		postProduct.setStatus(ProductStatus.POSTED);
+		String result; 
+		
+		if(postProduct.getWeight() <= 0) {
+			postProduct.setStatus(ProductStatus.OUT_OF_STOCK);
+			result = "Out of Stock";
+		}else {
+			postProduct.setStatus(ProductStatus.POSTED);
+			result = "Posted";
+		}
 		postProduct.setDatePosted(Date.from(LocalDate.now().atStartOfDay().atZone(ZoneId.systemDefault()).toInstant()));
 		
 		inventoryRepository.save(postProduct);
 		
+		return result;
 	}
 
 	@Override
@@ -304,6 +315,11 @@ public class InventoryServiceImpl implements InventoryService {
 			editedProduct.setSupplier(supplier);
 			editedProduct.setSupplierContactNumber(supplierContactNumber);
 			editedProduct.setSupplierAddress(supplierAddress);
+			
+			if(editedProduct.getWeight() <= 0.0) 
+				editedProduct.setStatus(ProductStatus.OUT_OF_STOCK);
+			else
+				editedProduct.setStatus(ProductStatus.POSTED);
 			
 			for (int i = 0; i != previewImages.length; ++i) {
 				

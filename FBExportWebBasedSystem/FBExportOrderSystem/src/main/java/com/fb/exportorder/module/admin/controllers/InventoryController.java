@@ -210,8 +210,7 @@ public class InventoryController {
 	@RequestMapping(value = "/admin/inventory/post-product", method = RequestMethod.POST)
 	@ResponseBody
 	public String postProduct(@RequestParam String id) {
-		inventoryService.postProduct(Long.parseLong(id));
-		return "";
+		return inventoryService.postProduct(Long.parseLong(id));
 	}
 	
 	@RequestMapping(value = "/admin/inventory/unpost-product", method = RequestMethod.POST)

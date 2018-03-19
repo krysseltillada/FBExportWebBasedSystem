@@ -156,14 +156,14 @@ $(document).ready(function (){
 											setTimeout(function () {
 												$.post("/FBExportSystem/admin/inventory/post-product", {
 													id : productId
-												}, function () {
+												}, function (response) {
 
 													$buttonPost.removeAttr("class");
 													$buttonPost.html("");
 													$buttonPost.append("Unpost <i class='fa fa-clipboard ml-1' aria-hidden='true'></i>");
 													$buttonPost.addClass("btn bg-dark text-white float-right mr-1");
 
-													$postProductRow.find("td:eq(10)").html("Posted");
+													$postProductRow.find("td:eq(10)").html(response);
 
 													iziToast.success({
 														timeout : 2000,
@@ -457,7 +457,7 @@ $(document).ready(function (){
 						product.weight,
 						moment(product.dateRegistered).format("MMMM D, YYYY"),
 						moment(product.dateOfDelivery).format("MMMM D, YYYY"),
-						(product.status == "POSTED") ? "Posted" : (product.status == "UNPOSTED") ? "Unposted" : "Expired" 
+						(product.status == "POSTED") ? "Posted" : (product.status == "UNPOSTED") ? "Unposted" : (product.status == "OUT_OF_STOCK") ? "Out of Stock" : "" 
 					] );
 
 					$inventoryTableBody.find(".fa-chevron-circle-down").click(getMoreProductDetails);

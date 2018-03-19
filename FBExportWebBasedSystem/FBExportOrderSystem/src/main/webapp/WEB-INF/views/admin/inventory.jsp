@@ -130,7 +130,11 @@
 	                            <td>${product.weight} KILO</td>
 	                            <td><fmt:formatDate value = "${product.dateRegistered}" type = "date" dateStyle = "LONG" /></td>
 	                            <td><fmt:formatDate value = "${product.dateOfDelivery}" type = "date" dateStyle = "LONG" /></td>
-	                            <td>${( product.status eq 'POSTED' ? "Posted" : "Unposted")  }</td>
+	                            <td><c:choose>
+	                            	<c:when test="${product.status eq 'POSTED'}">Posted</c:when>
+	                            	<c:when test="${product.status eq 'OUT_OF_STOCK'}">Out of Stock</c:when>
+	                            	<c:when test="${product.status eq 'UNPOSTED'}">Unposted</c:when>
+	                            </c:choose></td>
 	
 	                        </tr>
                         
