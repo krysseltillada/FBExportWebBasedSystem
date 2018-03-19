@@ -269,7 +269,7 @@
 						        	<c:forEach var = "customer" items = "${customerList}">
 						        		<tr>
 			                                <td><i class="fa fa-chevron-circle-down fa-lg" aria-hidden="true" style="cursor: pointer;" id="showActivity"></i></td>
-			                                <td><img src="<c:url value = '${customer.profileImageLink}' />" height="100" width="100"/></td>
+			                                <td><img src="<c:url value = "${(not empty customer.profileImageLink) ? customer.profileImageLink  : customer.gender == 'MALE' ? '/resources/customer/img/profile-male.jpg' : '/resources/customer/img/profile-female.jpg' }" />" height="100" width="100"/></td>
 			                                <td class="usernameCustomerRow"><c:out value = "${customer.username} " /></td>
 			                                <td><c:out value = "${customer.firstname}" /></td>
 			                                <td><c:out value = "${customer.middlename}" /></td>
@@ -728,7 +728,7 @@
         	
 					        	<c:forEach var = "employee" items = "${employeeList}">
 					        		<tr>
-		                                <td><img src="<c:url value = "${(not empty employee.profileImageLink) ? employee.profileImageLink  : employee.gender == 'MALE' ? '/FBExportSystem/resources/admin/img/profile-male.jpg' : '/FBExportSystem/resources/admin/img/profile-female.jpg' }" />" height="100" width="100"/></td>
+		                                <td><img src="<c:url value = "${(not empty employee.profileImageLink) ? employee.profileImageLink  : employee.gender == 'MALE' ? '/resources/admin/img/profile-male.jpg' : '/resources/admin/img/profile-female.jpg' }" />" height="100" width="100"/></td>
 		                                <td class="usernameEmployeeRow"><c:out value = "${employee.username} " /></td>
 		                                <td><c:out value = "${employee.firstname}" /></td>
 		                                <td><c:out value = "${employee.middlename}" /></td>
@@ -1207,7 +1207,7 @@
         	
 					        	<c:forEach var = "employee" items = "${adminList}">
 					        		<tr>
-		                                <td><img src="<c:url value = "${(not empty employee.profileImageLink) ? employee.profileImageLink  : employee.gender == 'MALE' ? '/FBExportSystem/resources/admin/img/profile-male.jpg' : '/FBExportSystem/resources/admin/img/profile-female.jpg' }" />" height="100" width="100"/></td>
+		                                <td><img src="<c:url value = "${(not empty employee.profileImageLink) ? employee.profileImageLink  : employee.gender == 'MALE' ? '/resources/admin/img/profile-male.jpg' : '/resources/admin/img/profile-female.jpg' }" />" height="100" width="100"/></td>
 		                                <td class="usernameAdminRow"><c:out value = "${employee.username} " /></td>
 		                                <td><c:out value = "${employee.firstname}" /></td>
 		                                <td><c:out value = "${employee.middlename}" /></td>
