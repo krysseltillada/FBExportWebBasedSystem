@@ -11,8 +11,12 @@ import java.util.Map;
 import java.util.Objects;
 
 import org.apache.commons.lang3.StringUtils;
+import org.hibernate.Query;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.fb.exportorder.models.Product;
 import com.fb.exportorder.models.Shipping;
@@ -37,6 +41,9 @@ public class OrderServiceImpl implements OrderService {
 	
 	@Autowired
 	CustomerRepository customerRepository;
+	
+	@Autowired
+	SessionFactory sessionFactory;
 	
 	private SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 	
@@ -277,6 +284,182 @@ public class OrderServiceImpl implements OrderService {
 	}
 
 	@Override
+	public void markCancelled(Order order, String reason) {
+		order.setOrderStatus(OrderStatus.CANCELLED);
+		order.setReason(reason);
+		orderRepository.save(order);
+	}
+
+	@Override
+	public void reOrder(Order order) {
+		order.setOrderStatus(OrderStatus.PENDING);
+		order.setMessage(StringUtils.EMPTY);
+		order.setReason(StringUtils.EMPTY);
+		orderRepository.save(order);
+	}
+
+	@Override
+	public void markPaid(Order order) {
+		
+		order.setOrderStatus(OrderStatus.PAID);
+		order.setDatePaid(new Date());
+		orderRepository.save(order);
+		
+	}
+
+	@Override
+	public void refund(Order order, String reason) {
+		
+		order.setOrderStatus(OrderStatus.REFUND);
+		order.setReason(reason);
+		orderRepository.save(order);
+		
+	}
+
+	@Override
+	public void reviewOrder(Order order, String review) {
+		
+		order.setReview(review);
+		orderRepository.save(order);
+		
+	}
+
+	@Override
+	public void returnRefundOrder(Order order, String reason) {
+		order.setReason(reason);
+		order.setOrderStatus(OrderStatus.RETURNED);
+		orderRepository.save(order);
+	}
+
+	@Override
+	@Transactional
+	public List<Order> filterAndSortByCustomer(long customerId, String filterBy, String sortBy, int pageNumber, int pageSize) {
+		// TODO Auto-generated method stub
+		
+		String filterByJPQL = (StringUtils.equals(filterBy, "Cash on delivery") || 
+							   StringUtils.equals(filterBy, "Paypal")) ? " AND o.paymentMethod = '" + filterBy.toUpperCase().replace(" ", "_") + "'" 
+							   : (StringUtils.equals(filterBy, "All")) ? "" : " AND o.orderStatus = '" + filterBy.toUpperCase().replace(" ", "_") + "'"; 
+		
+		String sortByJPQL = (StringUtils.equals(sortBy, "Date ordered(latest)") ? " ORDER BY o.dateOrdered DESC" :
+							 StringUtils.equals(sortBy, "Date ordered(oldest)") ? " ORDER BY o.dateOrdered ASC" :
+							 StringUtils.equals(sortBy, "Order id(latest)") ? " ORDER BY o.orderId DESC" :
+							 StringUtils.equals(sortBy, "Order id(oldest)") ? " ORDER BY o.orderId ASC" : "");
+		
+		System.out.println("SELECT o FROM Order o " + filterByJPQL + sortByJPQL);
+		
+		Session session = sessionFactory.getCurrentSession();
+		Query filterAndSortQuery = session.createQuery("FROM Orders o WHERE o.customer.id = '" + customerId + "'" + filterByJPQL + sortByJPQL);
+		
+		filterAndSortQuery.setFirstResult(pageNumber);
+		filterAndSortQuery.setMaxResults(pageSize);
+		
+		return (List<Order>)filterAndSortQuery.list();
+	}
+
+	@Override
+	@Transactional
+	public int filterAndSortByCustomerCount(long customerId, String filterBy, String sortBy) {
+		
+		String filterByJPQL = (StringUtils.equals(filterBy, "Cash on delivery") || 
+				   StringUtils.equals(filterBy, "Paypal")) ? " AND o.paymentMethod = '" + filterBy.toUpperCase().replace(" ", "_") + "'" 
+				   : (StringUtils.equals(filterBy, "All")) ? "" : " AND o.orderStatus = '" + filterBy.toUpperCase().replace(" ", "_") + "'"; 
+
+		String sortByJPQL = (StringUtils.equals(sortBy, "Date ordered(latest)") ? " ORDER BY o.dateOrdered DESC" :
+						 StringUtils.equals(sortBy, "Date ordered(oldest)") ? " ORDER BY o.dateOrdered ASC" :
+						 StringUtils.equals(sortBy, "Order id(latest)") ? " ORDER BY o.orderId DESC" :
+						 StringUtils.equals(sortBy, "Order id(oldest)") ? " ORDER BY o.orderId ASC" : StringUtils.EMPTY);
+		
+		System.out.println("SELECT o FROM Order o " + filterByJPQL + sortByJPQL);
+		
+		Session session = sessionFactory.getCurrentSession();
+		Query filterAndSortQuery = session.createQuery("FROM Orders o WHERE o.customer.id = '" + customerId + "'" + filterByJPQL + sortByJPQL);
+		
+		return ((List<Order>)filterAndSortQuery.list()).size();
+				
+	}
+
+	@Override
+	@Transactional
+	public List<Order> filterAndSortByAdmin(String status, String shipment, String payment, String sortBy,
+											String sortOrder) {
+		
+		StringBuffer filterStatement = new StringBuffer();
+		
+		
+		String filterByStatus = (!StringUtils.equals(status, "All")) ? "o.orderStatus ='" + status.toUpperCase().replace(" ", "_")  + "'" 
+																	 : StringUtils.EMPTY;
+		
+		
+		String filterByShipment = (!StringUtils.equals(shipment, "All")) ? ((StringUtils.isNotEmpty(filterByStatus)) ? "AND " : StringUtils.EMPTY) +  
+																		   "o.shipping.shipmentStatus ='" + shipment.toUpperCase().replace(" ", "_") + "'"
+																		 : StringUtils.EMPTY;
+		
+		
+		
+		String filterByPayment = (!StringUtils.equals(payment, "All")) ? ((StringUtils.isNotEmpty(filterByStatus) || StringUtils.isNotEmpty(filterByShipment)) ? "AND " : StringUtils.EMPTY) +
+																		 "o.paymentMethod = '" + payment.toUpperCase().replace(" ", "_") + "'"
+																	   : StringUtils.EMPTY;
+		
+		
+		filterStatement.append(filterByStatus);
+		filterStatement.append(filterByShipment);
+		filterStatement.append(filterByPayment);
+		
+		if (StringUtils.isNoneBlank(filterStatement.toString())) 
+			filterStatement = new StringBuffer("WHERE " + filterStatement.toString());
+		
+	
+		
+		String sortType = (StringUtils.equals(sortBy, "Order No")) ? "o.orderId" :
+						  (StringUtils.equals(sortBy, "Date ordered")) ? "o.dateOrdered" :
+						  (StringUtils.equals(sortBy, "Receive date")) ? "o.dateReceived" :
+						  (StringUtils.equals(sortBy, "Customer")) ? "o.customer.firstname" :
+						  (StringUtils.equals(sortBy, "Total Price")) ? "o.totalPrice" :
+						  (StringUtils.equals(sortBy, "Total Weight")) ? "o.totalWeight" :
+						  (StringUtils.equals(sortBy, "Total Items")) ? "o.totalItems" : StringUtils.EMPTY;
+		
+		String sort = (StringUtils.equals(sortOrder, "Ascending")) ? " ORDER BY " + sortType + " ASC":
+					  (StringUtils.equals(sortOrder, "Descending")) ? " ORDER BY " + sortType + " DESC" : StringUtils.EMPTY;
+		
+		
+		String filterResultStatement = "SELECT o FROM Orders o  " + filterStatement.toString() + sort;
+		
+		System.out.println(filterResultStatement);
+
+		Query filterResultQuery = sessionFactory.getCurrentSession().createQuery(filterResultStatement);
+		
+		List<Order> filteredOrders = (List<Order>)filterResultQuery.list();
+		
+		for (Order order : filteredOrders) {
+			order.getCustomer().getAuthorities().size();
+			order.getCustomer().getActivities().size();
+			order.getCustomer().getShippingAddresses().size();
+			
+			if (Objects.nonNull(order.getShipping()))
+				order.getShipping().getShippingLog().size();
+				
+
+			for (Item item : order.getCart().getItems())
+				item.getProduct().getRating().getReviews().size();
+			
+		}
+		
+		return filteredOrders;
+		
+	}
+
+	@Override
+	public void deleteOrder(long id) {
+		Order order = orderRepository.findOne(id);
+		orderRepository.delete(order);
+	}
+
+	@Override
+	public void deleteSelectedOrder(List<Long> ids) {
+		for (Long id : ids)
+			deleteOrder(id);
+	}
+	
 	public Map<String, Integer> getOrderCount() {
 		List<Object[]> rawResultSet = orderRepository.getOrdersCount();
 		

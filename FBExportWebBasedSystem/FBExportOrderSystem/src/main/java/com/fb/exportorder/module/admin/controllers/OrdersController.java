@@ -1,11 +1,13 @@
 package com.fb.exportorder.module.admin.controllers;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import org.apache.commons.lang3.StringUtils;
+import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
@@ -47,7 +49,10 @@ public class OrdersController {
 		put(OrderStatus.REJECTED, "#D9534F");
 		put(OrderStatus.APPROVED, "#5CB85C");
 		put(OrderStatus.PENDING, "#FFC107");
-		
+		put(OrderStatus.CANCELLED, "#D9534F");
+		put(OrderStatus.PAID, "#91C361");
+		put(OrderStatus.REFUND, "#EA1E63");
+		put(OrderStatus.RETURNED, "#795548");
 	}};
 	
 	Map<OrderStatus, String> orderStatusMessage = new HashMap<OrderStatus, String>(){{
@@ -56,7 +61,10 @@ public class OrdersController {
 		put(OrderStatus.REJECTED, "Rejected");
 		put(OrderStatus.APPROVED, "Approved");
 		put(OrderStatus.PENDING, "Pending");
-		
+		put(OrderStatus.CANCELLED, "Cancelled");
+		put(OrderStatus.PAID, "Paid");
+		put(OrderStatus.REFUND, "Refund");
+		put(OrderStatus.RETURNED, "Returned");
 	}};
 	
 	SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
@@ -337,14 +345,50 @@ public class OrdersController {
 		return "";
 	}
 	
+	
 	@RequestMapping(value = "/admin/orders/checkShippingExists", method = RequestMethod.POST)
 	@ResponseBody
 	public boolean checkShippingExists (@RequestParam String orderId) {
 		return orderService.checkIfShippingExists(Long.parseLong(orderId));
 	}
 	
+	@RequestMapping(value = "/admin/orders/filter", method = RequestMethod.POST)
+	@ResponseBody
+	public List<Order> filterOrder (@RequestParam String status,
+								 	@RequestParam String shipment,
+								 	@RequestParam String payment,
+								 	@RequestParam String sortBy,
+								 	@RequestParam String sortByOrder) {
+		
+		return orderService.filterAndSortByAdmin(status, shipment, payment, sortBy, sortByOrder);
+		
+	}
 	
-	
+	@RequestMapping(value = "/admin/orders/deleteSelectedOrder", method = RequestMethod.POST)
+	@ResponseBody
+	public String deleteSelectedOrder (@RequestParam String deletedOrdersRawJSON) {
+		
+		try {
+			
+			JSONObject rawIds = (JSONObject)new JSONParser().parse(deletedOrdersRawJSON);
+			
+			JSONArray idsArray = (JSONArray)rawIds.get("deletedIds");
+			
+			List<Long> idsList = new ArrayList<Long>();
+			
+			for (int i = 0; i != idsArray.size(); ++i)
+				idsList.add(Long.parseLong((String)idsArray.get(i)));
+			
+			orderService.deleteSelectedOrder(idsList);
+			
+			
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return "";
+	}
 	
 	
 

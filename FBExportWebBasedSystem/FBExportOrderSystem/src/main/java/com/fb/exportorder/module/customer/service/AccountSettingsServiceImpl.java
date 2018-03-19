@@ -207,7 +207,7 @@ public class AccountSettingsServiceImpl implements AccountSettingsService {
 			customerRepository.save(editedCustomerAccount);
 
 			session.setAttribute("name", editedCustomerAccount.getFirstname());
-			session.setAttribute("profileImageLink", editedCustomerAccount.getProfileImageLink());
+			session.setAttribute("customerProfileImageLink", editedCustomerAccount.getProfileImageLink());
 			
 			System.out.println("successfully edited");
 		

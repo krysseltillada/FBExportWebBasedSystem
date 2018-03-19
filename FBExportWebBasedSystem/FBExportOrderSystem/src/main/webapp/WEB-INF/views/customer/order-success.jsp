@@ -55,12 +55,22 @@
 
             <div class = "row mb-4" style = "border: 1px solid #E5E5E5;">
             
-            	<div class="col">
+                <div class="col">
 
-	                <div class="pt-2 pl-0 pb-2 float-left font-weight-bold" style="font-size: 12px;">
-	                    <span class="mr-4">  Total Weight: <fmt:formatNumber value = "${order.totalWeight}" maxFractionDigits = "2" /> IN KILOGRAMS </span>
-						<br>
-	                    <span> Total Price: <span id="placeOrdertotalPrice">${order.totalPrice}</span> <span id="placeOrderCurrency">PHP</span> </span>
+	                <div class="pt-2 pb-2 float-left font-weight-bold" style="font-size: 12px;">
+	                	<div class = "row">
+		                	<div class = "col-md-6 pr-0">
+			                    <span class="mr-4">  Total Weight: <fmt:formatNumber value = "${totalWeight}" maxFractionDigits = "2" /> IN KILOGRAMS </span>
+								<br>
+								<span> Sub total: <span class="subTotal">${subTotal}</span> <span class="subTotalCurrency">PHP</span> </span> <br />
+								<span> Taxable: ${taxable} </span> <br />
+							</div>
+							<div class = "col-md-6">
+								<span> Tax Rate: ${taxRate}% </span> <br />
+								<span> Shipping fee: <span class = "shippingFee">${shippingFee}</span> <span class="shippingFeeCurrency">PHP</span> </span> <br />
+			                    <span> Total Due: <span class="totalDue">${totalDue}</span> <span class="totalDueCurrency">PHP</span> </span>
+		                    </div>
+	                    </div>
 	                </div>
 
                 </div>

@@ -1,6 +1,8 @@
 package com.fb.exportorder.module.customer.controllers;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.measure.unit.NonSI;
 import javax.measure.unit.SI;
@@ -18,6 +20,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.fb.exportorder.constants.Finance;
+import com.fb.exportorder.models.Product;
 import com.fb.exportorder.models.ShippingAddress;
 import com.fb.exportorder.models.customer.Cart;
 import com.fb.exportorder.models.customer.Customer;
@@ -48,23 +52,29 @@ public class PlaceOrderController {
 		
 		long customerId = (long) session.getAttribute("customerId");
 		
-		double totalWeight = 0;
-		double totalPrice = 0;
+		double totalWeight = 0.0;
+		double totalDue = 0.0;
+		double subTotal = 0.0;
 		
 		List<Item> items = customerService.getCustomerById(customerId)
 										   .getCart()
 										   .getItems();
-
+		
+		Set<Long> taxableProduct = new HashSet<>();
 		
 		
 		for(Item item : items) {
-		
+			
+			Product product = item.getProduct();
+			
+			taxableProduct.add(product.getProductId());
+			
 			Weight weight = item.getWeight();
 			WeightType weightType = weight.getWeightType();
 			
 			System.out.println(weightType);
 			
-			totalPrice += item.getPrice();
+			subTotal += item.getPrice();
 			
 			if (weightType != WeightType.KILO) {
 				totalWeight += Amount.valueOf(weight.getWeight(), 
@@ -76,13 +86,22 @@ public class PlaceOrderController {
 			
 		}
 		
+		double taxable = taxableProduct.size() * Finance.TAX;
+
+		totalDue = Finance.SHIPPING_FEE + subTotal + taxable;
+		
+		
 		System.out.println(totalWeight);
 		
 		
 		model.addAttribute(yourAddressService.getAllAddressesById(customerId));
 		
+		model.addAttribute("taxable", taxableProduct.size());
+		model.addAttribute("taxRate", Finance.TAX * 100);
+		model.addAttribute("shippingFee", Finance.SHIPPING_FEE);
 		model.addAttribute("totalWeight", totalWeight);
-		model.addAttribute("totalPrice", totalPrice);
+		model.addAttribute("subTotal", subTotal);
+		model.addAttribute("totalDue", totalDue);
 		model.addAttribute("cartItemList", items);
 		
 		
@@ -102,12 +121,13 @@ public class PlaceOrderController {
 		
 		Customer customerOrdered = customerService.getCustomerById(customerId);
 		ShippingAddress selectedShippingAddress = yourAddressService.getAddressById(shippingAddressIdL);
+		Order order = orderService.order(customerOrdered,
+										 selectedShippingAddress,
+										 PaymentMethod.valueOf(paymentMethod),
+										 totalPriceApprox,
+										 totalWeightApprox);
 		
-		attributes.addFlashAttribute("order", orderService.order(customerOrdered,
-																 selectedShippingAddress,
-																 PaymentMethod.valueOf(paymentMethod),
-																 totalPriceApprox,
-																 totalWeightApprox));
+		attributes.addFlashAttribute("order", order);
 		
 		return "redirect:/order-success";
 	}
@@ -117,7 +137,14 @@ public class PlaceOrderController {
 								@ModelAttribute("order") Order order,
 														 Model model) {
 		
+		
+		
 		model.addAttribute(order);
+		model.addAttribute("subTotal", order.getSubTotal());
+		model.addAttribute("taxable", order.getTaxable());
+		model.addAttribute("taxRate", Finance.TAX * 100);
+		model.addAttribute("shippingFee",Finance.SHIPPING_FEE);
+		model.addAttribute("totalDue", order.getTotalDue());
 		
 		return "order-success";
 	}

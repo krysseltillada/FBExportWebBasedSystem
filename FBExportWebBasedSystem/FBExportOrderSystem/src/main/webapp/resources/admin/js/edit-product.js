@@ -64,7 +64,12 @@ $(document).ready(function () {
     }); 
     
 
-	$( "#deliveryDatePicker" ).flatpickr();
+	$( "#deliveryDatePicker" ).flatpickr({
+		dateFormat : "F j, Y",
+		onReady : function () {
+			$("#deliveryDatePicker").val(flatpickr.formatDate($("#deliveryDatePicker").val(), "F j, Y"));
+		}
+	});
 	
 	$("input[type=submit]").click(function (event) {
 		event.preventDefault();

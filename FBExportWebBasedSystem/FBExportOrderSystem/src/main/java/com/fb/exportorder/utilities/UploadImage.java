@@ -6,6 +6,8 @@ import java.nio.file.FileSystems;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -29,7 +31,7 @@ public class UploadImage {
 			
 			String profileImageLink = StringUtils.EMPTY;
 			
-			String profileImageFilename = DigestUtils.md5Hex(hashValue) + imageTypes.get(profileImage.getContentType());
+			String profileImageFilename = DigestUtils.md5Hex(hashValue + new SimpleDateFormat("yyyyMMddHHmmss").format(new Date())) + imageTypes.get(profileImage.getContentType());
 			String profileImageFilePath = contextPath + File.separator + profileImageFilename;
 			Path path = Paths.get(profileImageFilePath);
 			Files.write(path, imageBytes);

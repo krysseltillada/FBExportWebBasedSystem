@@ -35,6 +35,14 @@ public interface OrderService {
 	void markRejected(Order order, String reason);
 	void markReceived(Order order);
 	void markToShip(Order order);
+	void markCancelled(Order order, String reason);
+	void markPaid(Order order);
+	
+	void refund(Order order, String reason);
+	void reOrder(Order order);
+	
+	void reviewOrder(Order order, String review);
+	void returnRefundOrder(Order order, String reason);
 	
 	List<String> addToShipInformation(long id,
 									  String shipmentStatus,
@@ -45,6 +53,14 @@ public interface OrderService {
 									  String mmsiNumber,
 									  String imoNumber,
 									  String destination);
+	
+	List<Order> filterAndSortByCustomer(long customerId, String filterBy, String sortBy, int pageNumber, int pageSize);
+	List<Order> filterAndSortByAdmin(String status, String shipment, String payment, String sortBy, String sortOrder);
+	
+	int filterAndSortByCustomerCount(long customerId, String filterBy, String sortBy);
+	
+	void deleteOrder (long id);
+	void deleteSelectedOrder(List<Long> ids);
 	
 	boolean checkIfShippingExists (long id);
 	

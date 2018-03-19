@@ -1,4 +1,4 @@
- <script id = "cartItemTemplate" type = "text/template">
+<script id = "cartItemTemplate" type = "text/template">
 
     <tr>
         <td><img src="{{=productImage}}" width="50" height="50" class="float-left"></td>
@@ -109,7 +109,7 @@
 			                            Login to add</a>
 
 					{{  } else {  }}
-					<button type = "button" href="#" class="btn btn-primary btnProductItemAddToCart" style = "position: relative; left: -8px; top: -4px; padding: 8px 10px 8px 10px;">
+						<button type = "button" href="#" class="btn btn-primary btnProductItemAddToCart" style = "position: relative; left: -8px; top: -4px; padding: 8px 10px 8px 10px;">
 						<i class="fa fa-cart-plus mr-1 mb-1" aria-hidden="true"></i>
 						Add to cart</button>
 					{{ } }}

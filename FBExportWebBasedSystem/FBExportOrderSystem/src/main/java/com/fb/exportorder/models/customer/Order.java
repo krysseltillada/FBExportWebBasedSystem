@@ -1,6 +1,8 @@
 package com.fb.exportorder.models.customer;
 
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
@@ -18,6 +20,8 @@ import javax.persistence.TemporalType;
 import org.hibernate.annotations.Cascade;
 import org.javamoney.moneta.Money;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fb.exportorder.constants.Finance;
 import com.fb.exportorder.models.Shipping;
 import com.fb.exportorder.models.ShippingAddress;
 import com.fb.exportorder.models.enums.OrderStatus;
@@ -53,6 +57,7 @@ public class Order	 {
 	
 	private String message;
 	private String reason;
+	private String review;
 	
 	private int totalItems;
 	private double totalWeight;
@@ -61,7 +66,13 @@ public class Order	 {
 	
 	@Temporal(TemporalType.DATE)
 	private Date dateOrdered;
-
+	
+	@Temporal(TemporalType.DATE)
+	private Date datePaid;
+	
+	@Temporal(TemporalType.DATE)
+	private Date dateReceived;
+	
 	public Long getOrderId() {
 		return orderId;
 	}
@@ -133,6 +144,15 @@ public class Order	 {
 	public void setDateOrdered(Date dateOrdered) {
 		this.dateOrdered = dateOrdered;
 	}
+	
+
+	public Date getDatePaid() {
+		return datePaid;
+	}
+
+	public void setDatePaid(Date datePaid) {
+		this.datePaid = datePaid;
+	}
 
 	public PaymentMethod getPaymentMethod() {
 		return paymentMethod;
@@ -165,6 +185,51 @@ public class Order	 {
 
 	public void setReason(String reason) {
 		this.reason = reason;
+	}
+
+	public String getReview() {
+		return review;
+	}
+
+	public void setReview(String review) {
+		this.review = review;
+	}
+
+	public Date getDateReceived() {
+		return dateReceived;
+	}
+
+	public void setDateReceived(Date dateReceived) {
+		this.dateReceived = dateReceived;
+	}
+	
+	public double getSubTotal() {
+		double subTotal = 0.0;
+		
+		for(Item itemOrdered : getCart().getItems()) 
+			subTotal += itemOrdered.getPrice();
+		
+		return subTotal;
+	
+	}
+	
+	public int getTaxable () {
+		
+		Set<Long> taxableProduct = new HashSet<Long>();
+		
+		for (Item itemOrdered : getCart().getItems())
+			taxableProduct.add(itemOrdered.getProduct().getProductId());
+		
+		return taxableProduct.size();
+		
+	}
+	
+	public double getTotalDue() {
+		return (getTaxable() * Finance.TAX) + Finance.SHIPPING_FEE + getSubTotal();
+	}
+	
+	public double getTax() {
+		return getTaxable() * Finance.TAX;
 	}
 	
 	

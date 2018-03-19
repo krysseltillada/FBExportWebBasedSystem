@@ -354,7 +354,7 @@ $(document).ready(function () {
         */
 
         $.ajax({
-            url: "http://ip-api.com/json/27.34.176.0",
+            url: "http://ip-api.com/json/",
             jsonpCallback: "callback",
             dataType: "json",
             success: function( location ) {
@@ -388,6 +388,8 @@ $(document).ready(function () {
 
                                     $.get("https://api.fixer.io/latest?base=PHP", function (response) {
                                         console.log(response);
+
+                                        console.log(responseData);
 
                                         fx.base = "PHP";
                                         fx.rates = response.rates;
@@ -451,9 +453,15 @@ $(document).ready(function () {
 
                                         });
 
-                                        $("#placeOrdertotalPrice").html(formatMoney(fx($("#placeOrdertotalPrice").html()).from("PHP").to(currentCurrency), "", "%v"));
-                                        $("#placeOrderCurrency").html(currentCurrency);
+                                        $(".subTotal").html(formatMoney(fx($(".subTotal").html()).from("PHP").to(currentCurrency), "", "%v"));
+                                        $(".subTotalCurrency").html(currentCurrency);
 
+                                        $(".shippingFee").html(formatMoney(fx($(".shippingFee").html()).from("PHP").to(currentCurrency), "", "%v"));
+                                        $(".shippingFeeCurrency").html(currentCurrency);
+                                        
+                                        $(".totalDue").html(formatMoney(fx($(".totalDue").html()).from("PHP").to(currentCurrency), "", "%v"));
+                                        $(".totalDueCurrency").html(currentCurrency);
+                                      
                                         _.each($("div#shoppingModalCart div.modal-body>table>tbody").children(), function (productCartItem, i) {
 
                                             var $productCartItem = $(productCartItem).children().eq(2);
@@ -467,6 +475,135 @@ $(document).ready(function () {
                                             $(this).next().html(currentCurrency);
                                         });
 
+                                         $(".paypal-button").each(function (ind, elem) {
+
+                                            
+            
+                                            var $divOrderCollapse = $(this).closest("div.multi-collapse");
+                                            
+                                            var country = $divOrderCollapse.find("#country").html();
+
+                                            $.ajax({
+
+                                                url : "https://restcountries.eu/rest/v2/name/" + country,
+                                                success : function (responseData) {
+
+                                                    var countryCode = responseData[0].alpha2Code;
+
+                                                    var $orderItemDiv = $divOrderCollapse.prev();
+
+                                                    var totalPrice = $orderItemDiv.find(".price").html();
+                                                    var subTotalPrice = 0;
+                                                    var oid = $orderItemDiv.find("#orderId").html();
+
+                                                    console.log(oid);
+                                            
+                                                    var $itemsOrderedTable = $divOrderCollapse.find("table");
+
+                                                    var itemsOrdered = [];
+
+                                                
+                                                    $itemsOrderedTable.find("tbody").find("tr").each(function (ind, elem) {
+                                                        
+                                                        var itemOrdered = {
+                                                            name : $(elem).find("td:eq(0)").html().trim() + " (" + $(elem).find("td:eq(1)").html() + ")",
+                                                            price : $(elem).find("td:eq(2)>span.price").html(),
+                                                            currency : currentCurrency,
+                                                            quantity : "1"
+                                                        }
+
+
+                                                        itemsOrdered.push(itemOrdered);
+                                                        
+                                                    });
+
+                                                    $itemsOrderedTable.find("tfoot tr .price").each(function (ind, elem) {
+                                                        subTotalPrice += Number($(elem).html());
+
+                                                    });
+                                                    console.log(formatMoney(fx($itemsOrderedTable.find("tfoot #estimatedTax").val()).from("PHP").to(currentCurrency), currentCurrency, "%v"));
+                                                    paypal.Button.render({
+                                                        env: 'sandbox', // Or 'sandbox',
+
+                                                        style: {
+                                                            color: 'blue',
+                                                            size: 'small',
+                                                            shape : 'rect',
+                                                            size : 'small',
+                                                            label : 'pay'
+                                                        },
+                                                        
+                                                        commit : true,
+                                                        
+                                                        client: {
+                                                            sandbox:    'AQNTbQBVVlGXxzbWa9o9poVa187KefuAwZ3EuUxn7uH2cCUxXkUCqhIPW2f0Eh6FW6_MSNGxwlIv3bSD'
+                                                        },
+
+                                                        payment: function(data, actions) {
+
+                                                        return actions.payment.create({
+                                                            payment: {
+                                                                intent : "sale",
+                                                                transactions: [
+                                                                    {
+                                                                        amount: { 
+                                                                            total: totalPrice, 
+                                                                            currency: currentCurrency,
+                                                                            details : {
+                                                                                subtotal : subTotalPrice,
+                                                                                shipping : formatMoney(fx(1000).from("PHP").to(currentCurrency), currentCurrency, "%v"),
+                                                                                tax : formatMoney(fx($itemsOrderedTable.find("tfoot #estimatedTax").val()).from("PHP").to(currentCurrency), currentCurrency, "%v")
+                                                                            }
+                                                                        },
+                                                                        item_list : {	
+                                                                            items : itemsOrdered
+                                                                        }
+                                                                        
+                                                                    }
+                                                                ],
+                                                                note_to_payer: "Contact us on any regardings on your payment",
+                                                            },
+                                                            experience : {
+                                                                input_fields : {
+                                                                    no_shipping : 1
+                                                                },
+                                                                presentation : {
+                                                                    brand_name : "Fong Bros International Corp"
+                                                                }
+                                                            }
+                                                        });
+                                                        },
+
+                                                        onAuthorize: function(data, actions) {
+                                                            return actions.payment.execute().then(function(payment) {
+  
+                                                                $.post("/FBExportSystem/order-list/markPaid", {
+                                                                    orderId : oid
+                                                                }, function () {
+                                                                    window.location = "/FBExportSystem/payment-receipt?orderId=" + oid;
+                                                                });
+                                                            });
+                                                        },
+
+                                                        onCancel: function(data, actions) {
+                                                        /* 
+                                                            * Buyer cancelled the payment 
+                                                            */
+                                                        },
+
+                                                        onError: function(err) {
+
+                                                            console.log(err);
+                                                        /* 
+                                                            * An error occurred during the transaction 
+                                                            */
+                                                        }
+                                                    }, elem);
+                                            }});
+
+                                        });
+
+
                                         updateProductCartInfo();
 
                                         $("#see-more-most-viewed-products").removeAttr("disabled");
@@ -474,16 +611,15 @@ $(document).ready(function () {
                                         $(".btnProductItemAddToCart").removeAttr("disabled");
                                         $("#cart").css("pointer-events", "auto");
 
+                                        var token = $("meta[name='_csrf']").attr("content");
+                                        var header = $("meta[name='_csrf_header']").attr("content");
+                                        $(document).ajaxSend(function(e, xhr, options) {
+                                            xhr.setRequestHeader(header, token);
+                                        });
                                         
                                     }, "json");
 
-                                    
-
-                                    var token = $("meta[name='_csrf']").attr("content");
-                                    var header = $("meta[name='_csrf_header']").attr("content");
-                                    $(document).ajaxSend(function(e, xhr, options) {
-                                        xhr.setRequestHeader(header, token);
-                                    });
+                                   
 
                             }
                         });

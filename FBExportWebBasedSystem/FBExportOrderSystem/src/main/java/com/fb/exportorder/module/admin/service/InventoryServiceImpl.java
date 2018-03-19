@@ -10,9 +10,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
-import java.util.regex.Pattern;
-
-import javax.money.format.MonetaryParseException;
 
 import org.apache.commons.lang3.StringUtils;
 import org.hibernate.Query;
@@ -22,7 +19,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.fb.exportorder.models.Product;
@@ -41,7 +37,7 @@ public class InventoryServiceImpl implements InventoryService {
 	@Autowired
 	SessionFactory sessionFactory;
 	
-	private SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+	private SimpleDateFormat userDateFormat = new SimpleDateFormat("MMMMM d, yyyy");
 	
 	public List<String> validate (String isImageEmpty,
 								  String productName,
@@ -98,7 +94,7 @@ public class InventoryServiceImpl implements InventoryService {
 			if (StringUtils.isEmpty(deliveryDate))
 				throw new ParseException("", 0);
 			
-			dateFormat.parse(deliveryDate);
+			userDateFormat.parse(deliveryDate);
 		} catch (ParseException e) {
 			errorMessages.add("invalid delivery date");
 		}
@@ -130,7 +126,7 @@ public class InventoryServiceImpl implements InventoryService {
 			newProduct.setOrigin(origin);
 
 			try {
-				newProduct.setDateOfDelivery(dateFormat.parse(deliveryDate));
+				newProduct.setDateOfDelivery(userDateFormat.parse(deliveryDate));
 				newProduct.setDateRegistered(Date.from(LocalDate.now().atStartOfDay().atZone(ZoneId.systemDefault()).toInstant()));
 			} catch (ParseException e) {
 				// TODO Auto-generated catch block
@@ -297,7 +293,7 @@ public class InventoryServiceImpl implements InventoryService {
 			editedProduct.setOrigin(origin);
 
 			try {
-				editedProduct.setDateOfDelivery(dateFormat.parse(deliveryDate));
+				editedProduct.setDateOfDelivery(userDateFormat.parse(deliveryDate));
 			} catch (ParseException e) {
 				e.printStackTrace();
 			}

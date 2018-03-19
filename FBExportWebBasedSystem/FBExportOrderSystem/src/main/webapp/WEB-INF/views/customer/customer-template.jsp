@@ -27,6 +27,8 @@
        	<c:forEach var = "cssfile" items="${cssfiles}">
 			<link href = "<c:url value = '${cssfile}' />" rel = "stylesheet" type = "text/css"  />
 		</c:forEach>
+		
+		<script src="https://www.paypalobjects.com/api/checkout.js"></script>
 	    
 	</head>
 

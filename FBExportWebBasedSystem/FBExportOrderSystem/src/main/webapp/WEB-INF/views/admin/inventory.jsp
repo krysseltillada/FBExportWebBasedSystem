@@ -128,8 +128,8 @@
 	                            <td>${product.supplier}</td>
 	                            <td><fmt:formatNumber type="currency" currencyCode = "PHP" value="${product.price}" /></td>
 	                            <td>${product.weight} KILO</td>
-	                            <td>${product.dateRegistered}</td>
-	                            <td>${product.dateOfDelivery}</td>
+	                            <td><fmt:formatDate value = "${product.dateRegistered}" type = "date" dateStyle = "LONG" /></td>
+	                            <td><fmt:formatDate value = "${product.dateOfDelivery}" type = "date" dateStyle = "LONG" /></td>
 	                            <td>${( product.status eq 'POSTED' ? "Posted" : "Unposted")  }</td>
 	
 	                        </tr>
