@@ -2,7 +2,7 @@
 
  <div class="container mt-4 wow fadeIn" id="printButton" style = "padding-left: 15%; padding-right: 15%;">
  			<a href="<c:url value = '/order-list' />" class = "float-left" onclick="printlayer()"><i class="fa fa-arrow-left ml-2" aria-hidden="true"></i> Back to order list</a>
-            <a href="javascript:void(0)" class = "float-right" onclick="printlayer()"><i class="fa fa-print ml-2" aria-hidden="true"></i> Print Receipt</a>
+            <a href="javascript:void(0)" class = "float-right" id = "btnPrintReceipt""><i class="fa fa-print ml-2" aria-hidden="true"></i> Print Receipt</a>
  </div>
  
  <br />
@@ -82,7 +82,7 @@
 	                            <td>${item.product.name} <img class = "ml-2" src = "<c:url value = '${item.product.productImageLink}' />" width = "30" height = "30"/></td>
 	                            <td><fmt:formatNumber value = "${item.weight.weight}" maxFractionDigits = "2" /></td>
 	                            <td>${item.weight.weightType}</td>
-	                            <td>${item.price} PHP</td>
+	                            <td> <span class = "price">${item.price}</span> <span> PHP </span></td>
 	                        </tr>
                         </c:forEach>
 
@@ -97,12 +97,14 @@
                             Shipping fee <br>
                             Total Due
                           </th>
+                          
+                          
                           <td>
-                            ${subTotal} PHP<br>
-                            0<br>
-                            0%<br>
-                            1000 PHP <br>
-                            ${order.totalPrice} PHP
+                            <span class = "subTotal">${subTotal}</span> <span class = "subTotalCurrency">PHP</span><br>
+                            ${taxable}<br>
+                            ${taxRate}%<br>
+                           	<span class = "shippingFee">${shippingFee}</span> <span class = "shippingFeeCurrency">PHP</span> <br>
+                            <span class = "totalDue">${totalDue}</span> <span class = "totalDueCurrency">PHP</span>
                           </td>
                         </tr>
 

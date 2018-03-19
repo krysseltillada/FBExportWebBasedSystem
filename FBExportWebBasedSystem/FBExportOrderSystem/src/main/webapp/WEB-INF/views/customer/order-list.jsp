@@ -248,7 +248,7 @@
 					                                                                        <th></th>
 					                                                                        <th></th>
 					                                                                        <th>Total: <fmt:formatNumber value = "${order.totalWeight}" maxFractionDigits = "1" /> KILO </th>
-					                                                                        <th>Total: <span class = "price">${order.totalPrice}</span> <span>PHP</span> </th>
+					                                                                        <th>Total: <span class = "price">${order.getSubTotal()}</span> <span>PHP</span> </th>
 					                                                                    </tr>
 					
 					                                                                </tfoot>
@@ -399,7 +399,8 @@
 																							<th></th>
 																							<th></th>
 																							<th>Total: <fmt:formatNumber value = "${order.totalWeight}" maxFractionDigits = "1" /> KILO </th>
-					                                                                        <th>Total: <span class = "price">${order.totalPrice}</span> <span>PHP</span> </th>
+					                                                                        <th>Total: <span class = "price">${order.getSubTotal()}</span> <span>PHP</span> </th>
+					                                                                        <input type = "hidden" id = "estimatedTax" value = "${order.getTax()}" />
 																						</tr>
 					
 																					</tfoot>
@@ -569,7 +570,7 @@
 																					<th></th>
 																					<th></th>
 																					<th>Total: <fmt:formatNumber value = "${order.totalWeight}" maxFractionDigits="1" /> KILO </th>
-					                                                                <th>Total: <span class = "price">${order.totalPrice}</span> <span>PHP</span> </th>
+					                                                                <th>Total: <span class = "price">${order.getSubTotal()}</span> <span>PHP</span> </th>
 																				</tr>
 					
 																			</tfoot>
@@ -734,7 +735,7 @@
 																					<th></th>
 																					<th></th>
 																					<th>Total: <fmt:formatNumber value = "${order.totalWeight}" maxFractionDigits = "1" /> KILO </th>
-					                                                                <th>Total: <span class = "price">${order.totalPrice}</span> <span>PHP</span> </th>
+					                                                                <th>Total: <span class = "price">${order.getSubTotal()}</span> <span>PHP</span> </th>
 																				</tr>
 					
 																			</tfoot>
@@ -887,7 +888,7 @@
 																					<th></th>
 																					<th></th>
 																					<th>Total: <fmt:formatNumber value = "${order.totalWeight}" maxFractionDigits = "1" /> KILO </th>
-					                                                                <th>Total: <span class = "price">${order.totalPrice}</span> <span>PHP</span> </th>
+					                                                                <th>Total: <span class = "price">${order.getSubTotal()}</span> <span>PHP</span> </th>
 																				</tr>
 					
 																			</tfoot>
@@ -1050,7 +1051,7 @@
 																					<th></th>
 																					<th></th>
 																					<th>Total: <fmt:formatNumber value = "${order.totalWeight}" maxFractionDigits = "1" /> KILO </th>
-					                                                                <th>Total: <span class = "price">${order.totalPrice}</span> <span>PHP</span> </th>
+					                                                                <th>Total: <span class = "price">${order.getSubTotal()}</span> <span>PHP</span> </th>
 																				</tr>
 					
 																			</tfoot>
@@ -1198,7 +1199,7 @@
 																					<th></th>
 																					<th></th>
 																					<th>Total: <fmt:formatNumber value = "${order.totalWeight}" maxFractionDigits="1" /> KILO </th>
-					                                                                <th>Total: <span class = "price">${order.totalPrice}</span> <span>PHP</span> </th>
+					                                                                <th>Total: <span class = "price">${order.getSubTotal()}</span> <span>PHP</span> </th>
 																				</tr>
 					
 																			</tfoot>
@@ -1355,7 +1356,7 @@
 																							<th></th>
 																							<th></th>
 																							<th>Total: <fmt:formatNumber value="${order.totalWeight}" maxFractionDigits="1" /> KILO </th>
-							                                                                <th>Total: <span class = "price">${order.totalPrice}</span> <span>PHP</span> </th>
+							                                                                <th>Total: <span class = "price">${order.getSubTotal()}</span> <span>PHP</span> </th>
 																						</tr>
 							
 																					</tfoot>
@@ -1512,7 +1513,7 @@
 																							<th></th>
 																							<th></th>
 																							<th>Total: <fmt:formatNumber value = "${order.totalWeight}" maxFractionDigits="1"/> KILO </th>
-							                                                                <th>Total: <span class = "price">${order.totalPrice}</span> <span>PHP</span> </th>
+							                                                                <th>Total: <span class = "price">${order.getSubTotal()}</span> <span>PHP</span> </th>
 																						</tr>
 							
 																					</tfoot>

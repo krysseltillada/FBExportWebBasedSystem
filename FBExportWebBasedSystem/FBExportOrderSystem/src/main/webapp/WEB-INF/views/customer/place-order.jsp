@@ -62,13 +62,13 @@
 		                	<div class = "col-md-6 pr-0">
 			                    <span class="mr-4">  Total Weight: <fmt:formatNumber value = "${totalWeight}" maxFractionDigits = "2" /> IN KILOGRAMS </span>
 								<br>
-								<span> Sub total: <span id="placeOrderSubTotal">${totalPrice}</span> <span id="placeOrderSubtotalCurrency">PHP</span> </span> <br />
-								<span> Taxable: 0 </span> <br />
+								<span> Sub total: <span class="subTotal">${subTotal}</span> <span class="subTotalCurrency">PHP</span> </span> <br />
+								<span> Taxable: ${taxable} </span> <br />
 							</div>
 							<div class = "col-md-6">
-								<span> Tax Rate: 0% </span> <br />
-								<span> Shipping fee: 1000 <span id="placeOrderShippingFeeCurrency">PHP</span> </span> <br />
-			                    <span> Total Due: <span id="placeOrdertotalPrice">${totalPrice}</span> <span id="placeOrderCurrency">PHP</span> </span>
+								<span> Tax Rate: ${taxRate}% </span> <br />
+								<span> Shipping fee: <span class = "shippingFee">${shippingFee}</span> <span class="shippingFeeCurrency">PHP</span> </span> <br />
+			                    <span> Total Due: <span class="totalDue">${totalDue}</span> <span class="totalDueCurrency">PHP</span> </span>
 		                    </div>
 	                    </div>
 	                </div>
@@ -303,7 +303,7 @@
 	                    <button type="submit" class="btn btn-primary pt-3 pb-3 float-right">Place Order</button>
 	                    
 	                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-	                    <input type="hidden" name = "total-price-approx" value = "${totalPrice}" />
+	                    <input type="hidden" name = "total-price-approx" value = "${totalDue}" />
 	                    <input type="hidden" name = "total-weight-approx" value = "${totalWeight}" /> 
 	
 	                </div>

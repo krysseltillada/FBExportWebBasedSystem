@@ -1,6 +1,8 @@
 package com.fb.exportorder.models.customer;
 
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
@@ -19,6 +21,7 @@ import org.hibernate.annotations.Cascade;
 import org.javamoney.moneta.Money;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fb.exportorder.constants.Finance;
 import com.fb.exportorder.models.Shipping;
 import com.fb.exportorder.models.ShippingAddress;
 import com.fb.exportorder.models.enums.OrderStatus;
@@ -207,6 +210,26 @@ public class Order	 {
 			subTotal += itemOrdered.getPrice();
 		
 		return subTotal;
+	
+	}
+	
+	public int getTaxable () {
+		
+		Set<Long> taxableProduct = new HashSet<Long>();
+		
+		for (Item itemOrdered : getCart().getItems())
+			taxableProduct.add(itemOrdered.getProduct().getProductId());
+		
+		return taxableProduct.size();
+		
+	}
+	
+	public double getTotalDue() {
+		return (getTaxable() * Finance.TAX) + Finance.SHIPPING_FEE + getSubTotal();
+	}
+	
+	public double getTax() {
+		return getTaxable() * Finance.TAX;
 	}
 	
 	

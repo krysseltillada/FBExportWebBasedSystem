@@ -354,7 +354,7 @@ $(document).ready(function () {
         */
 
         $.ajax({
-            url: "http://ip-api.com/json/27.34.176.0",
+            url: "http://ip-api.com/json/",
             jsonpCallback: "callback",
             dataType: "json",
             success: function( location ) {
@@ -433,12 +433,15 @@ $(document).ready(function () {
 
                                         });
 
-                                        $("#placeOrderSubTotal").html(formatMoney(fx($("#placeOrderSubTotal").html()).from("PHP").to(currentCurrency), "", "%v"));
-                                        $("#placeOrdertotalPrice").html(formatMoney(fx($("#placeOrdertotalPrice").html()).from("PHP").to(currentCurrency), "", "%v"));
-                                        $("#placeOrderCurrency").html(currentCurrency);
-                                        $("#placeOrderSubtotalCurrency").html(currentCurrency);
-                                        $("#placeOrderShippingFeeCurrency").html(currentCurrency);
+                                        $(".subTotal").html(formatMoney(fx($(".subTotal").html()).from("PHP").to(currentCurrency), "", "%v"));
+                                        $(".subTotalCurrency").html(currentCurrency);
 
+                                        $(".shippingFee").html(formatMoney(fx($(".shippingFee").html()).from("PHP").to(currentCurrency), "", "%v"));
+                                        $(".shippingFeeCurrency").html(currentCurrency);
+                                        
+                                        $(".totalDue").html(formatMoney(fx($(".totalDue").html()).from("PHP").to(currentCurrency), "", "%v"));
+                                        $(".totalDueCurrency").html(currentCurrency);
+                                      
                                         _.each($("div#shoppingModalCart div.modal-body>table>tbody").children(), function (productCartItem, i) {
 
                                             var $productCartItem = $(productCartItem).children().eq(2);
@@ -470,6 +473,7 @@ $(document).ready(function () {
                                                     var $orderItemDiv = $divOrderCollapse.prev();
 
                                                     var totalPrice = $orderItemDiv.find(".price").html();
+                                                    var subTotalPrice = 0;
                                                     var oid = $orderItemDiv.find("#orderId").html();
 
                                                     console.log(oid);
@@ -490,20 +494,23 @@ $(document).ready(function () {
 
 
                                                         itemsOrdered.push(itemOrdered);
-
-                                                        console.log(itemOrdered);
                                                         
                                                     });
-                                                    
+
+                                                    $itemsOrderedTable.find("tfoot tr .price").each(function (ind, elem) {
+                                                        subTotalPrice += Number($(elem).html());
+
+                                                    });
+                                                    console.log(formatMoney(fx($itemsOrderedTable.find("tfoot #estimatedTax").val()).from("PHP").to(currentCurrency), currentCurrency, "%v"));
                                                     paypal.Button.render({
                                                         env: 'sandbox', // Or 'sandbox',
 
                                                         style: {
-                                                        color: 'blue',
-                                                        size: 'small',
-                                                        shape : 'rect',
-                                                        size : 'small',
-                                                        label : 'pay'
+                                                            color: 'blue',
+                                                            size: 'small',
+                                                            shape : 'rect',
+                                                            size : 'small',
+                                                            label : 'pay'
                                                         },
                                                         
                                                         commit : true,
@@ -523,11 +530,11 @@ $(document).ready(function () {
                                                                             total: totalPrice, 
                                                                             currency: currentCurrency,
                                                                             details : {
-                                                                                subtotal : totalPrice,
-                                                                            
+                                                                                subtotal : subTotalPrice,
+                                                                                shipping : formatMoney(fx(1000).from("PHP").to(currentCurrency), currentCurrency, "%v"),
+                                                                                tax : formatMoney(fx($itemsOrderedTable.find("tfoot #estimatedTax").val()).from("PHP").to(currentCurrency), currentCurrency, "%v")
                                                                             }
                                                                         },
-                                                                        
                                                                         item_list : {	
                                                                             items : itemsOrdered
                                                                         }
