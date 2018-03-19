@@ -292,7 +292,7 @@ public class ProductServiceImpl implements ProductService {
 
 	@Override
 	public Map<Product, Integer> getTopPaidProduct() {
-		List<Order> orderList = orderRepository.getMostPaidOrders();
+		List<Order> orderList = orderRepository.getPaidOrders();
 		
 		Map<Product, Integer> mostPaid = new HashMap<>();
 		
@@ -306,9 +306,24 @@ public class ProductServiceImpl implements ProductService {
 		return sortByComparator(mostPaid);
 	}
 	
+	@Override
+	public Map<Product, Integer> getPaidProductPreviousMonths() {
+		List<Order> orderList = orderRepository.getPaidOrdersPreviousMonths();
+		
+		Map<Product, Integer> paidProduct = new HashMap<>();
+		
+		orderList.forEach((order) -> {
+			order.getCart().getItems().forEach((item) -> {
+				Product product = item.getProduct();
+				//mostPaid.put(product, mostPaid.containsKey(product) ? mostPaid.get(product) + 1 : 1);
+			});
+		});
+		return null;
+	}
+	
 	private Map<Product, Integer> sortByComparator(Map<Product, Integer> unsortMap) {
 
-		    List<Entry<Product, Integer>> list = new LinkedList<Entry<Product, Integer>>(
+		List<Entry<Product, Integer>> list = new LinkedList<Entry<Product, Integer>>(
 		        unsortMap.entrySet());
 
 		    Collections.sort(list, new Comparator<Entry<Product,Integer>>() {
@@ -329,5 +344,5 @@ public class ProductServiceImpl implements ProductService {
 		    });
 		    
 		    return sortedMap;
-		  }
+	}
 }

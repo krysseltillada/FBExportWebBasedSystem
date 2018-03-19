@@ -44,4 +44,6 @@ public interface ProductService {
 	List<Rating> getTopThreeMostViewedProduct();
 	
 	Map<Product,Integer> getTopPaidProduct();
+	
+	Map<Product,Integer> getPaidProductPreviousMonths();
 }

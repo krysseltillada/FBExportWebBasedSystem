@@ -1,4 +1,17 @@
 $(document).ready(function () {
+	var currentMonth = moment().month();
+	
+	var months = [
+		formatMonth(currentMonth - 4),
+		formatMonth(currentMonth - 3),
+		formatMonth(currentMonth - 2),
+		formatMonth(currentMonth - 1),
+		formatMonth(currentMonth)
+	];
+	
+	function formatMonth(month){
+		return moment().month(month).format("MMMM");
+	}
 
     var legendState = true;
     
@@ -46,7 +59,7 @@ $(document).ready(function () {
             }
         },
         data: {
-            labels: ["jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sept", "oct", "nov", "dec"],
+            labels: [months[0], months[1], months[2], months[3], months[4]],
             datasets: [
                 {
                     label: "Paid orders",
@@ -68,7 +81,7 @@ $(document).ready(function () {
                     pointHoverBorderWidth: 2,
                     pointRadius: 1,
                     pointHitRadius: 0,
-                    data: [50, 20, 60, 31, 52, 22, 40, 25, 30, 68, 56, 40],
+                    data: [50, 20, 60, 31, 52],
                     spanGaps: false
                 },
                 {
@@ -91,7 +104,7 @@ $(document).ready(function () {
                     pointHoverBorderWidth: 2,
                     pointRadius: 1,
                     pointHitRadius: 10,
-                    data: [20, 7, 35, 17, 26, 8, 18, 10, 14, 46, 30, 30],
+                    data: [20, 7, 35, 17, 26],
                     spanGaps: false
                 },
                 {
@@ -114,7 +127,7 @@ $(document).ready(function () {
                     pointHoverBorderWidth: 2,
                     pointRadius: 1,
                     pointHitRadius: 10,
-                    data: [1, 2, 35, 17, 26, 8, 4, 1, 14, 46, 3, 30],
+                    data: [1, 2, 35, 17, 26],
                     spanGaps: false
                 }
             ]

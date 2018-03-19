@@ -202,7 +202,7 @@
 	                		<div class="item d-flex align-items-center">
 	                		<div class="image"><img style="width: 50px; height: 50px;" src="<c:url value='${paid.key.getProductImageLink()}' />" alt="${paid.key.getName()}" class="img-fluid rounded-circle"></div>
 			                	<div class="text">
-			                    	<a href="#"><h3 class="h5">${paid.key.getName()}</h3></a><small>Total Paid : ${paid.value}</small>
+			                    	<a href="#"><h3 class="h5" >${paid.key.getName()}</h3></a><small>Total Paid : <span>${paid.value}</span></small>
 			                	</div>
 			                </div>
 			                

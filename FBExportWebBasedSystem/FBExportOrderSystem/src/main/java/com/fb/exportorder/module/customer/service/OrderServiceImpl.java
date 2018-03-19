@@ -14,6 +14,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.fb.exportorder.models.Product;
 import com.fb.exportorder.models.Shipping;
 import com.fb.exportorder.models.ShippingAddress;
 import com.fb.exportorder.models.VesselStatus;
@@ -292,4 +293,9 @@ public class OrderServiceImpl implements OrderService {
 		return orderRepository.getLatestOrders();
 	}
 
+	@Override
+	public List<Order> getPaidOrders() {
+		return orderRepository.getPaidOrders();
+	}
+	
 }

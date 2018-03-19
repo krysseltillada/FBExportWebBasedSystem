@@ -3,6 +3,7 @@ package com.fb.exportorder.module.customer.service;
 import java.util.List;
 import java.util.Map;
 
+import com.fb.exportorder.models.Product;
 import com.fb.exportorder.models.ShippingAddress;
 import com.fb.exportorder.models.customer.Customer;
 import com.fb.exportorder.models.customer.Order;
@@ -51,6 +52,6 @@ public interface OrderService {
 	
 	List<Order> getLatestOrders();
 	
-	
+	List<Order> getPaidOrders();
 	
 }
