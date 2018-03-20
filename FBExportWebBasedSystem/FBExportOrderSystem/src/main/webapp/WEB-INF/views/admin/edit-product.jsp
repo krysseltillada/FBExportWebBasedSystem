@@ -36,7 +36,7 @@
                     <div class = "col-6">
                         <div class="form-group">
                         <label class="form-control-label">Product Name</label>
-                        <input type="text" name = "product-name" value = "${product.name}" placeholder="product name" class="form-control" readonly required>
+                        <input type="text" name = "product-name" value = "${product.name}" placeholder="product name" class="form-control" required>
                         </div>
                     </div>
                     <div class = "col-6">

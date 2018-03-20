@@ -1,17 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="ISO-8859-1"%>
+<%@ include file = "../../lib/tags/tag-libraries.jsp" %>
 <html lang="en">
 
 <head>
   <meta charset="UTF-8" />
   <title>Error 404 - Page Not Found!</title>
-  <!-- Font Awesome -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-  <!-- Bootstrap core CSS -->
   <link href="resources/customer/css/bootstrap.min.css" rel="stylesheet">
 
-  <!-- Material Design Bootstrap -->
   <link href="resources/customer/css/mdb.min.css" rel="stylesheet">
 
   <link href="resources/customer/css/style.css" rel="stylesheet">
@@ -114,30 +112,20 @@
 
     </div>
 
-
-
    <h1 class="MainTitle font-weight-bold">Oops! Page Not Found! :(</h1>
    <br>
     <h5 class="Main Description">
       The Page You're Looking For Was Not Found
     </h5>
 
-    <a href = "/" class="btn btn-default">Back to homepage</a>
+    <a href = "<c:url value = '/' />" class="btn btn-default">Back to homepage</a>
 
   </div>
 
-  <!-- JQuery -->
   <script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
-
- <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.js"></script>
-
-  <!-- Bootstrap dropdown -->
+  <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.js"></script>
   <script type="text/javascript" src="js/popper.min.js"></script>
-
-  <!-- Bootstrap core JavaScript -->
   <script type="text/javascript" src="js/bootstrap.min.js"></script>
-
-  <!-- MDB core JavaScript -->
   <script type="text/javascript" src="js/mdb.min.js"></script>
 
   <script type="text/javascript">
@@ -159,10 +147,6 @@
 
   </script>
 
-
-
   </body>
-
-
 
 </html>

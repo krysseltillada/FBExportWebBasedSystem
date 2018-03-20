@@ -434,9 +434,9 @@ public class OrderServiceImpl implements OrderService {
 			order.getCustomer().getActivities().size();
 			order.getCustomer().getShippingAddresses().size();
 			
-			if (Objects.nonNull(order.getShipping()))
+			if (Objects.nonNull(order.getShipping())) {
 				order.getShipping().getShippingLog().size();
-				
+			}
 
 			for (Item item : order.getCart().getItems())
 				item.getProduct().getRating().getReviews().size();

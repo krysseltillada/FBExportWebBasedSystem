@@ -50,7 +50,7 @@
                 <ul class="navbar-nav nav-flex-icons">
                     <li class="nav-item mr-3">
 
-                        <form  role="search" class = "form-inline">
+                        <form  action = "<c:url value = '/search-results' />" role="search" class = "form-inline">
                             <input type="text" class="form-control" placeholder="Search" name="q">
                             <button class="btn btn-default light-blue lighten-2" type="submit" style = "height: 30px;">
                                 <i class="fa fa-search" aria-hidden="true" style="font-size: 10px; position: relative; top: -10px;"></i>

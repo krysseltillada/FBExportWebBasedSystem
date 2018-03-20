@@ -105,6 +105,8 @@ $(document).ready(function () {
 
     var updateProductCartInfo = function () {
 
+        var uniqueProductId = new Set();
+
         var $productCartItemLists = $("div#shoppingModalCart div.modal-body>table>tbody");
         var $productCartTotal = $("div.shopping-cart-total").children().eq(1);
         var itemCount = $productCartItemLists.children().length;
@@ -122,12 +124,19 @@ $(document).ready(function () {
         var totalPrice = 0;
 
         _.each($productCartItemLists.children(), function (productCartItem, i) {
+        
+            uniqueProductId.add($(productCartItem).find(".product-id").val());
 
             var $productCartItem = $(productCartItem).children().eq(2);
             totalPrice += accounting.unformat($productCartItem.text());
 
         });
 
+        uniqueProductId.forEach(function (val) {
+
+            console.log($("div#shoppingModalCart div.modal-body>table").find(".product-id[value="+ val +"]").closest("tr").html());
+
+        });
 
         $productCartTotal.text(formatMoney(totalPrice, currentCurrency, "%s%v"));
 
@@ -193,8 +202,6 @@ $(document).ready(function () {
         
     });
 
- 
-
     $("#massType").change(function () {
 
         var massType = $(this).val(),
@@ -220,7 +227,6 @@ $(document).ready(function () {
 
     $quantitySpinner.parent().css("position", "relative");
     $quantitySpinner.parent().css("top", "-5px");
-
 
     $quantitySpinner.keypress(function (event) {
 
@@ -280,7 +286,7 @@ $(document).ready(function () {
 
             addToCart({
                 productName : $addToCartModal.find("#addToCartProductName").text(),
-                totalPrice : accounting.unformat($addToCartModal.find("#totalPrice").val()),
+                totalPrice : formatMoney(accounting.unformat($addToCartModal.find("#totalPrice").val()), "", "%v"),
                 totalWeight : parseFloat($addToCartModal.find("#totalWeight").val().substring(0, $addToCartModal.find("#totalWeight").val().indexOf(" "))).toFixed(1),
                 weightType : $addToCartModal.find("#massType>option:selected").html(),
                 productImage : $addToCartModal.find("#addToCartProductImage").attr("src"),
@@ -303,10 +309,6 @@ $(document).ready(function () {
     $("#quantity").tooltip({
         trigger : 'manual',
         offset : '0px 9px'
-    });
-
-    $( "#slider" ).slider({
-        range: true
     });
 
     $(".btnProductItemAddToCart").click(function (event) {
@@ -399,7 +401,7 @@ $(document).ready(function () {
                                             currentCurrency = "USD";
                                         else
                                             currentCurrency = fx.base;
-                                        
+
                                         $(".card-product").each(function () {
 
                                             var $price = $(this).find("span>span:eq(0)");
@@ -475,6 +477,35 @@ $(document).ready(function () {
                                             $(this).next().html(currentCurrency);
                                         });
 
+
+                                        $( "#slider" ).slider({
+                                            range: true,
+                                            min: 1,
+                                            max: $("#max-price").html(),
+                                            values: [0, Number($("#max-price").html()) / 2],
+                                            slide: function( event, ui ) {
+                                                
+                                                var minPriceOnPHP = formatMoney(fx(ui.values[0]).from(currentCurrency).to("PHP"), "", "%v");
+                                                var maxPriceOnPHP = formatMoney(fx(ui.values[1]).from(currentCurrency).to("PHP"), "", "%v");
+
+                                                $( "#min-price" ).html(minPriceOnPHP);
+                                                $( "#max-price" ).html(maxPriceOnPHP);
+
+                                                $("#price-range").val(minPriceOnPHP + "," + maxPriceOnPHP);
+                                            },
+                                            create : function (event, ui) {
+
+                                                $( "#min-price" ).html(formatMoney(1, "", "%v"));
+                                                $( "#max-price" ).html(formatMoney(Number($("#max-price").html()) / 2, "", "%v"));
+
+                                                var minPriceOnPHP = formatMoney(fx($("#min-price").html()).from(currentCurrency).to("PHP"), "", "%v");
+                                                var maxPriceOnPHP = formatMoney(fx($("#max-price").html()).from(currentCurrency).to("PHP"), "", "%v");
+
+                                                $("#price-range").val(minPriceOnPHP + "," + maxPriceOnPHP);
+
+                                            }
+                                        });
+
                                          $(".paypal-button").each(function (ind, elem) {
 
                                             
@@ -521,7 +552,8 @@ $(document).ready(function () {
                                                         subTotalPrice += Number($(elem).html());
 
                                                     });
-                                                    console.log(formatMoney(fx($itemsOrderedTable.find("tfoot #estimatedTax").val()).from("PHP").to(currentCurrency), currentCurrency, "%v"));
+                                                    console.log($itemsOrderedTable.find("tfoot #estimatedTax").val());
+                                                    console.log(fx($itemsOrderedTable.find("tfoot #estimatedTax").val()).from("PHP").to(currentCurrency));
                                                     paypal.Button.render({
                                                         env: 'sandbox', // Or 'sandbox',
 
@@ -555,6 +587,8 @@ $(document).ready(function () {
                                                                                 tax : formatMoney(fx($itemsOrderedTable.find("tfoot #estimatedTax").val()).from("PHP").to(currentCurrency), currentCurrency, "%v")
                                                                             }
                                                                         },
+                                                                        
+
                                                                         item_list : {	
                                                                             items : itemsOrdered
                                                                         }

@@ -413,7 +413,79 @@ public class InventoryServiceImpl implements InventoryService {
 	public List<Product> getMostPopularProduct() {
 		return inventoryRepository.getMostPopularProducts(new PageRequest(0, 3));
 	}
-	
-	
+
+	@Override
+	public List<Product> searchProduct(String productName, int pageNumber) {
+		return inventoryRepository.getProductByName(productName, new PageRequest(pageNumber, 6));
+	}
+
+	@Override
+	public int searchProductCount(String productName) {
+		return inventoryRepository.getProductCountByName(productName);
+	}
+
+	@Override
+	public int getHighestProductPrice() {
+		return inventoryRepository.getHighestProductPrice();
+	}
+
+	@Override
+	public List<String> getProductsOrigin() {
+		return inventoryRepository.getProductsOrigin();
+	}
+
+	@Override
+	@Transactional
+	public List<Product> searchFilterProductByName(double minPrice, double maxPrice, String origin, String sortType,
+			String name, int pageNumber, int pageSize) {
+		
+		String sortTypeField = (StringUtils.equals(sortType, "p-high-to-low") ? "p.price DESC" :
+								StringUtils.equals(sortType, "p-low-to-high") ? "p.price ASC" :
+								StringUtils.equals(sortType, "r-high-to-low") ? "p.rating.rate DESC" :
+																				"p.rating.rate ASC");
+		
+		String originStatement = (!StringUtils.equals(origin, "none") ? " AND p.origin = '" + origin + "'" : StringUtils.EMPTY);
+		
+		String searchFilterProductJPQLStatement 
+			= "SELECT p FROM Product p WHERE p.name LIKE '%" + name + "%' " + originStatement + " AND p.price " + 
+			  "BETWEEN " + minPrice +  " AND " + maxPrice + " ORDER BY " + sortTypeField;
+		
+		System.out.println(searchFilterProductJPQLStatement);
+		
+		
+		Query searchFilterProductQuery = sessionFactory.getCurrentSession()
+													   .createQuery(searchFilterProductJPQLStatement);
+		
+		searchFilterProductQuery.setFirstResult(pageNumber);
+		searchFilterProductQuery.setMaxResults(pageSize);
+		
+		return (List<Product>) searchFilterProductQuery.list();
+	}
+
+	@Override
+	@Transactional
+	public int getSearchFilterProductCountByName(double minPrice, double maxPrice, String origin,
+			String sortType, String name) {
+		
+		String sortTypeField = (StringUtils.equals(sortType, "p-high-to-low") ? "p.price DESC" :
+								StringUtils.equals(sortType, "p-low-to-high") ? "p.price ASC" :
+								StringUtils.equals(sortType, "r-high-to-low") ? "p.rating.rate DESC" :
+																				"p.rating.rate ASC");
+
+		String originStatement = (!StringUtils.equals(origin, "none") ? " AND p.origin = '" + origin + "'" : StringUtils.EMPTY);
+		
+		String searchFilterProductJPQLStatement 
+		= "SELECT p FROM Product p WHERE p.name LIKE '%" + name + "%' " + originStatement + " AND p.price " + 
+		"BETWEEN " + minPrice +  " AND " + maxPrice + " ORDER BY " + sortTypeField;
+		
+		System.out.println(searchFilterProductJPQLStatement);
+		
+		
+		Query searchFilterProductQuery = sessionFactory.getCurrentSession()
+										   .createQuery(searchFilterProductJPQLStatement);
+		
+		
+		return ((List<Product>) searchFilterProductQuery.list()).size();
+	}
 
 }

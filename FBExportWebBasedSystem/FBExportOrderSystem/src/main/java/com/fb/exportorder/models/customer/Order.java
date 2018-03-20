@@ -229,7 +229,7 @@ public class Order	 {
 	}
 	
 	public double getTax() {
-		return getTaxable() * Finance.TAX;
+		return getSubTotal() * Finance.TAX;
 	}
 	
 	

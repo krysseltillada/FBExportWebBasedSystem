@@ -5,7 +5,11 @@
     <div class="container-fluid wow fadeIn">
         <div class="row">
             <div class="col-lg-3 col-md-6 ml-auto">
-                <h5 class="title mb-3"><strong>Fong Bros International Corporation</strong></h5>
+                <h5 class="title mb-3">
+					<img class = "float-left mt-1 mr-1" src = "<c:url value = '/resources/company-logo.png' />" width = "35" height = "35">
+                	<strong>
+                	Fong Bros International Corporation</strong>
+                </h5>
                 <p>You can be sure you are getting the highest quality seafoods & superior customer service.</p>
             </div>
             <hr class="w-100 clearfix d-sm-none">
@@ -33,7 +37,7 @@
             </div>
             <div class="col-lg-2 col-md-6 ml-auto">
                 <h5 class="title mb-3"><strong>Buying Stations</strong></h5>
-                <ul>
+                <ul>	
                     <li>
                         LMB Fish Buying Station
                     </li>

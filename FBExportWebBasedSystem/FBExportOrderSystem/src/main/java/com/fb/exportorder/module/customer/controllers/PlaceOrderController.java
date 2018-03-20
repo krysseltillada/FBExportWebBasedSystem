@@ -86,7 +86,7 @@ public class PlaceOrderController {
 			
 		}
 		
-		double taxable = taxableProduct.size() * Finance.TAX;
+		double taxable =  subTotal * Finance.TAX;
 
 		totalDue = Finance.SHIPPING_FEE + subTotal + taxable;
 		

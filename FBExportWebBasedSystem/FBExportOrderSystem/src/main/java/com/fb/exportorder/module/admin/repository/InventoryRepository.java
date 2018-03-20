@@ -1,6 +1,5 @@
 package com.fb.exportorder.module.admin.repository;
 
-import java.util.Date;
 import java.util.List;
 
 import org.springframework.data.domain.Pageable;
@@ -14,9 +13,6 @@ import com.fb.exportorder.models.Product;
 @Repository
 public interface InventoryRepository 
 				 extends PagingAndSortingRepository<Product, Long>{
-
-//	@Query("SELECT p FROM Product p WHERE p.status = 'POSTED' ORDER BY p.dateRegistered DESC")
-//	List<Product> getLatestNewProducts(Pageable pageable);
 	
 	@Query(value = "SELECT * FROM product p WHERE p.status = 'POSTED' ORDER BY p.date_registered DESC LIMIT :record OFFSET :offset", 
 		   nativeQuery=true)
@@ -37,5 +33,16 @@ public interface InventoryRepository
 	@Query("SELECT p FROM Product p WHERE p.status = 'POSTED' ORDER BY p.rating.rate DESC")
 	List<Product> getMostPopularProducts(Pageable pageable);
 	
+	@Query("SELECT p FROM Product p WHERE p.name LIKE %:name% AND p.status <> 'UNPOSTED'")
+	List<Product> getProductByName(@Param("name")String name, Pageable pageable);
+	
+	@Query("SELECT COUNT(p) FROM Product p WHERE p.name LIKE %:name% AND p.status <> 'UNPOSTED'")
+	int getProductCountByName(@Param("name") String name);
+	
+	@Query("SELECT MAX(p.price) FROM Product p WHERE p.status <> 'UNPOSTED'")
+	int getHighestProductPrice();
+	
+	@Query("SELECT DISTINCT p.origin FROM Product p")
+	List<String> getProductsOrigin();
 	
 }

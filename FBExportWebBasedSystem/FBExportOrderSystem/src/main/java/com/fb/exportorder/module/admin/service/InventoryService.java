@@ -73,4 +73,26 @@ public interface InventoryService {
 	public int getMostViewedProductCount();
 	
 	public List<Product> getMostPopularProduct();
+	
+	public List<Product> searchProduct(String productName, int pageNumber);
+	public int searchProductCount(String productName);
+	
+	public int getHighestProductPrice();
+	
+	public List<String> getProductsOrigin();
+	
+	public List<Product> searchFilterProductByName(double minPrice, 
+												   double maxPrice, 
+												   String origin, 
+												   String sortType, 
+												   String name,
+												   int pageNumber,
+												   int pageSize);
+	
+	public int getSearchFilterProductCountByName(double minPrice, 
+														   double maxPrice, 
+														   String origin, 
+														   String sortType,
+														   String name);
+	
 }

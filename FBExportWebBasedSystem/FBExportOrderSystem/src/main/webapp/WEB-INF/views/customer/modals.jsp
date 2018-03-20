@@ -205,7 +205,7 @@
 	            </div>
 	
 	            </div>
-	            <div class="modal-body" style = "overflow-x: auto;">
+	            <div class="modal-body" style = "max-height: 400px; overflow-y: auto; overflow-x: auto;">
 	
 	            <div class = "d-none" id = "productCartEmptyMessage">
 	                <p class="text-center p-5"> No products added. </p>
@@ -241,6 +241,7 @@
 	                    			<td> ${cartItem.weight} ${cartItem.weight_type} </td>
 	                    			<td class="text-center"><a class = "delete-cart-item"><i class="fa fa-remove text"></i></a></td>
 									<input type = "hidden" id = "item-id" value = "${cartItem.item_id}" />
+									<input type = "hidden" class = "product-id" value = "${cartItem.product_id}" />
 	                    		</tr>
 	                    		
 	                    		
