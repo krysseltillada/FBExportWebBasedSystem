@@ -356,7 +356,7 @@ $(document).ready(function () {
         */
 
         $.ajax({
-            url: "http://ip-api.com/json/",
+            url: "http://ip-api.com/json/72.229.28.185",
             jsonpCallback: "callback",
             dataType: "json",
             success: function( location ) {
@@ -471,35 +471,32 @@ $(document).ready(function () {
                                         });
 
                                         $(".price").each(function () {
-                                            console.log($(this).html());
-
                                             $(this).html(formatMoney(fx($(this).html()).from("PHP").to(currentCurrency), "", "%v"))
                                             $(this).next().html(currentCurrency);
                                         });
 
-
                                         $( "#slider" ).slider({
                                             range: true,
                                             min: 1,
-                                            max: $("#max-price").html(),
+                                            max: Number($("#max-price").html()) * 2,
                                             values: [0, Number($("#max-price").html()) / 2],
                                             slide: function( event, ui ) {
                                                 
+                                                $( "#min-price" ).html(formatMoney(ui.values[0], "", "%v"));
+                                                $( "#max-price" ).html(formatMoney(ui.values[1], "", "%v"));
+                                                
                                                 var minPriceOnPHP = formatMoney(fx(ui.values[0]).from(currentCurrency).to("PHP"), "", "%v");
                                                 var maxPriceOnPHP = formatMoney(fx(ui.values[1]).from(currentCurrency).to("PHP"), "", "%v");
-
-                                                $( "#min-price" ).html(minPriceOnPHP);
-                                                $( "#max-price" ).html(maxPriceOnPHP);
 
                                                 $("#price-range").val(minPriceOnPHP + "," + maxPriceOnPHP);
                                             },
                                             create : function (event, ui) {
 
-                                                $( "#min-price" ).html(formatMoney(1, "", "%v"));
-                                                $( "#max-price" ).html(formatMoney(Number($("#max-price").html()) / 2, "", "%v"));
-
                                                 var minPriceOnPHP = formatMoney(fx($("#min-price").html()).from(currentCurrency).to("PHP"), "", "%v");
-                                                var maxPriceOnPHP = formatMoney(fx($("#max-price").html()).from(currentCurrency).to("PHP"), "", "%v");
+                                                var maxPriceOnPHP = formatMoney(fx(Number($("#max-price").html()) / 2).from(currentCurrency).to("PHP"), "", "%v");
+                                                
+                                                $( "#min-price" ).html(formatMoney(1, "", "%v"));
+                                                $( "#max-price" ).html(formatMoney((Number($("#max-price").html()) / 2), "", "%v"));
 
                                                 $("#price-range").val(minPriceOnPHP + "," + maxPriceOnPHP);
 

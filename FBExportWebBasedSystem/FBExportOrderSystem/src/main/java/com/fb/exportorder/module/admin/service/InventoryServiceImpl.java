@@ -475,8 +475,8 @@ public class InventoryServiceImpl implements InventoryService {
 		String originStatement = (!StringUtils.equals(origin, "none") ? " AND p.origin = '" + origin + "'" : StringUtils.EMPTY);
 		
 		String searchFilterProductJPQLStatement 
-		= "SELECT p FROM Product p WHERE p.name LIKE '%" + name + "%' " + originStatement + " AND p.price " + 
-		"BETWEEN " + minPrice +  " AND " + maxPrice + " ORDER BY " + sortTypeField;
+			= "SELECT p FROM Product p WHERE p.name LIKE '%" + name + "%' " + originStatement + " AND p.price " + 
+			"BETWEEN " + minPrice +  " AND " + maxPrice + " ORDER BY " + sortTypeField;
 		
 		System.out.println(searchFilterProductJPQLStatement);
 		
