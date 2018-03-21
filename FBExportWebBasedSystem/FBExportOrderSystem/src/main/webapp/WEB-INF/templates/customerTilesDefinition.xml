@@ -192,6 +192,10 @@
 	
 	<definition name = "contact-us" extends = "customerBaseTemplate">
 		<put-attribute name = "main" value = "/WEB-INF/views/customer/contact-us.jsp" />
+		
+		<put-list-attribute name="javascriptfiles" inherit="true">
+			<add-attribute value = "/resources/customer/js/contact-us.js" />
+		</put-list-attribute>
 	</definition>
 	
 	<definition name = "about-us" extends = "customerBaseTemplate">

@@ -18,11 +18,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.fb.exportorder.models.Product;
+import com.fb.exportorder.models.customer.Customer;
 import com.fb.exportorder.models.customer.Item;
 import com.fb.exportorder.models.customer.Weight;
 import com.fb.exportorder.models.enums.WeightType;
 import com.fb.exportorder.module.admin.service.InventoryService;
 import com.fb.exportorder.module.customer.service.CustomerService;
+import com.fb.exportorder.module.customer.service.EmailService;
 
 @Controller
 public class HomeController {
@@ -32,6 +34,9 @@ public class HomeController {
 	
 	@Autowired
 	CustomerService customerService;
+	
+	@Autowired
+	EmailService emailService;
 	
 	@RequestMapping(value = "/add-to-cart", method = RequestMethod.POST)
 	@ResponseBody

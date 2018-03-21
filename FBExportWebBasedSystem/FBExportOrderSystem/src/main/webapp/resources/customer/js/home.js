@@ -1,6 +1,4 @@
 $(document).ready(function () {
-
-    console.log("tae");
    
     var updateHomePositioning = function () {
 
