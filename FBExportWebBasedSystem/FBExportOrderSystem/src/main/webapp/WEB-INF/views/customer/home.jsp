@@ -129,7 +129,7 @@
 			                           
 								
 									<span style = "font-size: 12px; position: absolute; top: 155px;" class = "black-text"> Stocks: <span id = "product-stock-status" style="color: ${(product.weight > 0 ) ? 'green' : 'red'}">${(product.weight > 0 ) ? 'On Stock' : 'Out of Stock'} </span> </span>
-			                        <span style = "font-size: 12px; position: absolute; top: 174px;" class = "black-text"> Posted on: <span id = "product-date-posted">${product.datePosted}</span> </span>
+			                        <span style = "font-size: 12px; position: absolute; top: 174px;" class = "black-text"> Posted: <span id = "product-date-posted"> <fmt:formatDate value = "${product.datePosted}" type = "date" dateStyle = "LONG" /> </span> </span>
 			                        
 			                        <input type = "hidden" value = "${product.productId}" id = "product-id" />
 			                    </div>
@@ -228,7 +228,7 @@
 			                        </c:choose>
 			
 									<span style = "font-size: 12px; position: absolute; top: 155px;" class = "black-text"> Stocks: <span id = "product-stock-status" style="color: ${(product.weight > 0 ) ? 'green' : 'red'}">${(product.weight > 0 ) ? 'On Stock' : 'Out of Stock'} </span> </span>
-			                        <span style = "font-size: 12px; position: absolute; top: 174px;" class = "black-text"> Posted on: <span id = "product-date-posted">${product.datePosted}</span> </span>
+			                        <span style = "font-size: 12px; position: absolute; top: 174px;" class = "black-text"> Posted: <span id = "product-date-posted"> <fmt:formatDate value = "${product.datePosted}" type = "date" dateStyle = "lONG" /> </span> </span>
 			                        
 			                        <input type = "hidden" value = "${product.productId}" id = "product-id" />
 			                    </div>

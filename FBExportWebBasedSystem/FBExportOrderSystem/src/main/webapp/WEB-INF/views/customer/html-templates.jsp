@@ -116,7 +116,7 @@
 
 
 					<span style = "font-size: 12px; position: absolute; top: 155px;" class = "black-text"> Stocks: <span id = "product-stock-status">{{=stockStatus}} </span> </span>
-	                <span style = "font-size: 12px; position: absolute; top: 174px;" class = "black-text"> Posted on: <span id = "product-date-posted">{{=postedDate}}</span> </span>
+	                <span style = "font-size: 12px; position: absolute; top: 174px;" class = "black-text"> Posted: <span id = "product-date-posted">{{=postedDate}}</span> </span>
 
 					<input type = "hidden" value = "{{=productId}}" id = "product-id" />
 				</div>
