@@ -58,10 +58,10 @@
 	                        <button class="btn btn-default light-blue lighten-2" id="contact-us-submit" type="submit">
 	                            Submit
 	                        </button>
-	                     	<img class="sending-email mx-auto" style="display:none;" src="/FBExportSystem/resources/customer/img/loader.gif" height="50" width="50">
 
 	                        </div>
-	                        
+							<img class="sending-email mx-auto" style="display:none;" src="/FBExportSystem/resources/customer/img/loader.gif" height="50" width="50">
+								                        
 	                        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
                         
                         </form>

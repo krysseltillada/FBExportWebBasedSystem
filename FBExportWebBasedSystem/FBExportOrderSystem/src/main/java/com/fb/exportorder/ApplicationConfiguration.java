@@ -12,6 +12,7 @@ import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.ui.freemarker.FreeMarkerConfigurationFactoryBean;
 
+import com.fb.exportorder.utilities.MD5Encoder;
 import com.fb.exportorder.utilities.PasswordValidator;
 
 @Configuration
@@ -51,5 +52,10 @@ public class ApplicationConfiguration {
 	@Bean
 	public ScheduledTasks scheduledTasks() {
 		return new ScheduledTasks();
+	}
+	
+	@Bean
+	public MD5Encoder md5Encoder() {
+		return new MD5Encoder();
 	}
 }

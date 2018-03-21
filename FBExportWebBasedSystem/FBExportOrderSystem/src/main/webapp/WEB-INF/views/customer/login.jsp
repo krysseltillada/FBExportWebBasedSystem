@@ -6,9 +6,16 @@
         <div class = "col-md-12">
             <fieldset>
                 <legend> 
-                	Login 
-                	
-                	
+                	Login
+                	<c:if test="${not empty accountFound}">
+						<span class = "green-text ml-3" style = "font-size: 15px;"> <strong> *${accountFound} </strong> </span>
+					</c:if>
+                	<c:if test="${not empty accountNotFound}">
+						<span class = "red-text ml-3" style = "font-size: 15px;"> <strong> *${accountNotFound} </strong> </span>
+					</c:if> 
+					<c:if test="${not empty emailConfirmationMessage}">
+						<span class = "green-text ml-3" style = "font-size: 15px;"> <strong> *${emailConfirmationMessage} </strong> </span>
+					</c:if>                	
                		<c:if test = "${not empty loginErrorMessage}">
                			<span class = "red-text ml-3" style = "font-size: 15px;"> <strong> *${loginErrorMessage} </strong> </span>
                		</c:if>

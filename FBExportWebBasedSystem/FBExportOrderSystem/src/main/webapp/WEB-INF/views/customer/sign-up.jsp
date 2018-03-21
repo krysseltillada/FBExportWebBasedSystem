@@ -2,7 +2,7 @@
 
 
 <div class = "container p-4">
-    <form action = "<c:url value = '/register' />" method = "POST" enctype = "multipart/form-data">
+    <form action = "<c:url value = '/register' />" method = "POST" enctype = "multipart/form-data" id="signup-form">
 
         <div class = "row">
             <div class = "col">
@@ -236,7 +236,9 @@
 
         <div class = "row mt-2">
             <div class = "col-md-12">
-                <input type="submit" class="btn btn-primary" value = "Sign up" style = "margin-left: 0px;"/>
+                <img class="sign-up-loader mx-auto" style="display:none; margin-left: 0px;" src="/FBExportSystem/resources/customer/img/loader.gif" height="50" width="50">
+            
+                <input type="submit" class="btn btn-primary" value = "Sign up" id="submit-signup"s tyle = "margin-left: 0px;"/>
             </div>
         </div>
         
