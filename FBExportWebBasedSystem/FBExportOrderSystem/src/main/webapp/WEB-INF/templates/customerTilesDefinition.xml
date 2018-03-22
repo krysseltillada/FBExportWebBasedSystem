@@ -167,6 +167,14 @@
 		
 	</definition>
 	
+	<definition name = "reset-password" extends = "customerBaseTemplate">
+		<put-attribute name = "main" value = "/WEB-INF/views/customer/reset-password.jsp" />
+		
+		<put-list-attribute name = "javascriptfiles" inherit = "true">
+			<add-attribute value = "/resources/customer/js/reset-password.js" />
+		</put-list-attribute>
+	</definition>
+	
 	<definition name = "login" extends = "customerBaseTemplate">
 		<put-attribute name = "main" value = "/WEB-INF/views/customer/login.jsp" />
 		

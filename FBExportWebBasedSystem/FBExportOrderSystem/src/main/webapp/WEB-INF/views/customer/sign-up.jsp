@@ -236,7 +236,7 @@
 
         <div class = "row mt-2">
             <div class = "col-md-12">
-                <img class="sign-up-loader mx-auto" style="display:none; margin-left: 0px;" src="/FBExportSystem/resources/customer/img/loader.gif" height="50" width="50">
+                <img class="sign-up-loader" style="display:none; margin-left: 35px; margin-top: 5px;" src="/FBExportSystem/resources/customer/img/loader.gif" height="50" width="50">
             
                 <input type="submit" class="btn btn-primary" value = "Sign up" id="submit-signup"s tyle = "margin-left: 0px;"/>
             </div>

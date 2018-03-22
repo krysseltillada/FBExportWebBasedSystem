@@ -192,7 +192,7 @@
             </div>
             <div class="statistic d-flex align-items-center bg-white has-shadow mb-2">
                 <div class="icon bg-green"><i class="fa fa-calendar-o"></i></div>
-                <div class="text"><strong>${onlineUsers.size()}</strong><br><small>registered users</small></div>
+                <div class="text"><strong>${onlineUsers.get(true) + onlineUsers.get(false)}</strong><br><small>registered users</small></div>
             </div>
             <div class="statistic d-flex align-items-center bg-white has-shadow">
                 <div class="icon bg-orange"><i class="fa fa-paper-plane-o"></i></div>

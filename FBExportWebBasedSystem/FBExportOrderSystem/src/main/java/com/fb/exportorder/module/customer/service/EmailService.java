@@ -1,5 +1,7 @@
 package com.fb.exportorder.module.customer.service;
 
+import java.util.Objects;
+
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 
@@ -10,12 +12,41 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
 import com.fb.exportorder.models.customer.Customer;
+import com.fb.exportorder.module.customer.repository.CustomerRepository;
+import com.fb.exportorder.utilities.MD5Encoder;
 
 @Service
 public class EmailService {
 	
 	@Autowired
+	private CustomerRepository customerRepository;
+	
+	@Autowired
 	private JavaMailSender mailSender;
+	
+	@Autowired
+	private MD5Encoder encoder;
+	
+	public String forgotPassword(String email) {
+		if(StringUtils.isEmpty(email))
+			return "Please complete the form";
+		
+		Customer customer = customerRepository.findAccountByEmail(email);
+		if(Objects.isNull(customer))
+			return "Email not registered";
+		
+		StringBuilder builder = new StringBuilder();
+		builder.append("<html><body>");
+		builder.append(String.format("Dear %s %s", customer.getFirstname() , customer.getLastname()));
+		builder.append("<br><br> We received a request to reset your account password.<br><br>");
+		builder.append("To reset your password, please click the following link : <br><br>");
+		builder.append(String.format("<a href=\"http://localhost:9090/FBExportSystem/resetpassword/%1$d/%2$s\">http://localhost:9090/FBExportSystem/resetpassword/%1$d/%2$s</a>",customer.getId(), encoder.encode(customer.getUsername()+customer.getContact().getEmailAddress())));
+		builder.append("<br><br>Note: If you do not want to reset your password, please ignore this email and all your account information will remain the same.");
+		builder.append("<br><br> Do not reply. This is an automated message.");
+		builder.append("<br><br> Sincerely, <br><b>Fong Bros Inc.</b></body></html>");
+		
+		return sendEmail(email, email, "[Forgot Password]", builder.toString(), "Message sent");
+	}
 	
 	public String contactUs(String name, String to, String subject, String text) {
 		if(StringUtils.isEmpty(name) || StringUtils.isEmpty(to) || StringUtils.isEmpty(subject) || StringUtils.isEmpty(text))

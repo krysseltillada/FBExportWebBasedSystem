@@ -10,10 +10,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.fb.exportorder.models.customer.Customer;
 import com.fb.exportorder.module.customer.repository.CustomerRepository;
+import com.fb.exportorder.module.customer.service.EmailService;
 import com.fb.exportorder.utilities.MD5Encoder;
 
 @Controller("customerLoginController")
@@ -24,6 +27,9 @@ public class LoginController {
 	
 	@Autowired
 	private MD5Encoder encoder;
+	
+	@Autowired
+	private EmailService emailService;
 	
 	@RequestMapping("/login")
 	public String login (HttpServletRequest request, Model model) {
@@ -62,6 +68,12 @@ public class LoginController {
 		}
 		
 		return "login";
+	}
+	
+	@RequestMapping(value="/forgotpassword", method=RequestMethod.POST)
+	@ResponseBody
+	public String contactUsEmail(String email) {
+		return emailService.forgotPassword(email);
 	}
 	
 }
