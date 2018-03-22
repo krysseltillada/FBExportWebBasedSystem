@@ -70,9 +70,10 @@
     </div>
     <!--/.Footer Links-->
 
-    <hr>
 
 	<security:authorize access="!hasAuthority('CUSTOMER')">
+	   
+	   <hr>
 	
 	   <div class="text-center">
 	       <ul class="list-unstyled list-inline mb-0">

@@ -23,6 +23,7 @@ import com.fb.exportorder.models.customer.Activity;
 import com.fb.exportorder.models.customer.Cart;
 import com.fb.exportorder.models.customer.Customer;
 import com.fb.exportorder.models.customer.Item;
+import com.fb.exportorder.models.customer.Notification;
 import com.fb.exportorder.models.customer.Order;
 import com.fb.exportorder.module.customer.repository.ActivityRepository;
 import com.fb.exportorder.module.customer.repository.CustomerRepository;
@@ -188,6 +189,16 @@ public class CustomerServiceImpl implements CustomerService {
 		}
 		
 		return onlineUsers;
+	}
+
+	@Override
+	public void addNotificationToCustomer(Notification notification, Customer customer) {
+
+		customer.getNotifications()
+				.add(notification);
+		
+		customerRepository.save(customer);
+		
 	}
 
 }

@@ -1,14 +1,19 @@
 package com.fb.exportorder.module.customer.controllers;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
 import javax.servlet.http.HttpSession;
 
+import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.messaging.handler.annotation.MessageMapping;
+import org.springframework.messaging.handler.annotation.SendTo;
+import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -19,10 +24,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.fb.exportorder.models.Product;
 import com.fb.exportorder.models.customer.Item;
+import com.fb.exportorder.models.customer.Notification;
 import com.fb.exportorder.models.customer.Weight;
 import com.fb.exportorder.models.enums.WeightType;
 import com.fb.exportorder.module.admin.service.InventoryService;
 import com.fb.exportorder.module.customer.service.CustomerService;
+import com.fb.exportorder.module.customer.service.NotificationService;
 
 @Controller
 public class HomeController {
@@ -32,6 +39,43 @@ public class HomeController {
 	
 	@Autowired
 	CustomerService customerService;
+	
+	@Autowired
+	NotificationService notificationService;
+	
+	
+	@RequestMapping(value = "/seen-notification", method = RequestMethod.POST)
+	@ResponseBody
+	public String seenNotification (@RequestParam String seenNotificationIdRawJSON) {
+		try {
+			
+			JSONArray seenNotificationId = (JSONArray)new JSONParser().parse(seenNotificationIdRawJSON);
+			
+			for (int i = 0; i != seenNotificationId.size(); ++i) 
+				notificationService.seenNotification(Long.parseLong((String)seenNotificationId.get(i)));
+		
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return "";
+	}
+	
+	@RequestMapping("/push-notif")
+	public String pushNotif() {
+		
+		Notification notification = new Notification();
+		
+		notification.setHeader("order is approved");
+		notification.setDescription("your order lapu lapu is appproved");
+		notification.setNotificationId(0l);
+		notification.setSeen(false);
+		notification.setDate(new Date());
+		
+		notificationService.pushNotification(notification, customerService.getCustomerById(1));
+		
+		return "home";
+	}
 	
 	@RequestMapping(value = "/add-to-cart", method = RequestMethod.POST)
 	@ResponseBody
@@ -108,7 +152,5 @@ public class HomeController {
 	public List<Product> seeMoreMostViewedProducts (@RequestParam String pageCount) {
 		return inventoryService.getMostViewedProduct(3, Integer.parseInt(pageCount));
 	}
-	
-	
 	
 }

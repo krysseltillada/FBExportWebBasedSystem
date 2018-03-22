@@ -7,6 +7,7 @@ import java.util.Date;
 import javax.annotation.PostConstruct;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
@@ -25,7 +26,7 @@ public class ScheduledTasks {
 	private SystemSettings settings;
 	public static String formattedTime = "";
 	
-    @Scheduled(fixedRate = 59000)
+    @Scheduled(fixedRate = 1000)
     public void reportCurrentTime() {
     	
     	if(ScheduledTasks.formattedTime.equals("")) {
@@ -38,7 +39,7 @@ public class ScheduledTasks {
         		backupTime.setSeconds(0);
         		settings.setSystemBackupTime(backupTime);
         	   
-        	   
+        		
         	   
         		Date logoutTime = new Date();
         		logoutTime.setHours(0);
@@ -56,7 +57,6 @@ public class ScheduledTasks {
     	String currentTime = dateFormat.format(Calendar.getInstance().getTime());
     	if(formattedTime.equals(currentTime))
     		backup.backupData("fbexport");
-    	
 
     }
 }

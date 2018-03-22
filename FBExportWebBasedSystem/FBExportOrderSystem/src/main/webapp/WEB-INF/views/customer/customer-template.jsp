@@ -5,6 +5,7 @@
 
 <tiles:importAttribute name = "cssfiles" /> 
 <tiles:importAttribute name = "javascriptfiles" />
+<tiles:importAttribute name = "javascriptnotificationfiles" />
 <tiles:importAttribute name = "reCaptcha" />
 
 <!DOCTYPE html>
@@ -47,6 +48,12 @@
 		<c:forEach var = "javascriptfile" items = "${javascriptfiles}">
 			<script src = "<c:url value = '${javascriptfile}' />" type = "text/javascript"></script>
 		</c:forEach>
+		
+		<security:authorize access = "hasAuthority('CUSTOMER')">
+			<c:forEach var = "javascriptnotificationfile" items = "${javascriptnotificationfiles}">
+				<script src = "<c:url value = '${javascriptnotificationfile}' />" type = "text/javascript"></script>
+			</c:forEach>
+		</security:authorize>
 		
 	</body>
 

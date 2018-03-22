@@ -7,6 +7,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fb.exportorder.models.customer.Activity;
 import com.fb.exportorder.models.customer.Customer;
 import com.fb.exportorder.models.customer.Item;
+import com.fb.exportorder.models.customer.Notification;
 import com.fb.exportorder.models.customer.Order;
 
 public interface CustomerService {
@@ -21,4 +22,5 @@ public interface CustomerService {
 	public int getOrderCountByCustomerId(long customerId);
 	public void saveCustomer(Customer customer);
 	public Map<Boolean, Integer> getOnlineUsersCount();
+	public void addNotificationToCustomer(Notification notification, Customer customer);
 }

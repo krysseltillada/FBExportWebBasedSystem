@@ -41,6 +41,13 @@ public class Customer extends Account {
 	          org.hibernate.annotations.CascadeType.DELETE_ORPHAN})
 	@JsonManagedReference
 	private List <Activity> activities = new ArrayList<>();
+
+	@OneToMany(cascade=CascadeType.ALL)
+	@Cascade({org.hibernate.annotations.CascadeType.DELETE,
+        org.hibernate.annotations.CascadeType.MERGE,
+        org.hibernate.annotations.CascadeType.PERSIST,
+        org.hibernate.annotations.CascadeType.DELETE_ORPHAN})
+	private List <Notification> notifications = new ArrayList<>();
 	
 	public List<Order> getOrders() {
 		return orders;
@@ -73,6 +80,16 @@ public class Customer extends Account {
 	public void setActivities(List<Activity> activities) {
 		this.activities = activities;
 	}
+
+	public List<Notification> getNotifications() {
+		return notifications;
+	}
+
+	public void setNotifications(List<Notification> notifications) {
+		this.notifications = notifications;
+	}
+	
+	
 	
 
 	

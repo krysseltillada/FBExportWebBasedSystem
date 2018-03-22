@@ -64,6 +64,13 @@
 			<add-attribute value = "/resources/customer/js/customer.js" />
 		</put-list-attribute>
 		
+		<put-list-attribute name = "javascriptnotificationfiles">
+			<add-attribute value = "/resources/customer/js/sockjs.js" />
+			<add-attribute value = "/resources/customer/js/stomp.js" />
+			<add-attribute value = "/resources/customer/js/notification.js" />
+			<add-attribute value = "/resources/customer/js/timeago.js" />
+		</put-list-attribute>
+		
 	</definition>
 	
 	<definition name = "home" extends = "customerBaseTemplate">

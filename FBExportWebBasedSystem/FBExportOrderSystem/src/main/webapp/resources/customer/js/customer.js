@@ -9,6 +9,8 @@
 
 var currentCurrency = "";
 
+   
+
 $(function () {
   _.templateSettings.interpolate = /\{\{=([^-][\S\s]+?)\}\}/g;
   _.templateSettings.evaluate = /\{\{([^-=][\S\s]+?)\}\}/g;
@@ -60,6 +62,8 @@ $(function () {
 }(jQuery));
 
 $(document).ready(function () {
+
+    
 
     var updateCartPositioning = function () {
         var screenWidth = $(document).width();
@@ -505,8 +509,6 @@ $(document).ready(function () {
 
                                          $(".paypal-button").each(function (ind, elem) {
 
-                                            
-            
                                             var $divOrderCollapse = $(this).closest("div.multi-collapse");
                                             
                                             var country = $divOrderCollapse.find("#country").html();
@@ -647,7 +649,9 @@ $(document).ready(function () {
                                         $(document).ajaxSend(function(e, xhr, options) {
                                             xhr.setRequestHeader(header, token);
                                         });
-                                        
+
+                                        $("#notificationListItem").removeClass("d-none");
+  
                                     }, "json");
 
                                    

@@ -66,12 +66,12 @@
 	                        </a>
 	
 	                    </li>
-	                    <li class="nav-item">
+	                    <li class="nav-item d-none" id = "notificationListItem">
 	
 	                        
-	                        <div class="dropdown">
+	                        <div class="dropdown" id = "btnShowNotification">
 	                            <a class = "nav-link waves-effect waves-light pl-0 white-text" id="dropDownNotification" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-	                            <span class = "font-weight-bold"> 1 </span>
+	                            <span class = "font-weight-bold"> 0 </span>
 	                                <i class="fa fa-bell" aria-hidden="true"></i>
 	                            </a>
 	                            <div class="dropdown-menu" aria-labelledby="dropDownNotification" style = "left: -275px; width: 500px;">
@@ -81,25 +81,35 @@
 	                            </h6>
 	
 	                            <div style = "max-height: 380px; overflow-y: auto;">
-	                                <div class="list-group">
-	                                    <a href="#" class="list-group-item list-group-item-action flex-column align-items-start notification-link pl-4 pr-4">
-	                                        <div class="d-flex w-100 justify-content-between">
-	                                        <h6 class="mb-1">Order approved</h6>
-	                                        <button type="button" class="close" aria-label="Close">
-	                                                <span aria-hidden="true">&times;</span>
-	                                        </button>
-	                                        </div>
-	                                        <p class="mb-1">your order lapu lapu 1 kilo is approved</p>
-	                                        <small> 1 day ago </small>
-	                                    </a>
-	
-	
+	                                <div class="list-group" id = "notificationListGroup">
+	                                
+	                                	<sql:query var="notificationsQuery" 
+	                            		   dataSource = "${dataSource}">
+	                            		   			SELECT notification_id, date, description, header, is_seen FROM 
+	                            		   			(notification n INNER JOIN customer_notifications cn ON n.notification_id = cn.notifications_notification_id)
+																	INNER JOIN customer c ON cn.customer_id = c.id WHERE c.id = ${sessionScope.customerId} AND n.is_seen = false
+																	 ORDER BY n.date DESC
+									  	</sql:query>
+									  	
+									  	<c:forEach var = "notificationItem" items = "${notificationsQuery.rows}">
+									  	
+									  		<span href="javascript:void(0)" class="list-group-item list-group-item-action flex-column align-items-start notification-link pl-4 pr-4">
+												<div class="d-flex w-100 justify-content-between">
+												<h6 class="mb-1">${notificationItem.header}</h6>
+												<input type = "hidden" id = "notificationId" value = "${notificationItem.notification_id}" />
+												</div>
+												<p class="mb-1">${notificationItem.description}</p>
+												<small>${notificationItem.date}</small>
+											</span>
+									  		
+									  	</c:forEach>
+									
 	                                </div>
 	
 	                            </div>
 	
 	                            <span class="dropdown-header text-center pb-0">
-	                                <a class = "p-0" href = "#"> see more </a>
+	                                <a class = "p-0" href = "<c:url value = '/notification' />"> see more </a>
 	                            </span>
 	
 	                            </div>
