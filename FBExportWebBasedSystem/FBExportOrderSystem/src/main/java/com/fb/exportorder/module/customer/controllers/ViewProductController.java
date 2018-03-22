@@ -89,9 +89,13 @@ public class ViewProductController {
 	@ResponseBody
 	public String deleteProductReview(@PathVariable long productid,
 									  @PathVariable long reviewid) {
+		
 		productService.deleteReviewById(productid, reviewid);
 		
 		Gson jsonRate = new Gson();
+		productService.getMapAverage().forEach((k, v) ->{
+			System.out.println(k + " " + v);
+		});
 		String rateJson = jsonRate.toJson(productService.getMapAverage());
 		
 		return rateJson;
@@ -138,8 +142,6 @@ public class ViewProductController {
 		List<Customer> customerList = productService.sortedCustomerComments(3, Integer.parseInt(pageCount), id);
 		
 		String toStringJSON = gson.toJson(productService.getCustomerReviews(customerList, reviewList));
-		
-		System.out.println(toStringJSON);
 		
 		return toStringJSON;
 	}

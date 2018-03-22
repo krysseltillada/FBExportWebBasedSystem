@@ -102,7 +102,7 @@ public class SignUpController {
 								 newCustomer.getContact().getEmailAddress(),
 								 "[Email Confirmation]", "http://localhost:9090/FBExportSystem/login/"+newCustomer.getId()+"/"+encoder.encode(newCustomer.getContact().getEmailAddress()+newCustomer.getUsername()));
 		
-		redirectAttributes.addFlashAttribute("emailConfirmationMessage", "Email confirmation sent. Please check your email to confirm adn activate account.");
+		redirectAttributes.addFlashAttribute("emailConfirmationMessage", "Email confirmation sent. Please check your email to confirm and activate account.");
 		
 		return "redirect:login";
 		

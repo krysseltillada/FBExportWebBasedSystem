@@ -179,8 +179,8 @@ public class ProductServiceImpl implements ProductService {
 		});
 		
 		double average = ((5 * mapAverage.get("5.0")) + (4 * mapAverage.get("4.0")) + (3 * mapAverage.get("3.0")) + (2 * mapAverage.get("2.0")) + (1 * mapAverage.get("1.0"))) / mapAverage.get("Total");
-		
-		mapAverage.put("Average", Double.parseDouble(String.format("%.2f", average)));
+		Double averageDouble = Double.parseDouble(String.format("%.2f", average));
+		mapAverage.put("Average", Double.isNaN(averageDouble) ? 0.0 : averageDouble);
 		
 		return average;
 	}
@@ -232,6 +232,8 @@ public class ProductServiceImpl implements ProductService {
 		reviewList.remove(reviewRepository.findOne(reviewid));
 		
 		ratingRepository.save(rating);
+		
+		reviewRepository.delete(reviewid);
 		
 		getAverage(rating.getReviews());
 		
