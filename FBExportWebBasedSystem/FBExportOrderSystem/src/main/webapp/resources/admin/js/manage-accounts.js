@@ -2,7 +2,7 @@ $(document).ready(function () {
     
     
     /*CLIENT TABLE*/
-
+	$(".icon-trash").on('click',function () {});
     
 
       var clienttable = $('#client-table').DataTable({
