@@ -155,12 +155,13 @@
 </script>
 
 <script id = "notificationItemTemplate" type = "text/template">
-	<a href="javascript:void(0)" class="list-group-item list-group-item-action flex-column align-items-start notification-link pl-4 pr-4">
+	<span class="list-group-item list-group-item-action flex-column align-items-start notification-link pl-4 pr-4">
 		<div class="d-flex w-100 justify-content-between">
 		<h6 class="mb-1">{{=header}}</h6>
 		<input type = "hidden" id = "notificationId" value = "{{=notificationId}}" />
+		<input type = "hidden" id = "isSeen" value = "{{=isSeen}}" />
 		</div>
 		<p class="mb-1">{{=description}}</p>
 		<small>{{=dateAgo}}</small>
-	</a>
+	</span>
 </script>

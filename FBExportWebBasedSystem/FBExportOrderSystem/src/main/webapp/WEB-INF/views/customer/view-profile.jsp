@@ -22,7 +22,7 @@
                             <i class="fa fa-user mr-2" aria-hidden="true"></i>
                             View Profile
                         </a>
-                        <a href="#" class="list-group-item">
+                        <a href="<c:url value = '/notifications' />" class="list-group-item">
                             <i class="fa fa-bell mr-2" aria-hidden="true"></i>
                             Notifications
                         </a>

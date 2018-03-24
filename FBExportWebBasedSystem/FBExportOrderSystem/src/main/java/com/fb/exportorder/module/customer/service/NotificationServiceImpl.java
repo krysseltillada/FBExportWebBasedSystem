@@ -26,11 +26,15 @@ public class NotificationServiceImpl implements NotificationService {
 	
 	@Override
 	public void pushNotification(Notification notification, Customer customer) {
+
+		customerService.addNotificationToCustomer(notification, customer);
+		
 		
 		try {
 			
 			if (customer.isOnline()) {
-			
+
+				
 				simpMessagingTemplate.convertAndSend("/queue/push-notification-user-id-" + customer.getId(), 
 													 new ObjectMapper().writeValueAsString(notification));
 				
@@ -44,7 +48,6 @@ public class NotificationServiceImpl implements NotificationService {
 			e.printStackTrace();
 		}
 		
-		customerService.addNotificationToCustomer(notification, customer);
 		
 	}
 

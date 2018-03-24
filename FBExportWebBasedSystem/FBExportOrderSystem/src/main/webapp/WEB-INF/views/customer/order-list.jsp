@@ -67,11 +67,11 @@
                             <i class="fa fa-user mr-2" aria-hidden="true"></i>
                             View Profile
                         </a>
-                        <a href="#" class="list-group-item">
+                        <a href="<c:url value = '/notifications' />" class="list-group-item">
                             <i class="fa fa-bell mr-2" aria-hidden="true"></i>
                             Notifications
                         </a>
-                        <a href="<c:url value = '/view-profile' />" class="list-group-item active">
+                        <a href="<c:url value = '/order-list' />" class="list-group-item active">
                             <i class="fa fa-reorder mr-2" aria-hidsden="true"></i>
                             Order Lists
                         </a>

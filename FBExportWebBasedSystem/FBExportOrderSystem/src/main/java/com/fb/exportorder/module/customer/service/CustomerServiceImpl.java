@@ -199,6 +199,8 @@ public class CustomerServiceImpl implements CustomerService {
 		
 		customerRepository.save(customer);
 		
+		notification.setNotificationId(customer.getNotifications().get(customer.getNotifications().size() - 1).getNotificationId());
+		
 	}
 
 }

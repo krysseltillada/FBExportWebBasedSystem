@@ -77,7 +77,6 @@
 	                            <div class="dropdown-menu" aria-labelledby="dropDownNotification" style = "left: -275px; width: 500px;">
 	                            <h6 class="dropdown-header">
 	                                <span> Notifications </span>
-	                                <span class = "float-right"> Clear all </span>
 	                            </h6>
 	
 	                            <div style = "max-height: 380px; overflow-y: auto;">
@@ -91,25 +90,42 @@
 																	 ORDER BY n.date DESC
 									  	</sql:query>
 									  	
-									  	<c:forEach var = "notificationItem" items = "${notificationsQuery.rows}">
+									  	<c:choose>
 									  	
-									  		<span href="javascript:void(0)" class="list-group-item list-group-item-action flex-column align-items-start notification-link pl-4 pr-4">
-												<div class="d-flex w-100 justify-content-between">
-												<h6 class="mb-1">${notificationItem.header}</h6>
-												<input type = "hidden" id = "notificationId" value = "${notificationItem.notification_id}" />
-												</div>
-												<p class="mb-1">${notificationItem.description}</p>
-												<small>${notificationItem.date}</small>
-											</span>
-									  		
-									  	</c:forEach>
+									  		<c:when test = "${fn:length(notificationsQuery.rows) > 0}">
+									  	
+											  	<c:forEach var = "notificationItem" items = "${notificationsQuery.rows}">
+											  	
+											  		<span class="list-group-item list-group-item-action flex-column align-items-start notification-link pl-4 pr-4">
+														<div class="d-flex w-100 justify-content-between">
+														<h6 class="mb-1"> ${notificationItem.header} </h6>
+														<input type = "hidden" id = "notificationId" value = "${notificationItem.notification_id}" />
+														<input type = "hidden" value = "${notificationItem.is_seen}" />
+														</div>
+														<p class="mb-1">${notificationItem.description} </p>
+														<small>${notificationItem.date}</small>
+													</span>
+											  		
+											  	</c:forEach>
+											  	
+										  	</c:when>
+										  	
+										  	<c:otherwise>
+										  	
+										  		<span href="javascript:void(0)" id = "emptyNotificationMessageDesktop" class="list-group-item list-group-item-action flex-column align-items-start notification-link pl-4 pr-4">
+												       <h6 class="text-center p-5"> No notifications yet </h6>
+												</span>
+										  	
+										  	</c:otherwise>
+									  	
+									  	</c:choose>
 									
 	                                </div>
 	
 	                            </div>
 	
 	                            <span class="dropdown-header text-center pb-0">
-	                                <a class = "p-0" href = "<c:url value = '/notification' />"> see more </a>
+	                                <a class = "p-0" href = "<c:url value = '/notifications' />"> see more </a>
 	                            </span>
 	
 	                            </div>

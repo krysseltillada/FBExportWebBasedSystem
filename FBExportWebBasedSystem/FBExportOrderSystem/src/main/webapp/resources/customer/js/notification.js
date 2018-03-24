@@ -2,8 +2,12 @@ $(document).ready(function () {
     var stompClient = null; 
 
     var updateNotificationItemCount = function () {
-        if ($("#notificationListGroup").children().length > 0) {
-            $("#dropDownNotification").find("span").html($("#notificationListGroup").children().length);
+
+        console.log($("#notificationListGroup input[value='false']").length);
+
+        if ($("#notificationListGroup input[value='false']").length > 0) {
+            $("#dropDownNotification").find("span").html($("#notificationListGroup input[value='false']").length);
+            $("#emptyNotificationMessageDesktop").remove();
         } else {
             $("#dropDownNotification").find("span").html("");
         }
@@ -24,15 +28,20 @@ $(document).ready(function () {
         console.log("tae tae");
         var seenItemId = [];
 
-        $("#notificationListGroup>span").each(function (i, elem) {
-            seenItemId.push($(this).find("#notificationId").val());
-        });
+        if ($("#emptyNotificationMessageDesktop").length < 0) {
 
-        $.post("/FBExportSystem/seen-notification", {
-            seenNotificationIdRawJSON : JSON.stringify(seenItemId)
-        }, function () {
-            $("#dropDownNotification").find("span").html("");
-        });
+            $("#notificationListGroup>span").each(function (i, elem) {
+                seenItemId.push($(this).find("#notificationId").val());
+            });
+
+            $.post("/FBExportSystem/seen-notification", {
+                seenNotificationIdRawJSON : JSON.stringify(seenItemId)
+            }, function () {
+                $("#dropDownNotification").find("span").html("");
+                $("#notificationListGroup input[value='false']").val("true");
+            });
+
+        }
 
     });
 
@@ -54,7 +63,8 @@ $(document).ready(function () {
                     header : notification.header,
                     description : notification.description,
                     dateAgo : timeago().format(notification.date),
-                    notificationId : notification.notificationId
+                    notificationId : notification.notificationId,
+                    isSeen : notification.seen
                 }));
 
                 var notificationSound = new Audio("/FBExportSystem/resources/notification-sound.mp3");
