@@ -205,7 +205,7 @@ $(document).ready(function () {
           function( settings, data, dataIndex ) {
               var min = parseInt( $('#minAgeClient').val(), 10 );
               var max = parseInt( $('#maxAgeClient').val(), 10 );
-              var age = parseFloat( data[8] ) || 0; // use data for the age column
+              var age = parseFloat( data[7] ) || 0; // use data for the age column
 
               if ( ( isNaN( min ) && isNaN( max ) ) ||
                    ( isNaN( min ) && age <= max ) ||
@@ -224,7 +224,7 @@ $(document).ready(function () {
     		    	
     		    	if($('#filterCustomerGender').val() != null){
 	                      var gender = $('#filterCustomerGender').val().toUpperCase();
-	                      var genderColumn = data[7];
+	                      var genderColumn = data[6];
 	                      
 	                      if ( ( gender == genderColumn ) )
 	                      {
@@ -245,7 +245,7 @@ $(document).ready(function () {
 		    	
 		    	if($('#countryClient').val() != null){
                       var country = $('#countryClient').val();
-                      var countryColumn = data[10];
+                      var countryColumn = data[9];
                       
                       if ( ( country == countryColumn ) )
                       {
@@ -520,7 +520,7 @@ $(document).ready(function () {
               function( settings, data, dataIndex ) {
                   var min = parseInt( $('#minAgeEmployee').val(), 10 );
                   var max = parseInt( $('#maxAgeEmployee').val(), 10 );
-                  var age = parseFloat( data[8] ) || 0; // use data for the age column
+                  var age = parseFloat( data[7] ) || 0; // use data for the age column
 
                   if ( ( isNaN( min ) && isNaN( max ) ) ||
                        ( isNaN( min ) && age <= max ) ||
@@ -539,7 +539,7 @@ $(document).ready(function () {
         		    	
         		    	if($('#filterEmployeeGender').val() != null){
     	                      var gender = $('#filterEmployeeGender').val().toUpperCase();
-    	                      var genderColumn = data[7];
+    	                      var genderColumn = data[6];
     	                      
     	                      if ( ( gender == genderColumn ) )
     	                      {
@@ -560,7 +560,7 @@ $(document).ready(function () {
     		    	
     		    	if($('#countryEmployee').val() != null){
                           var country = $('#countryEmployee').val();
-                          var countryColumn = data[10];
+                          var countryColumn = data[9];
                           
                           if ( ( country == countryColumn ) )
                           {
@@ -941,7 +941,7 @@ $(document).ready(function () {
               function( settings, data, dataIndex ) {
                   var min = parseInt( $('#minAgeAdmin').val(), 10 );
                   var max = parseInt( $('#maxAgeAdmin').val(), 10 );
-                  var age = parseFloat( data[8] ) || 0; // use data for the age column
+                  var age = parseFloat( data[7] ) || 0; // use data for the age column
 
                   if ( ( isNaN( min ) && isNaN( max ) ) ||
                        ( isNaN( min ) && age <= max ) ||
@@ -960,7 +960,7 @@ $(document).ready(function () {
         		    	
         		    	if($('#filterAdminGender').val() != null){
     	                      var gender = $('#filterAdminGender').val().toUpperCase();
-    	                      var genderColumn = data[7];
+    	                      var genderColumn = data[6];
     	                      
     	                      if ( ( gender == genderColumn ) )
     	                      {
@@ -981,7 +981,7 @@ $(document).ready(function () {
     		    	
     		    	if($('#countryAdmin').val() != null){
                           var country = $('#countryAdmin').val();
-                          var countryColumn = data[10];
+                          var countryColumn = data[9];
                           
                           if ( ( country == countryColumn ) )
                           {
