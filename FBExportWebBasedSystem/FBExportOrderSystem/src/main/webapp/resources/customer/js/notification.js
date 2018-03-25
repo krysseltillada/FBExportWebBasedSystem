@@ -3,7 +3,7 @@ $(document).ready(function () {
 
     var updateNotificationItemCount = function () {
 
-        console.log($("#notificationListGroup input[value='false']").length);
+        console.log($("#notificationListGroup input[value='false']").length + " length of notif in user bar");
 
         if ($("#notificationListGroup input[value='false']").length > 0) {
             $("#dropDownNotification").find("span").html($("#notificationListGroup input[value='false']").length);
@@ -80,7 +80,8 @@ $(document).ready(function () {
             });
 
         }, function (message) {
-            console.log(message);
+            console.log(message + " ERROR TNG INA");
+            connect();
         });
 
         updateNotificationDisplay();

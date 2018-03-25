@@ -68,12 +68,14 @@ public class LoginSuccessHandler implements AuthenticationSuccessHandler {
 		session.setAttribute("customerProfileImageLink", profileImageLink);
 		session.setAttribute("customerUsername", username);
 		
-		if(Objects.nonNull(customer))
+		if(Objects.nonNull(customer)) {
 			customer.setOnline(true);
-		else
+			customerRepository.save(customer);
+		}
+		else {
 			customerByEmail.setOnline(true);
-		
-		customerRepository.save(customer);
+			customerRepository.save(customerByEmail);
+		}
 		
 		response.sendRedirect(request.getServletContext().getContextPath() + "/");
 		

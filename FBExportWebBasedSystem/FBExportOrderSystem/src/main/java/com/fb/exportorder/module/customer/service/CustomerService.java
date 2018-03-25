@@ -23,4 +23,6 @@ public interface CustomerService {
 	public Map<Boolean, Integer> getOnlineUsersCount();
 	public void addNotificationToCustomer(Notification notification, Customer customer);
 	public List<Notification> getCustomerNotificationsById(long customerId, int records, int offset);
+	public void deleteNotificationByNotificationId(long customerId, long notificationId);
+	public void deleteAllNotification(long customerId, String jsonDeleteDataIds);
 }

@@ -651,6 +651,40 @@ $(document).ready(function () {
                                         });
 
                                         $("#notificationListItem").removeClass("d-none");
+
+                                        if ($("div.notifications").length > 0) {
+
+                                            var seenItemId = [];
+
+                                            $("div.notifications>.list-group>span").each(function (i, elem) {
+                                                seenItemId.push($(this).find("#notificationId").val());
+                                            });
+
+                                            $.post("/FBExportSystem/seen-notification", {
+                                                seenNotificationIdRawJSON : JSON.stringify(seenItemId)
+                                            }, function () {
+                                                
+                                                $("#dropDownNotification").find("span").html("");
+                                                $("#notificationListGroup input[value='false']").val("true");
+
+                                                $("div.notifications>.list-group>span").each(function () {
+
+                                                    var $dateAgo = $(this).find("small");
+
+                                                    console.log($dateAgo.html());
+
+                                                    $dateAgo.html(timeago().format($dateAgo.html()));
+                                                });
+
+                                                $("div.notificationsLoadingDisplay").addClass("d-none");
+                                                $("div.notifications").removeClass("d-none");
+
+                                                $("#btnClearNotifications").removeClass("d-none");
+                                                $("#btnSeeMoreNotifications").removeClass("d-none");
+
+                                            });
+
+                                        }
   
                                     }, "json");
 

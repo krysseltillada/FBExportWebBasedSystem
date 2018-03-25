@@ -2,11 +2,8 @@ package com.fb.exportorder.module.customer.repository;
 
 import java.util.List;
 
-import javax.persistence.NamedNativeQuery;
-
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
@@ -50,7 +47,7 @@ public interface CustomerRepository
 	@Query(value="SELECT COUNT(*), c.online FROM customer c GROUP BY c.online", nativeQuery=true)
 	public List<Object[]> getOnlineUsersCount();
 	
-	@Query(value = "SELECT * FROM notification n INNER JOIN customer_notifications cn ON n.notification_id = cn.notifications_notification_id WHERE cn.customer_id = :id LIMIT :record OFFSET :offset",
+	@Query(value = "SELECT * FROM notification n INNER JOIN customer_notifications cn ON n.notification_id = cn.notifications_notification_id WHERE cn.customer_id = :id ORDER BY n.date DESC LIMIT :record OFFSET :offset",
 		   nativeQuery = true)
 	List<Object[]> getNotificationsByIdRecordsAndOffset(@Param("id") long customerId,
 														@Param("record") int record,

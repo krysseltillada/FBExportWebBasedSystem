@@ -73,14 +73,20 @@
 											<span class="list-group-item list-group-item-action flex-column align-items-start notification-link pl-4 pr-4">
 												<div class="d-flex w-100 justify-content-between">
 													<h6 class="mb-1"> ${notificationItem.header} </h6>
+													<button type="button" class="close delete-notification" aria-label="Close">
+														<span aria-hidden="true">&times;</span>
+													</button>													
 													<input type = "hidden" id = "notificationId" value = "${notificationItem.notificationId}" />
-													<input type = "hidden" value = "${notificationItem.isSeen()}" />
 												</div>
 												<p class="mb-1">${notificationItem.description} </p>
 												<small>${notificationItem.date}</small>
 											</span>
 													  		
 										</c:forEach>
+										
+										<div class = "no-notification mx-auto mt-5" style = "display: none;">
+			                            	<h4> No notifications yet </h4>
+			                            </div>
 											
 		                            </div>
 		
@@ -96,6 +102,7 @@
 		
 		                <div class = "row mt-3">
 		                    <a id = "btnSeeMoreNotifications" class = "blue-text mx-auto btnSeeMore d-none" href = "javascript:void(0)"> See more </a>
+		                	<img class = "see-more-loader mx-auto" style = "display:none;" src = "<c:url value = '/resources/customer/img/loader.gif' />" height ="50" width = "50" />
 		                </div>
 	                
 	                </c:when>

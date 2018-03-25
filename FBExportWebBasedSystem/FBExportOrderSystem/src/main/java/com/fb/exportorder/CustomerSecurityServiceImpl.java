@@ -46,8 +46,10 @@ public class CustomerSecurityServiceImpl implements UserDetailsService{
 		
 		if (Objects.nonNull(customer)) 
 			userDetails = setUserDetailsBuilder(customer);
-		else if (Objects.nonNull(customerByEmail))
+		else if (Objects.nonNull(customerByEmail)) {
+			System.out.println(customerByEmail.getContact().getEmailAddress());
 			userDetails = setUserDetailsBuilder(customerByEmail);
+		}
 		else {
 			throw new UsernameNotFoundException("Username not found");
 		}

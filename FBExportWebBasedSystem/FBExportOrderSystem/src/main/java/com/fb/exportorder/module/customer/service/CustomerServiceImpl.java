@@ -8,7 +8,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
-import org.hibernate.SessionFactory;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -17,8 +16,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fb.exportorder.models.Product;
 import com.fb.exportorder.models.customer.Activity;
 import com.fb.exportorder.models.customer.Cart;
 import com.fb.exportorder.models.customer.Customer;
@@ -28,7 +25,7 @@ import com.fb.exportorder.models.customer.Order;
 import com.fb.exportorder.module.customer.repository.ActivityRepository;
 import com.fb.exportorder.module.customer.repository.CustomerRepository;
 import com.fb.exportorder.module.customer.repository.ItemRepository;
-import com.mysql.jdbc.StringUtils;
+import com.fb.exportorder.module.customer.repository.NotificationRepository;
 
 @Service
 public class CustomerServiceImpl implements CustomerService {
@@ -41,6 +38,9 @@ public class CustomerServiceImpl implements CustomerService {
 	
 	@Autowired
 	ItemRepository itemRepository;
+	
+	@Autowired
+	NotificationRepository notificationRepository;
 	
 	@Override
 	public Customer getCustomerById(long customerId) {
@@ -80,13 +80,6 @@ public class CustomerServiceImpl implements CustomerService {
 			
 			if (Objects.nonNull(customerActivities)) {
 			
-//				for (Activity customerActivity : customerActivities) {
-//					System.out.println(customerActivity.getActivityId());
-//					if (customerActivity.getActivityId() == activityId) {
-//						customerActivities.remove(customerActivity);
-//						break;
-//					}
-//				}
 				customerActivities.remove(activity);
 				customerRepository.save(customer);
 			
@@ -226,6 +219,58 @@ public class CustomerServiceImpl implements CustomerService {
 		
 		
 		return userNotificationList;
+	}
+
+	@Override
+	public void deleteNotificationByNotificationId(long customerId, long notificationId) {
+		
+		Customer customer = customerRepository.findOne(customerId);
+		
+		if (Objects.nonNull(customer)) {
+			
+			List<Notification> customerNotifications = customer.getNotifications();
+			Notification notification = notificationRepository.findOne(notificationId);
+			
+			if (Objects.nonNull(customerNotifications)) {
+			
+				customerNotifications.remove(notification);
+				customerRepository.save(customer);
+			
+			}
+			
+		}
+		
+	}
+
+	@Override
+	public void deleteAllNotification(long customerId, String jsonDeleteDataIds) {
+		
+		try {
+			
+			Customer customer = customerRepository.findOne(customerId);
+			
+			List<Notification> notifications = customer.getNotifications();
+			
+			JSONObject jsonRawObject = (JSONObject)(new JSONParser().parse(jsonDeleteDataIds));
+			JSONArray jsonDeleteDataArr = (JSONArray)jsonRawObject.get("idElem");
+			
+			if (Objects.nonNull(notifications)) {
+
+				for (int i = 0; i != jsonDeleteDataArr.size(); ++i)  {
+					long lNotificationId = (long)jsonDeleteDataArr.get(i);
+					Notification notification = notificationRepository.findOne(lNotificationId);
+					notifications.remove(notification);
+				}
+				
+				customerRepository.save(customer);
+			
+			}
+			
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		
+		
 	}
 
 }

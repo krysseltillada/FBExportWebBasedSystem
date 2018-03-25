@@ -165,3 +165,17 @@
 		<small>{{=dateAgo}}</small>
 	</span>
 </script>
+
+<script id = "showNotificationItemTemplate" type = "text/template">
+	<span class="list-group-item list-group-item-action flex-column align-items-start notification-link pl-4 pr-4">
+		<div class="d-flex w-100 justify-content-between">
+		<h6 class="mb-1">{{=header}}</h6>
+		<button type="button" class="close delete-notification" aria-label="Close">
+			<span aria-hidden="true">&times;</span>
+		</button>
+		<input type = "hidden" id = "notificationId" value = "{{=notificationId}}" />
+		</div>
+		<p class="mb-1">{{=description}}</p>
+		<small>{{=dateAgo}}</small>
+	</span>
+</script>

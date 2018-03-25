@@ -83,19 +83,15 @@ public class LoginSuccessHandler implements AuthenticationSuccessHandler{
 		
 		session.setAttribute("logoutTime", Time.convertTimeToMilliseconds(logoutTime.getHours(), logoutTime.getMinutes(), logoutTime.getSeconds()));
 		
-		if(Objects.nonNull(employee))
+		if(Objects.nonNull(employee)) {
 			employee.setOnline(true);
-		else
+			employeeRepository.save(employee);
+		}
+		else {
 			employeeByEmail.setOnline(true);
-		
-		employeeRepository.save(employee);
-		
-//		String time = ((List<SystemSettings>)systemSettingsRepository.findAll()).get(0).getLogoutTime().toString();
-//		String[] timeSplit = time.split(":");
-//		
-//		System.out.println(timeSplit[1].charAt(1));
-		
-//		session.setAttribute("logoutTime", timeSplit[1].charAt(1));
+			employeeRepository.save(employeeByEmail);
+			
+		}	
 		
 		response.sendRedirect(request.getServletContext().getContextPath() + "/admin/dashboard");
 		

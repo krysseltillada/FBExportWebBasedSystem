@@ -87,7 +87,7 @@
 	                            		   			SELECT notification_id, date, description, header, is_seen FROM 
 	                            		   			(notification n INNER JOIN customer_notifications cn ON n.notification_id = cn.notifications_notification_id)
 																	INNER JOIN customer c ON cn.customer_id = c.id WHERE c.id = ${sessionScope.customerId} AND n.is_seen = false
-																	 ORDER BY n.date DESC
+																	ORDER BY n.date DESC
 									  	</sql:query>
 									  	
 									  	<c:choose>
