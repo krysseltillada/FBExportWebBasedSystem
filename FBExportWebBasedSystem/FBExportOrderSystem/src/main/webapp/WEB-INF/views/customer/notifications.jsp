@@ -6,7 +6,9 @@
         <h4>
             Notifications
             <i class="fa fa-bell ml-2" aria-hidden="true"></i>
-            <a class = "float-right" href = "#" style = "font-size: 16px;"> Clear all </a>
+            <c:if test = "${fn:length(notificationList) > 0}">
+            	<a id = "btnClearNotifications" class = "float-right d-none" href = "javascript:void(0)" style = "font-size: 16px;"> Clear all </a>
+        	</c:if>
         </h4>
         <hr />
     </div>
@@ -55,79 +57,60 @@
             </div>
 
             <div class="col-lg-9">
+            
+            	<c:choose>
+            	
+            		<c:when test = "${fn:length(notificationList) > 0}">
 
-                <div class="row">
-                    <div class="col-md-12">
-
-                        <div class = "notifications">
-                                <div class="list-group">
-                                <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
-                                    <div class="d-flex w-100 justify-content-between">
-                                        <h5 class="mb-1">Checkout</h5>
-                                        <button type="button" class="close" aria-label="Close">
-                                                <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
-
-                                    <p class="mb-1">your order lapu lapu 1 kilo is approved</p>
-                                    <small> 1 day ago </small>
-                                </a>
-                                <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
-                                    <div class="d-flex w-100 justify-content-between">
-                                        <h5 class="mb-1">Checkout</h5>
-                                        <button type="button" class="close" aria-label="Close">
-                                                <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
-
-                                    <p class="mb-1">your order lapu lapu 1 kilo is approved</p>
-                                    <small> 1 day ago </small>
-                                </a>
-                                <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
-                                    <div class="d-flex w-100 justify-content-between">
-                                        <h5 class="mb-1">Checkout</h5>
-                                        <button type="button" class="close" aria-label="Close">
-                                                <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
-
-                                    <p class="mb-1">your order lapu lapu 1 kilo is approved</p>
-                                    <small> 1 day ago </small>
-                                </a>
-                                <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
-                                    <div class="d-flex w-100 justify-content-between">
-                                        <h5 class="mb-1">Checkout</h5>
-                                        <button type="button" class="close" aria-label="Close">
-                                                <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
-
-                                    <p class="mb-1">your order lapu lapu 1 kilo is approved</p>
-                                    <small> 1 day ago </small>
-                                </a>
-                                <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
-                                    <div class="d-flex w-100 justify-content-between">
-                                        <h5 class="mb-1">Checkout</h5>
-                                        <button type="button" class="close" aria-label="Close">
-                                                <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
-
-                                    <p class="mb-1">your order lapu lapu 1 kilo is approved</p>
-                                    <small> 1 day ago </small>
-                                </a>
-
-                            </div>
-
-                        </div>
-
-                    </div>
-                </div>
-
-                <div class = "row mt-3">
-                    <a class = "blue-text mx-auto" href = "#"> See more </a>
-                </div>
-
+		                <div class="row">
+		                    <div class="col-md-12">
+		
+		                        <div class = "notifications d-none">
+		                            <div class="list-group">    
+											  	
+										<c:forEach var = "notificationItem" items = "${notificationList}">
+													  	
+											<span class="list-group-item list-group-item-action flex-column align-items-start notification-link pl-4 pr-4">
+												<div class="d-flex w-100 justify-content-between">
+													<h6 class="mb-1"> ${notificationItem.header} </h6>
+													<input type = "hidden" id = "notificationId" value = "${notificationItem.notificationId}" />
+													<input type = "hidden" value = "${notificationItem.isSeen()}" />
+												</div>
+												<p class="mb-1">${notificationItem.description} </p>
+												<small>${notificationItem.date}</small>
+											</span>
+													  		
+										</c:forEach>
+											
+		                            </div>
+		
+		                        </div>
+		                        
+		                        <div class = "notificationsLoadingDisplay text-center mt-2">
+			                        	<img src = "<c:url value = '/resources/customer/img/loader.gif' />"
+			                        		 width = "50" height = "50" />
+		                        </div>
+		
+		                    </div>
+		                </div>
+		
+		                <div class = "row mt-3">
+		                    <a id = "btnSeeMoreNotifications" class = "blue-text mx-auto btnSeeMore d-none" href = "javascript:void(0)"> See more </a>
+		                </div>
+	                
+	                </c:when>
+	                
+	                <c:otherwise>
+	    				
+	    				<div class = "row mt-5">
+	    					<div class = "col-md-12">
+		                    	<h4 class = "text-center"> No notifications yet </h4>
+		                	</div>
+		                </div>
+	    					    				            
+	                </c:otherwise>
+                
+                </c:choose>
 
 
             </div>

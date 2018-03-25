@@ -203,4 +203,29 @@ public class CustomerServiceImpl implements CustomerService {
 		
 	}
 
+	@Override
+	public List<Notification> getCustomerNotificationsById(long customerId, int records, int offset) {
+
+		List<Notification> userNotificationList = new ArrayList<>();
+		List<Object[]> rawNotificationList = customerRepository.getNotificationsByIdRecordsAndOffset(customerId,
+																								     records,
+																								     offset);
+		for (Object[] rawNotification : rawNotificationList) {
+			Notification notification = new Notification();
+			
+			notification.setNotificationId(((BigInteger)rawNotification[0]).longValue());
+			notification.setDate((Date)rawNotification[1]);
+			notification.setDescription((String)rawNotification[2]);
+			notification.setHeader((String)rawNotification[3]);
+			notification.setSeen((Boolean)rawNotification[4]);
+			notification.setOrderId(((BigInteger)rawNotification[0]).longValue());
+			
+			
+			userNotificationList.add(notification);
+		}
+		
+		
+		return userNotificationList;
+	}
+
 }

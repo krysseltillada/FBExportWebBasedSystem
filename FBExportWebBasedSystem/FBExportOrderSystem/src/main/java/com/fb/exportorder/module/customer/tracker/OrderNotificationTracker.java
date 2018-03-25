@@ -34,6 +34,7 @@ public class OrderNotificationTracker {
 		
 		Notification approveNotification = new Notification();
 		
+		approveNotification.setOrderId(order.getOrderId());
 		approveNotification.setHeader("Order Approved");
 		approveNotification.setDescription("Your Order is approved");
 		approveNotification.setSeen(false);
@@ -53,6 +54,7 @@ public class OrderNotificationTracker {
 		
 		Notification rejectedNotification = new Notification();
 		
+		rejectedNotification.setOrderId(order.getOrderId());
 		rejectedNotification.setHeader("Order Rejected");
 		rejectedNotification.setDescription("Your Order is rejected");
 		rejectedNotification.setSeen(false);
@@ -70,6 +72,7 @@ public class OrderNotificationTracker {
 		
 		Notification toShipNotification = new Notification();
 		
+		toShipNotification.setOrderId(order.getOrderId());
 		toShipNotification.setHeader("Order To Shipping");
 		toShipNotification.setDescription("Your Order is Shipping");
 		toShipNotification.setSeen(false);
@@ -87,6 +90,7 @@ public class OrderNotificationTracker {
 		
 		Notification addToShipInformationNotification = new Notification();
 		
+		addToShipInformationNotification.setOrderId(orderId);
 		addToShipInformationNotification.setHeader("Order To Shipping");
 		addToShipInformationNotification.setDescription("Your Order is Shipping");
 		addToShipInformationNotification.setSeen(false);

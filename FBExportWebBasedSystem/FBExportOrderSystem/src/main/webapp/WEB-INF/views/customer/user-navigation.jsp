@@ -113,7 +113,7 @@
 										  	<c:otherwise>
 										  	
 										  		<span href="javascript:void(0)" id = "emptyNotificationMessageDesktop" class="list-group-item list-group-item-action flex-column align-items-start notification-link pl-4 pr-4">
-												       <h6 class="text-center p-5"> No notifications yet </h6>
+												       <h6 class="text-center p-5"> No unseen notifications yet </h6>
 												</span>
 										  	
 										  	</c:otherwise>

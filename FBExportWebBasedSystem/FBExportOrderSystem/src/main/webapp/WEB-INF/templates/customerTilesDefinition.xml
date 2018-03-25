@@ -92,6 +92,11 @@
 	
 	<definition name = "notifications" extends = "customerBaseTemplate">
 		<put-attribute name = "main" value = "/WEB-INF/views/customer/notifications.jsp" />
+		
+		<put-list-attribute name = "javascriptfiles" inherit = "true">
+			<add-attribute value = "/resources/customer/js/showNotifications.js" />
+		</put-list-attribute>
+		
 	</definition>
 	
 	<definition name = "order-list" extends = "customerBaseTemplate">

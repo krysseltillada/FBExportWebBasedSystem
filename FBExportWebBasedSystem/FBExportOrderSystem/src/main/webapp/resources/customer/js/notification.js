@@ -28,11 +28,15 @@ $(document).ready(function () {
         console.log("tae tae");
         var seenItemId = [];
 
-        if ($("#emptyNotificationMessageDesktop").length < 0) {
+        console.log($("#emptyNotificationMessageDesktop").length);
+
+        if ($("#emptyNotificationMessageDesktop").length <= 0) {
 
             $("#notificationListGroup>span").each(function (i, elem) {
                 seenItemId.push($(this).find("#notificationId").val());
             });
+
+            console.log(seenItemId);
 
             $.post("/FBExportSystem/seen-notification", {
                 seenNotificationIdRawJSON : JSON.stringify(seenItemId)

@@ -3,7 +3,6 @@ package com.fb.exportorder.module.customer.service;
 import java.util.List;
 import java.util.Map;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fb.exportorder.models.customer.Activity;
 import com.fb.exportorder.models.customer.Customer;
 import com.fb.exportorder.models.customer.Item;
@@ -23,4 +22,5 @@ public interface CustomerService {
 	public void saveCustomer(Customer customer);
 	public Map<Boolean, Integer> getOnlineUsersCount();
 	public void addNotificationToCustomer(Notification notification, Customer customer);
+	public List<Notification> getCustomerNotificationsById(long customerId, int records, int offset);
 }

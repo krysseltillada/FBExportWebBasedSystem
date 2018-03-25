@@ -16,6 +16,8 @@ public class Notification {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long notificationId;
 	
+	private Long orderId;
+	
 	private String header;
 	private String description;
 	
@@ -30,6 +32,14 @@ public class Notification {
 
 	public void setNotificationId(Long notificationId) {
 		this.notificationId = notificationId;
+	}
+
+	public Long getOrderId() {
+		return orderId;
+	}
+
+	public void setOrderId(Long orderId) {
+		this.orderId = orderId;
 	}
 
 	public String getHeader() {
