@@ -62,13 +62,13 @@
 		                	<div class = "col-md-6 pr-0">
 			                    <span class="mr-4">  Total Weight: <fmt:formatNumber value = "${totalWeight}" maxFractionDigits = "2" /> IN KILOGRAMS </span>
 								<br>
-								<span> Sub total: <span class="subTotal">${subTotal}</span> <span class="subTotalCurrency">PHP</span> </span> <br />
-								<span> Taxable: ${taxable} </span> <br />
+								<span> Sub total: <span class="subTotal">${subTotal}</span>  </span> <br />
+								<span> Taxable: ${taxable} (<span class = "taxPaid">${taxPaid}</span> )</span> <br />
 							</div>
 							<div class = "col-md-6">
 								<span> Tax Rate: ${taxRate}% </span> <br />
-								<span> Shipping fee: <span class = "shippingFee">${shippingFee}</span> <span class="shippingFeeCurrency">PHP</span> </span> <br />
-			                    <span> Total Due: <span class="totalDue">${totalDue}</span> <span class="totalDueCurrency">PHP</span> </span>
+								<span> Shipping fee: <span class = "shippingFee">${shippingFee}</span> </span> <br />
+			                    <span> Total Due: <span class="totalDue">${totalDue}</span> </span>
 		                    </div>
 	                    </div>
 	                </div>

@@ -87,13 +87,14 @@ public class PlaceOrderController {
 		totalDue = Finance.SHIPPING_FEE + subTotal + taxable;
 		
 		
-		System.out.println(totalWeight);
+		System.out.println(taxable + " ");
 		
 		
 		model.addAttribute(yourAddressService.getAllAddressesById(customerId));
 		
 		model.addAttribute("taxable", taxableProduct.size());
 		model.addAttribute("taxRate", Finance.TAX * 100);
+		model.addAttribute("taxPaid", taxable);
 		model.addAttribute("shippingFee", Finance.SHIPPING_FEE);
 		model.addAttribute("totalWeight", totalWeight);
 		model.addAttribute("subTotal", subTotal);
@@ -136,8 +137,10 @@ public class PlaceOrderController {
 		
 		
 		model.addAttribute(order);
+		model.addAttribute("totalWeight", order.getTotalWeight());
 		model.addAttribute("subTotal", order.getSubTotal());
 		model.addAttribute("taxable", order.getTaxable());
+		model.addAttribute("taxPaid", order.getTax());
 		model.addAttribute("taxRate", Finance.TAX * 100);
 		model.addAttribute("shippingFee",Finance.SHIPPING_FEE);
 		model.addAttribute("totalDue", order.getTotalDue());

@@ -49,11 +49,12 @@
 			<add-attribute value = "/resources/admin/js/moment.js" />
 			<add-attribute value = "/resources/admin/js/mprogress.min.js" />
 			<add-attribute value = "/resources/admin/js/collections.js" />
-			<add-attribute value = "/resources/admin/js/math.js" />
-			<add-attribute value = "/resources/admin/js/accounting.js" />
 			<add-attribute value = "/resources/admin/js/alertify.js" />
 			<add-attribute value = "/resources/admin/js/iziToast.js" />
+			<add-attribute value = "/resources/admin/js/sockjs.js" />
+			<add-attribute value = "/resources/admin/js/stomp.js" />
 			<add-attribute value = "/resources/admin/js/utilities.js" />
+			<add-attribute value = "/resources/admin/js/notification.js" />
 			<add-attribute value = "/resources/admin/js/front.js" />
 			<add-attribute value = "/resources/admin/js/admin.js" />
 		

@@ -36,6 +36,7 @@ public class PaymentReceiptController {
 			model.addAttribute(paidOrder);
 			model.addAttribute("subTotal", paidOrder.getSubTotal());
 			model.addAttribute("taxable", paidOrder.getTaxable());
+			model.addAttribute("taxPaid", paidOrder.getTax());
 			model.addAttribute("taxRate", Finance.TAX * 100);
 			model.addAttribute("shippingFee", Finance.SHIPPING_FEE);
 			model.addAttribute("totalDue", paidOrder.getTotalDue());

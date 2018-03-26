@@ -52,8 +52,10 @@ public class ScheduledTasks {
     	}
     	
     	String currentTime = dateFormat.format(Calendar.getInstance().getTime());
-    	if(formattedTime.equals(currentTime))
+    	if(formattedTime.equals(currentTime)) {
+    		System.out.println("system backup");
     		backup.backupData("fbexport");
+    	}
 
     }
 }

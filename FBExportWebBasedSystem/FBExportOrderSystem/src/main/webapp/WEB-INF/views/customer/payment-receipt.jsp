@@ -57,11 +57,8 @@
                 </div>
                 <hr>
 
+                <table id = "receiptOrderTable" class="table wow fadeIn">
 
-                <!--Table-->
-                <table class="table wow fadeIn">
-
-                    <!--Table head-->
                     <thead class="blue-grey lighten-4">
                         <tr>
                             <th>#</th>
@@ -71,9 +68,7 @@
                             <th>Price</th>
                         </tr>
                     </thead>
-                    <!--Table head-->
 
-                    <!--Table body-->
                     <tbody>
                     
                     	<c:forEach var = "item" items = "${order.cart.items}">
@@ -82,36 +77,38 @@
 	                            <td>${item.product.name} <img class = "ml-2" src = "<c:url value = '${item.product.productImageLink}' />" width = "30" height = "30"/></td>
 	                            <td><fmt:formatNumber value = "${item.weight.weight}" maxFractionDigits = "2" /></td>
 	                            <td>${item.weight.weightType}</td>
-	                            <td> <span class = "price">${item.price}</span> <span> PHP </span></td>
+	                            <td> ${item.price}</td>
 	                        </tr>
                         </c:forEach>
 
-                        <tr>
+                        
+
+                    </tbody>
+                    
+                    <tfoot>
+                    	<tr>
                           <td></td>
                           <td></td>
                           <td></td>
                           <th>
-                            SubTotal<br>
-                            Taxable<br>
-                            Tax Rate<br>
-                            Shipping fee <br>
+                            SubTotal	<br>
+                            Taxable		<br>
+                            Tax Rate	<br>
+                            Shipping fee<br>
                             Total Due
                           </th>
                           
                           
                           <td>
-                            <span class = "subTotal">${subTotal}</span> <span class = "subTotalCurrency">PHP</span><br>
-                            ${taxable}<br>
+                            <span class = "subTotal">${subTotal}</span> <br>
+                            <span> Taxable: ${taxable} (<span class = "taxPaid">${taxPaid}</span>)</span> <br>
                             ${taxRate}%<br>
-                           	<span class = "shippingFee">${shippingFee}</span> <span class = "shippingFeeCurrency">PHP</span> <br>
-                            <span class = "totalDue">${totalDue}</span> <span class = "totalDueCurrency">PHP</span>
+                           	<span class = "shippingFee">${shippingFee}</span>  <br>
+                            <span class = "totalDue">${totalDue}</span> 
                           </td>
                         </tr>
-
-                    </tbody>
-                    <!--Table body-->
+                    </tfoot>
                 </table>
-                <!--Table-->
                 
                 <hr>
                 

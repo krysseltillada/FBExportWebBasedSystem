@@ -63,8 +63,6 @@ $(function () {
 
 $(document).ready(function () {
 
-    
-
     var updateCartPositioning = function () {
         var screenWidth = $(document).width();
         console.log(screenWidth);
@@ -290,7 +288,7 @@ $(document).ready(function () {
 
             addToCart({
                 productName : $addToCartModal.find("#addToCartProductName").text(),
-                totalPrice : formatMoney(accounting.unformat($addToCartModal.find("#totalPrice").val()), "", "%v"),
+                totalPrice : formatMoney(accounting.unformat($addToCartModal.find("#totalPrice").val()), currentCurrency, "%v %s"),
                 totalWeight : parseFloat($addToCartModal.find("#totalWeight").val().substring(0, $addToCartModal.find("#totalWeight").val().indexOf(" "))).toFixed(1),
                 weightType : $addToCartModal.find("#massType>option:selected").html(),
                 productImage : $addToCartModal.find("#addToCartProductImage").attr("src"),
@@ -360,7 +358,7 @@ $(document).ready(function () {
         */
 
         $.ajax({
-            url: "http://ip-api.com/json/72.229.28.185",
+            url: "http://ip-api.com/json/1.0.63.255",
             jsonpCallback: "callback",
             dataType: "json",
             success: function( location ) {
@@ -400,7 +398,6 @@ $(document).ready(function () {
                                         fx.base = "PHP";
                                         fx.rates = response.rates;
 
-                                        
                                         if (location.country != "Philippines") 
                                             currentCurrency = "USD";
                                         else
@@ -446,32 +443,48 @@ $(document).ready(function () {
                                             
                                         });
 
+                                        var subTotal = 0;
+
                                         $("#cartItemTable>tbody>tr").each(function () {
-                                            console.log($(this).find("td:eq(1)").html());
 
                                             var $priceRow = $(this).find("td:eq(1)");
 
-                                            console.log(currentCurrency);
-                                            
-                                            var phpPriceToCurrentPrice = formatMoney(fx($priceRow.html()).from("PHP").to(currentCurrency), "", "%v");
+                                            var phpPriceToCurrentPrice = formatMoney(fx($priceRow.html()).from("PHP").to(currentCurrency), currentCurrency, "%v %s");
+                                            subTotal += Number(accounting.unformat(phpPriceToCurrentPrice));
 
                                             $priceRow.html(phpPriceToCurrentPrice);
 
                                         });
 
-                                        $(".subTotal").html(formatMoney(fx($(".subTotal").html()).from("PHP").to(currentCurrency), "", "%v"));
-                                        $(".subTotalCurrency").html(currentCurrency);
+                                        $("#receiptOrderTable>tbody>tr").each(function () {
 
-                                        $(".shippingFee").html(formatMoney(fx($(".shippingFee").html()).from("PHP").to(currentCurrency), "", "%v"));
-                                        $(".shippingFeeCurrency").html(currentCurrency);
-                                        
-                                        $(".totalDue").html(formatMoney(fx($(".totalDue").html()).from("PHP").to(currentCurrency), "", "%v"));
-                                        $(".totalDueCurrency").html(currentCurrency);
+                                            var $priceRow = $(this).find("td:eq(3)");
+
+                                            console.log($priceRow.html() + " price row");
+
+                                            var phpPriceToCurrentPrice = formatMoney(fx($priceRow.html()).from("PHP").to(currentCurrency), currentCurrency, "%v %s");
+                                            subTotal += Number(accounting.unformat(phpPriceToCurrentPrice));
+
+                                            $priceRow.html(phpPriceToCurrentPrice);
+
+                                        });
+
+
+                                        var shippingFee = Number(accounting.unformat(formatMoney(fx($(".shippingFee").html()).from("PHP").to(currentCurrency), "", "%v")));
+                                        var taxPaid = Number(accounting.unformat(formatMoney(fx($(".taxPaid").html()).from("PHP").to(currentCurrency), "", "%v")));
+                                        var totalDue = subTotal + shippingFee + taxPaid;
+
+                                        console.log(totalDue + " total due");
+
+                                        $(".subTotal").html(formatMoney(subTotal, currentCurrency, "%v %s"));
+                                        $(".shippingFee").html(formatMoney(shippingFee, currentCurrency, "%v %s"));
+                                        $(".taxPaid").html(formatMoney(taxPaid, currentCurrency, "%v %s"));
+                                        $(".totalDue").html(formatMoney(totalDue, currentCurrency, "%v %s"));
                                       
                                         _.each($("div#shoppingModalCart div.modal-body>table>tbody").children(), function (productCartItem, i) {
 
                                             var $productCartItem = $(productCartItem).children().eq(2);
-                                            $productCartItem.html(formatMoney(fx($productCartItem.html()).from("PHP").to(currentCurrency), "", "%v"));
+                                            $productCartItem.html(formatMoney(fx($productCartItem.html()).from("PHP").to(currentCurrency), currentCurrency, "%v %s"));
                                         });
 
                                         $(".price").each(function () {
@@ -507,7 +520,7 @@ $(document).ready(function () {
                                             }
                                         });
 
-                                         $(".paypal-button").each(function (ind, elem) {
+                                        $(".paypal-button").each(function (ind, elem) {
 
                                             var $divOrderCollapse = $(this).closest("div.multi-collapse");
                                             
@@ -518,20 +531,14 @@ $(document).ready(function () {
                                                 url : "https://restcountries.eu/rest/v2/name/" + country,
                                                 success : function (responseData) {
 
-                                                    var countryCode = responseData[0].alpha2Code;
-
                                                     var $orderItemDiv = $divOrderCollapse.prev();
 
-                                                    var totalPrice = $orderItemDiv.find(".price").html();
                                                     var subTotalPrice = 0;
                                                     var oid = $orderItemDiv.find("#orderId").html();
 
-                                                    console.log(oid);
-                                            
                                                     var $itemsOrderedTable = $divOrderCollapse.find("table");
 
                                                     var itemsOrdered = [];
-
                                                 
                                                     $itemsOrderedTable.find("tbody").find("tr").each(function (ind, elem) {
                                                         
@@ -542,17 +549,22 @@ $(document).ready(function () {
                                                             quantity : "1"
                                                         }
 
-
                                                         itemsOrdered.push(itemOrdered);
                                                         
                                                     });
 
                                                     $itemsOrderedTable.find("tfoot tr .price").each(function (ind, elem) {
                                                         subTotalPrice += Number($(elem).html());
-
                                                     });
-                                                    console.log($itemsOrderedTable.find("tfoot #estimatedTax").val());
-                                                    console.log(fx($itemsOrderedTable.find("tfoot #estimatedTax").val()).from("PHP").to(currentCurrency));
+
+                                                    var taxPaid = Number(formatMoney(fx($itemsOrderedTable.find("tfoot #estimatedTax").val()).from("PHP").to(currentCurrency), currentCurrency, "%v"));
+                                                    var shippingFee = Number(formatMoney(fx(1000).from("PHP").to(currentCurrency), currentCurrency, "%v"));
+                                                    var totalPrice = subTotalPrice + shippingFee + taxPaid;
+
+                                                    $orderItemDiv.find(".price").html(formatMoney(totalPrice, "", "%v"));
+
+                                                    console.log(formatMoney(subTotalPrice, currentCurrency, "%v") + "sub total" );
+
                                                     paypal.Button.render({
                                                         env: 'sandbox', // Or 'sandbox',
 
@@ -578,12 +590,12 @@ $(document).ready(function () {
                                                                 transactions: [
                                                                     {
                                                                         amount: { 
-                                                                            total: totalPrice, 
+                                                                            total: formatMoney(totalPrice, "", "%v"), 
                                                                             currency: currentCurrency,
                                                                             details : {
-                                                                                subtotal : subTotalPrice,
-                                                                                shipping : formatMoney(fx(1000).from("PHP").to(currentCurrency), currentCurrency, "%v"),
-                                                                                tax : formatMoney(fx($itemsOrderedTable.find("tfoot #estimatedTax").val()).from("PHP").to(currentCurrency), currentCurrency, "%v")
+                                                                                subtotal : formatMoney(subTotalPrice, "", "%v"),
+                                                                                shipping : formatMoney(shippingFee, "", "%v"),
+                                                                                tax : formatMoney(taxPaid, "", "%v")
                                                                             }
                                                                         },
                                                                         

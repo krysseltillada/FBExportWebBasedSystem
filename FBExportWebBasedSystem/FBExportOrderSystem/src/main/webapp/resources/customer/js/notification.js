@@ -51,7 +51,7 @@ $(document).ready(function () {
 
 
     function connect() {
-        var socket = new SockJS('/FBExportSystem/notification');
+        var socket = new SockJS('/FBExportSystem/customer/notification');
         stompClient = Stomp.over(socket);
         stompClient.connect({}, function(frame) {
             
