@@ -763,20 +763,12 @@
 				                                	</c:choose>
 		                                		</c:when>
 		                                		<c:otherwise>
-		                                			<c:choose>
-				                                		<c:when test="${not employee.enabled}">
-				                                			<label class="switch">
-				                                        		<input type="checkbox" name="isActive" id="isActive" disabled >
+				                                	<c:if test="${employee.enabled}">
+				                                			<label class="switch" style="display: none;">
+				                                        		<input type="checkbox" checked name="isActive" id="isActive" disabled >
 				                                        		<span class="slider round"></span>
 				                                    		</label>
-				                                		</c:when>
-				                                		<c:otherwise>
-				                                			<label class="switch">
-						                                        <input type="checkbox" checked name="isActive" id="isActive" disabled >
-						                                        <span class="slider round"></span>
-						                                    </label>
-				                                		</c:otherwise>
-				                                	</c:choose>
+				                                	</c:if>
 		                                		</c:otherwise>
 		                                	</c:choose>
 		                                    
@@ -1242,20 +1234,12 @@
 				                                	</c:choose>
 		                                		</c:when>
 		                                		<c:otherwise>
-		                                			<c:choose>
-				                                		<c:when test="${not employee.enabled}">
-				                                			<label class="switch">
-				                                        		<input type="checkbox" name="isActive" id="isActive" disabled >
+				                                	<c:if test="${employee.enabled}">
+				                                			<label class="switch" style="display: none;">
+				                                        		<input type="checkbox" checked name="isActive" id="isActive" disabled >
 				                                        		<span class="slider round"></span>
 				                                    		</label>
-				                                		</c:when>
-				                                		<c:otherwise>
-				                                			<label class="switch">
-						                                        <input type="checkbox" checked name="isActive" id="isActive" disabled >
-						                                        <span class="slider round"></span>
-						                                    </label>
-				                                		</c:otherwise>
-				                                	</c:choose>
+				                                		</c:if>
 		                                		</c:otherwise>
 		                                	</c:choose>
 		                                    
