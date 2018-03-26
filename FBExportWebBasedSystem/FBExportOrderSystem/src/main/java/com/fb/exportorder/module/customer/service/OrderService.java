@@ -67,6 +67,6 @@ public interface OrderService {
 	
 	List<Order> getLatestOrders();
 	
-	
+	List<Order> getPaidOrders();
 	
 }

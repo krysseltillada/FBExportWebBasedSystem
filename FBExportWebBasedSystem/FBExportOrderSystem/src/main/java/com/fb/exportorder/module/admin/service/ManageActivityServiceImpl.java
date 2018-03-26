@@ -8,12 +8,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.fb.exportorder.models.Employee;
 import com.fb.exportorder.models.customer.Activity;
-import com.fb.exportorder.models.customer.Customer;
 import com.fb.exportorder.module.admin.repository.ManageActivityRepository;
 import com.fb.exportorder.module.admin.repository.ManageCustomerRepository;
-import com.fb.exportorder.module.admin.repository.ManageEmployeeRepository;
 
 @Service
 public class ManageActivityServiceImpl implements ManageActivityService {

@@ -74,7 +74,7 @@ CREATE TABLE `authorities` (
 
 LOCK TABLES `authorities` WRITE;
 /*!40000 ALTER TABLE `authorities` DISABLE KEYS */;
-INSERT INTO `authorities` VALUES (1,'ADMIN',0),(2,'EMPLOYEE',1),(3,'CUSTOMER',32768),(4,'CUSTOMER',65536);
+INSERT INTO `authorities` VALUES (1,'ADMIN',0),(2,'CUSTOMER',1),(3,'CUSTOMER',32768),(4,'EMPLOYEE',65536);
 /*!40000 ALTER TABLE `authorities` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -88,7 +88,7 @@ DROP TABLE IF EXISTS `cart`;
 CREATE TABLE `cart` (
   `cart_id` bigint(20) NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`cart_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -97,7 +97,7 @@ CREATE TABLE `cart` (
 
 LOCK TABLES `cart` WRITE;
 /*!40000 ALTER TABLE `cart` DISABLE KEYS */;
-INSERT INTO `cart` VALUES (1),(2),(3),(4),(5),(6);
+INSERT INTO `cart` VALUES (1),(2),(3);
 /*!40000 ALTER TABLE `cart` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -124,7 +124,7 @@ CREATE TABLE `cart_items` (
 
 LOCK TABLES `cart_items` WRITE;
 /*!40000 ALTER TABLE `cart_items` DISABLE KEYS */;
-INSERT INTO `cart_items` VALUES (4,18),(5,21),(5,22),(6,24);
+INSERT INTO `cart_items` VALUES (3,2);
 /*!40000 ALTER TABLE `cart_items` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -150,6 +150,7 @@ CREATE TABLE `customer` (
   `gender` varchar(255) DEFAULT NULL,
   `lastname` varchar(255) DEFAULT NULL,
   `middlename` varchar(255) DEFAULT NULL,
+  `online` bit(1) NOT NULL,
   `password` varchar(255) DEFAULT NULL,
   `profile_image_link` varchar(255) DEFAULT NULL,
   `username` varchar(255) DEFAULT NULL,
@@ -166,7 +167,7 @@ CREATE TABLE `customer` (
 
 LOCK TABLES `customer` WRITE;
 /*!40000 ALTER TABLE `customer` DISABLE KEYS */;
-INSERT INTO `customer` VALUES (32768,'Address1','City','Andorra','1700',18,'1242','Customer1@gmail.com','09996668084','','Customer','FEMALE','Customer','Customer','$2a$10$dulcsaPU2zERhXMau6KjhuabhMY78otZjx6AVdo37nL0Bne3P3QH2','/resources/customer/img/profile-female.jpg','Customer1',1),(65536,'Customer2','Customer','Antigua and Barbuda','Custome',18,'1242','Customer2@gmail.com','09996668084','','Customer','MALE','Customer','Customer','$2a$10$bhn7dklmjWG4cw3z8PTaRe3qh0dmWXXM/XJ/wigZAQuuzLGRHawOC','/resources/customer/img/profile-male.jpg','Customer2',2);
+INSERT INTO `customer` VALUES (1,'Address','City','Azerbaijan','1700',18,'61','Customer1@gmail.com','09996668084','','Customer One','FEMALE','Customer One','Customer One','\0','$2a$10$A.fE44gIGcjqz5iX0egbZeYaPkyE.XYhhhMItHJT2D5DYd4W3Rw.u','','Customer1',1),(32768,'Address','City','Bangladesh','1700',18,'54','Customer2@gmail.com','09996668084','','Customer Two','MALE','Customer Two','Customer Two','\0','$2a$10$I4XrPrC4ClnjxG9Z34CLFe2qyO37au7yUb7VGxoLjsUi8pBEl.KK6','/resources/customer/img/profile-male.jpg','Customer2',2);
 /*!40000 ALTER TABLE `customer` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -193,7 +194,7 @@ CREATE TABLE `customer_shipping_addresses` (
 
 LOCK TABLES `customer_shipping_addresses` WRITE;
 /*!40000 ALTER TABLE `customer_shipping_addresses` DISABLE KEYS */;
-INSERT INTO `customer_shipping_addresses` VALUES (32768,1),(65536,2);
+INSERT INTO `customer_shipping_addresses` VALUES (1,1),(32768,2);
 /*!40000 ALTER TABLE `customer_shipping_addresses` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -219,6 +220,7 @@ CREATE TABLE `employee` (
   `gender` varchar(255) DEFAULT NULL,
   `lastname` varchar(255) DEFAULT NULL,
   `middlename` varchar(255) DEFAULT NULL,
+  `online` bit(1) NOT NULL,
   `password` varchar(255) DEFAULT NULL,
   `profile_image_link` varchar(255) DEFAULT NULL,
   `username` varchar(255) DEFAULT NULL,
@@ -233,7 +235,7 @@ CREATE TABLE `employee` (
 
 LOCK TABLES `employee` WRITE;
 /*!40000 ALTER TABLE `employee` DISABLE KEYS */;
-INSERT INTO `employee` VALUES (0,'Admin1','Admin','Afghanistan','1700',23,'63','Admin1@gmail.com','09996668084','','Alfred','MALE','Borja','Admin','$2a$10$Kxwf9GD2BVyykP9Mx3yrje/692ql8Y3jMIZl53oRtZHNNzsOrH8cu',NULL,'Admin1','Pro'),(1,'Employee1','Employee','Afghanistan','Employee1',18,'93','Employee1@gmail.com','09996668084','','First','MALE','Last','Employee','$2a$10$xAx8Zkkma11LN1Yhaig9yu22VWiej/vckZaO6uIfo70quuDfbc5MK','/resources/admin/img/profile-male.jpg','Employee1','CEO');
+INSERT INTO `employee` VALUES (0,'Address','City','Afghanistan','1700',23,'63','Admin1@gmail.com','09996668084','','Admin','FEMALE','Admin One','Admin One','','$2a$10$AnEV8dB0Wi.utLd2Akm3HeK2LKJqYTsu0ZLf4/agEprWI7Q2MVI9q','','Admin1','Admin'),(65536,'Address','Employee','Afghanistan','1700',18,'93','Employee1@gmail.com','09996668084','','Employee One','MALE','Employee','Employee One','\0','$2a$10$I6mQMXKO8CoI.qYNKMFJjeVs1fznVGr1U2jBYyJ8C1LKXzWBV0/Gu','','Employee1','Employee');
 /*!40000 ALTER TABLE `employee` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -277,7 +279,7 @@ CREATE TABLE `item` (
   PRIMARY KEY (`item_id`),
   KEY `FK6fok9mmtsmu22sejwqg8cq6u3` (`product_product_id`),
   CONSTRAINT `FK6fok9mmtsmu22sejwqg8cq6u3` FOREIGN KEY (`product_product_id`) REFERENCES `product` (`product_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -286,7 +288,7 @@ CREATE TABLE `item` (
 
 LOCK TABLES `item` WRITE;
 /*!40000 ALTER TABLE `item` DISABLE KEYS */;
-INSERT INTO `item` VALUES (5,200,1,'KILO',2),(6,200,1,'KILO',2),(7,200,1,'KILO',1),(15,200,1,'KILO',2),(16,200,1,'KILO',1),(18,12,1,'KILO',3),(21,200,1,'KILO',2),(22,200,1,'KILO',2),(24,123.00000000000001,1,'KILO',5);
+INSERT INTO `item` VALUES (2,2000,10,'KILO',1);
 /*!40000 ALTER TABLE `item` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -300,7 +302,6 @@ DROP TABLE IF EXISTS `orders`;
 CREATE TABLE `orders` (
   `order_id` bigint(20) NOT NULL AUTO_INCREMENT,
   `date_ordered` date DEFAULT NULL,
-  `expected_date` date DEFAULT NULL,
   `message` varchar(255) DEFAULT NULL,
   `order_status` varchar(255) DEFAULT NULL,
   `payment_method` varchar(255) DEFAULT NULL,
@@ -312,6 +313,9 @@ CREATE TABLE `orders` (
   `customer_id` bigint(20) DEFAULT NULL,
   `shipping_shipping_id` bigint(20) DEFAULT NULL,
   `shipping_address_shipping_address_id` bigint(20) DEFAULT NULL,
+  `date_paid` date DEFAULT NULL,
+  `date_received` date DEFAULT NULL,
+  `review` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`order_id`),
   KEY `FKtg32cl8e1f2afe83we3bqrw2h` (`cart_cart_id`),
   KEY `FK624gtjin3po807j3vix093tlf` (`customer_id`),
@@ -321,7 +325,7 @@ CREATE TABLE `orders` (
   CONSTRAINT `FK89wuak53n6o826m6ltksv9gj9` FOREIGN KEY (`shipping_address_shipping_address_id`) REFERENCES `shipping_address` (`shipping_address_id`),
   CONSTRAINT `FK8o21kg6tvreikslhq6n0o5jxf` FOREIGN KEY (`shipping_shipping_id`) REFERENCES `shipping` (`shipping_id`),
   CONSTRAINT `FKtg32cl8e1f2afe83we3bqrw2h` FOREIGN KEY (`cart_cart_id`) REFERENCES `cart` (`cart_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -330,7 +334,7 @@ CREATE TABLE `orders` (
 
 LOCK TABLES `orders` WRITE;
 /*!40000 ALTER TABLE `orders` DISABLE KEYS */;
-INSERT INTO `orders` VALUES (1,'2018-03-13',NULL,'your order has been approved','APPROVED','PAYPAL',NULL,3,600,3,3,32768,NULL,1),(2,'2018-03-15',NULL,NULL,'PENDING','CASH_ON_DELIVERY',NULL,1,12,1,4,65536,NULL,2),(3,'2018-03-15',NULL,'your order has been rejected','PENDING','PAYPAL',NULL,2,400,2,5,65536,NULL,2),(4,'2018-03-15',NULL,'your order has been rejected','REJECTED','PAYPAL',NULL,1,123.00000000000001,1,6,65536,NULL,2);
+INSERT INTO `orders` VALUES (1,'2018-03-18','','CANCELLED','PAYPAL','asdasd',1,2000,10,3,1,1,1,NULL,NULL,NULL);
 /*!40000 ALTER TABLE `orders` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -361,7 +365,7 @@ CREATE TABLE `product` (
   PRIMARY KEY (`product_id`),
   KEY `FKg0klkuq150g13y1o1porbpxrj` (`rating_rating_id`),
   CONSTRAINT `FKg0klkuq150g13y1o1porbpxrj` FOREIGN KEY (`rating_rating_id`) REFERENCES `rating` (`rating_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -370,7 +374,7 @@ CREATE TABLE `product` (
 
 LOCK TABLES `product` WRITE;
 /*!40000 ALTER TABLE `product` DISABLE KEYS */;
-INSERT INTO `product` VALUES (1,'2018-03-07','2018-03-06','2018-03-06','qwe','\0','qwe','qwe',200,'/products/c4ca4238a0b923820dcc509a6f75849b.jpg','POSTED','qwe','qwe','09996668084',0,1),(2,'2018-03-09','2018-03-09','2018-03-09','\"But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness. No one rejects, dislikes, or avoids pleasure itself, because it is pleasure, but because those who do not know how to pursue pleasure rationally encounter consequences that are extremely painful. Nor again is there anyone who loves or pursues or desires to obtain pain of itself, because it is pain, but because occasionally circumstances occur in which toil and pain can procure him some great pleasure. To take a trivial example, which of us ever undertakes laborious physical exercise, except to obtain some advantage from it? But who has any right to find fault with a man who chooses to enjoy a pleasure that has no annoying consequences, or one who avoids a pain that produces no resultant pleasure?\"','\0','Product','Product',200,'/products/c81e728d9d4c2f636f067f89cc14862c.jpg','POSTED','Supplier','Supplier Address','09996668084',400,2),(3,'2018-03-15','2018-03-14','2018-03-14','qwe','\0','qwe','qwe',12,'/products/eccbc87e4b5ce2fe28308fd9f2a7baf3.png','POSTED','qwe','qwe','123',12,3),(4,'2018-03-16','2018-03-14','2018-03-14','qwe','\0','qwe','qwe',1234,'/products/a87ff679a2f3e71d9181a67b7542122c.png','POSTED','qwe','qwe','123',22,4),(5,'2018-03-30','2018-03-14','2018-03-14','qwe','\0','qwe','qwe',123,'/products/e4da3b7fbbce2345d7772b0674a318d5.jpg','POSTED','qwe','qwe','123',123,5);
+INSERT INTO `product` VALUES (1,'2018-03-17','2018-03-17','2018-03-17','Finding DOry','\0','Nemo','Finding Nemo',200,'/products/c4ca4238a0b923820dcc509a6f75849b.jpg','POSTED','Smaple','Address','09996668084',5,1),(2,'2018-03-20','2018-03-19','2018-03-19','Sample','\0','Sample','Sample',200,'/products/c81e728d9d4c2f636f067f89cc14862c.jpg','OUT_OF_STOCK','Sample','Sample','09996668084',0,2),(3,'2018-03-19','2018-03-19','2018-03-19','Sample Two','\0','Sample Two','Sample Two',200,'/products/eccbc87e4b5ce2fe28308fd9f2a7baf3.jpg','OUT_OF_STOCK','Sample Two','Sample Address','09996668084',0,3),(4,'2018-03-19','2018-03-19','2018-03-19','Samaple Three','\0','Sample Three','Sample Three',100,'/products/a87ff679a2f3e71d9181a67b7542122c.jpg','OUT_OF_STOCK','Sample Three','Sample','09996668084',0,4);
 /*!40000 ALTER TABLE `product` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -395,7 +399,7 @@ CREATE TABLE `product_preview_image_links` (
 
 LOCK TABLES `product_preview_image_links` WRITE;
 /*!40000 ALTER TABLE `product_preview_image_links` DISABLE KEYS */;
-INSERT INTO `product_preview_image_links` VALUES (1,'/products/6ec6b0f7aa92f023e3c3b1ad23548109.jpg'),(1,'/products/9fd3cb4ccb470a37d4a22d72724ac8ea.jpg'),(1,'/products/7331960cb0c4278a6ff6de6d1a3b3352.jpg'),(2,'/products/11d7a985cef0e58c835d93ea08c8255c.jpg'),(2,'/products/bd1d25b9374c8240f7c7aff09ec8c328.jpg'),(2,'/products/b2feba2d22b42240629a6e733dddcc80.jpg'),(3,'/products/1c1a8888c6e64e18710ff0453a5aa986.jpg'),(3,'/products/1d8a7597997c1bf9aab503ac3aa5a9ad.jpg'),(3,'/products/87a2ad676c6862213c7bd187b1259f45.jpg'),(4,'/products/c0d8ab7b936375faf6ed48e7fcfab95b.jpg'),(4,'/products/f006d7cf79dda481d00283e9016ac945.jpg'),(4,'/products/4c81d91c1464b2c3d613a4f5056d0cbc.jpg'),(5,'/products/f25da5301aa957b9abfd9d66101263f8.jpg'),(5,'/products/22f1ef76995b6aca64d3ed3a9018ae22.jpg'),(5,'/products/4f1799ba87ead30921cd6ad4f0a7ad03.jpg');
+INSERT INTO `product_preview_image_links` VALUES (1,'/products/09e3d45d2d79ebcd559c712e25420e75.jpg'),(1,'/products/575d369e74656f6ad7cd4c3c6707da94.jpg'),(1,'/products/f3c8c3226a58624e593c10b1085d837d.jpg'),(2,'/products/045070b63d2cad3dc8f1d4aa2017bf9f.jpg'),(2,'/products/64bc52fa2b9fe74f616e363df14c37f3.jpg'),(2,'/products/8f7a038dd97e023ad033a6bf9ea126d2.jpg'),(3,'/products/1b5371779aa2b130bb28360b086dfe95.jpg'),(3,'/products/bf483288fc105fc0da589e77b3d46621.jpg'),(3,'/products/23a5717d8470a6c610f55f0af6cdd291.jpg'),(4,'/products/fd1a6232a4656f2f054b222c0d7a00d7.jpg'),(4,'/products/2d4730cfb7272031fd14d897aedb3717.jpg'),(4,'/products/1e9a654afa8a86c43ae43998d45339a1.jpg');
 /*!40000 ALTER TABLE `product_preview_image_links` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -411,7 +415,7 @@ CREATE TABLE `rating` (
   `rate` double NOT NULL,
   `views` int(11) NOT NULL,
   PRIMARY KEY (`rating_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -420,7 +424,7 @@ CREATE TABLE `rating` (
 
 LOCK TABLES `rating` WRITE;
 /*!40000 ALTER TABLE `rating` DISABLE KEYS */;
-INSERT INTO `rating` VALUES (1,7,216),(2,5,62),(3,0,2),(4,0,0),(5,0,0);
+INSERT INTO `rating` VALUES (1,0,0),(2,0,0),(3,0,1),(4,0,0);
 /*!40000 ALTER TABLE `rating` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -447,7 +451,6 @@ CREATE TABLE `rating_reviews` (
 
 LOCK TABLES `rating_reviews` WRITE;
 /*!40000 ALTER TABLE `rating_reviews` DISABLE KEYS */;
-INSERT INTO `rating_reviews` VALUES (1,372),(1,373),(1,374),(1,375),(1,376),(1,377),(1,378),(1,379),(1,380),(1,381),(1,382),(1,383),(1,384),(1,385),(1,386),(1,387),(1,388),(1,389),(1,390),(1,391),(1,392),(1,393),(1,394),(1,395),(1,396),(1,397),(1,398),(1,405),(1,438),(1,439),(1,441),(1,442),(1,443),(1,444),(1,445),(1,446),(1,447),(1,448),(2,406),(2,426),(2,449),(2,450),(2,451),(2,452);
 /*!40000 ALTER TABLE `rating_reviews` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -465,7 +468,7 @@ CREATE TABLE `review` (
   `rate` double NOT NULL,
   `username` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`review_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=453 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -474,7 +477,6 @@ CREATE TABLE `review` (
 
 LOCK TABLES `review` WRITE;
 /*!40000 ALTER TABLE `review` DISABLE KEYS */;
-INSERT INTO `review` VALUES (371,'2018-03-12 15:39:06','hj',5,'Customer1'),(372,'2018-03-12 15:40:57','asd',5,'Customer2'),(373,'2018-03-12 15:42:12','asdasd',5,'Customer2'),(374,'2018-03-12 15:45:39','asdasd',5,'Customer2'),(375,'2018-03-12 15:46:01','ghj',5,'Customer2'),(376,'2018-03-12 15:46:35','gh',5,'Customer2'),(377,'2018-03-12 15:48:19','asdasd',5,'Customer2'),(378,'2018-03-12 15:49:05','asdasdasd',5,'Customer2'),(379,'2018-03-12 15:49:12','asdasd',5,'Customer2'),(380,'2018-03-12 15:49:44','asdasd',5,'Customer2'),(381,'2018-03-12 15:49:52','asdasd',5,'Customer2'),(382,'2018-03-12 15:50:00','asd',5,'Customer2'),(383,'2018-03-12 15:50:53','asdasd',5,'Customer2'),(384,'2018-03-12 15:51:20','asdasdasd',5,'Customer2'),(385,'2018-03-12 15:52:02','asdasdasd',5,'Customer2'),(386,'2018-03-12 15:53:29','asd',5,'Customer2'),(387,'2018-03-12 16:01:03','adasd',5,'Customer2'),(388,'2018-03-12 16:01:31','asdasdasd',5,'Customer2'),(389,'2018-03-12 16:02:36','zxc',5,'Customer2'),(390,'2018-03-12 16:08:50','asdasd',5,'Customer2'),(391,'2018-03-12 16:11:19','asdasd',5,'Customer2'),(392,'2018-03-12 16:11:32','asdasdasdasd',5,'Customer2'),(393,'2018-03-12 16:12:15','asdasd',5,'Customer2'),(394,'2018-03-12 16:12:22','asdasd',5,'Customer2'),(395,'2018-03-12 16:12:36','asdasd',5,'Customer2'),(396,'2018-03-12 16:13:22','asdasd',5,'Customer2'),(397,'2018-03-12 16:13:45','asdasd',5,'Customer2'),(398,'2018-03-12 16:17:48','asd',5,'Customer2'),(399,'2018-03-12 16:22:47','asdasdasd',5,'Customer1'),(400,'2018-03-12 16:23:16','asdasdasd',5,'Customer1'),(401,'2018-03-12 16:23:30','asdasd',5,'Customer1'),(402,'2018-03-12 16:23:39','asdasdasd',5,'Customer1'),(403,'2018-03-12 16:23:46','asdas',5,'Customer1'),(404,'2018-03-12 16:33:46','asdasd',5,'Customer1'),(405,'2018-03-12 18:06:46','TEST',5,'Customer2'),(406,'2018-03-12 18:07:05','test1',1,'Customer2'),(407,'2018-03-12 20:01:42','asdasd',5,'Customer1'),(408,'2018-03-12 21:16:26','asdasdasdasdasd',3,'Customer1'),(409,'2018-03-12 21:29:21','asd',2,'Customer1'),(410,'2018-03-12 21:40:53','test1',2,'Customer1'),(411,'2018-03-12 21:45:36','hjkj',2,'Customer1'),(412,'2018-03-12 21:59:50','asdasd',2,'Customer1'),(413,'2018-03-12 22:10:02','fghj',2,'Customer1'),(414,'2018-03-12 22:12:58','asd',2,'Customer1'),(415,'2018-03-12 22:21:11','asdasdasd',2,'Customer1'),(416,'2018-03-12 22:32:57','test',2,'Customer1'),(417,'2018-03-12 22:33:48','jj',2,'Customer1'),(418,'2018-03-12 22:25:17','asdasdasdasd',5,'Customer1'),(419,'2018-03-12 22:26:48','asdasdasdasd',5,'Customer1'),(420,'2018-03-12 22:58:48','test1',4,'Customer1'),(421,'2018-03-12 22:59:03','terst2',4,'Customer1'),(422,'2018-03-12 22:59:18','gsfafsas',4,'Customer1'),(423,'2018-03-12 22:59:25','asdasdasd',4,'Customer1'),(424,'2018-03-12 22:59:30','dfghj',4,'Customer1'),(425,'2018-03-12 23:09:31','kll',4,'Customer1'),(426,'2018-03-12 23:13:16','ghj',5,'Customer1'),(427,'2018-03-12 23:14:17','test!',5,'Customer1'),(428,'2018-03-12 23:16:13','PUTANG INA GUMANA KA NAMAN!',3,'Customer1'),(429,'2018-03-12 23:17:37','asdasdasd',5,'Customer1'),(430,'2018-03-12 23:19:53','asdasdasd',3,'Customer1'),(431,'2018-03-12 23:20:29','ghj',3,'Customer1'),(432,'2018-03-12 23:29:03','ghj',5,'Customer1'),(433,'2018-03-12 23:30:27','asdasdasdasd',5,'Customer1'),(434,'2018-03-12 23:32:46','asdasd',5,'Customer1'),(435,'2018-03-12 23:34:06','asdasd',5,'Customer1'),(436,'2018-03-12 23:35:44','hjdajsads',5,'Customer1'),(437,'2018-03-12 23:38:52','MIC TEST!',3,'Customer1'),(438,'2018-03-14 23:12:07','asdasdasd',4,'Customer1'),(439,'2018-03-14 23:12:12','asdasdasd',4,'Customer1'),(440,'2018-03-14 23:12:16','test',4,'Customer1'),(441,'2018-03-14 23:12:19','asdasd',4,'Customer1'),(442,'2018-03-14 23:12:22','asdasd',4,'Customer1'),(443,'2018-03-14 23:12:25','asdasdasd',4,'Customer1'),(444,'2018-03-14 23:12:28','asdasdasd',4,'Customer1'),(445,'2018-03-14 23:12:31','zxczxczxc',4,'Customer1'),(446,'2018-03-14 23:12:34','qweasdg',4,'Customer1'),(447,'2018-03-14 23:12:38','axczsd',4,'Customer1'),(448,'2018-03-14 23:12:41','jhgf',4,'Customer1'),(449,'2018-03-14 23:16:52','asdasdasd',5,'Customer1'),(450,'2018-03-14 23:16:56','asdasd',5,'Customer1'),(451,'2018-03-14 23:16:59','asdasdasd',5,'Customer1'),(452,'2018-03-14 23:17:03','zxczxcz',5,'Customer1');
 /*!40000 ALTER TABLE `review` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -496,7 +498,7 @@ CREATE TABLE `shipping` (
   `mmsi_number` varchar(255) DEFAULT NULL,
   `vessel_name` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`shipping_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -505,6 +507,7 @@ CREATE TABLE `shipping` (
 
 LOCK TABLES `shipping` WRITE;
 /*!40000 ALTER TABLE `shipping` DISABLE KEYS */;
+INSERT INTO `shipping` VALUES (1,'2018-03-13','2018-03-07','2018-03-08','ON_TRUCK',NULL,NULL,NULL,NULL);
 /*!40000 ALTER TABLE `shipping` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -538,7 +541,7 @@ CREATE TABLE `shipping_address` (
 
 LOCK TABLES `shipping_address` WRITE;
 /*!40000 ALTER TABLE `shipping_address` DISABLE KEYS */;
-INSERT INTO `shipping_address` VALUES (1,'Address1','City','Andorra','1700','User Account','1242','Customer1@gmail.com','09996668084','','Customer Customer Customer','specify your shipping instructions by editing the card'),(2,'Customer2','Customer','Antigua and Barbuda','Custome','User Account','1242','Customer2@gmail.com','09996668084','','Customer Customer Customer','specify your shipping instructions by editing the card');
+INSERT INTO `shipping_address` VALUES (1,'Address','City','Azerbaijan','1700','User Account','61','Customer1@gmail.com','09996668084','','Customer One Customer One Customer One','specify your shipping instructions by editing the card'),(2,'Address','City','Bangladesh','1700','User Account','54','Customer2@gmail.com','09996668084','','Customer Two Customer Two Customer Two','specify your shipping instructions by editing the card');
 /*!40000 ALTER TABLE `shipping_address` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -551,10 +554,7 @@ DROP TABLE IF EXISTS `shipping_log`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `shipping_log` (
   `shipping_log_id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `address` varchar(255) DEFAULT NULL,
-  `city` varchar(255) DEFAULT NULL,
-  `country` varchar(255) DEFAULT NULL,
-  `zip_code` varchar(255) DEFAULT NULL,
+  `address` longtext,
   `date` date DEFAULT NULL,
   `description` varchar(255) DEFAULT NULL,
   `header` varchar(255) DEFAULT NULL,
@@ -596,33 +596,6 @@ CREATE TABLE `shipping_shipping_log` (
 LOCK TABLES `shipping_shipping_log` WRITE;
 /*!40000 ALTER TABLE `shipping_shipping_log` DISABLE KEYS */;
 /*!40000 ALTER TABLE `shipping_shipping_log` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `shipping_vessel_status`
---
-
-DROP TABLE IF EXISTS `shipping_vessel_status`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `shipping_vessel_status` (
-  `shipping_shipping_id` bigint(20) NOT NULL,
-  `destination` varchar(255) DEFAULT NULL,
-  `imo_number` varchar(255) DEFAULT NULL,
-  `mmsi_number` varchar(255) DEFAULT NULL,
-  `vessel_name` varchar(255) DEFAULT NULL,
-  KEY `FKkhaeyebcj02kmvjyi3ghqv4ty` (`shipping_shipping_id`),
-  CONSTRAINT `FKkhaeyebcj02kmvjyi3ghqv4ty` FOREIGN KEY (`shipping_shipping_id`) REFERENCES `shipping` (`shipping_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `shipping_vessel_status`
---
-
-LOCK TABLES `shipping_vessel_status` WRITE;
-/*!40000 ALTER TABLE `shipping_vessel_status` DISABLE KEYS */;
-/*!40000 ALTER TABLE `shipping_vessel_status` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -672,7 +645,7 @@ CREATE TABLE `system_settings` (
 
 LOCK TABLES `system_settings` WRITE;
 /*!40000 ALTER TABLE `system_settings` DISABLE KEYS */;
-INSERT INTO `system_settings` VALUES (1,'00:03:00','21:00:00');
+INSERT INTO `system_settings` VALUES (1,'00:10:00','00:00:00');
 /*!40000 ALTER TABLE `system_settings` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -713,4 +686,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-03-16 21:00:29
+-- Dump completed on 2018-03-19 19:46:32

@@ -6,7 +6,6 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import com.fb.exportorder.models.Employee;
-import com.fb.exportorder.models.customer.Customer;
 
 @Repository
 public interface ManageEmployeeRepository extends CrudRepository<Employee, Long>{

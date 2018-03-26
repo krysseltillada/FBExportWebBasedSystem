@@ -473,4 +473,9 @@ public class OrderServiceImpl implements OrderService {
 		return orderRepository.getLatestOrders();
 	}
 
+	@Override
+	public List<Order> getPaidOrders() {
+		return orderRepository.getPaidOrders();
+	}
+	
 }

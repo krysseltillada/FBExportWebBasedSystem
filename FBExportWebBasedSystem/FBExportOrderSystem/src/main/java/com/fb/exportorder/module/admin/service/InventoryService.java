@@ -15,7 +15,7 @@ public interface InventoryService {
 	
 	public void deleteSelectedProduct (List<Long> ids);
 	
-	public void postProduct (long id);
+	public String postProduct (long id);
 	public void unpostProduct (long id);
 	
 	public void deleteProduct(long id);

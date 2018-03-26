@@ -193,7 +193,7 @@ public class CustomerSignUpServiceImpl implements CustomerSignUpService {
 			customer.getShippingAddresses()
 						.add(userAccountAddress);
 				
-			customer.setEnabled(true);
+			customer.setEnabled(false);
 			customer.setOnline(false);
 
 				

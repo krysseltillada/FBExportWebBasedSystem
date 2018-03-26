@@ -2,21 +2,12 @@ package com.fb.exportorder.module.customer.controllers;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
-import java.util.Set;
 
-import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -51,11 +42,10 @@ public class ViewProductController {
 							  HttpServletRequest request) {
 		Product product = productService.findProductById(id);
 		
-		Date datePosted = product.getDatePosted();
-		
 		if(product == null) 
 			return "redirect:/";
 		
+		Date datePosted = product.getDatePosted();
 		/*increment the review count*/
 		Rating rating = productService.findRatingById(id);
 		
@@ -89,9 +79,13 @@ public class ViewProductController {
 	@ResponseBody
 	public String deleteProductReview(@PathVariable long productid,
 									  @PathVariable long reviewid) {
+		
 		productService.deleteReviewById(productid, reviewid);
 		
 		Gson jsonRate = new Gson();
+		productService.getMapAverage().forEach((k, v) ->{
+			System.out.println(k + " " + v);
+		});
 		String rateJson = jsonRate.toJson(productService.getMapAverage());
 		
 		return rateJson;
@@ -138,8 +132,6 @@ public class ViewProductController {
 		List<Customer> customerList = productService.sortedCustomerComments(3, Integer.parseInt(pageCount), id);
 		
 		String toStringJSON = gson.toJson(productService.getCustomerReviews(customerList, reviewList));
-		
-		System.out.println(toStringJSON);
 		
 		return toStringJSON;
 	}

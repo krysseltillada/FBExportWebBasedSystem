@@ -1,29 +1,18 @@
 package com.fb.exportorder.module.admin.service;
 
-import java.io.IOException;
-import java.nio.file.FileSystems;
-import java.nio.file.Files;
-import java.nio.file.Path;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Objects;
 
-import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.validator.routines.EmailValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
 
 import com.fb.exportorder.models.Address;
 import com.fb.exportorder.models.Contact;
-import com.fb.exportorder.models.Employee;
 import com.fb.exportorder.models.customer.Customer;
 import com.fb.exportorder.module.admin.repository.ManageCustomerRepository;
-
-import edu.vt.middleware.password.RuleResult;
 
 @Service
 public class ManageCustomerServiceImpl implements ManageCustomerService {

@@ -1,4 +1,9 @@
 $(document).ready(function () {
+	
+	$("#signup-form").submit(function(e){
+		$(".sign-up-loader").css("display", "block");
+		$("#submit-signup").hide();
+	});
 
      var updateSignUpFormPositioning = function () {
 

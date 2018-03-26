@@ -1,8 +1,6 @@
 package com.fb.exportorder.module.customer.handlers;
 
 import java.io.IOException;
-import java.util.Enumeration;
-import java.util.HashMap;
 import java.util.Objects;
 
 import javax.servlet.ServletException;

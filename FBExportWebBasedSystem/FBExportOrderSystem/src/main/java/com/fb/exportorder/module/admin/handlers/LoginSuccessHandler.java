@@ -1,10 +1,7 @@
 package com.fb.exportorder.module.admin.handlers;
 
 import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
-import java.util.Enumeration;
 import java.util.List;
 import java.util.Objects;
 
@@ -65,10 +62,11 @@ public class LoginSuccessHandler implements AuthenticationSuccessHandler{
 		String username = (Objects.nonNull(employee)) ? employee.getUsername() :
 														employeeByEmail.getUsername();
 		
+		String gender = (Objects.nonNull(employee)) ? employee.getGender().toString() :
+														employeeByEmail.getGender().toString();
+		
 		String profileImageLink = (Objects.nonNull(employee)) ? employee.getProfileImageLink() :
 																employeeByEmail.getProfileImageLink();
-		
-	
 		
 		long customerId = (Objects.nonNull(employee)) ? employee.getId() :
 														employeeByEmail.getId();
@@ -78,6 +76,7 @@ public class LoginSuccessHandler implements AuthenticationSuccessHandler{
 		session.setAttribute("employeeId", customerId);
 		session.setAttribute("employeeProfileImageLink", profileImageLink);
 		session.setAttribute("employeeUsername", username);
+		session.setAttribute("employeeGender", gender);
 		
 		Date logoutTime = ((List<SystemSettings>)systemSettingsRepository.findAll()).get(0).getLogoutTime();
 		
@@ -86,12 +85,10 @@ public class LoginSuccessHandler implements AuthenticationSuccessHandler{
 		if(Objects.nonNull(employee)) {
 			employee.setOnline(true);
 			employeeRepository.save(employee);
-		}
-		else {
+		}else {
 			employeeByEmail.setOnline(true);
 			employeeRepository.save(employeeByEmail);
-			
-		}	
+		}
 		
 		response.sendRedirect(request.getServletContext().getContextPath() + "/admin/dashboard");
 		

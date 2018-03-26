@@ -1012,7 +1012,7 @@
 
             <br />
             
-            {{ if (status == "POSTED") { }}
+            {{ if (status == "POSTED" || status == 'OUT_OF_STOCK') { }}
                 <button type="button" class="btn bg-dark text-white float-right mr-1 btn-post-unpost">Unpost <i class="fa fa-clipboard ml-1" aria-hidden="true"></i>  </button>
             {{ } else if (status == "UNPOSTED") { }}
                 <button type="button" class="btn bg-green float-right mr-1 btn-post-unpost">Post <i class="fa fa-clipboard ml-1" aria-hidden="true"></i>  </button>	
@@ -1373,11 +1373,7 @@
 	                            <td>{{=weight}}</td>
 	                            <td>{{=dateRegistered}}</td>
 	                            <td>{{=expiredDate}}</td>
-	                            <td>{{ if (status == 'POSTED') { }}
-										Posted 
-									{{ } else if (status == 'UNPOSTED') { }}
-										Unposted
-									{{ } }}
+	                            <td>{{=status}}
 								</td>
 	
 	  </tr>

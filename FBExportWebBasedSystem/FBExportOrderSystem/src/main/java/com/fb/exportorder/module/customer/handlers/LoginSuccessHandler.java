@@ -71,8 +71,7 @@ public class LoginSuccessHandler implements AuthenticationSuccessHandler {
 		if(Objects.nonNull(customer)) {
 			customer.setOnline(true);
 			customerRepository.save(customer);
-		}
-		else {
+		}else {
 			customerByEmail.setOnline(true);
 			customerRepository.save(customerByEmail);
 		}

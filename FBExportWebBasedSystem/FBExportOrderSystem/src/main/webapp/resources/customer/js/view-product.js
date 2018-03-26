@@ -124,8 +124,10 @@ $(document).ready(function () {
     
     
     function showRates(progress,rate,value,total){
-    	$(progress).css("width", ((value / total ) * 100).toFixed(1)+"%");
-		 $(rate).text(((value / total ) * 100).toFixed(1)+"%");
+    	var progressStar = isNaN((value / total ) * 100) ? (0.0).toFixed(1) : ((value / total ) * 100).toFixed(1);
+    	var rateStar = isNaN((value / total ) * 100) ? (0.0).toFixed(1) : ((value / total ) * 100).toFixed(1); 
+    	$(progress).css("width", progressStar +"%");
+		 $(rate).text(rateStar+"%");
     }
     
     $(document).on("click", ".deleteReview",function(){

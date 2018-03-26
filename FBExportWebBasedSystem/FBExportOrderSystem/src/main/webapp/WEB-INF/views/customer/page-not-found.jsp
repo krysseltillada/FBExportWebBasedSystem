@@ -1,11 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="ISO-8859-1"%>
 <%@ include file = "../../lib/tags/tag-libraries.jsp" %>
+ 
 <html lang="en">
 
 <head>
   <meta charset="UTF-8" />
   <title>Error 404 - Page Not Found!</title>
+  <link rel="short icon" href="<c:url value = '/resources/company_logo_icon.ico'/>"/>
+  <!-- Font Awesome -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
   <link href="resources/customer/css/bootstrap.min.css" rel="stylesheet">
@@ -118,7 +121,8 @@
       The Page You're Looking For Was Not Found
     </h5>
 
-    <a href = "<c:url value = '/' />" class="btn btn-default">Back to homepage</a>
+
+    <a href = "<c:url value='/' />" class="btn btn-default">Back to homepage</a>
 
   </div>
 

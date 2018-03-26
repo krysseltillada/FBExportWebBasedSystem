@@ -104,19 +104,26 @@
 				<div class = "mt-1">
 
 					{{ if (!isCustomerLoggedIn) { }}
+						{{ if(stockStatus != 'OUT_OF_STOCK' ) { }}
 					<a href="/FBExportSystem/login" class="btn btn-primary" style = "position: relative; left: -8px; top: -4px; padding: 8px 10px 8px 10px;">
 			                            <i class="fa fa-cart-plus mr-1 mb-1" aria-hidden="true"></i>
 			                            Login to add</a>
-
+						{{ } }}
 					{{  } else {  }}
+						{{ if(stockStatus != 'OUT_OF_STOCK' ) { }}
 						<button type = "button" href="#" class="btn btn-primary btnProductItemAddToCart" style = "position: relative; left: -8px; top: -4px; padding: 8px 10px 8px 10px;">
 						<i class="fa fa-cart-plus mr-1 mb-1" aria-hidden="true"></i>
 						Add to cart</button>
+						{{ } }}
 					{{ } }}
+					
+					{{ 
+						var productStatusColor = (stockStatus != 'OUT_OF_STOCK') ? 'green' : 'red' ;
+						var productStatusLabel = (stockStatus != 'OUT_OF_STOCK') ? 'On Stock' : 'Out of Stock' ;
+					}}
 
-
-					<span style = "font-size: 12px; position: absolute; top: 155px;" class = "black-text"> Stocks: <span id = "product-stock-status">{{=stockStatus}} </span> </span>
-	                <span style = "font-size: 12px; position: absolute; top: 174px;" class = "black-text"> Posted: <span id = "product-date-posted">{{=postedDate}}</span> </span>
+					<span style = "font-size: 12px; position: absolute; top: 155px;" class = "black-text"> Stocks: <span id = "product-stock-status" style="color: {{=productStatusColor}} ">{{=productStatusLabel}} </span> </span>
+	                <span style = "font-size: 12px; position: absolute; top: 174px;" class = "black-text"> Posted on: <span id = "product-date-posted">{{=postedDate}}</span> </span>
 
 					<input type = "hidden" value = "{{=productId}}" id = "product-id" />
 				</div>

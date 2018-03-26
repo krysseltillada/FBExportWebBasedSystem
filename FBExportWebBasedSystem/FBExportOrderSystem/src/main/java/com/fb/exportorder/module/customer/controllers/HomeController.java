@@ -11,12 +11,8 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.messaging.handler.annotation.MessageMapping;
-import org.springframework.messaging.handler.annotation.SendTo;
-import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -29,6 +25,7 @@ import com.fb.exportorder.models.customer.Weight;
 import com.fb.exportorder.models.enums.WeightType;
 import com.fb.exportorder.module.admin.service.InventoryService;
 import com.fb.exportorder.module.customer.service.CustomerService;
+import com.fb.exportorder.module.customer.service.EmailService;
 import com.fb.exportorder.module.customer.service.NotificationService;
 
 @Controller
@@ -43,6 +40,8 @@ public class HomeController {
 	@Autowired
 	NotificationService notificationService;
 	
+	@Autowired
+	EmailService emailService;
 	
 	@RequestMapping(value = "/seen-notification", method = RequestMethod.POST)
 	@ResponseBody

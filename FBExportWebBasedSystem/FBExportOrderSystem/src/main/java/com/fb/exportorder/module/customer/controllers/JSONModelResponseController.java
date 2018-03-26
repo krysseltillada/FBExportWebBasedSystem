@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.fb.exportorder.models.customer.Customer;
-import com.fb.exportorder.module.customer.repository.CustomerRepository;
 import com.fb.exportorder.module.customer.service.CustomerService;
 
 @Controller

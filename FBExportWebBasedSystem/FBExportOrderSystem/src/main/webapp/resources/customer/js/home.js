@@ -1,6 +1,4 @@
 $(document).ready(function () {
-
-    console.log("tae");
    
     var updateHomePositioning = function () {
 
@@ -45,8 +43,8 @@ $(document).ready(function () {
                                 origin : response[i].origin,
                                 name : response[i].name,
                                 description : response[i].description,
-                                stockStatus : (response[i].status != 'OUT_OF_STOCK') ? 'On stock' : 'Out of stock',
-                                postedDate : moment(response[i].datePosted).format("MMMM D, YYYY"),
+                                stockStatus : response[i].status,
+                                postedDate : response[i].datePosted,
                                 productId : response[i].productId,
                                 isCustomerLoggedIn : $("#customer-id").val()
                             });
@@ -132,8 +130,8 @@ $(document).ready(function () {
                                 origin : response[i].origin,
                                 name : response[i].name,
                                 description : response[i].description,
-                                stockStatus : (response[i].status != 'OUT_OF_STOCK') ? 'On stock' : 'Out of stock',
-                                postedDate :  moment(response[i].datePosted).format("MMMM D, YYYY"),
+                                stockStatus : response[i].status,
+                                postedDate : response[i].datePosted,
                                 productId : response[i].productId,
                                 isCustomerLoggedIn : $("#customer-id").val()
                             });

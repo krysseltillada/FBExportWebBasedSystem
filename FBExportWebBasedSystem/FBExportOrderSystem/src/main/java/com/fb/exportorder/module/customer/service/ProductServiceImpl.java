@@ -20,16 +20,11 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.fb.exportorder.models.Address;
-import com.fb.exportorder.models.Contact;
 import com.fb.exportorder.models.Product;
-import com.fb.exportorder.models.customer.Cart;
 import com.fb.exportorder.models.customer.Customer;
 import com.fb.exportorder.models.customer.Order;
 import com.fb.exportorder.models.customer.Rating;
 import com.fb.exportorder.models.customer.Review;
-import com.fb.exportorder.models.enums.Gender;
-import com.fb.exportorder.models.enums.ProductStatus;
 import com.fb.exportorder.module.customer.repository.CustomerRepository;
 import com.fb.exportorder.module.customer.repository.OrderRepository;
 import com.fb.exportorder.module.customer.repository.ProductRepository;
@@ -179,8 +174,8 @@ public class ProductServiceImpl implements ProductService {
 		});
 		
 		double average = ((5 * mapAverage.get("5.0")) + (4 * mapAverage.get("4.0")) + (3 * mapAverage.get("3.0")) + (2 * mapAverage.get("2.0")) + (1 * mapAverage.get("1.0"))) / mapAverage.get("Total");
-		
-		mapAverage.put("Average", Double.parseDouble(String.format("%.2f", average)));
+		Double averageDouble = Double.parseDouble(String.format("%.2f", average));
+		mapAverage.put("Average", Double.isNaN(averageDouble) ? 0.0 : averageDouble);
 		
 		return average;
 	}
@@ -232,6 +227,8 @@ public class ProductServiceImpl implements ProductService {
 		reviewList.remove(reviewRepository.findOne(reviewid));
 		
 		ratingRepository.save(rating);
+		
+		reviewRepository.delete(reviewid);
 		
 		getAverage(rating.getReviews());
 		
@@ -292,7 +289,7 @@ public class ProductServiceImpl implements ProductService {
 
 	@Override
 	public Map<Product, Integer> getTopPaidProduct() {
-		List<Order> orderList = orderRepository.getMostPaidOrders();
+		List<Order> orderList = orderRepository.getPaidOrders();
 		
 		Map<Product, Integer> mostPaid = new HashMap<>();
 		
@@ -306,9 +303,24 @@ public class ProductServiceImpl implements ProductService {
 		return sortByComparator(mostPaid);
 	}
 	
+	@Override
+	public Map<Product, Integer> getPaidProductPreviousMonths() {
+		List<Order> orderList = orderRepository.getPaidOrdersPreviousMonths();
+		
+		Map<Product, Integer> paidProduct = new HashMap<>();
+		
+		orderList.forEach((order) -> {
+			order.getCart().getItems().forEach((item) -> {
+				Product product = item.getProduct();
+				//mostPaid.put(product, mostPaid.containsKey(product) ? mostPaid.get(product) + 1 : 1);
+			});
+		});
+		return null;
+	}
+	
 	private Map<Product, Integer> sortByComparator(Map<Product, Integer> unsortMap) {
 
-		    List<Entry<Product, Integer>> list = new LinkedList<Entry<Product, Integer>>(
+		List<Entry<Product, Integer>> list = new LinkedList<Entry<Product, Integer>>(
 		        unsortMap.entrySet());
 
 		    Collections.sort(list, new Comparator<Entry<Product,Integer>>() {
@@ -329,5 +341,5 @@ public class ProductServiceImpl implements ProductService {
 		    });
 		    
 		    return sortedMap;
-		  }
+	}
 }
