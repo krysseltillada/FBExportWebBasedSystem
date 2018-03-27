@@ -6,6 +6,7 @@ import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.After;
 import org.aspectj.lang.annotation.Aspect;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 
 import com.fb.exportorder.models.customer.Notification;
 import com.fb.exportorder.models.customer.Order;
@@ -17,6 +18,7 @@ import com.fb.exportorder.module.customer.service.OrderService;
 public class OrderNotificationTracker {
 	
 	@Autowired
+	@Qualifier("CustomerNotificationService")
 	NotificationService notificationService;
 	
 	@Autowired

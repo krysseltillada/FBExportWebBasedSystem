@@ -1,16 +1,20 @@
-package com.fb.exportorder.models.customer;
+package com.fb.exportorder.models;
 
 import java.util.Date;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import com.fb.exportorder.models.enums.SystemNotificationStatus;
+
 @Entity
-public class Notification {
+public class SystemNotification {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
@@ -19,12 +23,14 @@ public class Notification {
 	private String header;
 	private String description;
 	
-	private boolean isSeen;
+	@Enumerated(EnumType.STRING)
+	private SystemNotificationStatus systemNotificationStatus;
 	
-	private Long orderId;
+	private boolean isSeen;
 	
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date date;
+	
 
 	public Long getNotificationId() {
 		return notificationId;
@@ -50,12 +56,12 @@ public class Notification {
 		this.description = description;
 	}
 
-	public Long getOrderId() {
-		return orderId;
+	public SystemNotificationStatus getSystemNotificationStatus() {
+		return systemNotificationStatus;
 	}
 
-	public void setOrderId(Long orderId) {
-		this.orderId = orderId;
+	public void setSystemNotificationStatus(SystemNotificationStatus systemNotificationStatus) {
+		this.systemNotificationStatus = systemNotificationStatus;
 	}
 
 	public boolean isSeen() {
@@ -73,8 +79,5 @@ public class Notification {
 	public void setDate(Date date) {
 		this.date = date;
 	}
-	
-	
-	
-	
+
 }

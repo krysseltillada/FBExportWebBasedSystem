@@ -12,7 +12,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fb.exportorder.models.customer.Customer;
 import com.fb.exportorder.models.customer.Notification;
 
-@Service
+@Service("CustomerNotificationService")
 public class NotificationServiceImpl implements NotificationService {
 
 	@Autowired
@@ -29,23 +29,21 @@ public class NotificationServiceImpl implements NotificationService {
 
 		customerService.addNotificationToCustomer(notification, customer);
 		
+		if (customer.isOnline()) {
 		
-		try {
-			
-			if (customer.isOnline()) {
-
-				
+			try {
+					
 				simpMessagingTemplate.convertAndSend("/queue/push-notification-user-id-" + customer.getId(), 
 													 new ObjectMapper().writeValueAsString(notification));
 				
+			} catch (MessagingException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (JsonProcessingException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
 			
-		} catch (MessagingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (JsonProcessingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		}
 		
 		

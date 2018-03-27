@@ -358,7 +358,7 @@ $(document).ready(function () {
         */
 
         $.ajax({
-            url: "http://ip-api.com/json/1.0.63.255",
+            url: "http://ip-api.com/json",
             jsonpCallback: "callback",
             dataType: "json",
             success: function( location ) {
@@ -474,8 +474,6 @@ $(document).ready(function () {
                                         var taxPaid = Number(accounting.unformat(formatMoney(fx($(".taxPaid").html()).from("PHP").to(currentCurrency), "", "%v")));
                                         var totalDue = subTotal + shippingFee + taxPaid;
 
-                                        console.log(totalDue + " total due");
-
                                         $(".subTotal").html(formatMoney(subTotal, currentCurrency, "%v %s"));
                                         $(".shippingFee").html(formatMoney(shippingFee, currentCurrency, "%v %s"));
                                         $(".taxPaid").html(formatMoney(taxPaid, currentCurrency, "%v %s"));
@@ -557,13 +555,13 @@ $(document).ready(function () {
                                                         subTotalPrice += Number($(elem).html());
                                                     });
 
-                                                    var taxPaid = Number(formatMoney(fx($itemsOrderedTable.find("tfoot #estimatedTax").val()).from("PHP").to(currentCurrency), currentCurrency, "%v"));
-                                                    var shippingFee = Number(formatMoney(fx(1000).from("PHP").to(currentCurrency), currentCurrency, "%v"));
+                                                    var taxPaid = Number(accounting.unformat(formatMoney(fx($itemsOrderedTable.find("tfoot #estimatedTax").val()).from("PHP").to(currentCurrency), currentCurrency, "%v")));
+                                                    var shippingFee = Number(accounting.unformat(formatMoney(fx(1000).from("PHP").to(currentCurrency), currentCurrency, "%v")));
                                                     var totalPrice = subTotalPrice + shippingFee + taxPaid;
 
-                                                    $orderItemDiv.find(".price").html(formatMoney(totalPrice, "", "%v"));
+                                                    console.log(totalPrice + " total price");
 
-                                                    console.log(formatMoney(subTotalPrice, currentCurrency, "%v") + "sub total" );
+                                                    $orderItemDiv.find(".price").html(formatMoney(totalPrice, "", "%v"));
 
                                                     paypal.Button.render({
                                                         env: 'sandbox', // Or 'sandbox',

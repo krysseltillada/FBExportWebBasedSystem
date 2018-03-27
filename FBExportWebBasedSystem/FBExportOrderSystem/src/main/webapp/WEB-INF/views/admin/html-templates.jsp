@@ -1,5 +1,25 @@
 <%@ include file = "../../lib/tags/tag-libraries.jsp" %>
 
+
+
+
+
+<script id = "notificationSeeMoreLoaderTemplate" type = "text/template">
+    <span id = "notificationSeeMoreLoader" class = "mx-auto mt-2" href="#">
+        <img src = "<c:url value = '/resources/admin/img/loader.gif' />" width = "35" height = "35" />
+    </span>
+</script>
+
+<script id = "notificationModalListItem" type = "text/template">
+    <span class="list-group-item list-group-item-action flex-column align-items-start">
+        <div class="d-flex w-100 justify-content-between">
+        <h5 class="mb-1"> {{=header}} {{=icon}} </h5>
+        <small>{{=dateAgo}}</small>
+        </div>
+        <p class="mb-1">{{=description}}.</p>
+    </span>
+</script>
+
 <script id = "orderRowDiv" type = "text/template">
     <tr>
         <td></td>

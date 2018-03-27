@@ -53,6 +53,7 @@
 			<add-attribute value = "/resources/admin/js/iziToast.js" />
 			<add-attribute value = "/resources/admin/js/sockjs.js" />
 			<add-attribute value = "/resources/admin/js/stomp.js" />
+			<add-attribute value = "/resources/admin/js/timeago.js" />
 			<add-attribute value = "/resources/admin/js/utilities.js" />
 			<add-attribute value = "/resources/admin/js/notification.js" />
 			<add-attribute value = "/resources/admin/js/front.js" />

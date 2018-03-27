@@ -24,4 +24,5 @@ public interface ManageEmployeeService {
 	public void saveEmployee(Employee employee);
 	
 	public Employee getEmployeeByUsername(String username);
+	
 }
