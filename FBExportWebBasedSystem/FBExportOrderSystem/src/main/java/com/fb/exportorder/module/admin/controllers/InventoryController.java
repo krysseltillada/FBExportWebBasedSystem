@@ -231,7 +231,8 @@ public class InventoryController {
 		String strStatus = (String)filterDataJSON.get("status");
 		
 		ProductStatus status = strStatus.equals("Posted") ?  ProductStatus.POSTED :
-							   strStatus.equals("Unposted") ? ProductStatus.UNPOSTED : ProductStatus.ALL;
+							   strStatus.equals("Unposted") ? ProductStatus.UNPOSTED : 
+							   strStatus.equals("Outofstock") ? ProductStatus.OUT_OF_STOCK : ProductStatus.ALL;;
 		
 		double minPrice = StringUtils.isBlank((String)filterDataJSON.get("minPrice")) ? 0 : 
 																						Double.parseDouble((String)filterDataJSON.get("minPrice"));
