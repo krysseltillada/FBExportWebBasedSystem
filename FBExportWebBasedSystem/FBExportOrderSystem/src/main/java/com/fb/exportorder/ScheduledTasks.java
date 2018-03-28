@@ -23,7 +23,7 @@ public class ScheduledTasks {
 	private SystemSettings settings;
 	public static String formattedTime = "";
 	
-    @Scheduled(fixedRate = 1000)
+    @Scheduled(fixedRate = 60000)
     public void reportCurrentTime() {
     	
     	if(ScheduledTasks.formattedTime.equals("")) {

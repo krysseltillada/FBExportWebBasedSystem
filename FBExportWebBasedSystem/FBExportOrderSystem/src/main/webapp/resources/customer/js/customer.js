@@ -358,7 +358,7 @@ $(document).ready(function () {
         */
 
         $.ajax({
-            url: "http://ip-api.com/json",
+            url: "http://ip-api.com/json/1.0.63.255",
             jsonpCallback: "callback",
             dataType: "json",
             success: function( location ) {
