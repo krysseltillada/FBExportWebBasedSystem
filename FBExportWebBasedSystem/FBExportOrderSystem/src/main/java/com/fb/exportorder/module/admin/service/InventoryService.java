@@ -13,12 +13,10 @@ public interface InventoryService {
 	public List<Product> getAllProducts();
 	public Product getProductById(long id);
 	
-	public void deleteSelectedProduct (List<Long> ids);
-	
 	public String postProduct (long id);
 	public void unpostProduct (long id);
 	
-	public void deleteProduct(long id);
+	public String updateStockProduct(long id, String weight);
 	
 	public List<Product> filterProducts (Date minDate,
 										 Date maxDate,

@@ -177,21 +177,26 @@ public class InventoryServiceImpl implements InventoryService {
 	}
 
 	@Override
-	public void deleteProduct(long id) {
+	public String updateStockProduct(long id, String weight) {
 		
-		Product deletedProduct = inventoryRepository.findOne(id);
+		if(StringUtils.isEmpty(weight))
+			return "Please fill stock weight";
 		
-		String productImageLink = deletedProduct.getProductImageLink();
-		String mainProductFilename = productImageLink.substring(productImageLink.lastIndexOf("/") + 1, productImageLink.lastIndexOf("."));
-		
-		DeleteImage.deleteProductImageNonHash(mainProductFilename);
-		
-		for (String productPreviewImageLink : deletedProduct.getPreviewImageLinks()) {
-			String productPreviewFilename = productPreviewImageLink.substring(productPreviewImageLink.lastIndexOf("/") + 1, productPreviewImageLink.lastIndexOf("."));
-			DeleteImage.deleteProductImageNonHash(productPreviewFilename);
+		try {
+			Product updateStockProduct = inventoryRepository.findOne(id);
+			
+			double stockWeight = Double.parseDouble(weight) + updateStockProduct.getWeight();
+			
+			updateStockProduct.setWeight(stockWeight);
+			
+			inventoryRepository.save(updateStockProduct);
+			
+		}catch(NumberFormatException e) {
+			return "Invalid stock weight";
 		}
 		
-		inventoryRepository.delete(id);
+		
+		return "";
 	}
 
 	@Override
@@ -227,12 +232,6 @@ public class InventoryServiceImpl implements InventoryService {
 	}
 
 	@Override
-	public void deleteSelectedProduct(List<Long> ids) {
-		for (long id : ids) 
-			deleteProduct(id);
-	}
-
-	@Override
 	@Transactional
 	public List<Product> filterProducts(Date minDate,
 										Date maxDate,
@@ -242,6 +241,7 @@ public class InventoryServiceImpl implements InventoryService {
 										double maxPrice,
 										double minWeight,
 										double maxWeight) {
+		
 		
 		String dateFilterQuery =  (StringUtils.equals(dateFilterType, "DateRegistered")) ?  "p.dateRegistered" : 
 																						    "p.dateOfDelivery" ;
@@ -272,9 +272,10 @@ public class InventoryServiceImpl implements InventoryService {
 		
 		List<Product> filteredProducts = (List<Product>)filterQuery.list();
 		
-		for (Product p : filteredProducts) 
+		for (Product p : filteredProducts) {
 			p.getRating().getReviews().size();
-		
+			p.getProductStocks().size();
+		}
 		return filteredProducts;
 		
 	}

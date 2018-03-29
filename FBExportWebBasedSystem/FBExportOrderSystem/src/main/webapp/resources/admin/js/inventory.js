@@ -70,48 +70,52 @@ $(document).ready(function (){
 
 				row.child(rowProductRowCollapse, 'no-padding').show();
 
-				$(row.child()).find(".btn-delete").click(function () {
+				$(row.child()).find(".btn-addStockWeight").click(function () {
 					 
-					var $deleteButton = $(this);
-					var $deletedProductChildRow = $(this).closest("tr");
-					var $deletedProductRow = $deletedProductChildRow.prev();
-					var deletedProductId = $deletedProductRow.find("td:eq(2)").html();
+					var $addStockButton = $(this);
+					var $addStockProductChildRow = $(this).closest("tr");
+					var $addStockProductRow = $addStockProductChildRow.prev();
+					var addStockProductId = $addStockProductRow.find("td:eq(2)").html();
 
-					alertify.okBtn("Delete")
+					alertify.okBtn("Add")
 							.cancelBtn("Cancel")
-							.confirm("Delete this product?", function () {
+							.confirm("Add stock weight?", function () {
 								
-								$deleteButton.attr("disabled", "");
-								$deleteButton.css("cursor", "not-allowed");
 
-								iziToast.error({
+								iziToast.info({
 									icon : "",
-									message : "deleting product..",
+									message : "adding stock weight..",
 									timeout : false,
 									close : false,
 									onOpening : function (instance, toast) {
 
-										$.post("/FBExportSystem/admin/inventory/delete-product", {
-											id : deletedProductId
-										}, function () {
-
-											console.log("delete");
+										$.post("/FBExportSystem/admin/inventory/addstock-product", {
+											id : addStockProductId,
+											weight : $("#addStockWeight").val()
+										}, function (response) {
 											
+											if(response != ""){
+												
+												$(toast).delay(1000).fadeOut("slow", function () {
+													$(this).remove();
+													
+													iziToast.error({
+													    title: 'ERROR',
+													    message: response,
+													});
+												});
+												
+											}else{
 
-											$deletedProductChildRow.fadeOut("slow");
-
-
-
-											$deletedProductRow.fadeOut("slow", function () {
-												console.log($deletedProductChildRow.html());
-												console.log($deletedProductRow.html());
-												table.row($deletedProductRow).remove().draw();
-											});
-
-											$(toast).fadeOut("slow", function () {
-												$(this).remove();
-											});
-
+												$(toast).delay(1000).fadeOut("slow", function () {
+													$(this).remove();
+													
+													iziToast.success({
+													    title: 'Updated',
+													    message: 'Successfully update stock weight!',
+													});
+												});
+											}
 											
 										});
 

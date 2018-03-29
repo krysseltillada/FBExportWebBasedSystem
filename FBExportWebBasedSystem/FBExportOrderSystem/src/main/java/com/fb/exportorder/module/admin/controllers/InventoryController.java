@@ -173,38 +173,11 @@ public class InventoryController {
 		return inventoryService.getProductById(Long.parseLong(id));
 	}
 	
-	@RequestMapping(value = "/admin/inventory/delete-product", method = RequestMethod.POST)
+	@RequestMapping(value = "/admin/inventory/addstock-product", method = RequestMethod.POST)
 	@ResponseBody
-	public String deleteProduct(@RequestParam String id) {
-		inventoryService.deleteProduct(Long.parseLong(id));
-		return "";
-	}
-	// annotation 
-	@RequestMapping(value = "/admin/inventory/delete-selected-product", method = RequestMethod.POST)
-	@ResponseBody
-	public String deleteSelectedProduct(@RequestParam String ids) {
-		
-		try {
-			
-			JSONObject rawIds = (JSONObject)new JSONParser().parse(ids);
-			
-			JSONArray idsArray = (JSONArray)rawIds.get("deletedIds");
-			
-			List<Long> idsList = new ArrayList<Long>();
-			
-			for (int i = 0; i != idsArray.size(); ++i)
-				idsList.add(Long.parseLong((String)idsArray.get(i)));
-			
-			inventoryService.deleteSelectedProduct(idsList);
-			
-			
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		
-		return "";
+	public String deleteProduct(@RequestParam String id,
+								@RequestParam String weight) {
+		return inventoryService.updateStockProduct(Long.parseLong(id), weight);
 	}
 
 	@RequestMapping(value = "/admin/inventory/post-product", method = RequestMethod.POST)
