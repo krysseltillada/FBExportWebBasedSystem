@@ -84,23 +84,23 @@ public class OrderNotificationTracker {
 		
 	}
 	
-	@After("execution(public java.util.List<String> com.fb.exportorder..service.OrderService+.addToShipInformation(..))")
-	public void detectAddToShipInformationOrder(JoinPoint joinPoint) {
-		
-		long orderId = (long)joinPoint.getArgs()[0];
-		
-		Notification addToShipInformationNotification = new Notification();
-		
-		addToShipInformationNotification.setOrderId(orderId);
-		addToShipInformationNotification.setHeader("Order To Shipping");
-		addToShipInformationNotification.setDescription("Your Order# " + orderId + " is Shipping");
-		addToShipInformationNotification.setSeen(false);
-		addToShipInformationNotification.setDate(new Date());
-		
-		notificationService.pushNotification(addToShipInformationNotification,
-											 orderService.getOrderById(orderId).getCustomer());
-		
-	}
+//	@After("execution(public java.util.List<String> com.fb.exportorder..service.OrderService+.addToShipInformation(..))")
+//	public void detectAddToShipInformationOrder(JoinPoint joinPoint) {
+//		
+//		long orderId = (long)joinPoint.getArgs()[0];
+//		
+//		Notification addToShipInformationNotification = new Notification();
+//		
+//		addToShipInformationNotification.setOrderId(orderId);
+//		addToShipInformationNotification.setHeader("Order To Shipping");
+//		addToShipInformationNotification.setDescription("Your Order# " + orderId + " is Shipping");
+//		addToShipInformationNotification.setSeen(false);
+//		addToShipInformationNotification.setDate(new Date());
+//		
+//		notificationService.pushNotification(addToShipInformationNotification,
+//											 orderService.getOrderById(orderId).getCustomer());
+//		
+//	}
 	
 	
 

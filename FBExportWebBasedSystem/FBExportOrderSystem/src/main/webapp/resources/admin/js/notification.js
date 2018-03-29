@@ -119,7 +119,7 @@ $(document).ready(function () {
 
         $("#notifications").parent().find("a>span").remove(); 
 
-        $notificationList.find(">span").remove();
+        $notificationList.children().remove();
         $notificationList.append($("#notificationSeeMoreLoaderTemplate").html());
     
         setTimeout(function () {
@@ -131,19 +131,28 @@ $(document).ready(function () {
 
                 $notificationList.find("#notificationSeeMoreLoader").remove();
 
-                var notification = response;
+                if (response.length > 0) {
 
-                for (var i = 0; i != notification.length; ++i){
+                    var notification = response;
 
-                    var systemNotificationStatus = notification[i].systemNotificationStatus;
-                    var systemNotificationStatusIcon = getSystemNotificationStatusIcon(systemNotificationStatus);
+                    for (var i = 0; i != notification.length; ++i){
 
-                    $notificationList.append(_.template($("#notificationModalListItem").html())({
-                        header : notification[i].header,
-                        icon : systemNotificationStatusIcon,
-                        dateAgo : timeago().format(notification[i].date),
-                        description : notification[i].description
-                    }));
+                        var systemNotificationStatus = notification[i].systemNotificationStatus;
+                        var systemNotificationStatusIcon = getSystemNotificationStatusIcon(systemNotificationStatus);
+
+                        $notificationList.append(_.template($("#notificationModalListItem").html())({
+                            header : notification[i].header,
+                            icon : systemNotificationStatusIcon,
+                            dateAgo : timeago().format(notification[i].date),
+                            description : notification[i].description
+                        }));
+                    }
+
+                } else {
+
+                    if ($notificationList.find("#notificationModalEmptyMessage").length <= 0) 
+                        $notificationList.append("<div id = 'notificationModalEmptyMessage' class='mx-auto pt-5 pb-5'> <h5> No notifications yet. </h5> </div>")
+
                 }
 
             }, "json");
@@ -213,6 +222,8 @@ $(document).ready(function () {
                 var systemNotificationStatusIcon = getSystemNotificationStatusIcon(notification.systemNotificationStatus);
                 var systemNotificationListStatusIcon = getSystemNotificationListStatusIcon(notification.systemNotificationStatus);
                
+                var notificationSound = new Audio("/FBExportSystem/resources/notification-sound.mp3");
+                notificationSound.play();
 
                 iziToast.info({
                     iconColor: '#ffffff',
@@ -233,6 +244,9 @@ $(document).ready(function () {
                 }));
 
                 if($("#notificationModal").hasClass("show")) {
+
+                    if($("#notificationModalEmptyMessage").length > 0) 
+                        $("#notificationModalEmptyMessage").remove();
 
                     $.post("/FBExportSystem/admin/seenAllNotification", {
                         notificationJSONRawIds : JSON.stringify([

@@ -19,16 +19,6 @@ public class MultiHttpSecurityConfig {
     @Order(2)
     public static class CustomerSecurityConfiguration extends WebSecurityConfigurerAdapter {
     	
-//    	private static final String[] CSRF_IGNORE_URLS = {"/register", 
-//    													  "/sign-up", 
-//    													  "/edit-account", 
-//    													  "/add-address",
-//    													  "/edit-address",
-//    													  "/delete-address",
-//    													  "/set-default-shipping-address",
-//    													  "/see-more-activities",
-//    													  "/delete-all-activity"};
-    	
     	@Autowired
     	@Qualifier("customerUserDetailsService")
     	UserDetailsService userDetailService;
@@ -81,9 +71,6 @@ public class MultiHttpSecurityConfig {
         		.and()
         		.exceptionHandling()
         		.accessDeniedPage("/error");
-//        		.and()
-//        		.csrf().ignoringAntMatchers(CSRF_IGNORE_URLS);
-//        	
         	
         }
     }
@@ -133,9 +120,9 @@ public class MultiHttpSecurityConfig {
         					 "/admin/add-product/add-preview-images",
         					 "/admin/inventory/edit-product/*",
         					 "/admin/manage-accounts",
-        					 "/admin/orders",
-        					 "/admin/system-settings",
-        					 "/admin/report-logs").hasAnyAuthority("ADMIN", "EMPLOYEE")
+        					 "/admin/orders").hasAnyAuthority("ADMIN", "EMPLOYEE")
+        		.antMatchers("/admin/report-logs",
+        					 "/admin/system-settings").hasAuthority("ADMIN")
         		.and()
 	    		.formLogin()
 	    		.loginPage("/admin/login")

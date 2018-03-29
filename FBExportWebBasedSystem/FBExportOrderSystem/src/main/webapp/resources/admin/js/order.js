@@ -51,15 +51,34 @@ $(document).ready(function () {
 
     });
 
+    var arrivalDatePicker = flatpickr("#arrivalDatePicker", {
+		minDate : "today",
+		dateFormat : "F j, Y",
+		onChange : function (selectedDates, date) {
+			var departureTempDate = $("#departureDatePicker").val();
+			departureDatePicker.config.maxDate = date;
+		}
+	});
+	
+	var departureDatePicker = flatpickr("#departureDatePicker", {
+		dateFormat : "F j, Y",	
+		onChange : function (selectedDates, date) {
+			var arrivalTempDate = $("#arrivalDatePicker").val();
+			arrivalDatePicker.config.minDate = date;
+		}
+	});
+
     $("#expectedDatePicker").flatpickr({
         dateFormat : "F j, Y"
     });
-    $("#departureDatePicker").flatpickr({
-        dateFormat : "F j, Y"
-    });
-    $("#arrivalDatePicker").flatpickr({
-        dateFormat : "F j, Y"
-    });
+    
+    // $("#departureDatePicker").flatpickr({
+    //     dateFormat : "F j, Y"
+    // });
+
+    // $("#arrivalDatePicker").flatpickr({
+    //     dateFormat : "F j, Y"
+    // });
     
     var table = $('#orderTable').DataTable( {
         "language" : {
@@ -1431,15 +1450,29 @@ $(document).ready(function () {
                                             $orderDetailsRow.find("#expectedDatePicker").flatpickr({
                                                 dateFormat : "F j, Y"
                                             });
-                                            $orderDetailsRow.find("#departureDatePicker").flatpickr({
-                                                dateFormat : "F j, Y"
+
+                                            var departureDatePicker = $orderDetailsRow.find("#departureDatePicker").flatpickr({
+                                                dateFormat : "F j, Y",	
+                                                onChange : function (selectedDates, date) {
+                                                    var arrivalTempDate = $orderDetailsRow.find("#arrivalDatePicker").val();
+                                                    arrivalDatePicker.config.minDate = date;
+                                                }
                                             });
-                                            $orderDetailsRow.find("#arrivalDatePicker").flatpickr({
-                                                dateFormat : "F j, Y"
+
+                                            var arrivalDatePicker = $orderDetailsRow.find("#arrivalDatePicker").flatpickr({
+                                                minDate : "today",
+                                                dateFormat : "F j, Y",
+                                                onChange : function (selectedDates, date) {
+                                                    var departureTempDate = $orderDetailsRow.find("#departureDatePicker").val();
+                                                    departureDatePicker.config.maxDate = date;
+                                                }
                                             });   
+
                                             $orderDetailsRow.find("#shippingLogDatePicker").flatpickr({
                                                 dateFormat : "F j, Y"
                                             });
+
+
                                             $orderDetailsRow.find("#shippingLogTimePicker").flatpickr({
                                                 enableTime : true,
                                                 dateFormat : "h:i K",
@@ -1984,11 +2017,23 @@ $(document).ready(function () {
                 $(row.child()).find("#expectedDatePicker").flatpickr({
                     dateFormat : "F j, Y"
                 });
-                $(row.child()).find("#departureDatePicker").flatpickr({
-                    dateFormat : "F j, Y"
+
+                var departureDatePicker = $(row.child()).find("#departureDatePicker").flatpickr({
+                    dateFormat : "F j, Y",	
+                    onChange : function (selectedDates, date) {
+                        var arrivalTempDate = $(row.child()).find("#arrivalDatePicker").val();
+                        arrivalDatePicker.config.minDate = date;
+                    }
                 });
-                $(row.child()).find("#arrivalDatePicker").flatpickr({
-                    dateFormat : "F j, Y"
+
+                var arrivalDatePicker = $(row.child()).find("#arrivalDatePicker").flatpickr({
+                    minDate : "today",
+                    dateFormat : "F j, Y",
+                    onChange : function (selectedDates, date) {
+                        var departureTempDate = $(row.child()).find("#departureDatePicker").val();
+                        departureDatePicker.config.maxDate = date;
+                        $("#departureDatePicker").val(departureTempDate);
+                    }
                 });
 
                 $(row.child()).find("#shippingLogDatePicker").flatpickr({
