@@ -22,9 +22,13 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.fb.exportorder.models.Product;
+import com.fb.exportorder.models.ProductStock;
 import com.fb.exportorder.models.customer.Rating;
+import com.fb.exportorder.models.customer.Weight;
 import com.fb.exportorder.models.enums.ProductStatus;
+import com.fb.exportorder.models.enums.WeightType;
 import com.fb.exportorder.module.admin.repository.InventoryRepository;
+import com.fb.exportorder.module.admin.repository.ProductStocksRepository;
 import com.fb.exportorder.utilities.DeleteImage;
 import com.fb.exportorder.utilities.UploadImage;
 
@@ -33,6 +37,9 @@ public class InventoryServiceImpl implements InventoryService {
 
 	@Autowired
 	InventoryRepository inventoryRepository;
+	
+	@Autowired
+	ProductStocksRepository productStocksRepository;
 	
 	@Autowired
 	SessionFactory sessionFactory;
@@ -186,9 +193,19 @@ public class InventoryServiceImpl implements InventoryService {
 			Product updateStockProduct = inventoryRepository.findOne(id);
 			
 			double stockWeight = Double.parseDouble(weight) + updateStockProduct.getWeight();
-			
 			updateStockProduct.setWeight(stockWeight);
 			
+			ProductStock stock = new ProductStock();
+			
+			Weight weightStock = new Weight();
+			weightStock.setWeight(Double.parseDouble(weight));
+			weightStock.setWeightType(WeightType.KILO);
+			
+			stock.setProduct(updateStockProduct);
+			stock.setStock(weightStock);
+			stock.setDate(new Date());
+			
+			productStocksRepository.save(stock);
 			inventoryRepository.save(updateStockProduct);
 			
 		}catch(NumberFormatException e) {
