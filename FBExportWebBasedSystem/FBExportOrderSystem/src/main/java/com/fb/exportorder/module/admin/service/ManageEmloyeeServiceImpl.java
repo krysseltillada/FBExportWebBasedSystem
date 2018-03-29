@@ -300,13 +300,17 @@ public class ManageEmloyeeServiceImpl implements ManageEmployeeService {
 
 	@Override
 	public Employee getEmployeeByUsername(String username) {
-		
 		return employeeRepository.findAccountByUsername(username);
 	}
 
 	@Override
 	public void saveEmployee(Employee employee) {
 		employeeRepository.save(employee);
+	}
+
+	@Override
+	public Employee getEmployeeById(long employeeId) {
+		return employeeRepository.findOne(employeeId);
 	}
 
 }

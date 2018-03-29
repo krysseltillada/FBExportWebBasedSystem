@@ -69,7 +69,7 @@ $(document).ready(function () {
 
     $("#btnSeeMoreNotifications").click(function () {
 
-            var notificationListCurrentCount = $("div.notifications>div.list-group").children().length;
+            var notificationListCurrentCount = $("div.notifications>div.list-group>:not(div)").length;
             console.log(notificationListCurrentCount);
 
 

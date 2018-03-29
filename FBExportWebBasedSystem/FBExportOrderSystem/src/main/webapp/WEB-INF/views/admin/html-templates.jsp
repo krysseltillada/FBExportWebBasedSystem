@@ -2,8 +2,6 @@
 
 
 
-
-
 <script id = "notificationSeeMoreLoaderTemplate" type = "text/template">
     <span id = "notificationSeeMoreLoader" class = "mx-auto mt-2" href="#">
         <img src = "<c:url value = '/resources/admin/img/loader.gif' />" width = "35" height = "35" />
@@ -18,6 +16,23 @@
         </div>
         <p class="mb-1">{{=description}}.</p>
     </span>
+</script>
+
+<script id = "notificationListItem" type = "text/template">
+    <li>
+        <a rel="nofollow" style = "pointer: none;" class="dropdown-item">
+            <div class="notification">
+                <div class="notification-content">
+                
+                    {{=icon}}
+                    {{=header}}
+                    
+                </div>
+                <div class="notification-time ml-2"><small>{{=dateAgo}}</small></div>
+                <input type = "hidden" id = "isSeen" value = "{{=isSeen}}" />
+            </div>
+        </a>
+    </li>
 </script>
 
 <script id = "orderRowDiv" type = "text/template">

@@ -25,4 +25,6 @@ public interface ManageEmployeeService {
 	
 	public Employee getEmployeeByUsername(String username);
 	
+	public Employee getEmployeeById(long employeeId);
+	
 }

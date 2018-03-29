@@ -1,5 +1,22 @@
 $(document).ready(function () {
 
+    var updateNotificationListCount = function () {
+
+        var notificationListCount = $("#notifications").next()
+                                                       .find(">div>li input#isSeen[value='false']").length;
+
+        var isBadgeNotificationCountShow = $("#notifications>span.badge").length > 0;
+
+        if (!isBadgeNotificationCountShow) {
+            $("#notifications").append("<span class='badge bg-red'>" + notificationListCount + "</span>")
+        } else {
+            $("#notifications").find("span.badge").html(notificationListCount);
+        }
+
+
+        console.log(notificationListCount + " notification list count");
+    };
+
     var getSystemNotificationStatusIcon = function (systemNotificationStatus) {
 
         return systemNotificationStatus == "ORDER_RECEIVED" ? '<i class="icon-padnote ml-1" style = "color: #0275d8;"></i>' :
@@ -14,6 +31,20 @@ $(document).ready(function () {
 
     };
 
+    var getSystemNotificationListStatusIcon = function (systemNotificationStatus) {
+
+        return systemNotificationStatus == "ORDER_RECEIVED" ? '<i class="icon-padnote ml-1" style = "background-color: #0275d8;"></i>' :
+               systemNotificationStatus == "ORDER_REFUND" ? '<i class="fa fa-arrow-left ml-1" style = "background-color: #ea1e63;"></i>' :
+               systemNotificationStatus == "ORDER_PAID" ? '<i class="fa fa-usd ml-1" style = "background-color: #91c361;"></i>' :
+               systemNotificationStatus == "ORDER_RETURN" ? '<i class="fa fa-undo ml-1" style = "background-color: #795548;"></i>' :
+               systemNotificationStatus == "ORDER_NEW_ORDER" ? '<i class="fa fa-list-alt ml-1" style = "background-color: #ffc107;"></i>' :
+               systemNotificationStatus == "ORDER_CANCELLED" ? '<i class="fa fa-times ml-1" style = "background-color: #d9534f;"></i>' :
+               systemNotificationStatus == "INVENTORY_ADD_PRODUCT" ? '<i class="fa fa-plus ml-1"></i>' :
+               systemNotificationStatus == "INVENTORY_EDIT_PRODUCT" ? '<i class="fa fa-edit ml-1"></i>' :
+               systemNotificationStatus == "INVENTORY_UPDATE_STOCK" ?  '<i class="fa fa-product-hunt ml-1"></i>' : '<i class="fa fa-server ml-1"></i>'
+
+    };
+
     var getSystemNotificationStatusIconColor = function (systemNotificationStatus) {
 
         return systemNotificationStatus == "ORDER_RECEIVED" ? '#0275d8' :
@@ -21,13 +52,12 @@ $(document).ready(function () {
                systemNotificationStatus == "ORDER_PAID" ? '#91c361' :
                systemNotificationStatus == "ORDER_RETURN" ? '#795548' :
                systemNotificationStatus == "ORDER_NEW_ORDER" ? '#ffc107' :
-               systemNotificationStatus == "ORDER_CANCELLED" ? '#d9534f' : '';
-            //    systemNotificationStatus == "INVENTORY_ADD_PRODUCT" ? '<i class="fa fa-plus ml-1"></i>' :
-            //    systemNotificationStatus == "INVENTORY_EDIT_PRODUCT" ? '<i class="fa fa-edit ml-1"></i>' :
-            //    systemNotificationStatus == "INVENTORY_UPDATE_STOCK" ?  '<i class="fa fa-product-hunt ml-1"></i>' : '<i class="fa fa-server"></i>';
+               systemNotificationStatus == "ORDER_CANCELLED" ? '#d9534f' : 
+               systemNotificationStatus == "INVENTORY_ADD_PRODUCT" ? '<i class="fa fa-plus ml-1"></i>' :
+               systemNotificationStatus == "INVENTORY_EDIT_PRODUCT" ? '<i class="fa fa-edit ml-1"></i>' :
+               systemNotificationStatus == "INVENTORY_UPDATE_STOCK" ?  '<i class="fa fa-product-hunt ml-1"></i>' : '<i class="fa fa-server"></i>';
 
-    }
-
+    };
 
     $("#notifications").parent().ready(function () {
         
@@ -45,17 +75,53 @@ $(document).ready(function () {
         var $dropDownNotification = $(this);
 
         $dropDownNotification.find("a>span").remove(); 
-       
+
+        $dropDownNotification.find("ul>div>li").remove();
+
+        $.post("/FBExportSystem/admin/showNotificationList", 
+              function (response) {
+
+                if (response.length > 0) {
+
+                    if ($("#notificationListEmptyMessage").length > 0) 
+                        $("#notificationListEmptyMessage").remove();
+
+                    for (var i = 0; i != response.length; ++i) {
+
+                        var notification = response[i];
+                        var systemNotificationListStatusIcon = getSystemNotificationListStatusIcon(notification.systemNotificationStatus);
+
+                        $dropDownNotification.find("ul>div")
+                                            .append(_.template($("#notificationListItem").html())({
+                                                header : notification.header,
+                                                icon : systemNotificationListStatusIcon,
+                                                dateAgo : timeago().format(notification.date),
+                                                isSeen : notification.seen
+                                            }));                    
+
+                    }
+
+                } else {
+
+                    $dropDownNotification.find("ul>div")
+                                         .append("<li> <p id = 'notificationListEmptyMessage' class = 'text-center mt-3'> <span style = 'font-size: 12px;'> No unseen notification. </span> </p> </li>"); 
+
+                }
+
+
+              }, "json");
+
     });
 
     $("#notificationModal").on("show.bs.modal", function () {
 
         var $notificationList = $(this).find("div.list-group");
 
+        $("#notifications").parent().find("a>span").remove(); 
+
         $notificationList.find(">span").remove();
         $notificationList.append($("#notificationSeeMoreLoaderTemplate").html());
-        console.log("show modal");
-
+    
         setTimeout(function () {
 
             $.get("/FBExportSystem/admin/showAllNotification", {
@@ -145,6 +211,8 @@ $(document).ready(function () {
 
                 var notification = JSON.parse(response.body);
                 var systemNotificationStatusIcon = getSystemNotificationStatusIcon(notification.systemNotificationStatus);
+                var systemNotificationListStatusIcon = getSystemNotificationListStatusIcon(notification.systemNotificationStatus);
+               
 
                 iziToast.info({
                     iconColor: '#ffffff',
@@ -155,7 +223,23 @@ $(document).ready(function () {
                     message: notification.description,
                 });
 
+            
+
+                $("a#notifications").next().find(">div").prepend(_.template($("#notificationListItem").html())({
+                    header : notification.header,
+                    icon : systemNotificationListStatusIcon,
+                    dateAgo : timeago().format(notification.date),
+                    isSeen : notification.seen
+                }));
+
                 if($("#notificationModal").hasClass("show")) {
+
+                    $.post("/FBExportSystem/admin/seenAllNotification", {
+                        notificationJSONRawIds : JSON.stringify([
+                            notification.notificationId
+                        ])
+                    }, function (response) {});
+
                     $("#notificationModal div.list-group").prepend(
                         _.template($("#notificationModalListItem").html())(
                             {
@@ -166,7 +250,17 @@ $(document).ready(function () {
                             }
                         )
                     )
+
+
+                } else {
+
+                    if ($("#notificationListEmptyMessage").length > 0) 
+                        $("#notificationListEmptyMessage").remove();
+                
+                    updateNotificationListCount();
+
                 }
+
                 
             });
 

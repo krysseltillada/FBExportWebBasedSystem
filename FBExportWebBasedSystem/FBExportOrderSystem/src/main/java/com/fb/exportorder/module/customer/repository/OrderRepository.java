@@ -11,6 +11,9 @@ import com.fb.exportorder.models.customer.Order;
 @Repository
 public interface OrderRepository extends PagingAndSortingRepository<Order, Long> {
 	
+	@Query("SELECT o FROM Orders o ORDER BY o.orderId DESC")
+	public List<Order> getAllOrders();
+	
 	@Query(value="SELECT COUNT(*), o.order_status From orders o GROUP BY o.order_status", nativeQuery=true)
 	public List<Object[]> getOrdersCount();
 	

@@ -156,7 +156,7 @@ public class OrderServiceImpl implements OrderService {
 
 	@Override
 	public List<Order> getAllOrders() {
-		return (List<Order>) orderRepository.findAll();
+		return orderRepository.getAllOrders();
 	}
 
 
