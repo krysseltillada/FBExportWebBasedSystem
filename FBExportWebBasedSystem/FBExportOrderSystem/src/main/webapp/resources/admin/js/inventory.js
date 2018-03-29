@@ -76,6 +76,7 @@ $(document).ready(function (){
 					var $addStockProductChildRow = $(this).closest("tr");
 					var $addStockProductRow = $addStockProductChildRow.prev();
 					var addStockProductId = $addStockProductRow.find("td:eq(2)").html();
+					var weightValue = $("#addStockWeight").val();
 
 					alertify.okBtn("Add")
 							.cancelBtn("Cancel")
@@ -91,7 +92,7 @@ $(document).ready(function (){
 
 										$.post("/FBExportSystem/admin/inventory/addstock-product", {
 											id : addStockProductId,
-											weight : $("#addStockWeight").val()
+											weight : weightValue
 										}, function (response) {
 											
 											if(response != ""){
@@ -114,7 +115,16 @@ $(document).ready(function (){
 													    title: 'Updated',
 													    message: 'Successfully update stock weight!',
 													});
+													
+													var colWeight = $addStockProductRow.find("td:eq(7)").html().split(" ");
+													
+													var newStockWeight = Number(colWeight[0]) + Number(weightValue);
+													$addStockProductRow.find("td:eq(7)").html(newStockWeight + " KILO");
+													
+													$("#addStockWeight").val("");
 												});
+												
+												
 											}
 											
 										});
@@ -322,11 +332,11 @@ $(document).ready(function (){
             return false;
 	});
 
-	$.post("/FBExportSystem/admin/inventory/get-product-details", {
-		id : "1"
-	}, function (response) {
-		console.log(response);
-	}, "json");
+//	$.post("/FBExportSystem/admin/inventory/get-product-details", {
+//		id : "1"
+//	}, function (response) {
+//		console.log(response);
+//	}, "json");
 	
 	var table = $('#inventoryTable').DataTable( { 
 		"language" : {
