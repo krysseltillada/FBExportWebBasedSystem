@@ -36,24 +36,39 @@
 		<put-list-attribute name = "cssfiles">
 			<add-attribute value = "https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
 			<add-attribute value = "https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" />
-			<add-attribute value = "resources/customer/css/bootstrap.min.css" />
-			<add-attribute value = "resources/customer/css/mdb.min.css" />
-			<add-attribute value = "resources/customer/css/customer.css" />
+			<add-attribute value = "/resources/customer/css/bootstrap.min.css" />
+			<add-attribute value = "/resources/customer/css/mdb.min.css" />
+			<add-attribute value = "/resources/customer/css/alertify.css" />
+			<add-attribute value = "/resources/customer/css/toastr.min.css" />
+			<add-attribute value = "/resources/customer/css/mprogress.min.css" />
+			<add-attribute value = "/resources/customer/css/customer.css" />
 		</put-list-attribute>
 		
 		<put-list-attribute name = "javascriptfiles">
-			<add-attribute value = "resources/customer/js/jquery-3.2.1.min.js" />
+			<add-attribute value = "/resources/customer/js/jquery-3.2.1.min.js" />
 			<add-attribute value = "http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.js" />
-			<add-attribute value = "resources/customer/js/popper.min.js" />
-			<add-attribute value = "resources/customer/js/bootstrap.min.js" />
-			<add-attribute value = "resources/customer/js/mdb.min.js" />
-			<add-attribute value = "resources/customer/js/moment.js" />
-			<add-attribute value = "resources/customer/js/moment-timezone-with-data.js" />
-			<add-attribute value = "resources/customer/js/math.js" />
-			<add-attribute value = "resources/customer/js/accounting.js" />
-			<add-attribute value = "resources/customer/js/underscore.js" />
-			<add-attribute value = "resources/customer/js/utilities.js" />
-			<add-attribute value = "resources/customer/js/customer.js" />
+			<add-attribute value = "/resources/customer/js/popper.min.js" />
+			<add-attribute value = "/resources/customer/js/bootstrap.min.js" />
+			<add-attribute value = "/resources/customer/js/mdb.min.js" />
+			<add-attribute value = "/resources/customer/js/alertify.js" />
+			<add-attribute value = "/resources/customer/js/toastr.min.js" />
+			<add-attribute value = "/resources/customer/js/mprogress.min.js" />
+			<add-attribute value = "/resources/customer/js/moment.js" />
+			<add-attribute value = "/resources/customer/js/moment-timezone-with-data.js" />
+			<add-attribute value = "/resources/customer/js/math.js" />
+			<add-attribute value = "/resources/customer/js/accounting.js" />
+			<add-attribute value = "/resources/customer/js/money.js" />
+			<add-attribute value = "/resources/customer/js/underscore.js" />
+			<add-attribute value = "/resources/customer/js/js.cookie.js" />
+			<add-attribute value = "/resources/customer/js/utilities.js" />
+			<add-attribute value = "/resources/customer/js/customer.js" />
+		</put-list-attribute>
+		
+		<put-list-attribute name = "javascriptnotificationfiles">
+			<add-attribute value = "/resources/customer/js/sockjs.js" />
+			<add-attribute value = "/resources/customer/js/stomp.js" />
+			<add-attribute value = "/resources/customer/js/notification.js" />
+			<add-attribute value = "/resources/customer/js/timeago.js" />
 		</put-list-attribute>
 		
 	</definition>
@@ -62,24 +77,37 @@
 		<put-attribute name = "main" value = "/WEB-INF/views/customer/home.jsp" />
 		
 		<put-list-attribute name = "javascriptfiles" inherit = "true">
-			<add-attribute value = "resources/customer/js/home.js" />
+			<add-attribute value = "/resources/customer/js/home.js" />
 		</put-list-attribute>
 		
 	</definition>
 	
 	<definition name = "view-profile" extends = "customerBaseTemplate">
 		<put-attribute name = "main" value = "/WEB-INF/views/customer/view-profile.jsp" />
+		
+		<put-list-attribute name = "javascriptfiles" inherit = "true">
+			<add-attribute value = "/resources/customer/js/view-profile.js" />
+		</put-list-attribute>
 	</definition>
 	
 	<definition name = "notifications" extends = "customerBaseTemplate">
 		<put-attribute name = "main" value = "/WEB-INF/views/customer/notifications.jsp" />
+		
+		<put-list-attribute name = "javascriptfiles" inherit = "true">
+			<add-attribute value = "/resources/customer/js/showNotifications.js" />
+		</put-list-attribute>
+		
 	</definition>
 	
 	<definition name = "order-list" extends = "customerBaseTemplate">
 		<put-attribute name = "main" value = "/WEB-INF/views/customer/order-list.jsp" />
 		
 		<put-list-attribute name="cssfiles" inherit = "true">
-			<add-attribute value = "resources/customer/css/table-body-scroll.css" />
+			<add-attribute value = "/resources/customer/css/table-body-scroll.css" />
+		</put-list-attribute>
+		
+		<put-list-attribute name = "javascriptfiles" inherit = "true">
+			<add-attribute value = "/resources/customer/js/order-list.js" />
 		</put-list-attribute>
 		
 	</definition>
@@ -89,7 +117,7 @@
 		<put-attribute name = "main" value = "/WEB-INF/views/customer/shipping.jsp" />
 		
 		<put-list-attribute name = "javascriptfiles" inherit = "true">
-			<add-attribute value = "resources/customer/js/shipping.js" />
+			<add-attribute value = "/resources/customer/js/shipping.js" />
 		</put-list-attribute>
 		
 	</definition>
@@ -98,7 +126,7 @@
 		<put-attribute name = "main" value = "/WEB-INF/views/customer/your-address.jsp" />
 		
 		<put-list-attribute name = "javascriptfiles" inherit = "true">
-			<add-attribute value = "resources/customer/js/your-address.js" />
+			<add-attribute value = "/resources/customer/js/your-address.js" />
 		</put-list-attribute>
 	</definition>
 	
@@ -106,12 +134,13 @@
 		<put-attribute name = "main" value = "/WEB-INF/views/customer/account-settings.jsp" />
 		
 		<put-list-attribute name = "cssfiles" inherit = "true">
-			<add-attribute value = "resources/customer/css/profile-pic-upload.css" /> 
+			<add-attribute value = "/resources/customer/css/profile-pic-upload.css" /> 
 		</put-list-attribute>
 		
 		<put-list-attribute name = "javascriptfiles" inherit = "true">
-			<add-attribute value = "resources/customer/js/profile-pic-upload.js" />
-			<add-attribute value = "resources/customer/js/sign-up.js" />
+			<add-attribute value = "/resources/customer/js/profile-pic-upload.js" />
+			<add-attribute value = "/resources/customer/js/sign-up.js" />
+			<add-attribute value = "/resources/customer/js/account-settings.js" />
 		</put-list-attribute>
 		
 	</definition>
@@ -120,18 +149,49 @@
 		<put-attribute name = "main" value = "/WEB-INF/views/customer/place-order.jsp" />
 		
 		<put-list-attribute name = "cssfiles" inherit = "true">
-			<add-attribute value = "resources/customer/css/place-order.css" />
-			<add-attribute value = "resources/customer/css/table-body-scroll.css" />
+			<add-attribute value = "/resources/customer/css/place-order.css" />
+			<add-attribute value = "/resources/customer/css/table-body-scroll.css" />
 		</put-list-attribute>
 		
+		<put-list-attribute name = "javascriptfiles" inherit = "true">
+			<add-attribute value = "/resources/customer/js/place-order.js" />
+		</put-list-attribute>
 		
+	</definition>
+	
+	<definition name = "order-success" extends = "customerBaseTemplate">
+		
+		<put-attribute name = "main" value = "/WEB-INF/views/customer/order-success.jsp" /> 
+		
+		<put-list-attribute name = "cssfiles" inherit = "true">
+			<add-attribute value = "/resources/customer/css/table-body-scroll.css" />
+		</put-list-attribute>
+	
+	</definition>
+	
+	<definition name = "payment-receipt" extends = "customerBaseTemplate">
+		
+		<put-attribute name = "main" value = "/WEB-INF/views/customer/payment-receipt.jsp" />
+		
+		<put-list-attribute name = "javascriptfiles" inherit = "true">
+			<add-attribute value = "/resources/customer/js/payment-receipt.js" />
+		</put-list-attribute>
+		
+	</definition>
+	
+	<definition name = "reset-password" extends = "customerBaseTemplate">
+		<put-attribute name = "main" value = "/WEB-INF/views/customer/reset-password.jsp" />
+		
+		<put-list-attribute name = "javascriptfiles" inherit = "true">
+			<add-attribute value = "/resources/customer/js/reset-password.js" />
+		</put-list-attribute>
 	</definition>
 	
 	<definition name = "login" extends = "customerBaseTemplate">
 		<put-attribute name = "main" value = "/WEB-INF/views/customer/login.jsp" />
 		
 		<put-list-attribute name = "javascriptfiles" inherit = "true">
-			<add-attribute value = "resources/customer/js/login.js" />
+			<add-attribute value = "/resources/customer/js/login.js" />
 		</put-list-attribute>
 		
 	</definition>
@@ -141,17 +201,21 @@
 		<put-attribute name = "reCaptcha" value = "https://www.google.com/recaptcha/api.js" />
 		
 		<put-list-attribute name = "cssfiles" inherit = "true">
-			<add-attribute value = "resources/customer/css/profile-pic-upload.css" /> 
+			<add-attribute value = "/resources/customer/css/profile-pic-upload.css" /> 
 		</put-list-attribute>
 		
 		<put-list-attribute name = "javascriptfiles" inherit = "true">
-			<add-attribute value = "resources/customer/js/profile-pic-upload.js" />
-			<add-attribute value = "resources/customer/js/sign-up.js" />
+			<add-attribute value = "/resources/customer/js/profile-pic-upload.js" />
+			<add-attribute value = "/resources/customer/js/sign-up.js" />
 		</put-list-attribute>
 	</definition>
 	
 	<definition name = "contact-us" extends = "customerBaseTemplate">
 		<put-attribute name = "main" value = "/WEB-INF/views/customer/contact-us.jsp" />
+		
+		<put-list-attribute name="javascriptfiles" inherit="true">
+			<add-attribute value = "/resources/customer/js/contact-us.js" />
+		</put-list-attribute>
 	</definition>
 	
 	<definition name = "about-us" extends = "customerBaseTemplate">
@@ -167,11 +231,11 @@
 		<put-attribute name = "main" value = "/WEB-INF/views/customer/view-product.jsp" />
 		
 		<put-list-attribute name = "cssfiles" inherit = "true">
-			<add-attribute value = "resources/customer/css/view-product.css" />
+			<add-attribute value = "/resources/customer/css/view-product.css" />
 		</put-list-attribute>
 		
 		<put-list-attribute name = "javascriptfiles" inherit = "true">
-			<add-attribute value = "resources/customer/js/view-product.js" />
+			<add-attribute value = "/resources/customer/js/view-product.js" />
 		</put-list-attribute>
 		 
 	</definition>

@@ -1,3 +1,5 @@
+<%@ include file = "../../lib/tags/tag-libraries.jsp" %>
+
 <main>
 
     <div class = "container mt-4">
@@ -16,31 +18,31 @@
                 <div class = "mb-4">
 
                     <div class="list-group">
-                        <a href="#" class="list-group-item active">
+                        <a href="<c:url value = '/view-profile' />" class="list-group-item active">
                             <i class="fa fa-user mr-2" aria-hidden="true"></i>
                             View Profile
                         </a>
-                        <a href="#" class="list-group-item">
+                        <a href="<c:url value = '/notifications' />" class="list-group-item">
                             <i class="fa fa-bell mr-2" aria-hidden="true"></i>
                             Notifications
                         </a>
-                        <a href="#" class="list-group-item">
+                        <a href="<c:url value = '/order-list' />" class="list-group-item">
                             <i class="fa fa-reorder mr-2" aria-hidden="true"></i>
                             Order Lists
                         </a>
-                        <a href="#" class="list-group-item">
+                        <a href="<c:url value = '/shipping' />" class="list-group-item">
                             <i class="fa fa-ship mr-2" aria-hidden="true"></i>
                             Shipping
                         </a>
-                        <a href="#" class="list-group-item">
+                        <a href="<c:url value = '/your-address' />" class="list-group-item">
                             <i class="fa fa-address-card mr-2" aria-hidden="true"></i>
-                            Your Addreses
+                            Your Addresses
                         </a>
-                        <a href="#" class="list-group-item">
+                        <a href="<c:url value = '/account-settings' />" class="list-group-item">
                             <i class="fa fa-gear mr-2" aria-hidden="true"></i>
                             Account Settings
                         </a>
-                        <a href="#" class="list-group-item">
+                        <a href="<c:url value = '/sign-out' />" class="list-group-item">
                             <i class="fa fa-sign-out mr-2" aria-hidden="true"></i>
                             Sign out
                         </a>
@@ -59,15 +61,17 @@
 
                                     <div class = "row">
                                         <div class = "col-md-3">
-                                            <img src = "puffer-fish.jpg" height = "150" width = "150" />
+                                            <img src = "<c:url value = '${customer.profileImageLink}' />" height = "150" width = "150" />
                                         </div>
                                         <div class = "col-md-9">
-                                            <h4> Kryssel Tillada (krysseltillada@gmail.com) <a style = "font-size: 14px;" href = "#"> (edit profile) </a> </h4>
+                                            <h4> 
+                                            	${customer.firstname += " " += customer.middlename += " " += customer.lastname} 
+                                            	(${customer.contact.emailAddress}) <a style = "font-size: 14px;" href = "<c:url value = '/account-settings' />"> (edit profile) </a> </h4>
                                             <p>
 
-                                                1500 Metro Manila, Philippines <br />
-                                                blck 7 rivera compound saint joseph subdivision pulang lupa 2  <br />
-                                                09120051827
+                                                ${customer.address.zipCode} ${customer.address.city}, ${customer.address.country} <br />
+                                                ${customer.address.address}  <br />
+                                                (+${customer.contact.countryCode}) ${customer.contact.phoneNumber}
 
                                             </p>
 
@@ -85,67 +89,57 @@
                                         <h4>
                                             <i class="fa fa-th-list mr-2" aria-hidden="true"></i>
                                             <span> Activity </span>
-                                            <a class = "float-right mr-3 mt-1 blue-text" href = "#" style = "font-size: 16px;"> Clear all </a>
+                                            
+                                        	<c:choose>
+                                        		<c:when test = "${not empty activityList}">
+                                        			<a class = "float-right mr-3 mt-1 blue-text clear-all" href = "javascript:void(0)" style = "font-size: 16px;"> Clear all </a>
+                                        		</c:when>
+                                        		<c:otherwise>
+                                        			<a class = "float-right mr-3 mt-1 grey-text disabled clear-all" href = "javascript:void(0)" style = "font-size: 16px;"> Clear all </a>
+                                        		</c:otherwise>
+                                        	</c:choose>
                                         </h4>
 
                                         <hr />
 
-                                        <div class="list-group">
-                                            <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
-                                                <div class="d-flex w-100 justify-content-between">
-                                                    <h5 class="mb-1">Checkout</h5>
-                                                    <button type="button" class="close" aria-label="Close">
-                                                            <span aria-hidden="true">&times;</span>
-                                                    </button>
-                                                </div>
-
-                                                <p class="mb-1">your order lapu lapu 1 kilo is approved</p>
-                                                <small> 1 day ago </small>
-                                            </a>
-                                            <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
-                                                <div class="d-flex w-100 justify-content-between">
-                                                    <h5 class="mb-1">Checkout</h5>
-                                                    <button type="button" class="close" aria-label="Close">
-                                                            <span aria-hidden="true">&times;</span>
-                                                    </button>
-                                                </div>
-
-                                                <p class="mb-1">your order lapu lapu 1 kilo is approved</p>
-                                                <small> 1 day ago </small>
-                                            </a>
-                                            <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
-                                                <div class="d-flex w-100 justify-content-between">
-                                                    <h5 class="mb-1">Checkout</h5>
-                                                    <button type="button" class="close" aria-label="Close">
-                                                            <span aria-hidden="true">&times;</span>
-                                                    </button>
-                                                </div>
-
-                                                <p class="mb-1">your order lapu lapu 1 kilo is approved</p>
-                                                <small> 1 day ago </small>
-                                            </a>
-                                            <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
-                                                <div class="d-flex w-100 justify-content-between">
-                                                    <h5 class="mb-1">Checkout</h5>
-                                                    <button type="button" class="close" aria-label="Close">
-                                                            <span aria-hidden="true">&times;</span>
-                                                    </button>
-                                                </div>
-
-                                                <p class="mb-1">your order lapu lapu 1 kilo is approved</p>
-                                                <small> 1 day ago </small>
-                                            </a>
-                                            <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
-                                                <div class="d-flex w-100 justify-content-between">
-                                                    <h5 class="mb-1">Checkout</h5>
-                                                    <button type="button" class="close" aria-label="Close">
-                                                            <span aria-hidden="true">&times;</span>
-                                                    </button>
-                                                </div>
-
-                                                <p class="mb-1">your order lapu lapu 1 kilo is approved</p>
-                                                <small> 1 day ago </small>
-                                            </a>
+                                        <div class="list-group activity-list">
+                                        	
+                                        	<c:choose>
+                                        		<c:when test = "${not empty activityList}">
+                                        		
+                                        			<c:forEach var = "activity" items = "${activityList}">
+                                        				
+                                        				<span id = "${activity.activityId}" class="list-group-item list-group-item-action flex-column align-items-start">
+			                                                <div class="d-flex w-100 justify-content-between">
+			                                                    <h5 class="mb-1">${activity.header}</h5>
+			                                                    <button type="button" class="close delete-activity" aria-label="Close">
+			                                                            <span aria-hidden="true">&times;</span>
+			                                                    </button>
+			                                                </div>
+			
+			                                                <p class="mb-1">${activity.description}</p>
+			                                                <small> ${activity.date} </small>
+			                                            </span>
+                                        				
+                                        			</c:forEach>
+                                        			
+                                        			<div class = "no-activity mx-auto mt-2" style = "display: none;">
+			                                        	<h5> No activities here </h5>
+			                                		</div>
+                                        			 
+			                                            
+                                        		</c:when>
+                                        		<c:otherwise>
+                                        			<div class = "row">
+			                                			<div class = "mx-auto mt-2">
+			                                            	<h5> No activities here </h5>
+			                                			</div>
+                                					</div>
+                                        		</c:otherwise>
+                                        	</c:choose>
+	                                        
+                                           
+                                            
 
                                         </div>
 
@@ -154,9 +148,14 @@
 
                                 </div>
 
-                                <div class = "row">
-                                            <a class = "mx-auto mt-2" href = "#"> See more </a>
-                                </div>
+								<c:if test="${not empty activityList}">
+	                                <div class = "row">
+	                                			<div class = "mx-auto mt-2">
+	                                            	<a class = "see-more" href = "javascript:void(0)"> See more </a>
+	                                            	<img class = "see-more-loader" style = "display:none;" src = "<c:url value = '/resources/customer/img/loader.gif' />" height ="50" width = "50" />
+	                                			</div>
+	                                </div>
+                                </c:if>
 
 
                             </div>
@@ -175,5 +174,7 @@
 
         <hr />
     </div>
+    
+    
 
 </main>  

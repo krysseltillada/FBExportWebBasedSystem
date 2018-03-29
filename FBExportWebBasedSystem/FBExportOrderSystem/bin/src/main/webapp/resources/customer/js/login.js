@@ -1,5 +1,40 @@
 $(document).ready(function () {
-
+	
+	$("#forgotpasswordForm").submit(function(e){
+		
+		$(".forgotpassword-email").css("display","block");
+		$("#submit-forgotpassword").hide();
+		e.preventDefault();
+		
+		var formData = new FormData($("#forgotpasswordForm")[0]);
+    	$.ajax({
+    		type: 'POST',
+    		url: "/FBExportSystem/forgotpassword",
+    		processData: false,
+  	      	contentType: false,
+  	      	cache: false,
+            data : formData,
+            success: function(result){
+            	if(result == "Message sent")
+            		alertify.success(result);
+            	else
+            		alertify.error(result);
+            	
+            	$('#forgotPasswordModal').modal('hide');
+            	
+            	$('#forgotpasswordForm')[0].reset();
+            	
+            	$(".forgotpassword-email").css("display","none");
+        		$("#submit-forgotpassword").show();
+            },error: function(e){
+            	hidePreLoader();
+            	console.log("ERROR: ",e);
+            	$(".forgotpassword-email").css("display","none");
+        		$("#submit-forgotpassword").show();
+            }
+    	});
+	});
+	
     var updateLoginFormPositioning = function () {
                     var screenWidth = $(document).width();
                     console.log("l");

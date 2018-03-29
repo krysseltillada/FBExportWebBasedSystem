@@ -1,7 +1,8 @@
 <%@ include file = "../../lib/tags/tag-libraries.jsp" %>
 
+
 <div class = "container p-4">
-    <form action = "/register" method = "POST" id="uploadForm">
+    <form action = "<c:url value = '/register' />" method = "POST" enctype = "multipart/form-data" id="signup-form">
 
         <div class = "row">
             <div class = "col">
@@ -16,11 +17,7 @@
         	<hr />
         	
         	<c:forEach var = "errorMessage" items = "${errorMessages}">
-        	
-        		
-        		
         		<span class = "red-text"> *<c:out value="${errorMessage}" /> </span> <br />
-        	
         	</c:forEach>
         
         </c:if>
@@ -39,22 +36,25 @@
 
                             <div class="col-md-3 text-center">
 
-                            <img class = "mb-2 rounded" style = "border: 1px solid #DDDDDD;" id='img-upload' src = "resources/customer/img/profile-male.jpg" width = "150" height = "150" />
+                            <img class = "mb-2 rounded" style = "border: 1px solid #DDDDDD;" id='img-uploadProfile' src = "resources/customer/img/profile-male.jpg" width = "150" height = "150" />
 
                             <p class="file">
-                                <input type="file" name="file" id="file" accept="image/x-png,image/jpeg" />
-                                <label for="file">Upload your image</label>
+                                <input type="file" name="profile-image" id="profile-image" accept="image/x-png,image/jpeg" />
+                                <label for="profile-image">Upload your image</label>
                             </p>
                             </div>
 
                             <div class = "col-md-6">
                                 <div class="md-form form-sm">
-                                    <input type="text" name = "username" id="username" class="form-control" length = "20" required />
                                     <label for="username" class="">Username</label>
+                                    <input type="text" name = "username" id="username" class="form-control" maxlength = "20" required />
                                 </div>
                                 <div class="md-form form-sm">
-                                    <input type="password" name = "password" id="password" class="form-control" length = "20" required />
                                     <label for="password" class="">Password</label>
+                                    <input type="password" name = "password" id="password" class="form-control" maxlength = "20" required />
+									<p class="form-text text-muted small">
+									  password must be 5-20 characters , contains at least one uppercase and lowercase letter and number, and must not contain spaces and special characters.
+									</p>                                    
                                 </div>
                             </div>
 
@@ -75,19 +75,19 @@
                     <div class = "row mt-3">
                             <div class = "col-md-4">
                                 <div class="md-form form-sm">
-                                    <input type="text" id="firstname" name = "firstname" class="form-control" required />
+                                    <input type="text" id="firstname" maxlength = "15" name = "firstname" class="form-control" required />
                                     <label for="firstname" class="">First Name</label>
                                 </div>
                             </div>
                             <div class = "col-md-4">
                                 <div class="md-form form-sm">
-                                    <input type="text" id="middlename" name = "middlename" class="form-control" required />
+                                    <input type="text" id="middlename" maxlength = "15" name = "middlename" class="form-control" required />
                                     <label for="middlename" class="">Middle Name</label>
                                 </div>
                             </div>
                             <div class = "col-md-4">
                                 <div class="md-form form-sm">
-                                    <input type="text" id="lastname" name = "lastname" class="form-control" required />
+                                    <input type="text" id="lastname" maxlength = "15" name = "lastname" class="form-control" required />
                                     <label for="lastname" class="">Last Name</label>
                                 </div>
                             </div>
@@ -123,7 +123,7 @@
                         <div class = "col-md-11 form-inline mb-2">
 
                             <div class="form-group form-sm">
-                                <input  name="age" type="number" class="with-gap" placeholder="your age" id = "age" required />
+                                <input min = "1" value = "18" name="age" type="number" class="with-gap" placeholder="your age" id = "age" required />
                             </div>
 
                         </div>
@@ -147,7 +147,7 @@
 
                             <div class = "form-inline">
                                     <label for = "country" class = "mr-3"> Country: </label>
-                                    <select class="browser-default" name = "country" id = "country" required>
+                                    <select class="browser-default country" name = "country"  required>
                                         <option value="" disabled selected>Choose your country</option>
                                     </select>
                             </div>
@@ -175,7 +175,7 @@
                         </div>
                         <div class = "col-md-5">
                             <div class="md-form form-sm" style = "margin-top: 75px;">
-                                <input type="text" name = "zipcode" id="zipcode" class="form-control" required />
+                                <input type="text" maxlength = "7" name = "zipcode" id="zipcode" class="form-control" required />
                                 <label for="zipcode">Zip Code</label>
                             </div>
                         </div>
@@ -194,7 +194,7 @@
 
                             <div class = "col-md-2 mt-4">
 
-                                        <select class="browser-default" name = "country-code" id = "countryCode" required>
+                                        <select class="browser-default countryCode" name = "country-code"  required>
                                             <option value=""  disabled selected>Country Code</option>
                                         </select>
 
@@ -202,7 +202,7 @@
                             <div class = "col-md-5 mt-1">
 
                                 <div class="md-form form-sm">
-                                        <input type="text" name = "phone-number" id="phonenumber" class="form-control" required />
+                                        <input type="text" name = "phone-number" id="phonenumber" maxlength = "15" class="form-control" required />
                                         <label for="phonenumber" class="">Phone Number</label>
                                 </div>
                             </div>
@@ -224,21 +224,26 @@
             <div class = "col-md-12">
                 <fieldset>
                     <legend> Verify </legend>
+                        <hr class = "mt-0" />
                         <div class = "row">
                             <div class = "col-md-12">
-                            <div class="g-recaptcha" data-sitekey="6LcmST4UAAAAADNKoDoTOVJIVugq5Fu7kh1KQXV6"></div>
+                            <div class="g-recaptcha" data-sitekey="6LcmST4UAAAAADNKoDoTOVJIVugq5Fu7kh1KQXV6"></div>  
                         </div>
                     </div>
                 </fieldset>
             </div>
         </div>
 
-        <div class = "row">
+        <div class = "row mt-2">
             <div class = "col-md-12">
-                <input type="submit" class="btn btn-primary" value = "Submit" style = "margin-left: 0px;"/>
+                <img class="sign-up-loader" style="display:none; margin-left: 35px; margin-top: 5px;" src="/FBExportSystem/resources/customer/img/loader.gif" height="50" width="50">
+            
+                <input type="submit" class="btn btn-primary" value = "Sign up" id="submit-signup"s tyle = "margin-left: 0px;"/>
             </div>
         </div>
         
+        
+        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 
     </form>
 

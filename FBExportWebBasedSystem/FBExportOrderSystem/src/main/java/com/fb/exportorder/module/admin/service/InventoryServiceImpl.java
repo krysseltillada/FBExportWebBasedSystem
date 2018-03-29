@@ -75,12 +75,18 @@ public class InventoryServiceImpl implements InventoryService {
 		
 		try {
 			Money.of(new BigDecimal(price), "PHP");
+			
+			if(Double.parseDouble(price) <= 0)
+				errorMessages.add("price must not be less than or equal to zero");
 		} catch (NumberFormatException e) {
 			errorMessages.add("invalid price");
 		}
 		
 		try {
-			Double.parseDouble(weight);
+			
+			if(Double.parseDouble(weight) <= 0)
+				errorMessages.add("weight must not be less than or equal to zero");
+			
 		} catch (NumberFormatException e) {
 			errorMessages.add("invalid weight");
 		}
@@ -190,6 +196,9 @@ public class InventoryServiceImpl implements InventoryService {
 			return "Please fill stock weight";
 		
 		try {
+			if(Double.parseDouble(weight) <= 0)
+				return "weight must not be less than or equal to zero";
+			
 			Product updateStockProduct = inventoryRepository.findOne(id);
 			
 			double stockWeight = Double.parseDouble(weight) + updateStockProduct.getWeight();

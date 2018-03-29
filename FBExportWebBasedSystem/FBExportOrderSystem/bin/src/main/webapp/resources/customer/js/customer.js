@@ -7,11 +7,34 @@
 //   or {{- HTML-escaped text }}
 //
 
+var currentCurrency = "";
+
+   
 
 $(function () {
   _.templateSettings.interpolate = /\{\{=([^-][\S\s]+?)\}\}/g;
   _.templateSettings.evaluate = /\{\{([^-=][\S\s]+?)\}\}/g;
   _.templateSettings.escape = /\{\{-([^=][\S\s]+?)\}\}/g;
+});
+
+$(function () {
+    toastr.options = {
+                "closeButton": false,
+                "debug": false,
+                "newestOnTop": false,
+                "progressBar": false,
+                "positionClass": "toast-bottom-right",
+                "preventDuplicates": false,
+                "onclick": null,
+                "showDuration": "300",
+                "hideDuration": "1000",
+                "timeOut": "6000",
+                "extendedTimeOut": "1000",
+                "showEasing": "swing",
+                "hideEasing": "linear",
+                "showMethod": "fadeIn",
+                "hideMethod": "fadeOut"
+            }
 });
 
 (function($){
@@ -84,6 +107,8 @@ $(document).ready(function () {
 
     var updateProductCartInfo = function () {
 
+        var uniqueProductId = new Set();
+
         var $productCartItemLists = $("div#shoppingModalCart div.modal-body>table>tbody");
         var $productCartTotal = $("div.shopping-cart-total").children().eq(1);
         var itemCount = $productCartItemLists.children().length;
@@ -101,21 +126,28 @@ $(document).ready(function () {
         var totalPrice = 0;
 
         _.each($productCartItemLists.children(), function (productCartItem, i) {
+        
+            uniqueProductId.add($(productCartItem).find(".product-id").val());
 
-            var $productCartItem = $(productCartItem).children().eq(3);
-
-            console.log("item price: " + $productCartItem.text());
+            var $productCartItem = $(productCartItem).children().eq(2);
             totalPrice += accounting.unformat($productCartItem.text());
-            console.log(totalPrice);
-
 
         });
 
+        uniqueProductId.forEach(function (val) {
 
-        $productCartTotal.text(formatMoney(totalPrice, "₱", "%s%v"));
+            console.log($("div#shoppingModalCart div.modal-body>table").find(".product-id[value="+ val +"]").closest("tr").html());
 
-        $(".productCartHeaderItemCount").text(itemCount);
+        });
 
+        $productCartTotal.text(formatMoney(totalPrice, currentCurrency, "%s%v"));
+
+        
+        if (itemCount > 0) {
+            $(".productCartHeaderItemCount").text(itemCount);
+            $(".productCartHeaderItemCount").show();
+        } else
+            $(".productCartHeaderItemCount").hide();
 
     };
 
@@ -127,18 +159,29 @@ $(document).ready(function () {
 
         var cartTemplate = _.template(cartItemTemplate);
 
+        console.log(cartItem);
+
         $productCart.append(cartTemplate({
             productImage : cartItem.productImage,
             productName : cartItem.productName,
             totalPrice : cartItem.totalPrice,
-            totalMass : cartItem.totalMass
+            totalWeight : cartItem.totalWeight,
+            weightType : cartItem.weightType,
+            itemId : cartItem.itemId
         }));
 
-        $productCart.find("tr:last>td:last>a")
+        $productCart.find("tr:last>td:last>a.delete-cart-item")
                     .click(function () {
-                        $(this).parent().parent().fadeOut("slow", function () {
-                            $(this).remove();
-                            updateProductCartInfo();
+
+                        var $btnDelete = $(this); 
+
+                        $.post("/FBExportSystem/remove-to-cart", {
+                            itemId : $btnDelete.closest("tr").find("#item-id").val()
+                        }, function () {
+                            $btnDelete.parent().parent().fadeOut("slow", function () {
+                                $(this).remove();
+                                updateProductCartInfo();
+                            });
                         });
                     });
 
@@ -146,53 +189,27 @@ $(document).ready(function () {
 
     };
 
-    var updatePriceMass = function (massType, quantity) {
+    $("a.delete-cart-item").click(function () {
 
-        // todo not done yet need to convert the money depends on the country
+        var $btnDelete = $(this); 
 
-        var productPrice = $("span#priceAddToCartModal").text();
-        var baseMassType = $("span#massDefTypeAddToCart").text();
-
-        var convertedMass = convertMass(massType, baseMassType, quantity);
-        var totalPrice = convertedMass * accounting.unformat(productPrice);
-
-        try {
-
-            var formattedPrice = formatMoney(totalPrice,
-                                            "PHP",
-                                            "%v %s");
-
-            if (formattedPrice == "NaN.undefined") throw "Price exceeded";
-
-            console.log(convertedMass + " quantity: " + quantity);
-            console.log("price: " + totalPrice);
-
-            $("#totalMass").val( ((quantity <= 0) ? 0 : quantity) + " " +  massType);
-            $("#totalPrice").val(formattedPrice);
-
-        } catch (err) {
-            $("#totalPrice").val(err);
-        }
-
-    };
-
-    var resetAddToCartValues = function () {
-
-        /// not done yet
-
-        $("#massType").val("kilogram");
-        $("#quantity").val(1);
-        $("#totalPrice").val("200.00 PHP");
-        $("#totalMass").val("1 kilogram");
-
-    };
+        $.post("/FBExportSystem/remove-to-cart", {
+            itemId : $btnDelete.closest("tr").find("#item-id").val()
+        }, function () {
+            $btnDelete.parent().parent().fadeOut("slow", function () {
+                $(this).remove();
+                updateProductCartInfo();
+            });
+        });
+        
+    });
 
     $("#massType").change(function () {
 
         var massType = $(this).val(),
             quantity = $("#quantity").val();
 
-        updatePriceMass(massType, quantity);
+        updatePriceMass(massType, quantity, currentCurrency);
     });
 
     var $quantitySpinner = $("#quantity").spinner({
@@ -203,7 +220,7 @@ $(document).ready(function () {
             var massType = $("#massType").val(),
                 quantity = ui.value;
 
-            updatePriceMass(massType, quantity);
+            updatePriceMass(massType, quantity, currentCurrency);
         },
         min : 1,
         max : 9999999999
@@ -212,7 +229,6 @@ $(document).ready(function () {
 
     $quantitySpinner.parent().css("position", "relative");
     $quantitySpinner.parent().css("top", "-5px");
-
 
     $quantitySpinner.keypress(function (event) {
 
@@ -230,12 +246,14 @@ $(document).ready(function () {
         var massType = $("#massType").val(),
             quantity = $("#quantity").val();
 
-        updatePriceMass(massType, quantity);
+        updatePriceMass(massType, quantity, currentCurrency);
     });
 
     $quantitySpinner.val(1);
 
     $("#btnAddToCart").click(function () {
+
+        var $addToCartModal = $(this).closest("div#addToCartModal");
 
         if (accounting.unformat($("#totalPrice").val()) == 0) {
             $("#quantity").tooltip("show");
@@ -248,49 +266,51 @@ $(document).ready(function () {
 
         }
 
-        addToCart({
-            productName : $("#addToCartProductName").text(),
-            totalPrice : $("#totalPrice").val(),
-            totalMass : $("#totalMass").val(),
-            productImage : $("#addToCartProductImage").attr("src")
-        });
+        var realTotalPriceApprox = $addToCartModal.find("#total-real-price-approx").val();
 
-        $("#addToCartModal").modal("hide");
+        var fromCurrentPriceToPhpPrice = fx(realTotalPriceApprox).from(currentCurrency).to("PHP");
+                                                
+        console.log(fromCurrentPriceToPhpPrice  + " php price usd price " + accounting.unformat($addToCartModal.find("#totalPrice").val()) );
+
+        var item = {
+            totalPrice : String(fromCurrentPriceToPhpPrice),
+            totalWeight : $addToCartModal.find("#totalWeight").val().substring(0, $addToCartModal.find("#totalWeight").val().indexOf(" ")),
+            weightType : $addToCartModal.find("#massType>option:selected").html(),
+            productId : $addToCartModal.find("#product-id").val()
+        }
+
+        console.log(item);
+
+        $.post("/FBExportSystem/add-to-cart", {
+            customerCartJSON : JSON.stringify(item)
+        }, function (response) {
+            console.log(response);
+
+            addToCart({
+                productName : $addToCartModal.find("#addToCartProductName").text(),
+                totalPrice : formatMoney(accounting.unformat($addToCartModal.find("#totalPrice").val()), currentCurrency, "%v %s"),
+                totalWeight : parseFloat($addToCartModal.find("#totalWeight").val().substring(0, $addToCartModal.find("#totalWeight").val().indexOf(" "))).toFixed(1),
+                weightType : $addToCartModal.find("#massType>option:selected").html(),
+                productImage : $addToCartModal.find("#addToCartProductImage").attr("src"),
+                itemId : response.itemId
+            });
+
+            $("#addToCartModal").modal("hide");
+
+        }, "json");
+
+       
     });
 
-    $("#addToCartModal").on("hidden.bs.modal", function (event) {
-            resetAddToCartValues();
+    $(".btn-place-order").click(function () {
+    
+        location.href = "/FBExportSystem/place-order";
+
     });
-
-    var showAddToCartModal = function (productItem) {
-        var $addToCartModal = $("#addToCartModal");
-        var $addToCartModalBody = $addToCartModal.find("div.modal-body");
-
-        $addToCartModal.find("h5.modal-title strong span").text(productItem.name);
-        $addToCartModal.find("h4#addToCartProductName").text(productItem.name);
-        $addToCartModalBody.find("span#addToCartModalExpirationDate").text(productItem.expirationDate);
-        $addToCartModalBody.find("span#addToCartModalProductDescription").text(productItem.description);
-        $addToCartModal.find("span#addToCartModalOrigin").text(productItem.origin);
-        $addToCartModal.find("img#addToCartProductImage").attr("src", productItem.productImage);
-        $addToCartModalBody.find("span#priceAddToCartModal").text(productItem.price);
-
-        var massType = $("#massType").val(),
-        quantity = $("#quantity").val();
-
-        updatePriceMass(massType, quantity);
-
-        $addToCartModal.modal("show");
-
-
-    };
 
     $("#quantity").tooltip({
         trigger : 'manual',
         offset : '0px 9px'
-    });
-
-    $( "#slider" ).slider({
-        range: true
     });
 
     $(".btnProductItemAddToCart").click(function (event) {
@@ -300,7 +320,7 @@ $(document).ready(function () {
 
         var $spansHeaderInfo = $card.children("span");
 
-        console.log($card.html());
+        var currency = $card.find("span>span:eq(1)").html();
 
         var productItem = {
             productImage : $card.find("img").attr("src"),
@@ -309,10 +329,13 @@ $(document).ready(function () {
             origin : $spansHeaderInfo.eq(2).text(),
             name : $cardBody.find("h4.card-title a").text(),
             description : $cardBody.find("p.card-text").text(),
-            expirationDate : $cardBody.find("div.mt-1 span span.red-text").text()
+            productId : $cardBody.find("#product-id").val(),
+            stockStatus : $cardBody.find("#product-stock-status").html(),
+            datePosted : $cardBody.find("#product-date-posted").html(),
+            realPriceApprox : $card.find("#real-price-approx").val()
         };
 
-        showAddToCartModal(productItem);
+        showAddToCartModal(productItem, currency);
 
 
 
@@ -322,11 +345,25 @@ $(document).ready(function () {
 
         $('.sub-nav-date').text("please wait..");
 
+        /*
+            sample country ips for currency conversion test
+
+            singapore -> 27.34.176.0
+            newyork -> 72.229.28.185
+            scotland -> 92.1.194.37
+            ph -> empty it
+            china -> 1.0.63.255
+            japan -> 1.0.31.255
+            vietnam -> 1.52.0.0 -> no currency rate
+        */
+
         $.ajax({
-            url: "http://ip-api.com/json",
+            url: "http://ip-api.com/json/1.0.63.255",
             jsonpCallback: "callback",
             dataType: "json",
             success: function( location ) {
+
+                        console.log("ate");
 
                         var country = location.country.toLowerCase();
 
@@ -353,6 +390,316 @@ $(document).ready(function () {
 
                                     }, 1000);
 
+                                    $.get("https://api.fixer.io/latest?base=PHP", function (response) {
+                                        console.log(response);
+
+                                        console.log(responseData);
+
+                                        fx.base = "PHP";
+                                        fx.rates = response.rates;
+
+                                        if (location.country != "Philippines") 
+                                            currentCurrency = "USD";
+                                        else
+                                            currentCurrency = fx.base;
+
+                                        $(".card-product").each(function () {
+
+                                            var $price = $(this).find("span>span:eq(0)");
+                                            var $currency = $(this).find("span>span:eq(1)");
+                                            var $realPriceApprox = $(this).find("#real-price-approx");
+
+                                            var basePrice = $price.html();
+
+                                            var basePriceToCurrent = fx(basePrice).from("PHP").to(currentCurrency);
+                                            
+                                            $price.html(formatMoney(basePriceToCurrent,
+                                                                    currency,
+                                                                    "%v"));
+
+                                            $realPriceApprox.val(basePriceToCurrent);
+                                            
+                                            $currency.html(currentCurrency);
+                                            
+                                        });
+                                        
+                                        $(".carousel-item").each(function () {
+
+                                            var $price = $(this).find("span>span:eq(0)");
+                                            var $currency = $(this).find("span>span:eq(1)");
+                                            var $realPriceApprox = $(this).find("#real-price-approx");
+
+                                            var basePrice = $price.html();
+
+                                            var basePriceToCurrent = fx(basePrice).from("PHP").to(currentCurrency);
+                                            
+                                            $price.html(formatMoney(basePriceToCurrent,
+                                                                    currency,
+                                                                    "%v"));
+
+                                            $realPriceApprox.val(basePriceToCurrent);
+                                            
+                                            $currency.html(currentCurrency);
+                                            
+                                        });
+
+                                        var subTotal = 0;
+
+                                        $("#cartItemTable>tbody>tr").each(function () {
+
+                                            var $priceRow = $(this).find("td:eq(1)");
+
+                                            var phpPriceToCurrentPrice = formatMoney(fx($priceRow.html()).from("PHP").to(currentCurrency), currentCurrency, "%v %s");
+                                            subTotal += Number(accounting.unformat(phpPriceToCurrentPrice));
+
+                                            $priceRow.html(phpPriceToCurrentPrice);
+
+                                        });
+
+                                        $("#receiptOrderTable>tbody>tr").each(function () {
+
+                                            var $priceRow = $(this).find("td:eq(3)");
+
+                                            console.log($priceRow.html() + " price row");
+
+                                            var phpPriceToCurrentPrice = formatMoney(fx($priceRow.html()).from("PHP").to(currentCurrency), currentCurrency, "%v %s");
+                                            subTotal += Number(accounting.unformat(phpPriceToCurrentPrice));
+
+                                            $priceRow.html(phpPriceToCurrentPrice);
+
+                                        });
+
+
+                                        var shippingFee = Number(accounting.unformat(formatMoney(fx($(".shippingFee").html()).from("PHP").to(currentCurrency), "", "%v")));
+                                        var taxPaid = Number(accounting.unformat(formatMoney(fx($(".taxPaid").html()).from("PHP").to(currentCurrency), "", "%v")));
+                                        var totalDue = subTotal + shippingFee + taxPaid;
+
+                                        $(".subTotal").html(formatMoney(subTotal, currentCurrency, "%v %s"));
+                                        $(".shippingFee").html(formatMoney(shippingFee, currentCurrency, "%v %s"));
+                                        $(".taxPaid").html(formatMoney(taxPaid, currentCurrency, "%v %s"));
+                                        $(".totalDue").html(formatMoney(totalDue, currentCurrency, "%v %s"));
+                                      
+                                        _.each($("div#shoppingModalCart div.modal-body>table>tbody").children(), function (productCartItem, i) {
+
+                                            var $productCartItem = $(productCartItem).children().eq(2);
+                                            $productCartItem.html(formatMoney(fx($productCartItem.html()).from("PHP").to(currentCurrency), currentCurrency, "%v %s"));
+                                        });
+
+                                        $(".price").each(function () {
+                                            $(this).html(formatMoney(fx($(this).html()).from("PHP").to(currentCurrency), "", "%v"))
+                                            $(this).next().html(currentCurrency);
+                                        });
+
+                                        $( "#slider" ).slider({
+                                            range: true,
+                                            min: 1,
+                                            max: Number($("#max-price").html()) * 2,
+                                            values: [0, Number($("#max-price").html()) / 2],
+                                            slide: function( event, ui ) {
+                                                
+                                                $( "#min-price" ).html(formatMoney(ui.values[0], "", "%v"));
+                                                $( "#max-price" ).html(formatMoney(ui.values[1], "", "%v"));
+                                                
+                                                var minPriceOnPHP = formatMoney(fx(ui.values[0]).from(currentCurrency).to("PHP"), "", "%v");
+                                                var maxPriceOnPHP = formatMoney(fx(ui.values[1]).from(currentCurrency).to("PHP"), "", "%v");
+
+                                                $("#price-range").val(minPriceOnPHP + "," + maxPriceOnPHP);
+                                            },
+                                            create : function (event, ui) {
+
+                                                var minPriceOnPHP = formatMoney(fx($("#min-price").html()).from(currentCurrency).to("PHP"), "", "%v");
+                                                var maxPriceOnPHP = formatMoney(fx(Number($("#max-price").html()) / 2).from(currentCurrency).to("PHP"), "", "%v");
+                                                
+                                                $( "#min-price" ).html(formatMoney(1, "", "%v"));
+                                                $( "#max-price" ).html(formatMoney((Number($("#max-price").html()) / 2), "", "%v"));
+
+                                                $("#price-range").val(minPriceOnPHP + "," + maxPriceOnPHP);
+
+                                            }
+                                        });
+
+                                        $(".paypal-button").each(function (ind, elem) {
+
+                                            var $divOrderCollapse = $(this).closest("div.multi-collapse");
+                                            
+                                            var country = $divOrderCollapse.find("#country").html();
+
+                                            $.ajax({
+
+                                                url : "https://restcountries.eu/rest/v2/name/" + country,
+                                                success : function (responseData) {
+
+                                                    var $orderItemDiv = $divOrderCollapse.prev();
+
+                                                    var subTotalPrice = 0;
+                                                    var oid = $orderItemDiv.find("#orderId").html();
+
+                                                    var $itemsOrderedTable = $divOrderCollapse.find("table");
+
+                                                    var itemsOrdered = [];
+                                                
+                                                    $itemsOrderedTable.find("tbody").find("tr").each(function (ind, elem) {
+                                                        
+                                                        var itemOrdered = {
+                                                            name : $(elem).find("td:eq(0)").html().trim() + " (" + $(elem).find("td:eq(1)").html() + ")",
+                                                            price : $(elem).find("td:eq(2)>span.price").html(),
+                                                            currency : currentCurrency,
+                                                            quantity : "1"
+                                                        }
+
+                                                        itemsOrdered.push(itemOrdered);
+                                                        
+                                                    });
+
+                                                    $itemsOrderedTable.find("tfoot tr .price").each(function (ind, elem) {
+                                                        subTotalPrice += Number($(elem).html());
+                                                    });
+
+                                                    var taxPaid = Number(accounting.unformat(formatMoney(fx($itemsOrderedTable.find("tfoot #estimatedTax").val()).from("PHP").to(currentCurrency), currentCurrency, "%v")));
+                                                    var shippingFee = Number(accounting.unformat(formatMoney(fx(1000).from("PHP").to(currentCurrency), currentCurrency, "%v")));
+                                                    var totalPrice = subTotalPrice + shippingFee + taxPaid;
+
+                                                    console.log(totalPrice + " total price");
+
+                                                    $orderItemDiv.find(".price").html(formatMoney(totalPrice, "", "%v"));
+
+                                                    paypal.Button.render({
+                                                        env: 'sandbox', // Or 'sandbox',
+
+                                                        style: {
+                                                            color: 'blue',
+                                                            size: 'small',
+                                                            shape : 'rect',
+                                                            size : 'small',
+                                                            label : 'pay'
+                                                        },
+                                                        
+                                                        commit : true,
+                                                        
+                                                        client: {
+                                                            sandbox:    'AQNTbQBVVlGXxzbWa9o9poVa187KefuAwZ3EuUxn7uH2cCUxXkUCqhIPW2f0Eh6FW6_MSNGxwlIv3bSD'
+                                                        },
+
+                                                        payment: function(data, actions) {
+
+                                                        return actions.payment.create({
+                                                            payment: {
+                                                                intent : "sale",
+                                                                transactions: [
+                                                                    {
+                                                                        amount: { 
+                                                                            total: formatMoney(totalPrice, "", "%v"), 
+                                                                            currency: currentCurrency,
+                                                                            details : {
+                                                                                subtotal : formatMoney(subTotalPrice, "", "%v"),
+                                                                                shipping : formatMoney(shippingFee, "", "%v"),
+                                                                                tax : formatMoney(taxPaid, "", "%v")
+                                                                            }
+                                                                        },
+                                                                        
+
+                                                                        item_list : {	
+                                                                            items : itemsOrdered
+                                                                        }
+                                                                        
+                                                                    }
+                                                                ],
+                                                                note_to_payer: "Contact us on any regardings on your payment",
+                                                            },
+                                                            experience : {
+                                                                input_fields : {
+                                                                    no_shipping : 1
+                                                                },
+                                                                presentation : {
+                                                                    brand_name : "Fong Bros International Corp"
+                                                                }
+                                                            }
+                                                        });
+                                                        },
+
+                                                        onAuthorize: function(data, actions) {
+                                                            return actions.payment.execute().then(function(payment) {
+  
+                                                                $.post("/FBExportSystem/order-list/markPaid", {
+                                                                    orderId : oid
+                                                                }, function () {
+                                                                    window.location = "/FBExportSystem/payment-receipt?orderId=" + oid;
+                                                                });
+                                                            });
+                                                        },
+
+                                                        onCancel: function(data, actions) {
+                                                        /* 
+                                                            * Buyer cancelled the payment 
+                                                            */
+                                                        },
+
+                                                        onError: function(err) {
+
+                                                            console.log(err);
+                                                        /* 
+                                                            * An error occurred during the transaction 
+                                                            */
+                                                        }
+                                                    }, elem);
+                                            }});
+
+                                        });
+
+
+                                        updateProductCartInfo();
+
+                                        $("#see-more-most-viewed-products").removeAttr("disabled");
+                                        $("#see-more-newest-products").removeAttr("disabled");
+                                        $(".btnProductItemAddToCart").removeAttr("disabled");
+                                        $("#cart").css("pointer-events", "auto");
+
+                                        var token = $("meta[name='_csrf']").attr("content");
+                                        var header = $("meta[name='_csrf_header']").attr("content");
+                                        $(document).ajaxSend(function(e, xhr, options) {
+                                            xhr.setRequestHeader(header, token);
+                                        });
+
+                                        $("#notificationListItem").removeClass("d-none");
+
+                                        if ($("div.notifications").length > 0) {
+
+                                            var seenItemId = [];
+
+                                            $("div.notifications>.list-group>span").each(function (i, elem) {
+                                                seenItemId.push($(this).find("#notificationId").val());
+                                            });
+
+                                            $.post("/FBExportSystem/seen-notification", {
+                                                seenNotificationIdRawJSON : JSON.stringify(seenItemId)
+                                            }, function () {
+                                                
+                                                $("#dropDownNotification").find("span").html("");
+                                                $("#notificationListGroup input[value='false']").val("true");
+
+                                                $("div.notifications>.list-group>span").each(function () {
+
+                                                    var $dateAgo = $(this).find("small");
+
+                                                    console.log($dateAgo.html());
+
+                                                    $dateAgo.html(timeago().format($dateAgo.html()));
+                                                });
+
+                                                $("div.notificationsLoadingDisplay").addClass("d-none");
+                                                $("div.notifications").removeClass("d-none");
+
+                                                $("#btnClearNotifications").removeClass("d-none");
+                                                $("#btnSeeMoreNotifications").removeClass("d-none");
+
+                                            });
+
+                                        }
+  
+                                    }, "json");
+
+                                   
+
                             }
                         });
 
@@ -374,7 +721,7 @@ $(document).ready(function () {
         $("#shoppingModalCart").modal('toggle');
     });
 
-    $("#countryCode").ready(function () {
+    $(".countryCode").ready(function () {
         $.ajax({
             url : "https://restcountries.eu/rest/v2/all",
             dataType : "json",
@@ -382,11 +729,11 @@ $(document).ready(function () {
 
 
                 for (var i = 0; i != restCountriesData.length; ++i) {
-                    var countryLetterCode = restCountriesData[i].alpha2Code;
-                    var countryCode = restCountriesData[i].callingCodes[0];
+                    var countryLetterCode = restCountriesData[i].alpha2Code.trim();
+                    var countryCode = restCountriesData[i].callingCodes[0].trim();
 
                     if (countryCode.length > 0)
-                        $("#countryCode").append('<option value = "' + countryCode + '">+' + countryCode + ' (' + countryLetterCode + ') </option');
+                        $(".countryCode").append('<option value = "' + countryCode + '">+' + countryCode + ' (' + countryLetterCode + ') </option>');
 
                 }
 
@@ -395,8 +742,7 @@ $(document).ready(function () {
         });
     });
 
-    $('#country').ready(function () {
-
+    $('.country').ready(function () {
         $.ajax(
             {
                 url : "https://restcountries.eu/rest/v2/all",
@@ -406,9 +752,9 @@ $(document).ready(function () {
                     for (var i = 0; i != responseData.length; ++i) {
 
                         if (responseData[i].alpha2Code.length > 0) {
-                            var country = responseData[i].name;
-                            var countryCode = responseData[i].alpha2Code;
-                            $('#country').append('<option value = "'+ country + '">' + country + ' (' + countryCode + ')</option>');
+                            var country = responseData[i].name.trim();
+                            var countryCode = responseData[i].alpha2Code.trim();
+                            $('.country').append('<option value = "'+ country + '">' + country + ' (' + countryCode + ')</option>');
                         }
 
                     }
@@ -420,8 +766,8 @@ $(document).ready(function () {
         );
     });
 
-    $('#country').change(function () {
-
+    $('.country').change(function () {
+        
         var $cityTextBox = $('#city');
 
         var country = $(this).val();
@@ -432,11 +778,16 @@ $(document).ready(function () {
 
     });
 
+    $('#addToCartModal').on('hidden.bs.modal', function (e) {
+        $(this).find("#quantity").val(1);
+        $(this).find("#massType").val("kilogram");
+    })
+  
+
     $(window).resize(function () {
         updateCartPositioning();
     });
 
     updateCartPositioning();
-    updateProductCartInfo();
 
 });

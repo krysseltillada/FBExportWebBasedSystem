@@ -7,7 +7,7 @@
         <!--Section heading-->
         <h1 class="section-heading mt-5 pt-4 wow fadeIn" data-wow-delay="0.2s">Contact us</h1>
         <!--Section description-->
-        <p class="section-description mb-5 pb-5 wow fadeIn" data-wow-delay="0.2s">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugit, error amet numquam iure provident voluptate esse quasi, veritatis totam voluptas nostrum quisquam eum porro a pariatur accusamus veniam.</p>
+        <p class="section-description mb-5 pb-5 wow fadeIn" data-wow-delay="0.2s">Contact us to provide you with more information, answer any questions you may have and create an effective solution for your instructional needs.</p>
 
         </div>
 
@@ -20,44 +20,51 @@
 
 
                     <div class="card-body">
-                        <!--Header-->
-                        <div class="form-header cyan-3-color">
-                            <h3><i class="fa fa-envelope"></i> Write to us:</h3>
-                        </div>
+                    	<form action="/contact-us-email" id="contactForm" method="post">
+	                        <!--Header-->
+	                        <div class="form-header cyan-3-color">
+	                            <h3><i class="fa fa-envelope"></i> Write to us:</h3>
+	                        </div>
+	
+	                        <p>We'll write rarely, but only the best content.</p>
+	                        <br>
+	
+	                        <!--Body-->
+	                        <div class="md-form">
+	                            <i class="fa fa-user prefix"></i>
+	                            <input type="text" id="contactName" name="contactName" class="form-control">
+	                            <label for="contactName">Your name</label>
+	                        </div>
+	
+	                        <div class="md-form">
+	                            <i class="fa fa-envelope prefix"></i>
+	                            <input type="email" id="contactEmail" name="contactEmail" class="form-control">
+	                            <label for="contactEmail">Your email</label>
+	                        </div>
+	
+	                        <div class="md-form">
+	                            <i class="fa fa-tag prefix"></i>
+	                            <input type="text" id="contactSubject" name="contactSubject" class="form-control">
+	                            <label for="contactSubject">Subject</label>
+	                        </div>
+	
+	                        <div class="md-form">
+	                            <i class="fa fa-pencil prefix"></i>
+	                            <textarea type="text" id="contactMessage" name="contactMessage" class="md-textarea"></textarea>
+	                            <label for="contactMessage">Message</label>
+	                        </div>
+	
+	                        <div class="text-center">
+	                        <button class="btn btn-default light-blue lighten-2" id="contact-us-submit" type="submit">
+	                            Submit
+	                        </button>
 
-                        <p>We'll write rarely, but only the best content.</p>
-                        <br>
-
-                        <!--Body-->
-                        <div class="md-form">
-                            <i class="fa fa-user prefix"></i>
-                            <input type="text" id="form3" class="form-control">
-                            <label for="form3">Your name</label>
-                        </div>
-
-                        <div class="md-form">
-                            <i class="fa fa-envelope prefix"></i>
-                            <input type="text" id="form2" class="form-control">
-                            <label for="form2">Your email</label>
-                        </div>
-
-                        <div class="md-form">
-                            <i class="fa fa-tag prefix"></i>
-                            <input type="text" id="form32" class="form-control">
-                            <label for="form32">Subject</label>
-                        </div>
-
-                        <div class="md-form">
-                            <i class="fa fa-pencil prefix"></i>
-                            <textarea type="text" id="form8" class="md-textarea"></textarea>
-                            <label for="form8">Message</label>
-                        </div>
-
-                        <div class="text-center">
-                        <button class="btn btn-default light-blue lighten-2" type="submit">
-                            Submit
-                        </button>
-                        </div>
+	                        </div>
+							<img class="sending-email mx-auto" style="display:none;" src="/FBExportSystem/resources/customer/img/loader.gif" height="50" width="50">
+								                        
+	                        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+                        
+                        </form>
 
                     </div>
 
@@ -88,13 +95,12 @@
                     <div class="col-md-4">
                         <a class="btn-floating btn-cyan-3  btn-cyan-3"><i class="fa fa-phone"></i></a>
                         <p>+ 01 234 567 89</p>
-                        <p>Mon - Fri, 8:00-22:00</p>
+                        <p>Mon - Fri, 8:00AM-5:00PM</p>
                     </div>
 
                     <div class="col-md-4">
                         <a class="btn-floating btn-cyan-3  btn-cyan-3"><i class="fa fa-envelope"></i></a>
-                        <p>info@gmail.com</p>
-                        <p>sale@gmail.com</p>
+                        <p>fongbrosinc@gmail.com</p>
                     </div>
                 </div>
 

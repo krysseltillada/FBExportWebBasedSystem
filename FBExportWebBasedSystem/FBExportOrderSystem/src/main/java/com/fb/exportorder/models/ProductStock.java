@@ -13,6 +13,8 @@ import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fb.exportorder.models.customer.Weight;
 
 @Entity
@@ -23,7 +25,8 @@ public class ProductStock {
 	private Long productStockId;
 	
 	@ManyToOne
-	@JoinColumn(name="product_id")
+	@JoinColumn(name="product_id", nullable=false)
+	@JsonIgnore
 	private Product product;
 	
 	@Embedded
@@ -39,11 +42,13 @@ public class ProductStock {
 	public void setProductStockId(Long productStockId) {
 		this.productStockId = productStockId;
 	}
-
+	
+	@JsonIgnore
 	public Product getProduct() {
 		return product;
 	}
 
+	@JsonProperty
 	public void setProduct(Product product) {
 		this.product = product;
 	}

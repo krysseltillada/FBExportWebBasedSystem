@@ -1,5 +1,6 @@
 package com.fb.exportorder.models;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -64,8 +65,8 @@ public class Product {
 	@OneToOne(cascade=CascadeType.ALL)
 	private Rating rating;
 	
-	@OneToMany(mappedBy="productStockId")
-	private List<ProductStock> productStocks;
+	@OneToMany(cascade=CascadeType.ALL)
+	private List<ProductStock> productStocks = new ArrayList<ProductStock>();
 
 	public Long getProductId() {
 		return productId;
