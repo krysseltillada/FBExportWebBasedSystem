@@ -7,11 +7,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.fb.exportorder.models.customer.Order;
 import com.fb.exportorder.module.customer.service.CustomerService;
 import com.fb.exportorder.module.customer.service.OrderService;
 import com.fb.exportorder.module.customer.service.ProductService;
+import com.google.gson.Gson;
 
 @Controller
 public class DashboardController {
@@ -38,5 +40,12 @@ public class DashboardController {
 		model.addAttribute("onlineUsers", customerService.getOnlineUsersCount());
 		
 		return "dashboard";
+	}
+	
+	@RequestMapping("/admin/dashboard/get-data")
+	@ResponseBody
+	public String getData() {
+		Gson gson = new Gson();
+		return gson.toJson(productService.getTopProductStocks());
 	}
 }

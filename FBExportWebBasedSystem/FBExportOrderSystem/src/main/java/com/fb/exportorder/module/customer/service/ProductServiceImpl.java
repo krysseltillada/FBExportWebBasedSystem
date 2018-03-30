@@ -1,7 +1,9 @@
 package com.fb.exportorder.module.customer.service;
 
 import java.math.BigInteger;
+import java.sql.Time;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
@@ -17,14 +19,17 @@ import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpSession;
 
 import org.apache.commons.lang3.StringUtils;
+import org.bouncycastle.util.Strings;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.fb.exportorder.models.Product;
+import com.fb.exportorder.models.ProductStock;
 import com.fb.exportorder.models.customer.Customer;
 import com.fb.exportorder.models.customer.Order;
 import com.fb.exportorder.models.customer.Rating;
 import com.fb.exportorder.models.customer.Review;
+import com.fb.exportorder.module.admin.repository.ProductStocksRepository;
 import com.fb.exportorder.module.customer.repository.CustomerRepository;
 import com.fb.exportorder.module.customer.repository.OrderRepository;
 import com.fb.exportorder.module.customer.repository.ProductRepository;
@@ -48,6 +53,9 @@ public class ProductServiceImpl implements ProductService {
 	
 	@Autowired
 	private OrderRepository orderRepository;
+	
+	@Autowired
+	private ProductStocksRepository productStockRepository;
 	
 	public Map<String, Double> mapAverage = new HashMap<>();
 	
@@ -341,5 +349,33 @@ public class ProductServiceImpl implements ProductService {
 		    });
 		    
 		    return sortedMap;
+	}
+
+	@Override
+	public Map<String, Map<String,Double>> getTopProductStocks() {
+		List<Object[]> rawResultSet = productStockRepository.getTopProductStocks();
+		
+		Map<String, Map<String,Double>> stockGraph = new HashMap<>();
+		
+		for (Object[] rawRow : rawResultSet) {
+			List<Object[]> rawResultSetStocks = productStockRepository.getTopProductStocksPreviousMonths(Long.parseLong(rawRow[0].toString()));
+			Map<String, Double> values = new HashMap<>();
+			
+			for(Object[] raw : rawResultSetStocks) {
+				String month = Strings.split(raw[2].toString(), '-')[1];
+				double monthValue = Double.parseDouble(raw[1].toString());
+				values.put(month, values.get(month) == null ? monthValue :  values.get(month) + monthValue);
+				stockGraph.put(raw[0].toString(), values);
+			}
+			
+		}
+		
+		stockGraph.forEach((x,y) -> {
+			System.out.println(x);
+			y.forEach((k,v) -> {
+				System.out.println(k + " " + v);
+			});
+		});
+		return stockGraph;
 	}
 }
