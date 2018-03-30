@@ -139,7 +139,7 @@
 		
 		<put-list-attribute name = "javascriptfiles" inherit = "true">
 			<add-attribute value = "/resources/customer/js/profile-pic-upload.js" />
-			<add-attribute value = "/resources/customer/js/sign-up.js" />
+			<!--  <add-attribute value = "/resources/customer/js/sign-up.js" /> -->
 			<add-attribute value = "/resources/customer/js/account-settings.js" />
 		</put-list-attribute>
 		

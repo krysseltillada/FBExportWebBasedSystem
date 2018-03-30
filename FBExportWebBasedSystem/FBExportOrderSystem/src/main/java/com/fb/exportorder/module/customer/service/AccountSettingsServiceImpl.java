@@ -1,12 +1,18 @@
 package com.fb.exportorder.module.customer.service;
 
 import java.io.File;
+import java.nio.file.FileSystems;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.validator.routines.EmailValidator;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +25,7 @@ import com.fb.exportorder.models.Address;
 import com.fb.exportorder.models.Contact;
 import com.fb.exportorder.models.ShippingAddress;
 import com.fb.exportorder.models.customer.Customer;
+import com.fb.exportorder.models.enums.Gender;
 import com.fb.exportorder.module.customer.repository.CustomerRepository;
 import com.fb.exportorder.utilities.PasswordValidator;
 import com.fb.exportorder.utilities.UploadImage;
@@ -174,7 +181,34 @@ public class AccountSettingsServiceImpl implements AccountSettingsService {
 						}
 					}
 					
-					String profileImageLink = UploadImage.uploadProfileImage(customer.getUsername(), profileImageContextLocation, profileImage);
+					String profileImageLink = StringUtils.EMPTY;
+					
+					try {
+						byte[] imageBytes = profileImage.getBytes();
+						
+						Map <String, String> imageTypes = new HashMap<String, String>() {{
+							put("image/jpeg", ".jpg");
+							put("image/png", ".png");
+						}};
+						
+						
+						if (!profileImage.isEmpty()) {
+							
+							String profileImageFilename = DigestUtils.md5Hex(customer.getUsername()) + imageTypes.get(profileImage.getContentType());
+							
+							Path path = FileSystems.getDefault().getPath("src\\main\\webapp\\profile-img-customer\\" + profileImageFilename);
+							Files.write(path, imageBytes);
+							
+							profileImageLink = "/profile-img-customer/" + profileImageFilename;
+						
+						} else {
+								
+							profileImageLink = (customer.getGender() == Gender.MALE) ? "/resources/customer/img/profile-male.jpg" :
+																						"/resources/customer/img/profile-female.jpg";			
+						}
+					}catch(Exception e) {
+						e.printStackTrace();
+					}
 					
 					editedCustomerAccount.setProfileImageLink(profileImageLink);
 					
@@ -200,9 +234,9 @@ public class AccountSettingsServiceImpl implements AccountSettingsService {
 			userAccountShippingAddress.setReceiverFullName(editedCustomerAccount.getFirstname() + " " + editedCustomerAccount.getMiddlename() + " " + editedCustomerAccount.getLastname());
 			
 			customerRepository.save(editedCustomerAccount);
-
-			session.setAttribute("name", editedCustomerAccount.getFirstname());
+			
 			session.setAttribute("customerProfileImageLink", editedCustomerAccount.getProfileImageLink());
+			session.setAttribute("customerName", editedCustomerAccount.getFirstname());
 			
 			System.out.println("successfully edited");
 		

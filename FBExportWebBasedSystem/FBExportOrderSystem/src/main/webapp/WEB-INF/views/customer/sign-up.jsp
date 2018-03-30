@@ -52,6 +52,7 @@
                                 <div class="md-form form-sm">
                                     <label for="password" class="">Password</label>
                                     <input type="password" name = "password" id="password" class="form-control" maxlength = "20" required />
+									<input type="checkbox" id="showPassword"> Show Password
 									<p class="form-text text-muted small">
 									  password must be 5-20 characters , contains at least one uppercase and lowercase letter and number, and must not contain spaces and special characters.
 									</p>                                    

@@ -2,6 +2,7 @@ package com.fb.exportorder.module.customer.service;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.FileSystems;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -166,19 +167,34 @@ public class CustomerSignUpServiceImpl implements CustomerSignUpService {
 			userAccountAddress.setDefaultShippingAddress(true);
 				
 			System.out.println(profileImage.getContentType());
-				
-				
-			String profileImageLink = StringUtils.EMPTY;
 			
-			if (!profileImage.isEmpty()) {
+			String profileImageLink = StringUtils.EMPTY;
+				
+			try {
+				byte[] imageBytes = profileImage.getBytes();
+				
+				Map <String, String> imageTypes = new HashMap<String, String>() {{
+					put("image/jpeg", ".jpg");
+					put("image/png", ".png");
+				}};
+				
+				
+				if (!profileImage.isEmpty()) {
 					
-				profileImageLink = UploadImage.uploadProfileImage(customer.getUsername(), profileImageContextLocation, profileImage);
+					String profileImageFilename = DigestUtils.md5Hex(customer.getUsername()) + imageTypes.get(profileImage.getContentType());
 					
-			} else {
+					Path path = FileSystems.getDefault().getPath("src\\main\\webapp\\profile-img-customer\\" + profileImageFilename);
+					Files.write(path, imageBytes);
 					
-				profileImageLink = (customer.getGender() == Gender.MALE) ? "/resources/customer/img/profile-male.jpg" :
-																			"/resources/customer/img/profile-female.jpg";
-					
+					profileImageLink = "/profile-img-customer/" + profileImageFilename;
+				
+				} else {
+						
+					profileImageLink = (customer.getGender() == Gender.MALE) ? "/resources/customer/img/profile-male.jpg" :
+																				"/resources/customer/img/profile-female.jpg";			
+				}
+			}catch(Exception e) {
+				e.printStackTrace();
 			}
 				
 			authorities.setAuthority("CUSTOMER");

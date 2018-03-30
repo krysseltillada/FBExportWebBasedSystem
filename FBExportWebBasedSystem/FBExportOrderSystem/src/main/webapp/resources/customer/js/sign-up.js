@@ -1,5 +1,12 @@
 $(document).ready(function () {
 	
+	$("#showPassword").click(function(){
+		if($("#password").attr("type") == "password")
+			$("#password").attr("type", "text");
+		else
+			$("#password").attr("type", "password");
+	});
+	
 	$("#signup-form").submit(function(e){
 		$(".sign-up-loader").css("display", "block");
 		$("#submit-signup").hide();

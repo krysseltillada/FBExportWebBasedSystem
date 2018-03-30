@@ -46,7 +46,7 @@ public class AccountSettingsController {
 															  String firstname,
 															  String middlename,
 															  String lastname,
-															  String gender,
+				  						 			   		  @RequestParam("edit-profile-gender") String gender,
 															  int age,
 															  String country,
 															  String city,

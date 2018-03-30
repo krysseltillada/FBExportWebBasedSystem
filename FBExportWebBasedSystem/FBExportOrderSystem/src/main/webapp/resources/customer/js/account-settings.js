@@ -1,14 +1,18 @@
 $(document).ready(function () {
-
+	
+	$("#showPassword").click(function(){
+		if($("#new-password").attr("type") == "password")
+			$("#new-password").attr("type", "text");
+		else
+			$("#new-password").attr("type", "password");
+		
+	});
+	
     var cid = $("#customer-id").val();
-
-    console.log(cid);
 
     $(".countryCode").ready(function () {
 
         //https://restcountries.eu/rest/v2/name/Australia
-
-        console.log("tae");
 
          $.get("/FBExportSystem/get-customer", 
              {
@@ -23,9 +27,6 @@ $(document).ready(function () {
     });
 
     $('.country').ready(function () {
-
-        console.log("tae e");
-
          $.get("/FBExportSystem/get-customer", 
              {
                 customerId : cid
@@ -39,8 +40,18 @@ $(document).ready(function () {
         
     });
 
-    
+      function filePreviewAdd(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                $("#img-upload").attr("src", e.target.result);
+            }
+            reader.readAsDataURL(input.files[0]);
+        }
+      }
 
-    
+      $("#edit-profile-image").change(function () {
+          filePreviewAdd(this);
+      });
 
 });

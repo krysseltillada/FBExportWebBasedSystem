@@ -104,8 +104,8 @@
                                                         	 src = "<c:url value='${sessionScope.customerProfileImageLink}' />" width = "150" height = "150" />
 
                                                         <p class="file">
-                                                            <input type="file" name="profile-image" id="file" accept="image/x-png,image/jpeg" />
-                                                            <label for="file" class = "pr-4 pl-4">Change image</label>
+                                                            <input type="file" name="profile-image" id="edit-profile-image" accept="image/x-png,image/jpeg" />
+                                                            <label for="edit-profile-image" class = "pr-4 pl-4">Change image</label>
                                                         </p>
                                                         </div>
 
@@ -121,6 +121,7 @@
                                                             <div class="md-form form-sm">
                                                                 <input name = "newpassword" type="password" id="new-password" class="form-control" length = "20" />
                                                                 <label for="password" class="">New password</label>
+                                                                <input type="checkbox" id="showPassword"> Show Password
                                                             </div>
                                                         </div>
 
@@ -170,7 +171,7 @@
                                                             <div class="form-group form-sm">
                                                                 <input class="mr-2" 
                                                                 	   type="radio" 
-                                                                	   name="gender" 
+                                                                	   name="edit-profile-gender" 
                                                                 	   value="Male" 
                                                                 	   id="male" 
                                                                 	   required ${ (customer.gender == 'MALE') ? 'checked' : '' } />
@@ -181,7 +182,7 @@
                                                             <div class="form-group form-sm">
                                                                 <input class="mr-2" 
                                                                 	   type="radio" 
-                                                                	   name="gender" 
+                                                                	   name="edit-profile-gender" 
                                                                 	   id="female" 
                                                                 		value="Female" ${ (customer.gender == 'FEMALE') ? 'checked' : '' }/>
                                                                 <label for="female"> Female </label>
