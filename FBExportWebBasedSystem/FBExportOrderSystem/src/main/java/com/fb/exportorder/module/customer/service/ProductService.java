@@ -45,7 +45,7 @@ public interface ProductService {
 	
 	Map<Product,Integer> getTopPaidProduct();
 	
-	Map<Product,Integer> getPaidProductPreviousMonths();
+	Map<String,Double> getPaidProductPreviousMonths();
 	
 	Map<String, Map<String,Double>> getTopProductStocks();
 }

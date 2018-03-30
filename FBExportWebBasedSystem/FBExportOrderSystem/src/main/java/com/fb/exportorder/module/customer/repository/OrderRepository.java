@@ -20,6 +20,6 @@ public interface OrderRepository extends PagingAndSortingRepository<Order, Long>
 	@Query(value="SELECT * FROM orders o WHERE o.order_status = 'PAID'", nativeQuery=true)
 	public List<Order> getPaidOrders();
 	
-	@Query(value="SELECT * FROM orders o WHERE o.order_status = 'PAID' AND o.date_ordered >= DATE_ADD(CURDATE(), INTERVAL - 4 MONTH) AND o.date_ordered <= CURDATE()", nativeQuery=true)
+	@Query(value="SELECT * FROM orders o WHERE o.order_status = 'PAID' AND o.date_paid >= DATE_ADD(CURDATE(), INTERVAL - 4 MONTH) AND o.date_paid <= CURDATE()", nativeQuery=true)
 	public List<Order> getPaidOrdersPreviousMonths();
 }

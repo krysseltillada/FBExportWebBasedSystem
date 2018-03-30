@@ -312,18 +312,21 @@ public class ProductServiceImpl implements ProductService {
 	}
 	
 	@Override
-	public Map<Product, Integer> getPaidProductPreviousMonths() {
-		List<Order> orderList = orderRepository.getPaidOrdersPreviousMonths();
+	public Map<String, Double> getPaidProductPreviousMonths() {
+		List<Order> listOrders = orderRepository.getPaidOrdersPreviousMonths();
 		
-		Map<Product, Integer> paidProduct = new HashMap<>();
+		Map<String, Double> values = new HashMap<>();
 		
-		orderList.forEach((order) -> {
-			order.getCart().getItems().forEach((item) -> {
-				Product product = item.getProduct();
-				//mostPaid.put(product, mostPaid.containsKey(product) ? mostPaid.get(product) + 1 : 1);
-			});
+		for(Order o : listOrders) {
+			String month = Strings.split(o.getDatePaid().toString(), '-')[1];
+			values.put(month, values.get(month) == null ? o.getTotalPrice() :  values.get(month) + o.getTotalPrice());
+		}
+		
+		values.forEach((k, v) -> {
+			System.out.println(k +" "+ v);
 		});
-		return null;
+		
+		return values;
 	}
 	
 	private Map<Product, Integer> sortByComparator(Map<Product, Integer> unsortMap) {
@@ -370,12 +373,6 @@ public class ProductServiceImpl implements ProductService {
 			
 		}
 		
-		stockGraph.forEach((x,y) -> {
-			System.out.println(x);
-			y.forEach((k,v) -> {
-				System.out.println(k + " " + v);
-			});
-		});
 		return stockGraph;
 	}
 }

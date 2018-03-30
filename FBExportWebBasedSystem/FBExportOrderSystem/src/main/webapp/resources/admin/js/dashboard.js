@@ -2,6 +2,10 @@ $(document).ready(function () {
 	
 	var currentMonth = moment().month();
 	
+	function formatMonth(month){
+		return moment().month(month).format("MMMM");
+	}
+	
 	var months = [
 		formatMonth(currentMonth - 4),
 		formatMonth(currentMonth - 3),
@@ -28,8 +32,21 @@ $(document).ready(function () {
                 months[4] == getMonth(objNum, 0, obj) ? getMonthValue(objNum , 0, obj) : months[4] == getMonth(objNum, 1, obj) ? getMonthValue(objNum , 1, obj) : months[4] == getMonth(objNum, 2, obj) ? getMonthValue(objNum , 2, obj) : months[4] == getMonth(objNum, 3, obj) ? getMonthValue(objNum , 3, obj) : months[4] == getMonth(objNum, 4, obj) ? getMonthValue(objNum , 4, obj) : 0];
 	}
 	
-	function formatMonth(month){
-		return moment().month(month).format("MMMM");
+	function getGraphDataPaid(objPaid){
+		return [months[0] == getMonthPaid(objPaid, 0) ? getValuePaid(objPaid, 0) : months[0] == getMonthPaid(objPaid, 1) ? getValuePaid(objPaid, 1) : months[0] == getMonthPaid(objPaid, 2) ? getValuePaid(objPaid, 2) : months[0] == getMonthPaid(objPaid, 3) ? getValuePaid(objPaid, 3) : months[0] == getMonthPaid(objPaid, 4) ? getValuePaid(objPaid, 4) : 0, 
+        		months[1] == getMonthPaid(objPaid, 0) ? getValuePaid(objPaid, 0) : months[1] == getMonthPaid(objPaid, 1) ? getValuePaid(objPaid, 1) : months[1] == getMonthPaid(objPaid, 2) ? getValuePaid(objPaid, 2) : months[1] == getMonthPaid(objPaid, 3) ? getValuePaid(objPaid, 3) : months[1] == getMonthPaid(objPaid, 4) ? getValuePaid(objPaid, 4) : 0,
+                months[2] == getMonthPaid(objPaid, 0) ? getValuePaid(objPaid, 0) : months[2] == getMonthPaid(objPaid, 1) ? getValuePaid(objPaid, 1) : months[2] == getMonthPaid(objPaid, 2) ? getValuePaid(objPaid, 2) : months[2] == getMonthPaid(objPaid, 3) ? getValuePaid(objPaid, 3) : months[2] == getMonthPaid(objPaid, 4) ? getValuePaid(objPaid, 4) : 0,
+                months[3] == getMonthPaid(objPaid, 0) ? getValuePaid(objPaid, 0) : months[3] == getMonthPaid(objPaid, 1) ? getValuePaid(objPaid, 1) : months[3] == getMonthPaid(objPaid, 2) ? getValuePaid(objPaid, 2) : months[3] == getMonthPaid(objPaid, 3) ? getValuePaid(objPaid, 3) : months[3] == getMonthPaid(objPaid, 4) ? getValuePaid(objPaid, 4) : 0,
+                months[4] == getMonthPaid(objPaid, 0) ? getValuePaid(objPaid, 0) : months[4] == getMonthPaid(objPaid, 1) ? getValuePaid(objPaid, 1) : months[4] == getMonthPaid(objPaid, 2) ? getValuePaid(objPaid, 2) : months[4] == getMonthPaid(objPaid, 3) ? getValuePaid(objPaid, 3) : months[4] == getMonthPaid(objPaid, 4) ? getValuePaid(objPaid, 4) : 0];
+	
+	}
+	
+	function getMonthPaid(objPaid, num){
+		return formatMonth(Object.keys(objPaid)[num] - 1);
+	}
+	
+	function getValuePaid(objPaid, num){
+		return objPaid[Object.keys(objPaid)[num]];
 	}
 	
 	var legendState = true;
@@ -55,87 +72,10 @@ $(document).ready(function () {
 
     
     var LINECHARTEXMPLE   = $('#lineChartExample');
-    var lineChartExample = new Chart(LINECHARTEXMPLE, {
-        type: 'line',
-        options: {
-            title : {
-                display: true,
-                text : "Montly page status"
-            },
-            
-            legend: {labels:{fontColor:"#777", fontSize: 12}},
-            scales: {
-                xAxes: [{
-                    display: true,
-                    gridLines: {
-                        color: '#eee'
-                    }
-                }],
-                yAxes: [{
-                    display: true,
-                    gridLines: {
-                        color: '#eee'
-                    }
-                }]
-            },
-        },
-        data: {
-            labels: ["January", "February", "March", "April", "May", "June", "July"],
-            datasets: [
-                {
-                    label: "Visitors",
-                    fill: true,
-                    lineTension: 0.3,
-                    backgroundColor: gradient1,
-                    borderColor: gradient1,
-                    borderCapStyle: 'butt',
-                    borderDash: [],
-                    borderDashOffset: 0.0,
-                    borderJoinStyle: 'miter',
-                    borderWidth: 1,
-                    pointBorderColor: gradient1,
-                    pointBackgroundColor: "#fff",
-                    pointBorderWidth: 1,
-                    pointHoverRadius: 5,
-                    pointHoverBackgroundColor: gradient1,
-                    pointHoverBorderColor: "rgba(220,220,220,1)",
-                    pointHoverBorderWidth: 2,
-                    pointRadius: 1,
-                    pointHitRadius: 10,
-                    data: [30, 50, 40, 61, 42, 35, 40],
-                    spanGaps: false
-                },
-                {
-                    label: "Page views",
-                    fill: true,
-                    lineTension: 0.3,
-                    backgroundColor: gradient2,
-                    borderColor: gradient2,
-                    borderCapStyle: 'butt',
-                    borderDash: [],
-                    borderDashOffset: 0.0,
-                    borderJoinStyle: 'miter',
-                    borderWidth: 1,
-                    pointBorderColor: gradient2,
-                    pointBackgroundColor: "#fff",
-                    pointBorderWidth: 1,
-                    pointHoverRadius: 5,
-                    pointHoverBackgroundColor: gradient2,
-                    pointHoverBorderColor: "rgba(220,220,220,1)",
-                    pointHoverBorderWidth: 2,
-                    pointRadius: 1,
-                    pointHitRadius: 10,
-                    data: [50, 40, 50, 40, 45, 40, 30],
-                    spanGaps: false
-                }
-            ]
-        }
-    });
     
-    $.get( "/FBExportSystem/admin/dashboard/get-data", function( data ) {
-    	
+    
+    $.get( "/FBExportSystem/admin/dashboard/get-data-stocks", function( data ) {
     	var obj = $.parseJSON(data);
-    	
     	
     	var myLineChart = new Chart(LINECHART, {
             type: 'line',
@@ -238,7 +178,65 @@ $(document).ready(function () {
             }
         });
     	
+    });
+    
+$.get( "/FBExportSystem/admin/dashboard/get-data-paid", function( data ) {
     	
+    	var objPaid = $.parseJSON(data);
+    	
+    	var lineChartExample = new Chart(LINECHARTEXMPLE, {
+            type: 'line',
+            options: {
+                title : {
+                    display: true,
+                    text : "Montly Paid Orders"
+                },
+                
+                legend: {labels:{fontColor:"#777", fontSize: 12}},
+                scales: {
+                    xAxes: [{
+                        display: true,
+                        gridLines: {
+                            color: '#eee'
+                        }
+                    }],
+                    yAxes: [{
+                        display: true,
+                        gridLines: {
+                            color: '#eee'
+                        }
+                    }]
+                },
+            },
+            data: {
+                labels: [months[0], months[1], months[2], months[3], months[4]],
+                datasets: [
+                    {
+                        label: "Paid Orders",
+                        fill: true,
+                        lineTension: 0.3,
+                        backgroundColor: gradient1,
+                        borderColor: gradient1,
+                        borderCapStyle: 'butt',
+                        borderDash: [],
+                        borderDashOffset: 0.0,
+                        borderJoinStyle: 'miter',
+                        borderWidth: 1,
+                        pointBorderColor: gradient1,
+                        pointBackgroundColor: "#fff",
+                        pointBorderWidth: 1,
+                        pointHoverRadius: 5,
+                        pointHoverBackgroundColor: gradient1,
+                        pointHoverBorderColor: "rgba(220,220,220,1)",
+                        pointHoverBorderWidth: 2,
+                        pointRadius: 1,
+                        pointHitRadius: 10,
+                        data: getGraphDataPaid(objPaid),
+                        spanGaps: false
+                    }
+                ]
+            }
+        });
     });
 });
 
