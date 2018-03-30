@@ -63,7 +63,7 @@ public class InventoryServiceImpl implements InventoryService {
 			errorMessages.add("product name cannot be empty and cannot contain number or symbols");
 		
 		if (StringUtils.isBlank(origin) || !StringUtils.isAlphaSpace(origin))
-			errorMessages.add("origin cannot be empty and cannot contain symbols");
+			errorMessages.add("origin cannot be empty and cannot contain number or symbols");
 		
 		
 		try {

@@ -44,7 +44,7 @@ $(document).ready(function () {
                                 name : response[i].name,
                                 description : response[i].description,
                                 stockStatus : response[i].status,
-                                postedDate : response[i].datePosted,
+                                postedDate : moment(response[i].datePosted).format("MMMM D, YYYY"),
                                 productId : response[i].productId,
                                 isCustomerLoggedIn : $("#customer-id").val()
                             });
@@ -131,7 +131,7 @@ $(document).ready(function () {
                                 name : response[i].name,
                                 description : response[i].description,
                                 stockStatus : response[i].status,
-                                postedDate : response[i].datePosted,
+                                postedDate : moment(response[i].datePosted).format("MMMM D, YYYY"),
                                 productId : response[i].productId,
                                 isCustomerLoggedIn : $("#customer-id").val()
                             });

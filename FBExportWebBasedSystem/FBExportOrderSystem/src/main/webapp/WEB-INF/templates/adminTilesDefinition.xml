@@ -55,7 +55,6 @@
 			<add-attribute value = "/resources/admin/js/stomp.js" />
 			<add-attribute value = "/resources/admin/js/timeago.js" />
 			<add-attribute value = "/resources/admin/js/utilities.js" />
-			<add-attribute value = "/resources/admin/js/notification.js" />
 			<add-attribute value = "/resources/admin/js/front.js" />
 			<add-attribute value = "/resources/admin/js/admin.js" />
 		
@@ -73,6 +72,7 @@
 		</put-list-attribute>	
 		
 		<put-list-attribute name = "javascriptfiles" inherit = "true">
+			<add-attribute value = "/resources/admin/js/notification.js" />
 			<add-attribute value = "/resources/admin/js/dashboard.js" />
 		</put-list-attribute>
 	
@@ -88,6 +88,7 @@
 		<put-attribute name = "sideBarActiveLink" value = "inventory" />
 		
 		<put-list-attribute name = "javascriptfiles" inherit = "true">
+			<add-attribute value = "/resources/admin/js/notification.js" />
 			<add-attribute value = "/resources/admin/js/inventory.js" />	
 		</put-list-attribute>
 	
@@ -103,6 +104,7 @@
 		</put-list-attribute>
 		
 		<put-list-attribute name = "javascriptfiles" inherit = "true">
+			<add-attribute value = "/resources/admin/js/notification.js" />
 			<add-attribute value = "/resources/admin/js/add-product.js" />
 		</put-list-attribute>
 	
@@ -119,10 +121,9 @@
 		</put-list-attribute>
 		
 		<put-list-attribute name = "javascriptfiles" inherit = "true">
+			<add-attribute value = "/resources/admin/js/notification.js" />
 			<add-attribute value = "/resources/admin/js/edit-product.js" />
 		</put-list-attribute>
-		
-		
 		
 	</definition>
 	
@@ -132,6 +133,7 @@
 		<put-attribute name = "sideBarActiveLink" value = "orders" />
 		
 		<put-list-attribute name = "javascriptfiles" inherit = "true">
+			<add-attribute value = "/resources/admin/js/notification.js" />
 			<add-attribute value = "/resources/admin/js/order.js" />	
 		</put-list-attribute>
 		
@@ -147,6 +149,7 @@
 		</put-list-attribute>
 		
 		<put-list-attribute name = "javascriptfiles" inherit = "true">
+			<add-attribute value = "/resources/admin/js/notification.js" />
 			<add-attribute value = "/resources/admin/js/manage-accounts.js" />	
 		</put-list-attribute>
 		
@@ -158,6 +161,7 @@
 		<put-attribute name = "sideBarActiveLink" value = "report-logs" />
 		
 		<put-list-attribute name = "javascriptfiles" inherit = "true">
+			<add-attribute value = "/resources/admin/js/notification.js" />
 			<add-attribute value = "/resources/admin/js/report-logs.js" />
 		</put-list-attribute>
 	
@@ -173,6 +177,7 @@
 		</put-list-attribute>
 		
 		<put-list-attribute name = "javascriptfiles" inherit = "true">
+ 			<add-attribute value = "/resources/admin/js/notification.js" />
 			<add-attribute value = "/resources/admin/js/timepicki.js" />
  			<add-attribute value = "/resources/admin/js/system-settings.js" />
 		</put-list-attribute>

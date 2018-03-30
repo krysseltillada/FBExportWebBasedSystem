@@ -121,6 +121,9 @@ public class AccountSettingsServiceImpl implements AccountSettingsService {
 		if (!StringUtils.isNumeric(Integer.toString(customer.getAge())) || customer.getAge() <= 0)
 			errorMessages.add("age cannot contain letters or symbols or invalid number");
 		
+		if (customer.getAge() < 18)
+			errorMessages.add("age cannot be below 18");
+		
 		if (StringUtils.isBlank(customerAddress.getAddress()))
 			errorMessages.add("address cannot be empty");
 		

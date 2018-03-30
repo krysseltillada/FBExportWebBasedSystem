@@ -43,6 +43,18 @@ public class HomeController {
 	@Autowired
 	EmailService emailService;
 	
+	@RequestMapping(value = "/get-notification")
+	@ResponseBody
+	public List<Notification> getNotification(HttpSession session) {
+		
+		List<Notification> notificationList = customerService.getNotificationsByCustomerId((long)session.getAttribute("customerId"));
+		
+		for (Notification notification : notificationList)
+			notificationService.seenNotification(notification.getNotificationId());
+		
+		return notificationList;
+	}
+	
 	@RequestMapping(value = "/seen-notification", method = RequestMethod.POST)
 	@ResponseBody
 	public String seenNotification (@RequestParam String seenNotificationIdRawJSON) {
@@ -60,22 +72,7 @@ public class HomeController {
 		return "";
 	}
 	
-	@RequestMapping("/push-notif")
-	public String pushNotif() {
-		
-		Notification notification = new Notification();
-		
-		notification.setHeader("order is approved");
-		notification.setDescription("your order lapu lapu is appproved");
-		notification.setNotificationId(0l);
-		notification.setSeen(false);
-		notification.setDate(new Date());
-		
-		notificationService.pushNotification(notification, customerService.getCustomerById(1));
-		
-		return "home";
-	}
-	
+
 	@RequestMapping(value = "/add-to-cart", method = RequestMethod.POST)
 	@ResponseBody
 	public String addToCart(@RequestParam String customerCartJSON,

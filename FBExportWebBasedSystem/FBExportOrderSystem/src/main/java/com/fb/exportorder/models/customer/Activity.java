@@ -26,7 +26,7 @@ public class Activity {
 	@JsonBackReference
 	private Customer customer;
 	
-	@Temporal(TemporalType.DATE)
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date date;
 
 	public Long getActivityId() {

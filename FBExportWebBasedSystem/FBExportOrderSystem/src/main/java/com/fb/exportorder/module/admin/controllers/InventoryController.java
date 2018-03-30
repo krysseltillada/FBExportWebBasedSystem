@@ -79,8 +79,6 @@ public class InventoryController {
 		
 	}
 	
-	// TODO REMOVE EXPIRED FEATURE
-	
 	private String validateProduct (String productJSONString) {
 		
 		List<String> errorMessages = null;

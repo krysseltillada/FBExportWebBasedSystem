@@ -91,7 +91,7 @@ $(document).ready(function () {
                                 activityId : response[i].activityId,
                                 activityHeader : response[i].header,
                                 activityDescription : response[i].description,
-                                activityDate : response[i].date
+                                activityDate : timeago().format(response[i].date)
                             });
 
                             console.log(activityItem);
@@ -120,6 +120,28 @@ $(document).ready(function () {
             }, 2000);
 
 
+
+    });
+
+    $(".activity-list").ready(function () {
+
+        var $activityList = $(this);
+
+        setTimeout(function () {
+            
+            $activityList.find("span").each(function () {
+                var $dateAgo = $(this).find("small");
+                $dateAgo.html(timeago().format($dateAgo.html()));
+            });
+
+            $(".activityLoadingDisplay").remove();
+
+            $(".activity-list").removeClass("d-none");
+            $(".see-more").removeClass("d-none");
+            $(".clear-all").removeClass("d-none");
+
+
+        }, 1000);
 
     });
 });

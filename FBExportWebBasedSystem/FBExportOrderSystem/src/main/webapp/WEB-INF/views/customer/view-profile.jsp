@@ -92,17 +92,17 @@
                                             
                                         	<c:choose>
                                         		<c:when test = "${not empty activityList}">
-                                        			<a class = "float-right mr-3 mt-1 blue-text clear-all" href = "javascript:void(0)" style = "font-size: 16px;"> Clear all </a>
+                                        			<a class = "float-right mr-3 mt-1 blue-text clear-all d-none" href = "javascript:void(0)" style = "font-size: 16px;"> Clear all </a>
                                         		</c:when>
                                         		<c:otherwise>
-                                        			<a class = "float-right mr-3 mt-1 grey-text disabled clear-all" href = "javascript:void(0)" style = "font-size: 16px;"> Clear all </a>
+                                        			<a class = "float-right mr-3 mt-1 grey-text disabled clear-all d-none" href = "javascript:void(0)" style = "font-size: 16px;"> Clear all </a>
                                         		</c:otherwise>
                                         	</c:choose>
                                         </h4>
 
                                         <hr />
 
-                                        <div class="list-group activity-list">
+                                        <div class="list-group activity-list d-none">
                                         	
                                         	<c:choose>
                                         		<c:when test = "${not empty activityList}">
@@ -137,11 +137,13 @@
                                 					</div>
                                         		</c:otherwise>
                                         	</c:choose>
-	                                        
-                                           
-                                            
-
+	                                       
                                         </div>
+                                        
+                                        <div class = "activityLoadingDisplay text-center mt-2">
+					                        	<img src = "<c:url value = '/resources/customer/img/loader.gif' />"
+					                        		 width = "50" height = "50" />
+				                        </div>
 
 
                                     </div>
@@ -151,7 +153,7 @@
 								<c:if test="${not empty activityList}">
 	                                <div class = "row">
 	                                			<div class = "mx-auto mt-2">
-	                                            	<a class = "see-more" href = "javascript:void(0)"> See more </a>
+	                                            	<a class = "see-more d-none" href = "javascript:void(0)"> See more </a>
 	                                            	<img class = "see-more-loader" style = "display:none;" src = "<c:url value = '/resources/customer/img/loader.gif' />" height ="50" width = "50" />
 	                                			</div>
 	                                </div>

@@ -552,12 +552,17 @@ $(document).ready(function () {
                                                     });
 
                                                     $itemsOrderedTable.find("tfoot tr .price").each(function (ind, elem) {
-                                                        subTotalPrice += Number($(elem).html());
+                                                        subTotalPrice += Number(accounting.unformat($(elem).html()));
                                                     });
 
                                                     var taxPaid = Number(accounting.unformat(formatMoney(fx($itemsOrderedTable.find("tfoot #estimatedTax").val()).from("PHP").to(currentCurrency), currentCurrency, "%v")));
                                                     var shippingFee = Number(accounting.unformat(formatMoney(fx(1000).from("PHP").to(currentCurrency), currentCurrency, "%v")));
                                                     var totalPrice = subTotalPrice + shippingFee + taxPaid;
+
+                                                    console.log("taxpaid: " + taxPaid);
+                                                    
+                                                    console.log("shipping fee: " + shippingFee);
+                                                    
 
                                                     console.log(totalPrice + " total price");
 

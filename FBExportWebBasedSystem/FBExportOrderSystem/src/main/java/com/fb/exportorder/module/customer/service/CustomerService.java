@@ -11,6 +11,7 @@ import com.fb.exportorder.models.customer.Order;
 
 public interface CustomerService {
 	public Customer getCustomerById(long customerId);
+	public void addCustomerActivity(Activity activity, Customer customer);
 	public List<Activity> getCustomerActivitiesById(long customerId, int records, int offset);
 	public void deleteActivityByActivityId(long customerId, long activityId);
 	public void deleteAllActivity(long customerId, String jsonDeleteDataIds);
@@ -23,6 +24,7 @@ public interface CustomerService {
 	public Map<Boolean, Integer> getOnlineUsersCount();
 	public void addNotificationToCustomer(Notification notification, Customer customer);
 	public List<Notification> getCustomerNotificationsById(long customerId, int records, int offset);
+	public List<Notification> getNotificationsByCustomerId(long customerId);
 	public void deleteNotificationByNotificationId(long customerId, long notificationId);
 	public void deleteAllNotification(long customerId, String jsonDeleteDataIds);
 }

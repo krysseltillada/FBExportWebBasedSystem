@@ -11,10 +11,12 @@ import org.aspectj.lang.annotation.Aspect;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 
+import com.fb.exportorder.models.Product;
 import com.fb.exportorder.models.SystemNotification;
 import com.fb.exportorder.models.customer.Customer;
 import com.fb.exportorder.models.customer.Order;
 import com.fb.exportorder.models.enums.SystemNotificationStatus;
+import com.fb.exportorder.module.admin.service.InventoryService;
 import com.fb.exportorder.module.admin.service.NotificationService;
 import com.fb.exportorder.module.admin.session.EmployeeSessionBean;
 
@@ -24,6 +26,9 @@ public class AdminNotificationTracker {
 	@Autowired
 	@Qualifier("AdminNotificationService")
 	NotificationService notificationService;
+	
+	@Autowired
+	InventoryService inventoryService;
 	
 
 	@After("execution(public void com.fb.exportorder..service.OrderService+.markReceived(..))")
@@ -134,6 +139,42 @@ public class AdminNotificationTracker {
 		
 		notificationService.pushNotification(systemNotification);
 		
+	}
+	
+	@After("execution(public void com.fb.exportorder..service.InventoryService+.addProduct(..))")
+	public void detectNewProduct(JoinPoint joinPoint) {
+	
+	
+		String productName = (String)joinPoint.getArgs()[1];
+		
+		SystemNotification systemNotification = new SystemNotification();
+		
+		systemNotification.setHeader("New Product");
+		systemNotification.setDescription("New product has added " + productName);
+		systemNotification.setSeen(false);
+		systemNotification.setSystemNotificationStatus(SystemNotificationStatus.INVENTORY_ADD_PRODUCT);
+		systemNotification.setDate(new Date());
+		
+		notificationService.pushNotification(systemNotification);
+
+	}
+	
+	@After("execution(public void com.fb.exportorder..service.InventoryService+.editProduct(..))")
+	public void detectEditProduct(JoinPoint joinPoint) {
+	
+	
+		long productId = (Long)joinPoint.getArgs()[0];
+		
+		SystemNotification systemNotification = new SystemNotification();
+		
+		systemNotification.setHeader("Edited Product");
+		systemNotification.setDescription("Product no. " + productId +  " has been edited");
+		systemNotification.setSeen(false);
+		systemNotification.setSystemNotificationStatus(SystemNotificationStatus.INVENTORY_EDIT_PRODUCT);
+		systemNotification.setDate(new Date());
+		
+		notificationService.pushNotification(systemNotification);
+
 	}
 	
 }

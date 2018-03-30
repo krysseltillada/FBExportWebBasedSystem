@@ -1,22 +1,5 @@
 $(document).ready(function () {
 
-    var updateNotificationListCount = function () {
-
-        var notificationListCount = $("#notifications").next()
-                                                       .find(">div>li input#isSeen[value='false']").length;
-
-        var isBadgeNotificationCountShow = $("#notifications>span.badge").length > 0;
-
-        if (!isBadgeNotificationCountShow) {
-            $("#notifications").append("<span class='badge bg-red'>" + notificationListCount + "</span>")
-        } else {
-            $("#notifications").find("span.badge").html(notificationListCount);
-        }
-
-
-        console.log(notificationListCount + " notification list count");
-    };
-
     var getSystemNotificationStatusIcon = function (systemNotificationStatus) {
 
         return systemNotificationStatus == "ORDER_RECEIVED" ? '<i class="icon-padnote ml-1" style = "color: #0275d8;"></i>' :
@@ -25,9 +8,9 @@ $(document).ready(function () {
                systemNotificationStatus == "ORDER_RETURN" ? '<i class="fa fa-undo ml-1" style = "color: #795548;"></i>' :
                systemNotificationStatus == "ORDER_NEW_ORDER" ? '<i class="fa fa-list ml-1" style = "color: #ffc107;"></i>' :
                systemNotificationStatus == "ORDER_CANCELLED" ? '<i class="fa fa-times ml-1" style = "color: #d9534f;"></i>' :
-               systemNotificationStatus == "INVENTORY_ADD_PRODUCT" ? '<i class="fa fa-plus ml-1"></i>' :
-               systemNotificationStatus == "INVENTORY_EDIT_PRODUCT" ? '<i class="fa fa-edit ml-1"></i>' :
-               systemNotificationStatus == "INVENTORY_UPDATE_STOCK" ?  '<i class="fa fa-product-hunt ml-1"></i>' : '<i class="fa fa-server"></i>';
+               systemNotificationStatus == "INVENTORY_ADD_PRODUCT" ? '<i class="fa fa-plus ml-1" style = "color: #2b90d9;"></i>' :
+               systemNotificationStatus == "INVENTORY_EDIT_PRODUCT" ? '<i class="fa fa-edit ml-1" style = "color: #2b90d9;"></i>' :
+               systemNotificationStatus == "INVENTORY_UPDATE_STOCK" ?  '<i class="fa fa-product-hunt ml-1" style = "color: #2b90d9;"></i>' : '<i class="fa fa-server"></i>';
 
     };
 
@@ -39,9 +22,9 @@ $(document).ready(function () {
                systemNotificationStatus == "ORDER_RETURN" ? '<i class="fa fa-undo ml-1" style = "background-color: #795548;"></i>' :
                systemNotificationStatus == "ORDER_NEW_ORDER" ? '<i class="fa fa-list-alt ml-1" style = "background-color: #ffc107;"></i>' :
                systemNotificationStatus == "ORDER_CANCELLED" ? '<i class="fa fa-times ml-1" style = "background-color: #d9534f;"></i>' :
-               systemNotificationStatus == "INVENTORY_ADD_PRODUCT" ? '<i class="fa fa-plus ml-1"></i>' :
-               systemNotificationStatus == "INVENTORY_EDIT_PRODUCT" ? '<i class="fa fa-edit ml-1"></i>' :
-               systemNotificationStatus == "INVENTORY_UPDATE_STOCK" ?  '<i class="fa fa-product-hunt ml-1"></i>' : '<i class="fa fa-server ml-1"></i>'
+               systemNotificationStatus == "INVENTORY_ADD_PRODUCT" ? '<i class="fa fa-plus ml-1" style = "background-color: #2b90d9;"></i>' :
+               systemNotificationStatus == "INVENTORY_EDIT_PRODUCT" ? '<i class="fa fa-edit ml-1" style = "background-color: #2b90d9;"></i>' :
+               systemNotificationStatus == "INVENTORY_UPDATE_STOCK" ?  '<i class="fa fa-product-hunt ml-1" style = "background-color: #2b90d9;"></i>' : '<i class="fa fa-server ml-1"></i>'
 
     };
 
@@ -53,9 +36,9 @@ $(document).ready(function () {
                systemNotificationStatus == "ORDER_RETURN" ? '#795548' :
                systemNotificationStatus == "ORDER_NEW_ORDER" ? '#ffc107' :
                systemNotificationStatus == "ORDER_CANCELLED" ? '#d9534f' : 
-               systemNotificationStatus == "INVENTORY_ADD_PRODUCT" ? '<i class="fa fa-plus ml-1"></i>' :
-               systemNotificationStatus == "INVENTORY_EDIT_PRODUCT" ? '<i class="fa fa-edit ml-1"></i>' :
-               systemNotificationStatus == "INVENTORY_UPDATE_STOCK" ?  '<i class="fa fa-product-hunt ml-1"></i>' : '<i class="fa fa-server"></i>';
+               systemNotificationStatus == "INVENTORY_ADD_PRODUCT" ? '#2b90d9' :
+               systemNotificationStatus == "INVENTORY_EDIT_PRODUCT" ? '#2b90d9' :
+               systemNotificationStatus == "INVENTORY_UPDATE_STOCK" ?  '#2b90d9' : '<i class="fa fa-server"></i>';
 
     };
 
@@ -222,19 +205,22 @@ $(document).ready(function () {
                 var systemNotificationStatusIcon = getSystemNotificationStatusIcon(notification.systemNotificationStatus);
                 var systemNotificationListStatusIcon = getSystemNotificationListStatusIcon(notification.systemNotificationStatus);
                
-                var notificationSound = new Audio("/FBExportSystem/resources/notification-sound.mp3");
-                notificationSound.play();
+                if (!window.location.pathname.includes("/FBExportSystem/admin/inventory/edit-product") &&
+                    !window.location.pathname.includes("/FBExportSystem/admin/add-product")) {
 
-                iziToast.info({
-                    iconColor: '#ffffff',
-                    backgroundColor : getSystemNotificationStatusIconColor(notification.systemNotificationStatus),
-                    titleColor: '#ffffff',
-                    messageColor : "#ffffff",
-                    title: notification.header,
-                    message: notification.description,
-                });
+                    var notificationSound = new Audio("/FBExportSystem/resources/notification-sound.mp3");
+                    notificationSound.play();
 
-            
+                    iziToast.info({
+                        iconColor: '#ffffff',
+                        backgroundColor : getSystemNotificationStatusIconColor(notification.systemNotificationStatus),
+                        titleColor: '#ffffff',
+                        messageColor : "#ffffff",
+                        title: notification.header,
+                        message: notification.description,
+                    });
+
+                }
 
                 $("a#notifications").next().find(">div").prepend(_.template($("#notificationListItem").html())({
                     header : notification.header,
@@ -270,8 +256,20 @@ $(document).ready(function () {
 
                     if ($("#notificationListEmptyMessage").length > 0) 
                         $("#notificationListEmptyMessage").remove();
-                
-                    updateNotificationListCount();
+                    
+                    if ($("#notifications>span.badge").length <= 0)
+                        $("#notifications").append("<span class='badge bg-red'>1</span>");
+                    else {
+
+                        var currentNotificationCount = Number($("#notifications").find("span.badge").html());
+                        currentNotificationCount += 1;
+
+                        $("#notifications").find("span.badge").html(currentNotificationCount);
+
+
+                    }
+
+
 
                 }
 
