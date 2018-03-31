@@ -77,10 +77,11 @@
 								        
 				        </c:if>
 				        
-				        <c:if test="${not empty successMessage}">
+				        <c:if test="${not empty successMessages}">
 				        
-				        	<span class = "text-success"> *<c:out value="${successMessage}" /> </span> <br />
-				        	
+				        	<c:forEach var = "successMessage" items = "${successMessages}">
+				        		<span class = "green-text"> *<c:out value="${successMessage}" /> </span> <br />
+				        	</c:forEach>
 							<hr />
 								        
 				        </c:if>

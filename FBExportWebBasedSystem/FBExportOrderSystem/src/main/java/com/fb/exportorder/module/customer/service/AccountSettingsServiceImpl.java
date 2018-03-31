@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpSession;
@@ -20,6 +21,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.fb.exportorder.models.Address;
 import com.fb.exportorder.models.Contact;
@@ -52,6 +54,9 @@ public class AccountSettingsServiceImpl implements AccountSettingsService {
 	
 	@Autowired
 	ServletContext servletContext;
+	
+	@Autowired
+	private EmailService emailService;
 	
 	private List<String> validate (Customer customer, String oldPassword) {
 		
@@ -225,7 +230,14 @@ public class AccountSettingsServiceImpl implements AccountSettingsService {
 			editedCustomerAccount.setGender(customer.getGender());
 			editedCustomerAccount.setAge(customer.getAge());
 			editedCustomerAccount.setAddress(customer.getAddress());
-			editedCustomerAccount.setContact(customer.getContact());
+			editedCustomerAccount.getContact().setCountryCode(customer.getContact().getCountryCode());
+			editedCustomerAccount.getContact().setPhoneNumber(customer.getContact().getPhoneNumber());
+			
+			if(!editedCustomerAccount.getContact().getEmailAddress().equals(customer.getContact().getEmailAddress())) {
+				emailService.verifyEmail(String.format("%s %s",editedCustomerAccount.getFirstname(), editedCustomerAccount.getLastname()),
+						customer.getContact().getEmailAddress(),
+						 "[Email Change Confirmation]", "http://localhost:9090/FBExportSystem/edit-account/"+customer.getContact().getEmailAddress()+"/"+editedCustomerAccount.getId()+"/"+DigestUtils.md5Hex(editedCustomerAccount.getContact().getEmailAddress()+editedCustomerAccount.getUsername()));
+			}
 			
 			ShippingAddress userAccountShippingAddress = editedCustomerAccount.getShippingAddresses().get(0);
 			
@@ -243,6 +255,41 @@ public class AccountSettingsServiceImpl implements AccountSettingsService {
 		}
 		
 		return errorMessages;
+	}
+
+
+	@Override
+	public String editEmail(Long id, String hashAddress, String email) {
+		Customer customer = customerRepository.findOne(id);
+		Customer customerEmail = customerRepository.findAccountByEmail(email);
+		
+		if(Objects.isNull(customerEmail)) {
+			if(Objects.isNull(customer)) {
+				return "Account not found";
+			}else {
+				if(hashAddress.equals(DigestUtils.md5Hex(customer.getContact().getEmailAddress()+customer.getUsername()))) {
+					if(!customer.isEnabled()) {
+						return "Account not activated";
+					}else {
+						if(!EmailValidator.getInstance()
+					 			  .isValid(email)) {
+							if (StringUtils.isBlank(email))
+								return "Email Address Cannot be empty";
+							else
+								return "Invalid Email Address"; 
+						}
+					}
+				}else
+					return "Account not found";
+			}
+		}else {
+			return "Email already exist";
+		}
+		
+		customer.getContact().setEmailAddress(email);
+		customerRepository.save(customer);
+		
+		return null;
 	}
 
 }

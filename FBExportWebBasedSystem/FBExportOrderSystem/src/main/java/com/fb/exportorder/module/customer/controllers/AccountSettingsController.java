@@ -1,13 +1,17 @@
 package com.fb.exportorder.module.customer.controllers;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -18,6 +22,7 @@ import com.fb.exportorder.models.Address;
 import com.fb.exportorder.models.Contact;
 import com.fb.exportorder.models.customer.Customer;
 import com.fb.exportorder.models.enums.Gender;
+import com.fb.exportorder.module.customer.repository.CustomerRepository;
 import com.fb.exportorder.module.customer.service.AccountSettingsService;
 import com.fb.exportorder.module.customer.service.CustomerService;
 
@@ -29,6 +34,9 @@ public class AccountSettingsController {
 	
 	@Autowired
 	AccountSettingsService accountSettingsService;
+	
+	@Autowired
+	CustomerRepository customerRepository;
 	
 	@RequestMapping("/account-settings")
 	public String accountSettings(Model model, HttpSession session) {
@@ -56,12 +64,13 @@ public class AccountSettingsController {
 															  @RequestParam("phone-number") String phoneNumber,
 															  @RequestParam("email-address") String emailAddress, 
 															  Model model, HttpSession session, RedirectAttributes redirectAttribute) {
+		long customerId = (long)session.getAttribute("customerId");
+		
+		Customer customer = customerRepository.findOne(customerId);
 		
 		Customer editedCustomer = new Customer();
 		Address editedAddress = new Address();
 		Contact editedContact = new Contact();
-		
-		long customerId = (long)session.getAttribute("customerId");
 		
 		editedCustomer.setId(customerId);
 		editedCustomer.setUsername(username);
@@ -87,7 +96,11 @@ public class AccountSettingsController {
 		List<String> errorMessages = accountSettingsService.editAccount(editedCustomer, oldpassword, profileImage, session);
 
 		if (errorMessages.isEmpty()) {
-			redirectAttribute.addFlashAttribute("successMessage", "Successfully Edited the account");
+			List<String> successMessages = new ArrayList<>();
+			if(!customer.getContact().getEmailAddress().equals(emailAddress))
+				successMessages.add("Please check your new email address to confirm");
+			successMessages.add("Successfully Edited the account");
+			redirectAttribute.addFlashAttribute("successMessages", successMessages);
 			return "redirect:/account-settings";
 		}
 		
@@ -96,5 +109,19 @@ public class AccountSettingsController {
 		
 		return "account-settings";
 	}
-
+	
+	@RequestMapping("/edit-account/{email}/{id}/{hashAddress}")
+	public String emailActivitation(@PathVariable Long id,
+									@PathVariable String hashAddress,
+									@PathVariable String email,
+									RedirectAttributes redirectAttribute) {
+		
+		String result = accountSettingsService.editEmail(id, hashAddress, email);
+		if(result != null)
+			redirectAttribute.addFlashAttribute("errorMessages", result);
+		else
+			redirectAttribute.addFlashAttribute("successMessages", "You've successfully change your email");
+		
+		return "redirect:/account-settings";
+	}
 }
