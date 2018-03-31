@@ -4,7 +4,6 @@
         <div class = "row">
             <div class = "col-lg">
                 <span class="h3 no-margin-bottom mr-2">Report logs</span>
-                <span class = "float-right"> <a href = "#"> Print log <i class="fa fa-print ml-1" aria-hidden="true"></i> </a> </span>
             </div>
         </div>
 

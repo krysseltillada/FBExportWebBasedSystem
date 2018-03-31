@@ -38,7 +38,7 @@
 	
 	
 	            <li class="nav-item dropdown"> 
-	            	<a id="notifications" rel="nofollow" data-target="#" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link">
+	            	<a id="notifications" rel="nofollow" data-target="#" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link pr-0">
 		            	<i class="fa fa-bell-o"></i>
 		            	<c:if test = "${fn:length(notificationsListQuery.rows) > 0}">
 		            		<span class="badge bg-red">${fn:length(notificationsListQuery.rows)}</span>
