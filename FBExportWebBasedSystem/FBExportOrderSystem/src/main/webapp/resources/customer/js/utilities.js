@@ -18,8 +18,9 @@ var showAddToCartModal = function (productItem, currency) {
         $addToCartModal.find("h5.modal-title strong span").text(productItem.name);
         $addToCartModal.find("h4#addToCartProductName").text(productItem.name);
         $addToCartModal.find("#priceAddToCartModalRealApprox").val(productItem.realPriceApprox);
-        $addToCartModalBody.find("span#addToCartModalProductDescription").text(productItem.description);
-        $addToCartModal.find("span#addToCartModalOrigin").text(productItem.origin);
+        $addToCartModalBody.find("span#productOrigin").text(productItem.origin);
+        $addToCartModalBody.find("span#productDescription").text(productItem.description);
+        $addToCartModal.find("span#addToCartModalAvailableWeight span").text(productItem.availableWeight);
         $addToCartModal.find("img#addToCartProductImage").attr("src", productItem.productImage);
         $addToCartModalBody.find("span#priceAddToCartModal").text(productItem.price);
         $addToCartModal.find("#product-id").val(productItem.productId);

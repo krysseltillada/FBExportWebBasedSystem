@@ -254,7 +254,13 @@ $(document).ready(function () {
     $("#btnAddToCart").click(function () {
 
         var $addToCartModal = $(this).closest("div#addToCartModal");
-
+        
+        if(Number($("#availableWeight").text()) < Number($("#quantity").val())){
+        	
+        	toastr.warning('Your order exceeds available stocks', 'Warning!');
+        	return;
+        }
+        
         if (accounting.unformat($("#totalPrice").val()) == 0) {
             $("#quantity").tooltip("show");
 
@@ -314,21 +320,20 @@ $(document).ready(function () {
     });
 
     $(".btnProductItemAddToCart").click(function (event) {
-
+    	
         var $card = $(event.currentTarget).parent().parent().parent();
         var $cardBody = $card.find("div.card-body");
 
         var $spansHeaderInfo = $card.children("span");
-
         var currency = $card.find("span>span:eq(1)").html();
-
         var productItem = {
             productImage : $card.find("img").attr("src"),
             price : $spansHeaderInfo.eq(0).text(),
             massType : $spansHeaderInfo.eq(1).find("span").text(),
-            origin : $spansHeaderInfo.eq(2).text(),
+            availableWeight : $spansHeaderInfo.eq(2).find("span").html(),
             name : $cardBody.find("h4.card-title a").text(),
-            description : $cardBody.find("p.card-text").text(),
+            origin : $cardBody.find("p.card-text span").html(),
+            description : $cardBody.find("p.card-text span").next().next().html(),
             productId : $cardBody.find("#product-id").val(),
             stockStatus : $cardBody.find("#product-stock-status").html(),
             datePosted : $cardBody.find("#product-date-posted").html(),

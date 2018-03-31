@@ -39,7 +39,7 @@
                         per <span> kilograms </span>
                     </span>
                     <span style = "position: absolute; color: white; bottom: 0px;  width: 40%; max-height: 30px; padding: 3px 5px 3px 5px; text-align: center; border: 1px solid white;" class = "rgba-black-strong">
-                        ${product.origin}
+                        Available : <span>${product.weight}</span> Kg
                     </span>
 
                     <img style="width: 100%; height: 450px;" src="<c:url value = '${product.productImageLink}' />" alt="First slide">
@@ -56,7 +56,7 @@
                         per <span> kilograms </span>
                     </span>
                     <span style = "position: absolute; color: white; bottom: 0px;  width: 40%; max-height: 30px; padding: 3px 5px 3px 5px; text-align: center; border: 1px solid white;" class = "rgba-black-strong">
-                        ${product.origin}
+                        Available : <span>${product.weight}</span> Kg
                     </span>
                     <img style="width: 100%; height: 450px;" src="<c:url value = '${product.previewImageLinks.get(0)}' />" alt="Second slide">
                 </div>
@@ -72,7 +72,7 @@
                         per <span> kilograms </span>
                     </span>
                     <span style = "position: absolute; color: white; bottom: 0px; width: 40%; max-height: 30px; padding: 3px 5px 3px 5px; text-align: center; border: 1px solid white;" class = "rgba-black-strong">
-                        ${product.origin}
+                        Available : <span>${product.weight}</span> Kg
                     </span>
                     <img style="width: 100%; height: 450px;" src="<c:url value = '${product.previewImageLinks.get(1)}' />" alt="Third slide">
 
@@ -89,7 +89,7 @@
                         per <span> kilograms </span>
                     </span>
                     <span style = "position: absolute; color: white; bottom: 0px; width: 40%; max-height: 30px; padding: 3px 5px 3px 5px; text-align: center; border: 1px solid white;" class = "rgba-black-strong">
-                        ${product.origin}
+                        Available : <span>${product.weight}</span> Kg
                     </span>
                     <img style="width: 100%; height: 450px;" src="<c:url value = '${product.previewImageLinks.get(2)}' />" alt="Third slide">
 
@@ -115,9 +115,10 @@
         <!--Content-->
         <div class="text-center card-body">
         	<input type="hidden" value="${product.productId}" id="productId"/>
-            <h4 class="card-title"> ${product.name} </h4>
-            <p class="card-text">
-                <i class="fa fa-quote-left"></i> ${product.description} </p>
+            <h4 class="card-title" style="word-break: break-all;"> ${product.name}</h4>
+            <h6 id="productOrigin" style="word-break: break-all;"> Origin : <span>${product.origin}</span></h6>
+            <p class="card-text" style="word-break: break-all;">
+                <i class="fa fa-quote-left"></i>${product.description}</p>
 				
 				<c:choose>
 					<c:when test="${product.weight <= 0}">

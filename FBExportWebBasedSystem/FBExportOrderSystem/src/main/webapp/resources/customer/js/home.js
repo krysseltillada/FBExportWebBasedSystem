@@ -8,7 +8,6 @@ $(document).ready(function () {
             $("#popularProductsCarousel").removeClass("pl-5").removeClass("pr-5");
             $("#popularProductsCarousel div.carousel-item>div.view").css("height", "auto");
         } else {
-            console.log("taeee");
             $("#popularProductsCarousel").addClass("pl-5").addClass("pr-5");
             $("#popularProductsCarousel div.carousel-item>div.view").removeAttr("style");
             $("#popularProductsCarousel div.carousel-item>div.view").css("height", "350px");
@@ -40,6 +39,7 @@ $(document).ready(function () {
                             var productItem =  productCardTemplate({
                                 productImageLink : response[i].productImageLink,
                                 price : response[i].price,
+                                weight : response[i].weight,
                                 origin : response[i].origin,
                                 name : response[i].name,
                                 description : response[i].description,
@@ -48,8 +48,6 @@ $(document).ready(function () {
                                 productId : response[i].productId,
                                 isCustomerLoggedIn : $("#customer-id").val()
                             });
-
-                            console.log(response[i]);
 
                             $(".productGridList:eq(0)").append(productItem);
 
@@ -62,6 +60,7 @@ $(document).ready(function () {
                             
                             $(".productGridList:eq(0) .card:last").fadeIn("slow");
                             $(".productGridList:eq(0) .card:last .btnProductItemAddToCart").click(function () {
+                            
                                     var $card = $(event.currentTarget).parent().parent().parent();
                                     var $cardBody = $card.find("div.card-body");
 
@@ -73,9 +72,10 @@ $(document).ready(function () {
                                         productImage : $card.find("img").attr("src"),
                                         price : $spansHeaderInfo.eq(0).text(),
                                         massType : $spansHeaderInfo.eq(1).find("span").text(),
-                                        origin : $spansHeaderInfo.eq(2).text(),
+                                        availableWeight : $spansHeaderInfo.eq(2).find("span").html(),
                                         name : $cardBody.find("h4.card-title a").text(),
-                                        description : $cardBody.find("p.card-text").text(),
+                                        origin : $cardBody.find("p.card-text span").html(),
+                                        description : $cardBody.find("p.card-text span").next().next().html(),
                                         productId : $cardBody.find("#product-id").val(),
                                         stockStatus : $cardBody.find("#product-stock-status").html(),
                                         datePosted : $cardBody.find("#product-date-posted").html(),
@@ -127,6 +127,7 @@ $(document).ready(function () {
                             var productItem =  productCardTemplate({
                                 productImageLink : response[i].productImageLink,
                                 price : response[i].price,
+                                weight : response[i].weight,
                                 origin : response[i].origin,
                                 name : response[i].name,
                                 description : response[i].description,
@@ -156,14 +157,15 @@ $(document).ready(function () {
                                 var $spansHeaderInfo = $card.children("span");
 
                                 var currency = $card.find("span>span:eq(1)").html();
-
+                                
                                 var productItem = {
                                     productImage : $card.find("img").attr("src"),
                                     price : $spansHeaderInfo.eq(0).text(),
                                     massType : $spansHeaderInfo.eq(1).find("span").text(),
-                                    origin : $spansHeaderInfo.eq(2).text(),
+                                    availableWeight : $spansHeaderInfo.eq(2).find("span").html(),
                                     name : $cardBody.find("h4.card-title a").text(),
-                                    description : $cardBody.find("p.card-text").text(),
+                                    origin : $cardBody.find("p.card-text span").html(),
+                                    description : $cardBody.find("p.card-text span").next().next().html(),
                                     productId : $cardBody.find("#product-id").val(),
                                     stockStatus : $cardBody.find("#product-stock-status").html(),
                                     datePosted : $cardBody.find("#product-date-posted").html(),
@@ -196,7 +198,6 @@ $(document).ready(function () {
 
     $(window).resize(function () {
         updateHomePositioning();
-        console.log("tae");
     });
 
     updateHomePositioning();

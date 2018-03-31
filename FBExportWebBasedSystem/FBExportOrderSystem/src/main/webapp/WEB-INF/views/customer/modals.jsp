@@ -64,9 +64,10 @@
                 <div class = "container p-0">
                     <div class = "row">
                         <div class = "col-md-5">
-                                <span id = "addToCartModalOrigin" style = "position: absolute; color: white; top: 270px; max-width: 280px; height: 30px; padding: 3px 5px 3px 5px; text-align: center; border: 1px solid white;" class = "rgba-black-strong">
-                                </span>
-                            <img class = "border rounded" id = "addToCartProductImage" alt = "Puffer fish yaay" src = "puffer-fish.jpg" width = "300" height = "300" />
+                                <span id = "addToCartModalAvailableWeight" style = "position: absolute; color: white; top: 270px; max-width: 280px; height: 30px; padding: 3px 5px 3px 5px; text-align: center; border: 1px solid white;" class = "rgba-black-strong">
+                                	Available : <span id="availableWeight"></span> Kg
+                                </span> 
+                            <img class = "border rounded" id = "addToCartProductImage" alt = "Product" src = "" width = "300" height = "300" />
                         </div>
 
                         <div class = "col-md-7">
@@ -93,6 +94,8 @@
                             <div class = "mt-2" style = "height: 70px; overflow-y: auto;">
 
                                 <span class = "text-left" id = "addToCartModalProductDescription">
+                                	Origin : <span id="productOrigin"></span> <br />
+                                	Description : <span id="productDescription"></span>
                                 </span>
                             </div>
 

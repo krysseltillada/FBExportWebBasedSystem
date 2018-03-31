@@ -84,7 +84,7 @@
 			</span>
 
 			<span style = "position: absolute; color: white;  top: 170px;  max-width: 200px; max-height: 30px; padding: 3px 5px 3px 5px; text-align: center; border: 1px solid white;" class = "rgba-black-strong">
-					{{=origin}}
+					Available : <span>{{=weight}}</span> Kg
 			</span>
 
 			<img src="/FBExportSystem{{=productImageLink}}" alt="{{=name}}" height = "200" />
@@ -93,11 +93,11 @@
 			<div class="card-body">
 
 
-				<h4 class="card-title"> <a href = "/FBExportSystem/view-product/{{=productId}}" class = "black-text"> {{=name}} </a> </h4>
+				<h4 class="card-title" style = "height: 30px; max-height: 30px; overflow-y: auto;"> <a href = "/FBExportSystem/view-product/{{=productId}}" class = "black-text"> {{=name}} </a> </h4>
 
 				<hr class = "m-0"/>
 
-				<p class="card-text mt-2" style = "height: 63px; max-height: 63px; overflow-y: auto;">{{=description}}</p>
+				<p class="card-text mt-2" style = "height: 63px; max-height: 63px; overflow-y: auto;">Origin : <span>{{=origin}}</span> <br/>Description : <span>{{=description}}</span></p>
 
 				<hr class = "m-0"/>
 

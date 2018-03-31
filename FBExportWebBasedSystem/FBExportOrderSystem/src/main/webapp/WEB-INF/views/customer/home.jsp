@@ -88,7 +88,7 @@
 			                </span>
 			
 			                <span style = "position: absolute; color: white;  top: 170px;  max-width: 200px; max-height: 30px; padding: 3px 5px 3px 5px; text-align: center; border: 1px solid white;" class = "rgba-black-strong">
-			                      ${product.origin}
+			                      Available : <span>${product.weight}</span> Kg
 			                </span>
 			
 			                <img src="<c:url value = '${product.productImageLink}' />" alt="${product.name}" height = "200" />
@@ -97,11 +97,11 @@
 			                <div class="card-body">
 			
 			
-			                    <h4 class="card-title"> <a href = "<c:url value = '/view-product/${product.productId}' />" class = "black-text"> ${product.name} </a> </h4>
+			                    <h4 class="card-title" style = "height: 30px; max-height: 30px; overflow-y: auto;"> <a href = "<c:url value = '/view-product/${product.productId}' />" class = "black-text"> ${product.name} </a> </h4>
 			
 			                    <hr class = "m-0"/>
 			
-			                    <p class="card-text mt-2" style = "height: 63px; max-height: 63px; overflow-y: auto;">${product.description}</p>
+			                    <p class="card-text mt-2" style = "height: 63px; max-height: 63px; overflow-y: auto;">Origin : <span>${product.origin}</span> <br/>Description : <span>${product.description}</span></p>
 			
 			                    <hr class = "m-0"/>
 			
@@ -121,7 +121,7 @@
 				                        	<c:if test="${product.status ne 'OUT_OF_STOCK'}">
 				                        		<a href="<c:url value = '/login' />" class="btn btn-primary" style = "position: relative; left: -8px; top: -4px; padding: 8px 10px 8px 10px;">
 					                            <i class="fa fa-cart-plus mr-1 mb-1" aria-hidden="true"></i>
-					                            Login to add</a>
+					                            Sign in</a>
 				                        	</c:if>
 				                        </c:otherwise>
 				                            
@@ -188,20 +188,19 @@
 			                </span>
 			
 			                <span style = "position: absolute; color: white;  top: 170px;  max-width: 200px; max-height: 30px; padding: 3px 5px 3px 5px; text-align: center; border: 1px solid white;" class = "rgba-black-strong">
-			                      ${product.origin}
+			                      Available : <span>${product.weight}</span> Kg
 			                </span>
 			
 			                <img src="<c:url value = '${product.productImageLink}' />" alt="${product.name}" height = "200" />
 			
+			                <div class="card-body" >
 			
-			                <div class="card-body">
+			                    <h4 class="card-title" style = "height: 30px; max-height: 30px; overflow-y: auto;"> <a href = "<c:url value = '/view-product/${product.productId}' />" class = "black-text"> ${product.name} </a> </h4>
 			
-			
-			                    <h4 class="card-title"> <a href = "<c:url value = '/view-product/${product.productId}' />" class = "black-text"> ${product.name} </a> </h4>
-			
+								
 			                    <hr class = "m-0"/>
 			
-			                    <p class="card-text mt-2" style = "height: 63px; max-height: 63px; overflow-y: auto;">${product.description}</p>
+			                    <p class="card-text mt-2" style = "height: 63px; max-height: 63px; overflow-y: auto;">Origin : <span>${product.origin}</span> <br/>Description : <span>${product.description}</span></p>
 			
 			                    <hr class = "m-0"/>
 			
@@ -219,15 +218,18 @@
 				                        </c:when>
 				                        <c:otherwise>
 				                        	<c:if test="${product.status ne 'OUT_OF_STOCK'}">
+				                        		
 				                        		<a href="<c:url value = '/login' />" class="btn btn-primary" style = "position: relative; left: -8px; top: -4px; padding: 8px 10px 8px 10px;">
 					                            <i class="fa fa-cart-plus mr-1 mb-1" aria-hidden="true"></i>
-					                            Login to add</a>
+					                            Sign in</a>
+					                            
 				                        	</c:if>
 				                        </c:otherwise>
 				                            
 			                        </c:choose>
 			
 									<span style = "font-size: 12px; position: absolute; top: 155px;" class = "black-text"> Stocks: <span id = "product-stock-status" style="color: ${(product.status != 'OUT_OF_STOCK' ) ? 'green' : 'red'}">${(product.status ne 'OUT_OF_STOCK' ) ? 'On Stock' : 'Out of Stock'} </span> </span>
+			                        
 			                        <span style = "font-size: 12px; position: absolute; top: 174px;" class = "black-text"> Posted on: <span id = "product-date-posted"> <fmt:formatDate value = '${product.datePosted}' type = 'date' dateStyle = 'LONG' /> </span> </span>
 			                        
 			                        <input type = "hidden" value = "${product.productId}" id = "product-id" />

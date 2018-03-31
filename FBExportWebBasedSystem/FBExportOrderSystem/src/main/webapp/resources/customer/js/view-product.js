@@ -44,13 +44,12 @@ $(document).ready(function () {
         
         var currency = $card.find("span>span:eq(1)").html();
         
-        console.log($spansHeaderInfo.html());
-
         var productItem = {
             productImage : $card.find("img").attr("src"),
             price : $spansHeaderInfo.eq(0).text(),
             massType : $spansHeaderInfo.eq(1).find("span").text(),
-            origin : $spansHeaderInfo.eq(5).text(),
+            availableWeight : $spansHeaderInfo.eq(5).find("span").html(),
+            origin : $cardBody.find("#productOrigin span").text(),
             name : $cardBody.find("h4.card-title").text(),
             description : $cardBody.find("p.card-text").text(),
             productId : $cardBody.find("#productId").val(),
