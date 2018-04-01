@@ -254,9 +254,12 @@ $(document).ready(function () {
     $("#btnAddToCart").click(function () {
 
         var $addToCartModal = $(this).closest("div#addToCartModal");
+        var val = $(this).parent().parent().find("#product-id").val();
+        var rowCart = $("div#shoppingModalCart div.modal-body>table").find(".product-id[value="+ val +"]").closest("tr").html();
         
-        if(Number($("#availableWeight").text()) < Number($("#quantity").val())){
-        	
+        var addedQuantity = Number($(rowCart).find(".productWeightCart").html()) + Number($("#quantity").val());
+        
+        if(Number($("#availableWeight").text()) < Number($("#quantity").val()) || Number(addedQuantity) > Number($("#availableWeight").text())){
         	toastr.warning('Your order exceeds available stocks', 'Warning!');
         	return;
         }
@@ -284,8 +287,6 @@ $(document).ready(function () {
             weightType : $addToCartModal.find("#massType>option:selected").html(),
             productId : $addToCartModal.find("#product-id").val()
         }
-
-        console.log(item);
 
         $.post("/FBExportSystem/add-to-cart", {
             customerCartJSON : JSON.stringify(item)
@@ -722,7 +723,6 @@ $(document).ready(function () {
     $("#cart").on("click", function(e) {
         e.preventDefault();
         e.stopPropagation();
-        console.log("tng inaaaaaaaa");
         $("#shoppingModalCart").modal('toggle');
     });
 

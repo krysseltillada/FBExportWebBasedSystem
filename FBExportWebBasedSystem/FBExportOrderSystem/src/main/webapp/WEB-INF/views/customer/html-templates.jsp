@@ -77,6 +77,7 @@
 
 			<span style = "position: absolute; color: white; left: 180px; width: 40%; overflow: hidden; padding: 5px; text-align: center; border: 1px solid white;" class = "rgba-black-strong">
 					<span id = "price">{{=price}}</span>  <span id = "currency">PHP</span>
+					<input type = "hidden" id = "real-price-approx" value = "" />
 			</span>
 
 			<span style = "position: absolute; color: white; left: 180px; top: 36px; width: 40%; padding: 3px 5px 3px 5px; text-align: center; border-width: 0px 1px 1px 1px; border-color: white; border-style: solid;" class = "rgba-black-strong">
@@ -107,7 +108,7 @@
 						{{ if(stockStatus != 'OUT_OF_STOCK' ) { }}
 					<a href="/FBExportSystem/login" class="btn btn-primary" style = "position: relative; left: -8px; top: -4px; padding: 8px 10px 8px 10px;">
 			                            <i class="fa fa-cart-plus mr-1 mb-1" aria-hidden="true"></i>
-			                            Login to add</a>
+			                            Sign in</a>
 						{{ } }}
 					{{  } else {  }}
 						{{ if(stockStatus != 'OUT_OF_STOCK' ) { }}

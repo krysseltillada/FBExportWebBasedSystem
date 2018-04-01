@@ -48,7 +48,7 @@ $(document).ready(function () {
                                 productId : response[i].productId,
                                 isCustomerLoggedIn : $("#customer-id").val()
                             });
-
+                            
                             $(".productGridList:eq(0)").append(productItem);
 
                             var basePrice = $(".productGridList:eq(0) .card:last #price").html();
@@ -60,8 +60,11 @@ $(document).ready(function () {
                             
                             $(".productGridList:eq(0) .card:last").fadeIn("slow");
                             $(".productGridList:eq(0) .card:last .btnProductItemAddToCart").click(function () {
-                            
+                            		
                                     var $card = $(event.currentTarget).parent().parent().parent();
+                                    
+                                    $card.find("#real-price-approx").val(basePriceToCurrentPrice);
+                                    
                                     var $cardBody = $card.find("div.card-body");
 
                                     var $spansHeaderInfo = $card.children("span");
