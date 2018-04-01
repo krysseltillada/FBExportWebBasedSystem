@@ -22,6 +22,8 @@ public class UserAccessLog {
 	
 	private String ipAddress;
 	
+	private String description;
+	
 	@Temporal(TemporalType.DATE)
 	private Date dateOccured;
 	
@@ -42,6 +44,14 @@ public class UserAccessLog {
 
 	public void setIpAddress(String ipAddress) {
 		this.ipAddress = ipAddress;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
 	public Date getDateOccured() {

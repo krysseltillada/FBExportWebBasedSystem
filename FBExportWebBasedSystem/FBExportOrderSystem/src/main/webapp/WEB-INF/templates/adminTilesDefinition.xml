@@ -49,6 +49,7 @@
 			<add-attribute value = "/resources/admin/js/pdfmake.min.js" />
 			<add-attribute value = "/resources/admin/js/vfs_fonts.js" />
 			<add-attribute value = "/resources/admin/js/buttons.html5.min.js" />
+			<add-attribute value = "/resources/admin/js/buttons.print.min.js" />
 			<add-attribute value = "/resources/admin/js/dataTables.bootstrap4.min.js" />	
 			<add-attribute value = "/resources/admin/js/timepicki.js" />
 			<add-attribute value = "/resources/admin/js/underscore.js" />
@@ -161,9 +162,22 @@
 		
 	</definition>
 	
-	<definition name = "report-logs" extends = "adminBaseTemplate">
+	<definition name = "report-logs/system-logs" extends = "adminBaseTemplate">
 	
-		<put-attribute name = "main" value = "/WEB-INF/views/admin/report-logs.jsp" />
+		<put-attribute name = "main" value = "/WEB-INF/views/admin/system-logs.jsp" />
+		<put-attribute name = "sideBarActiveLink" value = "report-logs" />
+		
+		
+		<put-list-attribute name = "javascriptfiles" inherit = "true">
+			<add-attribute value = "/resources/admin/js/notification.js" />
+			<add-attribute value = "/resources/admin/js/report-logs.js" />
+		</put-list-attribute>
+	
+	</definition>
+	
+	<definition name = "report-logs/user-access-logs" extends = "adminBaseTemplate">
+	
+		<put-attribute name = "main" value = "/WEB-INF/views/admin/user-access-logs.jsp" />
 		<put-attribute name = "sideBarActiveLink" value = "report-logs" />
 		
 		

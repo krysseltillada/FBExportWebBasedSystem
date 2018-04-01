@@ -17,8 +17,10 @@ import org.springframework.stereotype.Component;
 
 import com.fb.exportorder.models.Employee;
 import com.fb.exportorder.models.SystemSettings;
+import com.fb.exportorder.models.UserAccessLog;
 import com.fb.exportorder.module.admin.repository.ManageEmployeeRepository;
 import com.fb.exportorder.module.admin.repository.SystemSettingsRepository;
+import com.fb.exportorder.module.admin.service.UserAccessLogService;
 import com.fb.exportorder.module.admin.session.EmployeeSessionBean;
 import com.fb.exportorder.utilities.Time;
 
@@ -34,6 +36,9 @@ public class LoginSuccessHandler implements AuthenticationSuccessHandler{
 	
 	@Autowired
 	EmployeeSessionBean employeeSessionBean;
+	
+	@Autowired
+	UserAccessLogService userAccessLogService;
 	
 	@Override
 	public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication auth)
@@ -95,6 +100,22 @@ public class LoginSuccessHandler implements AuthenticationSuccessHandler{
 			employeeByEmail.setOnline(true);
 			employeeRepository.save(employeeByEmail);
 		}
+		
+		UserAccessLog userAccessLog = new UserAccessLog();
+		
+		if (Objects.nonNull(employee)) {
+			userAccessLog.setEmployee(employee);
+			userAccessLog.setDescription(employee.getFirstname() + " " + employee.getLastname() + " has logged in");
+		} else if (Objects.nonNull(employeeByEmail)) {
+			userAccessLog.setEmployee(employeeByEmail);
+			userAccessLog.setDescription(employee.getFirstname() + " " + employee.getLastname() + " has logged in");
+		}
+		
+		userAccessLog.setIpAddress(request.getRemoteAddr());
+		userAccessLog.setTimeOccured(new Date());
+		userAccessLog.setDateOccured(new Date());
+		
+		userAccessLogService.addUserAccessLog(userAccessLog);
 		
 		response.sendRedirect(request.getServletContext().getContextPath() + "/admin/dashboard");
 		

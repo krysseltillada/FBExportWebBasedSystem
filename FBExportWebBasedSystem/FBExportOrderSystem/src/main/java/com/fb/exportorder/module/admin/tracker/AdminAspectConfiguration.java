@@ -12,5 +12,10 @@ public class AdminAspectConfiguration {
 	public AdminNotificationTracker adminNotificationTracker() {
 		return new AdminNotificationTracker();
 	}
+	
+	@Bean
+	public ReportLogTracker reportLogTracker() {
+		return new ReportLogTracker();
+	}
 
 }

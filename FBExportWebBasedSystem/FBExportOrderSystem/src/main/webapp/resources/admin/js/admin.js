@@ -102,7 +102,7 @@ $(document).ready(function () {
         }
          
         function goInactive() {
-        	window.location.replace(window.location.origin + "/FBExportSystem/admin/sign-out");
+            window.location.replace(window.location.origin + "/FBExportSystem/admin/sign-out?isSystemAutoLogout=true");
         }
          
         function goActive() {

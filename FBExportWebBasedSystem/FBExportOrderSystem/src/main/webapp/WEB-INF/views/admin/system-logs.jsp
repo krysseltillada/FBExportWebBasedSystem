@@ -1,3 +1,5 @@
+<%@ include file = "../../lib/tags/tag-libraries.jsp" %>
+
 <header class="page-header pb-3">
     <div class="container-fluid">
 
@@ -20,10 +22,10 @@
 
                 <ul class="nav nav-tabs">
                 <li class="nav-item">
-                    <a class="nav-link active" href="#">System logs</a>
+                    <a class="nav-link active" href="<c:url value = '/admin/report-logs' />">System logs</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">User access logs</a>
+                    <a class="nav-link" href="<c:url value = '/admin/report-logs/user-access-logs' />">User access logs</a>
                 </li>
                 
                 </ul>
@@ -50,37 +52,15 @@
                         </tr>
                     </tfoot>
                     <tbody>
-                        <tr>
-                            <td>Settings</td>
-                            <td>Change log out time to 2:10 pm by kryssel tillada</td>
-                            <td>11/28/2018</td>
-                            <td>11:30 PM</td>
-                        </tr>
-                        <tr>
-                            <td>System</td>
-                            <td>System Start</td>
-                            <td>11/28/2018</td>
-                            <td>11:30 PM</td>
-                        </tr>
-                        <tr>
-                            <td>System</td>
-                            <td>System Shutdown</td>
-                            <td>11/28/2018</td>
-                            <td>11:30 PM</td>
-                        </tr>
-                        <tr>
-                            <td>System</td>
-                            <td>System backup</td>
-                            <td>11/28/2018</td>
-                            <td>11:30 PM</td>
-                        </tr>
-                        <tr>
-                            <td>Settings</td>
-                            <td>Change system backup time to 2:00 by kryssel tillada</td>
-                            <td>11/28/2018</td>
-                            <td>11:30 PM</td>
-                        </tr>
-                        
+                    	<c:forEach var = "systemLog" items = "${systemLogList}">
+                    		
+	                        <tr>
+	                            <td>${systemLog.actionType}</td>
+	                            <td>${systemLog.description}</td>
+	                            <td><fmt:formatDate value = "${systemLog.dateOccured}" type = "date" dateStyle = "LONG" /></td>
+	                            <td><fmt:formatDate value = "${systemLog.timeOccured}" type = "time" timeStyle = "MEDIUM" /></td>
+	                        </tr>
+                        </c:forEach>
                     </tbody>
                 </table>
 
