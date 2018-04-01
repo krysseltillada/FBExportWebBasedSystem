@@ -1,5 +1,9 @@
 <%@ include file = "../../lib/tags/tag-libraries.jsp" %>
 
+<!--FLOATING ACTION -->
+	<a class="move-up wobble smooth-scroll" href="#move-top" style="padding-left: 14px; padding-top: 4px;"><i class="fa fa-angle-up fa-3x" aria-hidden="true"></i></a>
+<!--FLOATING ACTION -->
+
 <!--Footer-->
 <footer class="page-footer font-small stylish-color-dark pt-4 mt-4">
 
