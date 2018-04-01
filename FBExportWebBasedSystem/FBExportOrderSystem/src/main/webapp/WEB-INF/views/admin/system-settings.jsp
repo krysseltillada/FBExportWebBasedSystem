@@ -44,7 +44,7 @@
 		                            data-timepicki-tim="${systemSettings[0]}" data-timepicki-mini="${systemSettings[1]}" data-timepicki-meri="${systemSettings[3]}"  style = "width: 100px;" />
 		                    
 		                    <button type="button" class="btn btn-primary btn-sm mr-1" id="btnBackupData">Backup data</button>
-		                    <button type="button" class="btn btn-primary btn-sm" id="btnRestoreData">Restore data</button>
+		                    <button type="button" class="btn btn-primary btn-sm" id="btnRestoreData" ${isBackupFileExist ? '' : 'disabled'}>Restore data</button>
 		
 		                </div>
 		

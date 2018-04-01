@@ -47,7 +47,8 @@ public class SystemSettingsController {
 		
 		model.addAttribute("systemSettings", timeSplit);
 		model.addAttribute("logoutTime", systemSettings.getLogoutTime().getMinutes());
-		
+		model.addAttribute("isBackupFileExist",systemSettingsService.isSystemBackupFileExist("src\\main\\webapp\\system-backup\\fbexport_backup.sql"));
+		System.out.println(systemSettingsService.isSystemBackupFileExist("src\\main\\webapp\\system-backup\\fbexport_backup.sql"));
 		return "system-settings";
 	}
 	

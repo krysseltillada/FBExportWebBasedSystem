@@ -9,4 +9,6 @@ public interface SystemSettingsService {
 	public List<SystemSettings> findAll();
 	
 	public void addSystemSettings(SystemSettings systemSettings);
+	
+	public boolean isSystemBackupFileExist(String filePathString);
 }

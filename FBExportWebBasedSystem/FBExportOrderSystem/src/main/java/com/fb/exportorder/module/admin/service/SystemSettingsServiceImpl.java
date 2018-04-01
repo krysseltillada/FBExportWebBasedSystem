@@ -1,5 +1,6 @@
 package com.fb.exportorder.module.admin.service;
 
+import java.io.File;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +23,14 @@ public class SystemSettingsServiceImpl implements SystemSettingsService {
 	@Override
 	public void addSystemSettings(SystemSettings systemSettings) {
 		systemSettingsRepository.save(systemSettings);
+	}
+
+	@Override
+	public boolean isSystemBackupFileExist(String filePathString) {
+		File f = new File(filePathString);
+		if(f.exists() && !f.isDirectory()) 
+		    return true;
+		return false;
 	}
 	
 	
