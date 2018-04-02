@@ -1,28 +1,25 @@
 package com.fb.exportorder.module.admin.controllers;
 
-import java.util.List;
-import java.util.Map;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.fb.exportorder.models.customer.Order;
 import com.fb.exportorder.module.customer.service.CustomerService;
 import com.fb.exportorder.module.customer.service.OrderService;
 import com.fb.exportorder.module.customer.service.ProductService;
 
 @Controller
 public class DashboardController {
-	@Autowired
-	OrderService orderService;
 	
 	@Autowired
-	ProductService productService;
+	private OrderService orderService;
 	
 	@Autowired
-	CustomerService customerService;
+	private ProductService productService;
+	
+	@Autowired
+	private CustomerService customerService;
 	
 	@RequestMapping("/admin/dashboard")
 	public String dashboard(Model model) {

@@ -217,7 +217,7 @@ $(document).ready(function () {
                         titleColor: '#ffffff',
                         messageColor : "#ffffff",
                         title: notification.header,
-                        message: notification.description,
+                        message: notification.description
                     });
 
                 }

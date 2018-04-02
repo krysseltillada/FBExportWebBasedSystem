@@ -1,6 +1,6 @@
 $(document).ready (function () {
     $('#systemLog').DataTable({
-        dom: 'Bfrtip',
+        dom: 'lBfrtip',
         buttons: [
             {
                 extend : "copyHtml5",
@@ -37,7 +37,7 @@ $(document).ready (function () {
     });
 
      $('#userAccessLog').DataTable({
-        dom: 'Bfrtip',
+        dom: 'lBfrtip',
         buttons: [
             {
                 extend : "copyHtml5",

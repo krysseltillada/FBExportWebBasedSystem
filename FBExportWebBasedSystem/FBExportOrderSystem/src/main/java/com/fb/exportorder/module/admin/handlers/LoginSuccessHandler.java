@@ -29,16 +29,16 @@ import com.fb.exportorder.utilities.Time;
 public class LoginSuccessHandler implements AuthenticationSuccessHandler{
 
 	@Autowired
-	ManageEmployeeRepository employeeRepository;
+	private ManageEmployeeRepository employeeRepository;
 	
 	@Autowired
-	SystemSettingsRepository systemSettingsRepository;
+	private SystemSettingsRepository systemSettingsRepository;
 	
 	@Autowired
-	EmployeeSessionBean employeeSessionBean;
+	private EmployeeSessionBean employeeSessionBean;
 	
 	@Autowired
-	UserAccessLogService userAccessLogService;
+	private UserAccessLogService userAccessLogService;
 	
 	@Override
 	public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication auth)
@@ -108,7 +108,7 @@ public class LoginSuccessHandler implements AuthenticationSuccessHandler{
 			userAccessLog.setDescription(employee.getFirstname() + " " + employee.getLastname() + " has logged in");
 		} else if (Objects.nonNull(employeeByEmail)) {
 			userAccessLog.setEmployee(employeeByEmail);
-			userAccessLog.setDescription(employee.getFirstname() + " " + employee.getLastname() + " has logged in");
+			userAccessLog.setDescription(employeeByEmail.getFirstname() + " " + employeeByEmail.getLastname() + " has logged in");
 		}
 		
 		userAccessLog.setIpAddress(request.getRemoteAddr());

@@ -29,22 +29,22 @@ import edu.vt.middleware.password.RuleResult;
 public class AccountSettingsServiceImpl implements AccountSettingsService {
 	
 	@Value("${server.context-path}")
-	String serverContextPath;
+	private String serverContextPath;
 	
 	@Value("${profile-img-context-location}")
-	String profileImageContextLocation;
+	private String profileImageContextLocation;
 
 	@Autowired
-	BCryptPasswordEncoder passwordEncoder;
+	private BCryptPasswordEncoder passwordEncoder;
 	
 	@Autowired
-	CustomerRepository customerRepository;
+	private CustomerRepository customerRepository;
 	
 	@Autowired
-	PasswordValidator passwordValidator;
+	private PasswordValidator passwordValidator;
 	
 	@Autowired
-	ServletContext servletContext;
+	private ServletContext servletContext;
 	
 	private List<String> validate (Customer customer, String oldPassword) {
 		

@@ -31,16 +31,16 @@ import com.fb.exportorder.module.customer.repository.NotificationRepository;
 public class CustomerServiceImpl implements CustomerService {
 
 	@Autowired
-	CustomerRepository customerRepository;
+	private CustomerRepository customerRepository;
 	
 	@Autowired
-	ActivityRepository activityRepository;
+	private ActivityRepository activityRepository;
 	
 	@Autowired
-	ItemRepository itemRepository;
+	private ItemRepository itemRepository;
 	
 	@Autowired
-	NotificationRepository notificationRepository;
+	private NotificationRepository notificationRepository;
 	
 	@Override
 	public Customer getCustomerById(long customerId) {

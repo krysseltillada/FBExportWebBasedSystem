@@ -35,13 +35,13 @@ import com.fb.exportorder.module.customer.service.YourAddressService;
 public class PlaceOrderController {
 	
 	@Autowired
-	CustomerService customerService;
+	private CustomerService customerService;
 	
 	@Autowired
-	YourAddressService yourAddressService;
+	private YourAddressService yourAddressService;
 	
 	@Autowired
-	OrderService orderService;
+	private OrderService orderService;
 	
 	@RequestMapping("/place-order")
 	public String placeOrder (Model model, HttpSession session) {

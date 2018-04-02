@@ -18,7 +18,7 @@ import com.fb.exportorder.module.admin.repository.ManageCustomerRepository;
 public class ManageCustomerServiceImpl implements ManageCustomerService {
 	
 	@Autowired
-	ManageCustomerRepository customerRepository;
+	private ManageCustomerRepository customerRepository;
 	
 	private List<String> validate(Customer customer) {
 		Contact customerContact = customer.getContact();

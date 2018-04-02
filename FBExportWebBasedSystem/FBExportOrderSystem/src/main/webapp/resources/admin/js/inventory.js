@@ -325,11 +325,42 @@ $(document).ready(function (){
 	}, "json");
 	
 	var table = $('#inventoryTable').DataTable( { 
+		dom: 'lBfrtip',
+        buttons: [
+            {
+                extend : "copyHtml5",
+                title: 'FONG BROS INVENTORY LIST',
+                messageBottom: "List generated: " + moment(new Date()).format("MMMM D, YYYY")
+            },
+            {
+                extend : "excelHtml5",
+                title: 'FONG BROS INVENTORY LIST',
+                messageBottom: "List generated: " + moment(new Date()).format("MMMM D, YYYY")
+            },
+            {
+                extend : "csvHtml5",
+                title: 'FONG BROS INVENTORY LIST',
+                messageBottom: "List generated: " + moment(new Date()).format("MMMM D, YYYY")
+            },
+            {
+                extend : "pdfHtml5",
+                title: 'FONG BROS INVENTORY LIST',
+                messageBottom: "List generated: " + moment(new Date()).format("MMMM D, YYYY"),
+                download: 'open'
+            },
+            {
+                extend : "print",
+                title : "",
+                messageBottom: "List generated: " + moment(new Date()).format("MMMM D, YYYY"),
+                customize : function (win) {
+                    $(win.document.body).prepend("<h1> <img class = 'mr-2' src = '" + window.location.origin + "/FBExportSystem/resources/company-logo.png' width = '50' height = '50' /> FONG BROS INVENTORY LIST </h1>");
+                }
+            }
+        ],
 		"language" : {
         "emptyTable" : "No products found",
         "zeroRecords" : "No products found"
         },
-		"processing" : true,
 		"columns": [
 		{
 				'searchable': false,

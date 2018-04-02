@@ -32,18 +32,16 @@ import com.fb.exportorder.module.customer.service.OrderService;
 @Controller
 public class OrdersController {
 	
-	//TODO make the order management module
+	@Autowired
+	private OrderService orderService;
 	
 	@Autowired
-	OrderService orderService;
+	private ShippingService shippingService;
 	
 	@Autowired
-	ShippingService shippingService;
+	private ShippingLogService shippingLogService;
 	
-	@Autowired
-	ShippingLogService shippingLogService;
-	
-	Map<OrderStatus, String> orderStatusColor = new HashMap<OrderStatus, String>(){{
+	private Map<OrderStatus, String> orderStatusColor = new HashMap<OrderStatus, String>(){{
 		put(OrderStatus.TO_SHIP, "#796AEE");
 		put(OrderStatus.RECEIVED, "#0275D8");
 		put(OrderStatus.REJECTED, "#D9534F");
@@ -55,7 +53,7 @@ public class OrdersController {
 		put(OrderStatus.RETURNED, "#795548");
 	}};
 	
-	Map<OrderStatus, String> orderStatusMessage = new HashMap<OrderStatus, String>(){{
+	private Map<OrderStatus, String> orderStatusMessage = new HashMap<OrderStatus, String>(){{
 		put(OrderStatus.TO_SHIP, "To Ship");
 		put(OrderStatus.RECEIVED, "Received");
 		put(OrderStatus.REJECTED, "Rejected");
@@ -67,8 +65,8 @@ public class OrdersController {
 		put(OrderStatus.RETURNED, "Returned");
 	}};
 	
-	SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-	SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm");
+	private SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+	private SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm");
 	
 	@RequestMapping("/admin/orders")
 	public String orders(Model model) {

@@ -8,17 +8,12 @@ import org.aspectj.lang.annotation.After;
 import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.Aspect;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.fb.exportorder.models.Product;
 import com.fb.exportorder.models.customer.Activity;
 import com.fb.exportorder.models.customer.Customer;
 import com.fb.exportorder.models.customer.Order;
 import com.fb.exportorder.models.customer.Rating;
-import com.fb.exportorder.models.customer.Review;
 import com.fb.exportorder.module.customer.service.CustomerService;
 import com.fb.exportorder.module.customer.session.CustomerSessionBean;
 
@@ -26,10 +21,10 @@ import com.fb.exportorder.module.customer.session.CustomerSessionBean;
 public class ActivityTracker {
 
 	@Autowired
-	CustomerSessionBean customerSessionBean;
+	private CustomerSessionBean customerSessionBean;
 	
 	@Autowired
-	CustomerService customerService;
+	private CustomerService customerService;
 	
 	@AfterReturning(pointcut="execution(public com.fb.exportorder.models.customer.Order com.fb.exportorder..service.OrderService+.order(..))",
 					returning = "returnedOrder")

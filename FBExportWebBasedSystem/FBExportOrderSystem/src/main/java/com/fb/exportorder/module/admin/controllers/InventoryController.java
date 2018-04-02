@@ -2,7 +2,6 @@ package com.fb.exportorder.module.admin.controllers;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -38,7 +37,7 @@ import com.fb.exportorder.utilities.UploadImage;
 public class InventoryController {
 	
 	@Autowired
-	InventoryService inventoryService;
+	private InventoryService inventoryService;
 	
 	@RequestMapping("/admin/inventory")
 	public String inventory (Model model) {

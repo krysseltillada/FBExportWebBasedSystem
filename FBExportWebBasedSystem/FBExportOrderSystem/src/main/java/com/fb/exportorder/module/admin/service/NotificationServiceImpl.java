@@ -23,7 +23,7 @@ import com.fb.exportorder.module.admin.session.EmployeeSessionBean;
 public class NotificationServiceImpl implements NotificationService {
 	
 	@Autowired
-	EmployeeSessionBean employeeSessionBean;
+	private EmployeeSessionBean employeeSessionBean;
 
 	@Autowired
 	private SystemNotificationRepository systemNotificationRepository;

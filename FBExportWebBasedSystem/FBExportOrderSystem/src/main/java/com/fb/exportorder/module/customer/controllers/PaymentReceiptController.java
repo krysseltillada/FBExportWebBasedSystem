@@ -20,10 +20,10 @@ import com.fb.exportorder.module.customer.service.OrderService;
 public class PaymentReceiptController {
 	
 	@Autowired
-	OrderService orderService;
+	private OrderService orderService;
 	
 	@Autowired
-	CustomerService customerService;
+	private CustomerService customerService;
 	
 	@RequestMapping("/payment-receipt")
 	public String paymentReceipt(@RequestParam String orderId,

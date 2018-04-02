@@ -18,10 +18,10 @@ import com.fb.exportorder.module.customer.repository.ShippingAddressRepository;
 public class YourAddressServiceImpl implements YourAddressService {
 
 	@Autowired
-	CustomerRepository customerRepository;
+	private CustomerRepository customerRepository;
 	
 	@Autowired
-	ShippingAddressRepository shippingAddressRepository;
+	private ShippingAddressRepository shippingAddressRepository;
 	
 	private List<String> validate (ShippingAddress shippingAddress) {
 		

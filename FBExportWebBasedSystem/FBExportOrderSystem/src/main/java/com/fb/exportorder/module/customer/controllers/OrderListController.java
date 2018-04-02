@@ -23,10 +23,10 @@ import com.fb.exportorder.module.customer.service.OrderService;
 public class OrderListController {
 	
 	@Autowired
-	CustomerService customerService;
+	private CustomerService customerService;
 	
 	@Autowired
-	OrderService orderService;
+	private OrderService orderService;
 	
 	private static final int ORDER_ITEMS_COUNT = 5;
 	

@@ -41,11 +41,11 @@ public interface CustomerRepository
 	@Query("SELECT COUNT (c.username) > 0 FROM Customer c WHERE c.username = :username")
 	boolean isUsernameExists (@Param("username") String username);
 	
-	@Query("SELECT c.orders FROM Customer c WHERE c.id = :customerId")
+	@Query("SELECT o FROM Orders o WHERE o.customer.id = :customerId ORDER BY o.orderId DESC")
 	List<Order> getOrdersByCustomerId (@Param("customerId") long customerId, Pageable pageable);
 	
 	@Query(value="SELECT COUNT(*), c.online FROM customer c GROUP BY c.online", nativeQuery=true)
-	public List<Object[]> getOnlineUsersCount();
+	List<Object[]> getOnlineUsersCount();
 	
 	@Query(value = "SELECT * FROM notification n INNER JOIN customer_notifications cn ON n.notification_id = cn.notifications_notification_id WHERE cn.customer_id = :id ORDER BY n.date DESC LIMIT :record OFFSET :offset",
 		   nativeQuery = true)

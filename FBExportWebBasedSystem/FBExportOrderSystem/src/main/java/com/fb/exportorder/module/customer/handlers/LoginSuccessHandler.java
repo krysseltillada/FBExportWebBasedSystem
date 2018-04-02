@@ -22,13 +22,13 @@ import com.fb.exportorder.module.customer.session.CustomerSessionBean;
 public class LoginSuccessHandler implements AuthenticationSuccessHandler {
 
 	@Autowired
-	CustomerSessionBean customerSessionBean;
+	private CustomerSessionBean customerSessionBean;
 	
 	@Autowired
-	CustomerRepository customerRepository;
+	private CustomerRepository customerRepository;
 	
 	@Value("${fbexport.server.domain.name}")
-	String serverDomainName;
+	private String serverDomainName;
 	
 	@Override
 	public void onAuthenticationSuccess(HttpServletRequest request, 

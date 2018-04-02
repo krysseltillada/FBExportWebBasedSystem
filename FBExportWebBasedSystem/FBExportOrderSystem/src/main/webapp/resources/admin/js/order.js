@@ -81,6 +81,7 @@ $(document).ready(function () {
     // });
     
     var table = $('#orderTable').DataTable( {
+        
         "language" : {
         "emptyTable" : "No orders found",
         "zeroRecords" : "No orders found"

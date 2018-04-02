@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.fb.exportorder.models.Address;
-import com.fb.exportorder.models.Authorities;
 import com.fb.exportorder.models.Contact;
 import com.fb.exportorder.models.Employee;
 import com.fb.exportorder.models.customer.Activity;
@@ -33,13 +32,13 @@ import com.google.gson.Gson;
 public class ManageAccountsController {
 	
 	@Autowired
-	ManageEmployeeService employeeService;
+	private ManageEmployeeService employeeService;
 	
 	@Autowired
-	ManageCustomerService customerService;
+	private ManageCustomerService customerService;
 	
 	@Autowired
-	ManageActivityService activityService;
+	private ManageActivityService activityService;
 	
 	@RequestMapping("/admin/manage-accounts")
 	public String manageAccounts(Model model) {

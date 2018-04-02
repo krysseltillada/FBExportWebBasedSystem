@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
-import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,15 +16,12 @@ import com.fb.exportorder.module.customer.repository.OrderRepository;
 
 @Service
 public class ShippingLogServiceImpl implements ShippingLogService {
-
-	@Autowired
-	SessionFactory sessionFactory;
 	
 	@Autowired
-	OrderRepository orderRepository;
+	private OrderRepository orderRepository;
 	
 	@Autowired
-	ShippingLogRepository shippingLogRepository;
+	private ShippingLogRepository shippingLogRepository;
 	
 	private SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 	private SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm");

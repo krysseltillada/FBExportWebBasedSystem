@@ -2,8 +2,6 @@ package com.fb.exportorder.module.admin.tracker;
 
 import java.util.Date;
 
-import javax.servlet.http.HttpSession;
-
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.After;
 import org.aspectj.lang.annotation.AfterReturning;
@@ -11,25 +9,18 @@ import org.aspectj.lang.annotation.Aspect;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 
-import com.fb.exportorder.models.Product;
 import com.fb.exportorder.models.SystemNotification;
 import com.fb.exportorder.models.customer.Customer;
 import com.fb.exportorder.models.customer.Order;
 import com.fb.exportorder.models.enums.SystemNotificationStatus;
-import com.fb.exportorder.module.admin.service.InventoryService;
 import com.fb.exportorder.module.admin.service.NotificationService;
-import com.fb.exportorder.module.admin.session.EmployeeSessionBean;
 
 @Aspect
 public class AdminNotificationTracker {
 	
 	@Autowired
 	@Qualifier("AdminNotificationService")
-	NotificationService notificationService;
-	
-	@Autowired
-	InventoryService inventoryService;
-	
+	private NotificationService notificationService;
 
 	@After("execution(public void com.fb.exportorder..service.OrderService+.markReceived(..))")
 	public void detectReceiveOrder(JoinPoint joinPoint) {
@@ -176,5 +167,6 @@ public class AdminNotificationTracker {
 		notificationService.pushNotification(systemNotification);
 
 	}
+	
 	
 }

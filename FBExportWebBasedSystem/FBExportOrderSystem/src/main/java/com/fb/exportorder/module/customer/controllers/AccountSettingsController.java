@@ -25,10 +25,10 @@ import com.fb.exportorder.module.customer.service.CustomerService;
 public class AccountSettingsController {
 	
 	@Autowired
-	CustomerService customerService;
+	private CustomerService customerService;
 	
 	@Autowired
-	AccountSettingsService accountSettingsService;
+	private AccountSettingsService accountSettingsService;
 	
 	@RequestMapping("/account-settings")
 	public String accountSettings(Model model, HttpSession session) {

@@ -1,6 +1,5 @@
 package com.fb.exportorder.module.customer.controllers;
 
-import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
@@ -25,23 +24,19 @@ import com.fb.exportorder.models.customer.Weight;
 import com.fb.exportorder.models.enums.WeightType;
 import com.fb.exportorder.module.admin.service.InventoryService;
 import com.fb.exportorder.module.customer.service.CustomerService;
-import com.fb.exportorder.module.customer.service.EmailService;
 import com.fb.exportorder.module.customer.service.NotificationService;
 
 @Controller
 public class HomeController {
 
 	@Autowired
-	InventoryService inventoryService;
+	private InventoryService inventoryService;
 	
 	@Autowired
-	CustomerService customerService;
+	private CustomerService customerService;
 	
 	@Autowired
-	NotificationService notificationService;
-	
-	@Autowired
-	EmailService emailService;
+	private NotificationService notificationService;
 	
 	@RequestMapping(value = "/get-notification")
 	@ResponseBody

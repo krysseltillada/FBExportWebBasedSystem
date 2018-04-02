@@ -25,7 +25,9 @@ $(function () {
                 "progressBar": false,
                 "positionClass": "toast-bottom-right",
                 "preventDuplicates": false,
-                "onclick": null,
+                "onclick": function () {
+                    window.location.href = window.location.origin + "/FBExportSystem/order-list";
+                },
                 "showDuration": "300",
                 "hideDuration": "1000",
                 "timeOut": "6000",

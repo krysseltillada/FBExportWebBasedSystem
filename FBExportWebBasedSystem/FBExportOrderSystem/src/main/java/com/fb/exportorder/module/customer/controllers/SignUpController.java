@@ -26,7 +26,7 @@ import com.fb.exportorder.utilities.MD5Encoder;
 public class SignUpController {
 	
 	@Autowired
-	CustomerSignUpService customerSignUpService;
+	private CustomerSignUpService customerSignUpService;
 	
 	@Autowired
 	private EmailService emailService;

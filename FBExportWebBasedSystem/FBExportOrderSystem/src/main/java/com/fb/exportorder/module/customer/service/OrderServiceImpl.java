@@ -34,16 +34,16 @@ import com.fb.exportorder.module.customer.repository.OrderRepository;
 public class OrderServiceImpl implements OrderService {
 	
 	@Autowired
-	OrderService orderService;
+	private OrderService orderService;
 	
 	@Autowired
-	OrderRepository orderRepository;
+	private OrderRepository orderRepository;
 	
 	@Autowired
-	CustomerRepository customerRepository;
+	private CustomerRepository customerRepository;
 	
 	@Autowired
-	SessionFactory sessionFactory;
+	private SessionFactory sessionFactory;
 	
 	private SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 	

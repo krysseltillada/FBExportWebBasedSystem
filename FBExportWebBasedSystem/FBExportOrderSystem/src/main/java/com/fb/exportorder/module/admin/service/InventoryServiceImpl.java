@@ -32,10 +32,10 @@ import com.fb.exportorder.utilities.UploadImage;
 public class InventoryServiceImpl implements InventoryService {
 
 	@Autowired
-	InventoryRepository inventoryRepository;
+	private InventoryRepository inventoryRepository;
 	
 	@Autowired
-	SessionFactory sessionFactory;
+	private SessionFactory sessionFactory;
 	
 	private SimpleDateFormat userDateFormat = new SimpleDateFormat("MMMMM d, yyyy");
 	

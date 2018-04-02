@@ -7,24 +7,25 @@ import org.springframework.web.multipart.MultipartFile;
 import com.fb.exportorder.models.Employee;
 
 public interface ManageEmployeeService {
-	public List<String> addNewEmployee(Employee employee, MultipartFile profileImage, String retypePassword, String role);
 	
-	public List<String> editEmployee(Employee employee,
-									 MultipartFile profileImage,
-									 String newEmailEmployeeEdit,
-									 String newUsernameEmployeeEdit,
-									 String encryptedPassword,
-									 String newPassword,
-									 String retypePassword);
+	List<String> addNewEmployee(Employee employee, MultipartFile profileImage, String retypePassword, String role);
 	
-	public List<Employee> getAllEmployees();
+	List<String> editEmployee(Employee employee,
+							  MultipartFile profileImage,
+							  String newEmailEmployeeEdit,
+							  String newUsernameEmployeeEdit,
+							  String encryptedPassword,
+							  String newPassword,
+							  String retypePassword);
 	
-	public void editEnabledEmployee(String username);
+	List<Employee> getAllEmployees();
 	
-	public void saveEmployee(Employee employee);
+	void editEnabledEmployee(String username);
 	
-	public Employee getEmployeeByUsername(String username);
+	void saveEmployee(Employee employee);
 	
-	public Employee getEmployeeById(long employeeId);
+	Employee getEmployeeByUsername(String username);
+	
+	Employee getEmployeeById(long employeeId);
 	
 }

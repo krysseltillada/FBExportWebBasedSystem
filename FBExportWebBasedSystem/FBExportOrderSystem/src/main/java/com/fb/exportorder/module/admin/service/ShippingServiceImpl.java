@@ -1,6 +1,5 @@
 package com.fb.exportorder.module.admin.service;
 
-import java.text.SimpleDateFormat;
 import java.util.Objects;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,10 +14,7 @@ import com.fb.exportorder.module.customer.repository.OrderRepository;
 public class ShippingServiceImpl implements ShippingService {
 
 	@Autowired
-	OrderRepository orderRepository;
-
-	SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-	SimpleDateFormat timeFormat = new SimpleDateFormat("hh:mm a");
+	private OrderRepository orderRepository;
 	
 	@Override
 	public void updateShippingInformation(Shipping shipping, long orderId) {

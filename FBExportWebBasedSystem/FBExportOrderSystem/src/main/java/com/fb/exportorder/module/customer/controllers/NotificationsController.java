@@ -21,11 +21,11 @@ import com.fb.exportorder.module.customer.service.NotificationService;
 public class NotificationsController {
 
 	@Autowired
-	CustomerService customerService;
+	private CustomerService customerService;
 	
 	@Autowired
 	@Qualifier("CustomerNotificationService")
-	NotificationService notificationService;
+	private NotificationService notificationService;
 	
 	@RequestMapping("/notifications")
 	public String notification(Model model, HttpSession session) {

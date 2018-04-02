@@ -22,7 +22,7 @@ public class SystemNotificationController {
 	
 	@Autowired
 	@Qualifier("AdminNotificationService")
-	NotificationService notificationService;
+	private NotificationService notificationService;
 	
 	@RequestMapping("/admin/showAllNotification")
 	@ResponseBody

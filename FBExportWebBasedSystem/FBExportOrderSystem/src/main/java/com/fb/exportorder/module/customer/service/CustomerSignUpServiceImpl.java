@@ -1,21 +1,9 @@
 package com.fb.exportorder.module.customer.service;
 
-import java.io.File;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
 import java.util.Objects;
-import java.util.Set;
 
-import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.validator.routines.EmailValidator;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,8 +16,6 @@ import com.fb.exportorder.models.Address;
 import com.fb.exportorder.models.Authorities;
 import com.fb.exportorder.models.Contact;
 import com.fb.exportorder.models.ShippingAddress;
-import com.fb.exportorder.models.customer.Activity;
-import com.fb.exportorder.models.customer.Cart;
 import com.fb.exportorder.models.customer.Customer;
 import com.fb.exportorder.models.enums.Gender;
 import com.fb.exportorder.module.customer.repository.CustomerRepository;
@@ -42,19 +28,19 @@ import edu.vt.middleware.password.RuleResult;
 public class CustomerSignUpServiceImpl implements CustomerSignUpService {
 	
 	@Value("${profile-img-context-location}")
-	String profileImageContextLocation;
+	private String profileImageContextLocation;
 
 	@Autowired
-	BCryptPasswordEncoder passwordEncoder;
+	private BCryptPasswordEncoder passwordEncoder;
 	
 	@Autowired
-	CustomerRepository customerRepository;
+	private CustomerRepository customerRepository;
 	
 	@Autowired
-	PasswordValidator passwordValidator;
+	private PasswordValidator passwordValidator;
 	
 	@Autowired
-	GoogleRecaptchaService googleRecaptchaService;
+	private GoogleRecaptchaService googleRecaptchaService;
 	
 	private List<String> validate (Customer customer, String recaptcha, String ip, MultipartFile profileImage) {
 		

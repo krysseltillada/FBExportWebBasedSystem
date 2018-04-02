@@ -24,7 +24,7 @@ import com.fb.exportorder.module.customer.service.YourAddressService;
 public class YourAddressController {
 
 	@Autowired
-	YourAddressService yourAddressService;
+	private YourAddressService yourAddressService;
 
 	@RequestMapping("/your-address")
 	public String yourAddress(Model model, HttpSession session) {

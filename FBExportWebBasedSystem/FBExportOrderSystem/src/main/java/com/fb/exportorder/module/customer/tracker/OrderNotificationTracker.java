@@ -10,23 +10,14 @@ import org.springframework.beans.factory.annotation.Qualifier;
 
 import com.fb.exportorder.models.customer.Notification;
 import com.fb.exportorder.models.customer.Order;
-import com.fb.exportorder.module.customer.service.CustomerService;
 import com.fb.exportorder.module.customer.service.NotificationService;
-import com.fb.exportorder.module.customer.service.OrderService;
 
 @Aspect
 public class OrderNotificationTracker {
 	
 	@Autowired
 	@Qualifier("CustomerNotificationService")
-	NotificationService notificationService;
-	
-	@Autowired
-	CustomerService customerService;
-	
-	@Autowired
-	OrderService orderService;
-	
+	private NotificationService notificationService;
 	
 	@After("execution(public void com.fb.exportorder..service.OrderService+.markApproved(..))")
 	public void detectApprovedOrder(JoinPoint joinPoint) {

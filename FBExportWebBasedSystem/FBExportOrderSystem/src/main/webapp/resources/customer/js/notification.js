@@ -1,20 +1,20 @@
 $(document).ready(function () {
     var stompClient = null; 
 
-    var updateNotificationItemCount = function () {
+    // var updateNotificationItemCount = function () {
 
-        var currentNotificationListCount = $("#notificationListGroup>span #isSeen[value='false']").length;
+    //     var currentNotificationListCount = $("#notificationListGroup>a #isSeen[value='false']").length;
 
-        $("#dropDownNotification>span").html(currentNotificationListCount);
+    //     $("#dropDownNotification>span").html(currentNotificationListCount);
        
-    };
+    // };
 
     $('#btnShowNotification').on('show.bs.dropdown', function () {
 
         console.log($("#emptyNotificationMessageDesktop").length);
 
         $("#dropDownNotification>span").html("");
-        $(this).find("#notificationListGroup>span").remove();
+        $(this).find("#notificationListGroup>a").remove();
 
         $.get("/FBExportSystem/get-notification", 
               function (response) {
@@ -28,7 +28,8 @@ $(document).ready(function () {
                         $("#notificationListGroup").append(_.template($("#notificationListItemTemplate").html())({
                             header : notification.header,
                             description : notification.description,
-                            dateAgo : timeago().format(notification.date)
+                            dateAgo : timeago().format(notification.date),
+                            notificationLink : window.location.origin + "/FBExportSystem/order-list"
                         }));
 
                     }
@@ -66,7 +67,8 @@ $(document).ready(function () {
                     description : notification.description,
                     dateAgo : timeago().format(notification.date),
                     notificationId : notification.notificationId,
-                    isSeen : notification.seen
+                    isSeen : notification.seen,
+                    notificationLink : window.location.origin + "/FBExportSystem/order-list"
                 }));
 
                 var notificationSound = new Audio("/FBExportSystem/resources/notification-sound.mp3");

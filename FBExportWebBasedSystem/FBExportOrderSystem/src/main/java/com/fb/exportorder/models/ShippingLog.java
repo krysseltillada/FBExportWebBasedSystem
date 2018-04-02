@@ -2,7 +2,6 @@ package com.fb.exportorder.models;
 
 import java.util.Date;
 
-import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;

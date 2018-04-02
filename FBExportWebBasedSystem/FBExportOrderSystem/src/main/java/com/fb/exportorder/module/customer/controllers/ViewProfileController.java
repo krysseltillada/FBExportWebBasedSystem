@@ -19,7 +19,7 @@ import com.fb.exportorder.module.customer.service.CustomerService;
 public class ViewProfileController {
 
 	@Autowired
-	CustomerService customerService;
+	private CustomerService customerService;
 	
 	@RequestMapping("/view-profile")
 	public String viewProfile (Model model, HttpSession session) {

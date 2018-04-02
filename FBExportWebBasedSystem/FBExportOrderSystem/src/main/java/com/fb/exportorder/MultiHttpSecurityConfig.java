@@ -1,15 +1,23 @@
 package com.fb.exportorder;
 
+import java.io.IOException;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
+import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.access.AccessDeniedHandler;
 
 @Configuration
 @EnableWebSecurity
@@ -67,10 +75,7 @@ public class MultiHttpSecurityConfig {
         		.and()
         		.logout()
         		.logoutUrl("/sign-out")
-        		.logoutSuccessUrl("/")
-        		.and()
-        		.exceptionHandling()
-        		.accessDeniedPage("/error");
+        		.logoutSuccessUrl("/");
         	
         }
     }
@@ -132,8 +137,6 @@ public class MultiHttpSecurityConfig {
 	    		.logout()
 	    		.logoutUrl("/admin/sign-out")
 	    		.logoutSuccessUrl("/admin/login")
-	    		.and()
-	    		.exceptionHandling().accessDeniedPage("/error")
 	    		.and()
 	    		.csrf().ignoringAntMatchers(CSRF_IGNORE_URLS);
 
