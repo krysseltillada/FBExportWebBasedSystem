@@ -57,8 +57,8 @@ $(document).ready(function () {
             datePosted : $cardBody.find("#product-date-posted").html(),
             realPriceApprox : $card.find("#real-price-approx").val()
         };
-
-        showAddToCartModal(productItem);
+        
+        showAddToCartModal(productItem, currency);
     });
     
     $("#reviewProduct").submit(function(event){
@@ -113,6 +113,12 @@ $(document).ready(function () {
          		 $("#textarea-char-counter").val("");
          		 
          		 updateRating(result);
+         		 
+         		if(  !$.trim( $('#comments').html() ).length ) {
+        			$("#headerReview").html("No Reviews");	
+            	}else{
+            		$("#headerReview").html("Reviews");
+            	}
             	}
             	
             },error: function(e){
@@ -151,6 +157,12 @@ $(document).ready(function () {
     		    	
     		    	deleteReview.parent().parent().parent().remove();
                 	updateRating(result);
+                	
+                	if(  !$.trim( $('#comments').html() ).length ) {
+            			$("#headerReview").html("No Reviews");	
+                	}else{
+                		$("#headerReview").html("Reviews");
+                	}
                 },error: function(e){
                 	console.log("ERROR: ",e);
                 }

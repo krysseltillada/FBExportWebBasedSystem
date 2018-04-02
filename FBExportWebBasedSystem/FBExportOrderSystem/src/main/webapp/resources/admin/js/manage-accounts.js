@@ -380,7 +380,8 @@ $(document).ready(function () {
     	      success : function(result) {
     	    	//show data table
     	    	  var activityTable = $('#user-activity-table').DataTable({
-    	    		  "deferLoading": 57
+    	    		  "deferLoading": 57,
+    	    		  "lengthMenu" : [5, 10, 25]
     	    	  });
     	    	  var jsonData = JSON.parse(result);
     	    		  

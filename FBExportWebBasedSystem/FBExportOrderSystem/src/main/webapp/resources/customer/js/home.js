@@ -60,7 +60,7 @@ $(document).ready(function () {
                             
                             $(".productGridList:eq(0) .card:last").fadeIn("slow");
                             $(".productGridList:eq(0) .card:last .btnProductItemAddToCart").click(function () {
-                            		
+                            	
                                     var $card = $(event.currentTarget).parent().parent().parent();
                                     
                                     $card.find("#real-price-approx").val(basePriceToCurrentPrice);
@@ -70,7 +70,7 @@ $(document).ready(function () {
                                     var $spansHeaderInfo = $card.children("span");
 
                                     var currency = $card.find("span>span:eq(1)").html();
-
+                                   
                                     var productItem = {
                                         productImage : $card.find("img").attr("src"),
                                         price : $spansHeaderInfo.eq(0).text(),

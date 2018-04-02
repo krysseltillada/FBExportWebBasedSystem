@@ -348,10 +348,10 @@
           	
     			<c:choose>
     				<c:when test = "${fn:length(reviewList) > 0}">
-	            		<h4>Reviews<h4>
+	            		<h4 id="headerReview">Reviews</h4>
 	            	</c:when>
 	            	<c:otherwise>
-		        		<h4>No Reviews<h4>
+		        		<h4 id="headerReview">No Reviews</h4>
 	    			</c:otherwise>
     			</c:choose>
         </div>

@@ -106,7 +106,6 @@ $(document).ready(function () {
         }
          
         function goActive() {
-        	console.log($("#logoutTime").val());
             startTimer();
         }
     }
