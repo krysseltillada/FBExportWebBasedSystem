@@ -13,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.fb.exportorder.ScheduledTasks;
 import com.fb.exportorder.models.SystemLog;
@@ -57,8 +58,10 @@ public class SystemSettingsController {
 	}
 	
 	@RequestMapping(value="/admin/edit-system-settings", method=RequestMethod.POST)
-	@ResponseBody
-	public String editSystemSettings(String systemBackupTimeInput, String systemLogoutTime, HttpServletRequest request) {
+	public String editSystemSettings(String systemBackupTimeInput,
+									 String systemLogoutTime,
+									 HttpServletRequest request,
+									 RedirectAttributes redirectAttributes) {
 		try {
 			HttpSession session = request.getSession();
 			
@@ -97,7 +100,9 @@ public class SystemSettingsController {
 			return "Error";
 		}
 		
-		return "Success";
+		redirectAttributes.addFlashAttribute("SuccessSettings", "You've successfully changed your system settings");
+		
+		return "redirect:/admin/system-settings";
 	}
 	
 	@RequestMapping(value="/admin/restore-data", method=RequestMethod.POST)
