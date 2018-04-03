@@ -28,6 +28,8 @@ public class ShippingLog {
 	
 	@Temporal(TemporalType.TIME)
 	private Date time;
+	
+	private boolean isComplete;
 
 	public Long getShippingLogId() {
 		return shippingLogId;
@@ -82,7 +84,14 @@ public class ShippingLog {
 		return "ShippingLog [shippingLogId=" + shippingLogId + ", header=" + header + ", description=" + description
 				+ ", address=" + address + ", date=" + date + ", time=" + time + "]";
 	}
-	
+
+	public boolean isComplete() {
+		return isComplete;
+	}
+
+	public void setComplete(boolean isComplete) {
+		this.isComplete = isComplete;
+	}
 	
 
 }
