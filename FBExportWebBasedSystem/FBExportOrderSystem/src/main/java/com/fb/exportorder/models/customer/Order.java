@@ -73,6 +73,8 @@ public class Order	 {
 	@Temporal(TemporalType.DATE)
 	private Date dateReceived;
 	
+	private boolean isPaid;
+	
 	public Long getOrderId() {
 		return orderId;
 	}
@@ -203,6 +205,16 @@ public class Order	 {
 		this.dateReceived = dateReceived;
 	}
 	
+	
+	
+	public boolean isPaid() {
+		return isPaid;
+	}
+
+	public void setPaid(boolean isPaid) {
+		this.isPaid = isPaid;
+	}
+
 	public double getSubTotal() {
 		double subTotal = 0.0;
 		
