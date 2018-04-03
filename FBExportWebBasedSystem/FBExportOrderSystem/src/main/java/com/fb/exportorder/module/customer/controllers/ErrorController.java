@@ -9,8 +9,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class ErrorController implements org.springframework.boot.autoconfigure.web.ErrorController {
+	
+	private static final String ERROR_PATH = "/error";
  
-	@RequestMapping("/error")
+	@RequestMapping(ERROR_PATH)
 	public String handleError(HttpServletRequest request,
 			  				    Model model) {
 	      Integer statusCode = (Integer) request.getAttribute("javax.servlet.error.status_code");
@@ -44,7 +46,7 @@ public class ErrorController implements org.springframework.boot.autoconfigure.w
 
 	@Override
 	public String getErrorPath() {
-	      return "/error";
+	      return ERROR_PATH;
 	}
 	
 }
