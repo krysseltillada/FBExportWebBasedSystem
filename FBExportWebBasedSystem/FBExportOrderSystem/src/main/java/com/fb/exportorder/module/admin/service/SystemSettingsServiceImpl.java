@@ -13,7 +13,7 @@ import com.fb.exportorder.module.admin.repository.SystemSettingsRepository;
 public class SystemSettingsServiceImpl implements SystemSettingsService {
 	
 	@Autowired
-	SystemSettingsRepository systemSettingsRepository;
+	private SystemSettingsRepository systemSettingsRepository;
 
 	@Override
 	public List<SystemSettings> findAll() {

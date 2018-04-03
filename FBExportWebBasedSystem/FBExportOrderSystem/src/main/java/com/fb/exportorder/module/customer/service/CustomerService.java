@@ -10,19 +10,21 @@ import com.fb.exportorder.models.customer.Notification;
 import com.fb.exportorder.models.customer.Order;
 
 public interface CustomerService {
-	public Customer getCustomerById(long customerId);
-	public List<Activity> getCustomerActivitiesById(long customerId, int records, int offset);
-	public void deleteActivityByActivityId(long customerId, long activityId);
-	public void deleteAllActivity(long customerId, String jsonDeleteDataIds);
-	public long addToCart(Item item, long customerId);
-	public void removeToCart(Item item, long customerId);
-	public Item getItemById(long id);
-	public List<Order> getOrdersByCustomerId(int pageNumber, long customerId);
-	public int getOrderCountByCustomerId(long customerId);
-	public void saveCustomer(Customer customer);
-	public Map<Boolean, Integer> getOnlineUsersCount();
-	public void addNotificationToCustomer(Notification notification, Customer customer);
-	public List<Notification> getCustomerNotificationsById(long customerId, int records, int offset);
-	public void deleteNotificationByNotificationId(long customerId, long notificationId);
-	public void deleteAllNotification(long customerId, String jsonDeleteDataIds);
+	Customer getCustomerById(long customerId);
+	void addCustomerActivity(Activity activity, Customer customer);
+	List<Activity> getCustomerActivitiesById(long customerId, int records, int offset);
+	void deleteActivityByActivityId(long customerId, long activityId);
+	void deleteAllActivity(long customerId, String jsonDeleteDataIds);
+	long addToCart(Item item, long customerId);
+	void removeToCart(Item item, long customerId);
+	Item getItemById(long id);
+	List<Order> getOrdersByCustomerId(int pageNumber, long customerId);
+	int getOrderCountByCustomerId(long customerId);
+	void saveCustomer(Customer customer);
+	Map<Boolean, Integer> getOnlineUsersCount();
+	void addNotificationToCustomer(Notification notification, Customer customer);
+	List<Notification> getCustomerNotificationsById(long customerId, int records, int offset);
+	List<Notification> getNotificationsByCustomerId(long customerId);
+	void deleteNotificationByNotificationId(long customerId, long notificationId);
+	void deleteAllNotification(long customerId, String jsonDeleteDataIds);
 }

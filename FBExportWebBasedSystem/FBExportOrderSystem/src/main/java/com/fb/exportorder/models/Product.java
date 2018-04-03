@@ -18,8 +18,6 @@ import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-import org.javamoney.moneta.Money;
-
 import com.fb.exportorder.models.customer.Rating;
 import com.fb.exportorder.models.enums.ProductStatus;
 

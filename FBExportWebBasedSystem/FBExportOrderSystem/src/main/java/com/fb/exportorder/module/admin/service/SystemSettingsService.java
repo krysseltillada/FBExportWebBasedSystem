@@ -6,9 +6,9 @@ import com.fb.exportorder.models.SystemSettings;
 
 public interface SystemSettingsService {
 	
-	public List<SystemSettings> findAll();
+	List<SystemSettings> findAll();
 	
-	public void addSystemSettings(SystemSettings systemSettings);
+	void addSystemSettings(SystemSettings systemSettings);
 	
-	public boolean isSystemBackupFileExist(String filePathString);
+	boolean isSystemBackupFileExist(String filePathString);
 }

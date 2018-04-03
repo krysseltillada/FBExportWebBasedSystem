@@ -16,10 +16,10 @@ import com.fb.exportorder.module.admin.repository.ManageCustomerRepository;
 public class ManageActivityServiceImpl implements ManageActivityService {
 	
 	@Autowired
-	ManageCustomerRepository customerRepository;
+	private ManageCustomerRepository customerRepository;
 	
 	@Autowired
-	ManageActivityRepository activityRepository;
+	private ManageActivityRepository activityRepository;
 
 
 	@Override

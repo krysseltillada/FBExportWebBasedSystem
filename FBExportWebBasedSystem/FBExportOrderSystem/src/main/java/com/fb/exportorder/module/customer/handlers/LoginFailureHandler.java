@@ -7,9 +7,9 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.stereotype.Component;
 
@@ -20,7 +20,10 @@ import com.fb.exportorder.module.customer.repository.CustomerRepository;
 public class LoginFailureHandler implements AuthenticationFailureHandler {
 
 	@Autowired
-	CustomerRepository customerRepository;
+	private CustomerRepository customerRepository;
+	
+	@Autowired
+	private BCryptPasswordEncoder passwordEncoder;
 	
 	@Override
 	public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response, AuthenticationException ex)
@@ -28,6 +31,8 @@ public class LoginFailureHandler implements AuthenticationFailureHandler {
 		
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
+		
+		System.out.println(ex.getMessage());
 		
 		Customer customer = customerRepository.findAccountByUsername(username);
 		Customer customerByEmail = customerRepository.findAccountByEmail(username);
@@ -39,13 +44,21 @@ public class LoginFailureHandler implements AuthenticationFailureHandler {
 		
 		if (Objects.nonNull(customer)) {
 			
-			if (!StringUtils.equals(customer.getPassword(), password))
-				errorMessage = "invalid password";
+			if (customer.isEnabled()) {
+				if (!passwordEncoder.matches(password, customer.getPassword()))
+					errorMessage = "invalid password";
+			} else {
+				errorMessage = "your account is not activated";
+			}
 			
 		} else if (Objects.nonNull(customerByEmail)) {
 			
-			if (!StringUtils.equals(customerByEmail.getPassword(), password))
-				errorMessage = "invalid password";
+			if (customerByEmail.isEnabled()) {
+				if (!passwordEncoder.matches(password, customerByEmail.getPassword()))
+					errorMessage = "invalid password";
+			} else {
+				errorMessage = "your account is not activated";
+			}
 			
 		}
 		else {

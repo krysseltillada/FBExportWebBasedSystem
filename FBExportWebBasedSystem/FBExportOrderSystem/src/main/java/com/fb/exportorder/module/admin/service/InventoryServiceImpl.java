@@ -36,13 +36,13 @@ import com.fb.exportorder.utilities.UploadImage;
 public class InventoryServiceImpl implements InventoryService {
 
 	@Autowired
-	InventoryRepository inventoryRepository;
+	private InventoryRepository inventoryRepository;
 	
 	@Autowired
-	ProductStocksRepository productStocksRepository;
-	
+	private SessionFactory sessionFactory;
+
 	@Autowired
-	SessionFactory sessionFactory;
+	private ProductStocksRepository productStocksRepository;
 	
 	private SimpleDateFormat userDateFormat = new SimpleDateFormat("MMMMM d, yyyy");
 	
@@ -70,7 +70,7 @@ public class InventoryServiceImpl implements InventoryService {
 			errorMessages.add("product name cannot be empty and cannot contain number or symbols");
 		
 		if (StringUtils.isBlank(origin) || !StringUtils.isAlphaSpace(origin))
-			errorMessages.add("origin cannot be empty and cannot contain symbols");
+			errorMessages.add("origin cannot be empty and cannot contain number or symbols");
 		
 		
 		try {

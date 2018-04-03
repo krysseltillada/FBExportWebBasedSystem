@@ -1,26 +1,24 @@
 package com.fb.exportorder.module.admin.controllers;
 
-import java.io.File;
-import java.nio.file.FileSystems;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.fb.exportorder.ScheduledTasks;
+import com.fb.exportorder.models.SystemLog;
 import com.fb.exportorder.models.SystemSettings;
+import com.fb.exportorder.models.enums.ActionType;
+import com.fb.exportorder.module.admin.service.SystemLogService;
 import com.fb.exportorder.module.admin.service.SystemSettingsService;
 import com.fb.exportorder.utilities.SystemSettingsBackup;
 import com.fb.exportorder.utilities.Time;
@@ -29,7 +27,13 @@ import com.fb.exportorder.utilities.Time;
 public class SystemSettingsController {
 	
 	@Autowired
-	SystemSettingsService systemSettingsService;
+	private SystemSettingsService systemSettingsService;
+	
+	@Autowired
+	private SystemSettingsBackup systemSettingsBackup;
+	
+	@Autowired
+	private SystemLogService systemLogService;
 	
 	@RequestMapping("/admin/system-settings")
 	public String systemSettings(Model model) {
@@ -58,6 +62,8 @@ public class SystemSettingsController {
 		try {
 			HttpSession session = request.getSession();
 			
+			String name = (String)session.getAttribute("employeeName");
+			
 			SystemSettings systemSettings = systemSettingsService.findAll().get(0);
 			
 			Date logoutTime = new Date();
@@ -78,7 +84,15 @@ public class SystemSettingsController {
 			SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm");
 			ScheduledTasks.formattedTime = dateFormat.format(systemSettings.getSystemBackupTime().getTime());
 		
-		
+			SystemLog systemLog = new SystemLog(); 
+			
+			systemLog.setActionType(ActionType.SETTINGS);
+			systemLog.setDescription(name + " change the system backup time to " + systemBackupTimeInput + " and logout time to " + systemLogoutTime + " minutes");
+			systemLog.setTimeOccured(new Date());
+			systemLog.setDateOccured(new Date());
+
+			systemLogService.addSystemLog(systemLog);
+			
 		} catch (ParseException e) {
 			return "Error";
 		}
@@ -88,15 +102,41 @@ public class SystemSettingsController {
 	
 	@RequestMapping(value="/admin/restore-data", method=RequestMethod.POST)
 	@ResponseBody
-	public String restoreData() {
-		SystemSettingsBackup backup = new SystemSettingsBackup();
-		return backup.restoreData();
+	public String restoreData(HttpSession httpSession) {
+		
+		String name = (String)httpSession.getAttribute("employeeName");
+		
+		String message = systemSettingsBackup.restoreData();
+		
+		SystemLog systemLog = new SystemLog();
+		
+		systemLog.setActionType(ActionType.SETTINGS);
+		systemLog.setDescription(name + " restored the backup");
+		systemLog.setTimeOccured(new Date());
+		systemLog.setDateOccured(new Date());
+		
+		systemLogService.addSystemLog(systemLog);
+		
+		return message;
 	}
 	
 	@RequestMapping(value="/admin/backup-data", method=RequestMethod.POST)
 	@ResponseBody
-	public String backupData() {
-		SystemSettingsBackup backup = new SystemSettingsBackup();
-		return backup.backupData("fbexport");
+	public String backupData(HttpSession httpSession) {
+		
+		String name = (String)httpSession.getAttribute("employeeName");
+		
+		String message = systemSettingsBackup.backupData("fbexport");
+		
+		SystemLog systemLog = new SystemLog();
+		
+		systemLog.setActionType(ActionType.SETTINGS);
+		systemLog.setDescription(name + " backup the system");
+		systemLog.setTimeOccured(new Date());
+		systemLog.setDateOccured(new Date());
+		
+		systemLogService.addSystemLog(systemLog);
+		
+		return message;
 	}
 }

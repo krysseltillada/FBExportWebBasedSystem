@@ -38,22 +38,22 @@ import edu.vt.middleware.password.RuleResult;
 public class AccountSettingsServiceImpl implements AccountSettingsService {
 	
 	@Value("${server.context-path}")
-	String serverContextPath;
+	private String serverContextPath;
 	
 	@Value("${profile-img-context-location}")
-	String profileImageContextLocation;
+	private String profileImageContextLocation;
 
 	@Autowired
-	BCryptPasswordEncoder passwordEncoder;
+	private BCryptPasswordEncoder passwordEncoder;
 	
 	@Autowired
-	CustomerRepository customerRepository;
+	private CustomerRepository customerRepository;
 	
 	@Autowired
-	PasswordValidator passwordValidator;
+	private PasswordValidator passwordValidator;
 	
 	@Autowired
-	ServletContext servletContext;
+	private ServletContext servletContext;
 	
 	@Autowired
 	private EmailService emailService;
@@ -132,6 +132,9 @@ public class AccountSettingsServiceImpl implements AccountSettingsService {
 		
 		if (!StringUtils.isNumeric(Integer.toString(customer.getAge())) || customer.getAge() <= 0)
 			errorMessages.add("age cannot contain letters or symbols or invalid number");
+		
+		if (customer.getAge() < 18)
+			errorMessages.add("age cannot be below 18");
 		
 		if (StringUtils.isBlank(customerAddress.getAddress()))
 			errorMessages.add("address cannot be empty");

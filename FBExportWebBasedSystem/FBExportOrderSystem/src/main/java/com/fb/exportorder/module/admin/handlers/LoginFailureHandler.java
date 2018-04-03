@@ -7,9 +7,9 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.stereotype.Component;
 
@@ -20,7 +20,10 @@ import com.fb.exportorder.module.admin.repository.ManageEmployeeRepository;
 public class LoginFailureHandler implements AuthenticationFailureHandler {
 
 	@Autowired
-	ManageEmployeeRepository employeeRepository;
+	private ManageEmployeeRepository employeeRepository;
+	
+	@Autowired
+	private BCryptPasswordEncoder passwordEncoder;
 	
 	@Override
 	public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response, AuthenticationException ex)
@@ -36,13 +39,23 @@ public class LoginFailureHandler implements AuthenticationFailureHandler {
 		
 		if (Objects.nonNull(employee)) {
 			
-			if (!StringUtils.equals(employee.getPassword(), password))
-				errorMessage = "invalid password";
+			if (employee.isEnabled()) {
+				if (!passwordEncoder.matches(password, employee.getPassword())) {
+					errorMessage = "invalid password";
+				}
+			} else {
+				errorMessage = "account is not enabled";
+			}
 			
 		} else if (Objects.nonNull(employeeByEmail)) {
 			
-			if (!StringUtils.equals(employeeByEmail.getPassword(), password))
-				errorMessage = "invalid password";
+			if (employeeByEmail.isEnabled()) {
+				if (!passwordEncoder.matches(password, employeeByEmail.getPassword())) {
+					errorMessage = "invalid password";
+				}
+			} else {
+				errorMessage = "account is not enabled";
+			}
 			
 		}
 		else {

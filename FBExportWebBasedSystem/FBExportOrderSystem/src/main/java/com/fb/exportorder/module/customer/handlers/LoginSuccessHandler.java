@@ -16,15 +16,19 @@ import org.springframework.stereotype.Component;
 
 import com.fb.exportorder.models.customer.Customer;
 import com.fb.exportorder.module.customer.repository.CustomerRepository;
+import com.fb.exportorder.module.customer.session.CustomerSessionBean;
 
 @Component("customerLoginSuccessHandler")
 public class LoginSuccessHandler implements AuthenticationSuccessHandler {
 
 	@Autowired
-	CustomerRepository customerRepository;
+	private CustomerSessionBean customerSessionBean;
+	
+	@Autowired
+	private CustomerRepository customerRepository;
 	
 	@Value("${fbexport.server.domain.name}")
-	String serverDomainName;
+	private String serverDomainName;
 	
 	@Override
 	public void onAuthenticationSuccess(HttpServletRequest request, 
@@ -67,6 +71,8 @@ public class LoginSuccessHandler implements AuthenticationSuccessHandler {
 		session.setAttribute("customerId", customerId);
 		session.setAttribute("customerProfileImageLink", profileImageLink);
 		session.setAttribute("customerUsername", username);
+		
+		customerSessionBean.setCustomerId(customerId);
 		
 		if(Objects.nonNull(customer)) {
 			customer.setOnline(true);

@@ -1,51 +1,47 @@
 $(document).ready(function () {
     var stompClient = null; 
 
-    var updateNotificationItemCount = function () {
+    // var updateNotificationItemCount = function () {
 
-        console.log($("#notificationListGroup input[value='false']").length + " length of notif in user bar");
+    //     var currentNotificationListCount = $("#notificationListGroup>a #isSeen[value='false']").length;
 
-        if ($("#notificationListGroup input[value='false']").length > 0) {
-            $("#dropDownNotification").find("span").html($("#notificationListGroup input[value='false']").length);
-            $("#emptyNotificationMessageDesktop").remove();
-        } else {
-            $("#dropDownNotification").find("span").html("");
-        }
-    };
-
-    var updateNotificationDisplay = function() {
-        
-        updateNotificationItemCount();
-
-        $("#notificationListGroup>span>small").each(function (i, elem) {
-            var $dateAgo = $(this).closest("span").find(">small");
-            $dateAgo.html(timeago().format($dateAgo.html()));
-
-        });
-    };
+    //     $("#dropDownNotification>span").html(currentNotificationListCount);
+       
+    // };
 
     $('#btnShowNotification').on('show.bs.dropdown', function () {
-        console.log("tae tae");
-        var seenItemId = [];
 
         console.log($("#emptyNotificationMessageDesktop").length);
 
-        if ($("#emptyNotificationMessageDesktop").length <= 0) {
+        $("#dropDownNotification>span").html("");
+        $(this).find("#notificationListGroup>a").remove();
 
-            $("#notificationListGroup>span").each(function (i, elem) {
-                seenItemId.push($(this).find("#notificationId").val());
-            });
+        $.get("/FBExportSystem/get-notification", 
+              function (response) {
 
-            console.log(seenItemId);
+                if (response.length > 0) {
 
-            $.post("/FBExportSystem/seen-notification", {
-                seenNotificationIdRawJSON : JSON.stringify(seenItemId)
-            }, function () {
-                $("#dropDownNotification").find("span").html("");
-                $("#notificationListGroup input[value='false']").val("true");
-            });
+                    for (var i = 0; i != response.length; ++i) {
 
-        }
+                        var notification = response[i];
+
+                        $("#notificationListGroup").append(_.template($("#notificationListItemTemplate").html())({
+                            header : notification.header,
+                            description : notification.description,
+                            dateAgo : timeago().format(notification.date),
+                            notificationLink : window.location.origin + "/FBExportSystem/order-list"
+                        }));
+
+                    }
+
+                } else {
+
+                    $("#notificationListGroup").append('<span href="javascript:void(0)" id = "emptyNotificationMessageDesktop" class="list-group-item list-group-item-action flex-column align-items-start notification-link pl-4 pr-4">' +
+												            '<h6 class="text-center p-5"> No unseen notifications yet </h6>' +
+												        '</span>');
+
+                }
+        });
 
     });
 
@@ -63,18 +59,34 @@ $(document).ready(function () {
 
                 toastr.info(notification.header);
 
+                if ($("#emptyNotificationMessageDesktop").length > 0) 
+                    $("#emptyNotificationMessageDesktop").remove();
+
                 $("#notificationListGroup").prepend(_.template($("#notificationItemTemplate").html())({
                     header : notification.header,
                     description : notification.description,
                     dateAgo : timeago().format(notification.date),
                     notificationId : notification.notificationId,
-                    isSeen : notification.seen
+                    isSeen : notification.seen,
+                    notificationLink : window.location.origin + "/FBExportSystem/order-list"
                 }));
 
                 var notificationSound = new Audio("/FBExportSystem/resources/notification-sound.mp3");
                 notificationSound.play();
 
-                updateNotificationItemCount();
+                if (!$("#btnShowNotification>a>span").html()) {
+                    $("#btnShowNotification>a>span").html("1");
+                } else {
+
+                    var currentNotificationCount = Number($("#btnShowNotification>a>span").html());
+                    currentNotificationCount += 1;
+
+                    console.log("counted " + currentNotificationCount);
+
+                    $("#btnShowNotification>a>span").html(currentNotificationCount);
+
+
+                }
                 
 
             });
@@ -84,7 +96,6 @@ $(document).ready(function () {
             connect();
         });
 
-        updateNotificationDisplay();
     }
     
     connect();

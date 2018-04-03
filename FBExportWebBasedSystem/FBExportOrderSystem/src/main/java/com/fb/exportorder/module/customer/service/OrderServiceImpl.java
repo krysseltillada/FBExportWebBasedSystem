@@ -34,13 +34,16 @@ import com.fb.exportorder.module.customer.repository.OrderRepository;
 public class OrderServiceImpl implements OrderService {
 	
 	@Autowired
-	OrderRepository orderRepository;
+	private OrderService orderService;
 	
 	@Autowired
-	CustomerRepository customerRepository;
+	private OrderRepository orderRepository;
 	
 	@Autowired
-	SessionFactory sessionFactory;
+	private CustomerRepository customerRepository;
+	
+	@Autowired
+	private SessionFactory sessionFactory;
 	
 	private SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 	
@@ -95,6 +98,26 @@ public class OrderServiceImpl implements OrderService {
 		} catch (ParseException e) {
 			errorMessages.add("invalid arrival date");
 		}
+		
+		try {
+			
+			Date expectedD = dateFormat.parse(expectedDate);
+			Date departureD = dateFormat.parse(departureDate);
+			Date arrivalD = dateFormat.parse(arrivalDate);
+			
+			if (expectedD.before(departureD))
+				errorMessages.add("expected date must not before departure");
+			
+			if (expectedD.before(arrivalD))
+				errorMessages.add("expected date must not before arrival");
+			
+			
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
 		
 		if (StringUtils.equals(shipmentStatus, "On Cargo Ship")) {
 			
@@ -156,7 +179,7 @@ public class OrderServiceImpl implements OrderService {
 
 	@Override
 	public List<Order> getAllOrders() {
-		return (List<Order>) orderRepository.findAll();
+		return orderRepository.getAllOrders();
 	}
 
 
@@ -211,10 +234,9 @@ public class OrderServiceImpl implements OrderService {
 				
 			}
 			
-			currentAddToShipInformationOrder.setOrderStatus(OrderStatus.TO_SHIP);
 			currentAddToShipInformationOrder.setShipping(toShipInformation);
 			
-			orderRepository.save(currentAddToShipInformationOrder);
+			orderService.markToShip(currentAddToShipInformationOrder);
 			
 			System.out.println("validation success");
 			

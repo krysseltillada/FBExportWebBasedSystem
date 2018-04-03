@@ -8,5 +8,5 @@ import com.fb.exportorder.models.customer.Customer;
 
 
 public interface CustomerSignUpService {
-	public List<String> register(Customer customer, String recaptcha, String ip, MultipartFile profileImage);
+	List<String> register(Customer customer, String recaptcha, String ip, MultipartFile profileImage);
 }

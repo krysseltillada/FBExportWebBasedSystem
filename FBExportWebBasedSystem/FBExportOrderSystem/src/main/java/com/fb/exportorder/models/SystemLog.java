@@ -28,7 +28,7 @@ public class SystemLog {
 	@Temporal(TemporalType.DATE)
 	private Date dateOccured;
 	
-	@Temporal(TemporalType.TIME)
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date timeOccured;
 
 	public Long getSystemLogId() {
@@ -70,7 +70,6 @@ public class SystemLog {
 	public void setTimeOccured(Date timeOccured) {
 		this.timeOccured = timeOccured;
 	}
-	
-	
+
 	
 }

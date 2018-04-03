@@ -13,14 +13,15 @@ import com.google.gson.Gson;
 
 @Controller
 public class DashboardController {
-	@Autowired
-	OrderService orderService;
 	
 	@Autowired
-	ProductService productService;
+	private OrderService orderService;
 	
 	@Autowired
-	CustomerService customerService;
+	private ProductService productService;
+	
+	@Autowired
+	private CustomerService customerService;
 	
 	@RequestMapping("/admin/dashboard")
 	public String dashboard(Model model) {

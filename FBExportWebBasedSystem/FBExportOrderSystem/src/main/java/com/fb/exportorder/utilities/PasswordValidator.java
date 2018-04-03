@@ -33,13 +33,13 @@ import edu.vt.middleware.password.WhitespaceRule;
 public class PasswordValidator {
 	
 	@Autowired
-	Environment passwordProperties;
+	private Environment passwordProperties;
 	
 	@Autowired ResourceLoader resourceLoader;
 	
-	List<Rule> ruleList = new ArrayList<>();
+	private List<Rule> ruleList = new ArrayList<>();
 	
-	edu.vt.middleware.password.PasswordValidator passwordValidator;
+	private edu.vt.middleware.password.PasswordValidator passwordValidator;
 	
 	@PostConstruct
 	void inititializePasswordRules () throws IOException {

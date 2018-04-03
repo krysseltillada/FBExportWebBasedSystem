@@ -33,16 +33,16 @@ import edu.vt.middleware.password.RuleResult;
 public class ManageEmloyeeServiceImpl implements ManageEmployeeService {
 
 	@Value("${fbexport.server.domain.name}")
-	String serverDomainName;
+	private String serverDomainName;
 
 	@Autowired
-	ManageEmployeeRepository employeeRepository;
+	private ManageEmployeeRepository employeeRepository;
 	
 	@Autowired
-	PasswordValidator passwordValidator;
+	private PasswordValidator passwordValidator;
 	
 	@Autowired
-	BCryptPasswordEncoder passwordEncoder;
+	private BCryptPasswordEncoder passwordEncoder;
 	
 	private List<String> validate(Employee employee, MultipartFile profileImage) {
 		Contact employeeContact = employee.getContact();
@@ -300,13 +300,17 @@ public class ManageEmloyeeServiceImpl implements ManageEmployeeService {
 
 	@Override
 	public Employee getEmployeeByUsername(String username) {
-		
 		return employeeRepository.findAccountByUsername(username);
 	}
 
 	@Override
 	public void saveEmployee(Employee employee) {
 		employeeRepository.save(employee);
+	}
+
+	@Override
+	public Employee getEmployeeById(long employeeId) {
+		return employeeRepository.findOne(employeeId);
 	}
 
 }

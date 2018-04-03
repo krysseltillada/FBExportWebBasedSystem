@@ -1,10 +1,11 @@
 <%@ include file = "../../lib/tags/tag-libraries.jsp" %>
 
 
-
 <sql:query var="notificationsListQuery" 
 	       dataSource = "${dataSource}">
-	       SELECT * FROM system_notification sn WHERE sn.is_seen = false ORDER BY sn.date DESC 
+	       SELECT sn.notification_id, sn.date, sn.description, sn.header, sn.is_seen, sn.system_notification_status FROM system_notification sn 
+	       INNER JOIN employee_system_notification_list esnl ON sn.notification_id = esnl.system_notification_list_notification_id WHERE esnl.employee_id = ${sessionScope.employeeId} AND sn.is_seen = false
+		   ORDER BY sn.date DESC
 </sql:query>
 
 
@@ -37,7 +38,7 @@
 	
 	
 	            <li class="nav-item dropdown"> 
-	            	<a id="notifications" rel="nofollow" data-target="#" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link">
+	            	<a id="notifications" rel="nofollow" data-target="#" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link pr-0">
 		            	<i class="fa fa-bell-o"></i>
 		            	<c:if test = "${fn:length(notificationsListQuery.rows) > 0}">
 		            		<span class="badge bg-red">${fn:length(notificationsListQuery.rows)}</span>
@@ -48,35 +49,6 @@
 	                <ul aria-labelledby="notifications" class="dropdown-menu pb-0">
 	                
 	                	<div style = "max-height: 280px; overflow-y: auto;">
-	                
-		                	<c:forEach var = "notificationListItem" items = "${notificationsListQuery.rows}">
-		                	
-		                		<li>
-		                		 	<a rel="nofollow" style = "pointer: none;" class="dropdown-item">
-					                     <div class="notification">
-					                        <div class="notification-content">
-					                        
-						                        ${notificationListItem.system_notification_status == "ORDER_RECEIVED" ? '<i class="icon-padnote ml-1" style = "background-color: #0275d8;"></i>' :
-								                  notificationListItem.system_notification_status == "ORDER_REFUND" ? '<i class="fa fa-arrow-left ml-1" style = "background-color: #ea1e63;"></i>' :
-								                  notificationListItem.system_notification_status == "ORDER_PAID" ? '<i class="fa fa-usd ml-1" style = "background-color: #91c361;"></i>' :
-								                  notificationListItem.system_notification_status == "ORDER_RETURN" ? '<i class="fa fa-undo ml-1" style = "background-color: #795548;"></i>' :
-								                  notificationListItem.system_notification_status == "ORDER_NEW_ORDER" ? '<i class="fa fa-list-alt ml-1" style = "background-color: #ffc107;"></i>' :
-								                  notificationListItem.system_notification_status == "ORDER_CANCELLED" ? '<i class="fa fa-times ml-1" style = "background-color: #d9534f;"></i>' :
-								                  notificationListItem.system_notification_status == "INVENTORY_ADD_PRODUCT" ? '<i class="fa fa-plus ml-1"></i>' :
-								                  notificationListItem.system_notification_status == "INVENTORY_EDIT_PRODUCT" ? '<i class="fa fa-edit ml-1"></i>' :
-								                  notificationListItem.system_notification_status == "INVENTORY_UPDATE_STOCK" ?  '<i class="fa fa-product-hunt ml-1"></i>' : '<i class="fa fa-server ml-1"></i>'}
-						                        
-						                        ${notificationListItem.header} 
-						                        
-					                        </div>
-					                        <div class="notification-time ml-2"><small>${notificationListItem.date}</small></div>
-					                        <input type = "hidden" id = "notificationId" value = "${notificationListItem.notification_id}" />
-					                     </div>
-			                    	</a>
-			                    </li>
-		                	
-		                	</c:forEach>
-		                	
 	                	</div>
 		      
 		                <li>

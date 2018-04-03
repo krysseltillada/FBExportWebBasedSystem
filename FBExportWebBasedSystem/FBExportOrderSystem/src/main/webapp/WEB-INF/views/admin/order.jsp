@@ -143,6 +143,18 @@
 		                                            		   data-value = "${order.reason}"> (view reason) </a> </small>
 		                                               
 	                                             </c:if>
+	                                             
+	                                             <c:if test = "${order.orderStatus eq 'RECEIVED'}">
+	                                             
+	                                             	<c:if test = "${not empty order.review}">
+	                                             
+			                                             <small> <a class = "btn-view-reason"
+				                                            		   href = "javascript:void(0)"
+				                                            		   data-value = "${order.review}"> (view review) </a> </small>
+	                                             
+	                                             	</c:if>
+	                                             	
+	                                             </c:if>
 	                                        
 	                                            <h6>                                             
 	                                                <div class="btn-group dropdown-select">

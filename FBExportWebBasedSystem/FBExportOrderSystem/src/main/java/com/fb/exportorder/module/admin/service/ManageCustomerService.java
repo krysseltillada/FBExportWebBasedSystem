@@ -6,12 +6,12 @@ import com.fb.exportorder.models.customer.Customer;
 
 public interface ManageCustomerService {
 	
-	public List<Customer> getAllCustomers();
+	List<Customer> getAllCustomers();
 	
-	public void editEnabledCustomer(String username);
+	void editEnabledCustomer(String username);
 	
-	public List<String> editCustomer(Customer customer, String newEmailClientEdit, String newUsernameClientEdit);
+	List<String> editCustomer(Customer customer, String newEmailClientEdit, String newUsernameClientEdit);
 
-	public Customer getCustomerByUsername(String usernameClientEdit);
+	Customer getCustomerByUsername(String usernameClientEdit);
 
 }

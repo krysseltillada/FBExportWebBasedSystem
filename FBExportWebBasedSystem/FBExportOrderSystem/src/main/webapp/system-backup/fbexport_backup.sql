@@ -41,7 +41,7 @@ CREATE TABLE `activity` (
   PRIMARY KEY (`activity_id`),
   KEY `FKse269fvw3ft70lc8sf7mp5kpo` (`customer_id`),
   CONSTRAINT `FKse269fvw3ft70lc8sf7mp5kpo` FOREIGN KEY (`customer_id`) REFERENCES `customer` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -50,6 +50,7 @@ CREATE TABLE `activity` (
 
 LOCK TABLES `activity` WRITE;
 /*!40000 ALTER TABLE `activity` DISABLE KEYS */;
+INSERT INTO `activity` VALUES (1,'2018-04-02','kasdjandjansdlhbashdbasjdbashdbashdmbasdbalsjdhasbdjhbcbfdbflajsdbfahsdbfjasdbkfhabsdfjbasdgfhblasjdbfljadbsfhasdbfjbasdhfbasldhfbash','fhgjhkjlk',1);
 /*!40000 ALTER TABLE `activity` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -267,6 +268,32 @@ INSERT INTO `employee` VALUES (0,'asd','asd','Argentina','1700',23,'63','Admin1@
 UNLOCK TABLES;
 
 --
+-- Table structure for table `employee_system_notification_list`
+--
+
+DROP TABLE IF EXISTS `employee_system_notification_list`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `employee_system_notification_list` (
+  `employee_id` bigint(20) NOT NULL,
+  `system_notification_list_notification_id` bigint(20) NOT NULL,
+  UNIQUE KEY `UK_ii8tfx0hep1nc5wfh9u7pn1g5` (`system_notification_list_notification_id`),
+  KEY `FK3884ke73fgnob9j1jlcckjnx3` (`employee_id`),
+  CONSTRAINT `FK3884ke73fgnob9j1jlcckjnx3` FOREIGN KEY (`employee_id`) REFERENCES `employee` (`id`),
+  CONSTRAINT `FKk9xxpgfs61agh0jgkcxwoic3j` FOREIGN KEY (`system_notification_list_notification_id`) REFERENCES `system_notification` (`notification_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `employee_system_notification_list`
+--
+
+LOCK TABLES `employee_system_notification_list` WRITE;
+/*!40000 ALTER TABLE `employee_system_notification_list` DISABLE KEYS */;
+/*!40000 ALTER TABLE `employee_system_notification_list` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `hibernate_sequences`
 --
 
@@ -429,7 +456,7 @@ CREATE TABLE `product` (
 
 LOCK TABLES `product` WRITE;
 /*!40000 ALTER TABLE `product` DISABLE KEYS */;
-INSERT INTO `product` VALUES (1,'2018-03-29','2018-03-29','2018-03-29','asd','\0','Nemo','Nemo Origin',200,'/products/c4ca4238a0b923820dcc509a6f75849b.jpg','POSTED','Company','asd','09996668084',6000,1),(2,'2018-03-29','2018-03-29','2018-03-29','asdddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd','\0','Dory','Dory',200,'/products/c81e728d9d4c2f636f067f89cc14862c.jpg','POSTED','asdasd','asd','09996668084',4900,2),(3,'2018-03-29','2018-03-29','2018-03-29','asd','\0','Tes','Tes',2000,'/products/eccbc87e4b5ce2fe28308fd9f2a7baf3.jpg','POSTED','asd','asd','09996668084',3700,3),(4,'2018-03-29','2018-03-29','2018-03-29','asd','\0','test','test',200,'/products/a87ff679a2f3e71d9181a67b7542122c.jpg','POSTED','asd','asd','09996668084',6700.5,4),(5,'2018-03-13','2018-03-31','2018-03-31','Test Description','\0','Baby Shark','Pixar',200,'/products/e4da3b7fbbce2345d7772b0674a318d5.jpg','POSTED','asd','dfggh','09996668084',400,5);
+INSERT INTO `product` VALUES (1,'2018-03-29','2018-03-29','2018-03-29','asd','\0','Nemo','Nemo Origin',200,'/products/c4ca4238a0b923820dcc509a6f75849b.jpg','POSTED','Company','asd','09996668084',6500,1),(2,'2018-03-29','2018-03-29','2018-03-29','asdddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd','\0','Dory','Dory',200,'/products/c81e728d9d4c2f636f067f89cc14862c.jpg','POSTED','asdasd','asd','09996668084',4900,2),(3,'2018-03-29','2018-03-29','2018-03-29','asd','\0','Tes','Tes',2000,'/products/eccbc87e4b5ce2fe28308fd9f2a7baf3.jpg','POSTED','asd','asd','09996668084',3700,3),(4,'2018-03-29','2018-03-29','2018-03-29','asd','\0','test','test',200,'/products/a87ff679a2f3e71d9181a67b7542122c.jpg','POSTED','asd','asd','09996668084',7700.5,4),(5,'2018-03-13','2018-03-31','2018-03-31','Test Description','\0','Baby Shark','Pixar',200,'/products/e4da3b7fbbce2345d7772b0674a318d5.jpg','POSTED','asd','dfggh','09996668084',455,5);
 /*!40000 ALTER TABLE `product` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -497,10 +524,11 @@ CREATE TABLE `product_stock` (
   `weight` double NOT NULL,
   `weight_type` varchar(255) DEFAULT NULL,
   `product_id` bigint(20) NOT NULL,
+  `product_name` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`product_stock_id`),
   KEY `FKlpu1phje1bb3y9ww8k9fut4gh` (`product_id`),
   CONSTRAINT `FKlpu1phje1bb3y9ww8k9fut4gh` FOREIGN KEY (`product_id`) REFERENCES `product` (`product_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -509,7 +537,7 @@ CREATE TABLE `product_stock` (
 
 LOCK TABLES `product_stock` WRITE;
 /*!40000 ALTER TABLE `product_stock` DISABLE KEYS */;
-INSERT INTO `product_stock` VALUES (10,'2018-03-30',400,'KILO',1),(11,'2018-03-30',500,'KILO',2),(12,'2018-03-30',700,'KILO',4);
+INSERT INTO `product_stock` VALUES (10,'2018-03-30',400,'KILO',1,NULL),(11,'2018-03-30',500,'KILO',2,NULL),(12,'2018-03-30',700,'KILO',4,NULL),(13,'2018-04-03',55,'KILO',5,NULL),(14,'2018-04-03',500,'KILO',1,NULL),(15,'2018-04-03',1000,'KILO',4,NULL);
 /*!40000 ALTER TABLE `product_stock` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -534,7 +562,7 @@ CREATE TABLE `rating` (
 
 LOCK TABLES `rating` WRITE;
 /*!40000 ALTER TABLE `rating` DISABLE KEYS */;
-INSERT INTO `rating` VALUES (1,0,15),(2,0,21),(3,0,13),(4,0,0),(5,0,1);
+INSERT INTO `rating` VALUES (1,116,49),(2,0,21),(3,0,14),(4,0,0),(5,0,1);
 /*!40000 ALTER TABLE `rating` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -721,7 +749,7 @@ CREATE TABLE `system_log` (
   `description` varchar(255) DEFAULT NULL,
   `time_occured` time DEFAULT NULL,
   PRIMARY KEY (`system_log_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -730,6 +758,7 @@ CREATE TABLE `system_log` (
 
 LOCK TABLES `system_log` WRITE;
 /*!40000 ALTER TABLE `system_log` DISABLE KEYS */;
+INSERT INTO `system_log` VALUES (1,'SYSTEM','2018-04-03','System Start','14:38:40'),(2,'SYSTEM','2018-04-03','System Shutdown','14:49:26'),(3,'SYSTEM','2018-04-03','System Start','14:50:42');
 /*!40000 ALTER TABLE `system_log` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -799,6 +828,7 @@ CREATE TABLE `user_access_log` (
   `ip_address` varchar(255) DEFAULT NULL,
   `time_occured` time DEFAULT NULL,
   `employee_id` bigint(20) DEFAULT NULL,
+  `description` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`user_access_log_id`),
   KEY `FK4jo8eq6diu8mwg6a3fekhm47y` (`employee_id`),
   CONSTRAINT `FK4jo8eq6diu8mwg6a3fekhm47y` FOREIGN KEY (`employee_id`) REFERENCES `employee` (`id`)
@@ -823,4 +853,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-04-02  0:31:26
+-- Dump completed on 2018-04-03 15:21:42

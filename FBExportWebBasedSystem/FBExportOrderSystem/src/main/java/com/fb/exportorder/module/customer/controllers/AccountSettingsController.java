@@ -30,10 +30,10 @@ import com.fb.exportorder.module.customer.service.CustomerService;
 public class AccountSettingsController {
 	
 	@Autowired
-	CustomerService customerService;
+	private CustomerService customerService;
 	
 	@Autowired
-	AccountSettingsService accountSettingsService;
+	private AccountSettingsService accountSettingsService;
 	
 	@Autowired
 	CustomerRepository customerRepository;

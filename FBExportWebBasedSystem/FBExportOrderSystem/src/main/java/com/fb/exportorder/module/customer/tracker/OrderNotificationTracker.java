@@ -10,23 +10,14 @@ import org.springframework.beans.factory.annotation.Qualifier;
 
 import com.fb.exportorder.models.customer.Notification;
 import com.fb.exportorder.models.customer.Order;
-import com.fb.exportorder.module.customer.service.CustomerService;
 import com.fb.exportorder.module.customer.service.NotificationService;
-import com.fb.exportorder.module.customer.service.OrderService;
 
 @Aspect
 public class OrderNotificationTracker {
 	
 	@Autowired
 	@Qualifier("CustomerNotificationService")
-	NotificationService notificationService;
-	
-	@Autowired
-	CustomerService customerService;
-	
-	@Autowired
-	OrderService orderService;
-	
+	private NotificationService notificationService;
 	
 	@After("execution(public void com.fb.exportorder..service.OrderService+.markApproved(..))")
 	public void detectApprovedOrder(JoinPoint joinPoint) {
@@ -84,23 +75,23 @@ public class OrderNotificationTracker {
 		
 	}
 	
-	@After("execution(public java.util.List<String> com.fb.exportorder..service.OrderService+.addToShipInformation(..))")
-	public void detectAddToShipInformationOrder(JoinPoint joinPoint) {
-		
-		long orderId = (long)joinPoint.getArgs()[0];
-		
-		Notification addToShipInformationNotification = new Notification();
-		
-		addToShipInformationNotification.setOrderId(orderId);
-		addToShipInformationNotification.setHeader("Order To Shipping");
-		addToShipInformationNotification.setDescription("Your Order# " + orderId + " is Shipping");
-		addToShipInformationNotification.setSeen(false);
-		addToShipInformationNotification.setDate(new Date());
-		
-		notificationService.pushNotification(addToShipInformationNotification,
-											 orderService.getOrderById(orderId).getCustomer());
-		
-	}
+//	@After("execution(public java.util.List<String> com.fb.exportorder..service.OrderService+.addToShipInformation(..))")
+//	public void detectAddToShipInformationOrder(JoinPoint joinPoint) {
+//		
+//		long orderId = (long)joinPoint.getArgs()[0];
+//		
+//		Notification addToShipInformationNotification = new Notification();
+//		
+//		addToShipInformationNotification.setOrderId(orderId);
+//		addToShipInformationNotification.setHeader("Order To Shipping");
+//		addToShipInformationNotification.setDescription("Your Order# " + orderId + " is Shipping");
+//		addToShipInformationNotification.setSeen(false);
+//		addToShipInformationNotification.setDate(new Date());
+//		
+//		notificationService.pushNotification(addToShipInformationNotification,
+//											 orderService.getOrderById(orderId).getCustomer());
+//		
+//	}
 	
 	
 

@@ -13,7 +13,7 @@ import com.fb.exportorder.module.customer.service.OrderService;
 public class ShippingController {
 	
 	@Autowired
-	OrderService orderService;
+	private OrderService orderService;
 	
 	@RequestMapping("/shipping")
 	public String shipping(@RequestParam(name="orderId", required=false) String orderId,

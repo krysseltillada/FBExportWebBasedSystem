@@ -1,6 +1,5 @@
 package com.fb.exportorder.module.customer.controllers;
 
-import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
@@ -25,23 +24,31 @@ import com.fb.exportorder.models.customer.Weight;
 import com.fb.exportorder.models.enums.WeightType;
 import com.fb.exportorder.module.admin.service.InventoryService;
 import com.fb.exportorder.module.customer.service.CustomerService;
-import com.fb.exportorder.module.customer.service.EmailService;
 import com.fb.exportorder.module.customer.service.NotificationService;
 
 @Controller
 public class HomeController {
 
 	@Autowired
-	InventoryService inventoryService;
+	private InventoryService inventoryService;
 	
 	@Autowired
-	CustomerService customerService;
+	private CustomerService customerService;
 	
 	@Autowired
-	NotificationService notificationService;
+	private NotificationService notificationService;
 	
-	@Autowired
-	EmailService emailService;
+	@RequestMapping(value = "/get-notification")
+	@ResponseBody
+	public List<Notification> getNotification(HttpSession session) {
+		
+		List<Notification> notificationList = customerService.getNotificationsByCustomerId((long)session.getAttribute("customerId"));
+		
+		for (Notification notification : notificationList)
+			notificationService.seenNotification(notification.getNotificationId());
+		
+		return notificationList;
+	}
 	
 	@RequestMapping(value = "/seen-notification", method = RequestMethod.POST)
 	@ResponseBody
@@ -60,22 +67,7 @@ public class HomeController {
 		return "";
 	}
 	
-	@RequestMapping("/push-notif")
-	public String pushNotif() {
-		
-		Notification notification = new Notification();
-		
-		notification.setHeader("order is approved");
-		notification.setDescription("your order lapu lapu is appproved");
-		notification.setNotificationId(0l);
-		notification.setSeen(false);
-		notification.setDate(new Date());
-		
-		notificationService.pushNotification(notification, customerService.getCustomerById(1));
-		
-		return "home";
-	}
-	
+
 	@RequestMapping(value = "/add-to-cart", method = RequestMethod.POST)
 	@ResponseBody
 	public String addToCart(@RequestParam String customerCartJSON,

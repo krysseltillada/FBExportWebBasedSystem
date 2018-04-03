@@ -31,16 +31,16 @@ import com.fb.exportorder.module.customer.repository.NotificationRepository;
 public class CustomerServiceImpl implements CustomerService {
 
 	@Autowired
-	CustomerRepository customerRepository;
+	private CustomerRepository customerRepository;
 	
 	@Autowired
-	ActivityRepository activityRepository;
+	private ActivityRepository activityRepository;
 	
 	@Autowired
-	ItemRepository itemRepository;
+	private ItemRepository itemRepository;
 	
 	@Autowired
-	NotificationRepository notificationRepository;
+	private NotificationRepository notificationRepository;
 	
 	@Override
 	public Customer getCustomerById(long customerId) {
@@ -270,6 +270,40 @@ public class CustomerServiceImpl implements CustomerService {
 			e.printStackTrace();
 		}
 		
+		
+	}
+
+
+	@Override
+	public List<Notification> getNotificationsByCustomerId(long customerId) {
+		
+		List<Notification> userNotificationList = new ArrayList<>();
+		List<Object[]> rawNotificationList = customerRepository.getNotificationsByCustomerId(customerId);
+		
+		for (Object[] rawNotification : rawNotificationList) {
+			Notification notification = new Notification();
+			
+			notification.setNotificationId(((BigInteger)rawNotification[0]).longValue());
+			notification.setDate((Date)rawNotification[1]);
+			notification.setDescription((String)rawNotification[2]);
+			notification.setHeader((String)rawNotification[3]);
+			notification.setSeen((Boolean)rawNotification[4]);
+			notification.setOrderId(((BigInteger)rawNotification[0]).longValue());
+			
+			
+			userNotificationList.add(notification);
+		}
+		
+		return userNotificationList;
+	}
+
+	@Override
+	public void addCustomerActivity(Activity activity, Customer customer) {
+		
+		customer.getActivities()
+				.add(activity);
+		
+		customerRepository.save(customer);
 		
 	}
 

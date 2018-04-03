@@ -19,7 +19,7 @@ import com.fb.exportorder.module.admin.service.InventoryService;
 public class SearchResultsController {
 	
 	@Autowired
-	InventoryService inventoryService;
+	private InventoryService inventoryService;
 	
 	private static final int SEARCH_RESULTS_ITEMS = 6;
 	

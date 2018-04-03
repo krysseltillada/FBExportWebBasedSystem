@@ -25,7 +25,9 @@ $(function () {
                 "progressBar": false,
                 "positionClass": "toast-bottom-right",
                 "preventDuplicates": false,
-                "onclick": null,
+                "onclick": function () {
+                    window.location.href = window.location.origin + "/FBExportSystem/order-list";
+                },
                 "showDuration": "300",
                 "hideDuration": "1000",
                 "timeOut": "6000",
@@ -364,7 +366,7 @@ $(document).ready(function () {
         */
 
         $.ajax({
-            url: "http://ip-api.com/json/1.0.63.255",
+            url: "http://ip-api.com/json/",
             jsonpCallback: "callback",
             dataType: "json",
             success: function( location ) {
@@ -558,12 +560,17 @@ $(document).ready(function () {
                                                     });
 
                                                     $itemsOrderedTable.find("tfoot tr .price").each(function (ind, elem) {
-                                                        subTotalPrice += Number($(elem).html());
+                                                        subTotalPrice += Number(accounting.unformat($(elem).html()));
                                                     });
 
                                                     var taxPaid = Number(accounting.unformat(formatMoney(fx($itemsOrderedTable.find("tfoot #estimatedTax").val()).from("PHP").to(currentCurrency), currentCurrency, "%v")));
                                                     var shippingFee = Number(accounting.unformat(formatMoney(fx(1000).from("PHP").to(currentCurrency), currentCurrency, "%v")));
                                                     var totalPrice = subTotalPrice + shippingFee + taxPaid;
+
+                                                    console.log("taxpaid: " + taxPaid);
+                                                    
+                                                    console.log("shipping fee: " + shippingFee);
+                                                    
 
                                                     console.log(totalPrice + " total price");
 

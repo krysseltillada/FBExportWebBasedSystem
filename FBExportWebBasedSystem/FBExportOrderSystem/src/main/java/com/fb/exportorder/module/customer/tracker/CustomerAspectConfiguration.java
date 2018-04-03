@@ -13,4 +13,9 @@ public class CustomerAspectConfiguration {
 		return new OrderNotificationTracker();
 	}
 	
+	@Bean
+	public ActivityTracker activityTracker() {
+		return new ActivityTracker();
+	}
+	
 }

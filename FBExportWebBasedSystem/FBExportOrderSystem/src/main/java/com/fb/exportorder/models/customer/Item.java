@@ -7,8 +7,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
-import org.javamoney.moneta.Money;
-
 import com.fb.exportorder.models.Product;
 
 @Entity
