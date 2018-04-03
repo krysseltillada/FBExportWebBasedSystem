@@ -13,12 +13,8 @@ public interface InventoryService {
 	List<Product> getAllProducts();
 	Product getProductById(long id);
 	
-	void deleteSelectedProduct (List<Long> ids);
-	
 	String postProduct (long id);
 	void unpostProduct (long id);
-	
-	void deleteProduct(long id);
 	
 	List<Product> filterProducts (Date minDate,
 								  Date maxDate,
@@ -55,6 +51,8 @@ public interface InventoryService {
 					  String supplierAddress,
 					  MultipartFile[] previewImages);
 	
+	String updateStockProduct(long id, String weight);
+
 	List<String> validate (String productImage,
 						   String productName,
 						   String origin,

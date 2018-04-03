@@ -7,6 +7,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -19,7 +22,9 @@ public class ProductStock {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long productStockId;
 	
-	private String productName;
+	@ManyToOne
+	@JoinColumn(name="product_id")
+	private Product product;
 	
 	@Embedded
 	private Weight stock;
@@ -35,12 +40,12 @@ public class ProductStock {
 		this.productStockId = productStockId;
 	}
 
-	public String getProductName() {
-		return productName;
+	public Product getProduct() {
+		return product;
 	}
 
-	public void setProductName(String productName) {
-		this.productName = productName;
+	public void setProduct(Product product) {
+		this.product = product;
 	}
 
 	public Weight getStock() {

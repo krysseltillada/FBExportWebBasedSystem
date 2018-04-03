@@ -170,38 +170,11 @@ public class InventoryController {
 		return inventoryService.getProductById(Long.parseLong(id));
 	}
 	
-	@RequestMapping(value = "/admin/inventory/delete-product", method = RequestMethod.POST)
+	@RequestMapping(value = "/admin/inventory/addstock-product", method = RequestMethod.POST)
 	@ResponseBody
-	public String deleteProduct(@RequestParam String id) {
-		inventoryService.deleteProduct(Long.parseLong(id));
-		return "";
-	}
-	// annotation 
-	@RequestMapping(value = "/admin/inventory/delete-selected-product", method = RequestMethod.POST)
-	@ResponseBody
-	public String deleteSelectedProduct(@RequestParam String ids) {
-		
-		try {
-			
-			JSONObject rawIds = (JSONObject)new JSONParser().parse(ids);
-			
-			JSONArray idsArray = (JSONArray)rawIds.get("deletedIds");
-			
-			List<Long> idsList = new ArrayList<Long>();
-			
-			for (int i = 0; i != idsArray.size(); ++i)
-				idsList.add(Long.parseLong((String)idsArray.get(i)));
-			
-			inventoryService.deleteSelectedProduct(idsList);
-			
-			
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		
-		return "";
+	public String deleteProduct(@RequestParam String id,
+								@RequestParam String weight) {
+		return inventoryService.updateStockProduct(Long.parseLong(id), weight);
 	}
 
 	@RequestMapping(value = "/admin/inventory/post-product", method = RequestMethod.POST)
@@ -228,7 +201,8 @@ public class InventoryController {
 		String strStatus = (String)filterDataJSON.get("status");
 		
 		ProductStatus status = strStatus.equals("Posted") ?  ProductStatus.POSTED :
-							   strStatus.equals("Unposted") ? ProductStatus.UNPOSTED : ProductStatus.ALL;
+							   strStatus.equals("Unposted") ? ProductStatus.UNPOSTED : 
+							   strStatus.equals("Outofstock") ? ProductStatus.OUT_OF_STOCK : ProductStatus.ALL;;
 		
 		double minPrice = StringUtils.isBlank((String)filterDataJSON.get("minPrice")) ? 0 : 
 																						Double.parseDouble((String)filterDataJSON.get("minPrice"));

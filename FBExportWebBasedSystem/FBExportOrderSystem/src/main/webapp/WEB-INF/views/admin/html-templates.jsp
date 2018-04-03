@@ -1044,9 +1044,19 @@
                 <li class = "mb-1"> <strong> Supplier Address: </strong> {{=supplierAddress}} </li>
                 <li class = "mb-1"> <strong> Date of delivery: </strong> {{=dateOfDelivery}}  </li>
             </ul>
+			
+			<hr class="mt-0 mb-2">
+
+			<div style="width:50%">
+	        	<label class="form-control-label" for="addStockWeight"><strong>Add Stock Weight</strong></label>
+	            <div class="input-group">
+	            	<input type="text" id="addStockWeight" class="form-control" placeholder="400.00" name = "weight" ><span class="input-group-addon">Kilo</span>
+	           	</div>	
+			</div>
 
             <br />
             
+
             {{ if (status == "POSTED" || status == 'OUT_OF_STOCK') { }}
                 <button type="button" class="btn bg-dark text-white float-right mr-1 btn-post-unpost">Unpost <i class="fa fa-clipboard ml-1" aria-hidden="true"></i>  </button>
             {{ } else if (status == "UNPOSTED") { }}
@@ -1054,7 +1064,8 @@
             {{ } }}
 
             <a class="btn bg-blue float-right mr-1" href = "{{=editAddressLink}}">Edit <i class="fa fa-pencil" aria-hidden="true"></i> </a>
-            <button type="button" class="btn bg-red float-right mr-1 btn-delete">Delete <i class="fa fa-trash" aria-hidden="true"></i> </button>
+			<button type="button" class="btn bg-green float-right mr-1 btn-addStockWeight">Add Stock Weight <i class="fa fa-plus" aria-hidden="true"></i> </button>
+
         </div>
     </div>
 </script>

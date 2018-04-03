@@ -12,6 +12,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Lob;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -60,6 +61,9 @@ public class Product {
 	
 	@OneToOne(cascade=CascadeType.ALL)
 	private Rating rating;
+	
+	@OneToMany(mappedBy="productStockId")
+	private List<ProductStock> productStocks;
 
 	public Long getProductId() {
 		return productId;
@@ -188,8 +192,6 @@ public class Product {
 	public void setRating(Rating rating) {
 		this.rating = rating;
 	}
-	
-	
 
 	public Date getDatePosted() {
 		return datePosted;
@@ -197,6 +199,14 @@ public class Product {
 
 	public void setDatePosted(Date datePosted) {
 		this.datePosted = datePosted;
+	}
+	
+	public List<ProductStock> getProductStocks() {
+		return productStocks;
+	}
+
+	public void setProductStocks(List<ProductStock> productStocks) {
+		this.productStocks = productStocks;
 	}
 
 	@Override
