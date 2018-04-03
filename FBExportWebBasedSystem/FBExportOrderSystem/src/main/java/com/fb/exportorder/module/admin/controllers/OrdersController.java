@@ -2,6 +2,7 @@ package com.fb.exportorder.module.admin.controllers;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -265,6 +266,7 @@ public class OrdersController {
 			newShippingLog.setHeader((String)shippingLog.get("header"));
 			newShippingLog.setDescription((String)shippingLog.get("description"));
 			newShippingLog.setAddress((String)shippingLog.get("address"));
+			newShippingLog.setComplete((Boolean)shippingLog.get("isShippingComplete"));
 			
 			try {
 				newShippingLog.setDate(dateFormat.parse((String)shippingLog.get("date")));
@@ -330,11 +332,10 @@ public class OrdersController {
 	@RequestMapping(value = "/admin/orders/markReceived", method = RequestMethod.POST)
 	@ResponseBody
 	public String markReceived (@RequestParam String id) {
-		
-		orderService.markReceived(orderService.getOrderById(Long.parseLong(id)));
+		orderService.markReceivedAdmin(orderService.getOrderById(Long.parseLong(id)));
 		return "";
+		
 	}
-	
 	@RequestMapping(value = "/admin/orders/markToShip", method = RequestMethod.POST)
 	@ResponseBody
 	public String markToShip (@RequestParam String id) {
@@ -342,6 +343,57 @@ public class OrdersController {
 		orderService.markToShip(orderService.getOrderById(Long.parseLong(id)));
 		return "";
 	}
+	
+	@RequestMapping(value = "/admin/orders/markReturned", method = RequestMethod.POST)
+	@ResponseBody
+	public String markReturned (@RequestParam String id,
+								@RequestParam String reason) {
+		
+		JSONObject jsonObject = new JSONObject();
+		
+		if (StringUtils.isNotBlank(reason)) {
+			
+			orderService.returnRefundOrderAdmin(orderService.getOrderById(Long.parseLong(id)), 
+											    reason);
+			
+			jsonObject.put("status", "success");
+			
+		} else {
+			jsonObject.put("status", "error");
+			jsonObject.put("message", "please provide a reason.");
+		}
+	
+		return jsonObject.toJSONString();
+	}
+	
+	@RequestMapping(value = "/admin/orders/markPaid", method = RequestMethod.POST)
+	@ResponseBody
+	public String markPaid(@RequestParam String id, 
+						   @RequestParam String datePaid){
+		
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+		JSONObject jsonObject = new JSONObject();
+		
+		try {
+			
+			Date date = dateFormat.parse(datePaid);
+			orderService.markPaidAdmin(orderService.getOrderById(Long.parseLong(id)), 
+									  date);
+			
+		} catch (java.text.ParseException e) {
+			
+			jsonObject.put("status", "error");
+			jsonObject.put("message", "invalid date");
+			
+			
+			return jsonObject.toJSONString();
+		}
+
+		jsonObject.put("status", "success");
+		
+		return jsonObject.toJSONString();
+	}
+	
 	
 	
 	@RequestMapping(value = "/admin/orders/checkShippingExists", method = RequestMethod.POST)

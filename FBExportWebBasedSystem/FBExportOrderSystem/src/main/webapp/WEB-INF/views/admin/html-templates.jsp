@@ -545,9 +545,14 @@
                                     <hr class="mt-1">
                                 
                                     <div class="form-group row">       
-                                        <div class="col-sm-9 offset-sm-3">
+                                        <div class="col-lg-12">
+                                            
+                                            <input class = "checkbox-template" id = "isCompleteShipping" type = "checkbox" />                 
+                                            <label for="isCompleteShipping">Mark this as complete?</label>
+
                                             <button id = "btn-update-shipping-log" class="btn btn-primary float-right ml-2"> Update </button>
                                             <button id = "btn-cancel-shipping-log" class="btn btn-primary float-right"> Cancel </button>
+
                                         </div>
                                     </div>
 
@@ -881,7 +886,11 @@
                         <hr class="mt-1">
                     
                         <div class="form-group row">       
-                            <div class="col-sm-9 offset-sm-3">
+                            <div class="col-md-12">
+
+                                <input class = "checkbox-template" id = "isCompleteShipping" type = "checkbox" />                 
+                                <label for="isCompleteShipping">Mark this as complete?</label>
+
                                 <button id = "btn-update-shipping-log" class="btn btn-primary float-right ml-2"> Update </button>
                                 <button id = "btn-cancel-shipping-log" class="btn btn-primary float-right"> Cancel </button>
                             </div>

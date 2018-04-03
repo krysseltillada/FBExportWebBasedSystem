@@ -32,7 +32,7 @@
 
                 <br />
 
-                <table id="systemLog" class="table" cellspacing="0" width="100%">
+                <table id="systemLog" class="table">
                     <thead>
                         <tr>
                             <th>Action Type</th>

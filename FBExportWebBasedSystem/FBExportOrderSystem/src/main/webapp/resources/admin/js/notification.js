@@ -54,6 +54,12 @@ $(document).ready(function () {
     });
 
     $("#notifications").parent().on("show.bs.dropdown", function () {
+
+        // <li>
+        //     <p id="notificationListEmptyMessage" class="text-center mt-3">
+        //         <img src="/FBExportSystem/resources/admin/img/loader.gif" width="40" height="40">
+        //     </p>
+        // </li>
        
         var $dropDownNotification = $(this);
 
@@ -61,8 +67,16 @@ $(document).ready(function () {
 
         $dropDownNotification.find("ul>div>li").remove();
 
+        $dropDownNotification.find("ul>div").append('<li>' +
+                                                        '<p id="notificationListLoader" class="text-center mt-3">' +
+                                                            '<img src="/FBExportSystem/resources/admin/img/loader.gif" width="40" height="40">' +
+                                                        '</p>' +
+                                                    '</li>');
+        
         $.post("/FBExportSystem/admin/showNotificationList", 
               function (response) {
+
+                $dropDownNotification.find("#notificationListLoader").remove();
 
                 if (response.length > 0) {
 
