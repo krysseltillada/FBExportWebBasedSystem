@@ -32,31 +32,31 @@ public class ReportLogTracker {
 		notificationService.pushNotification(systemNotification);
 	}
 	
-	@After("execution(public String com.fb.exportorder.utilities.SystemSettingsBackup.backupData(..))")
-	void detectSystemBackup (JoinPoint joinPoint) {
-		
-		SystemNotification systemNotification = new SystemNotification();
-		
-		systemNotification.setHeader("System Backup");
-		systemNotification.setDescription("System backup success");
-		systemNotification.setSeen(false);
-		systemNotification.setSystemNotificationStatus(SystemNotificationStatus.SYSTEM_BACKUP);
-		systemNotification.setDate(new Date());
-		
-		notificationService.pushNotification(systemNotification);
-	}
-	
-	@After("execution(public String com.fb.exportorder.utilities.SystemSettingsBackup.restoreData())")
-	void detectSystemRestore (JoinPoint joinPoint) {
-SystemNotification systemNotification = new SystemNotification();
-		
-		systemNotification.setHeader("System Restore");
-		systemNotification.setDescription("System restore success");
-		systemNotification.setSeen(false);
-		systemNotification.setSystemNotificationStatus(SystemNotificationStatus.SYSTEM_BACKUP);
-		systemNotification.setDate(new Date());
-		
-		notificationService.pushNotification(systemNotification);
-	}
+//	@After("execution(public String com.fb.exportorder.utilities.SystemSettingsBackup.backupData(..))")
+//	void detectSystemBackup (JoinPoint joinPoint) {
+//		
+//		SystemNotification systemNotification = new SystemNotification();
+//		
+//		systemNotification.setHeader("System Backup");
+//		systemNotification.setDescription("System backup success");
+//		systemNotification.setSeen(false);
+//		systemNotification.setSystemNotificationStatus(SystemNotificationStatus.SYSTEM_BACKUP);
+//		systemNotification.setDate(new Date());
+//		
+//		notificationService.pushNotification(systemNotification);
+//	}
+//	
+//	@After("execution(public String com.fb.exportorder.utilities.SystemSettingsBackup.restoreData())")
+//	void detectSystemRestore (JoinPoint joinPoint) {
+//SystemNotification systemNotification = new SystemNotification();
+//		
+//		systemNotification.setHeader("System Restore");
+//		systemNotification.setDescription("System restore success");
+//		systemNotification.setSeen(false);
+//		systemNotification.setSystemNotificationStatus(SystemNotificationStatus.SYSTEM_BACKUP);
+//		systemNotification.setDate(new Date());
+//		
+//		notificationService.pushNotification(systemNotification);
+//	}
 
 }

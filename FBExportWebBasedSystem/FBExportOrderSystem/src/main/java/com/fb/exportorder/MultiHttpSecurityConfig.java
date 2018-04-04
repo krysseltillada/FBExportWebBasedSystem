@@ -127,7 +127,8 @@ public class MultiHttpSecurityConfig {
         					 "/admin/manage-accounts",
         					 "/admin/orders").hasAnyAuthority("ADMIN", "EMPLOYEE")
         		.antMatchers("/admin/report-logs",
-        					 "/admin/system-settings").hasAuthority("ADMIN")
+        					 "/admin/system-settings",
+        					 "/admin/export/backup").hasAuthority("ADMIN")
         		.and()
 	    		.formLogin()
 	    		.loginPage("/admin/login")

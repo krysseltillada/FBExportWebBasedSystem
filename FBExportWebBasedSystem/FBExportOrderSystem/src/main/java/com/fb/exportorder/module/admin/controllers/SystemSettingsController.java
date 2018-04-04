@@ -1,18 +1,28 @@
 package com.fb.exportorder.module.admin.controllers;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.FileSystems;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.fb.exportorder.ScheduledTasks;
@@ -57,11 +67,13 @@ public class SystemSettingsController {
 		return "system-settings";
 	}
 	
-	@RequestMapping(value="/admin/edit-system-settings", method=RequestMethod.POST)
+	@RequestMapping(value="/admin/edit-system-settings", method=RequestMethod.POST, consumes = MediaType.ALL_VALUE, produces = MediaType.ALL_VALUE)
 	public String editSystemSettings(String systemBackupTimeInput,
 									 String systemLogoutTime,
+									 @RequestParam("sqlfile") MultipartFile sqlfile,
 									 HttpServletRequest request,
 									 RedirectAttributes redirectAttributes) {
+		
 		try {
 			HttpSession session = request.getSession();
 			
@@ -86,18 +98,17 @@ public class SystemSettingsController {
 
 			SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm");
 			ScheduledTasks.formattedTime = dateFormat.format(systemSettings.getSystemBackupTime().getTime());
-		
-			SystemLog systemLog = new SystemLog(); 
 			
-			systemLog.setActionType(ActionType.SETTINGS);
-			systemLog.setDescription(name + " change the system backup time to " + systemBackupTimeInput + " and logout time to " + systemLogoutTime + " minutes");
-			systemLog.setTimeOccured(new Date());
-			systemLog.setDateOccured(new Date());
-
-			systemLogService.addSystemLog(systemLog);
+			systemLog(name + " change the system backup time to " + systemBackupTimeInput + " and logout time to " + systemLogoutTime + " minutes", ActionType.SETTINGS);
 			
+			String result = systemSettingsService.uploadFile(sqlfile);
+			if(!result.equals("Success")) {
+				redirectAttributes.addFlashAttribute("ErrorSettings", result);
+				return "redirect:/admin/system-settings";
+			}
 		} catch (ParseException e) {
-			return "Error";
+			redirectAttributes.addFlashAttribute("ErrorSettings", e.getMessage());
+			return "redirect:/admin/system-settings";
 		}
 		
 		redirectAttributes.addFlashAttribute("SuccessSettings", "You've successfully changed your system settings");
@@ -113,14 +124,7 @@ public class SystemSettingsController {
 		
 		String message = systemSettingsBackup.restoreData();
 		
-		SystemLog systemLog = new SystemLog();
-		
-		systemLog.setActionType(ActionType.SETTINGS);
-		systemLog.setDescription(name + " restored the backup");
-		systemLog.setTimeOccured(new Date());
-		systemLog.setDateOccured(new Date());
-		
-		systemLogService.addSystemLog(systemLog);
+		systemLog(name + " restored the backup", ActionType.SETTINGS);
 		
 		return message;
 	}
@@ -133,15 +137,39 @@ public class SystemSettingsController {
 		
 		String message = systemSettingsBackup.backupData("fbexport");
 		
+		systemLog(name + " backup the system", ActionType.SETTINGS);
+		
+		return message;
+	}
+	
+	@RequestMapping(value="/admin/export/backup")
+    public void downloadPDFResource( HttpSession httpSession,
+                                     HttpServletResponse response){
+		
+		String name = (String)httpSession.getAttribute("employeeName");
+        
+		Path file = FileSystems.getDefault().getPath("src\\main\\webapp\\system-backup\\fbexport_backup.sql");
+        
+        response.setContentType("text/plain");
+        response.addHeader("Content-Disposition", "attachment; filename=fbexport_backup.sql");
+        try
+        {
+        	systemLog(name + " export database", ActionType.SETTINGS);
+        	
+            Files.copy(file, response.getOutputStream());
+            response.getOutputStream().flush();
+        }
+        catch (IOException ex) {}
+    }
+	
+	private void systemLog(String description, ActionType actionType) {
 		SystemLog systemLog = new SystemLog();
 		
-		systemLog.setActionType(ActionType.SETTINGS);
-		systemLog.setDescription(name + " backup the system");
+		systemLog.setActionType(actionType);
+		systemLog.setDescription(description);
 		systemLog.setTimeOccured(new Date());
 		systemLog.setDateOccured(new Date());
 		
 		systemLogService.addSystemLog(systemLog);
-		
-		return message;
 	}
 }

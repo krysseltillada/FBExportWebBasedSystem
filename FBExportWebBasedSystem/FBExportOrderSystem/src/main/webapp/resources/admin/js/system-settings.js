@@ -23,6 +23,40 @@ $(document).ready(function () {
     $("#btnRestoreData").click(function(e){
     	systemSettingsData("/FBExportSystem/admin/restore-data", 'RESTORE DATA', 'Are you sure you want to restore your data?', "You've successfully restore data!");
     });
+    
+    $("#btnExportDatabase").click(function(e){
+    	iziToast.question({
+    	    timeout: 20000,
+    	    close: false,
+    	    overlay: true,
+    	    toastOnce: true,
+    	    id: 'question',
+    	    zindex: 999,
+    	    title: "EXPORT DATABASE",
+    	    message: "Are you sure you want to export your database?",
+    	    position: 'center',
+    	    buttons: [
+    	        ['<button><b>YES</b></button>', function (instance, toast) {
+    	        	
+    	        	window.location.replace("/FBExportSystem/admin/export/backup");
+    	        	
+    	            instance.hide({ transitionOut: 'fadeOut' }, toast, 'button');
+    	 
+    	        }, true],
+    	        ['<button>NO</button>', function (instance, toast) {
+    	 
+    	            instance.hide({ transitionOut: 'fadeOut' }, toast, 'button');
+    	 
+    	        }]
+    	    ],
+    	    onClosing: function(instance, toast, closedBy){
+    	        console.info('Closing | closedBy: ' + closedBy);
+    	    },
+    	    onClosed: function(instance, toast, closedBy){
+    	        console.info('Closed | closedBy: ' + closedBy);
+    	    }
+    	});
+    });
  
     function systemSettingsData(urlData, titleData, messageData, successMessage){
     	iziToast.question({
@@ -98,5 +132,10 @@ $(document).ready(function () {
     	$("body").find("a").unbind("click");
     }
     /*PreLoader*/
+    
+    $("#sqlfile").change(function (){
+        var fileName = $(this).val();
+        $("#filename-uploaded").html(fileName.substring(fileName.lastIndexOf("\\") + 1, fileName.length));
+      });
     
 });
