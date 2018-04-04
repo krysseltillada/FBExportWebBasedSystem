@@ -1,5 +1,6 @@
 <%@ include file = "../../lib/tags/tag-libraries.jsp" %>
 
+<input type = "hidden" id = "employeeId" value = "${sessionScope.employeeId}" />
 
 <sql:query var="notificationsListQuery" 
 	       dataSource = "${dataSource}">

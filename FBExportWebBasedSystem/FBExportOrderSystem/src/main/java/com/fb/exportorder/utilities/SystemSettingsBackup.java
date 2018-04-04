@@ -16,7 +16,14 @@ public class SystemSettingsBackup {
 	private final String file = FileSystems.getDefault().getPath("src\\main\\webapp\\system-backup") + File.separator + "fbexport_backup.sql";
 	
 	public String backupData(String dbname) {
-		
+		return backDatas(dbname);
+	}
+	
+	public String backupDataCron(String dbname) {
+		return backDatas(dbname);
+	}
+	
+	private String backDatas(String dbname) {
 		Process p = null;
         try {
         	

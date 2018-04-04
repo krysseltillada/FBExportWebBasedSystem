@@ -279,11 +279,7 @@ public class ManageEmloyeeServiceImpl implements ManageEmployeeService {
 	
 	@Override
 	public List<Employee> getAllEmployees() {
-		List<Employee> employees = new ArrayList<>();
-		for(Employee employee : employeeRepository.findAll()) {
-			employees.add(employee);
-		}
-		return employees;
+		return (List<Employee>)employeeRepository.findAll();
 	}
 
 	@Override

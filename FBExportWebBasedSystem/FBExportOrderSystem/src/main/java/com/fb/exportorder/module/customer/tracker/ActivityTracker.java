@@ -210,4 +210,18 @@ public class ActivityTracker {
 		
 	}
 	
+	@After("execution(public String com.fb.exportorder..service.ResetPasswordService+.resetPassword(..))")
+	public void detectResetPassword(JoinPoint joinPoint) {
+		Customer customer = customerService.getCustomerById((Long)joinPoint.getArgs()[1]);
+		
+		Activity activity = new Activity();
+		
+		activity.setHeader("Reset Password");
+		activity.setDescription("Password Changed");
+		activity.setDate(new Date());
+		activity.setCustomer(customer);
+		
+		customerService.addCustomerActivity(activity, customer);
+	}
+	
 }

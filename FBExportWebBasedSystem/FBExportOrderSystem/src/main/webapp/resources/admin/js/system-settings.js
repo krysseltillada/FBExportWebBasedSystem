@@ -80,11 +80,11 @@ $(document).ready(function () {
     	      	      	cache: false,
     	                success: function(result){
     	                	if(result == "Success"){
-    	                		iziToast.success({
-    	                		    title: 'SUCCESS',
-    	                		    message: successMessage,
-    	                		});
-    	                    	
+//    	                		iziToast.success({
+//    	                		    title: 'SUCCESS',
+//    	                		    message: successMessage,
+//    	                		});
+//    	                    	
     	                		hidePreLoader();
     	                	}else{
     	                		iziToast.error({

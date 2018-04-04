@@ -53,7 +53,7 @@
 		                	<button type="button" class="btn btn-primary btn-sm mr-1" id="btnExportDatabase" ${isBackupFileExist ? '' : 'disabled'}>Export Database</button>
 		                	<label for="sqlfile" class="btn btn-primary btn-sm mr-1" style="cursor: pointer;">Import Database</label>
 		                	<span id="filename-uploaded">No file selected</span>
-							<input type="file" name="sqlfile" id="sqlfile" style="visibility:hidden;" accept=".sql" class="btn btn-primary btn-sm mr-1"/>
+							<input type="file" name="sqlfile" id="sqlfile" style="visibility:hidden;" accept=".sql" class="btn btn-primary btn-sm mr-1" />
 		                </div>
 		                <br />
 		                <input type="submit" class="btn btn-primary float-right" style="margin-bottom: 50px" value="Apply changes" />
