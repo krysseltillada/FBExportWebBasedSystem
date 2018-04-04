@@ -19,13 +19,9 @@ import com.fb.exportorder.models.Employee;
 import com.fb.exportorder.models.SystemNotification;
 import com.fb.exportorder.models.enums.SystemNotificationStatus;
 import com.fb.exportorder.module.admin.repository.SystemNotificationRepository;
-import com.fb.exportorder.module.admin.session.EmployeeSessionBean;
-
+	
 @Service("AdminNotificationService")
 public class NotificationServiceImpl implements NotificationService {
-	
-	@Autowired
-	private EmployeeSessionBean employeeSessionBean;
 
 	@Autowired
 	private SystemNotificationRepository systemNotificationRepository;
@@ -39,7 +35,7 @@ public class NotificationServiceImpl implements NotificationService {
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
 	
-	SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-mm-dd hh:mm:ss");
+	SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 	
 	private long addNotificationToEmployee(SystemNotification notification, Employee employee) {
 		
@@ -63,8 +59,6 @@ public class NotificationServiceImpl implements NotificationService {
 	
 	@Override
 	public void pushNotification(SystemNotification notification) {
-			
-//			long notificationId = addNotificationToEmployee(notification, manageEmployeeService.getEmployeeById(employeeSessionBean.getEmployeeId()));
 			
 			List<Employee> employeeList = manageEmployeeService.getAllEmployees();
 			

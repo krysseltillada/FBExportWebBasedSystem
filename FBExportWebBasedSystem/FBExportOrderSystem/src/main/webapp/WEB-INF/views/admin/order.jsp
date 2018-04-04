@@ -4,7 +4,7 @@
     <div class="container-fluid">
         <div class = "row">
             <div class = "col-lg">
-                <span class="h3 no-margin-bottom mr-2">Orders</span>
+                <span class="h3 no-margin-bottom mr-2"><span>Orders</span> <i class="fa fa-list-alt ml-2" aria-hidden="true"></i> </span>
                 <span class = "small ml-2 float-right"> <a href = "javascript:void(0)" id = "deleteOrder" class = "text-muted disabled" style = "pointer-events: none; cursor: not-allowed;"> Delete order <i class="fa fa-trash ml-1" aria-hidden="true"></i> </a> </span>
                 <span class = "small ml-2 float-right"> <a data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample"> Filter Orders <i class="fa fa-filter ml-1" aria-hidden="true"></i> </a> </span>
             	<span class = "small float-right"> <a href = "<c:url value = '/admin/orders' />"> Refresh orders <i class="fa fa-refresh ml-1" aria-hidden="true"></i> </a></span>

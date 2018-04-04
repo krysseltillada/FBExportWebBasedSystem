@@ -1,5 +1,7 @@
 $(document).ready(function () {
 
+    var isNotificationResponseEmpty = false;
+
     var getSystemNotificationStatusIcon = function (systemNotificationStatus) {
 
         return systemNotificationStatus == "ORDER_RECEIVED" ? '<i class="icon-padnote ml-1" style = "color: #0275d8;"></i>' :
@@ -114,6 +116,8 @@ $(document).ready(function () {
 
         var $notificationList = $(this).find("div.list-group");
 
+        isNotificationResponseEmpty = false;
+
         $("#notifications").parent().find("a>span").remove(); 
 
         $notificationList.children().remove();
@@ -157,6 +161,7 @@ $(document).ready(function () {
         }, 1500);
 
     });
+    
 
     $("#notificationModal div.list-group").scroll(function () {
         var $notificationList = $(this);
@@ -167,7 +172,7 @@ $(document).ready(function () {
 
         if ($notificationList[0].scrollHeight - $notificationList.scrollTop() == $notificationList.height())
         {
-            if (!isNotificationLoaderDisplayed) {
+            if (!isNotificationLoaderDisplayed && !isNotificationResponseEmpty) {
          
                 var currentNotificationItems = $notificationList.find(">span").length;
                 
@@ -188,17 +193,23 @@ $(document).ready(function () {
 
                         console.log(response);
 
-                        for (var i = 0; i != notification.length; ++i){
+                        if (notification.length > 0) {
 
-                            var systemNotificationStatus = notification[i].systemNotificationStatus;
-                            var systemNotificationStatusIcon = getSystemNotificationStatusIcon(systemNotificationStatus);
+                            for (var i = 0; i != notification.length; ++i){
 
-                            $notificationList.append(_.template($("#notificationModalListItem").html())({
-                                header : notification[i].header,
-                                icon : systemNotificationStatusIcon,
-                                dateAgo : timeago().format(notification[i].date),
-                                description : notification[i].description
-                            }));
+                                var systemNotificationStatus = notification[i].systemNotificationStatus;
+                                var systemNotificationStatusIcon = getSystemNotificationStatusIcon(systemNotificationStatus);
+
+                                $notificationList.append(_.template($("#notificationModalListItem").html())({
+                                    header : notification[i].header,
+                                    icon : systemNotificationStatusIcon,
+                                    dateAgo : timeago().format(notification[i].date),
+                                    description : notification[i].description
+                                }));
+                            }
+
+                        } else {
+                            isNotificationResponseEmpty = true;
                         }
 
                     }, "json")
@@ -219,8 +230,6 @@ $(document).ready(function () {
                 var systemNotificationStatusIcon = getSystemNotificationStatusIcon(notification.systemNotificationStatus);
                 var systemNotificationListStatusIcon = getSystemNotificationListStatusIcon(notification.systemNotificationStatus);
                
-                if (!window.location.pathname.includes("/FBExportSystem/admin/inventory/edit-product") &&
-                    !window.location.pathname.includes("/FBExportSystem/admin/add-product")) {
 
                     var notificationSound = new Audio("/FBExportSystem/resources/notification-sound.mp3");
                     notificationSound.play();
@@ -233,8 +242,6 @@ $(document).ready(function () {
                         title: notification.header,
                         message: notification.description
                     });
-
-                }
 
                 $("a#notifications").next().find(">div").prepend(_.template($("#notificationListItem").html())({
                     header : notification.header,
