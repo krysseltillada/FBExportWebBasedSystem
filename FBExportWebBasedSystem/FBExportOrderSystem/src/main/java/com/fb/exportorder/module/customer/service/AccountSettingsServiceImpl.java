@@ -5,6 +5,7 @@ import java.nio.file.FileSystems;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -26,6 +27,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.fb.exportorder.models.Address;
 import com.fb.exportorder.models.Contact;
 import com.fb.exportorder.models.ShippingAddress;
+import com.fb.exportorder.models.customer.Activity;
 import com.fb.exportorder.models.customer.Customer;
 import com.fb.exportorder.models.enums.Gender;
 import com.fb.exportorder.module.customer.repository.CustomerRepository;
@@ -248,12 +250,15 @@ public class AccountSettingsServiceImpl implements AccountSettingsService {
 			userAccountShippingAddress.setContact(editedCustomerAccount.getContact());
 			userAccountShippingAddress.setReceiverFullName(editedCustomerAccount.getFirstname() + " " + editedCustomerAccount.getMiddlename() + " " + editedCustomerAccount.getLastname());
 			
+			
 			customerRepository.save(editedCustomerAccount);
 			
 			session.setAttribute("customerProfileImageLink", editedCustomerAccount.getProfileImageLink());
 			session.setAttribute("customerName", editedCustomerAccount.getFirstname());
 			
 			System.out.println("successfully edited");
+			
+			
 		
 		}
 		

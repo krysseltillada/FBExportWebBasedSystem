@@ -213,7 +213,7 @@ $(document).ready(function () {
         stompClient = Stomp.over(socket);
         stompClient.connect({}, function(frame) {
             
-            stompClient.subscribe('/topic/notification', function(response){
+            stompClient.subscribe('/queue/push-notification-employee-id-' + $("#employeeId").val(), function(response){
 
                 var notification = JSON.parse(response.body);
                 var systemNotificationStatusIcon = getSystemNotificationStatusIcon(notification.systemNotificationStatus);

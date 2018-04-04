@@ -1,11 +1,13 @@
 package com.fb.exportorder.module.admin.service;
 
 import java.math.BigInteger;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.messaging.MessagingException;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Service;
@@ -34,14 +36,27 @@ public class NotificationServiceImpl implements NotificationService {
 	@Autowired
 	private SimpMessagingTemplate simpMessagingTemplate;
 	
+	@Autowired
+	private JdbcTemplate jdbcTemplate;
+	
+	SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-mm-dd hh:mm:ss");
+	
 	private long addNotificationToEmployee(SystemNotification notification, Employee employee) {
 		
-		employee.getSystemNotificationList()
-				.add(notification);
+		String timeStampFormat = simpleDateFormat.format(notification.getDate());
+		long employeeId = employee.getId();
 		
-		manageEmployeeService.saveEmployee(employee);
+		String insertSystemNotificationStatement
+				= "INSERT INTO system_notification (date, description, header, is_seen, system_notification_status)" +
+				  "VALUES ('" + timeStampFormat+ "', '" + notification.getDescription() + "', '" + notification.getHeader() + "', " + notification.isSeen() + ", '" + notification.getSystemNotificationStatus() +  "' )";
 		
-		return getAllNotificationByEmployeeId(employee.getId(), 1, 0).get(0).getNotificationId();
+		jdbcTemplate.execute(insertSystemNotificationStatement);
+		
+		long notificationId = (Long)jdbcTemplate.queryForList("SELECT notification_id FROM system_notification ORDER BY notification_id DESC").get(0).get("notification_id");
+	
+		jdbcTemplate.execute("INSERT INTO employee_system_notification_list VALUES (" + employeeId + ", " + notificationId + ")");
+		
+		return notificationId;
 
 	}
 	
@@ -49,31 +64,37 @@ public class NotificationServiceImpl implements NotificationService {
 	@Override
 	public void pushNotification(SystemNotification notification) {
 			
-			long notificationId = addNotificationToEmployee(notification, manageEmployeeService.getEmployeeById(employeeSessionBean.getEmployeeId()));
+//			long notificationId = addNotificationToEmployee(notification, manageEmployeeService.getEmployeeById(employeeSessionBean.getEmployeeId()));
 			
-			List<Employee> otherEmployeeList = manageEmployeeService.getAllEmployees();
+			List<Employee> employeeList = manageEmployeeService.getAllEmployees();
 			
-			for(Employee otherEmployee : otherEmployeeList) {
-				if (otherEmployee.getId() != employeeSessionBean.getEmployeeId())
-					addNotificationToEmployee(notification, otherEmployee);
-			}
-			
-		
-			try {
+			for(Employee employee : employeeList) {
+				notification.setNotificationId(null);
+
+				if (employee.isOnline()) { 
+					long notificationId = addNotificationToEmployee(notification, employee);
+					notification.setNotificationId(notificationId);
 					
-				notification.setNotificationId(notificationId);
+					try {
+						
+						simpMessagingTemplate.convertAndSend("/queue/push-notification-employee-id-" + employee.getId(), 
+															 new ObjectMapper().writeValueAsString(notification));
+						
+					} catch (MessagingException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (JsonProcessingException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 				
-				simpMessagingTemplate.convertAndSend("/topic/notification", 
-													 new ObjectMapper().writeValueAsString(notification));
-				
-			} catch (MessagingException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (JsonProcessingException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				} else {
+					
+					addNotificationToEmployee(notification, employee);
+					
+				}
 			}
-		
+			
 	}
 
 

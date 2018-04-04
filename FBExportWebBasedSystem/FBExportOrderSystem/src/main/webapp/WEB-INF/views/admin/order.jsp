@@ -123,7 +123,7 @@
 	                                        	<input id = "orderId-${order.orderId}" type = "hidden" />
 	                                        	</h3>
 	                                        <span style = "font-size: 13px;">
-	                                            <strong> by: </strong> <strong> <a href = "#"> ${order.customer.firstname} ${order.customer.middlename} ${order.customer.lastname} </a> </strong>
+	                                            <strong> by: </strong> <strong> ${order.customer.firstname} ${order.customer.middlename} ${order.customer.lastname} </strong>
 	                                            <br />
 	                                            <strong> Payment: </strong> ${ (order.paymentMethod eq 'CASH_ON_DELIVERY') ? 'Cash on delivery <i class="fa fa-truck ml-1" aria-hidden="true"></i>' :
 	                                            																			 'Paypal <i class="fa fa-paypal ml-1" aria-hidden="true"></i>'}
