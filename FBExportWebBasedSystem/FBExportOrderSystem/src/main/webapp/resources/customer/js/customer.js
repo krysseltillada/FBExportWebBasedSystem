@@ -252,7 +252,9 @@ $(document).ready(function () {
     });
 
     $quantitySpinner.val(1);
-
+    
+    
+    
     $("#btnAddToCart").click(function () {
 
         var $addToCartModal = $(this).closest("div#addToCartModal");
