@@ -91,7 +91,7 @@
 							<c:forEach var="order" items="${latestOrders}">
 								<div class="item">
 				                    <div class="feed d-flex justify-content-between">
-				                        <div class="feed-body d-flex justify-content-between"><a href="#" class="feed-profile"><img src="<c:url value = "${not empty order.getCustomer().getProfileImageLink() ? order.getCustomer().getProfileImageLink() : order.getCustomer().getGender() == 'MALE' ? '/resources/customer/img/profile-male.jpg' : '/resources/customer/img/profile-female.jpg' }" />" alt="${order.getCustomer().getUsername()}" class="img-fluid rounded-circle"></a>
+				                        <div class="feed-body d-flex justify-content-between"><a href="#" class="feed-profile"><img style="width: 50px; height: 50px;" src="<c:url value = "${not empty order.getCustomer().getProfileImageLink() ? order.getCustomer().getProfileImageLink() : order.getCustomer().getGender() == 'MALE' ? '/resources/customer/img/profile-male.jpg' : '/resources/customer/img/profile-female.jpg' }" />" alt="${order.getCustomer().getUsername()}" class="img-fluid rounded-circle"></a>
 				                        <div class="content">
 				                            <h5>${order.getCustomer().getFirstname()} ${order.getCustomer().getLastname()}</h5><span>Status : ${ order.getOrderStatus() } </span>
 				                            <div class="full-date"><small>${order.getDateOrdered()}</small></div>

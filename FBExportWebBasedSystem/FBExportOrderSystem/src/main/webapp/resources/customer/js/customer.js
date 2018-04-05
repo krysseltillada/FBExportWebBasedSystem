@@ -260,7 +260,7 @@ $(document).ready(function () {
         var rowCart = $("div#shoppingModalCart div.modal-body>table").find(".product-id[value="+ val +"]").closest("tr").html();
         
         var addedQuantity = Number($(rowCart).find(".productWeightCart").html()) + Number($("#quantity").val());
-        
+       
         if(Number($("#availableWeight").text()) < Number($("#quantity").val()) || Number(addedQuantity) > Number($("#availableWeight").text())){
         	toastr.warning('Your order exceeds available stocks', 'Warning!');
         	return;
@@ -276,7 +276,15 @@ $(document).ready(function () {
             return;
 
         }
-
+        var orderMassType = $(rowCart).find(".productWeightType").html();
+     
+        if(jQuery.type(orderMassType) !== "undefined"){
+        	if( orderMassType != $("#massType option:selected").text()){
+            	toastr.warning("Your order should be in " + orderMassType , 'Warning!');
+            	return;
+            }
+        }
+        
         var realTotalPriceApprox = $addToCartModal.find("#total-real-price-approx").val();
 
         var fromCurrentPriceToPhpPrice = fx(realTotalPriceApprox).from(currentCurrency).to("PHP");
@@ -342,7 +350,7 @@ $(document).ready(function () {
             datePosted : $cardBody.find("#product-date-posted").html(),
             realPriceApprox : $card.find("#real-price-approx").val()
         };
-
+        
         showAddToCartModal(productItem, currency);
 
 

@@ -51,7 +51,7 @@
 																	INNER JOIN customer c ON cn.customer_id = c.id WHERE c.id = ${sessionScope.customerId} AND n.is_seen = false
 																	ORDER BY n.date DESC
 									  	</sql:query>
-	<header>
+	<header id="move-top">
 	
 		<input type = "hidden" value = '${sessionScope.customerId}' id = "customer-id"/>
 	
