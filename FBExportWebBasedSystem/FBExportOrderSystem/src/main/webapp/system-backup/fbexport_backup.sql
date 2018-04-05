@@ -41,7 +41,7 @@ CREATE TABLE `activity` (
   PRIMARY KEY (`activity_id`),
   KEY `FKse269fvw3ft70lc8sf7mp5kpo` (`customer_id`),
   CONSTRAINT `FKse269fvw3ft70lc8sf7mp5kpo` FOREIGN KEY (`customer_id`) REFERENCES `customer` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -50,7 +50,7 @@ CREATE TABLE `activity` (
 
 LOCK TABLES `activity` WRITE;
 /*!40000 ALTER TABLE `activity` DISABLE KEYS */;
-INSERT INTO `activity` VALUES (1,'2018-04-03 16:11:50','You\'ve reviewed a product box rush','Reviewed Product',1),(2,'2018-04-03 16:12:21','You\'ve ordered Order No.1','Order',1),(3,'2018-04-03 16:12:36','You\'ve ordered Order No.2','Order',1),(4,'2018-04-04 00:28:24','You\'ve ordered Order No.3','Order',1),(5,'2018-04-04 00:28:47','You\'ve ordered Order No.4','Order',1),(6,'2018-04-04 00:29:08','You\'ve ordered Order No.5','Order',1),(7,'2018-04-04 00:29:35','You\'ve ordered Order No.6','Order',1),(8,'2018-04-04 03:58:05','You\'ve cancelled your Order No.6','Order Cancelled',1),(9,'2018-04-04 03:59:36','You\'ve Paid your Order No.6','Order Paid',1),(10,'2018-04-04 04:00:04','You\'ve Refund your Order No.6','Order Refund',1),(11,'2018-04-04 04:01:14','You\'ve reordered your Order No.6','Reordered',1),(12,'2018-04-04 04:01:45','You\'ve cancelled your Order No.6','Order Cancelled',1),(13,'2018-04-04 04:12:45','You\'ve cancelled your Order No.5','Order Cancelled',1),(14,'2018-04-04 04:36:43','You\'ve cancelled your Order No.6','Order Cancelled',1),(15,'2018-04-04 04:37:23','You\'ve cancelled your Order No.6','Order Cancelled',1),(16,'2018-04-04 04:39:00','You\'ve Paid your Order No.6','Order Paid',1),(17,'2018-04-04 04:39:19','You\'ve Refund your Order No.6','Order Refund',1),(18,'2018-04-04 04:40:18','You\'ve requested to returned order No. 6','Returned Product',1),(19,'2018-04-04 04:52:06','You\'ve Paid your Order No.6','Order Paid',1),(20,'2018-04-04 05:46:48','You\'ve cancelled your Order No.5','Order Cancelled',1),(21,'2018-04-04 05:46:52','You\'ve cancelled your Order No.4','Order Cancelled',1);
+INSERT INTO `activity` VALUES (1,'2018-04-05 16:55:55','You\'ve ordered Order No.1','Order',1),(2,'2018-04-05 16:58:47','You\'ve Paid your Order No.1','Order Paid',1),(3,'2018-04-05 17:41:13','You\'ve marked your Order No.1 as received','Order Marked as Received',1),(4,'2018-04-05 17:46:27','You\'ve ordered Order No.2','Order',1),(5,'2018-04-05 18:12:47','You\'ve ordered Order No.3','Order',1),(6,'2018-04-05 18:13:53','You\'ve cancelled your Order No.3','Order Cancelled',1);
 /*!40000 ALTER TABLE `activity` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -66,7 +66,7 @@ CREATE TABLE `authorities` (
   `authority` varchar(255) DEFAULT NULL,
   `account_id` bigint(20) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -75,7 +75,7 @@ CREATE TABLE `authorities` (
 
 LOCK TABLES `authorities` WRITE;
 /*!40000 ALTER TABLE `authorities` DISABLE KEYS */;
-INSERT INTO `authorities` VALUES (1,'ADMIN',0),(2,'CUSTOMER',1),(3,'EMPLOYEE',32768);
+INSERT INTO `authorities` VALUES (1,'CUSTOMER',1),(2,'ADMIN',0);
 /*!40000 ALTER TABLE `authorities` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -89,7 +89,7 @@ DROP TABLE IF EXISTS `cart`;
 CREATE TABLE `cart` (
   `cart_id` bigint(20) NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`cart_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -98,7 +98,7 @@ CREATE TABLE `cart` (
 
 LOCK TABLES `cart` WRITE;
 /*!40000 ALTER TABLE `cart` DISABLE KEYS */;
-INSERT INTO `cart` VALUES (1),(2),(3),(4),(5),(6),(7);
+INSERT INTO `cart` VALUES (1),(2),(3),(4);
 /*!40000 ALTER TABLE `cart` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -125,7 +125,7 @@ CREATE TABLE `cart_items` (
 
 LOCK TABLES `cart_items` WRITE;
 /*!40000 ALTER TABLE `cart_items` DISABLE KEYS */;
-INSERT INTO `cart_items` VALUES (2,2),(3,4),(4,6),(5,8),(6,10),(7,12);
+INSERT INTO `cart_items` VALUES (2,2),(3,4),(4,7),(4,8);
 /*!40000 ALTER TABLE `cart_items` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -168,7 +168,7 @@ CREATE TABLE `customer` (
 
 LOCK TABLES `customer` WRITE;
 /*!40000 ALTER TABLE `customer` DISABLE KEYS */;
-INSERT INTO `customer` VALUES (1,'rivera compound saint joseph subdivision','las pinas city','Philippines','14400',18,'358','krysseltillada@gmail.com','9161829106','','kryssel','MALE','de leon','tilladA','\0','$2a$10$mextiVhGdS.BcehQlX4HtOF54DWkdVYpKHbRd/Rc1Rax.YwIRtzee','/resources/customer/img/profile-male.jpg','krysseltillada',1);
+INSERT INTO `customer` VALUES (1,'rivera compound saint joseph subdivision','las pinas city','Philippines','1400',18,'63','krysseltillada@gmail.com','91051829105','','kryssel','MALE','de leon','tillada','\0','$2a$10$CDBDMWHlf8xfyr0F6KnEY.WHDEISJhjtoERgne79EVvkVzT.nt5Iy','/resources/customer/img/profile-male.jpg','krysseltillada',1);
 /*!40000 ALTER TABLE `customer` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -195,7 +195,7 @@ CREATE TABLE `customer_notifications` (
 
 LOCK TABLES `customer_notifications` WRITE;
 /*!40000 ALTER TABLE `customer_notifications` DISABLE KEYS */;
-INSERT INTO `customer_notifications` VALUES (1,1),(1,2),(1,3),(1,4),(1,5),(1,6),(1,7),(1,8),(1,9),(1,10),(1,11),(1,12),(1,13),(1,14),(1,15),(1,16),(1,17),(1,18),(1,19),(1,20),(1,21),(1,22),(1,23),(1,24),(1,25),(1,26),(1,27),(1,28),(1,29),(1,30),(1,31),(1,32),(1,33),(1,34),(1,35),(1,36),(1,37),(1,38),(1,39),(1,40),(1,41),(1,42),(1,43),(1,44),(1,45),(1,46),(1,47),(1,48),(1,49),(1,50),(1,51),(1,52),(1,53),(1,54),(1,55),(1,56),(1,57),(1,58),(1,59),(1,60),(1,61),(1,62),(1,63),(1,64);
+INSERT INTO `customer_notifications` VALUES (1,1),(1,2),(1,3),(1,4),(1,5),(1,6),(1,7),(1,8),(1,9),(1,10),(1,11),(1,12),(1,13),(1,14),(1,15);
 /*!40000 ALTER TABLE `customer_notifications` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -222,7 +222,7 @@ CREATE TABLE `customer_shipping_addresses` (
 
 LOCK TABLES `customer_shipping_addresses` WRITE;
 /*!40000 ALTER TABLE `customer_shipping_addresses` DISABLE KEYS */;
-INSERT INTO `customer_shipping_addresses` VALUES (1,1),(1,2);
+INSERT INTO `customer_shipping_addresses` VALUES (1,1);
 /*!40000 ALTER TABLE `customer_shipping_addresses` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -263,7 +263,7 @@ CREATE TABLE `employee` (
 
 LOCK TABLES `employee` WRITE;
 /*!40000 ALTER TABLE `employee` DISABLE KEYS */;
-INSERT INTO `employee` VALUES (0,'wfawf','wefw','wegw','123',19,'12','krysseltillada@gmail.com','123123','','krysseltillada','MALE','de leon ','tillada','','$2a$10$w921HXavi.mOnflh.yIQNePCcnsgP50S7BwkZr9Zknd6IVzAcKflK',NULL,'krysseltillada','ADMIN'),(32768,'rivera compound saint joseph','angola','Angola','1400',18,'54','finalexistence@ymail.com','9123123123','','judy','MALE','ando','n','','$2a$10$.6jwXH05UmEtaRxYDEFDDObNeI2Gy2k/4mlPd4k.IRB5gOoSowC/S','/resources/admin/img/profile-male.jpg','finalexistence','STAFF');
+INSERT INTO `employee` VALUES (0,'awfaf','egw','wegw','123',19,'12','krysseltillada@gmail.com','123123','','kryssel','MALE','de leon','t','','$2a$10$w921HXavi.mOnflh.yIQNePCcnsgP50S7BwkZr9Zknd6IVzAcKflK',NULL,'krysseltillada','ADMIN');
 /*!40000 ALTER TABLE `employee` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -290,7 +290,7 @@ CREATE TABLE `employee_system_notification_list` (
 
 LOCK TABLES `employee_system_notification_list` WRITE;
 /*!40000 ALTER TABLE `employee_system_notification_list` DISABLE KEYS */;
-INSERT INTO `employee_system_notification_list` VALUES (0,1),(0,2),(0,3),(0,4),(0,5),(0,6),(0,7),(0,8),(0,9),(0,10),(0,11),(0,12),(0,13),(0,14),(0,15),(0,16),(0,17),(0,18),(0,19),(0,20),(0,21),(0,22),(0,23),(0,24),(0,25),(0,26),(0,27),(0,28),(0,29),(0,31),(0,33),(0,35),(0,37),(32768,30),(32768,32),(32768,34),(32768,36),(32768,38);
+INSERT INTO `employee_system_notification_list` VALUES (0,1),(0,2),(0,3),(0,4),(0,5),(0,6),(0,7),(0,8),(0,9),(0,10),(0,11),(0,12),(0,13),(0,14),(0,15),(0,16),(0,17),(0,18);
 /*!40000 ALTER TABLE `employee_system_notification_list` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -314,7 +314,7 @@ CREATE TABLE `hibernate_sequences` (
 
 LOCK TABLES `hibernate_sequences` WRITE;
 /*!40000 ALTER TABLE `hibernate_sequences` DISABLE KEYS */;
-INSERT INTO `hibernate_sequences` VALUES ('account',2);
+INSERT INTO `hibernate_sequences` VALUES ('account',1);
 /*!40000 ALTER TABLE `hibernate_sequences` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -334,7 +334,7 @@ CREATE TABLE `item` (
   PRIMARY KEY (`item_id`),
   KEY `FK6fok9mmtsmu22sejwqg8cq6u3` (`product_product_id`),
   CONSTRAINT `FK6fok9mmtsmu22sejwqg8cq6u3` FOREIGN KEY (`product_product_id`) REFERENCES `product` (`product_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -343,7 +343,7 @@ CREATE TABLE `item` (
 
 LOCK TABLES `item` WRITE;
 /*!40000 ALTER TABLE `item` DISABLE KEYS */;
-INSERT INTO `item` VALUES (2,123,1,'KILO',1),(4,369,3,'KILO',1),(6,123,1,'KILO',1),(8,123,1,'KILO',1),(10,123,1,'KILO',1),(12,123,1,'KILO',1);
+INSERT INTO `item` VALUES (2,6000,3,'KILO',1),(4,1999.9999999999998,1,'KILO',1),(7,9999.999999999998,5,'KILO',1),(8,1814369.48,1,'TON',1);
 /*!40000 ALTER TABLE `item` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -362,7 +362,7 @@ CREATE TABLE `notification` (
   `is_seen` bit(1) NOT NULL,
   `order_id` bigint(20) DEFAULT NULL,
   PRIMARY KEY (`notification_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=65 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -371,7 +371,7 @@ CREATE TABLE `notification` (
 
 LOCK TABLES `notification` WRITE;
 /*!40000 ALTER TABLE `notification` DISABLE KEYS */;
-INSERT INTO `notification` VALUES (1,'2018-04-03 16:16:39','Your Order# 2 is Shipping','Order To Shipping','',2),(2,'2018-04-03 16:52:23','Your Order# 1 is Shipping','Order To Shipping','',1),(3,'2018-04-03 16:54:04','Your Order# 2 is Shipping','Order To Shipping','',2),(4,'2018-04-03 17:21:10','Your Order# 2 is approved','Order Approved','',2),(5,'2018-04-03 17:21:21','Your Order# 2 is Shipping','Order To Shipping','',2),(6,'2018-04-03 17:22:56','Your Order# 2 is rejected','Order Rejected','',2),(7,'2018-04-03 17:23:08','Your Order# 2 is Shipping','Order To Shipping','',2),(8,'2018-04-03 17:34:11','Your Order# 2 is Shipping','Order To Shipping','',2),(9,'2018-04-03 17:54:11','Your Order# 2 is Shipping','Order To Shipping','',2),(10,'2018-04-03 17:55:23','Your Order# 2 is rejected','Order Rejected','',2),(11,'2018-04-03 17:55:43','Your Order# 2 is rejected','Order Rejected','',2),(12,'2018-04-03 17:59:04','Your Order# 1 is rejected','Order Rejected','',1),(13,'2018-04-03 17:59:24','Your Order# 2 is Shipping','Order To Shipping','',2),(14,'2018-04-03 17:59:30','Your Order# 2 is Shipping','Order To Shipping','',2),(15,'2018-04-03 18:02:21','Your Order# 2 is rejected','Order Rejected','',2),(16,'2018-04-03 18:04:48','Your Order# 2 is rejected','Order Rejected','',2),(17,'2018-04-03 18:05:01','Your Order# 1 is rejected','Order Rejected','',1),(18,'2018-04-03 18:07:52','Your Order# 2 is rejected','Order Rejected','',2),(19,'2018-04-03 18:08:06','Your Order# 1 is rejected','Order Rejected','',1),(20,'2018-04-03 20:27:46','Your Order# 2 is approved','Order Approved','',2),(21,'2018-04-03 20:28:43','Your Order# 2 is rejected','Order Rejected','',2),(22,'2018-04-03 20:29:27','Your Order# 2 is Shipping','Order To Shipping','',2),(23,'2018-04-04 00:29:49','Your Order# 1 is approved','Order Approved','',1),(24,'2018-04-04 00:30:39','Your Order# 1 is approved','Order Approved','',1),(25,'2018-04-04 00:44:39','Your Order# 6 is approved','Order Approved','',6),(26,'2018-04-04 00:44:54','Your Order# 5 is rejected','Order Rejected','',5),(27,'2018-04-04 00:46:41','Your Order# 6 is approved','Order Approved','',6),(28,'2018-04-04 01:09:55','Your Order# 6 is Shipping','Order To Shipping','',6),(29,'2018-04-04 03:29:46','Your Order# 5 is rejected','Order Rejected','',5),(30,'2018-04-04 03:50:14','Your Order# 4 is approved','Order Approved','',4),(31,'2018-04-04 03:57:47','Your Order# 6 is approved','Order Approved','',6),(32,'2018-04-04 03:58:35','Your Order# 6 is approved','Order Approved','',6),(33,'2018-04-04 04:00:31','Your Order# 6 is rejected','Order Rejected','',6),(34,'2018-04-04 04:01:33','Your Order# 6 is rejected','Order Rejected','',6),(35,'2018-04-04 04:02:02','Your Order# 6 is Shipping','Order To Shipping','',6),(36,'2018-04-04 04:06:18','Your Order# 5 is approved','Order Approved','',5),(37,'2018-04-04 04:06:52','Your Order# 4 is approved','Order Approved','',4),(38,'2018-04-04 04:07:08','Your Order# 4 is approved','Order Approved','',4),(39,'2018-04-04 04:08:33','Your Order# 6 is approved','Order Approved','',6),(40,'2018-04-04 04:09:10','Your Order# 3 is rejected','Order Rejected','',3),(41,'2018-04-04 04:09:37','Your Order# 6 is Shipping','Order To Shipping','',6),(42,'2018-04-04 04:09:59','Your Order# 6 is rejected','Order Rejected','',6),(43,'2018-04-04 04:10:16','Your Order# 6 is Shipping','Order To Shipping','',6),(44,'2018-04-04 04:10:33','Your Order# 6 is rejected','Order Rejected','',6),(45,'2018-04-04 04:11:53','Your Order# 6 is Shipping','Order To Shipping','',6),(46,'2018-04-04 04:18:21','Your Order# 6 is Shipping','Order To Shipping','',6),(47,'2018-04-04 04:18:39','Your Order# 6 is Shipping','Order To Shipping','',6),(48,'2018-04-04 04:20:34','Your Order# 6 is Shipping','Order To Shipping','',6),(49,'2018-04-04 04:20:53','Your Order# 5 is Shipping','Order To Shipping','',5),(50,'2018-04-04 04:21:25','Your Order# 6 is approved','Order Approved','',6),(51,'2018-04-04 04:23:17','Your Order# 6 is approved','Order Approved','',6),(52,'2018-04-04 04:23:29','Your Order# 6 is approved','Order Approved','',6),(53,'2018-04-04 04:24:50','Your Order# 6 is approved','Order Approved','',6),(54,'2018-04-04 04:24:56','Your Order# 6 is approved','Order Approved','',6),(55,'2018-04-04 04:31:01','Your Order# 5 is approved','Order Approved','',5),(56,'2018-04-04 04:31:21','Your Order# 3 is Shipping','Order To Shipping','',3),(57,'2018-04-04 04:35:54','Your Order# 3 is rejected','Order Rejected','',3),(58,'2018-04-04 04:37:12','Your Order# 6 is rejected','Order Rejected','',6),(59,'2018-04-04 04:37:58','Your Order# 6 is approved','Order Approved','',6),(60,'2018-04-04 04:41:57','Your Order# 6 is Shipping','Order To Shipping','',6),(61,'2018-04-04 04:51:07','Your Order# 6 is Shipping','Order To Shipping','',6),(62,'2018-04-04 04:51:29','Your Order# 6 is approved','Order Approved','',6),(63,'2018-04-04 04:52:30','Your Order# 6 is Shipping','Order To Shipping','',6),(64,'2018-04-04 05:37:28','Your Order# 5 is approved','Order Approved','',5);
+INSERT INTO `notification` VALUES (1,'2018-04-05 16:56:17','Your Order# 1 is approved','Order Approved','',1),(2,'2018-04-05 16:59:25','Your Order# 1 is Shipping','Order To Shipping','',1),(3,'2018-04-05 17:13:37','Your Order# 1 is Shipping','Order To Shipping','',1),(4,'2018-04-05 17:17:28','Your Order# 1 is Shipping','Order To Shipping','',1),(5,'2018-04-05 17:20:26','Your Order# 1 is Shipping','Order To Shipping','',1),(6,'2018-04-05 17:21:57','Your Order# 1 is Shipping','Order To Shipping','',1),(7,'2018-04-05 17:32:18','Your Order# 1 is Shipping','Order To Shipping','',1),(8,'2018-04-05 17:40:21','Your Order# 1 is Shipping','Order To Shipping','',1),(9,'2018-04-05 17:42:02','Your Order# 1 is Shipping','Order To Shipping','',1),(10,'2018-04-05 17:47:10','Your Order# 2 is approved','Order Approved','',2),(11,'2018-04-05 17:47:26','Your Order# 2 is Shipping','Order To Shipping','',2),(12,'2018-04-05 17:51:21','Your Order# 2 is Shipping','Order To Shipping','',2),(13,'2018-04-05 17:52:54','Your Order# 2 is approved','Order Approved','',2),(14,'2018-04-05 17:53:06','Your Order# 2 is Shipping','Order To Shipping','',2),(15,'2018-04-05 18:27:34','Your Order# 3 is approved','Order Approved','\0',3);
 /*!40000 ALTER TABLE `notification` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -409,7 +409,7 @@ CREATE TABLE `orders` (
   CONSTRAINT `FK89wuak53n6o826m6ltksv9gj9` FOREIGN KEY (`shipping_address_shipping_address_id`) REFERENCES `shipping_address` (`shipping_address_id`),
   CONSTRAINT `FK8o21kg6tvreikslhq6n0o5jxf` FOREIGN KEY (`shipping_shipping_id`) REFERENCES `shipping` (`shipping_id`),
   CONSTRAINT `FKtg32cl8e1f2afe83we3bqrw2h` FOREIGN KEY (`cart_cart_id`) REFERENCES `cart` (`cart_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -418,7 +418,7 @@ CREATE TABLE `orders` (
 
 LOCK TABLES `orders` WRITE;
 /*!40000 ALTER TABLE `orders` DISABLE KEYS */;
-INSERT INTO `orders` VALUES (1,'2018-04-03',NULL,NULL,'\0','','RETURNED','PAYPAL','your order has been returned',NULL,1,1137.76,1,2,1,NULL,1),(2,'2018-04-03',NULL,NULL,'\0','','PENDING','CASH_ON_DELIVERY','',NULL,1,1413.28,3,3,1,NULL,1),(3,'2018-04-04',NULL,NULL,'\0','your order has been rejected','REJECTED','PAYPAL','your order has been returned',NULL,1,1137.76,1,4,1,NULL,1),(4,'2018-04-04',NULL,NULL,'\0','your order has been approved','CANCELLED','PAYPAL','fwefwe',NULL,1,1137.76,1,5,1,NULL,1),(5,'2018-04-04',NULL,NULL,'\0','your order has been approved','CANCELLED','PAYPAL','gwr',NULL,1,1137.76,1,6,1,NULL,1),(6,'2018-04-04','2018-04-04',NULL,'','','RECEIVED','PAYPAL','',NULL,1,1137.76,1,7,1,19,1);
+INSERT INTO `orders` VALUES (1,'2018-04-05',NULL,NULL,'\0','','PENDING','PAYPAL','',NULL,1,7720,3,2,1,NULL,1),(2,'2018-04-05','2018-04-05',NULL,'','','RETURNED','CASH_ON_DELIVERY','fewfwefwe',NULL,1,3240,1,3,1,5,1),(3,'2018-04-05','2018-04-05',NULL,'','your order has been approved','PAID','PAYPAL','',NULL,2,2044293.8176,912.1847399999999,4,1,NULL,1);
 /*!40000 ALTER TABLE `orders` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -449,7 +449,7 @@ CREATE TABLE `product` (
   PRIMARY KEY (`product_id`),
   KEY `FKg0klkuq150g13y1o1porbpxrj` (`rating_rating_id`),
   CONSTRAINT `FKg0klkuq150g13y1o1porbpxrj` FOREIGN KEY (`rating_rating_id`) REFERENCES `rating` (`rating_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -458,7 +458,7 @@ CREATE TABLE `product` (
 
 LOCK TABLES `product` WRITE;
 /*!40000 ALTER TABLE `product` DISABLE KEYS */;
-INSERT INTO `product` VALUES (1,'2018-04-04','2018-04-03','2018-04-03','wegweg','\0','box rush','box rush',123,'/products/c4ca4238a0b923820dcc509a6f75849b.png','POSTED','wegwe','wegweg','123123',1511,1),(2,'2018-04-04','2018-04-04','2018-04-04','egweg','\0','pigfishfghrgh','pigfishfgh',200,'/products/c81e728d9d4c2f636f067f89cc14862c.png','POSTED','wegw','wegweg','12313',11400,2),(3,'2018-04-05','2018-04-04','2018-04-04','wegwe','\0','egweg','egwg',1231,'/products/eccbc87e4b5ce2fe28308fd9f2a7baf3.png','POSTED','wgwgwe','wgweg','12313',123,3),(4,'2018-04-05','2018-04-04','2018-04-04','rgweg','\0','wfqfqfw','wgweg',1231,'/products/a87ff679a2f3e71d9181a67b7542122c.png','POSTED','wegw','wgweg','1231312',123,4);
+INSERT INTO `product` VALUES (1,'2018-04-06','2018-04-05','2018-04-05','egwegw','\0','memes','meme world',2000,'/products/c4ca4238a0b923820dcc509a6f75849b.jpg','POSTED','wegw','wegweg','12313',31000,1);
 /*!40000 ALTER TABLE `product` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -483,7 +483,7 @@ CREATE TABLE `product_preview_image_links` (
 
 LOCK TABLES `product_preview_image_links` WRITE;
 /*!40000 ALTER TABLE `product_preview_image_links` DISABLE KEYS */;
-INSERT INTO `product_preview_image_links` VALUES (1,'/products/5af8dbdac79caaf85a8cc833045f6107.png'),(1,'/products/58332a8372b7dd6e5e7077da8f1e8a34.png'),(1,'/products/f44e79e5d8eec8a86c4944a1f2becfdc.png'),(2,'/products/1116a18ec565528c46b95718ebe5dabe.png'),(2,'/products/3b7fce9471840cf719d97497093af906.png'),(2,'/products/aeba9c4fdf499ad3f1f91fe612cfe66a.png'),(3,'/products/62b12214332098a476fa28df5e1eaa95.png'),(3,'/products/d3e0de9687fda01dc4b4e690316f16ba.png'),(3,'/products/72855e5deb8fed7bf147bf77d42e8fdf.png'),(4,'/products/8c927b34a46ff79a2542c7a2f82ea537.png'),(4,'/products/f1e56eaf1447b82f930d92c310cf8f8e.png'),(4,'/products/fd4a46a1ce75b23fdd95e5b36d06e1e6.png');
+INSERT INTO `product_preview_image_links` VALUES (1,'/products/5006da69abbe417973b8d80e02c58a18.jpg'),(1,'/products/df862e4a03558a40ca151da5f05715b8.jpg'),(1,'/products/901e00c1c30b70e0ff8d4577f1e47d8e.jpg');
 /*!40000 ALTER TABLE `product_preview_image_links` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -529,7 +529,7 @@ CREATE TABLE `product_stock` (
   PRIMARY KEY (`product_stock_id`),
   KEY `FKlpu1phje1bb3y9ww8k9fut4gh` (`product_id`),
   CONSTRAINT `FKlpu1phje1bb3y9ww8k9fut4gh` FOREIGN KEY (`product_id`) REFERENCES `product` (`product_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -538,7 +538,7 @@ CREATE TABLE `product_stock` (
 
 LOCK TABLES `product_stock` WRITE;
 /*!40000 ALTER TABLE `product_stock` DISABLE KEYS */;
-INSERT INTO `product_stock` VALUES (1,'2018-04-03',565,'KILO',1),(2,'2018-04-03',55,'KILO',1),(3,'2018-04-03',768,'KILO',1),(4,'2018-04-04',200,'KILO',2),(5,'2018-04-04',200,'KILO',2),(6,'2018-04-04',10000,'KILO',2);
+INSERT INTO `product_stock` VALUES (1,'2018-04-05',10000,'KILO',1),(2,'2018-04-05',1000,'KILO',1),(3,'2018-04-05',10000,'KILO',1);
 /*!40000 ALTER TABLE `product_stock` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -554,7 +554,7 @@ CREATE TABLE `rating` (
   `rate` double NOT NULL,
   `views` int(11) NOT NULL,
   PRIMARY KEY (`rating_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -563,7 +563,7 @@ CREATE TABLE `rating` (
 
 LOCK TABLES `rating` WRITE;
 /*!40000 ALTER TABLE `rating` DISABLE KEYS */;
-INSERT INTO `rating` VALUES (1,4,2),(2,0,1),(3,0,0),(4,0,0);
+INSERT INTO `rating` VALUES (1,0,0);
 /*!40000 ALTER TABLE `rating` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -607,7 +607,7 @@ CREATE TABLE `review` (
   `rate` double NOT NULL,
   `username` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`review_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -637,7 +637,7 @@ CREATE TABLE `shipping` (
   `mmsi_number` varchar(255) DEFAULT NULL,
   `vessel_name` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`shipping_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -646,7 +646,7 @@ CREATE TABLE `shipping` (
 
 LOCK TABLES `shipping` WRITE;
 /*!40000 ALTER TABLE `shipping` DISABLE KEYS */;
-INSERT INTO `shipping` VALUES (19,'2018-04-02','2018-04-01','2018-04-07','ON_TRUCK',NULL,NULL,NULL,NULL);
+INSERT INTO `shipping` VALUES (5,'2018-04-04','2018-04-01','2018-04-05','ON_TRUCK',NULL,NULL,NULL,NULL);
 /*!40000 ALTER TABLE `shipping` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -671,7 +671,7 @@ CREATE TABLE `shipping_address` (
   `receiver_full_name` varchar(255) DEFAULT NULL,
   `shipping_instructions` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`shipping_address_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -680,7 +680,7 @@ CREATE TABLE `shipping_address` (
 
 LOCK TABLES `shipping_address` WRITE;
 /*!40000 ALTER TABLE `shipping_address` DISABLE KEYS */;
-INSERT INTO `shipping_address` VALUES (1,'rivera compound saint joseph subdivision','las pinas city','Philippines','14400','User Account','358','krysseltillada@gmail.com','9161829106','\0','kryssel tilladA de leon','specify your shipping instructions by editing the card'),(2,'address','city','Afghanistan','1231','wife','93',NULL,'9123123','','judy ann mari n ando','shipping instructions');
+INSERT INTO `shipping_address` VALUES (1,'rivera compound saint joseph subdivision','las pinas city','Philippines','1400','User Account','63','krysseltillada@gmail.com','91051829105','','kryssel tillada de leon','specify your shipping instructions by editing the card');
 /*!40000 ALTER TABLE `shipping_address` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -697,10 +697,10 @@ CREATE TABLE `shipping_log` (
   `date` date DEFAULT NULL,
   `description` varchar(255) DEFAULT NULL,
   `header` varchar(255) DEFAULT NULL,
-  `time` time DEFAULT NULL,
   `is_complete` bit(1) NOT NULL,
+  `time` time DEFAULT NULL,
   PRIMARY KEY (`shipping_log_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -709,6 +709,7 @@ CREATE TABLE `shipping_log` (
 
 LOCK TABLES `shipping_log` WRITE;
 /*!40000 ALTER TABLE `shipping_log` DISABLE KEYS */;
+INSERT INTO `shipping_log` VALUES (5,'wegweg','2018-04-05','wwegweg','wegweg','','12:00:00');
 /*!40000 ALTER TABLE `shipping_log` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -735,6 +736,7 @@ CREATE TABLE `shipping_shipping_log` (
 
 LOCK TABLES `shipping_shipping_log` WRITE;
 /*!40000 ALTER TABLE `shipping_shipping_log` DISABLE KEYS */;
+INSERT INTO `shipping_shipping_log` VALUES (5,5);
 /*!40000 ALTER TABLE `shipping_shipping_log` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -752,7 +754,7 @@ CREATE TABLE `system_log` (
   `description` varchar(255) DEFAULT NULL,
   `time_occured` datetime DEFAULT NULL,
   PRIMARY KEY (`system_log_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=69 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -761,7 +763,7 @@ CREATE TABLE `system_log` (
 
 LOCK TABLES `system_log` WRITE;
 /*!40000 ALTER TABLE `system_log` DISABLE KEYS */;
-INSERT INTO `system_log` VALUES (1,'SYSTEM','2018-04-03','System Start','2018-04-03 15:55:20'),(2,'SYSTEM','2018-04-03','System Shutdown','2018-04-03 16:00:28'),(3,'SYSTEM','2018-04-03','System Start','2018-04-03 16:00:44'),(4,'SYSTEM','2018-04-03','Auto logout called on krysseltillada de leon ','2018-04-03 16:04:17'),(5,'SYSTEM','2018-04-03','System Shutdown','2018-04-03 16:18:21'),(6,'SYSTEM','2018-04-03','System Start','2018-04-03 16:18:36'),(7,'SETTINGS','2018-04-03','krysseltillada de leon  change the system backup time to 12:00 AM and logout time to 30 minutes','2018-04-03 16:20:22'),(8,'SYSTEM','2018-04-03','System Shutdown','2018-04-03 16:40:02'),(9,'SYSTEM','2018-04-03','System Start','2018-04-03 16:40:17'),(10,'SYSTEM','2018-04-03','System Shutdown','2018-04-03 16:47:09'),(11,'SYSTEM','2018-04-03','System Start','2018-04-03 16:47:24'),(12,'SYSTEM','2018-04-03','System Shutdown','2018-04-03 16:48:42'),(13,'SYSTEM','2018-04-03','System Start','2018-04-03 16:48:57'),(14,'SYSTEM','2018-04-03','System Shutdown','2018-04-03 17:06:51'),(15,'SYSTEM','2018-04-03','System Start','2018-04-03 17:07:08'),(16,'SYSTEM','2018-04-03','System Shutdown','2018-04-03 17:09:25'),(17,'SYSTEM','2018-04-03','System Start','2018-04-03 17:20:16'),(18,'SYSTEM','2018-04-03','System Shutdown','2018-04-03 17:52:01'),(19,'SYSTEM','2018-04-03','System Start','2018-04-03 17:52:15'),(20,'SYSTEM','2018-04-03','System Shutdown','2018-04-03 17:53:11'),(21,'SYSTEM','2018-04-03','System Start','2018-04-03 17:53:25'),(22,'SYSTEM','2018-04-03','System Shutdown','2018-04-03 17:56:12'),(23,'SYSTEM','2018-04-03','System Start','2018-04-03 17:56:27'),(24,'SYSTEM','2018-04-03','System Shutdown','2018-04-03 18:03:51'),(25,'SYSTEM','2018-04-03','System Start','2018-04-03 18:04:05'),(26,'SYSTEM','2018-04-03','System Shutdown','2018-04-03 18:05:21'),(27,'SYSTEM','2018-04-03','System Start','2018-04-03 18:07:16'),(28,'SYSTEM','2018-04-03','System Shutdown','2018-04-03 18:08:14'),(29,'SYSTEM','2018-04-03','System Start','2018-04-03 20:13:29'),(30,'SYSTEM','2018-04-03','System Shutdown','2018-04-03 20:23:08'),(31,'SYSTEM','2018-04-03','System Start','2018-04-03 20:23:22'),(32,'SYSTEM','2018-04-03','System Shutdown','2018-04-03 20:24:40'),(33,'SYSTEM','2018-04-03','System Start','2018-04-03 20:24:55'),(34,'SYSTEM','2018-04-03','System Shutdown','2018-04-03 21:51:50'),(35,'SYSTEM','2018-04-03','System Start','2018-04-03 23:45:39'),(36,'SYSTEM','2018-04-04','System Shutdown','2018-04-04 00:03:50'),(37,'SYSTEM','2018-04-04','System Start','2018-04-04 00:04:39'),(38,'SYSTEM','2018-04-04','System Shutdown','2018-04-04 00:19:07'),(39,'SYSTEM','2018-04-04','System Start','2018-04-04 00:19:24'),(40,'SYSTEM','2018-04-04','System Shutdown','2018-04-04 00:43:32'),(41,'SYSTEM','2018-04-04','System Start','2018-04-04 00:43:51'),(42,'SYSTEM','2018-04-04','System Shutdown','2018-04-04 00:48:21'),(43,'SYSTEM','2018-04-04','System Start','2018-04-04 00:58:56'),(44,'SYSTEM','2018-04-04','System Shutdown','2018-04-04 02:41:46'),(45,'SYSTEM','2018-04-04','System Start','2018-04-04 02:50:58'),(46,'SYSTEM','2018-04-04','System Shutdown','2018-04-04 02:51:09'),(47,'SYSTEM','2018-04-04','System Start','2018-04-04 03:09:46'),(48,'SYSTEM','2018-04-04','System Shutdown','2018-04-04 03:09:58'),(49,'SYSTEM','2018-04-04','System Start','2018-04-04 03:18:09'),(50,'SYSTEM','2018-04-04','System Shutdown','2018-04-04 03:18:20'),(51,'SYSTEM','2018-04-04','System Start','2018-04-04 03:20:37'),(52,'SYSTEM','2018-04-04','System Shutdown','2018-04-04 03:38:37'),(53,'SYSTEM','2018-04-04','System Start','2018-04-04 03:39:02'),(54,'SYSTEM','2018-04-04','System Shutdown','2018-04-04 06:14:44'),(55,'SYSTEM','2018-04-04','System Start','2018-04-04 14:19:35'),(56,'SYSTEM','2018-04-04','Auto logout called on krysseltillada de leon ','2018-04-04 14:22:10'),(57,'SYSTEM','2018-04-04','Auto logout called on krysseltillada de leon ','2018-04-04 15:20:39'),(58,'SYSTEM','2018-04-04','System Shutdown','2018-04-04 20:02:24'),(59,'SYSTEM','2018-04-04','System Start','2018-04-04 23:32:41'),(60,'SETTINGS','2018-04-04','krysseltillada de leon  update the system settings','2018-04-04 23:33:57'),(61,'SETTINGS','2018-04-04','krysseltillada de leon  change the system backup time to 11:34 PM and logout time to 30 minutes','2018-04-04 23:33:57'),(62,'SETTINGS','2018-04-04','Automatic backup database','2018-04-04 23:34:58'),(63,'SETTINGS','2018-04-04','krysseltillada de leon  update the system settings','2018-04-04 23:44:23'),(64,'SETTINGS','2018-04-04','krysseltillada de leon  change the system backup time to 11:34 PM and logout time to 30 minutes','2018-04-04 23:44:23'),(65,'SETTINGS','2018-04-04','krysseltillada de leon  update the system settings','2018-04-04 23:44:28'),(66,'SETTINGS','2018-04-04','krysseltillada de leon  change the system backup time to 11:34 PM and logout time to 30 minutes','2018-04-04 23:44:28'),(67,'SETTINGS','2018-04-04','krysseltillada de leon  update the system settings','2018-04-04 23:44:33'),(68,'SETTINGS','2018-04-04','krysseltillada de leon  change the system backup time to 11:34 PM and logout time to 30 minutes','2018-04-04 23:44:34');
+INSERT INTO `system_log` VALUES (1,'SYSTEM','2018-04-05','System Start','2018-04-05 15:47:45'),(2,'SYSTEM','2018-04-05','System Shutdown','2018-04-05 15:53:19'),(3,'SYSTEM','2018-04-05','System Start','2018-04-05 16:14:39'),(4,'SYSTEM','2018-04-05','Auto logout called on kryssel de leon','2018-04-05 17:03:09'),(5,'SYSTEM','2018-04-05','System Shutdown','2018-04-05 17:05:46'),(6,'SYSTEM','2018-04-05','System Start','2018-04-05 17:06:08'),(7,'SYSTEM','2018-04-05','System Shutdown','2018-04-05 17:09:50'),(8,'SYSTEM','2018-04-05','System Start','2018-04-05 17:10:07'),(9,'SYSTEM','2018-04-05','Auto logout called on kryssel de leon','2018-04-05 17:26:10'),(10,'SYSTEM','2018-04-05','Auto logout called on kryssel de leon','2018-04-05 17:36:03'),(11,'SYSTEM','2018-04-05','System Shutdown','2018-04-05 17:50:05'),(12,'SYSTEM','2018-04-05','System Start','2018-04-05 17:50:26'),(13,'SYSTEM','2018-04-05','Auto logout called on kryssel de leon','2018-04-05 18:02:42'),(14,'SYSTEM','2018-04-05','Auto logout called on kryssel de leon','2018-04-05 18:08:50'),(15,'SETTINGS','2018-04-05','kryssel de leon change the system backup time to 12:00 AM and logout time to 30 minutes','2018-04-05 18:40:29'),(16,'SETTINGS','2018-04-05','kryssel de leon restore the database','2018-04-05 18:42:32'),(17,'SETTINGS','2018-04-05','kryssel de leon export database','2018-04-05 18:44:31'),(18,'SETTINGS','2018-04-05','kryssel de leon change the system backup time to 06:48 PM and logout time to 30 minutes','2018-04-05 18:47:09');
 /*!40000 ALTER TABLE `system_log` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -780,7 +782,7 @@ CREATE TABLE `system_notification` (
   `is_seen` bit(1) NOT NULL,
   `system_notification_status` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`notification_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=39 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -789,7 +791,7 @@ CREATE TABLE `system_notification` (
 
 LOCK TABLES `system_notification` WRITE;
 /*!40000 ALTER TABLE `system_notification` DISABLE KEYS */;
-INSERT INTO `system_notification` VALUES (1,'2018-04-03 15:58:09','New product has added box rush','New Product','','INVENTORY_ADD_PRODUCT'),(2,'2018-04-03 16:12:21','kryssel de leon has ordered','New order','','ORDER_NEW_ORDER'),(3,'2018-04-03 16:12:36','kryssel de leon has ordered','New order','','ORDER_NEW_ORDER'),(4,'2018-04-03 17:07:38','kryssel de leon has paid order# 2','Order paid','','ORDER_PAID'),(5,'2018-04-04 00:28:24','kryssel de leon has ordered','New order','','ORDER_NEW_ORDER'),(6,'2018-04-04 00:28:47','kryssel de leon has ordered','New order','','ORDER_NEW_ORDER'),(7,'2018-04-04 00:29:08','kryssel de leon has ordered','New order','','ORDER_NEW_ORDER'),(8,'2018-04-04 00:29:35','kryssel de leon has ordered','New order','','ORDER_NEW_ORDER'),(9,'2018-04-04 03:58:05','kryssel de leon has cancelled order# 6','Order cancelled','','ORDER_CANCELLED'),(10,'2018-04-04 03:59:36','kryssel de leon has paid order# 6','Order paid','','ORDER_PAID'),(11,'2018-04-04 04:00:04','kryssel de leon wants to refund order# 6','Order refund','','ORDER_REFUND'),(12,'2018-04-04 04:01:45','kryssel de leon has cancelled order# 6','Order cancelled','','ORDER_CANCELLED'),(13,'2018-04-04 04:12:45','kryssel de leon has cancelled order# 5','Order cancelled','','ORDER_CANCELLED'),(14,'2018-04-04 04:36:43','kryssel de leon has cancelled order# 6','Order cancelled','','ORDER_CANCELLED'),(15,'2018-04-04 04:37:23','kryssel de leon has cancelled order# 6','Order cancelled','','ORDER_CANCELLED'),(16,'2018-04-04 04:39:00','kryssel de leon has paid order# 6','Order paid','','ORDER_PAID'),(17,'2018-04-04 04:39:19','kryssel de leon wants to refund order# 6','Order refund','','ORDER_REFUND'),(18,'2018-04-04 04:40:18','kryssel de leon wants to return order# 6','Order return','','ORDER_RETURN'),(19,'2018-04-04 04:52:06','kryssel de leon has paid order# 6','Order paid','','ORDER_PAID'),(20,'2018-04-04 04:56:10','New product has added pigfish','New Product','','INVENTORY_ADD_PRODUCT'),(21,'2018-04-04 05:46:48','kryssel de leon has cancelled order# 5','Order cancelled','','ORDER_CANCELLED'),(22,'2018-04-04 05:46:52','kryssel de leon has cancelled order# 4','Order cancelled','','ORDER_CANCELLED'),(23,'2018-04-04 17:29:22','Product no. 2 has been edited','Edited Product','','INVENTORY_EDIT_PRODUCT'),(24,'2018-04-04 17:33:03','Product no. 2 has been edited','Edited Product','','INVENTORY_EDIT_PRODUCT'),(25,'2018-04-04 23:33:57','Udpdate system settings success','System Settings Update','','SYSTEM_BACKUP'),(26,'2018-04-04 23:34:58','System backup success','System Backup','','SYSTEM_BACKUP'),(27,'2018-04-04 23:38:28','Product no. 1 has been edited','Edited Product','','INVENTORY_EDIT_PRODUCT'),(28,'2018-04-04 23:41:44','New product has added egweg','New Product','','INVENTORY_ADD_PRODUCT'),(29,'2018-04-04 23:44:23','Udpdate system settings success','System Settings Update','','SYSTEM_BACKUP'),(30,'2018-04-04 23:44:23','Udpdate system settings success','System Settings Update','','SYSTEM_BACKUP'),(31,'2018-04-04 23:44:28','Udpdate system settings success','System Settings Update','','SYSTEM_BACKUP'),(32,'2018-04-04 23:44:28','Udpdate system settings success','System Settings Update','','SYSTEM_BACKUP'),(33,'2018-04-04 23:44:33','Udpdate system settings success','System Settings Update','','SYSTEM_BACKUP'),(34,'2018-04-04 23:44:33','Udpdate system settings success','System Settings Update','','SYSTEM_BACKUP'),(35,'2018-04-04 23:46:49','Product no. 1 has been edited','Edited Product','\0','INVENTORY_EDIT_PRODUCT'),(36,'2018-04-04 23:46:49','Product no. 1 has been edited','Edited Product','','INVENTORY_EDIT_PRODUCT'),(37,'2018-04-04 23:52:03','New product has added wfqfqfw','New Product','\0','INVENTORY_ADD_PRODUCT'),(38,'2018-04-04 23:52:03','New product has added wfqfqfw','New Product','\0','INVENTORY_ADD_PRODUCT');
+INSERT INTO `system_notification` VALUES (1,'2018-04-05 16:46:40','New product has added memes','New Product','','INVENTORY_ADD_PRODUCT'),(2,'2018-04-05 16:55:55','kryssel de leon has ordered','New order','','ORDER_NEW_ORDER'),(3,'2018-04-05 16:58:47','kryssel de leon has paid order# 1','Order paid','','ORDER_PAID'),(4,'2018-04-05 17:11:54','kryssel de leon has received order# 1','Order received','','ORDER_RECEIVED'),(5,'2018-04-05 17:13:52','kryssel de leon has received order# 1','Order received','','ORDER_RECEIVED'),(6,'2018-04-05 17:19:31','kryssel de leon has received order# 1','Order received','','ORDER_RECEIVED'),(7,'2018-04-05 17:21:05','kryssel de leon has received order# 1','Order received','','ORDER_RECEIVED'),(8,'2018-04-05 17:23:33','kryssel de leon has received order# 1','Order received','','ORDER_RECEIVED'),(9,'2018-04-05 17:39:01','kryssel de leon has received order# 1','Order received','','ORDER_RECEIVED'),(10,'2018-04-05 17:41:13','kryssel de leon has received order# 1','Order received','','ORDER_RECEIVED'),(11,'2018-04-05 17:46:27','kryssel de leon has ordered','New order','','ORDER_NEW_ORDER'),(12,'2018-04-05 18:12:47','kryssel de leon has ordered','New order','','ORDER_NEW_ORDER'),(13,'2018-04-05 18:13:53','kryssel de leon has cancelled order# 3','Order cancelled','','ORDER_CANCELLED'),(14,'2018-04-05 18:30:29','Product no. 1 memes stocks has been updated','Update Product Stock','','INVENTORY_UPDATE_STOCK'),(15,'2018-04-05 18:31:50','Product no. 1 memes stocks has been updated','Update Product Stock','','INVENTORY_UPDATE_STOCK'),(16,'2018-04-05 18:40:29','Update system settings success','System Settings Update','','SYSTEM_BACKUP'),(17,'2018-04-05 18:42:32','System restore success','System Restore','\0','SYSTEM_BACKUP'),(18,'2018-04-05 18:47:09','Update system settings success','System Settings Update','\0','SYSTEM_BACKUP');
 /*!40000 ALTER TABLE `system_notification` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -814,7 +816,7 @@ CREATE TABLE `system_settings` (
 
 LOCK TABLES `system_settings` WRITE;
 /*!40000 ALTER TABLE `system_settings` DISABLE KEYS */;
-INSERT INTO `system_settings` VALUES (1,'00:30:00','23:34:00');
+INSERT INTO `system_settings` VALUES (1,'00:30:00','18:48:00');
 /*!40000 ALTER TABLE `system_settings` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -835,7 +837,7 @@ CREATE TABLE `user_access_log` (
   PRIMARY KEY (`user_access_log_id`),
   KEY `FK4jo8eq6diu8mwg6a3fekhm47y` (`employee_id`),
   CONSTRAINT `FK4jo8eq6diu8mwg6a3fekhm47y` FOREIGN KEY (`employee_id`) REFERENCES `employee` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -844,7 +846,7 @@ CREATE TABLE `user_access_log` (
 
 LOCK TABLES `user_access_log` WRITE;
 /*!40000 ALTER TABLE `user_access_log` DISABLE KEYS */;
-INSERT INTO `user_access_log` VALUES (1,'2018-04-03','krysseltillada de leon  has logged in','0:0:0:0:0:0:0:1','15:57:26',0),(2,'2018-04-03','krysseltillada de leon  has logged in','0:0:0:0:0:0:0:1','16:05:20',0),(3,'2018-04-03','krysseltillada de leon  has logged out','0:0:0:0:0:0:0:1','16:06:47',0),(4,'2018-04-03','krysseltillada de leon  has logged in','0:0:0:0:0:0:0:1','16:07:11',0),(5,'2018-04-03','krysseltillada de leon  has logged out','0:0:0:0:0:0:0:1','16:08:43',0),(6,'2018-04-03','krysseltillada de leon  has logged in','0:0:0:0:0:0:0:1','16:13:22',0),(7,'2018-04-03','krysseltillada de leon  has logged in','0:0:0:0:0:0:0:1','20:19:48',0),(8,'2018-04-03','krysseltillada de leon  has logged out','0:0:0:0:0:0:0:1','20:41:04',0),(9,'2018-04-03','krysseltillada de leon  has logged in','0:0:0:0:0:0:0:1','20:42:11',0),(10,'2018-04-03','krysseltillada de leon  has logged in','0:0:0:0:0:0:0:1','23:46:56',0),(11,'2018-04-04','krysseltillada de leon  has logged in','0:0:0:0:0:0:0:1','03:24:55',0),(12,'2018-04-04','krysseltillada de leon  has logged out','0:0:0:0:0:0:0:1','05:37:59',0),(13,'2018-04-04','krysseltillada de leon  has logged in','0:0:0:0:0:0:0:1','05:38:06',0),(14,'2018-04-04','krysseltillada de leon  has logged in','0:0:0:0:0:0:0:1','14:20:40',0),(15,'2018-04-04','krysseltillada de leon  has logged in','0:0:0:0:0:0:0:1','14:41:07',0),(16,'2018-04-04','krysseltillada de leon  has logged in','0:0:0:0:0:0:0:1','16:19:54',0),(17,'2018-04-04','krysseltillada de leon  has logged out','0:0:0:0:0:0:0:1','16:21:09',0),(18,'2018-04-04','krysseltillada de leon  has logged in','0:0:0:0:0:0:0:1','17:07:06',0),(19,'2018-04-04','krysseltillada de leon  has logged in','0:0:0:0:0:0:0:1','23:33:22',0),(20,'2018-04-04','krysseltillada de leon  has logged out','0:0:0:0:0:0:0:1','23:35:04',0),(21,'2018-04-04','krysseltillada de leon  has logged in','0:0:0:0:0:0:0:1','23:35:16',0),(22,'2018-04-04','krysseltillada de leon  has logged out','0:0:0:0:0:0:0:1','23:36:16',0),(23,'2018-04-04','krysseltillada de leon  has logged in','0:0:0:0:0:0:0:1','23:36:27',0),(24,'2018-04-04','krysseltillada de leon  has logged in','0:0:0:0:0:0:0:1','23:38:01',0),(25,'2018-04-04','krysseltillada de leon  has logged out','0:0:0:0:0:0:0:1','23:45:18',0),(26,'2018-04-04','judy ando has logged in','0:0:0:0:0:0:0:1','23:45:28',32768),(27,'2018-04-04','krysseltillada de leon  has logged out','0:0:0:0:0:0:0:1','23:45:42',0),(28,'2018-04-04','krysseltillada de leon  has logged in','0:0:0:0:0:0:0:1','23:45:51',0);
+INSERT INTO `user_access_log` VALUES (1,'2018-04-05','kryssel de leon has logged in','0:0:0:0:0:0:0:1','16:45:35',0),(2,'2018-04-05','kryssel de leon has logged in','0:0:0:0:0:0:0:1','17:10:58',0),(3,'2018-04-05','kryssel de leon has logged in','0:0:0:0:0:0:0:1','17:28:33',0),(4,'2018-04-05','kryssel de leon has logged in','0:0:0:0:0:0:0:1','17:39:50',0),(5,'2018-04-05','kryssel de leon has logged in','0:0:0:0:0:0:0:1','18:05:39',0),(6,'2018-04-05','kryssel de leon has logged in','0:0:0:0:0:0:0:1','18:12:53',0),(7,'2018-04-05','kryssel de leon has logged out','0:0:0:0:0:0:0:1','18:39:07',0),(8,'2018-04-05','kryssel de leon has logged in','0:0:0:0:0:0:0:1','18:39:13',0);
 /*!40000 ALTER TABLE `user_access_log` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -857,4 +859,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-04-04 23:53:15
+-- Dump completed on 2018-04-05 18:48:43

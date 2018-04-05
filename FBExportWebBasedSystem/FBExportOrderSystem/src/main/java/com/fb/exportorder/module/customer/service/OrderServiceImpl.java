@@ -297,6 +297,10 @@ public class OrderServiceImpl implements OrderService {
 
 	@Override
 	public void markReceived(Order order) {
+		
+		if (order.getPaymentMethod() == PaymentMethod.CASH_ON_DELIVERY)
+			order.setPaid(true);
+		
 		order.setOrderStatus(OrderStatus.RECEIVED);
 		order.setMessage(StringUtils.EMPTY);
 		order.setReason(StringUtils.EMPTY);
@@ -305,6 +309,10 @@ public class OrderServiceImpl implements OrderService {
 	
 	@Override
 	public void markReceivedAdmin(Order order) {
+		
+		if (order.getPaymentMethod() == PaymentMethod.CASH_ON_DELIVERY)
+			order.setPaid(true);
+		
 		order.setOrderStatus(OrderStatus.RECEIVED);
 		order.setMessage(StringUtils.EMPTY);
 		order.setReason(StringUtils.EMPTY);

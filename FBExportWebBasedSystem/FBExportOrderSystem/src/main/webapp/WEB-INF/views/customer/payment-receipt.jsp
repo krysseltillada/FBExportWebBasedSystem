@@ -27,7 +27,7 @@
                     <div class="col-md-5">
                         <ul class="list-unstyled">
 		                    <li> <b>Transaction Date:</b> <fmt:formatDate value = "${order.datePaid}" type = "date" dateStyle = "LONG" /> </li>
-							<li><b>Order#: </b> ${order.orderId}  </li>
+							<li><b>Order id: </b> ${order.orderId}  </li>
 						</ul>
                     </div>
                 </div>

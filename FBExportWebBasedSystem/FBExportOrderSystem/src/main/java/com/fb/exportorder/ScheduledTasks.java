@@ -63,7 +63,7 @@ public class ScheduledTasks {
         		logoutTime.setSeconds(0);
         		settings.setLogoutTime(logoutTime);
         		
-        		systemSettingsService.addSystemSettings(settings);
+        		systemSettingsService.addInitialSystemSettings(settings);
         	}
     		
         	settings = systemSettingsService.findAll().get(0);
@@ -76,7 +76,7 @@ public class ScheduledTasks {
     		backup.backupDataCron("fbexport");
     		
     		SystemLog systemLog = new SystemLog();
-    		systemLog.setActionType(ActionType.SETTINGS);
+    		systemLog.setActionType(ActionType.SYSTEM);
     		systemLog.setTimeOccured(new Date());
     		systemLog.setDateOccured(new Date());
     		systemLog.setDescription("Automatic backup database");
@@ -97,3 +97,4 @@ public class ScheduledTasks {
 
     }
 }
+	

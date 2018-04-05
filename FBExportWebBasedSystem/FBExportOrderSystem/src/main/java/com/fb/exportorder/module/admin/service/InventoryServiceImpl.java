@@ -177,7 +177,20 @@ public class InventoryServiceImpl implements InventoryService {
 			
 			newProduct.setProductImageLink(productImageLink);
 			
-			updateStockProduct(newProduct.getProductId(), String.valueOf(newProduct.getWeight())); 
+			ProductStock stock = new ProductStock();
+			
+			Weight productStockWeight = new Weight();
+			
+			productStockWeight.setWeight(newProduct.getWeight());
+			productStockWeight.setWeightType(WeightType.KILO);
+			
+			
+			stock.setProduct(newProduct);
+			stock.setStock(productStockWeight);
+			stock.setDate(new Date());
+			
+			newProduct.getProductStocks()
+					  .add(stock);
 			
 			inventoryRepository.save(newProduct);
 		

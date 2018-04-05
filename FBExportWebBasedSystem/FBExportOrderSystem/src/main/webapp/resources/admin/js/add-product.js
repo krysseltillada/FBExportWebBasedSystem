@@ -50,7 +50,8 @@ $(document).ready(function () {
 
 	
     $( "#deliveryDatePicker" ).flatpickr({
-		dateFormat : "F j, Y"
+		dateFormat : "F j, Y",
+		minDate : "today"
 	});
 
 	var isThreeImagesUploaded = false;
