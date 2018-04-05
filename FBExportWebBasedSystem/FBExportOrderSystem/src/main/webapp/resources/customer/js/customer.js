@@ -169,7 +169,8 @@ $(document).ready(function () {
             totalPrice : cartItem.totalPrice,
             totalWeight : cartItem.totalWeight,
             weightType : cartItem.weightType,
-            itemId : cartItem.itemId
+            itemId : cartItem.itemId,
+            productId : cartItem.productId
         }));
 
         $productCart.find("tr:last>td:last>a.delete-cart-item")
@@ -209,8 +210,16 @@ $(document).ready(function () {
     $("#massType").change(function () {
 
         var massType = $(this).val(),
-            quantity = $("#quantity").val();
-
+            quantity = $("#quantity").val(),
+            currentWeight = $("#fullWeight").val(),
+            massTypeChange = $("#changeMassType").html();
+        
+        var convertedWeight = convertMass($("#changeMassType").html() == "Kg" ? "kilogram" : massTypeChange, massType, Number(currentWeight));
+        $("#fullWeight").val(convertedWeight);
+        $("#availableWeight").html(Number($("#fullWeight").val()).toFixed(2));
+       
+        $("#changeMassType").html(massType == "kilogram" ? "Kg" : massType);
+       
         updatePriceMass(massType, quantity, currentCurrency);
     });
 
@@ -260,6 +269,15 @@ $(document).ready(function () {
         var $addToCartModal = $(this).closest("div#addToCartModal");
         var val = $(this).parent().parent().find("#product-id").val();
         var rowCart = $("div#shoppingModalCart div.modal-body>table").find(".product-id[value="+ val +"]").closest("tr").html();
+         
+        var orderMassType = $(rowCart).find(".productWeightType").html();
+        
+        if(jQuery.type(orderMassType) !== "undefined"){
+        	if( orderMassType != $("#massType option:selected").text()){
+            	toastr.warning("Your order should be in " + orderMassType , 'Warning!');
+            	return;
+            }
+        }
         
         var addedQuantity = Number($(rowCart).find(".productWeightCart").html()) + Number($("#quantity").val());
        
@@ -278,14 +296,6 @@ $(document).ready(function () {
             return;
 
         }
-        var orderMassType = $(rowCart).find(".productWeightType").html();
-     
-        if(jQuery.type(orderMassType) !== "undefined"){
-        	if( orderMassType != $("#massType option:selected").text()){
-            	toastr.warning("Your order should be in " + orderMassType , 'Warning!');
-            	return;
-            }
-        }
         
         var realTotalPriceApprox = $addToCartModal.find("#total-real-price-approx").val();
 
@@ -303,15 +313,16 @@ $(document).ready(function () {
         $.post("/FBExportSystem/add-to-cart", {
             customerCartJSON : JSON.stringify(item)
         }, function (response) {
-            console.log(response);
-
+            console.log("RESPONSE " + response);
+            
             addToCart({
                 productName : $addToCartModal.find("#addToCartProductName").text(),
                 totalPrice : formatMoney(accounting.unformat($addToCartModal.find("#totalPrice").val()), currentCurrency, "%v %s"),
                 totalWeight : parseFloat($addToCartModal.find("#totalWeight").val().substring(0, $addToCartModal.find("#totalWeight").val().indexOf(" "))).toFixed(1),
                 weightType : $addToCartModal.find("#massType>option:selected").html(),
                 productImage : $addToCartModal.find("#addToCartProductImage").attr("src"),
-                itemId : response.itemId
+                itemId : response.itemId,
+                productId : response.productId
             });
 
             $("#addToCartModal").modal("hide");
@@ -336,9 +347,11 @@ $(document).ready(function () {
     	
         var $card = $(event.currentTarget).parent().parent().parent();
         var $cardBody = $card.find("div.card-body");
-
+        
         var $spansHeaderInfo = $card.children("span");
         var currency = $card.find("span>span:eq(1)").html();
+        
+        
         var productItem = {
             productImage : $card.find("img").attr("src"),
             price : $spansHeaderInfo.eq(0).text(),

@@ -65,8 +65,9 @@
                     <div class = "row">
                         <div class = "col-md-5">
                                 <span id = "addToCartModalAvailableWeight" style = "position: absolute; color: white; top: 270px; max-width: 280px; height: 30px; padding: 3px 5px 3px 5px; text-align: center; border: 1px solid white;" class = "rgba-black-strong">
-                                	Available : <span id="availableWeight"></span> Kg
-                                </span> 
+                                	Available : <span id="availableWeight"></span> <span id="changeMassType">Kg</span>
+                                </span>
+                                <input type="hidden" value="" id="fullWeight"/> 
                             <img class = "border rounded" id = "addToCartProductImage" alt = "Product" src = "" width = "300" height = "300" />
                         </div>
 

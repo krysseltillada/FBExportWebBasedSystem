@@ -74,12 +74,12 @@ public class HomeController {
 										  HttpSession session) {
 		
 		long itemId = 0;
-		
+		JSONObject customerCartItem = null;
 		try {
 			
 			System.out.println(customerCartJSON);
 			
-			JSONObject customerCartItem = (JSONObject) new JSONParser().parse(customerCartJSON);
+			customerCartItem = (JSONObject) new JSONParser().parse(customerCartJSON);
 			
 			Item newItem = new Item();
 			Weight newWeight = new Weight();
@@ -102,6 +102,7 @@ public class HomeController {
 		JSONObject response = new JSONObject();
 		
 		response.put("itemId", itemId);
+		response.put("productId", (String)customerCartItem.get("productId"));
 		
 		return response.toJSONString();
 	}
