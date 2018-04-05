@@ -100,6 +100,13 @@ $(document).ready(function () {
                 },
                 legend: {
                     display: legendState
+                },
+                tooltips: {
+                    callbacks: {
+                        label: function(tooltipItem, data) {
+                            return tooltipItem.yLabel.toFixed(1) + " KILO";
+                        }
+                    }
                 }
             },
             data: {
@@ -207,6 +214,13 @@ $.get( "/FBExportSystem/admin/dashboard/get-data-paid", function( data ) {
                         }
                     }]
                 },
+                tooltips: {
+                    callbacks: {
+                        label: function(tooltipItem, data) {
+                            return formatMoney(tooltipItem.yLabel, "PHP", "%v %s");
+                        }
+                    }
+                }
             },
             data: {
                 labels: [months[0], months[1], months[2], months[3], months[4]],

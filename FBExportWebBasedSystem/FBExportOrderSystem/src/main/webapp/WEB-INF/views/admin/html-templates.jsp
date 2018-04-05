@@ -45,7 +45,7 @@
                 <input id = "orderId-{{=order.orderId}}" type = "hidden" />
                 </h3>
             <span style = "font-size: 13px;">
-                <strong> by: </strong> <strong> <a href = "#"> {{=order.customer.firstname}} {{=order.customer.middlename}} {{=order.customer.lastname}} </a> </strong>
+                <strong> by: </strong> <strong> {{=order.customer.firstname}} {{=order.customer.middlename}} {{=order.customer.lastname}}</strong>
                 <br />
                 <strong> Payment: </strong> 
                 

@@ -56,6 +56,9 @@ public class PlaceOrderController {
 										   .getCart()
 										   .getItems();
 		
+		if (items.isEmpty())
+			return "redirect:/";
+		
 		Set<Long> taxableProduct = new HashSet<>();
 		
 		

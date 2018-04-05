@@ -65,7 +65,7 @@ $(document).ready(function (){
 					supplierAddress : response.supplierAddress,
 					dateOfDelivery : moment(response.dateOfDelivery).format("MMMM D, YYYY"),
 					status : response.status,
-					editAddressLink : "http://localhost:" + location.port + "/FBExportSystem/admin/inventory/edit-product/" + response.productId
+					editAddressLink : window.location.origin + "/FBExportSystem/admin/inventory/edit-product/" + response.productId
 				});
 
 				row.child(rowProductRowCollapse, 'no-padding').show();

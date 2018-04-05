@@ -44,7 +44,7 @@ public class Shipping {
 	private Date expectedDate;
 	
 	public boolean isCompleteShipping() {
-		return (shippingLog.size() > 0) ? shippingLog.get(shippingLog.size() - 1).isComplete() : false;
+		return (!shippingLog.isEmpty()) ? shippingLog.get(shippingLog.size() - 1).isComplete() : false;
 	}
 
 	public Long getShippingId() {

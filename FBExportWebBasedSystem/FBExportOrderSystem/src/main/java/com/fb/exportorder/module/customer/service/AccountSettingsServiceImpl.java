@@ -4,6 +4,8 @@ import java.io.File;
 import java.nio.file.FileSystems;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -204,7 +206,10 @@ public class AccountSettingsServiceImpl implements AccountSettingsService {
 						
 						if (!profileImage.isEmpty()) {
 							
-							String profileImageFilename = DigestUtils.md5Hex(customer.getUsername()) + imageTypes.get(profileImage.getContentType());
+							String timeStamp = new SimpleDateFormat("yyyymmddhhmmss").format(new Timestamp(System.currentTimeMillis()));
+							String profileImageFilename = DigestUtils.md5Hex(customer.getUsername()) + timeStamp + imageTypes.get(profileImage.getContentType());
+							
+							System.out.println(profileImageFilename + " generated file name");
 							
 							Path path = FileSystems.getDefault().getPath("src\\main\\webapp\\profile-img-customer\\" + profileImageFilename);
 							Files.write(path, imageBytes);

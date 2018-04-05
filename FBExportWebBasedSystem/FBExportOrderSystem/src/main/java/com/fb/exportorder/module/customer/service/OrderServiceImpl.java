@@ -298,8 +298,10 @@ public class OrderServiceImpl implements OrderService {
 	@Override
 	public void markReceived(Order order) {
 		
-		if (order.getPaymentMethod() == PaymentMethod.CASH_ON_DELIVERY)
+		if (order.getPaymentMethod() == PaymentMethod.CASH_ON_DELIVERY) {
+			order.setDatePaid(new Date());
 			order.setPaid(true);
+		}
 		
 		order.setOrderStatus(OrderStatus.RECEIVED);
 		order.setMessage(StringUtils.EMPTY);
@@ -310,8 +312,10 @@ public class OrderServiceImpl implements OrderService {
 	@Override
 	public void markReceivedAdmin(Order order) {
 		
-		if (order.getPaymentMethod() == PaymentMethod.CASH_ON_DELIVERY)
+		if (order.getPaymentMethod() == PaymentMethod.CASH_ON_DELIVERY) {
+			order.setDatePaid(new Date());
 			order.setPaid(true);
+		}
 		
 		order.setOrderStatus(OrderStatus.RECEIVED);
 		order.setMessage(StringUtils.EMPTY);
@@ -507,8 +511,10 @@ public class OrderServiceImpl implements OrderService {
 				order.getShipping().getShippingLog().size();
 			}
 
-			for (Item item : order.getCart().getItems())
+			for (Item item : order.getCart().getItems()) {
 				item.getProduct().getRating().getReviews().size();
+				item.getProduct().getProductStocks().size();
+			}
 			
 		}
 		
