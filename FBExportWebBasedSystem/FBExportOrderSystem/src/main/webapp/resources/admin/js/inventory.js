@@ -17,6 +17,7 @@ $(document).ready(function (){
 
 	var getMoreProductDetails = function () { 
 		var parentRow = $(this).closest('tr');
+		var currentRow = $(this).closest('tr');
 
 		var row = table.row(parentRow);
 
@@ -123,6 +124,8 @@ $(document).ready(function (){
 													
 													$("#addStockWeight").val("");
 
+													table.row($currentRow).cell($currentRow.find("td:eq(7)")).data($currentRow.find("td:eq(7)").html());
+
 													table.rows().invalidate();
 
 												});
@@ -195,6 +198,8 @@ $(document).ready(function (){
 														$(this).remove();
 													});
 
+													table.row($currentRow).cell($currentRow.find("td:eq(10)")).data($currentRow.find("td:eq(10)").html());
+
 													table.rows().invalidate();
 
 												});
@@ -247,6 +252,8 @@ $(document).ready(function (){
 													$(toast).fadeOut("slow", function () {
 														$(this).remove();
 													});
+													
+													table.row($currentRow).cell($currentRow.find("td:eq(10)")).data($currentRow.find("td:eq(10)").html());
 
 													table.rows().invalidate();
 
