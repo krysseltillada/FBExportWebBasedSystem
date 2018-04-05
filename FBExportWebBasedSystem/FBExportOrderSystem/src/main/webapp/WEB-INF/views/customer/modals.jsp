@@ -241,7 +241,7 @@
 	                    		<tr>
 	                    			<td><img src="<c:url value = '${cartItem.product_image_link}' />" width="50" height="50" class="float-left" /></td>
 	                    			<td><a href = "<c:url value = '/view-product/${cartItem.product_id}' />">${cartItem.name} </a> </td>
-	                    			<td> ${cartItem.price} </td>
+	                    			<td><span class="productPriceCart">${cartItem.price}</span></td>
 	                    			<td><span class="productWeightCart">${cartItem.weight}</span> <span class="productWeightType">${cartItem.weight_type}</span> </td>
 	                    			<td class="text-center"><a class = "delete-cart-item"><i class="fa fa-remove text"></i></a></td>
 									<input type = "hidden" id = "item-id" value = "${cartItem.item_id}" />

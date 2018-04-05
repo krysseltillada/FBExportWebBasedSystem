@@ -13,7 +13,7 @@
     <tr>
         <td><img src="{{=productImage}}" width="50" height="50" class="float-left"></td>
         <td>{{=productName}}</td>
-        <td>{{=totalPrice}}</td>
+        <td><span class="productPriceCart">{{=totalPrice}}</span></td>
 		<td><span class="productWeightCart">{{=totalWeight}}</span> <span class="productWeightType">{{=weightType}}</span></td>
 		<td class="text-center"><a class = "delete-cart-item"><i class="fa fa-remove text"></i></a></td>
 		
