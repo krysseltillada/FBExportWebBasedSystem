@@ -5,7 +5,7 @@
 
         <div class = "row">
         <div class = "col-lg">
-            <span class="h3 no-margin-bottom mr-2" >Manage Accounts</span>
+            <span class="h3 no-margin-bottom mr-2" ><span>Manage Accounts</span> <i class="fa fa-users ml-2" aria-hidden="true"></i></span>
             
             <security:authorize access = "hasAuthority('ADMIN')">
 	            <span class = "small float-right" > <a style="margin: 5px;" data-toggle="collapse" href="#collapseAdmins" aria-expanded="false" aria-controls="collapseExample"> Filter Admins <i class="fa fa-filter ml-1" aria-hidden="true"> </i> </a></span>

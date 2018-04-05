@@ -74,9 +74,9 @@
                             
                             <c:forEach var = "shippingAddress" items = "${shippingAddressList}">
                             	<div class = "col-md-4">
-		                            <div class="card border-light mb-3" style="max-width: 17rem; height: 12rem;" id = "${shippingAddress.shippingAddressId}">
+		                            <div class="card ${(shippingAddress.defaultShippingAddress) ? 'border-success' : 'border-light'} border mb-3" style="max-width: 17rem; height: 12rem;" id = "${shippingAddress.shippingAddressId}">
 		                                <div class="card-header pt-2 pb-2" style = "font-size: 14px;">
-		                                    <span>${shippingAddress.addressType}</span>'s Address
+		                                    <span>${shippingAddress.addressType}</span>'s Address 
 		                                </div>
 		                                
 		                                <div class="card-body pt-3 pr-2">

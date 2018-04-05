@@ -20,7 +20,7 @@
 
                 <ul class="nav nav-tabs">
                 <li class="nav-item">
-                    <a class="nav-link active" href="#">System logs</a>
+                    <a class="nav-link active" href="#"> <span>System logs</span> <i class="fa fa-cogs ml-1" aria-hidden="true"></i> </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">User access logs</a>

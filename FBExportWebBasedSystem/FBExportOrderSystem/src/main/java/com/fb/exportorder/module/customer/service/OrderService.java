@@ -1,5 +1,6 @@
 package com.fb.exportorder.module.customer.service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -36,11 +37,14 @@ public interface OrderService {
 	void markToShip(Order order);
 	void markCancelled(Order order, String reason);
 	void markPaid(Order order);
+	void markPaidAdmin(Order order, Date datePaid);
+	void markReceivedAdmin(Order order);
 	
 	void refund(Order order, String reason);
 	void reOrder(Order order);
 	
 	void reviewOrder(Order order, String review);
+	void returnRefundOrderAdmin(Order order, String reason);
 	void returnRefundOrder(Order order, String reason);
 	
 	List<String> addToShipInformation(long id,

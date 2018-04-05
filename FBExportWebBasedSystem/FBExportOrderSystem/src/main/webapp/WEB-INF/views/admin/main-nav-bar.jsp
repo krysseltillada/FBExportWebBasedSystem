@@ -11,7 +11,7 @@
 
 
 <header class="header">
-    <nav class="navbar bg-white" style = "color: black;">
+    <nav class="navbar bg-black" style = "color: white;">
       
         <div class="container-fluid pl-3 pr-3">
 	        <div class="navbar-holder d-flex align-items-center justify-content-between">
@@ -20,20 +20,20 @@
 	            <!-- Navbar Brand -->
 	            <a href="<c:url value = '/admin/dashboard' />" class="navbar-brand">
 	                <div class="brand-text brand-big">
-	                <span> <img alt="Company Logo" width="30" height="30" src="<c:url value = '/resources/admin/company-logo.png' /> ">  Fong Bros International Corporation </span>
+	                <span> <img class = "mr-2" alt="Company Logo" width="30" height="30" src="<c:url value = '/resources/company-logo-white.png' /> "> Fong Bros International Corporation </span>
 	                </div>
 	                <div class="brand-text brand-small">
-	                <strong>FB</strong>
+	                	<strong>FB</strong>
 	                </div>
 	            </a>
 	
-	                <a id="toggle-btn" href="#" class="menu-btn active small">
+	                <a id="toggle-btn" href="#" class="menu-btn active small" style = "color: white !important;">
 	                <span></span><span></span><span></span></a>
 	            </div>
 	            <!-- Navbar Menu -->
-	            <ul class="nav-menu list-unstyled d-flex flex-md-row align-items-md-center" style = "color: #0395F7;">
+	            <ul class="nav-menu list-unstyled d-flex flex-md-row align-items-md-center">
 	
-	            <li class="nav-item d-flex align-items-center" id = "main-nav-date-time" style = "color: black;">
+	            <li class="nav-item d-flex align-items-center" id = "main-nav-date-time">
 	              loading..
 	            </li>
 	
@@ -59,34 +59,12 @@
 		               </li>
 	                </ul>
 	            </li>
-	            
-	            
-				<!--  
-	            <li class="nav-item dropdown"> <a id="messages" rel="nofollow" data-target="#" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link"><i class="fa fa-envelope-o"></i><span class="badge bg-orange">10</span></a>
-	                <ul aria-labelledby="notifications" class="dropdown-menu">
-	                <li><a rel="nofollow" href="#" class="dropdown-item d-flex">
-	                    <div class="msg-profile"> <img src="img/avatar-1.jpg" alt="..." class="img-fluid rounded-circle"></div>
-	                    <div class="msg-body">
-	                        <h3 class="h5">Jason Doe</h3><span>Sent You Message</span>
-	                    </div></a></li>
-	                <li><a rel="nofollow" href="#" class="dropdown-item d-flex">
-	                    <div class="msg-profile"> <img src="img/avatar-2.jpg" alt="..." class="img-fluid rounded-circle"></div>
-	                    <div class="msg-body">
-	                        <h3 class="h5">Frank Williams</h3><span>Sent You Message</span>
-	                    </div></a></li>
-	                <li><a rel="nofollow" href="#" class="dropdown-item d-flex">
-	                    <div class="msg-profile"> <img src="img/avatar-3.jpg" alt="..." class="img-fluid rounded-circle"></div>
-	                    <div class="msg-body">
-	                        <h3 class="h5">Ashley Wood</h3><span>Sent You Message</span>
-	                    </div></a></li>
-	                <li><a rel="nofollow" href="#" class="dropdown-item all-notifications text-center"> <strong>Read all messages    </strong></a></li>
-	                </ul>
-	            </li> -->
+	        
 	            <!-- Logout    -->
 	            <li class="nav-item">
-	                <a href="<c:url value = '/admin/sign-out' />" class="nav-link logout" style = "color:black;">
+	                <a href="<c:url value = '/admin/sign-out' />" class="nav-link logout">
 	                Logout
-	                <i class="fa fa-sign-out"></i>
+	                <i class="fa fa-sign-out" style = "color: white !important;"></i>
 	                </a>
 	            </li>
 	            </ul>
@@ -107,18 +85,7 @@
 								
 				<div class="list-group" style = "max-height: 375px; overflow-y: auto;">
 				
-				<!--  
-						<span class="list-group-item list-group-item-action flex-column align-items-start">
-							<div class="d-flex w-100 justify-content-between">
-							<h5 class="mb-1">${notificationItem.header} <i class="fa fa-envelope circle bg-green circle ml-1"></i> </h5>
-							<small>${notificationItem.date}</small>
-							</div>
-							<p class="mb-1">${notificationItem.description}.</p>
-						</span>
-						
-						-->
-					
-					
+			
 				</div>
 			</div>
 		</div>

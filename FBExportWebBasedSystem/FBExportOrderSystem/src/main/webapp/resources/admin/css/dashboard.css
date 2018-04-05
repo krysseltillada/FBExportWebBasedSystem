@@ -1,11 +1,11 @@
-nav.navbar .menu-btn span:nth-of-type(2)::before, nav.navbar .menu-btn span:nth-of-type(2)::after {
+/* nav.navbar .menu-btn span:nth-of-type(2)::before, nav.navbar .menu-btn span:nth-of-type(2)::after {
     background-color: #2B90D9 !important;
-}
+} */
 
 
-nav.navbar .menu-btn span {
+/* nav.navbar .menu-btn span {
     background-color: #2B90D9 !important;
-}
+} */
 
 i.fa-sign-out {
     color: #2B90D9;

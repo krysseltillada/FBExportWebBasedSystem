@@ -9,11 +9,14 @@ import org.aspectj.lang.annotation.Aspect;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 
+import com.fb.exportorder.models.Product;
 import com.fb.exportorder.models.SystemNotification;
 import com.fb.exportorder.models.customer.Customer;
 import com.fb.exportorder.models.customer.Order;
 import com.fb.exportorder.models.enums.SystemNotificationStatus;
+import com.fb.exportorder.module.admin.service.InventoryService;
 import com.fb.exportorder.module.admin.service.NotificationService;
+import com.fb.exportorder.module.admin.session.EmployeeSessionBean;
 
 @Aspect
 public class AdminNotificationTracker {
@@ -21,6 +24,9 @@ public class AdminNotificationTracker {
 	@Autowired
 	@Qualifier("AdminNotificationService")
 	private NotificationService notificationService;
+	
+	@Autowired
+	private InventoryService inventoryService;
 
 	@After("execution(public void com.fb.exportorder..service.OrderService+.markReceived(..))")
 	public void detectReceiveOrder(JoinPoint joinPoint) {
@@ -150,16 +156,35 @@ public class AdminNotificationTracker {
 
 	}
 	
+//	@After("execution(@org.springframework.web.bind.annotation.RequestMapping public String com.fb.exportorder..controllers.InventoryController.addProductAdd(..))") 
+//	public void detectNewProduct (JoinPoint joinPoint) {
+//		
+//		String productName = (String)joinPoint.getArgs()[1];
+//		
+//		SystemNotification systemNotification = new SystemNotification();
+//		
+//		systemNotification.setHeader("New Product");
+//		systemNotification.setDescription("New product has added " + productName);
+//		systemNotification.setSeen(false);
+//		systemNotification.setSystemNotificationStatus(SystemNotificationStatus.INVENTORY_ADD_PRODUCT);
+//		systemNotification.setDate(new Date());
+//		
+//		notificationService.pushNotification(systemNotification);
+//		
+//	}
+	
 	@After("execution(public void com.fb.exportorder..service.InventoryService+.editProduct(..))")
 	public void detectEditProduct(JoinPoint joinPoint) {
 	
 	
 		long productId = (Long)joinPoint.getArgs()[0];
 		
+		Product product = inventoryService.getProductById(productId);
+		
 		SystemNotification systemNotification = new SystemNotification();
 		
 		systemNotification.setHeader("Edited Product");
-		systemNotification.setDescription("Product no. " + productId +  " has been edited");
+		systemNotification.setDescription("Product no. " + productId + " " +  product.getName() + " has been edited");
 		systemNotification.setSeen(false);
 		systemNotification.setSystemNotificationStatus(SystemNotificationStatus.INVENTORY_EDIT_PRODUCT);
 		systemNotification.setDate(new Date());
@@ -167,6 +192,28 @@ public class AdminNotificationTracker {
 		notificationService.pushNotification(systemNotification);
 
 	}
+	
+	@After("execution(public String com.fb.exportorder..service.InventoryService+.updateStockProduct(..))")
+	public void detectUpdateStockProduct(JoinPoint joinPoint) {
+	
+	
+		long productId = (Long)joinPoint.getArgs()[0];
+		
+		Product product = inventoryService.getProductById(productId);
+		
+		SystemNotification systemNotification = new SystemNotification();
+		
+		systemNotification.setHeader("Update Product Stock");
+		systemNotification.setDescription("Product no. " + productId +  " " + product.getName() + " stocks has been updated");
+		systemNotification.setSeen(false);
+		systemNotification.setSystemNotificationStatus(SystemNotificationStatus.INVENTORY_UPDATE_STOCK);
+		systemNotification.setDate(new Date());
+		
+		notificationService.pushNotification(systemNotification);
+
+	}
+	
+	
 	
 	
 }

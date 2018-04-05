@@ -4,7 +4,7 @@
     <div class="container-fluid">
         <div class = "row">
             <div class = "col-lg">
-                <span class="h3 no-margin-bottom mr-2">Orders</span>
+                <span class="h3 no-margin-bottom mr-2"><span>Orders</span> <i class="fa fa-list-alt ml-2" aria-hidden="true"></i> </span>
                 <span class = "small ml-2 float-right"> <a href = "javascript:void(0)" id = "deleteOrder" class = "text-muted disabled" style = "pointer-events: none; cursor: not-allowed;"> Delete order <i class="fa fa-trash ml-1" aria-hidden="true"></i> </a> </span>
                 <span class = "small ml-2 float-right"> <a data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample"> Filter Orders <i class="fa fa-filter ml-1" aria-hidden="true"></i> </a> </span>
             	<span class = "small float-right"> <a href = "<c:url value = '/admin/orders' />"> Refresh orders <i class="fa fa-refresh ml-1" aria-hidden="true"></i> </a></span>
@@ -272,6 +272,18 @@
 	                                                </c:choose>
 	                                            </span>
 	                                            <br />
+	                                            
+	                                            <strong> Paid: </strong> <br />
+	                                            <span style = "font-size: 12px;">
+	                                                <c:choose>
+	                                                	<c:when test = "${order.isPaid()}">
+	                                                		<fmt:formatDate value="${order.datePaid}" dateStyle="LONG" type="date"/>
+	                                                	</c:when>
+	                                                	<c:otherwise>
+	                                                		None
+	                                                	</c:otherwise>
+	                                                </c:choose>
+	                                            </span>
 	
 	                                        </span>
 	                                    
@@ -376,6 +388,29 @@
         <div class="modal-footer">
             <button type="button" data-dismiss="modal" class="btn btn-secondary">Cancel</button>
             <button type="button" class="btn btn-primary btn-save-to-ship-information">Save</button>
+        </div>
+        </div>
+    </div>
+</div>
+
+<div id="paidDatePickerModal" tabindex="-1" role="dialog" aria-labelledby="paidDatePickerModalLabel" aria-hidden="true" class="modal fade text-left">
+    <input type = "hidden" id = "orderModalId" value = "" />
+    <div role="document" class="modal-dialog modal-sm">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h5 id="paidDatePickerModalLabel" class="modal-title"> Set paid date </h5>
+            <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">x</span></button>
+        </div>
+        <div class="modal-body">
+
+			<div class = "row">
+				<input class = "mx-auto text-center" type = "text" id = "paidDatePicker" placeholder="Paid date" required/>
+			</div>
+
+        </div>
+        <div class="modal-footer">
+            <button type="button" data-dismiss="modal" class="btn btn-secondary">Cancel</button>
+            <button type="button" class="btn btn-primary btn-save-paid-status">Save</button>
         </div>
         </div>
     </div>

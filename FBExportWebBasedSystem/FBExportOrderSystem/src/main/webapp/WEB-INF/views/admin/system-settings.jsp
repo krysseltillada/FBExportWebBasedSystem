@@ -5,7 +5,7 @@
 
         <div class = "row">
         <div class = "col-lg">
-            <span class="h3 no-margin-bottom mr-2">System Settings</span>
+            <span class="h3 no-margin-bottom mr-2"><span>System Settings</span> <i class="fa fa-cog ml-2" aria-hidden="true"></i></span>
         </div>
         </div>
 
@@ -51,7 +51,7 @@
 		                <br />
 		                <div class="form-inline">
 		                	<button type="button" class="btn btn-primary btn-sm mr-1" id="btnExportDatabase" ${isBackupFileExist ? '' : 'disabled'}>Export Database</button>
-		                	<label for="sqlfile" class="btn btn-primary btn-sm mr-1" style="cursor: pointer;">Import Database</label>
+		                	<label for="sqlfile" class="btn btn-primary btn-sm mr-3" style="cursor: pointer;">Import Database</label>
 		                	<span id="filename-uploaded">No file selected</span>
 							<input type="file" name="sqlfile" id="sqlfile" style="visibility:hidden;" accept=".sql" class="btn btn-primary btn-sm mr-1" />
 		                </div>

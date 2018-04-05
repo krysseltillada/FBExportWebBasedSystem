@@ -157,13 +157,20 @@ $(document).ready(function () {
                         prevDefaultShippingAddressId : prevId,
                         newDefaultShippingAddressId : newId
                     }, function () {
+
+                        var $newDefaultAddressCard = $newDefaultAddressBtn.closest("div.card");
+                        var $prevDefaultAddressCard = $prevDefaultAddressBtn.closest("div.card");
                         
                         $newDefaultAddressBtn.addClass("disabled").addClass("grey-text").removeClass("set-default-shipping-address").off("click");
+                        $newDefaultAddressCard.removeClass("border-light").addClass("border-success");
                     
                         $prevDefaultAddressBtn.addClass("blue-text")
                                             .removeClass("grey-text")
                                             .removeClass("disabled")
                                             .addClass("set-default-shipping-address").click(setDefaultShippingAddress);
+
+                        $prevDefaultAddressCard.removeClass("border-success")
+                                               .addClass("border-light");
 
                         toastr.success('default shipping address set');
 

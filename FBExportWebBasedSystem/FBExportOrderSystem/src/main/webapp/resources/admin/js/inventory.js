@@ -119,9 +119,12 @@ $(document).ready(function (){
 													var colWeight = $addStockProductRow.find("td:eq(7)").html().split(" ");
 													
 													var newStockWeight = Number(colWeight[0]) + Number(weightValue);
-													$addStockProductRow.find("td:eq(7)").html(newStockWeight + " KILO");
+													$addStockProductRow.find("td:eq(7)").html(newStockWeight.toFixed(1) + " KILO");
 													
 													$("#addStockWeight").val("");
+
+													table.rows().invalidate();
+
 												});
 												
 												
@@ -332,40 +335,44 @@ $(document).ready(function (){
             return false;
 	});
 
-//	$.post("/FBExportSystem/admin/inventory/get-product-details", {
-//		id : "1"
-//	}, function (response) {
-//		console.log(response);
-//	}, "json");
-	
 	var table = $('#inventoryTable').DataTable( { 
 		dom: 'lBfrtip',
         buttons: [
             {
                 extend : "copyHtml5",
                 title: 'FONG BROS INVENTORY LIST',
-                messageBottom: "List generated: " + moment(new Date()).format("MMMM D, YYYY")
+				messageBottom: "List generated: " + moment(new Date()).format("MMMM D, YYYY"),
+				text : '<span>Copy</span> <i class="fa fa-copy ml-1" aria-hidden = "true"></i>',
+				className : "border border-white bg-blue text-white rounded"
             },
             {
                 extend : "excelHtml5",
                 title: 'FONG BROS INVENTORY LIST',
-                messageBottom: "List generated: " + moment(new Date()).format("MMMM D, YYYY")
+				messageBottom: "List generated: " + moment(new Date()).format("MMMM D, YYYY"),
+				text : '<span>Excel</span> <i class="fa fa-file-excel-o ml-1" aria-hidden = "true"></i>',
+				className : "border border-white bg-blue text-white rounded"
             },
             {
                 extend : "csvHtml5",
                 title: 'FONG BROS INVENTORY LIST',
-                messageBottom: "List generated: " + moment(new Date()).format("MMMM D, YYYY")
+				messageBottom: "List generated: " + moment(new Date()).format("MMMM D, YYYY"),
+				text : '<span>CSV</span> <i class="fa fa-file-o ml-1" aria-hidden = "true"></i>',
+				className : "border border-white bg-blue text-white rounded"
             },
             {
                 extend : "pdfHtml5",
                 title: 'FONG BROS INVENTORY LIST',
-                messageBottom: "List generated: " + moment(new Date()).format("MMMM D, YYYY"),
+				messageBottom: "List generated: " + moment(new Date()).format("MMMM D, YYYY"),
+				text : '<span>PDF</span> <i class = "fa fa-file-excel-o ml-1" aria-hidden = "true"></i>',
+				className : "border border-white bg-blue text-white rounded",
                 download: 'open'
             },
             {
                 extend : "print",
                 title : "",
-                messageBottom: "List generated: " + moment(new Date()).format("MMMM D, YYYY"),
+				messageBottom: "List generated: " + moment(new Date()).format("MMMM D, YYYY"),
+				text : '<span>Print</span> <i class="fa fa-print ml-1" aria-hidden="true"></i>',
+				className : "border border-white bg-blue text-white rounded",
                 customize : function (win) {
                     $(win.document.body).prepend("<h1> <img class = 'mr-2' src = '" + window.location.origin + "/FBExportSystem/resources/company-logo.png' width = '50' height = '50' /> FONG BROS INVENTORY LIST </h1>");
                 }

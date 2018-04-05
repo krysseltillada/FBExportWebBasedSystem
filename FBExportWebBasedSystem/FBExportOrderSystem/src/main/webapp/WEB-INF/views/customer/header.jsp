@@ -21,7 +21,8 @@
             </button>
 
             <div class="navbar-brand d-none m-0 mb-1" href="<c:url value = '/' />" id = "nav-bar-brand-mobile-header">
-
+				
+				<img class = "mr-1" src = "<c:url value = '/resources/company-logo-white.png' />" width = "20" height = "20" /> 
                 <span class = "pr-2" style = "font-size: 14px;">
                     Fong Bros International Corp
                 </span>

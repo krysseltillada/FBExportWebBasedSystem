@@ -94,7 +94,7 @@
 				                        <div class="feed-body d-flex justify-content-between"><a href="#" class="feed-profile"><img style="width: 50px; height: 50px;" src="<c:url value = "${not empty order.getCustomer().getProfileImageLink() ? order.getCustomer().getProfileImageLink() : order.getCustomer().getGender() == 'MALE' ? '/resources/customer/img/profile-male.jpg' : '/resources/customer/img/profile-female.jpg' }" />" alt="${order.getCustomer().getUsername()}" class="img-fluid rounded-circle"></a>
 				                        <div class="content">
 				                            <h5>${order.getCustomer().getFirstname()} ${order.getCustomer().getLastname()}</h5><span>Status : ${ order.getOrderStatus() } </span>
-				                            <div class="full-date"><small>${order.getDateOrdered()}</small></div>
+				                            <div class="full-date"><small><fmt:formatDate value = "${order.getDateOrdered()}" type = "date" dateStyle = "LONG" /></small></div>
 				                        </div>
 				                        </div>
 				                        
@@ -187,15 +187,15 @@
         <div class = "row">
             <div class="statistics col-lg-3 col-12">
             <div class="statistic d-flex align-items-center bg-white has-shadow mb-2">
-                <div class="icon bg-red"><i class="fa fa-tasks"></i></div>
+                <div class="icon bg-red"><i class="fa fa-user" aria-hidden="true"></i></div>
                 <div class="text"><strong>${onlineUsers.get(true) > 0 ? onlineUsers.get(true) : 0}</strong><br><small>online users</small></div>
             </div>
             <div class="statistic d-flex align-items-center bg-white has-shadow mb-2">
-                <div class="icon bg-green"><i class="fa fa-calendar-o"></i></div>
+                <div class="icon bg-green"><i class="fa fa-users" aria-hidden="true"></i></div>
                 <div class="text"><strong>${onlineUsers.get(true) + onlineUsers.get(false)}</strong><br><small>registered users</small></div>
             </div>
             <div class="statistic d-flex align-items-center bg-white has-shadow">
-                <div class="icon bg-orange"><i class="fa fa-paper-plane-o"></i></div>
+                <div class="icon bg-orange"><i class="fa fa-user-times" aria-hidden="true"></i></div>
                 <div class="text"><strong>${onlineUsers.get(false) > 0 ? onlineUsers.get(false) : 0}</strong><br><small>offline users</small></div>
             </div>
             </div>

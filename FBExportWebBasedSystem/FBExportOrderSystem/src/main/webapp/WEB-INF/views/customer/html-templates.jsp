@@ -40,7 +40,7 @@
 
 <script id = "shippingAddressTemplate" type = "text/template">
 	<div class = "col-md-4">
-		<div class="card border-light mb-3" style="max-width: 17rem; height: 12rem;" id = "{{=shippingAddressId}}">
+		<div class="card border-light border mb-3" style="max-width: 17rem; height: 12rem;" id = "{{=shippingAddressId}}">
 			<div class="card-header pt-2 pb-2" style = "font-size: 14px;">
 				<span>{{=addressType}}</span>'s Address 
 			</div>

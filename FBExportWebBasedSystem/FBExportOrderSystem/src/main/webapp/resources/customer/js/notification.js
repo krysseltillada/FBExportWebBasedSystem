@@ -13,11 +13,25 @@ $(document).ready(function () {
 
         console.log($("#emptyNotificationMessageDesktop").length);
 
-        $("#dropDownNotification>span").html("");
-        $(this).find("#notificationListGroup>a").remove();
+        // <span id="notificationLoader" class="list-group-item list-group-item-action flex-column align-items-start text-center pl-4 pr-4">
+        //     <img src="/FBExportSystem/resources/customer/img/loader.gif" width="50" height="50">
+        // </span>
 
+        $("#dropDownNotification>span").html("");
+
+        var $notificationListGroup = $(this).find("#notificationListGroup");
+
+        $notificationListGroup.find(">a").remove();
+
+        $notificationListGroup.append('<span id="notificationLoader" class="list-group-item list-group-item-action flex-column align-items-start text-center pl-4 pr-4">' +
+                                        '<img src="/FBExportSystem/resources/customer/img/loader.gif" width="50" height="50">' +
+                                      '</span>');
+
+        
         $.get("/FBExportSystem/get-notification", 
               function (response) {
+
+                $notificationListGroup.find("#notificationLoader").remove();
 
                 if (response.length > 0) {
 
@@ -36,9 +50,11 @@ $(document).ready(function () {
 
                 } else {
 
-                    $("#notificationListGroup").append('<span href="javascript:void(0)" id = "emptyNotificationMessageDesktop" class="list-group-item list-group-item-action flex-column align-items-start notification-link pl-4 pr-4">' +
-												            '<h6 class="text-center p-5"> No unseen notifications yet </h6>' +
-												        '</span>');
+                    if ($("#emptyNotificationMessageDesktop").length <= 0) {
+                        $("#notificationListGroup").append('<span href="javascript:void(0)" id = "emptyNotificationMessageDesktop" class="list-group-item list-group-item-action flex-column align-items-start notification-link pl-4 pr-4">' +
+                                                                '<h6 class="text-center p-5"> No unseen notifications yet </h6>' +
+                                                            '</span>');
+                    }
 
                 }
         });

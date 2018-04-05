@@ -253,7 +253,12 @@ public class OrderServiceImpl implements OrderService {
 		removeShippingIfExistsFromOrder(order);
 		
 		order.setMessage(message);
+		order.setReason(StringUtils.EMPTY);
 		order.setOrderStatus(OrderStatus.APPROVED);
+		order.setDateReceived(null);
+		order.setDatePaid(null);
+		order.setPaid(false);
+		
 		orderRepository.save(order);
 	}
 
@@ -265,6 +270,11 @@ public class OrderServiceImpl implements OrderService {
 		
 		order.setMessage(reason);
 		order.setOrderStatus(OrderStatus.REJECTED);
+		order.setDateReceived(null);
+		order.setDatePaid(null);
+		order.setPaid(false);
+		
+		
 		orderRepository.save(order);
 	}
 
@@ -277,12 +287,24 @@ public class OrderServiceImpl implements OrderService {
 		order.setOrderStatus(OrderStatus.PENDING);
 		order.setMessage(StringUtils.EMPTY);
 		order.setReason(StringUtils.EMPTY);
+		order.setPaid(false);
+		order.setDateReceived(null);
+		order.setDatePaid(null);
+		
 		orderRepository.save(order);
 	}
 
 
 	@Override
 	public void markReceived(Order order) {
+		order.setOrderStatus(OrderStatus.RECEIVED);
+		order.setMessage(StringUtils.EMPTY);
+		order.setReason(StringUtils.EMPTY);
+		orderRepository.save(order);
+	}
+	
+	@Override
+	public void markReceivedAdmin(Order order) {
 		order.setOrderStatus(OrderStatus.RECEIVED);
 		order.setMessage(StringUtils.EMPTY);
 		order.setReason(StringUtils.EMPTY);
@@ -322,9 +344,21 @@ public class OrderServiceImpl implements OrderService {
 		
 		order.setOrderStatus(OrderStatus.PAID);
 		order.setDatePaid(new Date());
+		order.setPaid(true);
 		orderRepository.save(order);
 		
 	}
+	
+	@Override
+	public void markPaidAdmin(Order order, Date datePaid) {
+
+		order.setOrderStatus(OrderStatus.PAID);
+		order.setDatePaid(datePaid);
+		order.setPaid(true);
+		
+		orderRepository.save(order);
+	}
+
 
 	@Override
 	public void refund(Order order, String reason) {
@@ -349,11 +383,17 @@ public class OrderServiceImpl implements OrderService {
 		order.setOrderStatus(OrderStatus.RETURNED);
 		orderRepository.save(order);
 	}
+	
+	@Override
+	public void returnRefundOrderAdmin(Order order, String reason) {
+		order.setReason(reason);
+		order.setOrderStatus(OrderStatus.RETURNED);
+		orderRepository.save(order);
+	}
 
 	@Override
 	@Transactional
 	public List<Order> filterAndSortByCustomer(long customerId, String filterBy, String sortBy, int pageNumber, int pageSize) {
-		// TODO Auto-generated method stub
 		
 		String filterByJPQL = (StringUtils.equals(filterBy, "Cash on delivery") || 
 							   StringUtils.equals(filterBy, "Paypal")) ? " AND o.paymentMethod = '" + filterBy.toUpperCase().replace(" ", "_") + "'" 
@@ -500,5 +540,6 @@ public class OrderServiceImpl implements OrderService {
 	public List<Order> getPaidOrders() {
 		return orderRepository.getPaidOrders();
 	}
-	
+
+		
 }

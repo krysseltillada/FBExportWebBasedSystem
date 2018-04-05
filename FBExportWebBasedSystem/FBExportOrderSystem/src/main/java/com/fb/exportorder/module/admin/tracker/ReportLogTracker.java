@@ -50,7 +50,7 @@ public class ReportLogTracker {
 		SystemNotification systemNotification = new SystemNotification();
 		
 		systemNotification.setHeader("System Settings Update");
-		systemNotification.setDescription("Udpdate system settings success");
+		systemNotification.setDescription("Update system settings success");
 		systemNotification.setSeen(false);
 		systemNotification.setSystemNotificationStatus(SystemNotificationStatus.SYSTEM_BACKUP);
 		systemNotification.setDate(new Date());
@@ -83,28 +83,6 @@ public class ReportLogTracker {
 		
 	}
 	
-//	@After("execution(public String com.fb.exportorder.utilities.SystemSettingsBackup.backupDataCron(..))")
-//	void detectSystemBackupCron (JoinPoint joinPoint) {
-//		
-//		SystemLog systemLog = new SystemLog();
-//		systemLog.setActionType(ActionType.SETTINGS);
-//		systemLog.setTimeOccured(new Date());
-//		systemLog.setDateOccured(new Date());
-//		systemLog.setDescription("Automatic backup database");
-//		
-//		systemLogService.addSystemLog(systemLog);
-//		
-//		SystemNotification systemNotification = new SystemNotification();
-//		
-//		systemNotification.setHeader("System Backup");
-//		systemNotification.setDescription("System backup success");
-//		systemNotification.setSeen(false);
-//		systemNotification.setSystemNotificationStatus(SystemNotificationStatus.SYSTEM_BACKUP);
-//		systemNotification.setDate(new Date());
-//		
-//		notificationService.pushNotification(systemNotification);
-//		
-//	}
 	
 	@After("execution(public String com.fb.exportorder.utilities.SystemSettingsBackup.restoreData())")
 	void detectSystemRestore (JoinPoint joinPoint) {

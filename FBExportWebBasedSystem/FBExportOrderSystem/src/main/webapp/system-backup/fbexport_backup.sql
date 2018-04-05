@@ -1,8 +1,8 @@
--- MySQL dump 10.16  Distrib 10.1.26-MariaDB, for Win32 (AMD64)
+-- MySQL dump 10.16  Distrib 10.1.21-MariaDB, for Win32 (AMD64)
 --
--- Host: localhost    Database: fbexport
+-- Host: localhost    Database: localhost
 -- ------------------------------------------------------
--- Server version	10.1.26-MariaDB
+-- Server version	10.1.21-MariaDB
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -41,7 +41,7 @@ CREATE TABLE `activity` (
   PRIMARY KEY (`activity_id`),
   KEY `FKse269fvw3ft70lc8sf7mp5kpo` (`customer_id`),
   CONSTRAINT `FKse269fvw3ft70lc8sf7mp5kpo` FOREIGN KEY (`customer_id`) REFERENCES `customer` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -50,7 +50,7 @@ CREATE TABLE `activity` (
 
 LOCK TABLES `activity` WRITE;
 /*!40000 ALTER TABLE `activity` DISABLE KEYS */;
-INSERT INTO `activity` VALUES (1,'2018-04-04 10:07:41','You\'ve ordered Order No.1','Order',1),(2,'2018-04-04 11:32:28','TEST update profile','Account Settings',1),(3,'2018-04-04 11:32:29','You\'ve edited your account settings','Edited Account',1),(4,'2018-04-04 14:38:58','You\'ve edited your account settings','Edited Account',1),(5,'2018-04-04 14:40:12','You\'ve edited your account settings','Edited Account',1),(6,'2018-04-04 14:40:58','You\'ve edited your account settings','Edited Account',1),(7,'2018-04-04 14:41:25','You\'ve edited your account settings','Edited Account',1),(8,'2018-04-04 14:45:28','Password Changed','Reset Password',1);
+INSERT INTO `activity` VALUES (1,'2018-04-03 16:11:50','You\'ve reviewed a product box rush','Reviewed Product',1),(2,'2018-04-03 16:12:21','You\'ve ordered Order No.1','Order',1),(3,'2018-04-03 16:12:36','You\'ve ordered Order No.2','Order',1),(4,'2018-04-04 00:28:24','You\'ve ordered Order No.3','Order',1),(5,'2018-04-04 00:28:47','You\'ve ordered Order No.4','Order',1),(6,'2018-04-04 00:29:08','You\'ve ordered Order No.5','Order',1),(7,'2018-04-04 00:29:35','You\'ve ordered Order No.6','Order',1),(8,'2018-04-04 03:58:05','You\'ve cancelled your Order No.6','Order Cancelled',1),(9,'2018-04-04 03:59:36','You\'ve Paid your Order No.6','Order Paid',1),(10,'2018-04-04 04:00:04','You\'ve Refund your Order No.6','Order Refund',1),(11,'2018-04-04 04:01:14','You\'ve reordered your Order No.6','Reordered',1),(12,'2018-04-04 04:01:45','You\'ve cancelled your Order No.6','Order Cancelled',1),(13,'2018-04-04 04:12:45','You\'ve cancelled your Order No.5','Order Cancelled',1),(14,'2018-04-04 04:36:43','You\'ve cancelled your Order No.6','Order Cancelled',1),(15,'2018-04-04 04:37:23','You\'ve cancelled your Order No.6','Order Cancelled',1),(16,'2018-04-04 04:39:00','You\'ve Paid your Order No.6','Order Paid',1),(17,'2018-04-04 04:39:19','You\'ve Refund your Order No.6','Order Refund',1),(18,'2018-04-04 04:40:18','You\'ve requested to returned order No. 6','Returned Product',1),(19,'2018-04-04 04:52:06','You\'ve Paid your Order No.6','Order Paid',1),(20,'2018-04-04 05:46:48','You\'ve cancelled your Order No.5','Order Cancelled',1),(21,'2018-04-04 05:46:52','You\'ve cancelled your Order No.4','Order Cancelled',1);
 /*!40000 ALTER TABLE `activity` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -89,7 +89,7 @@ DROP TABLE IF EXISTS `cart`;
 CREATE TABLE `cart` (
   `cart_id` bigint(20) NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`cart_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -98,7 +98,7 @@ CREATE TABLE `cart` (
 
 LOCK TABLES `cart` WRITE;
 /*!40000 ALTER TABLE `cart` DISABLE KEYS */;
-INSERT INTO `cart` VALUES (1),(2);
+INSERT INTO `cart` VALUES (1),(2),(3),(4),(5),(6),(7);
 /*!40000 ALTER TABLE `cart` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -125,7 +125,7 @@ CREATE TABLE `cart_items` (
 
 LOCK TABLES `cart_items` WRITE;
 /*!40000 ALTER TABLE `cart_items` DISABLE KEYS */;
-INSERT INTO `cart_items` VALUES (2,2);
+INSERT INTO `cart_items` VALUES (2,2),(3,4),(4,6),(5,8),(6,10),(7,12);
 /*!40000 ALTER TABLE `cart_items` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -168,7 +168,7 @@ CREATE TABLE `customer` (
 
 LOCK TABLES `customer` WRITE;
 /*!40000 ALTER TABLE `customer` DISABLE KEYS */;
-INSERT INTO `customer` VALUES (1,'asd','asd','Afghanistan','1700',18,'93','presspurchase@gmail.com','09996668084','','TEST','FEMALE','asd','asd','\0','$2a$10$dA79c462MTVYF4puoqxC4eAON0U0zevqjm.OFF956ObMsGfGU2GEK','/profile-img-customer/becfb907888c8d48f8328dba7edf6969.jpg','Customer1',1);
+INSERT INTO `customer` VALUES (1,'rivera compound saint joseph subdivision','las pinas city','Philippines','14400',18,'358','krysseltillada@gmail.com','9161829106','','kryssel','MALE','de leon','tilladA','\0','$2a$10$mextiVhGdS.BcehQlX4HtOF54DWkdVYpKHbRd/Rc1Rax.YwIRtzee','/resources/customer/img/profile-male.jpg','krysseltillada',1);
 /*!40000 ALTER TABLE `customer` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -195,6 +195,7 @@ CREATE TABLE `customer_notifications` (
 
 LOCK TABLES `customer_notifications` WRITE;
 /*!40000 ALTER TABLE `customer_notifications` DISABLE KEYS */;
+INSERT INTO `customer_notifications` VALUES (1,1),(1,2),(1,3),(1,4),(1,5),(1,6),(1,7),(1,8),(1,9),(1,10),(1,11),(1,12),(1,13),(1,14),(1,15),(1,16),(1,17),(1,18),(1,19),(1,20),(1,21),(1,22),(1,23),(1,24),(1,25),(1,26),(1,27),(1,28),(1,29),(1,30),(1,31),(1,32),(1,33),(1,34),(1,35),(1,36),(1,37),(1,38),(1,39),(1,40),(1,41),(1,42),(1,43),(1,44),(1,45),(1,46),(1,47),(1,48),(1,49),(1,50),(1,51),(1,52),(1,53),(1,54),(1,55),(1,56),(1,57),(1,58),(1,59),(1,60),(1,61),(1,62),(1,63),(1,64);
 /*!40000 ALTER TABLE `customer_notifications` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -221,7 +222,7 @@ CREATE TABLE `customer_shipping_addresses` (
 
 LOCK TABLES `customer_shipping_addresses` WRITE;
 /*!40000 ALTER TABLE `customer_shipping_addresses` DISABLE KEYS */;
-INSERT INTO `customer_shipping_addresses` VALUES (1,1);
+INSERT INTO `customer_shipping_addresses` VALUES (1,1),(1,2);
 /*!40000 ALTER TABLE `customer_shipping_addresses` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -262,7 +263,7 @@ CREATE TABLE `employee` (
 
 LOCK TABLES `employee` WRITE;
 /*!40000 ALTER TABLE `employee` DISABLE KEYS */;
-INSERT INTO `employee` VALUES (0,'asd','asd','asd','63',23,'63','Admin1@gmail.com','09996668084','','asd','MALE','asd','asd','','$2a$10$w921HXavi.mOnflh.yIQNePCcnsgP50S7BwkZr9Zknd6IVzAcKflK',NULL,'Admin1','Admin'),(32768,'asd','asd','Antigua and Barbuda','1700',18,'297','Employee1@gmail.com','094567876','','Emp','MALE','Emp','Emp','\0','$2a$10$f36lSAMQtKSwrfnPjIuJqefyhuwVf2ymYZT5o4lhoctwSW4081/OS','/resources/admin/img/profile-male.jpg','Employee1','Empl');
+INSERT INTO `employee` VALUES (0,'wfawf','wefw','wegw','123',19,'12','krysseltillada@gmail.com','123123','','krysseltillada','MALE','de leon ','tillada','','$2a$10$w921HXavi.mOnflh.yIQNePCcnsgP50S7BwkZr9Zknd6IVzAcKflK',NULL,'krysseltillada','ADMIN'),(32768,'rivera compound saint joseph','angola','Angola','1400',18,'54','finalexistence@ymail.com','9123123123','','judy','MALE','ando','n','','$2a$10$.6jwXH05UmEtaRxYDEFDDObNeI2Gy2k/4mlPd4k.IRB5gOoSowC/S','/resources/admin/img/profile-male.jpg','finalexistence','STAFF');
 /*!40000 ALTER TABLE `employee` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -289,7 +290,7 @@ CREATE TABLE `employee_system_notification_list` (
 
 LOCK TABLES `employee_system_notification_list` WRITE;
 /*!40000 ALTER TABLE `employee_system_notification_list` DISABLE KEYS */;
-INSERT INTO `employee_system_notification_list` VALUES (0,1),(0,2),(0,3),(0,4),(0,5),(0,6),(0,7),(0,8),(0,9),(0,10),(0,11),(0,12),(0,13),(0,14),(0,15),(0,16),(0,17),(0,18),(0,19),(0,20),(0,21),(0,23),(0,25),(0,27),(0,29),(0,31),(0,33),(0,35),(0,37),(0,39),(0,41),(0,43),(0,45),(0,47),(0,49),(0,51),(0,53),(0,55),(0,57),(0,59),(0,61),(0,63),(0,65),(0,66),(0,67),(0,69),(0,71),(0,78),(32768,22),(32768,24),(32768,26),(32768,28),(32768,30),(32768,32),(32768,34),(32768,36),(32768,38),(32768,40),(32768,42),(32768,44),(32768,46),(32768,48),(32768,50),(32768,52),(32768,54),(32768,56),(32768,58),(32768,60),(32768,62),(32768,64),(32768,68),(32768,70),(32768,72),(32768,79);
+INSERT INTO `employee_system_notification_list` VALUES (0,1),(0,2),(0,3),(0,4),(0,5),(0,6),(0,7),(0,8),(0,9),(0,10),(0,11),(0,12),(0,13),(0,14),(0,15),(0,16),(0,17),(0,18),(0,19),(0,20),(0,21),(0,22),(0,23),(0,24),(0,25),(0,26),(0,27),(0,28),(0,29),(0,31),(0,33),(0,35),(0,37),(32768,30),(32768,32),(32768,34),(32768,36),(32768,38);
 /*!40000 ALTER TABLE `employee_system_notification_list` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -333,7 +334,7 @@ CREATE TABLE `item` (
   PRIMARY KEY (`item_id`),
   KEY `FK6fok9mmtsmu22sejwqg8cq6u3` (`product_product_id`),
   CONSTRAINT `FK6fok9mmtsmu22sejwqg8cq6u3` FOREIGN KEY (`product_product_id`) REFERENCES `product` (`product_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -342,7 +343,7 @@ CREATE TABLE `item` (
 
 LOCK TABLES `item` WRITE;
 /*!40000 ALTER TABLE `item` DISABLE KEYS */;
-INSERT INTO `item` VALUES (2,200,1,'KILO',1);
+INSERT INTO `item` VALUES (2,123,1,'KILO',1),(4,369,3,'KILO',1),(6,123,1,'KILO',1),(8,123,1,'KILO',1),(10,123,1,'KILO',1),(12,123,1,'KILO',1);
 /*!40000 ALTER TABLE `item` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -361,7 +362,7 @@ CREATE TABLE `notification` (
   `is_seen` bit(1) NOT NULL,
   `order_id` bigint(20) DEFAULT NULL,
   PRIMARY KEY (`notification_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=65 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -370,6 +371,7 @@ CREATE TABLE `notification` (
 
 LOCK TABLES `notification` WRITE;
 /*!40000 ALTER TABLE `notification` DISABLE KEYS */;
+INSERT INTO `notification` VALUES (1,'2018-04-03 16:16:39','Your Order# 2 is Shipping','Order To Shipping','',2),(2,'2018-04-03 16:52:23','Your Order# 1 is Shipping','Order To Shipping','',1),(3,'2018-04-03 16:54:04','Your Order# 2 is Shipping','Order To Shipping','',2),(4,'2018-04-03 17:21:10','Your Order# 2 is approved','Order Approved','',2),(5,'2018-04-03 17:21:21','Your Order# 2 is Shipping','Order To Shipping','',2),(6,'2018-04-03 17:22:56','Your Order# 2 is rejected','Order Rejected','',2),(7,'2018-04-03 17:23:08','Your Order# 2 is Shipping','Order To Shipping','',2),(8,'2018-04-03 17:34:11','Your Order# 2 is Shipping','Order To Shipping','',2),(9,'2018-04-03 17:54:11','Your Order# 2 is Shipping','Order To Shipping','',2),(10,'2018-04-03 17:55:23','Your Order# 2 is rejected','Order Rejected','',2),(11,'2018-04-03 17:55:43','Your Order# 2 is rejected','Order Rejected','',2),(12,'2018-04-03 17:59:04','Your Order# 1 is rejected','Order Rejected','',1),(13,'2018-04-03 17:59:24','Your Order# 2 is Shipping','Order To Shipping','',2),(14,'2018-04-03 17:59:30','Your Order# 2 is Shipping','Order To Shipping','',2),(15,'2018-04-03 18:02:21','Your Order# 2 is rejected','Order Rejected','',2),(16,'2018-04-03 18:04:48','Your Order# 2 is rejected','Order Rejected','',2),(17,'2018-04-03 18:05:01','Your Order# 1 is rejected','Order Rejected','',1),(18,'2018-04-03 18:07:52','Your Order# 2 is rejected','Order Rejected','',2),(19,'2018-04-03 18:08:06','Your Order# 1 is rejected','Order Rejected','',1),(20,'2018-04-03 20:27:46','Your Order# 2 is approved','Order Approved','',2),(21,'2018-04-03 20:28:43','Your Order# 2 is rejected','Order Rejected','',2),(22,'2018-04-03 20:29:27','Your Order# 2 is Shipping','Order To Shipping','',2),(23,'2018-04-04 00:29:49','Your Order# 1 is approved','Order Approved','',1),(24,'2018-04-04 00:30:39','Your Order# 1 is approved','Order Approved','',1),(25,'2018-04-04 00:44:39','Your Order# 6 is approved','Order Approved','',6),(26,'2018-04-04 00:44:54','Your Order# 5 is rejected','Order Rejected','',5),(27,'2018-04-04 00:46:41','Your Order# 6 is approved','Order Approved','',6),(28,'2018-04-04 01:09:55','Your Order# 6 is Shipping','Order To Shipping','',6),(29,'2018-04-04 03:29:46','Your Order# 5 is rejected','Order Rejected','',5),(30,'2018-04-04 03:50:14','Your Order# 4 is approved','Order Approved','',4),(31,'2018-04-04 03:57:47','Your Order# 6 is approved','Order Approved','',6),(32,'2018-04-04 03:58:35','Your Order# 6 is approved','Order Approved','',6),(33,'2018-04-04 04:00:31','Your Order# 6 is rejected','Order Rejected','',6),(34,'2018-04-04 04:01:33','Your Order# 6 is rejected','Order Rejected','',6),(35,'2018-04-04 04:02:02','Your Order# 6 is Shipping','Order To Shipping','',6),(36,'2018-04-04 04:06:18','Your Order# 5 is approved','Order Approved','',5),(37,'2018-04-04 04:06:52','Your Order# 4 is approved','Order Approved','',4),(38,'2018-04-04 04:07:08','Your Order# 4 is approved','Order Approved','',4),(39,'2018-04-04 04:08:33','Your Order# 6 is approved','Order Approved','',6),(40,'2018-04-04 04:09:10','Your Order# 3 is rejected','Order Rejected','',3),(41,'2018-04-04 04:09:37','Your Order# 6 is Shipping','Order To Shipping','',6),(42,'2018-04-04 04:09:59','Your Order# 6 is rejected','Order Rejected','',6),(43,'2018-04-04 04:10:16','Your Order# 6 is Shipping','Order To Shipping','',6),(44,'2018-04-04 04:10:33','Your Order# 6 is rejected','Order Rejected','',6),(45,'2018-04-04 04:11:53','Your Order# 6 is Shipping','Order To Shipping','',6),(46,'2018-04-04 04:18:21','Your Order# 6 is Shipping','Order To Shipping','',6),(47,'2018-04-04 04:18:39','Your Order# 6 is Shipping','Order To Shipping','',6),(48,'2018-04-04 04:20:34','Your Order# 6 is Shipping','Order To Shipping','',6),(49,'2018-04-04 04:20:53','Your Order# 5 is Shipping','Order To Shipping','',5),(50,'2018-04-04 04:21:25','Your Order# 6 is approved','Order Approved','',6),(51,'2018-04-04 04:23:17','Your Order# 6 is approved','Order Approved','',6),(52,'2018-04-04 04:23:29','Your Order# 6 is approved','Order Approved','',6),(53,'2018-04-04 04:24:50','Your Order# 6 is approved','Order Approved','',6),(54,'2018-04-04 04:24:56','Your Order# 6 is approved','Order Approved','',6),(55,'2018-04-04 04:31:01','Your Order# 5 is approved','Order Approved','',5),(56,'2018-04-04 04:31:21','Your Order# 3 is Shipping','Order To Shipping','',3),(57,'2018-04-04 04:35:54','Your Order# 3 is rejected','Order Rejected','',3),(58,'2018-04-04 04:37:12','Your Order# 6 is rejected','Order Rejected','',6),(59,'2018-04-04 04:37:58','Your Order# 6 is approved','Order Approved','',6),(60,'2018-04-04 04:41:57','Your Order# 6 is Shipping','Order To Shipping','',6),(61,'2018-04-04 04:51:07','Your Order# 6 is Shipping','Order To Shipping','',6),(62,'2018-04-04 04:51:29','Your Order# 6 is approved','Order Approved','',6),(63,'2018-04-04 04:52:30','Your Order# 6 is Shipping','Order To Shipping','',6),(64,'2018-04-04 05:37:28','Your Order# 5 is approved','Order Approved','',5);
 /*!40000 ALTER TABLE `notification` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -407,7 +409,7 @@ CREATE TABLE `orders` (
   CONSTRAINT `FK89wuak53n6o826m6ltksv9gj9` FOREIGN KEY (`shipping_address_shipping_address_id`) REFERENCES `shipping_address` (`shipping_address_id`),
   CONSTRAINT `FK8o21kg6tvreikslhq6n0o5jxf` FOREIGN KEY (`shipping_shipping_id`) REFERENCES `shipping` (`shipping_id`),
   CONSTRAINT `FKtg32cl8e1f2afe83we3bqrw2h` FOREIGN KEY (`cart_cart_id`) REFERENCES `cart` (`cart_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -416,7 +418,7 @@ CREATE TABLE `orders` (
 
 LOCK TABLES `orders` WRITE;
 /*!40000 ALTER TABLE `orders` DISABLE KEYS */;
-INSERT INTO `orders` VALUES (1,'2018-04-04',NULL,NULL,'\0',NULL,'PENDING','CASH_ON_DELIVERY',NULL,NULL,1,1224,1,2,1,NULL,1);
+INSERT INTO `orders` VALUES (1,'2018-04-03',NULL,NULL,'\0','','RETURNED','PAYPAL','your order has been returned',NULL,1,1137.76,1,2,1,NULL,1),(2,'2018-04-03',NULL,NULL,'\0','','PENDING','CASH_ON_DELIVERY','',NULL,1,1413.28,3,3,1,NULL,1),(3,'2018-04-04',NULL,NULL,'\0','your order has been rejected','REJECTED','PAYPAL','your order has been returned',NULL,1,1137.76,1,4,1,NULL,1),(4,'2018-04-04',NULL,NULL,'\0','your order has been approved','CANCELLED','PAYPAL','fwefwe',NULL,1,1137.76,1,5,1,NULL,1),(5,'2018-04-04',NULL,NULL,'\0','your order has been approved','CANCELLED','PAYPAL','gwr',NULL,1,1137.76,1,6,1,NULL,1),(6,'2018-04-04','2018-04-04',NULL,'','','RECEIVED','PAYPAL','',NULL,1,1137.76,1,7,1,19,1);
 /*!40000 ALTER TABLE `orders` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -447,7 +449,7 @@ CREATE TABLE `product` (
   PRIMARY KEY (`product_id`),
   KEY `FKg0klkuq150g13y1o1porbpxrj` (`rating_rating_id`),
   CONSTRAINT `FKg0klkuq150g13y1o1porbpxrj` FOREIGN KEY (`rating_rating_id`) REFERENCES `rating` (`rating_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -456,7 +458,7 @@ CREATE TABLE `product` (
 
 LOCK TABLES `product` WRITE;
 /*!40000 ALTER TABLE `product` DISABLE KEYS */;
-INSERT INTO `product` VALUES (1,'2018-04-04','2018-04-04','2018-04-04','asd','\0','Nemodfgh','Nemo',200,'/products/c4ca4238a0b923820dcc509a6f75849b.jpg','POSTED','asd','asd','09996668084',400,1),(2,'2018-04-26','2018-04-04','2018-04-04','asd','\0','fghdgh','fgh',200,'/products/c81e728d9d4c2f636f067f89cc14862c.png','POSTED','asd','asd','09',800,2);
+INSERT INTO `product` VALUES (1,'2018-04-04','2018-04-03','2018-04-03','wegweg','\0','box rush','box rush',123,'/products/c4ca4238a0b923820dcc509a6f75849b.png','POSTED','wegwe','wegweg','123123',1511,1),(2,'2018-04-04','2018-04-04','2018-04-04','egweg','\0','pigfishfghrgh','pigfishfgh',200,'/products/c81e728d9d4c2f636f067f89cc14862c.png','POSTED','wegw','wegweg','12313',11400,2),(3,'2018-04-05','2018-04-04','2018-04-04','wegwe','\0','egweg','egwg',1231,'/products/eccbc87e4b5ce2fe28308fd9f2a7baf3.png','POSTED','wgwgwe','wgweg','12313',123,3),(4,'2018-04-05','2018-04-04','2018-04-04','rgweg','\0','wfqfqfw','wgweg',1231,'/products/a87ff679a2f3e71d9181a67b7542122c.png','POSTED','wegw','wgweg','1231312',123,4);
 /*!40000 ALTER TABLE `product` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -481,7 +483,7 @@ CREATE TABLE `product_preview_image_links` (
 
 LOCK TABLES `product_preview_image_links` WRITE;
 /*!40000 ALTER TABLE `product_preview_image_links` DISABLE KEYS */;
-INSERT INTO `product_preview_image_links` VALUES (1,'/products/a64a45c1ef77e257b9b05a925f030010.jpg'),(1,'/products/0ebfe0482685612b9ddfae4c794fa837.jpg'),(1,'/products/7e5ea1d513f6d008348a7978004c8e52.jpg'),(2,'/products/17a2ec094887b34ed4602f60b176fda7.png'),(2,'/products/1183fc8db04f6129e8a3b3d228ed8fb7.png'),(2,'/products/20c9dc579a1a254ed70f8b76528124b3.png');
+INSERT INTO `product_preview_image_links` VALUES (1,'/products/5af8dbdac79caaf85a8cc833045f6107.png'),(1,'/products/58332a8372b7dd6e5e7077da8f1e8a34.png'),(1,'/products/f44e79e5d8eec8a86c4944a1f2becfdc.png'),(2,'/products/1116a18ec565528c46b95718ebe5dabe.png'),(2,'/products/3b7fce9471840cf719d97497093af906.png'),(2,'/products/aeba9c4fdf499ad3f1f91fe612cfe66a.png'),(3,'/products/62b12214332098a476fa28df5e1eaa95.png'),(3,'/products/d3e0de9687fda01dc4b4e690316f16ba.png'),(3,'/products/72855e5deb8fed7bf147bf77d42e8fdf.png'),(4,'/products/8c927b34a46ff79a2542c7a2f82ea537.png'),(4,'/products/f1e56eaf1447b82f930d92c310cf8f8e.png'),(4,'/products/fd4a46a1ce75b23fdd95e5b36d06e1e6.png');
 /*!40000 ALTER TABLE `product_preview_image_links` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -527,7 +529,7 @@ CREATE TABLE `product_stock` (
   PRIMARY KEY (`product_stock_id`),
   KEY `FKlpu1phje1bb3y9ww8k9fut4gh` (`product_id`),
   CONSTRAINT `FKlpu1phje1bb3y9ww8k9fut4gh` FOREIGN KEY (`product_id`) REFERENCES `product` (`product_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -536,7 +538,7 @@ CREATE TABLE `product_stock` (
 
 LOCK TABLES `product_stock` WRITE;
 /*!40000 ALTER TABLE `product_stock` DISABLE KEYS */;
-INSERT INTO `product_stock` VALUES (1,'2018-04-04',400,'KILO',2);
+INSERT INTO `product_stock` VALUES (1,'2018-04-03',565,'KILO',1),(2,'2018-04-03',55,'KILO',1),(3,'2018-04-03',768,'KILO',1),(4,'2018-04-04',200,'KILO',2),(5,'2018-04-04',200,'KILO',2),(6,'2018-04-04',10000,'KILO',2);
 /*!40000 ALTER TABLE `product_stock` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -552,7 +554,7 @@ CREATE TABLE `rating` (
   `rate` double NOT NULL,
   `views` int(11) NOT NULL,
   PRIMARY KEY (`rating_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -561,7 +563,7 @@ CREATE TABLE `rating` (
 
 LOCK TABLES `rating` WRITE;
 /*!40000 ALTER TABLE `rating` DISABLE KEYS */;
-INSERT INTO `rating` VALUES (1,0,0),(2,0,0);
+INSERT INTO `rating` VALUES (1,4,2),(2,0,1),(3,0,0),(4,0,0);
 /*!40000 ALTER TABLE `rating` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -605,7 +607,7 @@ CREATE TABLE `review` (
   `rate` double NOT NULL,
   `username` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`review_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -635,7 +637,7 @@ CREATE TABLE `shipping` (
   `mmsi_number` varchar(255) DEFAULT NULL,
   `vessel_name` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`shipping_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -644,6 +646,7 @@ CREATE TABLE `shipping` (
 
 LOCK TABLES `shipping` WRITE;
 /*!40000 ALTER TABLE `shipping` DISABLE KEYS */;
+INSERT INTO `shipping` VALUES (19,'2018-04-02','2018-04-01','2018-04-07','ON_TRUCK',NULL,NULL,NULL,NULL);
 /*!40000 ALTER TABLE `shipping` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -668,7 +671,7 @@ CREATE TABLE `shipping_address` (
   `receiver_full_name` varchar(255) DEFAULT NULL,
   `shipping_instructions` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`shipping_address_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -677,7 +680,7 @@ CREATE TABLE `shipping_address` (
 
 LOCK TABLES `shipping_address` WRITE;
 /*!40000 ALTER TABLE `shipping_address` DISABLE KEYS */;
-INSERT INTO `shipping_address` VALUES (1,'asd','asd','Afghanistan','1700','User Account','93','presspurchase@gmail.com','09996668084','','TEST asd asd','specify your shipping instructions by editing the card');
+INSERT INTO `shipping_address` VALUES (1,'rivera compound saint joseph subdivision','las pinas city','Philippines','14400','User Account','358','krysseltillada@gmail.com','9161829106','\0','kryssel tilladA de leon','specify your shipping instructions by editing the card'),(2,'address','city','Afghanistan','1231','wife','93',NULL,'9123123','','judy ann mari n ando','shipping instructions');
 /*!40000 ALTER TABLE `shipping_address` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -694,10 +697,10 @@ CREATE TABLE `shipping_log` (
   `date` date DEFAULT NULL,
   `description` varchar(255) DEFAULT NULL,
   `header` varchar(255) DEFAULT NULL,
-  `is_complete` bit(1) NOT NULL,
   `time` time DEFAULT NULL,
+  `is_complete` bit(1) NOT NULL,
   PRIMARY KEY (`shipping_log_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -749,7 +752,7 @@ CREATE TABLE `system_log` (
   `description` varchar(255) DEFAULT NULL,
   `time_occured` datetime DEFAULT NULL,
   PRIMARY KEY (`system_log_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=250 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=69 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -758,7 +761,7 @@ CREATE TABLE `system_log` (
 
 LOCK TABLES `system_log` WRITE;
 /*!40000 ALTER TABLE `system_log` DISABLE KEYS */;
-INSERT INTO `system_log` VALUES (1,'SYSTEM','2018-04-04','System Start','2018-04-04 09:42:47'),(2,'SYSTEM','2018-04-04','System Shutdown','2018-04-04 09:44:42'),(3,'SYSTEM','2018-04-04','System Start','2018-04-04 09:45:05'),(4,'SETTINGS','2018-04-04','asd asd backup the system','2018-04-04 10:12:34'),(5,'SETTINGS','2018-04-04','asd asd export database','2018-04-04 10:12:44'),(6,'SYSTEM','2018-04-04','System Shutdown','2018-04-04 10:13:12'),(7,'SYSTEM','2018-04-04','System Start','2018-04-04 11:00:22'),(8,'SYSTEM','2018-04-04','System Shutdown','2018-04-04 11:28:00'),(9,'SYSTEM','2018-04-04','System Start','2018-04-04 11:28:46'),(10,'SYSTEM','2018-04-04','System Shutdown','2018-04-04 11:29:38'),(11,'SYSTEM','2018-04-04','System Start','2018-04-04 11:30:02'),(12,'SYSTEM','2018-04-04','System Shutdown','2018-04-04 11:33:21'),(13,'SYSTEM','2018-04-04','System Start','2018-04-04 11:33:44'),(14,'SYSTEM','2018-04-04','System Shutdown','2018-04-04 11:36:18'),(15,'SYSTEM','2018-04-04','System Start','2018-04-04 11:36:37'),(16,'SYSTEM','2018-04-04','System Shutdown','2018-04-04 11:38:45'),(17,'SYSTEM','2018-04-04','System Start','2018-04-04 11:39:03'),(18,'SYSTEM','2018-04-04','System Shutdown','2018-04-04 11:39:53'),(19,'SYSTEM','2018-04-04','System Start','2018-04-04 13:20:46'),(20,'SYSTEM','2018-04-04','System Shutdown','2018-04-04 13:41:37'),(21,'SYSTEM','2018-04-04','System Start','2018-04-04 13:42:24'),(22,'SYSTEM','2018-04-04','System Shutdown','2018-04-04 13:46:02'),(23,'SYSTEM','2018-04-04','System Start','2018-04-04 13:46:23'),(24,'SYSTEM','2018-04-04','System Shutdown','2018-04-04 13:49:12'),(25,'SYSTEM','2018-04-04','System Start','2018-04-04 13:49:41'),(26,'SYSTEM','2018-04-04','System Shutdown','2018-04-04 14:11:48'),(27,'SYSTEM','2018-04-04','System Start','2018-04-04 14:13:25'),(28,'SYSTEM','2018-04-04','System Shutdown','2018-04-04 14:19:33'),(29,'SYSTEM','2018-04-04','System Start','2018-04-04 14:20:08'),(30,'SYSTEM','2018-04-04','System Shutdown','2018-04-04 14:20:43'),(31,'SYSTEM','2018-04-04','System Start','2018-04-04 14:21:11'),(32,'SETTINGS','2018-04-04','asd asd export database','2018-04-04 14:24:58'),(33,'SYSTEM','2018-04-04','Auto logout called on asd asd','2018-04-04 14:27:58'),(34,'SYSTEM','2018-04-04','System Shutdown','2018-04-04 14:50:18'),(35,'SYSTEM','2018-04-04','System Start','2018-04-04 14:51:07'),(36,'SYSTEM','2018-04-04','Auto logout called on asd asd','2018-04-04 14:51:49'),(37,'SYSTEM','2018-04-04','System Shutdown','2018-04-04 14:56:00'),(38,'SYSTEM','2018-04-04','System Start','2018-04-04 14:57:11'),(39,'SYSTEM','2018-04-04','System Start','2018-04-04 14:58:29'),(40,'SYSTEM','2018-04-04','System Shutdown','2018-04-04 14:58:52'),(41,'SETTINGS','2018-04-04','asd asd backup the system','2018-04-04 15:00:42'),(42,'SETTINGS','2018-04-04','asd asd export database','2018-04-04 15:01:05'),(43,'SETTINGS','2018-04-04','asd asd change the system backup time to 12:00 AM and logout time to 3 minutes','2018-04-04 15:01:36'),(44,'SETTINGS','2018-04-04','asd asd change the system backup time to 03:04 PM and logout time to 3 minutes','2018-04-04 15:02:22'),(45,'SETTINGS','2018-04-04','asd asd change the system backup time to 03:08 PM and logout time to 30 minutes','2018-04-04 15:06:44'),(46,'SYSTEM','2018-04-04','System Shutdown','2018-04-04 15:21:08'),(47,'SYSTEM','2018-04-04','System Start','2018-04-04 15:22:04'),(48,'SYSTEM','2018-04-04','System Start','2018-04-04 15:23:30'),(49,'SYSTEM','2018-04-04','System Shutdown','2018-04-04 15:24:19'),(50,'SETTINGS','2018-04-04','asd asd restore the database','2018-04-04 15:27:56'),(51,'SETTINGS','2018-04-04','asd asd restored the backup','2018-04-04 15:27:58'),(52,'SETTINGS','2018-04-04','asd asd update the system settings','2018-04-04 15:28:21'),(53,'SETTINGS','2018-04-04','asd asd change the system backup time to 03:08 PM and logout time to 30 minutes','2018-04-04 15:28:21'),(54,'SETTINGS','2018-04-04','asd asd update the system settings','2018-04-04 15:28:43'),(55,'SETTINGS','2018-04-04','asd asd change the system backup time to 03:30 PM and logout time to 30 minutes','2018-04-04 15:28:44'),(56,'SYSTEM','2018-04-04','System Start','2018-04-04 15:34:51'),(57,'SYSTEM','2018-04-04','System Shutdown','2018-04-04 15:35:07'),(58,'SYSTEM','2018-04-04','System Start','2018-04-04 15:40:08'),(59,'SETTINGS','2018-04-04','asd asd update the system settings','2018-04-04 15:42:06'),(60,'SETTINGS','2018-04-04','asd asd change the system backup time to 03:44 PM and logout time to 30 minutes','2018-04-04 15:42:07'),(61,'SYSTEM','2018-04-04','System Shutdown','2018-04-04 15:51:56'),(62,'SYSTEM','2018-04-04','System Start','2018-04-04 15:52:22'),(63,'SETTINGS','2018-04-04','asd asd backup the database','2018-04-04 15:55:40'),(64,'SETTINGS','2018-04-04','asd asd backup the system','2018-04-04 15:55:41'),(65,'SETTINGS','2018-04-04','asd asd restore the database','2018-04-04 15:57:06'),(66,'SETTINGS','2018-04-04','asd asd restored the backup','2018-04-04 15:57:06'),(67,'SETTINGS','2018-04-04','asd asd export database','2018-04-04 15:57:11'),(68,'SETTINGS','2018-04-04','asd asd backup the database','2018-04-04 16:03:09'),(69,'SETTINGS','2018-04-04','asd asd backup the system','2018-04-04 16:03:09'),(70,'SYSTEM','2018-04-04','System Shutdown','2018-04-04 16:09:57'),(71,'SYSTEM','2018-04-04','System Start','2018-04-04 16:10:37'),(72,'SETTINGS','2018-04-04','asd asd update the system settings','2018-04-04 16:12:03'),(73,'SETTINGS','2018-04-04','asd asd change the system backup time to 04:13 PM and logout time to 30 minutes','2018-04-04 16:12:04'),(74,'SYSTEM','2018-04-04','System Shutdown','2018-04-04 16:17:52'),(75,'SYSTEM','2018-04-04','System Start','2018-04-04 16:18:20'),(76,'SETTINGS','2018-04-04','asd asd update the system settings','2018-04-04 16:19:39'),(77,'SETTINGS','2018-04-04','asd asd change the system backup time to 04:23 PM and logout time to 30 minutes','2018-04-04 16:19:39'),(78,'SYSTEM','2018-04-04','System Shutdown','2018-04-04 16:24:09'),(79,'SYSTEM','2018-04-04','System Start','2018-04-04 16:24:29'),(80,'SYSTEM','2018-04-04','System Shutdown','2018-04-04 16:28:00'),(81,'SYSTEM','2018-04-04','System Start','2018-04-04 16:28:28'),(82,'SYSTEM','2018-04-04','System Shutdown','2018-04-04 16:29:58'),(83,'SYSTEM','2018-04-04','System Start','2018-04-04 16:30:28'),(84,'SETTINGS','2018-04-04','asd asd update the system settings','2018-04-04 16:32:05'),(85,'SETTINGS','2018-04-04','asd asd change the system backup time to 04:33 PM and logout time to 30 minutes','2018-04-04 16:32:05'),(86,'SYSTEM','2018-04-04','System Shutdown','2018-04-04 16:35:49'),(87,'SYSTEM','2018-04-04','System Start','2018-04-04 16:36:07'),(88,'SETTINGS','2018-04-04','asd asd update the system settings','2018-04-04 16:37:12'),(89,'SETTINGS','2018-04-04','asd asd change the system backup time to 04:38 PM and logout time to 30 minutes','2018-04-04 16:37:13'),(90,'SETTINGS','2018-04-04','Automatic backup database','2018-04-04 16:38:19'),(91,'SETTINGS','2018-04-04','asd asd update the system settings','2018-04-04 16:38:59'),(92,'SETTINGS','2018-04-04','asd asd change the system backup time to 04:39 PM and logout time to 30 minutes','2018-04-04 16:39:00'),(93,'SETTINGS','2018-04-04','asd asd update the system settings','2018-04-04 16:39:06'),(94,'SETTINGS','2018-04-04','asd asd change the system backup time to 04:40 PM and logout time to 30 minutes','2018-04-04 16:39:06'),(95,'SETTINGS','2018-04-04','Automatic backup database','2018-04-04 16:40:19'),(96,'SYSTEM','2018-04-04','System Shutdown','2018-04-04 16:41:12'),(97,'SYSTEM','2018-04-04','System Start','2018-04-04 17:21:31'),(98,'SETTINGS','2018-04-04','asd asd update the system settings','2018-04-04 17:26:54'),(99,'SYSTEM','2018-04-04','System Shutdown','2018-04-04 17:28:08'),(100,'SYSTEM','2018-04-04','System Start','2018-04-04 17:28:25'),(101,'SETTINGS','2018-04-04','asd asd update the system settings','2018-04-04 17:29:49'),(102,'SETTINGS','2018-04-04','asd asd change the system backup time to 05:30 PM and logout time to 30 minutes','2018-04-04 17:29:50'),(103,'SETTINGS','2018-04-04','asd asd update the system settings','2018-04-04 17:30:07'),(104,'SETTINGS','2018-04-04','asd asd change the system backup time to 05:31 PM and logout time to 30 minutes','2018-04-04 17:30:07'),(105,'SETTINGS','2018-04-04','Automatic backup database','2018-04-04 17:31:41'),(106,'SETTINGS','2018-04-04','asd asd restore the database','2018-04-04 17:37:12'),(107,'SETTINGS','2018-04-04','asd asd restored the backup','2018-04-04 17:37:13'),(108,'SETTINGS','2018-04-04','asd asd update the system settings','2018-04-04 17:37:21'),(109,'SETTINGS','2018-04-04','asd asd change the system backup time to 05:31 PM and logout time to 30 minutes','2018-04-04 17:37:21'),(110,'SETTINGS','2018-04-04','asd asd update the system settings','2018-04-04 17:40:53'),(111,'SETTINGS','2018-04-04','asd asd change the system backup time to 05:31 PM and logout time to 30 minutes','2018-04-04 17:40:54'),(112,'SETTINGS','2018-04-04','asd asd update the system settings','2018-04-04 17:41:12'),(113,'SETTINGS','2018-04-04','asd asd change the system backup time to 05:42 PM and logout time to 30 minutes','2018-04-04 17:41:56'),(114,'SETTINGS','2018-04-04','asd asd update the system settings','2018-04-04 17:42:13'),(115,'SETTINGS','2018-04-04','asd asd change the system backup time to 05:44 PM and logout time to 30 minutes','2018-04-04 17:42:13'),(116,'SETTINGS','2018-04-04','Automatic backup database','2018-04-04 17:44:39'),(117,'SETTINGS','2018-04-04','asd asd update the system settings','2018-04-04 17:45:00'),(118,'SETTINGS','2018-04-04','asd asd change the system backup time to 05:45 PM and logout time to 30 minutes','2018-04-04 17:45:00'),(119,'SETTINGS','2018-04-04','Automatic backup database','2018-04-04 17:45:44'),(120,'SETTINGS','2018-04-04','asd asd update the system settings','2018-04-04 17:46:21'),(121,'SETTINGS','2018-04-04','asd asd change the system backup time to 05:47 PM and logout time to 30 minutes','2018-04-04 17:46:21'),(122,'SETTINGS','2018-04-04','Automatic backup database','2018-04-04 17:47:37'),(123,'SYSTEM','2018-04-04','System Shutdown','2018-04-04 17:50:56'),(124,'SYSTEM','2018-04-04','System Start','2018-04-04 17:51:19'),(125,'SETTINGS','2018-04-04','asd asd update the system settings','2018-04-04 17:53:20'),(126,'SETTINGS','2018-04-04','asd asd change the system backup time to 05:55 PM and logout time to 30 minutes','2018-04-04 17:53:23'),(127,'SETTINGS','2018-04-04','Automatic backup database','2018-04-04 17:55:31'),(128,'SYSTEM','2018-04-04','System Shutdown','2018-04-04 17:56:11'),(129,'SYSTEM','2018-04-04','System Start','2018-04-04 17:56:29'),(130,'SYSTEM','2018-04-04','System Shutdown','2018-04-04 17:57:47'),(131,'SYSTEM','2018-04-04','System Start','2018-04-04 17:58:05'),(132,'SETTINGS','2018-04-04','asd asd update the system settings','2018-04-04 17:59:08'),(133,'SETTINGS','2018-04-04','asd asd change the system backup time to 06:00 PM and logout time to 30 minutes','2018-04-04 17:59:08'),(134,'SETTINGS','2018-04-04','asd asd update the system settings','2018-04-04 17:59:28'),(135,'SETTINGS','2018-04-04','asd asd change the system backup time to 06:00 PM and logout time to 30 minutes','2018-04-04 17:59:28'),(136,'SETTINGS','2018-04-04','Automatic backup database','2018-04-04 18:00:18'),(137,'SYSTEM','2018-04-04','System Shutdown','2018-04-04 18:02:17'),(138,'SYSTEM','2018-04-04','System Start','2018-04-04 18:02:34'),(139,'SETTINGS','2018-04-04','asd asd update the system settings','2018-04-04 18:03:16'),(140,'SETTINGS','2018-04-04','asd asd change the system backup time to 06:05 PM and logout time to 30 minutes','2018-04-04 18:03:16'),(141,'SETTINGS','2018-04-04','Automatic backup database','2018-04-04 18:05:46'),(142,'SYSTEM','2018-04-04','System Shutdown','2018-04-04 18:07:35'),(143,'SYSTEM','2018-04-04','System Start','2018-04-04 18:07:53'),(144,'SETTINGS','2018-04-04','asd asd update the system settings','2018-04-04 18:08:40'),(145,'SETTINGS','2018-04-04','asd asd change the system backup time to 06:09 PM and logout time to 30 minutes','2018-04-04 18:08:40'),(146,'SETTINGS','2018-04-04','Automatic backup database','2018-04-04 18:09:05'),(147,'SYSTEM','2018-04-04','System Shutdown','2018-04-04 18:10:21'),(148,'SYSTEM','2018-04-04','System Start','2018-04-04 18:10:39'),(149,'SETTINGS','2018-04-04','asd asd update the system settings','2018-04-04 18:11:34'),(150,'SETTINGS','2018-04-04','asd asd change the system backup time to 06:12 PM and logout time to 30 minutes','2018-04-04 18:11:34'),(151,'SETTINGS','2018-04-04','Automatic backup database','2018-04-04 18:12:52'),(152,'SYSTEM','2018-04-04','System Shutdown','2018-04-04 18:13:52'),(153,'SYSTEM','2018-04-04','System Start','2018-04-04 18:15:36'),(154,'SYSTEM','2018-04-04','System Shutdown','2018-04-04 18:16:52'),(155,'SYSTEM','2018-04-04','System Start','2018-04-04 18:17:16'),(156,'SETTINGS','2018-04-04','asd asd update the system settings','2018-04-04 18:18:37'),(157,'SETTINGS','2018-04-04','asd asd change the system backup time to 06:20 PM and logout time to 30 minutes','2018-04-04 18:18:37'),(158,'SETTINGS','2018-04-04','Automatic backup database','2018-04-04 18:20:28'),(159,'SYSTEM','2018-04-04','System Shutdown','2018-04-04 18:22:43'),(160,'SYSTEM','2018-04-04','System Start','2018-04-04 18:23:03'),(161,'SETTINGS','2018-04-04','asd asd update the system settings','2018-04-04 18:24:17'),(162,'SETTINGS','2018-04-04','asd asd change the system backup time to 06:25 PM and logout time to 30 minutes','2018-04-04 18:24:18'),(163,'SETTINGS','2018-04-04','Automatic backup database','2018-04-04 18:25:15'),(164,'SYSTEM','2018-04-04','System Shutdown','2018-04-04 18:26:00'),(165,'SYSTEM','2018-04-04','System Start','2018-04-04 18:26:16'),(166,'SETTINGS','2018-04-04','asd asd update the system settings','2018-04-04 18:28:20'),(167,'SETTINGS','2018-04-04','asd asd change the system backup time to 06:29 PM and logout time to 30 minutes','2018-04-04 18:28:20'),(168,'SYSTEM','2018-04-04','Auto logout called on Emp Emp','2018-04-04 18:28:59'),(169,'SETTINGS','2018-04-04','Automatic backup database','2018-04-04 18:29:28'),(170,'SYSTEM','2018-04-04','System Shutdown','2018-04-04 18:33:33'),(171,'SYSTEM','2018-04-04','System Start','2018-04-04 18:33:58'),(172,'SETTINGS','2018-04-04','asd asd update the system settings','2018-04-04 18:34:36'),(173,'SETTINGS','2018-04-04','asd asd change the system backup time to 06:35 PM and logout time to 30 minutes','2018-04-04 18:34:36'),(174,'SETTINGS','2018-04-04','Automatic backup database','2018-04-04 18:35:11'),(175,'SETTINGS','2018-04-04','asd asd update the system settings','2018-04-04 18:35:31'),(176,'SETTINGS','2018-04-04','asd asd change the system backup time to 06:36 PM and logout time to 30 minutes','2018-04-04 18:35:32'),(177,'SETTINGS','2018-04-04','Automatic backup database','2018-04-04 18:36:11'),(178,'SETTINGS','2018-04-04','asd asd update the system settings','2018-04-04 18:38:26'),(179,'SETTINGS','2018-04-04','asd asd change the system backup time to 06:39 PM and logout time to 30 minutes','2018-04-04 18:38:27'),(180,'SETTINGS','2018-04-04','Automatic backup database','2018-04-04 18:39:11'),(181,'SYSTEM','2018-04-04','System Shutdown','2018-04-04 18:40:48'),(182,'SYSTEM','2018-04-04','System Start','2018-04-04 18:41:04'),(183,'SETTINGS','2018-04-04','asd asd update the system settings','2018-04-04 18:42:04'),(184,'SETTINGS','2018-04-04','asd asd change the system backup time to 06:42 PM and logout time to 30 minutes','2018-04-04 18:42:05'),(185,'SETTINGS','2018-04-04','Automatic backup database','2018-04-04 18:42:16'),(186,'SETTINGS','2018-04-04','asd asd update the system settings','2018-04-04 18:42:51'),(187,'SETTINGS','2018-04-04','asd asd change the system backup time to 06:44 PM and logout time to 30 minutes','2018-04-04 18:42:51'),(188,'SETTINGS','2018-04-04','Automatic backup database','2018-04-04 18:44:16'),(189,'SYSTEM','2018-04-04','System Shutdown','2018-04-04 18:44:58'),(190,'SYSTEM','2018-04-04','System Start','2018-04-04 18:45:25'),(191,'SETTINGS','2018-04-04','asd asd update the system settings','2018-04-04 18:46:52'),(192,'SETTINGS','2018-04-04','asd asd change the system backup time to 06:48 PM and logout time to 30 minutes','2018-04-04 18:46:52'),(193,'SETTINGS','2018-04-04','Automatic backup database','2018-04-04 18:48:52'),(194,'SYSTEM','2018-04-04','System Shutdown','2018-04-04 18:52:27'),(195,'SYSTEM','2018-04-04','System Start','2018-04-04 18:53:29'),(196,'SETTINGS','2018-04-04','asd asd update the system settings','2018-04-04 18:54:41'),(197,'SYSTEM','2018-04-04','System Shutdown','2018-04-04 18:55:50'),(198,'SYSTEM','2018-04-04','System Start','2018-04-04 18:56:06'),(199,'SETTINGS','2018-04-04','asd asd update the system settings','2018-04-04 18:57:00'),(200,'SYSTEM','2018-04-04','System Shutdown','2018-04-04 18:57:58'),(201,'SYSTEM','2018-04-04','System Start','2018-04-04 18:58:14'),(202,'SETTINGS','2018-04-04','Automatic backup database','2018-04-04 18:58:26'),(203,'SETTINGS','2018-04-04','asd asd update the system settings','2018-04-04 18:58:54'),(204,'SETTINGS','2018-04-04','asd asd change the system backup time to 06:59 PM and logout time to 30 minutes','2018-04-04 18:58:55'),(205,'SETTINGS','2018-04-04','Automatic backup database','2018-04-04 18:59:25'),(206,'SETTINGS','2018-04-04','asd asd restore the database','2018-04-04 19:00:23'),(207,'SETTINGS','2018-04-04','asd asd restored the backup','2018-04-04 19:00:24'),(208,'SYSTEM','2018-04-04','System Shutdown','2018-04-04 19:02:36'),(209,'SYSTEM','2018-04-04','System Start','2018-04-04 19:03:16'),(210,'SETTINGS','2018-04-04','asd asd update the system settings','2018-04-04 19:04:45'),(211,'SETTINGS','2018-04-04','asd asd change the system backup time to 07:06 PM and logout time to 30 minutes','2018-04-04 19:04:46'),(212,'SETTINGS','2018-04-04','Automatic backup database','2018-04-04 19:06:33'),(213,'SYSTEM','2018-04-04','System Shutdown','2018-04-04 19:07:23'),(214,'SYSTEM','2018-04-04','System Start','2018-04-04 19:07:39'),(215,'SETTINGS','2018-04-04','asd asd update the system settings','2018-04-04 19:09:39'),(217,'SETTINGS','2018-04-04','Automatic backup database','2018-04-04 19:10:51'),(218,'SYSTEM','2018-04-04','System Shutdown','2018-04-04 19:11:05'),(219,'SYSTEM','2018-04-04','System Start','2018-04-04 19:11:22'),(220,'SETTINGS','2018-04-04','asd asd update the system settings','2018-04-04 19:14:07'),(221,'SETTINGS','2018-04-04','asd asd change the system backup time to 07:15 PM and logout time to 30 minutes','2018-04-04 19:14:07'),(222,'SETTINGS','2018-04-04','Automatic backup database','2018-04-04 19:15:34'),(223,'SYSTEM','2018-04-04','System Shutdown','2018-04-04 19:23:35'),(224,'SYSTEM','2018-04-04','System Start','2018-04-04 19:23:55'),(225,'SETTINGS','2018-04-04','asd asd update the system settings','2018-04-04 19:25:47'),(226,'SETTINGS','2018-04-04','asd asd change the system backup time to 07:26 PM and logout time to 30 minutes','2018-04-04 19:25:48'),(227,'SETTINGS','2018-04-04','Automatic backup database','2018-04-04 19:26:07'),(228,'SETTINGS','2018-04-04','asd asd update the system settings','2018-04-04 19:28:19'),(229,'SETTINGS','2018-04-04','asd asd change the system backup time to 07:29 PM and logout time to 30 minutes','2018-04-04 19:28:19'),(230,'SETTINGS','2018-04-04','Automatic backup database','2018-04-04 19:29:06'),(231,'SYSTEM','2018-04-04','System Shutdown','2018-04-04 19:35:31'),(232,'SYSTEM','2018-04-04','System Start','2018-04-04 19:35:50'),(233,'SETTINGS','2018-04-04','asd asd update the system settings','2018-04-04 19:36:24'),(234,'SETTINGS','2018-04-04','asd asd change the system backup time to 07:37 PM and logout time to 30 minutes','2018-04-04 19:36:24'),(235,'SETTINGS','2018-04-04','Automatic backup database','2018-04-04 19:37:02'),(236,'SYSTEM','2018-04-04','System Shutdown','2018-04-04 19:37:23'),(237,'SYSTEM','2018-04-04','System Start','2018-04-04 19:38:31'),(238,'SETTINGS','2018-04-04','asd asd update the system settings','2018-04-04 19:39:04'),(239,'SETTINGS','2018-04-04','asd asd change the system backup time to 07:40 PM and logout time to 30 minutes','2018-04-04 19:39:04'),(240,'SETTINGS','2018-04-04','Automatic backup database','2018-04-04 19:40:47'),(241,'SYSTEM','2018-04-04','System Shutdown','2018-04-04 19:48:59'),(242,'SYSTEM','2018-04-04','System Start','2018-04-04 19:52:30'),(243,'SETTINGS','2018-04-04','asd asd update the system settings','2018-04-04 19:53:41'),(244,'SETTINGS','2018-04-04','asd asd change the system backup time to 07:54 PM and logout time to 30 minutes','2018-04-04 19:53:42'),(245,'SETTINGS','2018-04-04','Automatic backup database','2018-04-04 19:54:50'),(246,'SYSTEM','2018-04-04','System Shutdown','2018-04-04 20:00:00'),(247,'SYSTEM','2018-04-04','System Start','2018-04-04 20:05:13'),(248,'SETTINGS','2018-04-04','asd asd update the system settings','2018-04-04 20:06:43'),(249,'SETTINGS','2018-04-04','asd asd change the system backup time to 08:07 PM and logout time to 30 minutes','2018-04-04 20:06:44');
+INSERT INTO `system_log` VALUES (1,'SYSTEM','2018-04-03','System Start','2018-04-03 15:55:20'),(2,'SYSTEM','2018-04-03','System Shutdown','2018-04-03 16:00:28'),(3,'SYSTEM','2018-04-03','System Start','2018-04-03 16:00:44'),(4,'SYSTEM','2018-04-03','Auto logout called on krysseltillada de leon ','2018-04-03 16:04:17'),(5,'SYSTEM','2018-04-03','System Shutdown','2018-04-03 16:18:21'),(6,'SYSTEM','2018-04-03','System Start','2018-04-03 16:18:36'),(7,'SETTINGS','2018-04-03','krysseltillada de leon  change the system backup time to 12:00 AM and logout time to 30 minutes','2018-04-03 16:20:22'),(8,'SYSTEM','2018-04-03','System Shutdown','2018-04-03 16:40:02'),(9,'SYSTEM','2018-04-03','System Start','2018-04-03 16:40:17'),(10,'SYSTEM','2018-04-03','System Shutdown','2018-04-03 16:47:09'),(11,'SYSTEM','2018-04-03','System Start','2018-04-03 16:47:24'),(12,'SYSTEM','2018-04-03','System Shutdown','2018-04-03 16:48:42'),(13,'SYSTEM','2018-04-03','System Start','2018-04-03 16:48:57'),(14,'SYSTEM','2018-04-03','System Shutdown','2018-04-03 17:06:51'),(15,'SYSTEM','2018-04-03','System Start','2018-04-03 17:07:08'),(16,'SYSTEM','2018-04-03','System Shutdown','2018-04-03 17:09:25'),(17,'SYSTEM','2018-04-03','System Start','2018-04-03 17:20:16'),(18,'SYSTEM','2018-04-03','System Shutdown','2018-04-03 17:52:01'),(19,'SYSTEM','2018-04-03','System Start','2018-04-03 17:52:15'),(20,'SYSTEM','2018-04-03','System Shutdown','2018-04-03 17:53:11'),(21,'SYSTEM','2018-04-03','System Start','2018-04-03 17:53:25'),(22,'SYSTEM','2018-04-03','System Shutdown','2018-04-03 17:56:12'),(23,'SYSTEM','2018-04-03','System Start','2018-04-03 17:56:27'),(24,'SYSTEM','2018-04-03','System Shutdown','2018-04-03 18:03:51'),(25,'SYSTEM','2018-04-03','System Start','2018-04-03 18:04:05'),(26,'SYSTEM','2018-04-03','System Shutdown','2018-04-03 18:05:21'),(27,'SYSTEM','2018-04-03','System Start','2018-04-03 18:07:16'),(28,'SYSTEM','2018-04-03','System Shutdown','2018-04-03 18:08:14'),(29,'SYSTEM','2018-04-03','System Start','2018-04-03 20:13:29'),(30,'SYSTEM','2018-04-03','System Shutdown','2018-04-03 20:23:08'),(31,'SYSTEM','2018-04-03','System Start','2018-04-03 20:23:22'),(32,'SYSTEM','2018-04-03','System Shutdown','2018-04-03 20:24:40'),(33,'SYSTEM','2018-04-03','System Start','2018-04-03 20:24:55'),(34,'SYSTEM','2018-04-03','System Shutdown','2018-04-03 21:51:50'),(35,'SYSTEM','2018-04-03','System Start','2018-04-03 23:45:39'),(36,'SYSTEM','2018-04-04','System Shutdown','2018-04-04 00:03:50'),(37,'SYSTEM','2018-04-04','System Start','2018-04-04 00:04:39'),(38,'SYSTEM','2018-04-04','System Shutdown','2018-04-04 00:19:07'),(39,'SYSTEM','2018-04-04','System Start','2018-04-04 00:19:24'),(40,'SYSTEM','2018-04-04','System Shutdown','2018-04-04 00:43:32'),(41,'SYSTEM','2018-04-04','System Start','2018-04-04 00:43:51'),(42,'SYSTEM','2018-04-04','System Shutdown','2018-04-04 00:48:21'),(43,'SYSTEM','2018-04-04','System Start','2018-04-04 00:58:56'),(44,'SYSTEM','2018-04-04','System Shutdown','2018-04-04 02:41:46'),(45,'SYSTEM','2018-04-04','System Start','2018-04-04 02:50:58'),(46,'SYSTEM','2018-04-04','System Shutdown','2018-04-04 02:51:09'),(47,'SYSTEM','2018-04-04','System Start','2018-04-04 03:09:46'),(48,'SYSTEM','2018-04-04','System Shutdown','2018-04-04 03:09:58'),(49,'SYSTEM','2018-04-04','System Start','2018-04-04 03:18:09'),(50,'SYSTEM','2018-04-04','System Shutdown','2018-04-04 03:18:20'),(51,'SYSTEM','2018-04-04','System Start','2018-04-04 03:20:37'),(52,'SYSTEM','2018-04-04','System Shutdown','2018-04-04 03:38:37'),(53,'SYSTEM','2018-04-04','System Start','2018-04-04 03:39:02'),(54,'SYSTEM','2018-04-04','System Shutdown','2018-04-04 06:14:44'),(55,'SYSTEM','2018-04-04','System Start','2018-04-04 14:19:35'),(56,'SYSTEM','2018-04-04','Auto logout called on krysseltillada de leon ','2018-04-04 14:22:10'),(57,'SYSTEM','2018-04-04','Auto logout called on krysseltillada de leon ','2018-04-04 15:20:39'),(58,'SYSTEM','2018-04-04','System Shutdown','2018-04-04 20:02:24'),(59,'SYSTEM','2018-04-04','System Start','2018-04-04 23:32:41'),(60,'SETTINGS','2018-04-04','krysseltillada de leon  update the system settings','2018-04-04 23:33:57'),(61,'SETTINGS','2018-04-04','krysseltillada de leon  change the system backup time to 11:34 PM and logout time to 30 minutes','2018-04-04 23:33:57'),(62,'SETTINGS','2018-04-04','Automatic backup database','2018-04-04 23:34:58'),(63,'SETTINGS','2018-04-04','krysseltillada de leon  update the system settings','2018-04-04 23:44:23'),(64,'SETTINGS','2018-04-04','krysseltillada de leon  change the system backup time to 11:34 PM and logout time to 30 minutes','2018-04-04 23:44:23'),(65,'SETTINGS','2018-04-04','krysseltillada de leon  update the system settings','2018-04-04 23:44:28'),(66,'SETTINGS','2018-04-04','krysseltillada de leon  change the system backup time to 11:34 PM and logout time to 30 minutes','2018-04-04 23:44:28'),(67,'SETTINGS','2018-04-04','krysseltillada de leon  update the system settings','2018-04-04 23:44:33'),(68,'SETTINGS','2018-04-04','krysseltillada de leon  change the system backup time to 11:34 PM and logout time to 30 minutes','2018-04-04 23:44:34');
 /*!40000 ALTER TABLE `system_log` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -777,7 +780,7 @@ CREATE TABLE `system_notification` (
   `is_seen` bit(1) NOT NULL,
   `system_notification_status` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`notification_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=80 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=39 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -786,7 +789,7 @@ CREATE TABLE `system_notification` (
 
 LOCK TABLES `system_notification` WRITE;
 /*!40000 ALTER TABLE `system_notification` DISABLE KEYS */;
-INSERT INTO `system_notification` VALUES (1,'2018-04-04 10:01:32','New product has added Nemo','New Product','','INVENTORY_ADD_PRODUCT'),(2,'2018-04-04 10:07:41','asd asd has ordered','New order','','ORDER_NEW_ORDER'),(3,'2018-04-04 15:00:41','System backup success','System Backup','','SYSTEM_BACKUP'),(4,'2018-04-04 15:01:36','Udpdate system settings success','System Settings Update','','SYSTEM_BACKUP'),(5,'2018-04-04 15:02:22','Udpdate system settings success','System Settings Update','','SYSTEM_BACKUP'),(6,'2018-04-04 15:06:44','Udpdate system settings success','System Settings Update','','SYSTEM_BACKUP'),(7,'2018-04-04 15:27:57','System restore success','System Restore','','SYSTEM_BACKUP'),(8,'2018-04-04 15:28:21','Udpdate system settings success','System Settings Update','','SYSTEM_BACKUP'),(9,'2018-04-04 15:28:44','Udpdate system settings success','System Settings Update','','SYSTEM_BACKUP'),(10,'2018-04-04 15:42:07','Udpdate system settings success','System Settings Update','','SYSTEM_BACKUP'),(11,'2018-04-04 15:55:40','System backup success','System Backup','','SYSTEM_BACKUP'),(12,'2018-04-04 15:57:06','System restore success','System Restore','','SYSTEM_BACKUP'),(13,'2018-04-04 16:03:09','System backup success','System Backup','','SYSTEM_BACKUP'),(14,'2018-04-04 16:12:03','Udpdate system settings success','System Settings Update','','SYSTEM_BACKUP'),(15,'2018-04-04 16:19:39','Udpdate system settings success','System Settings Update','','SYSTEM_BACKUP'),(16,'2018-04-04 16:32:05','Udpdate system settings success','System Settings Update','','SYSTEM_BACKUP'),(17,'2018-04-04 16:37:12','Udpdate system settings success','System Settings Update','','SYSTEM_BACKUP'),(18,'2018-04-04 16:38:59','Udpdate system settings success','System Settings Update','','SYSTEM_BACKUP'),(19,'2018-04-04 16:39:06','Udpdate system settings success','System Settings Update','','SYSTEM_BACKUP'),(20,'2018-04-04 17:26:54','Udpdate system settings success','System Settings Update','','SYSTEM_BACKUP'),(21,'2018-04-04 17:29:49','Udpdate system settings success','System Settings Update','','SYSTEM_BACKUP'),(22,'2018-04-04 17:29:49','Udpdate system settings success','System Settings Update','','SYSTEM_BACKUP'),(23,'2018-04-04 17:30:07','Udpdate system settings success','System Settings Update','','SYSTEM_BACKUP'),(24,'2018-04-04 17:30:07','Udpdate system settings success','System Settings Update','','SYSTEM_BACKUP'),(25,'2018-04-04 17:34:18','New product has added fgh','New Product','','INVENTORY_ADD_PRODUCT'),(26,'2018-04-04 17:34:18','New product has added fgh','New Product','','INVENTORY_ADD_PRODUCT'),(27,'2018-04-04 17:37:12','System restore success','System Restore','','SYSTEM_BACKUP'),(28,'2018-04-04 17:37:12','System restore success','System Restore','','SYSTEM_BACKUP'),(29,'2018-04-04 17:37:21','Udpdate system settings success','System Settings Update','','SYSTEM_BACKUP'),(30,'2018-04-04 17:37:21','Udpdate system settings success','System Settings Update','','SYSTEM_BACKUP'),(31,'2018-04-04 17:38:15','Product no. 2 has been edited','Edited Product','','INVENTORY_EDIT_PRODUCT'),(32,'2018-04-04 17:38:15','Product no. 2 has been edited','Edited Product','','INVENTORY_EDIT_PRODUCT'),(33,'2018-04-04 17:40:34','Product no. 1 has been edited','Edited Product','','INVENTORY_EDIT_PRODUCT'),(34,'2018-04-04 17:40:34','Product no. 1 has been edited','Edited Product','','INVENTORY_EDIT_PRODUCT'),(35,'2018-04-04 17:40:53','Udpdate system settings success','System Settings Update','','SYSTEM_BACKUP'),(36,'2018-04-04 17:40:53','Udpdate system settings success','System Settings Update','','SYSTEM_BACKUP'),(37,'2018-04-04 17:41:12','Udpdate system settings success','System Settings Update','','SYSTEM_BACKUP'),(38,'2018-04-04 17:41:12','Udpdate system settings success','System Settings Update','','SYSTEM_BACKUP'),(39,'2018-04-04 17:42:13','Udpdate system settings success','System Settings Update','','SYSTEM_BACKUP'),(40,'2018-04-04 17:42:13','Udpdate system settings success','System Settings Update','','SYSTEM_BACKUP'),(41,'2018-04-04 17:45:00','Udpdate system settings success','System Settings Update','','SYSTEM_BACKUP'),(42,'2018-04-04 17:45:00','Udpdate system settings success','System Settings Update','','SYSTEM_BACKUP'),(43,'2018-04-04 17:46:21','Udpdate system settings success','System Settings Update','','SYSTEM_BACKUP'),(44,'2018-04-04 17:46:21','Udpdate system settings success','System Settings Update','\0','SYSTEM_BACKUP'),(45,'2018-04-04 17:53:20','Udpdate system settings success','System Settings Update','','SYSTEM_BACKUP'),(46,'2018-04-04 17:53:20','Udpdate system settings success','System Settings Update','\0','SYSTEM_BACKUP'),(47,'2018-04-04 18:08:40','Udpdate system settings success','System Settings Update','','SYSTEM_BACKUP'),(48,'2018-04-04 18:08:40','Udpdate system settings success','System Settings Update','\0','SYSTEM_BACKUP'),(49,'2018-04-04 18:11:34','Udpdate system settings success','System Settings Update','','SYSTEM_BACKUP'),(50,'2018-04-04 18:11:34','Udpdate system settings success','System Settings Update','\0','SYSTEM_BACKUP'),(51,'2018-04-04 18:18:37','Udpdate system settings success','System Settings Update','','SYSTEM_BACKUP'),(52,'2018-04-04 18:18:37','Udpdate system settings success','System Settings Update','\0','SYSTEM_BACKUP'),(53,'2018-04-04 18:34:36','Udpdate system settings success','System Settings Update','','SYSTEM_BACKUP'),(54,'2018-04-04 18:34:36','Udpdate system settings success','System Settings Update','\0','SYSTEM_BACKUP'),(55,'2018-04-04 18:35:32','Udpdate system settings success','System Settings Update','','SYSTEM_BACKUP'),(56,'2018-04-04 18:35:32','Udpdate system settings success','System Settings Update','\0','SYSTEM_BACKUP'),(57,'2018-04-04 18:38:26','Udpdate system settings success','System Settings Update','','SYSTEM_BACKUP'),(58,'2018-04-04 18:38:26','Udpdate system settings success','System Settings Update','\0','SYSTEM_BACKUP'),(59,'2018-04-04 18:42:04','Udpdate system settings success','System Settings Update','','SYSTEM_BACKUP'),(60,'2018-04-04 18:42:04','Udpdate system settings success','System Settings Update','\0','SYSTEM_BACKUP'),(61,'2018-04-04 18:42:51','Udpdate system settings success','System Settings Update','','SYSTEM_BACKUP'),(62,'2018-04-04 18:42:51','Udpdate system settings success','System Settings Update','\0','SYSTEM_BACKUP'),(63,'2018-04-04 18:46:52','Udpdate system settings success','System Settings Update','','SYSTEM_BACKUP'),(64,'2018-04-04 18:46:52','Udpdate system settings success','System Settings Update','\0','SYSTEM_BACKUP'),(65,'2018-04-04 18:54:41','Udpdate system settings success','System Settings Update','','SYSTEM_BACKUP'),(66,'2018-04-04 18:57:01','Udpdate system settings success','System Settings Update','','SYSTEM_BACKUP'),(67,'2018-04-04 18:58:54','Udpdate system settings success','System Settings Update','','SYSTEM_BACKUP'),(68,'2018-04-04 18:58:54','Udpdate system settings success','System Settings Update','\0','SYSTEM_BACKUP'),(69,'2018-04-04 19:00:23','System restore success','System Restore','','SYSTEM_BACKUP'),(70,'2018-04-04 19:00:23','System restore success','System Restore','\0','SYSTEM_BACKUP'),(71,'2018-04-04 19:04:45','Udpdate system settings success','System Settings Update','','SYSTEM_BACKUP'),(72,'2018-04-04 19:04:45','Udpdate system settings success','System Settings Update','\0','SYSTEM_BACKUP'),(74,'2018-04-04 10:01:32','dad','ada','\0','ORDER_NEW_ORDER'),(75,'2018-04-04 10:01:32','dad','ada','\0','ORDER_NEW_ORDER'),(76,'2018-04-04 10:01:32','dad','ada','\0','ORDER_NEW_ORDER'),(77,'2018-04-04 10:01:32','dad','ada','\0','ORDER_NEW_ORDER'),(78,'2018-06-04 08:06:43','Udpdate system settings success','System Settings Update','','SYSTEM_BACKUP'),(79,'2018-06-04 08:06:43','Udpdate system settings success','System Settings Update','\0','SYSTEM_BACKUP');
+INSERT INTO `system_notification` VALUES (1,'2018-04-03 15:58:09','New product has added box rush','New Product','','INVENTORY_ADD_PRODUCT'),(2,'2018-04-03 16:12:21','kryssel de leon has ordered','New order','','ORDER_NEW_ORDER'),(3,'2018-04-03 16:12:36','kryssel de leon has ordered','New order','','ORDER_NEW_ORDER'),(4,'2018-04-03 17:07:38','kryssel de leon has paid order# 2','Order paid','','ORDER_PAID'),(5,'2018-04-04 00:28:24','kryssel de leon has ordered','New order','','ORDER_NEW_ORDER'),(6,'2018-04-04 00:28:47','kryssel de leon has ordered','New order','','ORDER_NEW_ORDER'),(7,'2018-04-04 00:29:08','kryssel de leon has ordered','New order','','ORDER_NEW_ORDER'),(8,'2018-04-04 00:29:35','kryssel de leon has ordered','New order','','ORDER_NEW_ORDER'),(9,'2018-04-04 03:58:05','kryssel de leon has cancelled order# 6','Order cancelled','','ORDER_CANCELLED'),(10,'2018-04-04 03:59:36','kryssel de leon has paid order# 6','Order paid','','ORDER_PAID'),(11,'2018-04-04 04:00:04','kryssel de leon wants to refund order# 6','Order refund','','ORDER_REFUND'),(12,'2018-04-04 04:01:45','kryssel de leon has cancelled order# 6','Order cancelled','','ORDER_CANCELLED'),(13,'2018-04-04 04:12:45','kryssel de leon has cancelled order# 5','Order cancelled','','ORDER_CANCELLED'),(14,'2018-04-04 04:36:43','kryssel de leon has cancelled order# 6','Order cancelled','','ORDER_CANCELLED'),(15,'2018-04-04 04:37:23','kryssel de leon has cancelled order# 6','Order cancelled','','ORDER_CANCELLED'),(16,'2018-04-04 04:39:00','kryssel de leon has paid order# 6','Order paid','','ORDER_PAID'),(17,'2018-04-04 04:39:19','kryssel de leon wants to refund order# 6','Order refund','','ORDER_REFUND'),(18,'2018-04-04 04:40:18','kryssel de leon wants to return order# 6','Order return','','ORDER_RETURN'),(19,'2018-04-04 04:52:06','kryssel de leon has paid order# 6','Order paid','','ORDER_PAID'),(20,'2018-04-04 04:56:10','New product has added pigfish','New Product','','INVENTORY_ADD_PRODUCT'),(21,'2018-04-04 05:46:48','kryssel de leon has cancelled order# 5','Order cancelled','','ORDER_CANCELLED'),(22,'2018-04-04 05:46:52','kryssel de leon has cancelled order# 4','Order cancelled','','ORDER_CANCELLED'),(23,'2018-04-04 17:29:22','Product no. 2 has been edited','Edited Product','','INVENTORY_EDIT_PRODUCT'),(24,'2018-04-04 17:33:03','Product no. 2 has been edited','Edited Product','','INVENTORY_EDIT_PRODUCT'),(25,'2018-04-04 23:33:57','Udpdate system settings success','System Settings Update','','SYSTEM_BACKUP'),(26,'2018-04-04 23:34:58','System backup success','System Backup','','SYSTEM_BACKUP'),(27,'2018-04-04 23:38:28','Product no. 1 has been edited','Edited Product','','INVENTORY_EDIT_PRODUCT'),(28,'2018-04-04 23:41:44','New product has added egweg','New Product','','INVENTORY_ADD_PRODUCT'),(29,'2018-04-04 23:44:23','Udpdate system settings success','System Settings Update','','SYSTEM_BACKUP'),(30,'2018-04-04 23:44:23','Udpdate system settings success','System Settings Update','','SYSTEM_BACKUP'),(31,'2018-04-04 23:44:28','Udpdate system settings success','System Settings Update','','SYSTEM_BACKUP'),(32,'2018-04-04 23:44:28','Udpdate system settings success','System Settings Update','','SYSTEM_BACKUP'),(33,'2018-04-04 23:44:33','Udpdate system settings success','System Settings Update','','SYSTEM_BACKUP'),(34,'2018-04-04 23:44:33','Udpdate system settings success','System Settings Update','','SYSTEM_BACKUP'),(35,'2018-04-04 23:46:49','Product no. 1 has been edited','Edited Product','\0','INVENTORY_EDIT_PRODUCT'),(36,'2018-04-04 23:46:49','Product no. 1 has been edited','Edited Product','','INVENTORY_EDIT_PRODUCT'),(37,'2018-04-04 23:52:03','New product has added wfqfqfw','New Product','\0','INVENTORY_ADD_PRODUCT'),(38,'2018-04-04 23:52:03','New product has added wfqfqfw','New Product','\0','INVENTORY_ADD_PRODUCT');
 /*!40000 ALTER TABLE `system_notification` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -811,7 +814,7 @@ CREATE TABLE `system_settings` (
 
 LOCK TABLES `system_settings` WRITE;
 /*!40000 ALTER TABLE `system_settings` DISABLE KEYS */;
-INSERT INTO `system_settings` VALUES (1,'00:30:00','20:07:00');
+INSERT INTO `system_settings` VALUES (1,'00:30:00','23:34:00');
 /*!40000 ALTER TABLE `system_settings` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -832,7 +835,7 @@ CREATE TABLE `user_access_log` (
   PRIMARY KEY (`user_access_log_id`),
   KEY `FK4jo8eq6diu8mwg6a3fekhm47y` (`employee_id`),
   CONSTRAINT `FK4jo8eq6diu8mwg6a3fekhm47y` FOREIGN KEY (`employee_id`) REFERENCES `employee` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -841,7 +844,7 @@ CREATE TABLE `user_access_log` (
 
 LOCK TABLES `user_access_log` WRITE;
 /*!40000 ALTER TABLE `user_access_log` DISABLE KEYS */;
-INSERT INTO `user_access_log` VALUES (1,'2018-04-04','asd asd has logged in','0:0:0:0:0:0:0:1','09:59:04',0),(2,'2018-04-04','asd asd has logged out','0:0:0:0:0:0:0:1','10:01:42',0),(3,'2018-04-04','asd asd has logged in','0:0:0:0:0:0:0:1','10:10:10',0),(4,'2018-04-04','asd asd has logged in','0:0:0:0:0:0:0:1','14:24:27',0),(5,'2018-04-04','asd asd has logged in','0:0:0:0:0:0:0:1','14:46:59',0),(6,'2018-04-04','asd asd has logged in','0:0:0:0:0:0:0:1','14:59:46',0),(7,'2018-04-04','asd asd has logged in','0:0:0:0:0:0:0:1','15:41:34',0),(8,'2018-04-04','asd asd has logged in','192.168.4.205','17:23:57',0),(9,'2018-04-04','Emp Emp has logged in','0:0:0:0:0:0:0:1','17:25:47',32768);
+INSERT INTO `user_access_log` VALUES (1,'2018-04-03','krysseltillada de leon  has logged in','0:0:0:0:0:0:0:1','15:57:26',0),(2,'2018-04-03','krysseltillada de leon  has logged in','0:0:0:0:0:0:0:1','16:05:20',0),(3,'2018-04-03','krysseltillada de leon  has logged out','0:0:0:0:0:0:0:1','16:06:47',0),(4,'2018-04-03','krysseltillada de leon  has logged in','0:0:0:0:0:0:0:1','16:07:11',0),(5,'2018-04-03','krysseltillada de leon  has logged out','0:0:0:0:0:0:0:1','16:08:43',0),(6,'2018-04-03','krysseltillada de leon  has logged in','0:0:0:0:0:0:0:1','16:13:22',0),(7,'2018-04-03','krysseltillada de leon  has logged in','0:0:0:0:0:0:0:1','20:19:48',0),(8,'2018-04-03','krysseltillada de leon  has logged out','0:0:0:0:0:0:0:1','20:41:04',0),(9,'2018-04-03','krysseltillada de leon  has logged in','0:0:0:0:0:0:0:1','20:42:11',0),(10,'2018-04-03','krysseltillada de leon  has logged in','0:0:0:0:0:0:0:1','23:46:56',0),(11,'2018-04-04','krysseltillada de leon  has logged in','0:0:0:0:0:0:0:1','03:24:55',0),(12,'2018-04-04','krysseltillada de leon  has logged out','0:0:0:0:0:0:0:1','05:37:59',0),(13,'2018-04-04','krysseltillada de leon  has logged in','0:0:0:0:0:0:0:1','05:38:06',0),(14,'2018-04-04','krysseltillada de leon  has logged in','0:0:0:0:0:0:0:1','14:20:40',0),(15,'2018-04-04','krysseltillada de leon  has logged in','0:0:0:0:0:0:0:1','14:41:07',0),(16,'2018-04-04','krysseltillada de leon  has logged in','0:0:0:0:0:0:0:1','16:19:54',0),(17,'2018-04-04','krysseltillada de leon  has logged out','0:0:0:0:0:0:0:1','16:21:09',0),(18,'2018-04-04','krysseltillada de leon  has logged in','0:0:0:0:0:0:0:1','17:07:06',0),(19,'2018-04-04','krysseltillada de leon  has logged in','0:0:0:0:0:0:0:1','23:33:22',0),(20,'2018-04-04','krysseltillada de leon  has logged out','0:0:0:0:0:0:0:1','23:35:04',0),(21,'2018-04-04','krysseltillada de leon  has logged in','0:0:0:0:0:0:0:1','23:35:16',0),(22,'2018-04-04','krysseltillada de leon  has logged out','0:0:0:0:0:0:0:1','23:36:16',0),(23,'2018-04-04','krysseltillada de leon  has logged in','0:0:0:0:0:0:0:1','23:36:27',0),(24,'2018-04-04','krysseltillada de leon  has logged in','0:0:0:0:0:0:0:1','23:38:01',0),(25,'2018-04-04','krysseltillada de leon  has logged out','0:0:0:0:0:0:0:1','23:45:18',0),(26,'2018-04-04','judy ando has logged in','0:0:0:0:0:0:0:1','23:45:28',32768),(27,'2018-04-04','krysseltillada de leon  has logged out','0:0:0:0:0:0:0:1','23:45:42',0),(28,'2018-04-04','krysseltillada de leon  has logged in','0:0:0:0:0:0:0:1','23:45:51',0);
 /*!40000 ALTER TABLE `user_access_log` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -854,4 +857,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-04-04 20:07:31
+-- Dump completed on 2018-04-04 23:53:15

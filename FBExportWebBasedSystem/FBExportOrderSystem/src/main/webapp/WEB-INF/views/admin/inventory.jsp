@@ -5,7 +5,7 @@
 
         <div class = "row">
         <div class = "col-lg">
-            <span class="h3 no-margin-bottom mr-2">Inventory</span>
+            <span class="h3 no-margin-bottom mr-3"><span>Inventory</span> <i class="icon-padnote ml-1" aria-hidden="true"></i></span>
             <span class = "small mr-2"> <a href = "<c:url value = '/admin/add-product' />"> Add new Product <i class="fa fa-plus-square ml-1" aria-hidden="true"></i> </a> </span>
             <span class = "small mr-2"> <a href = "javascript:void(0)" id = "delete-selected-product" class = "text-muted disabled" style = "pointer-events: none; cursor: not-allowed;"> Delete Product <i class="fa fa-trash ml-1" aria-hidden="true"></i> </a> </span>
             <span class = "small float-right"> <a data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample"> Filter product <i class="fa fa-filter ml-1" aria-hidden="true"></i> </a> </span>
@@ -151,19 +151,3 @@
 
     </div>
 </section>     
-
-<c:if test = "${not empty successMessage}">
-	
-	<script>
-	
-	
-		document.addEventListener("DOMContentLoaded", function(event) { 
-			iziToast.success({
-				message : "${successMessage}",
-				timeout : 1000,
-				position :"bottomRight"
-			});
-		});
-	
-	</script>
-</c:if>
