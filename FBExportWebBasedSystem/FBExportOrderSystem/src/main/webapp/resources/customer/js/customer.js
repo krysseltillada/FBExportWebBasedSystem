@@ -95,8 +95,6 @@ $(document).ready(function () {
             shoppingCartButton.css("display", "inline-block");
             shoppingCartButton.appendTo($("div#navbarSupportedContent ul:eq(1)>li:eq(1)"));
 
-            console.log("false");
-
 
             $("#nav-bar-brand-mobile-header").addClass("d-none");
             $(".productGridList").attr("style", "padding-left: 60px; padding-right: 60px;");
@@ -222,11 +220,14 @@ $(document).ready(function () {
             massTypeChange = $("#changeMassType").html();
         
         var convertedWeight = convertMass($("#changeMassType").html() == "Kg" ? "kilogram" : massTypeChange, massType, Number(currentWeight));
+        var convertedWeightLimit = convertMass($("#changeMassType").html() == "Kg" ? "kilogram" : massTypeChange, massType, Number($("#weightLimit").val()));
         $("#fullWeight").val(convertedWeight);
         $("#availableWeight").html(Number($("#fullWeight").val()).toFixed(2));
-       
+        
         $("#changeMassType").html(massType == "kilogram" ? "Kg" : massType);
-       
+        
+        $("#weightLimit").val(Number(convertedWeightLimit));
+        
         updatePriceMass(massType, quantity, currentCurrency);
     });
 
@@ -285,6 +286,12 @@ $(document).ready(function () {
             	return;
             }
         }
+        
+        if(Number($("#weightLimit").val()) > Number($("#quantity").val())){
+        	toastr.warning("Your order must be above "+ Number($("#weightLimit").val()).toFixed(2) + " " +  $("#changeMassType").html() , 'Warning!');
+        	return;
+        }
+        
         
         var addedQuantity = Number($(rowCart).find(".productWeightCart").html()) + Number($("#quantity").val());
        
@@ -822,6 +829,7 @@ $(document).ready(function () {
     $('#addToCartModal').on('hidden.bs.modal', function (e) {
         $(this).find("#quantity").val(1);
         $(this).find("#massType").val("kilogram");
+        $(this).find("#weightLimit").val(30);
     })
   
 
