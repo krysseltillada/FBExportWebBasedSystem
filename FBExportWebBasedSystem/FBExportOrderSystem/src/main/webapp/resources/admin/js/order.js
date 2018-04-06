@@ -95,7 +95,8 @@ $(document).ready(function () {
                 'orderable': false,
                 'className': 'dt-body-center',
                 'render': function (data, type, full, meta){
-                    return '<input id="checkboxCustom1" type="checkbox" value="" class="checkbox-template checkbox-delete">';
+                    return '';
+//                    <input id="checkboxCustom1" type="checkbox" value="" class="checkbox-template checkbox-delete">
                 }
         },
         {"orderable" : false},

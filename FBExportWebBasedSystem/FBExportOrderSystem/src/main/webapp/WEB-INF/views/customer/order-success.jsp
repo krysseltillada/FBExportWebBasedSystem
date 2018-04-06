@@ -60,7 +60,7 @@
 	                <div class="pt-2 pb-2 float-left font-weight-bold" style="font-size: 12px;">
 	                	<div class = "row">
 		                	<div class = "col-md-6 pr-0">
-			                    <span class="mr-4">  Total Weight: <fmt:formatNumber value = "${totalWeight}" maxFractionDigits = "2" /> IN KILOGRAMS </span>
+			                    <span class="mr-4">  Total Weight: <fmt:formatNumber value = "${totalWeight}" minFractionDigits = "2" /> IN KILOGRAMS </span>
 								<br>
 								<span> Sub total: <span class="subTotal">${subTotal}</span>  </span> <br />
 								<span> Taxable: ${taxable} (<span class = "taxPaid">${taxPaid}</span> )</span> <br />

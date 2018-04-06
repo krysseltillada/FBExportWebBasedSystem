@@ -5,7 +5,7 @@
         <div class = "row">
             <div class = "col-lg">
                 <span class="h3 no-margin-bottom mr-2"><span>Orders</span> <i class="fa fa-list-alt ml-2" aria-hidden="true"></i> </span>
-                <span class = "small ml-2 float-right"> <a href = "javascript:void(0)" id = "deleteOrder" class = "text-muted disabled" style = "pointer-events: none; cursor: not-allowed;"> Delete order <i class="fa fa-trash ml-1" aria-hidden="true"></i> </a> </span>
+                <!--<span class = "small ml-2 float-right"> <a href = "javascript:void(0)" id = "deleteOrder" class = "text-muted disabled" style = "pointer-events: none; cursor: not-allowed;"> Delete order <i class="fa fa-trash ml-1" aria-hidden="true"></i> </a> </span>-->
                 <span class = "small ml-2 float-right"> <a data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample"> Filter Orders <i class="fa fa-filter ml-1" aria-hidden="true"></i> </a> </span>
             	<span class = "small float-right"> <a href = "<c:url value = '/admin/orders' />"> Refresh orders <i class="fa fa-refresh ml-1" aria-hidden="true"></i> </a></span>
             </div>
@@ -87,10 +87,11 @@
             <div class = "col-lg">
                 <div class = "card mb-0">
                     <div class = "card-body pt-3 pb-5 pl-0 pr-0" style = "overflow-x: auto;">
+                    	<!--<input type="checkbox" value="" class="checkbox-template checkbox-delete" id = "checkbox-all">-->
                         <table id="orderTable" class="table table-sm" cellspacing="0" width="100%" style = "border-bottom: 1px solid #E9ECEF;">
                             <thead>
                                 <tr>
-                                    <th> <input type="checkbox" value="" class="checkbox-template checkbox-delete" id = "checkbox-all"> </th>
+                                    <th></th>
                                     <th> </th>
                                     <th> Order <i class="fa fa-list-alt ml-1" aria-hidden="true"></i></th>
                                     <th> Status <i class="fa fa-tasks ml-1" aria-hidden="true"></i> </th>

@@ -395,7 +395,8 @@ $(document).ready(function (){
 				'orderable': false,
 				'className': 'dt-body-center',
 				'render': function (data, type, full, meta){
-					return '<input id="checkboxCustom1" type="checkbox" value="" class="checkbox-template checkbox-delete">';
+					return '';
+//					<input id="checkboxCustom1" type="checkbox" value="" class="checkbox-template checkbox-delete">
 				}
 		},
 		{"orderable" : false},
@@ -504,6 +505,9 @@ $(document).ready(function (){
 				for (var i = 0; i != response.length; ++i) {
 					
 					var product = response[i];
+					
+					product.price = formatMoney(product.price, "PHP", "%s%v");
+					product.weight = product.weight.toFixed(1) + " KILO";
 
 					table.row.add( [
 						'<td></td>',

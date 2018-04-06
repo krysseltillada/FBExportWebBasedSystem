@@ -227,7 +227,7 @@
 	
 	                                            <strong> Weight: </strong> <br />
 	                                            <span style = "font-size: 12px;">
-	                                            	<fmt:formatNumber value = "${order.totalWeight}" maxFractionDigits="1" /> KILO 
+	                                            	<fmt:formatNumber value = "${order.totalWeight}" minFractionDigits="1" /> KILO 
 	                                            </span> <br />
 	
 	                                            <strong> Price: </strong> <br />
