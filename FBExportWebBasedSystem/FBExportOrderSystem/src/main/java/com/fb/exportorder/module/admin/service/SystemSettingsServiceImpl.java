@@ -59,7 +59,7 @@ public class SystemSettingsServiceImpl implements SystemSettingsService {
 				Files.write(path, bytes);
 			} else {
 				
-				return "Empty";
+				return "";
 			}
 			
 		}catch(Exception e) {

@@ -65,6 +65,9 @@ $(function () {
 
 $(document).ready(function () {
 	
+	$('li.active').removeClass('active');
+	$('a[href="' + location.pathname + '"]').closest('li').addClass('active'); 
+	
     var updateCartPositioning = function () {
         var screenWidth = $(document).width();
         console.log(screenWidth);
@@ -403,7 +406,7 @@ $(document).ready(function () {
         */
 
         $.ajax({
-            url: "http://ip-api.com/json/72.229.28.185",
+            url: "http://ip-api.com/json/",
             jsonpCallback: "callback",
             dataType: "json",
             success: function( location ) {

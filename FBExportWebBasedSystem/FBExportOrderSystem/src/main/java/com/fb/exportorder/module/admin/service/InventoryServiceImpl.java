@@ -227,6 +227,8 @@ public class InventoryServiceImpl implements InventoryService {
 			
 			Product updateStockProduct = inventoryRepository.findOne(id);
 			
+			updateStockProduct.setStatus(ProductStatus.POSTED);
+			
 			double stockWeight = Double.parseDouble(weight) + updateStockProduct.getWeight();
 			updateStockProduct.setWeight(stockWeight);
 			

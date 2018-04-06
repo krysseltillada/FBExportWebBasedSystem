@@ -122,8 +122,11 @@
                                                             <div class="md-form form-sm">
                                                                 <input name = "newpassword" type="password" id="new-password" class="form-control" length = "20" />
                                                                 <label for="password" class="">New password</label>
-                                                                <input type="checkbox" id="showPassword"> Show Password
+                                                                
                                                             </div>
+                                                            
+                                                            <input type="checkbox" id="showPassword" />
+		                        							<label for="showPassword"> Show Password </label>
                                                         </div>
 
 

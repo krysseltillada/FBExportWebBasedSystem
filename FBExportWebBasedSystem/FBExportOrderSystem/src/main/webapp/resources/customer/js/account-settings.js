@@ -6,6 +6,11 @@ $(document).ready(function () {
 		else
 			$("#new-password").attr("type", "password");
 		
+		if($("#old-password").attr("type") == "password")
+			$("#old-password").attr("type", "text");
+		else
+			$("#old-password").attr("type", "password");
+		
 	});
 	
     var cid = $("#customer-id").val();

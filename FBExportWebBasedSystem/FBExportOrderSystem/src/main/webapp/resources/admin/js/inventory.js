@@ -121,7 +121,7 @@ $(document).ready(function (){
 													
 													var newStockWeight = Number(colWeight[0]) + Number(weightValue);
 													$addStockProductRow.find("td:eq(7)").html(newStockWeight.toFixed(1) + " KILO");
-													
+													$addStockProductRow.find("td:eq(10)").html("Posted");
 													$("#addStockWeight").val("");
 
 													table.row($currentRow).cell($currentRow.find("td:eq(7)")).data($currentRow.find("td:eq(7)").html());
