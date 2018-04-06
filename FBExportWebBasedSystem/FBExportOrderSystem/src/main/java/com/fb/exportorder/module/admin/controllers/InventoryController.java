@@ -76,7 +76,7 @@ public class InventoryController {
 		
 	}
 	
-	private String validateProduct (String productJSONString) {
+	private String validateProduct (String productJSONString, boolean update) {
 		
 		List<String> errorMessages = null;
 		
@@ -94,7 +94,8 @@ public class InventoryController {
 													  (String)jsonRawObject.get("description"), 
 													  (String)jsonRawObject.get("supplier"), 
 													  (String)jsonRawObject.get("supplierContactNumber"), 
-													  (String)jsonRawObject.get("supplierAddress"));	
+													  (String)jsonRawObject.get("supplierAddress"),
+													  update);	
 			
 		} catch (org.json.simple.parser.ParseException e) {
 			// TODO Auto-generated catch block
@@ -116,7 +117,7 @@ public class InventoryController {
 	@RequestMapping(value = "/admin/add-product/validate", method = RequestMethod.POST)
 	@ResponseBody
 	public String validateAdd(@RequestParam String productJSONString) {
-		return validateProduct(productJSONString);
+		return validateProduct(productJSONString, false);
 	}
 	
 	@RequestMapping(value = "/admin/add-product/delete-preview-images/{qquuid}",
@@ -284,7 +285,7 @@ public class InventoryController {
 	@RequestMapping(value = "/admin/edit-product/validate", method = RequestMethod.POST)
 	@ResponseBody
 	public String validateEdit(@RequestParam String productJSONString) {
-		return validateProduct(productJSONString);
+		return validateProduct(productJSONString, true);
 	}
 	
 }

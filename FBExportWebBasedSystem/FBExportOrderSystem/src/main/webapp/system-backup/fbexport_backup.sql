@@ -41,11 +41,7 @@ CREATE TABLE `activity` (
   PRIMARY KEY (`activity_id`),
   KEY `FKse269fvw3ft70lc8sf7mp5kpo` (`customer_id`),
   CONSTRAINT `FKse269fvw3ft70lc8sf7mp5kpo` FOREIGN KEY (`customer_id`) REFERENCES `customer` (`id`)
-<<<<<<< HEAD
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-=======
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
->>>>>>> 1358a093002d301bcf65572cfb8be5beff365667
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -54,10 +50,7 @@ CREATE TABLE `activity` (
 
 LOCK TABLES `activity` WRITE;
 /*!40000 ALTER TABLE `activity` DISABLE KEYS */;
-<<<<<<< HEAD
-=======
-INSERT INTO `activity` VALUES (1,'2018-04-05 16:55:55','You\'ve ordered Order No.1','Order',1),(2,'2018-04-05 16:58:47','You\'ve Paid your Order No.1','Order Paid',1),(3,'2018-04-05 17:41:13','You\'ve marked your Order No.1 as received','Order Marked as Received',1),(4,'2018-04-05 17:46:27','You\'ve ordered Order No.2','Order',1),(5,'2018-04-05 18:12:47','You\'ve ordered Order No.3','Order',1),(6,'2018-04-05 18:13:53','You\'ve cancelled your Order No.3','Order Cancelled',1);
->>>>>>> 1358a093002d301bcf65572cfb8be5beff365667
+INSERT INTO `activity` VALUES (1,'2018-04-06 22:16:31','You\'ve ordered Order No.3','Order',1);
 /*!40000 ALTER TABLE `activity` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -82,11 +75,7 @@ CREATE TABLE `authorities` (
 
 LOCK TABLES `authorities` WRITE;
 /*!40000 ALTER TABLE `authorities` DISABLE KEYS */;
-<<<<<<< HEAD
-INSERT INTO `authorities` VALUES (1,'ADMIN',0),(2,'ADMIN',1);
-=======
-INSERT INTO `authorities` VALUES (1,'CUSTOMER',1),(2,'ADMIN',0);
->>>>>>> 1358a093002d301bcf65572cfb8be5beff365667
+INSERT INTO `authorities` VALUES (1,'ADMIN',0),(2,'CUSTOMER',1);
 /*!40000 ALTER TABLE `authorities` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -100,11 +89,7 @@ DROP TABLE IF EXISTS `cart`;
 CREATE TABLE `cart` (
   `cart_id` bigint(20) NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`cart_id`)
-<<<<<<< HEAD
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-=======
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
->>>>>>> 1358a093002d301bcf65572cfb8be5beff365667
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -113,10 +98,7 @@ CREATE TABLE `cart` (
 
 LOCK TABLES `cart` WRITE;
 /*!40000 ALTER TABLE `cart` DISABLE KEYS */;
-<<<<<<< HEAD
-=======
 INSERT INTO `cart` VALUES (1),(2),(3),(4);
->>>>>>> 1358a093002d301bcf65572cfb8be5beff365667
 /*!40000 ALTER TABLE `cart` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -143,10 +125,7 @@ CREATE TABLE `cart_items` (
 
 LOCK TABLES `cart_items` WRITE;
 /*!40000 ALTER TABLE `cart_items` DISABLE KEYS */;
-<<<<<<< HEAD
-=======
-INSERT INTO `cart_items` VALUES (2,2),(3,4),(4,7),(4,8);
->>>>>>> 1358a093002d301bcf65572cfb8be5beff365667
+INSERT INTO `cart_items` VALUES (2,5),(3,7),(4,9);
 /*!40000 ALTER TABLE `cart_items` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -189,10 +168,7 @@ CREATE TABLE `customer` (
 
 LOCK TABLES `customer` WRITE;
 /*!40000 ALTER TABLE `customer` DISABLE KEYS */;
-<<<<<<< HEAD
-=======
-INSERT INTO `customer` VALUES (1,'rivera compound saint joseph subdivision','las pinas city','Philippines','1400',18,'63','krysseltillada@gmail.com','91051829105','','kryssel','MALE','de leon','tillada','\0','$2a$10$CDBDMWHlf8xfyr0F6KnEY.WHDEISJhjtoERgne79EVvkVzT.nt5Iy','/resources/customer/img/profile-male.jpg','krysseltillada',1);
->>>>>>> 1358a093002d301bcf65572cfb8be5beff365667
+INSERT INTO `customer` VALUES (1,'asd','asd','Australia','1700',18,'1242','alfredoborja81194@gmail.com','09996668084','','asd','FEMALE','asd','asd','','$2a$10$GDiYjFylOO9Vav00ZqhBXOPDyy0J2Bh3HAwpernV0RXDuIxlaevja','/resources/customer/img/profile-female.jpg','Customer1',1);
 /*!40000 ALTER TABLE `customer` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -219,10 +195,7 @@ CREATE TABLE `customer_notifications` (
 
 LOCK TABLES `customer_notifications` WRITE;
 /*!40000 ALTER TABLE `customer_notifications` DISABLE KEYS */;
-<<<<<<< HEAD
-=======
-INSERT INTO `customer_notifications` VALUES (1,1),(1,2),(1,3),(1,4),(1,5),(1,6),(1,7),(1,8),(1,9),(1,10),(1,11),(1,12),(1,13),(1,14),(1,15);
->>>>>>> 1358a093002d301bcf65572cfb8be5beff365667
+INSERT INTO `customer_notifications` VALUES (1,1),(1,2),(1,3);
 /*!40000 ALTER TABLE `customer_notifications` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -249,10 +222,7 @@ CREATE TABLE `customer_shipping_addresses` (
 
 LOCK TABLES `customer_shipping_addresses` WRITE;
 /*!40000 ALTER TABLE `customer_shipping_addresses` DISABLE KEYS */;
-<<<<<<< HEAD
-=======
 INSERT INTO `customer_shipping_addresses` VALUES (1,1);
->>>>>>> 1358a093002d301bcf65572cfb8be5beff365667
 /*!40000 ALTER TABLE `customer_shipping_addresses` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -293,11 +263,7 @@ CREATE TABLE `employee` (
 
 LOCK TABLES `employee` WRITE;
 /*!40000 ALTER TABLE `employee` DISABLE KEYS */;
-<<<<<<< HEAD
-INSERT INTO `employee` VALUES (0,'asd','asd','asd','1700',23,'63','Admin1@gmail.com','09996668084','','asd','MALE','asd','ads','\0','$2a$10$w921HXavi.mOnflh.yIQNePCcnsgP50S7BwkZr9Zknd6IVzAcKflK',NULL,'Admin1','Admin'),(1,'asd','asd','Afghanistan','1700',18,'93','Admin2@gmail.com','09996668084','','asd','MALE','asd','asd','','$2a$10$ZKO26X26eySb8.nVpdaf5erPkALvknQ6lIHGoIIHZj8ISB1QWqo.a','/resources/admin/img/profile-male.jpg','Admin2','Admin');
-=======
-INSERT INTO `employee` VALUES (0,'awfaf','egw','wegw','123',19,'12','krysseltillada@gmail.com','123123','','kryssel','MALE','de leon','t','','$2a$10$w921HXavi.mOnflh.yIQNePCcnsgP50S7BwkZr9Zknd6IVzAcKflK',NULL,'krysseltillada','ADMIN');
->>>>>>> 1358a093002d301bcf65572cfb8be5beff365667
+INSERT INTO `employee` VALUES (0,'asd','asd','asd','asd',23,'asd','Admin1@gmail.com','09996668084','','asd','MALE','asd','asd','\0','$2a$10$w921HXavi.mOnflh.yIQNePCcnsgP50S7BwkZr9Zknd6IVzAcKflK',NULL,'Admin1','Admin');
 /*!40000 ALTER TABLE `employee` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -324,11 +290,7 @@ CREATE TABLE `employee_system_notification_list` (
 
 LOCK TABLES `employee_system_notification_list` WRITE;
 /*!40000 ALTER TABLE `employee_system_notification_list` DISABLE KEYS */;
-<<<<<<< HEAD
-INSERT INTO `employee_system_notification_list` VALUES (0,1),(0,3),(0,5),(0,7),(0,9),(0,11),(1,2),(1,4),(1,6),(1,8),(1,10),(1,12);
-=======
-INSERT INTO `employee_system_notification_list` VALUES (0,1),(0,2),(0,3),(0,4),(0,5),(0,6),(0,7),(0,8),(0,9),(0,10),(0,11),(0,12),(0,13),(0,14),(0,15),(0,16),(0,17),(0,18);
->>>>>>> 1358a093002d301bcf65572cfb8be5beff365667
+INSERT INTO `employee_system_notification_list` VALUES (0,1),(0,2),(0,3),(0,4),(0,5),(0,6),(0,7),(0,8),(0,9),(0,10);
 /*!40000 ALTER TABLE `employee_system_notification_list` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -372,11 +334,7 @@ CREATE TABLE `item` (
   PRIMARY KEY (`item_id`),
   KEY `FK6fok9mmtsmu22sejwqg8cq6u3` (`product_product_id`),
   CONSTRAINT `FK6fok9mmtsmu22sejwqg8cq6u3` FOREIGN KEY (`product_product_id`) REFERENCES `product` (`product_id`)
-<<<<<<< HEAD
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-=======
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
->>>>>>> 1358a093002d301bcf65572cfb8be5beff365667
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -385,10 +343,7 @@ CREATE TABLE `item` (
 
 LOCK TABLES `item` WRITE;
 /*!40000 ALTER TABLE `item` DISABLE KEYS */;
-<<<<<<< HEAD
-=======
-INSERT INTO `item` VALUES (2,6000,3,'KILO',1),(4,1999.9999999999998,1,'KILO',1),(7,9999.999999999998,5,'KILO',1),(8,1814369.48,1,'TON',1);
->>>>>>> 1358a093002d301bcf65572cfb8be5beff365667
+INSERT INTO `item` VALUES (5,20000,100,'KILO',3),(7,20000,100,'KILO',2),(9,20000,100,'KILO',2);
 /*!40000 ALTER TABLE `item` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -407,11 +362,7 @@ CREATE TABLE `notification` (
   `is_seen` bit(1) NOT NULL,
   `order_id` bigint(20) DEFAULT NULL,
   PRIMARY KEY (`notification_id`)
-<<<<<<< HEAD
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-=======
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=latin1;
->>>>>>> 1358a093002d301bcf65572cfb8be5beff365667
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -420,10 +371,7 @@ CREATE TABLE `notification` (
 
 LOCK TABLES `notification` WRITE;
 /*!40000 ALTER TABLE `notification` DISABLE KEYS */;
-<<<<<<< HEAD
-=======
-INSERT INTO `notification` VALUES (1,'2018-04-05 16:56:17','Your Order# 1 is approved','Order Approved','',1),(2,'2018-04-05 16:59:25','Your Order# 1 is Shipping','Order To Shipping','',1),(3,'2018-04-05 17:13:37','Your Order# 1 is Shipping','Order To Shipping','',1),(4,'2018-04-05 17:17:28','Your Order# 1 is Shipping','Order To Shipping','',1),(5,'2018-04-05 17:20:26','Your Order# 1 is Shipping','Order To Shipping','',1),(6,'2018-04-05 17:21:57','Your Order# 1 is Shipping','Order To Shipping','',1),(7,'2018-04-05 17:32:18','Your Order# 1 is Shipping','Order To Shipping','',1),(8,'2018-04-05 17:40:21','Your Order# 1 is Shipping','Order To Shipping','',1),(9,'2018-04-05 17:42:02','Your Order# 1 is Shipping','Order To Shipping','',1),(10,'2018-04-05 17:47:10','Your Order# 2 is approved','Order Approved','',2),(11,'2018-04-05 17:47:26','Your Order# 2 is Shipping','Order To Shipping','',2),(12,'2018-04-05 17:51:21','Your Order# 2 is Shipping','Order To Shipping','',2),(13,'2018-04-05 17:52:54','Your Order# 2 is approved','Order Approved','',2),(14,'2018-04-05 17:53:06','Your Order# 2 is Shipping','Order To Shipping','',2),(15,'2018-04-05 18:27:34','Your Order# 3 is approved','Order Approved','\0',3);
->>>>>>> 1358a093002d301bcf65572cfb8be5beff365667
+INSERT INTO `notification` VALUES (1,'2018-04-06 22:18:27','Your Order# 3 is approved','Order Approved','',3),(2,'2018-04-06 22:18:51','Your Order# 2 is Shipping','Order To Shipping','',2),(3,'2018-04-06 22:19:06','Your Order# 1 is rejected','Order Rejected','',1);
 /*!40000 ALTER TABLE `notification` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -461,11 +409,7 @@ CREATE TABLE `orders` (
   CONSTRAINT `FK89wuak53n6o826m6ltksv9gj9` FOREIGN KEY (`shipping_address_shipping_address_id`) REFERENCES `shipping_address` (`shipping_address_id`),
   CONSTRAINT `FK8o21kg6tvreikslhq6n0o5jxf` FOREIGN KEY (`shipping_shipping_id`) REFERENCES `shipping` (`shipping_id`),
   CONSTRAINT `FKtg32cl8e1f2afe83we3bqrw2h` FOREIGN KEY (`cart_cart_id`) REFERENCES `cart` (`cart_id`)
-<<<<<<< HEAD
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-=======
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
->>>>>>> 1358a093002d301bcf65572cfb8be5beff365667
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -474,10 +418,7 @@ CREATE TABLE `orders` (
 
 LOCK TABLES `orders` WRITE;
 /*!40000 ALTER TABLE `orders` DISABLE KEYS */;
-<<<<<<< HEAD
-=======
-INSERT INTO `orders` VALUES (1,'2018-04-05',NULL,NULL,'\0','','PENDING','PAYPAL','',NULL,1,7720,3,2,1,NULL,1),(2,'2018-04-05','2018-04-05',NULL,'','','RETURNED','CASH_ON_DELIVERY','fewfwefwe',NULL,1,3240,1,3,1,5,1),(3,'2018-04-05','2018-04-05',NULL,'','your order has been approved','PAID','PAYPAL','',NULL,2,2044293.8176,912.1847399999999,4,1,NULL,1);
->>>>>>> 1358a093002d301bcf65572cfb8be5beff365667
+INSERT INTO `orders` VALUES (1,'2018-04-06',NULL,NULL,'\0','your order has been rejected','REJECTED','CASH_ON_DELIVERY',NULL,NULL,1,23400,100,2,1,NULL,1),(2,'2018-04-06',NULL,NULL,'\0',NULL,'TO_SHIP','CASH_ON_DELIVERY',NULL,NULL,1,23400,100,3,1,1,1),(3,'2018-04-06',NULL,NULL,'\0','your order has been approved','APPROVED','CASH_ON_DELIVERY','',NULL,1,23400,100,4,1,NULL,1);
 /*!40000 ALTER TABLE `orders` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -508,11 +449,7 @@ CREATE TABLE `product` (
   PRIMARY KEY (`product_id`),
   KEY `FKg0klkuq150g13y1o1porbpxrj` (`rating_rating_id`),
   CONSTRAINT `FKg0klkuq150g13y1o1porbpxrj` FOREIGN KEY (`rating_rating_id`) REFERENCES `rating` (`rating_id`)
-<<<<<<< HEAD
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-=======
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
->>>>>>> 1358a093002d301bcf65572cfb8be5beff365667
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -521,10 +458,7 @@ CREATE TABLE `product` (
 
 LOCK TABLES `product` WRITE;
 /*!40000 ALTER TABLE `product` DISABLE KEYS */;
-<<<<<<< HEAD
-=======
-INSERT INTO `product` VALUES (1,'2018-04-06','2018-04-05','2018-04-05','egwegw','\0','memes','meme world',2000,'/products/c4ca4238a0b923820dcc509a6f75849b.jpg','POSTED','wegw','wegweg','12313',31000,1);
->>>>>>> 1358a093002d301bcf65572cfb8be5beff365667
+INSERT INTO `product` VALUES (1,'2018-04-06','2018-04-06','2018-04-06','asdaa\r\nsd\r\nas\r\ndas\r\nd\r\nasd\r\na\r\nda\r\nd\r\nasd\r\na\r\nsd\r\nasd\r\nasd\r\nasdaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa','\0','Product One','Product One',5000,'/products/c4ca4238a0b923820dcc509a6f75849b.jpg','POSTED','asd','asd','09996668084',5000,1),(2,'2018-04-06','2018-04-06','2018-04-06','asd','\0','Product Two','o',200,'/products/c81e728d9d4c2f636f067f89cc14862c.jpg','POSTED','asd','asd','09996668084',400,2),(3,'2018-04-06','2018-04-06','2018-04-06','asd','\0','Product three','asd',200,'/products/eccbc87e4b5ce2fe28308fd9f2a7baf3.jpg','POSTED','asd','asd','09996668084',400,3),(4,'2018-04-06','2018-04-06','2018-04-06','asd','\0','Product','asd',200,'/products/a87ff679a2f3e71d9181a67b7542122c.jpg','POSTED','asd','asd','09996668084',400,4);
 /*!40000 ALTER TABLE `product` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -549,10 +483,7 @@ CREATE TABLE `product_preview_image_links` (
 
 LOCK TABLES `product_preview_image_links` WRITE;
 /*!40000 ALTER TABLE `product_preview_image_links` DISABLE KEYS */;
-<<<<<<< HEAD
-=======
-INSERT INTO `product_preview_image_links` VALUES (1,'/products/5006da69abbe417973b8d80e02c58a18.jpg'),(1,'/products/df862e4a03558a40ca151da5f05715b8.jpg'),(1,'/products/901e00c1c30b70e0ff8d4577f1e47d8e.jpg');
->>>>>>> 1358a093002d301bcf65572cfb8be5beff365667
+INSERT INTO `product_preview_image_links` VALUES (1,'/products/08fad67ca7b8f132e410eb4ba7c7a3b2.jpg'),(1,'/products/f7c98c9dc5fdde46961988d3e5e54f7d.jpg'),(1,'/products/8575645ac8163d40218df0a560eee43d.jpg'),(2,'/products/4729280998e9041c98680503a2c3bae9.jpg'),(2,'/products/533c49d35271480b32ed3f74d57ce2c8.jpg'),(2,'/products/7e9cbfa33a5488662833aaaec12c74ab.jpg'),(3,'/products/15c3487b64068ce89a04a912ac370176.jpg'),(3,'/products/b38d26404d6c0f79ac2ed9701c8c010d.jpg'),(3,'/products/0eb50024217954630771216ab451692e.jpg'),(4,'/products/c98d8cfc66bf1214d0b99d072eea4a73.jpg'),(4,'/products/2c10e5887aeca88f7dfde49214b208fb.jpg'),(4,'/products/37c7718893e367a3ec044d03982fb912.jpg');
 /*!40000 ALTER TABLE `product_preview_image_links` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -579,6 +510,7 @@ CREATE TABLE `product_product_stocks` (
 
 LOCK TABLES `product_product_stocks` WRITE;
 /*!40000 ALTER TABLE `product_product_stocks` DISABLE KEYS */;
+INSERT INTO `product_product_stocks` VALUES (1,1),(2,2),(3,3),(4,4);
 /*!40000 ALTER TABLE `product_product_stocks` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -598,11 +530,7 @@ CREATE TABLE `product_stock` (
   PRIMARY KEY (`product_stock_id`),
   KEY `FKlpu1phje1bb3y9ww8k9fut4gh` (`product_id`),
   CONSTRAINT `FKlpu1phje1bb3y9ww8k9fut4gh` FOREIGN KEY (`product_id`) REFERENCES `product` (`product_id`)
-<<<<<<< HEAD
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-=======
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
->>>>>>> 1358a093002d301bcf65572cfb8be5beff365667
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -611,10 +539,7 @@ CREATE TABLE `product_stock` (
 
 LOCK TABLES `product_stock` WRITE;
 /*!40000 ALTER TABLE `product_stock` DISABLE KEYS */;
-<<<<<<< HEAD
-=======
-INSERT INTO `product_stock` VALUES (1,'2018-04-05',10000,'KILO',1),(2,'2018-04-05',1000,'KILO',1),(3,'2018-04-05',10000,'KILO',1);
->>>>>>> 1358a093002d301bcf65572cfb8be5beff365667
+INSERT INTO `product_stock` VALUES (1,'2018-04-06',800,'KILO',1),(2,'2018-04-06',400,'KILO',2),(3,'2018-04-06',400,'KILO',3),(4,'2018-04-06',400,'KILO',4);
 /*!40000 ALTER TABLE `product_stock` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -630,11 +555,7 @@ CREATE TABLE `rating` (
   `rate` double NOT NULL,
   `views` int(11) NOT NULL,
   PRIMARY KEY (`rating_id`)
-<<<<<<< HEAD
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-=======
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
->>>>>>> 1358a093002d301bcf65572cfb8be5beff365667
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -643,10 +564,7 @@ CREATE TABLE `rating` (
 
 LOCK TABLES `rating` WRITE;
 /*!40000 ALTER TABLE `rating` DISABLE KEYS */;
-<<<<<<< HEAD
-=======
-INSERT INTO `rating` VALUES (1,0,0);
->>>>>>> 1358a093002d301bcf65572cfb8be5beff365667
+INSERT INTO `rating` VALUES (1,0,0),(2,0,0),(3,0,0),(4,0,0);
 /*!40000 ALTER TABLE `rating` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -720,11 +638,7 @@ CREATE TABLE `shipping` (
   `mmsi_number` varchar(255) DEFAULT NULL,
   `vessel_name` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`shipping_id`)
-<<<<<<< HEAD
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-=======
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
->>>>>>> 1358a093002d301bcf65572cfb8be5beff365667
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -733,10 +647,7 @@ CREATE TABLE `shipping` (
 
 LOCK TABLES `shipping` WRITE;
 /*!40000 ALTER TABLE `shipping` DISABLE KEYS */;
-<<<<<<< HEAD
-=======
-INSERT INTO `shipping` VALUES (5,'2018-04-04','2018-04-01','2018-04-05','ON_TRUCK',NULL,NULL,NULL,NULL);
->>>>>>> 1358a093002d301bcf65572cfb8be5beff365667
+INSERT INTO `shipping` VALUES (1,'2018-04-20','2018-04-13','2018-04-28','ON_TRUCK',NULL,NULL,NULL,NULL);
 /*!40000 ALTER TABLE `shipping` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -761,11 +672,7 @@ CREATE TABLE `shipping_address` (
   `receiver_full_name` varchar(255) DEFAULT NULL,
   `shipping_instructions` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`shipping_address_id`)
-<<<<<<< HEAD
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-=======
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
->>>>>>> 1358a093002d301bcf65572cfb8be5beff365667
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -774,10 +681,7 @@ CREATE TABLE `shipping_address` (
 
 LOCK TABLES `shipping_address` WRITE;
 /*!40000 ALTER TABLE `shipping_address` DISABLE KEYS */;
-<<<<<<< HEAD
-=======
-INSERT INTO `shipping_address` VALUES (1,'rivera compound saint joseph subdivision','las pinas city','Philippines','1400','User Account','63','krysseltillada@gmail.com','91051829105','','kryssel tillada de leon','specify your shipping instructions by editing the card');
->>>>>>> 1358a093002d301bcf65572cfb8be5beff365667
+INSERT INTO `shipping_address` VALUES (1,'asd','asd','Australia','1700','User Account','1242','alfredoborja81194@gmail.com','09996668084','','asd asd asd','specify your shipping instructions by editing the card');
 /*!40000 ALTER TABLE `shipping_address` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -797,11 +701,7 @@ CREATE TABLE `shipping_log` (
   `is_complete` bit(1) NOT NULL,
   `time` time DEFAULT NULL,
   PRIMARY KEY (`shipping_log_id`)
-<<<<<<< HEAD
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-=======
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
->>>>>>> 1358a093002d301bcf65572cfb8be5beff365667
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -810,7 +710,6 @@ CREATE TABLE `shipping_log` (
 
 LOCK TABLES `shipping_log` WRITE;
 /*!40000 ALTER TABLE `shipping_log` DISABLE KEYS */;
-INSERT INTO `shipping_log` VALUES (5,'wegweg','2018-04-05','wwegweg','wegweg','','12:00:00');
 /*!40000 ALTER TABLE `shipping_log` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -837,7 +736,6 @@ CREATE TABLE `shipping_shipping_log` (
 
 LOCK TABLES `shipping_shipping_log` WRITE;
 /*!40000 ALTER TABLE `shipping_shipping_log` DISABLE KEYS */;
-INSERT INTO `shipping_shipping_log` VALUES (5,5);
 /*!40000 ALTER TABLE `shipping_shipping_log` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -855,7 +753,7 @@ CREATE TABLE `system_log` (
   `description` varchar(255) DEFAULT NULL,
   `time_occured` datetime DEFAULT NULL,
   PRIMARY KEY (`system_log_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=38 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -864,11 +762,7 @@ CREATE TABLE `system_log` (
 
 LOCK TABLES `system_log` WRITE;
 /*!40000 ALTER TABLE `system_log` DISABLE KEYS */;
-<<<<<<< HEAD
-INSERT INTO `system_log` VALUES (1,'SYSTEM','2018-04-05','System Start','2018-04-05 12:54:28'),(2,'SYSTEM','2018-04-05','System Shutdown','2018-04-05 12:58:05'),(3,'SYSTEM','2018-04-05','System Start','2018-04-05 13:03:11'),(4,'SETTINGS','2018-04-05','asd asd update the system settings','2018-04-05 13:17:10'),(5,'SETTINGS','2018-04-05','asd asd change the system backup time to 12:00 AM and logout time to 30 minutes','2018-04-05 13:17:11'),(6,'SETTINGS','2018-04-05','asd asd restore the database','2018-04-05 13:20:51'),(7,'SETTINGS','2018-04-05','asd asd restored the backup','2018-04-05 13:20:52'),(8,'SETTINGS','2018-04-05','asd asd export database','2018-04-05 13:21:02'),(9,'SETTINGS','2018-04-05','asd asd update the system settings','2018-04-05 13:22:19'),(10,'SETTINGS','2018-04-05','asd asd change the system backup time to 12:00 AM and logout time to 30 minutes','2018-04-05 13:22:20'),(11,'SETTINGS','2018-04-05','asd asd update the system settings','2018-04-05 13:22:37'),(12,'SETTINGS','2018-04-05','asd asd change the system backup time to 01:23 AM and logout time to 30 minutes','2018-04-05 13:22:38'),(13,'SETTINGS','2018-04-05','asd asd update the system settings','2018-04-05 13:24:54'),(14,'SETTINGS','2018-04-05','asd asd change the system backup time to 01:25 AM and logout time to 30 minutes','2018-04-05 13:24:55'),(15,'SYSTEM','2018-04-05','System Shutdown','2018-04-05 13:29:49'),(16,'SYSTEM','2018-04-05','System Start','2018-04-05 13:30:11'),(17,'SETTINGS','2018-04-05','asd asd update the system settings','2018-04-05 13:41:12'),(18,'SETTINGS','2018-04-05','asd asd change the system backup time to 01:43 PM and logout time to 30 minutes','2018-04-05 13:41:13');
-=======
-INSERT INTO `system_log` VALUES (1,'SYSTEM','2018-04-05','System Start','2018-04-05 15:47:45'),(2,'SYSTEM','2018-04-05','System Shutdown','2018-04-05 15:53:19'),(3,'SYSTEM','2018-04-05','System Start','2018-04-05 16:14:39'),(4,'SYSTEM','2018-04-05','Auto logout called on kryssel de leon','2018-04-05 17:03:09'),(5,'SYSTEM','2018-04-05','System Shutdown','2018-04-05 17:05:46'),(6,'SYSTEM','2018-04-05','System Start','2018-04-05 17:06:08'),(7,'SYSTEM','2018-04-05','System Shutdown','2018-04-05 17:09:50'),(8,'SYSTEM','2018-04-05','System Start','2018-04-05 17:10:07'),(9,'SYSTEM','2018-04-05','Auto logout called on kryssel de leon','2018-04-05 17:26:10'),(10,'SYSTEM','2018-04-05','Auto logout called on kryssel de leon','2018-04-05 17:36:03'),(11,'SYSTEM','2018-04-05','System Shutdown','2018-04-05 17:50:05'),(12,'SYSTEM','2018-04-05','System Start','2018-04-05 17:50:26'),(13,'SYSTEM','2018-04-05','Auto logout called on kryssel de leon','2018-04-05 18:02:42'),(14,'SYSTEM','2018-04-05','Auto logout called on kryssel de leon','2018-04-05 18:08:50'),(15,'SETTINGS','2018-04-05','kryssel de leon change the system backup time to 12:00 AM and logout time to 30 minutes','2018-04-05 18:40:29'),(16,'SETTINGS','2018-04-05','kryssel de leon restore the database','2018-04-05 18:42:32'),(17,'SETTINGS','2018-04-05','kryssel de leon export database','2018-04-05 18:44:31'),(18,'SETTINGS','2018-04-05','kryssel de leon change the system backup time to 06:48 PM and logout time to 30 minutes','2018-04-05 18:47:09');
->>>>>>> 1358a093002d301bcf65572cfb8be5beff365667
+INSERT INTO `system_log` VALUES (1,'SYSTEM','2018-04-06','System Start','2018-04-06 21:14:43'),(2,'SYSTEM','2018-04-06','System Shutdown','2018-04-06 21:16:14'),(3,'SYSTEM','2018-04-06','System Start','2018-04-06 21:16:35'),(4,'SYSTEM','2018-04-06','System Shutdown','2018-04-06 21:58:04'),(5,'SYSTEM','2018-04-06','System Start','2018-04-06 22:10:05'),(6,'SYSTEM','2018-04-06','Auto logout called on asd asd','2018-04-06 22:26:48'),(7,'SYSTEM','2018-04-06','System Shutdown','2018-04-06 22:31:57'),(8,'SYSTEM','2018-04-06','System Start','2018-04-06 22:32:34'),(9,'SYSTEM','2018-04-06','System Shutdown','2018-04-06 22:33:59'),(10,'SYSTEM','2018-04-06','System Start','2018-04-06 22:34:16'),(11,'SYSTEM','2018-04-06','Auto logout called on asd asd','2018-04-06 22:36:21'),(12,'SYSTEM','2018-04-06','System Shutdown','2018-04-06 22:36:43'),(13,'SYSTEM','2018-04-06','System Start','2018-04-06 22:37:09'),(14,'SYSTEM','2018-04-06','System Shutdown','2018-04-06 22:38:03'),(15,'SYSTEM','2018-04-06','System Start','2018-04-06 22:38:29'),(16,'SYSTEM','2018-04-06','System Shutdown','2018-04-06 22:38:59'),(17,'SYSTEM','2018-04-06','System Start','2018-04-06 22:39:25'),(18,'SYSTEM','2018-04-06','System Shutdown','2018-04-06 22:40:06'),(19,'SYSTEM','2018-04-06','System Start','2018-04-06 22:40:29'),(20,'SYSTEM','2018-04-06','System Shutdown','2018-04-06 22:47:51'),(21,'SYSTEM','2018-04-06','System Start','2018-04-06 22:48:17'),(22,'SYSTEM','2018-04-06','System Shutdown','2018-04-06 22:48:44'),(23,'SYSTEM','2018-04-06','System Start','2018-04-06 22:49:05'),(24,'SYSTEM','2018-04-06','System Shutdown','2018-04-06 22:49:45'),(25,'SYSTEM','2018-04-06','System Start','2018-04-06 22:50:09'),(26,'SYSTEM','2018-04-06','System Shutdown','2018-04-06 22:51:53'),(27,'SYSTEM','2018-04-06','System Start','2018-04-06 22:52:18'),(28,'SYSTEM','2018-04-06','Auto logout called on asd asd','2018-04-06 22:59:29'),(29,'SYSTEM','2018-04-06','Auto logout called on asd asd','2018-04-06 23:11:16'),(30,'SYSTEM','2018-04-06','System Shutdown','2018-04-06 23:40:51'),(31,'SYSTEM','2018-04-06','System Start','2018-04-06 23:41:16'),(32,'SYSTEM','2018-04-06','System Shutdown','2018-04-06 23:45:29'),(33,'SYSTEM','2018-04-06','System Start','2018-04-06 23:45:50'),(34,'SYSTEM','2018-04-06','Auto logout called on asd asd','2018-04-06 23:46:24'),(35,'SYSTEM','2018-04-06','Auto logout called on asd asd','2018-04-06 23:52:15'),(36,'SYSTEM','2018-04-06','System Shutdown','2018-04-06 23:57:01'),(37,'SYSTEM','2018-04-06','System Start','2018-04-06 23:57:27');
 /*!40000 ALTER TABLE `system_log` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -887,11 +781,7 @@ CREATE TABLE `system_notification` (
   `is_seen` bit(1) NOT NULL,
   `system_notification_status` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`notification_id`)
-<<<<<<< HEAD
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
-=======
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=latin1;
->>>>>>> 1358a093002d301bcf65572cfb8be5beff365667
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -900,11 +790,7 @@ CREATE TABLE `system_notification` (
 
 LOCK TABLES `system_notification` WRITE;
 /*!40000 ALTER TABLE `system_notification` DISABLE KEYS */;
-<<<<<<< HEAD
-INSERT INTO `system_notification` VALUES (1,'2018-04-05 13:17:10','Update system settings success','System Settings Update','','SYSTEM_BACKUP'),(2,'2018-04-05 13:17:10','Update system settings success','System Settings Update','\0','SYSTEM_BACKUP'),(3,'2018-04-05 13:20:52','System restore success','System Restore','','SYSTEM_BACKUP'),(4,'2018-04-05 13:20:52','System restore success','System Restore','\0','SYSTEM_BACKUP'),(5,'2018-04-05 13:22:19','Update system settings success','System Settings Update','','SYSTEM_BACKUP'),(6,'2018-04-05 13:22:19','Update system settings success','System Settings Update','\0','SYSTEM_BACKUP'),(7,'2018-04-05 13:22:37','Update system settings success','System Settings Update','','SYSTEM_BACKUP'),(8,'2018-04-05 13:22:37','Update system settings success','System Settings Update','\0','SYSTEM_BACKUP'),(9,'2018-04-05 13:24:54','Update system settings success','System Settings Update','','SYSTEM_BACKUP'),(10,'2018-04-05 13:24:54','Update system settings success','System Settings Update','\0','SYSTEM_BACKUP'),(11,'2018-04-05 13:41:12','Update system settings success','System Settings Update','','SYSTEM_BACKUP'),(12,'2018-04-05 13:41:12','Update system settings success','System Settings Update','\0','SYSTEM_BACKUP');
-=======
-INSERT INTO `system_notification` VALUES (1,'2018-04-05 16:46:40','New product has added memes','New Product','','INVENTORY_ADD_PRODUCT'),(2,'2018-04-05 16:55:55','kryssel de leon has ordered','New order','','ORDER_NEW_ORDER'),(3,'2018-04-05 16:58:47','kryssel de leon has paid order# 1','Order paid','','ORDER_PAID'),(4,'2018-04-05 17:11:54','kryssel de leon has received order# 1','Order received','','ORDER_RECEIVED'),(5,'2018-04-05 17:13:52','kryssel de leon has received order# 1','Order received','','ORDER_RECEIVED'),(6,'2018-04-05 17:19:31','kryssel de leon has received order# 1','Order received','','ORDER_RECEIVED'),(7,'2018-04-05 17:21:05','kryssel de leon has received order# 1','Order received','','ORDER_RECEIVED'),(8,'2018-04-05 17:23:33','kryssel de leon has received order# 1','Order received','','ORDER_RECEIVED'),(9,'2018-04-05 17:39:01','kryssel de leon has received order# 1','Order received','','ORDER_RECEIVED'),(10,'2018-04-05 17:41:13','kryssel de leon has received order# 1','Order received','','ORDER_RECEIVED'),(11,'2018-04-05 17:46:27','kryssel de leon has ordered','New order','','ORDER_NEW_ORDER'),(12,'2018-04-05 18:12:47','kryssel de leon has ordered','New order','','ORDER_NEW_ORDER'),(13,'2018-04-05 18:13:53','kryssel de leon has cancelled order# 3','Order cancelled','','ORDER_CANCELLED'),(14,'2018-04-05 18:30:29','Product no. 1 memes stocks has been updated','Update Product Stock','','INVENTORY_UPDATE_STOCK'),(15,'2018-04-05 18:31:50','Product no. 1 memes stocks has been updated','Update Product Stock','','INVENTORY_UPDATE_STOCK'),(16,'2018-04-05 18:40:29','Update system settings success','System Settings Update','','SYSTEM_BACKUP'),(17,'2018-04-05 18:42:32','System restore success','System Restore','\0','SYSTEM_BACKUP'),(18,'2018-04-05 18:47:09','Update system settings success','System Settings Update','\0','SYSTEM_BACKUP');
->>>>>>> 1358a093002d301bcf65572cfb8be5beff365667
+INSERT INTO `system_notification` VALUES (1,'2018-04-06 21:23:30','New product has added Product One','New Product','\0','INVENTORY_ADD_PRODUCT'),(2,'2018-04-06 21:26:45','New product has added Product Two','New Product','\0','INVENTORY_ADD_PRODUCT'),(3,'2018-04-06 21:28:10','New product has added Product three','New Product','\0','INVENTORY_ADD_PRODUCT'),(4,'2018-04-06 21:29:34','New product has added Product','New Product','\0','INVENTORY_ADD_PRODUCT'),(5,'2018-04-06 22:16:31','asd asd has ordered','New order','\0','ORDER_NEW_ORDER'),(6,'2018-04-06 22:54:16','Product no. 1 Product One has been edited','Edited Product','\0','INVENTORY_EDIT_PRODUCT'),(7,'2018-04-06 23:02:57','Product no. 1 Product One has been edited','Edited Product','\0','INVENTORY_EDIT_PRODUCT'),(8,'2018-04-06 23:03:27','Product no. 1 Product One has been edited','Edited Product','\0','INVENTORY_EDIT_PRODUCT'),(9,'2018-04-06 23:43:20','Product no. 1 Product One has been edited','Edited Product','\0','INVENTORY_EDIT_PRODUCT'),(10,'2018-04-06 23:49:12','Product no. 1 Product One has been edited','Edited Product','\0','INVENTORY_EDIT_PRODUCT');
 /*!40000 ALTER TABLE `system_notification` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -929,11 +815,7 @@ CREATE TABLE `system_settings` (
 
 LOCK TABLES `system_settings` WRITE;
 /*!40000 ALTER TABLE `system_settings` DISABLE KEYS */;
-<<<<<<< HEAD
-INSERT INTO `system_settings` VALUES (1,'00:30:00','13:43:00');
-=======
-INSERT INTO `system_settings` VALUES (1,'00:30:00','18:48:00');
->>>>>>> 1358a093002d301bcf65572cfb8be5beff365667
+INSERT INTO `system_settings` VALUES (1,'00:03:00','00:00:00');
 /*!40000 ALTER TABLE `system_settings` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -954,11 +836,7 @@ CREATE TABLE `user_access_log` (
   PRIMARY KEY (`user_access_log_id`),
   KEY `FK4jo8eq6diu8mwg6a3fekhm47y` (`employee_id`),
   CONSTRAINT `FK4jo8eq6diu8mwg6a3fekhm47y` FOREIGN KEY (`employee_id`) REFERENCES `employee` (`id`)
-<<<<<<< HEAD
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
-=======
 ) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
->>>>>>> 1358a093002d301bcf65572cfb8be5beff365667
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -967,11 +845,7 @@ CREATE TABLE `user_access_log` (
 
 LOCK TABLES `user_access_log` WRITE;
 /*!40000 ALTER TABLE `user_access_log` DISABLE KEYS */;
-<<<<<<< HEAD
-INSERT INTO `user_access_log` VALUES (1,'2018-04-05','asd asd has logged in','0:0:0:0:0:0:0:1','13:12:46',0),(2,'2018-04-05','asd asd has logged in','192.168.4.205','13:18:07',1),(3,'2018-04-05','asd asd has logged out','0:0:0:0:0:0:0:1','13:43:17',0);
-=======
-INSERT INTO `user_access_log` VALUES (1,'2018-04-05','kryssel de leon has logged in','0:0:0:0:0:0:0:1','16:45:35',0),(2,'2018-04-05','kryssel de leon has logged in','0:0:0:0:0:0:0:1','17:10:58',0),(3,'2018-04-05','kryssel de leon has logged in','0:0:0:0:0:0:0:1','17:28:33',0),(4,'2018-04-05','kryssel de leon has logged in','0:0:0:0:0:0:0:1','17:39:50',0),(5,'2018-04-05','kryssel de leon has logged in','0:0:0:0:0:0:0:1','18:05:39',0),(6,'2018-04-05','kryssel de leon has logged in','0:0:0:0:0:0:0:1','18:12:53',0),(7,'2018-04-05','kryssel de leon has logged out','0:0:0:0:0:0:0:1','18:39:07',0),(8,'2018-04-05','kryssel de leon has logged in','0:0:0:0:0:0:0:1','18:39:13',0);
->>>>>>> 1358a093002d301bcf65572cfb8be5beff365667
+INSERT INTO `user_access_log` VALUES (1,'2018-04-06','asd asd has logged in','0:0:0:0:0:0:0:1','21:22:02',0),(2,'2018-04-06','asd asd has logged out','0:0:0:0:0:0:0:1','21:29:37',0),(3,'2018-04-06','asd asd has logged in','0:0:0:0:0:0:0:1','22:17:48',0),(4,'2018-04-06','asd asd has logged in','0:0:0:0:0:0:0:1','22:27:59',0),(5,'2018-04-06','asd asd has logged in','0:0:0:0:0:0:0:1','22:53:18',0),(6,'2018-04-06','asd asd has logged in','0:0:0:0:0:0:0:1','23:00:56',0),(7,'2018-04-06','asd asd has logged in','0:0:0:0:0:0:0:1','23:38:34',0),(8,'2018-04-06','asd asd has logged in','0:0:0:0:0:0:0:1','23:48:26',0);
 /*!40000 ALTER TABLE `user_access_log` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -984,8 +858,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
-<<<<<<< HEAD
--- Dump completed on 2018-04-05 13:43:27
-=======
--- Dump completed on 2018-04-05 18:48:43
->>>>>>> 1358a093002d301bcf65572cfb8be5beff365667
+-- Dump completed on 2018-04-07  0:01:07

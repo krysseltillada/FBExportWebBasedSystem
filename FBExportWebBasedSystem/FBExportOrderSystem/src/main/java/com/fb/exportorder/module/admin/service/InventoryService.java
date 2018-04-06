@@ -62,7 +62,8 @@ public interface InventoryService {
 						   String description,
 						   String supplier,
 						   String supplierContactNumber,
-						   String supplierAddress);
+						   String supplierAddress,
+						   boolean update);
 	
 	List<Product> getNewLatestProduct(int records, int offset);
 	int getNewLatestProductCount();

@@ -23,10 +23,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.fb.exportorder.models.Product;
 import com.fb.exportorder.models.ProductStock;
-import com.fb.exportorder.models.SystemLog;
 import com.fb.exportorder.models.customer.Rating;
 import com.fb.exportorder.models.customer.Weight;
-import com.fb.exportorder.models.enums.ActionType;
 import com.fb.exportorder.models.enums.ProductStatus;
 import com.fb.exportorder.models.enums.WeightType;
 import com.fb.exportorder.module.admin.repository.InventoryRepository;
@@ -57,7 +55,8 @@ public class InventoryServiceImpl implements InventoryService {
 								  String description,
 								  String supplier,
 								  String supplierContactNumber,
-								  String supplierAddress) {
+								  String supplierAddress,
+								  boolean update) {
 		
 		List<String> errorMessages = new ArrayList<String>();
 		
@@ -80,15 +79,25 @@ public class InventoryServiceImpl implements InventoryService {
 			
 			if(Double.parseDouble(price) <= 0)
 				errorMessages.add("price must not be less than or equal to zero");
+			
+			if(Double.parseDouble(price) > 5000)
+				errorMessages.add("price must not be greater than 5,000 PHP");
 		} catch (NumberFormatException e) {
 			errorMessages.add("invalid price");
 		}
 		
 		try {
 			
-			if(Double.parseDouble(weight) <= 0)
-				errorMessages.add("weight must not be less than or equal to zero");
-			
+			if(update) {
+				if(Double.parseDouble(weight) < 0)
+					errorMessages.add("weight must not be less than zero");
+				
+				if(Double.parseDouble(weight) > 5000)
+					errorMessages.add("weight must not be greater than 5,000 kg");
+			}else {
+				if(Double.parseDouble(weight) <= 0)
+					errorMessages.add("weight must not be less than or equal to zero");
+			}
 		} catch (NumberFormatException e) {
 			errorMessages.add("invalid weight");
 		}

@@ -92,7 +92,7 @@
                                             
                                         	<c:choose>
                                         		<c:when test = "${not empty activityList}">
-                                        			<a class = "float-right mr-3 mt-1 blue-text clear-all d-none" href = "javascript:void(0)" style = "font-size: 16px;"> Clear all </a>
+                                        			<!-- <a class = "float-right mr-3 mt-1 blue-text clear-all d-none" href = "javascript:void(0)" style = "font-size: 16px;"> Clear all </a> -->
                                         		</c:when>
                                         		<c:otherwise>
                                         			<a class = "float-right mr-3 mt-1 grey-text disabled clear-all d-none" href = "javascript:void(0)" style = "font-size: 16px;"> Clear all </a>
@@ -112,9 +112,9 @@
                                         				<span id = "${activity.activityId}" class="list-group-item list-group-item-action flex-column align-items-start">
 			                                                <div class="d-flex w-100 justify-content-between">
 			                                                    <h5 class="mb-1">${activity.header}</h5>
-			                                                    <button type="button" class="close delete-activity" aria-label="Close">
+			                                                    <!-- <button type="button" class="close delete-activity" aria-label="Close">
 			                                                            <span aria-hidden="true">&times;</span>
-			                                                    </button>
+			                                                    </button> -->
 			                                                </div>
 			
 			                                                <p class="mb-1">${activity.description}</p>

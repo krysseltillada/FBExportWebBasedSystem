@@ -7,7 +7,7 @@
             Notifications
             <i class="fa fa-bell ml-2" aria-hidden="true"></i>
             <c:if test = "${fn:length(notificationList) > 0}">
-            	<a id = "btnClearNotifications" class = "float-right d-none" href = "javascript:void(0)" style = "font-size: 16px;"> Clear all </a>
+            	<!-- <a id = "btnClearNotifications" class = "float-right d-none" href = "javascript:void(0)" style = "font-size: 16px;"> Clear all </a> -->
         	</c:if>
         </h4>
         <hr />
@@ -73,9 +73,9 @@
 											<span class="list-group-item list-group-item-action flex-column align-items-start notification-link pl-4 pr-4">
 												<div class="d-flex w-100 justify-content-between">
 													<h6 class="mb-1"> ${notificationItem.header} </h6>
-													<button type="button" class="close delete-notification" aria-label="Close">
+													<!-- <button type="button" class="close delete-notification" aria-label="Close">
 														<span aria-hidden="true">&times;</span>
-													</button>													
+													</button> -->													
 													<input type = "hidden" id = "notificationId" value = "${notificationItem.notificationId}" />
 												</div>
 												<p class="mb-1">${notificationItem.description} </p>
