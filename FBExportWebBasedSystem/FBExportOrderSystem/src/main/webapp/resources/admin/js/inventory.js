@@ -360,13 +360,6 @@ $(document).ready(function (){
 				className : "border border-white bg-blue text-white rounded"
             },
             {
-                extend : "csvHtml5",
-                title: 'FONG BROS INVENTORY LIST',
-				messageBottom: "List generated: " + moment(new Date()).format("MMMM D, YYYY"),
-				text : '<span>CSV</span> <i class="fa fa-file-o ml-1" aria-hidden = "true"></i>',
-				className : "border border-white bg-blue text-white rounded"
-            },
-            {
                 extend : "pdfHtml5",
                 title: 'FONG BROS INVENTORY LIST',
 				messageBottom: "List generated: " + moment(new Date()).format("MMMM D, YYYY"),

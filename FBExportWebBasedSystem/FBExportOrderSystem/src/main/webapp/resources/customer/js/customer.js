@@ -403,7 +403,7 @@ $(document).ready(function () {
         */
 
         $.ajax({
-            url: "http://ip-api.com/json/72.229.28.185",
+            url: "http://ip-api.com/json/",
             jsonpCallback: "callback",
             dataType: "json",
             success: function( location ) {
