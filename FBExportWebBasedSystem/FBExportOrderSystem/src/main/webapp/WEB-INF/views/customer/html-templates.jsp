@@ -65,9 +65,6 @@
 					<ul class="list-inline" style="font-size: 12px;">
 						<li class="list-inline-item mr-1"> <a class="blue-text edit-address" href="javascript:void(0)"> Edit </a> </li>
 						<li class="list-inline-item mr-1"> | </li>
-						<li class="list-inline-item mr-1"> <a class="blue-text delete-address" href="javascript:void(0)"> Delete </a> </li>
-						<li class="list-inline-item mr-1"> | </li>
-						
 						<a class = "blue-text set-default-shipping-address" href = "javascript:void(0)"> Set default shipping address</a>
 					
 					</ul>
