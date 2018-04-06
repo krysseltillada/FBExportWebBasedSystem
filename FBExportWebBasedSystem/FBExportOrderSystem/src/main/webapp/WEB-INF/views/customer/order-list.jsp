@@ -149,7 +149,7 @@
 					                                                </div>
 					                                                <div class = "col-sm-3">
 					                                                    <strong> TOTAL PRICE: </strong> <br />
-					                                                        <span class = "price">${order.totalPrice}</span> <span>PHP</span>
+					                                                        <span class = "price">{order.totalPrice}</span> <span>PHP</span>
 					                                                </div>
 					                                                <div class = "col-sm-3">
 					                                                    <strong> PAYMENT METHOD: </strong> <br />
@@ -247,7 +247,7 @@
 					                                                                    <tr>
 					                                                                        <th></th>
 					                                                                        <th></th>
-					                                                                        <th>Total: <fmt:formatNumber value = "${order.totalWeight}" maxFractionDigits = "1" /> KILO </th>
+					                                                                        <th>Total: <fmt:formatNumber value = "${order.totalWeight}" minFractionDigits = "1" /> KILO </th>
 					                                                                        <th>Total: <span class = "price">${order.getSubTotal()}</span> <span>PHP</span> </th>
 					                                                                    </tr>
 					
@@ -398,7 +398,7 @@
 																						<tr>
 																							<th></th>
 																							<th></th>
-																							<th>Total: <fmt:formatNumber value = "${order.totalWeight}" maxFractionDigits = "1" /> KILO </th>
+																							<th>Total: <fmt:formatNumber value = "${order.totalWeight}" minFractionDigits = "1" /> KILO </th>
 					                                                                        <th>Total: <span class = "price">${order.getSubTotal()}</span> <span>PHP</span> </th>
 					                                                                        <input type = "hidden" id = "estimatedTax" value = "${order.getTax()}" />
 																						</tr>
@@ -569,7 +569,7 @@
 																				<tr>
 																					<th></th>
 																					<th></th>
-																					<th>Total: <fmt:formatNumber value = "${order.totalWeight}" maxFractionDigits="1" /> KILO </th>
+																					<th>Total: <fmt:formatNumber value = "${order.totalWeight}" minFractionDigits="1" /> KILO </th>
 					                                                                <th>Total: <span class = "price">${order.getSubTotal()}</span> <span>PHP</span> </th>
 																				</tr>
 					
@@ -734,7 +734,7 @@
 																				<tr>
 																					<th></th>
 																					<th></th>
-																					<th>Total: <fmt:formatNumber value = "${order.totalWeight}" maxFractionDigits = "1" /> KILO </th>
+																					<th>Total: <fmt:formatNumber value = "${order.totalWeight}" minFractionDigits = "1" /> KILO </th>
 					                                                                <th>Total: <span class = "price">${order.getSubTotal()}</span> <span>PHP</span> </th>
 																				</tr>
 					
@@ -887,7 +887,7 @@
 																				<tr>
 																					<th></th>
 																					<th></th>
-																					<th>Total: <fmt:formatNumber value = "${order.totalWeight}" maxFractionDigits = "1" /> KILO </th>
+																					<th>Total: <fmt:formatNumber value = "${order.totalWeight}" minFractionDigits = "1" /> KILO </th>
 					                                                                <th>Total: <span class = "price">${order.getSubTotal()}</span> <span>PHP</span> </th>
 																				</tr>
 					
@@ -1052,7 +1052,7 @@
 																				<tr>
 																					<th></th>
 																					<th></th>
-																					<th>Total: <fmt:formatNumber value = "${order.totalWeight}" maxFractionDigits = "1" /> KILO </th>
+																					<th>Total: <fmt:formatNumber value = "${order.totalWeight}" minFractionDigits = "1" /> KILO </th>
 					                                                                <th>Total: <span class = "price">${order.getSubTotal()}</span> <span>PHP</span> </th>
 																				</tr>
 					
@@ -1200,7 +1200,7 @@
 																				<tr>
 																					<th></th>
 																					<th></th>
-																					<th>Total: <fmt:formatNumber value = "${order.totalWeight}" maxFractionDigits="1" /> KILO </th>
+																					<th>Total: <fmt:formatNumber value = "${order.totalWeight}" minFractionDigits="1" /> KILO </th>
 					                                                                <th>Total: <span class = "price">${order.getSubTotal()}</span> <span>PHP</span> </th>
 																				</tr>
 					
@@ -1357,7 +1357,7 @@
 																						<tr>
 																							<th></th>
 																							<th></th>
-																							<th>Total: <fmt:formatNumber value="${order.totalWeight}" maxFractionDigits="1" /> KILO </th>
+																							<th>Total: <fmt:formatNumber value="${order.totalWeight}" minFractionDigits="1" /> KILO </th>
 							                                                                <th>Total: <span class = "price">${order.getSubTotal()}</span> <span>PHP</span> </th>
 																						</tr>
 							
@@ -1514,7 +1514,7 @@
 																						<tr>
 																							<th></th>
 																							<th></th>
-																							<th>Total: <fmt:formatNumber value = "${order.totalWeight}" maxFractionDigits="1"/> KILO </th>
+																							<th>Total: <fmt:formatNumber value = "${order.totalWeight}" minFractionDigits="1"/> KILO </th>
 							                                                                <th>Total: <span class = "price">${order.getSubTotal()}</span> <span>PHP</span> </th>
 																						</tr>
 							
