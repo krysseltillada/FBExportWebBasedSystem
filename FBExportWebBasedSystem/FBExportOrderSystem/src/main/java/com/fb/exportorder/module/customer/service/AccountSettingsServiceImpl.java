@@ -99,7 +99,7 @@ public class AccountSettingsServiceImpl implements AccountSettingsService {
 
 		}
 		
-		if (StringUtils.isNotBlank(newPassword) && StringUtils.isNotBlank(oldPassword)) {
+		if (StringUtils.isNotBlank(newPassword) || StringUtils.isNotBlank(oldPassword)) {
 			if (!passwordEncoder.matches(oldPassword, password)) {
 				errorMessages.add("invalid old password");
 			} else {

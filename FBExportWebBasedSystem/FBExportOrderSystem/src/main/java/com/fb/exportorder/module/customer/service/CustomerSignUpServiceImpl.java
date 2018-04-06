@@ -127,6 +127,7 @@ public class CustomerSignUpServiceImpl implements CustomerSignUpService {
 		}
 		
 		if (StringUtils.isNotBlank(recaptcha)) {
+			
  		
 			String recaptchaMessage = googleRecaptchaService.verifyRecaptcha(ip, recaptcha);
 			
@@ -134,6 +135,8 @@ public class CustomerSignUpServiceImpl implements CustomerSignUpService {
 				errorMessages.add("Verify you're a human");
 			}
 		
+		} else {
+			errorMessages.add("Verify your're a human");
 		}
 		
 		return errorMessages;

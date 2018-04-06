@@ -58,7 +58,7 @@ public class SignUpController {
 			 				@RequestParam("country-code") String countryCode,
 			 				@RequestParam("phone-number") String phoneNumber,
 			 				@RequestParam("email-address") String emailAddress, 
-			 				@RequestParam(name = "g-recaptcha-response", required=false) String recaptcha, Model model, HttpServletRequest request, RedirectAttributes redirectAttributes) {
+			 				@RequestParam(name = "g-recaptcha-response") String recaptcha, Model model, HttpServletRequest request, RedirectAttributes redirectAttributes) {
 		
 		Customer newCustomer = new Customer();
 		Address customerAddress = new Address();

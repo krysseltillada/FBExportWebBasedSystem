@@ -268,7 +268,7 @@ public class OrderServiceImpl implements OrderService {
 	
 		removeShippingIfExistsFromOrder(order);
 		
-		order.setMessage(reason);
+		order.setReason(reason);
 		order.setOrderStatus(OrderStatus.REJECTED);
 		order.setDateReceived(null);
 		order.setDatePaid(null);

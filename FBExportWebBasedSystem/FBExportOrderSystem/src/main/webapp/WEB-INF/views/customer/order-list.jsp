@@ -149,7 +149,7 @@
 					                                                </div>
 					                                                <div class = "col-sm-3">
 					                                                    <strong> TOTAL PRICE: </strong> <br />
-					                                                        <span class = "price">{order.totalPrice}</span> <span>PHP</span>
+					                                                        <span class = "price">${order.totalPrice}</span> <span>PHP</span>
 					                                                </div>
 					                                                <div class = "col-sm-3">
 					                                                    <strong> PAYMENT METHOD: </strong> <br />
