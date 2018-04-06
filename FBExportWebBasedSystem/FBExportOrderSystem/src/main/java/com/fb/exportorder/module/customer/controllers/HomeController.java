@@ -111,8 +111,9 @@ public class HomeController {
 	@ResponseBody
 	public String removeToCart(@RequestParam String itemId, HttpSession session) {
 
+		
 		customerService.removeToCart(customerService.getItemById(Long.parseLong(itemId)), 
-																 (long)session.getAttribute("customerId"));
+									(long)session.getAttribute("customerId"));
 		
 		return "";
 	}

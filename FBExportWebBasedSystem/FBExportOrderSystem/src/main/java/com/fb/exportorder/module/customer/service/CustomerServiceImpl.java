@@ -22,6 +22,7 @@ import com.fb.exportorder.models.customer.Customer;
 import com.fb.exportorder.models.customer.Item;
 import com.fb.exportorder.models.customer.Notification;
 import com.fb.exportorder.models.customer.Order;
+import com.fb.exportorder.models.customer.Weight;
 import com.fb.exportorder.module.customer.repository.ActivityRepository;
 import com.fb.exportorder.module.customer.repository.CustomerRepository;
 import com.fb.exportorder.module.customer.repository.ItemRepository;
@@ -126,8 +127,28 @@ public class CustomerServiceImpl implements CustomerService {
 
 		Customer currentCustomer = customerRepository.findOne(customerId);
 		
-		currentCustomer.getCart()
-					   .addItem(item);
+		List<Item> items = currentCustomer.getCart().getItems();
+		System.out.println(items);
+		boolean itemFound = false;
+		if(items != null) {
+			for(Item i : items) {
+				if(i.getProduct().getProductId() == item.getProduct().getProductId()) {
+					double priceAdded = i.getPrice() + item.getPrice();
+					i.setPrice(priceAdded);
+					
+					double weightAdded = i.getWeight().getWeight() + item.getWeight().getWeight();
+					i.getWeight().setWeight(weightAdded);
+					
+					itemFound = true;
+					break;
+				
+				}
+			}
+		}
+		
+		
+		if(!itemFound)
+			currentCustomer.getCart().addItem(item);
 		
 		Cart saveCart = customerRepository.save(currentCustomer).getCart();  
 		Item currentItemAdded = saveCart.getItems().get(saveCart.getItems().size() - 1);
@@ -139,13 +160,12 @@ public class CustomerServiceImpl implements CustomerService {
 	@Override
 	public void removeToCart(Item item, long customerId) {
 		
-		Customer currentCustomer = customerRepository.findOne(customerId);
+		Customer customer = customerRepository.findOne(customerId); 
 		
-		currentCustomer.getCart()
-					   .removeItem(item);
-					   
+		customer.getCart()
+				.getItems().remove(item);
 		
-		customerRepository.save(currentCustomer).getCart();  
+		customerRepository.save(customer);
 		
 	}
 

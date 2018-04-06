@@ -32,7 +32,7 @@ $(function () {
                 "hideDuration": "1000",
                 "timeOut": "6000",
                 "extendedTimeOut": "1000",
-                "showEasing": "swing",
+                "convEasing": "swing",
                 "hideEasing": "linear",
                 "showMethod": "fadeIn",
                 "hideMethod": "fadeOut"
@@ -109,7 +109,6 @@ $(document).ready(function () {
 
     var updateProductCartInfo = function () {
 
-        var uniqueProductId = new Set();
 
         var $productCartItemLists = $("div#shoppingModalCart div.modal-body>table>tbody");
         var $productCartTotal = $("div.shopping-cart-total").children().eq(1);
@@ -129,20 +128,15 @@ $(document).ready(function () {
 
         _.each($productCartItemLists.children(), function (productCartItem, i) {
         
-            uniqueProductId.add($(productCartItem).find(".product-id").val());
 
             var $productCartItem = $(productCartItem).children().eq(2);
             totalPrice += accounting.unformat($productCartItem.text());
 
         });
 
-        uniqueProductId.forEach(function (val) {
+   
 
-            console.log($("div#shoppingModalCart div.modal-body>table").find(".product-id[value="+ val +"]").closest("tr").html());
-
-        });
-
-        $productCartTotal.text(formatMoney(totalPrice, currentCurrency, "%s%v"));
+        $productCartTotal.text(formatMoney(totalPrice, currentCurrency, "%v %s"));
 
         
         if (itemCount > 0) {
@@ -166,8 +160,9 @@ $(document).ready(function () {
         	if(cartItem.productId == $(this).find(".product-id").val()){
         		var arr = $(this).find(".productPriceCart").html().split(" ");
         		var cartPrice = cartItem.totalPrice.split(" ");
+        		var addedPrice = Number(accounting.unformat(arr[0])) + Number(accounting.unformat(cartPrice[0]));
         		
-        		$(this).find(".productPriceCart").html(Number(arr[0]) + Number(cartPrice[0]) + " " + cartPrice[1]);
+        		$(this).find(".productPriceCart").html(formatMoney(addedPrice, arr[1], "%v %s"));
         		$(this).find(".productWeightCart").html(Number($(this).find(".productWeightCart").html()) + Number(cartItem.totalWeight));
         		$(this).find(".productWeightType").html(cartItem.weightType);
         		foundItem = true;
@@ -522,7 +517,7 @@ $(document).ready(function () {
                                       
                                         _.each($("div#shoppingModalCart div.modal-body>table>tbody").children(), function (productCartItem, i) {
 
-                                            var $productCartItem = $(productCartItem).children().eq(2);
+                                            var $productCartItem = $(productCartItem).children().eq(2).find(".productPriceCart");
                                             $productCartItem.html(formatMoney(fx($productCartItem.html()).from("PHP").to(currentCurrency), currentCurrency, "%v %s"));
                                         });
 

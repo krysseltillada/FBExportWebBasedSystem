@@ -111,7 +111,7 @@
 
                                                 <div class = "col-md-6">
 
-                                                    <label> <strong> Weight</strong> </label>
+                                                    <label> <strong> Weight Type </strong> </label>
 
                                                 </div>
 
@@ -133,7 +133,7 @@
                                             <div class = "row">
 
                                                 <div class = "col-md-6">
-                                                    <label> <strong> Quantity: </strong> </label>
+                                                    <label> <strong> Weight: </strong> </label>
                                                 </div>
 
                                                 <div class = "col-md-6">

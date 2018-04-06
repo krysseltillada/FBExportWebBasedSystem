@@ -155,6 +155,9 @@ $(document).ready(function () {
 
                             $(".productGridList:eq(1) .card:last .btnProductItemAddToCart").click(function () {
                                 var $card = $(event.currentTarget).parent().parent().parent();
+                                
+                                $card.find("#real-price-approx").val(basePriceToCurrentPrice);
+                                
                                 var $cardBody = $card.find("div.card-body");
 
                                 var $spansHeaderInfo = $card.children("span");

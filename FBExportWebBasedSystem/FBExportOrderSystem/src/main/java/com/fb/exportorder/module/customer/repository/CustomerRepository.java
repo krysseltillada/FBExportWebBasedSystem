@@ -57,4 +57,6 @@ public interface CustomerRepository
 		   nativeQuery = true)
 	List<Object[]> getNotificationsByCustomerId(@Param("id") long customerId);
 	
+	
+	
 }
