@@ -36,7 +36,8 @@ $(document).ready(function () {
                                     "Pending": "#FFC107",
                                     });
 
-    $(".btn-view-reason").click(function () {
+    $("#orderTable").on("click", ".btn-view-reason", function () {
+        alertify.reset();
         alertify.alert("reason: " + $(this).attr("data-value"));
         $(".alertify").css("z-index", "10");
     });
@@ -154,8 +155,6 @@ $(document).ready(function () {
 
                                     switch (orderStatus) {
                                         case  "Approved":
-
-                                            console.log(oid);
 
                                             $.post("/FBExportSystem/admin/orders/checkShippingExists", {
                                                 orderId : oid
@@ -724,25 +723,21 @@ $(document).ready(function () {
 
                                                             var $orderHeader = $dropDownSelectButton.closest("h6");
 
-                                                            if ($orderHeader.parent().find(">small").length > 0)
+                                                            if ($orderHeader.parent().find(">small").length > 0) 
                                                                     $orderHeader.parent().find(">small").remove();
                                                             
-                                                            $orderHeader.prev().append('<small>' +
+                                                            
+                                                            $orderHeader.prev().after('<small>' +
                                                                                        '<a class="btn-view-reason" href="javascript:void(0)" data-value="' + val + '"> (view reason) </a>' + 
                                                                                        '</small>');
-
-                                                            $orderHeader.prev().find(".btn-view-reason").click(function () {
-                                                                                            console.log($(this).closest("small").html());
-                                                                                            alertify.alert("reason: " + $(this).attr("data-value"));
-                                                                                            $(".alertify").css("z-index", "10");
-                                                                                        });;
-
 
                                                             iziToast.success({
                                                                 timeout : 2000,
                                                                 progressBar : false,
                                                                 message : "Order mark as returned"
                                                             });
+
+                                                            table.rows().invalidate();
 
                                                         } else {
                                                             alertify.reset();
@@ -833,10 +828,16 @@ $(document).ready(function () {
                                            (order.orderStatus == 'REFUND') ? "Refund" : "Returned"; 
 
                     order.totalPrice = "PHP" + order.totalPrice.toFixed(2);
+                    order.totalWeight = order.totalWeight.toFixed(1);
                     order.dateOrdered = moment(order.dateOrdered).format("MMMM D, YYYY");
 
                     if (order.shipping) 
                         order.shipping.expectedDate = moment(order.shipping.expectedDate).format("MMMM D, YYYY");
+
+                    if (order.paid)
+                        order.datePaid = moment(order.datePaid).format("MMMM D, YYYY");
+
+                    console.log(order.datePaid);
 
                     table.row.add([
                         '<td></td>',
@@ -847,7 +848,7 @@ $(document).ready(function () {
                                 '<input id = "orderId-' + order.orderId + '" type = "hidden" />' + 
                             '</h3>' +
                             '<span style = "font-size: 13px;">' +
-                                '<strong> by: </strong> <strong> <a href = "#">' + order.customer.firstname + ' ' + order.customer.middlename  + ' ' + order.customer.lastname + '</a> </strong>' +
+                                '<strong> by: </strong> <strong> ' + order.customer.firstname + ' ' + order.customer.middlename  + ' ' + order.customer.lastname + ' </strong>' +
                                 '<br />' +
                                 '<strong> Payment: </strong>' + 
                                 ((order.paymentMethod == 'CASH_ON_DELIVERY') ? 'Cash on delivery <i class="fa fa-truck ml-1" aria-hidden="true"></i>' :
@@ -953,6 +954,13 @@ $(document).ready(function () {
 
                                 '</span>' +
                                 '<br />' +
+
+                                '<strong> Paid: </strong> <br />' +
+                                '<span style = "font-size: 12px;">' +
+
+                                    ((order.paid) ? order.datePaid : 'None') +
+
+                                '</span>' +
                             '</span>' +
                         '</td>'
                     ]);
@@ -994,26 +1002,13 @@ $(document).ready(function () {
                                                         "Received",
                                                         "Returned",
                                                         "Cancelled",
-                                                        "Refund",
-                                                        "Paid"
+                                                        "Refund"
                                                     ];
 
-                                                    // PENDING, x
-                                                    // APPROVED,
-                                                    // REJECTED,
-                                                    // RECEIVED, x
-                                                    // TO_SHIP, 
-                                                    // PAID, x
-                                                    // RETURNED, x
-                                                    // CANCELLED x
-                                                    // REFUND x
-                                                
                                                     if (!nonPromptStatus.includes(orderStatus)) {
 
                                                         switch (orderStatus) {
                                                             case  "Approved":
-
-                                                                console.log(oid);
 
                                                                 $.post("/FBExportSystem/admin/orders/checkShippingExists", {
                                                                     orderId : oid
@@ -1025,54 +1020,58 @@ $(document).ready(function () {
                                                                                 .defaultValue("your order has been approved")  
                                                                                 .prompt("provide a reminder message to the customer", function (val, event) {
                                                                                     
-                                                                                    
-                                                                                    console.log(val);
-                                                                                    console.log("orderStatus: " + orderStatus)
-                                                                                    console.log("orderColor: " + orderStatusColors.get(orderStatus));
 
-                                                                                    console.log($btnOrderStatus);
-                                                                                    $btnOrderStatus.attr("disabled", "disabled");
+                                                                                    if ($.trim(val)) {
 
-                                                                                    iziToast.show({
-                                                                                            message: 'approving order...',
-                                                                                            icon : "",
-                                                                                            timeout : false,
-                                                                                            close : false,
-                                                                                            onOpening : function (instance, toast) {
+                                                                                        $btnOrderStatus.attr("disabled", "disabled");
 
-                                                                                            setTimeout(function () {
+                                                                                        iziToast.show({
+                                                                                                message: 'approving order...',
+                                                                                                icon : "",
+                                                                                                timeout : false,
+                                                                                                close : false,
+                                                                                                onOpening : function (instance, toast) {
 
-                                                                                                $.post("/FBExportSystem/admin/orders/markApproved", {
-                                                                                                    id : oid,
-                                                                                                    message : val
-                                                                                                }, function (response) {
+                                                                                                setTimeout(function () {
 
-                                                                                                    $(toast).fadeOut("slow", function () {
-                                                                                                            $(this).remove();
+                                                                                                    $.post("/FBExportSystem/admin/orders/markApproved", {
+                                                                                                        id : oid,
+                                                                                                        message : val
+                                                                                                    }, function (response) {
+
+                                                                                                        $(toast).fadeOut("slow", function () {
+                                                                                                                $(this).remove();
+                                                                                                        });
+
+                                                                                                        iziToast.success({
+                                                                                                                timeout : 2000,
+                                                                                                                progressBar : false,
+                                                                                                                message : "order is approved"
+                                                                                                        });
+
+                                                                                                        $btnOrderStatus.removeAttr("disabled");
+
+                                                                                                        $row.find("td:eq(6) span span:eq(2)").html("None");
+                                                                                                        $row.find("td:eq(3) small").remove();
+
+                                                                                                        $dropDownSelectButton.html(orderStatus);
+
+                                                                                                        $dropDownSelectButton.css("background-color", orderStatusColors.get(orderStatus));
+                                                                                                        $dropDownSelectButton.css("border-color", orderStatusColors.get(orderStatus));
+
+                                                                                                        table.row($trThis).cell($trThis.find("td:eq(3)")).data($trThis.find("td:eq(3)").html());
+                                                                                                        table.rows.invalidate();
                                                                                                     });
 
-                                                                                                    iziToast.success({
-                                                                                                            timeout : 2000,
-                                                                                                            progressBar : false,
-                                                                                                            message : "order is approved"
-                                                                                                    });
+                                                                                                }, 1000);
 
-                                                                                                    $btnOrderStatus.removeAttr("disabled");
+                                                                                        }});
 
-                                                                                                    console.log(oid);
-
-                                                                                                    $dropDownSelectButton.html(orderStatus);
-
-                                                                                                    $dropDownSelectButton.css("background-color", orderStatusColors.get(orderStatus));
-                                                                                                    $dropDownSelectButton.css("border-color", orderStatusColors.get(orderStatus));
-
-                                                                                                    table.row($trThis).cell($trThis.find("td:eq(3)")).data($trThis.find("td:eq(3)").html());
-                                                                                                    table.rows.invalidate();
-                                                                                                });
-
-                                                                                            }, 1000);
-
-                                                                                    }});
+                                                                                    } else {
+                                                                                        alertify.reset();
+                                                                                        alertify.alert("please provide a message");
+                                                                                        $(".alertify").css("z-index", "10");
+                                                                                    }
 
                                                                         });
 
@@ -1089,60 +1088,67 @@ $(document).ready(function () {
                                                                                             .defaultValue("your order has been approved")  
                                                                                             .prompt("provide a reminder message to the customer", function (val, event) {
                                                                                                 
-                                                                                                
-                                                                                                console.log(val);
 
-                                                                                                console.log(orderStatusColors.get(orderStatus));
+                                                                                                if ($.trim(val)) {
 
-                                                                                                $btnOrderStatus.attr("disabled", "disabled");
+                                                                                                    $btnOrderStatus.attr("disabled", "disabled");
 
-                                                                                                iziToast.show({
-                                                                                                        message: 'approving order...',
-                                                                                                        icon : "",
-                                                                                                        timeout : false,
-                                                                                                        close : false,
-                                                                                                        onOpening : function (instance, toast) {
+                                                                                                    iziToast.show({
+                                                                                                            message: 'approving order...',
+                                                                                                            icon : "",
+                                                                                                            timeout : false,
+                                                                                                            close : false,
+                                                                                                            onOpening : function (instance, toast) {
 
-                                                                                                        setTimeout(function () {
+                                                                                                            setTimeout(function () {
 
-                                                                                                            $.post("/FBExportSystem/admin/orders/markApproved", {
-                                                                                                                id : oid,
-                                                                                                                message : val
-                                                                                                            }, function (response) {
+                                                                                                                $.post("/FBExportSystem/admin/orders/markApproved", {
+                                                                                                                    id : oid,
+                                                                                                                    message : val
+                                                                                                                }, function (response) {
 
-                                                                                                                $(toast).fadeOut("slow", function () {
-                                                                                                                        $(this).remove();
+                                                                                                                    $(toast).fadeOut("slow", function () {
+                                                                                                                            $(this).remove();
+                                                                                                                    });
+
+                                                                                                                    iziToast.success({
+                                                                                                                            timeout : 2000,
+                                                                                                                            progressBar : false,
+                                                                                                                            message : "order is approved"
+                                                                                                                    });
+
+                                                                                                                    $row.find("#shipmentStatus").html("Shipment status not defined.");
+                                                                                                                    $row.find("td:eq(6) span span:eq(1)").html("None");
+                                                                                                                    $row.find("td:eq(3) small").remove();
+
+                                                                                                                    $nextSiblingRow.find("ul.nav-tabs>li:eq(1)").remove();
+                                                                                                                    $nextSiblingRow.find("div.tab-content>div:eq(1)").remove();
+
+                                                                                                                    $nextSiblingRow.find("ul.nav-tabs>li:eq(0) a").tab("show");
+
+                                                                                                                    $btnOrderStatus.removeAttr("disabled");
+
+                                                                                                                    $row.find("td:eq(6) span span:eq(2)").html("None");
+
+                                                                                                                    $dropDownSelectButton.html(orderStatus);
+
+                                                                                                                    $dropDownSelectButton.css("background-color", orderStatusColors.get(orderStatus));
+                                                                                                                    $dropDownSelectButton.css("border-color", orderStatusColors.get(orderStatus));
+                                                                                                                    
+                                                                                                                    table.row($trThis).cell($trThis.find("td:eq(3)")).data($trThis.find("td:eq(3)").html());
+                                                                                                                    table.rows.invalidate();
+
                                                                                                                 });
 
-                                                                                                                iziToast.success({
-                                                                                                                        timeout : 2000,
-                                                                                                                        progressBar : false,
-                                                                                                                        message : "order is approved"
-                                                                                                                });
+                                                                                                            }, 1000);
 
-                                                                                                                $row.find("#shipmentStatus").html("Shipment status not defined.");
-                                                                                                                $row.find("td:eq(6) span span:eq(1)").html("None");
+                                                                                                    }});
 
-                                                                                                                $nextSiblingRow.find("ul.nav-tabs>li:eq(1)").remove();
-                                                                                                                $nextSiblingRow.find("div.tab-content>div:eq(1)").remove();
-
-                                                                                                                $nextSiblingRow.find("ul.nav-tabs>li:eq(0) a").tab("show");
-
-                                                                                                                $btnOrderStatus.removeAttr("disabled");
-
-                                                                                                                $dropDownSelectButton.html(orderStatus);
-
-                                                                                                                $dropDownSelectButton.css("background-color", orderStatusColors.get(orderStatus));
-                                                                                                                $dropDownSelectButton.css("border-color", orderStatusColors.get(orderStatus));
-                                                                                                                
-                                                                                                                table.row($trThis).cell($trThis.find("td:eq(3)")).data($trThis.find("td:eq(3)").html());
-                                                                                                                table.rows.invalidate();
-
-                                                                                                            });
-
-                                                                                                        }, 1000);
-
-                                                                                                }});
+                                                                                                } else {
+                                                                                                    alertify.reset();
+                                                                                                    alertify.alert("please provide a message");
+                                                                                                    $(".alertify").css("z-index", "10");
+                                                                                                }
 
                                                                                     });
 
@@ -1168,50 +1174,61 @@ $(document).ready(function () {
                                                                                 .defaultValue("your order has been rejected")  
                                                                                 .prompt("provide a reason for rejection to the customer", function (val, event) {
 
-                                                                                    $btnOrderStatus.attr("disabled", "disabled");
-                                                                                    
-                                                                                    iziToast.show({
-                                                                                            message: 'rejecting order...',
-                                                                                            icon : "",
-                                                                                            timeout : false,
-                                                                                            close : false,
-                                                                                            onOpening : function (instance, toast) {
+                                                                                    if ($.trim(val)) {
+ 
+                                                                                        $btnOrderStatus.attr("disabled", "disabled");
+                                                                                        
+                                                                                        iziToast.show({
+                                                                                                message: 'rejecting order...',
+                                                                                                icon : "",
+                                                                                                timeout : false,
+                                                                                                close : false,
+                                                                                                onOpening : function (instance, toast) {
 
-                                                                                                setTimeout(function () {
+                                                                                                    setTimeout(function () {
 
-                                                                                                $.post("/FBExportSystem/admin/orders/markRejected", {
-                                                                                                        id : oid,
-                                                                                                        reason : val
-                                                                                                    }, function (response) {
+                                                                                                    $.post("/FBExportSystem/admin/orders/markRejected", {
+                                                                                                            id : oid,
+                                                                                                            reason : val
+                                                                                                        }, function (response) {
 
-                                                                                                        $(toast).fadeOut("slow", function () {
-                                                                                                                $(this).remove();
+                                                                                                            $(toast).fadeOut("slow", function () {
+                                                                                                                    $(this).remove();
+                                                                                                            });
+
+                                                                                                            iziToast.success({
+                                                                                                                    timeout : 2000,
+                                                                                                                    progressBar : false,
+                                                                                                                    message : "order is rejected"
+                                                                                                            });
+
+                                                                                                            $btnOrderStatus.removeAttr("disabled");
+
+                                                                                                            $dropDownSelectButton.html(orderStatus);
+                                                                                                            $row.find("td:eq(6) span span:eq(2)").html("None");
+                                                                                                            $row.find("td:eq(3) small").remove();
+
+                                                                                                            $dropDownSelectButton.css("background-color", orderStatusColors.get(orderStatus));
+                                                                                                            $dropDownSelectButton.css("border-color", orderStatusColors.get(orderStatus));
+
+                                                                                                            table.row($trThis).cell($trThis.find("td:eq(3)")).data($trThis.find("td:eq(3)").html());
+                                                                                                            table.rows.invalidate();
+
                                                                                                         });
 
-                                                                                                        iziToast.success({
-                                                                                                                timeout : 2000,
-                                                                                                                progressBar : false,
-                                                                                                                message : "order is rejected"
-                                                                                                        });
+                                                                                                    }, 1000);
 
-                                                                                                        $btnOrderStatus.removeAttr("disabled");
+                                                                                                }
+                                                                                        });
 
-                                                                                                        $dropDownSelectButton.html(orderStatus);
-
-                                                                                                        $dropDownSelectButton.css("background-color", orderStatusColors.get(orderStatus));
-                                                                                                        $dropDownSelectButton.css("border-color", orderStatusColors.get(orderStatus));
-
-                                                                                                        table.row($trThis).cell($trThis.find("td:eq(3)")).data($trThis.find("td:eq(3)").html());
-                                                                                                        table.rows.invalidate();
-
-                                                                                                    });
-
-                                                                                                }, 1000);
-
-                                                                                            }
-                                                                                    });
+                                                                                    } else {
+                                                                                        alertify.reset();
+                                                                                        alertify.alert("please provide a message");
+                                                                                        $(".alertify").css("z-index", "10");
+                                                                                    }
 
                                                                         });
+                                                                                
 
                                                                         $(".alertify").css("z-index", "10");
 
@@ -1226,55 +1243,65 @@ $(document).ready(function () {
                                                                                             .defaultValue("your order has been rejected")  
                                                                                             .prompt("provide a reason for rejection to the customer", function (val, event) {
 
-                                                                                                $btnOrderStatus.attr("disabled", "disabled");
+                                                                                                if ($.trim(val)) {
                                                                                                 
-                                                                                                iziToast.show({
-                                                                                                        message: 'rejecting order...',
-                                                                                                        icon : "",
-                                                                                                        timeout : false,
-                                                                                                        close : false,
-                                                                                                        onOpening : function (instance, toast) {
+                                                                                                    $btnOrderStatus.attr("disabled", "disabled");
+                                                                                                    
+                                                                                                    iziToast.show({
+                                                                                                            message: 'rejecting order...',
+                                                                                                            icon : "",
+                                                                                                            timeout : false,
+                                                                                                            close : false,
+                                                                                                            onOpening : function (instance, toast) {
 
-                                                                                                            setTimeout(function () {
+                                                                                                                setTimeout(function () {
 
-                                                                                                            $.post("/FBExportSystem/admin/orders/markRejected", {
-                                                                                                                    id : oid,
-                                                                                                                    reason : val
-                                                                                                                }, function (response) {
+                                                                                                                $.post("/FBExportSystem/admin/orders/markRejected", {
+                                                                                                                        id : oid,
+                                                                                                                        reason : val
+                                                                                                                    }, function (response) {
 
-                                                                                                                    $(toast).fadeOut("slow", function () {
-                                                                                                                            $(this).remove();
+                                                                                                                        $(toast).fadeOut("slow", function () {
+                                                                                                                                $(this).remove();
+                                                                                                                        });
+
+                                                                                                                        iziToast.success({
+                                                                                                                                timeout : 2000,
+                                                                                                                                progressBar : false,
+                                                                                                                                message : "order is rejected"
+                                                                                                                        });
+
+                                                                                                                        $row.find("#shipmentStatus").html("Shipment status not defined.");
+                                                                                                                        $row.find("td:eq(6) span span:eq(1)").html("None");
+
+                                                                                                                        $nextSiblingRow.find("ul.nav-tabs>li:eq(1)").remove();
+                                                                                                                        $nextSiblingRow.find("div.tab-content>div:eq(1)").remove();
+
+                                                                                                                        $nextSiblingRow.find("ul.nav-tabs>li:eq(0) a").tab("show");
+
+                                                                                                                        $btnOrderStatus.removeAttr("disabled");
+
+                                                                                                                        $row.find("td:eq(6) span span:eq(2)").html("None");
+                                                                                                                        $row.find("td:eq(3) small").remove();
+                                                                                                                        $dropDownSelectButton.html(orderStatus);
+
+                                                                                                                        $dropDownSelectButton.css("background-color", orderStatusColors.get(orderStatus));
+                                                                                                                        $dropDownSelectButton.css("border-color", orderStatusColors.get(orderStatus));
+                                                                                                                        
+                                                                                                                        table.row($trThis).cell($trThis.find("td:eq(3)")).data($trThis.find("td:eq(3)").html());
+                                                                                                                        table.rows.invalidate();
                                                                                                                     });
 
-                                                                                                                    iziToast.success({
-                                                                                                                            timeout : 2000,
-                                                                                                                            progressBar : false,
-                                                                                                                            message : "order is rejected"
-                                                                                                                    });
+                                                                                                                }, 1000);
 
-                                                                                                                    $row.find("#shipmentStatus").html("Shipment status not defined.");
-                                                                                                                    $row.find("td:eq(6) span span:eq(1)").html("None");
+                                                                                                            }
+                                                                                                    });
 
-                                                                                                                    $nextSiblingRow.find("ul.nav-tabs>li:eq(1)").remove();
-                                                                                                                    $nextSiblingRow.find("div.tab-content>div:eq(1)").remove();
-
-                                                                                                                    $nextSiblingRow.find("ul.nav-tabs>li:eq(0) a").tab("show");
-
-                                                                                                                    $btnOrderStatus.removeAttr("disabled");
-
-                                                                                                                    $dropDownSelectButton.html(orderStatus);
-
-                                                                                                                    $dropDownSelectButton.css("background-color", orderStatusColors.get(orderStatus));
-                                                                                                                    $dropDownSelectButton.css("border-color", orderStatusColors.get(orderStatus));
-                                                                                                                    
-                                                                                                                    table.row($trThis).cell($trThis.find("td:eq(3)")).data($trThis.find("td:eq(3)").html());
-                                                                                                                    table.rows.invalidate();
-                                                                                                                });
-
-                                                                                                            }, 1000);
-
-                                                                                                        }
-                                                                                                });
+                                                                                                } else {
+                                                                                                    alertify.reset();
+                                                                                                    alertify.alert("please provide a message");
+                                                                                                    $(".alertify").css("z-index", "10");
+                                                                                                }
 
                                                                                     });
 
@@ -1331,6 +1358,8 @@ $(document).ready(function () {
 
                                                                                             $dropDownSelectButton.html(orderStatus);
 
+                                                                                            $row.find("td:eq(3) small").remove();
+
                                                                                             $dropDownSelectButton.css("background-color", orderStatusColors.get(orderStatus));
                                                                                             $dropDownSelectButton.css("border-color", orderStatusColors.get(orderStatus));
 
@@ -1351,6 +1380,13 @@ $(document).ready(function () {
 
                                                                 
                                                                 
+                                                            break;
+                                                            case "Paid": 
+                                             
+                                                                $("#paidDatePickerModal #paidDatePicker").val("");
+                                                                $("#paidDatePickerModal>#orderModalId").val(oid);
+                                                                $("#paidDatePickerModal").modal("show");
+
                                                             break;
                                                         }
 
@@ -1396,12 +1432,16 @@ $(document).ready(function () {
 
                                                                                                 $dropDownSelectButton.html(orderStatus);
 
+                                                                                                $row.find("td:eq(6) span span:eq(2)").html("None");
+                                                                                                $row.find("td:eq(3) small").remove();
+
                                                                                                 $dropDownSelectButton.css("background-color", orderStatusColors.get(orderStatus));
                                                                                                 $dropDownSelectButton.css("border-color", orderStatusColors.get(orderStatus));
 
                                                                                                 console.log(oid);
                                                                                                 
                                                                                                 table.row($trThis).cell($trThis.find("td:eq(3)")).data($trThis.find("td:eq(3)").html());
+                                                                                                table.row($trThis).cell($trThis.find("td:eq(6)")).data($trThis.find("td:eq(6)").html());
                                                                                                 table.rows().invalidate();
 
                                                                                             });
@@ -1442,6 +1482,8 @@ $(document).ready(function () {
 
                                                                                                             $row.find("#shipmentStatus").html("Shipment status not defined.");
                                                                                                             $row.find("td:eq(6) span span:eq(1)").html("None");
+                                                                                                            $row.find("td:eq(6) span span:eq(2)").html("None");
+                                                                                                            $row.find("td:eq(3) small").remove();
 
                                                                                                             $nextSiblingRow.find("ul.nav-tabs>li:eq(1)").remove();
                                                                                                             $nextSiblingRow.find("div.tab-content>div:eq(1)").remove();
@@ -1456,6 +1498,7 @@ $(document).ready(function () {
                                                                                                             $dropDownSelectButton.css("border-color", orderStatusColors.get(orderStatus));
 
                                                                                                             table.row($trThis).cell($trThis.find("td:eq(3)")).data($trThis.find("td:eq(3)").html());
+                                                                                                            table.row($trThis).cell($trThis.find("td:eq(6)")).data($trThis.find("td:eq(6)").html());
                                                                                                             table.rows().invalidate();
 
                                                                                                         });
@@ -1471,7 +1514,96 @@ $(document).ready(function () {
                                                                     }
                                                             });
 
-                                                        } 
+                                                        } else if (orderStatus == "Received") {
+                                                            $btnOrderStatus.attr("disabled", "disabled");
+
+                                                            iziToast.show({
+                                                                message: "Marking as received...",
+                                                                icon : "",
+                                                                timeout : false,
+                                                                close : false,
+                                                                onOpening : function (instance, toast) {
+
+                                                                    setTimeout(function () {
+                                                                
+                                                                        $.post("/FBExportSystem/admin/orders/markReceived", {
+                                                                            id : oid
+                                                                        }, function (response) {
+
+                                                                            $(toast).fadeOut("slow", function () {
+                                                                                    $(this).remove();
+                                                                            });
+
+                                                                            iziToast.success({
+                                                                                    timeout : 2000,
+                                                                                    progressBar : false,
+                                                                                    message : "Order mark as received"
+                                                                            });
+
+                                                                            $btnOrderStatus.removeAttr("disabled");
+
+                                                                            $dropDownSelectButton.html("Received");
+
+                                                                            $row.find("td:eq(3) small").remove();
+
+                                                                            $dropDownSelectButton.css("background-color", orderStatusColors.get("Received"));
+                                                                            $dropDownSelectButton.css("border-color", orderStatusColors.get("Received"));
+
+                                                                            table.row($trThis).cell($trThis.find("td:eq(3)")).data($trThis.find("td:eq(3)").html());
+
+                                                                            table.rows().invalidate();
+
+                                                                        });
+
+                                                                    }, 1000);
+
+                                                            }});
+                                                        } else if (orderStatus == "Returned") {
+                                                            
+
+                                                             alertify.okBtn("save")
+                                                                    .defaultValue("your order has been returned")  
+                                                                    .prompt("provide a reason for returning the order", function (val, event) {
+                                                                        $.post("/FBExportSystem/admin/orders/markReturned", {
+                                                                            id : oid,
+                                                                            reason : val
+                                                                        }, function (response) {
+                                                                            if (response.status != "error") {
+
+                                                                                $dropDownSelectButton.html("Returned");
+
+                                                                                $dropDownSelectButton.css("background-color", orderStatusColors.get("Returned"));
+                                                                                $dropDownSelectButton.css("border-color", orderStatusColors.get("Returned"));
+
+
+                                                                                var $orderHeader = $dropDownSelectButton.closest("h6");
+
+                                                                                if ($orderHeader.parent().find(">small").length > 0)
+                                                                                        $orderHeader.parent().find(">small").remove();
+                                                                                
+                                                                                $orderHeader.prev().after('<small>' +
+                                                                                                        '<a class="btn-view-reason" href="javascript:void(0)" data-value="' + val + '"> (view reason) </a>' + 
+                                                                                                        '</small>');
+
+                                                                                iziToast.success({
+                                                                                    timeout : 2000,
+                                                                                    progressBar : false,
+                                                                                    message : "Order mark as returned"
+                                                                                });
+
+                                                                                table.row($trThis).cell($trThis.find("td:eq(3)")).data($trThis.find("td:eq(3)").html());
+                                                                                table.rows().invalidate();
+
+                                                                            } else {
+                                                                                alertify.reset();
+                                                                                alertify.alert(response.message);
+                                                                                $(".alertify").css("z-index", "10");
+                                                                            }
+                                                                        }, "json");
+                                                                    });
+
+                                                            $(".alertify").css("z-index", "10");
+                                                        }
                                                     
                                                     }
 
@@ -1491,13 +1623,15 @@ $(document).ready(function () {
         
     };
 
-    $(".btn-save-paid-status").click(function () {
+    $("#paidDatePickerModal").on("click", ".btn-save-paid-status", function () {
         var $paidDatePickerModal = $("#paidDatePickerModal");
         var orderId = $paidDatePickerModal.find(">#orderModalId").val();
+        console.log("paid change id: " + orderId);
         var $currentRow = $("#orderTable").find("#orderId-" + orderId).closest("tr");
         
+       
+
         var $btnOrderStatus = $currentRow.find("div.dropdown-select button.dropdown-toggle");
-        
 
         $btnOrderStatus.attr("disabled", "disabled");
 
@@ -1517,16 +1651,23 @@ $(document).ready(function () {
                 btnSavePaidStatusModalProgressBar.end();
 
                 if (response.status != "error") {
+
+                    console.log("PUTANG INA");
                     
                     $paidDatePickerModal.modal("hide");
-
                     $currentRow.find("td:eq(6) span span:eq(2)").html($paidDatePickerModal.find("#paidDatePicker").val());
+
+
+
                     $currentRow.find("td:eq(3) small").remove();
-``
+
                     $btnOrderStatus.html("Paid");
                     $btnOrderStatus.css("background-color", orderStatusColors.get("Paid"));
                     $btnOrderStatus.css("border-color", orderStatusColors.get("Paid"));
-                    
+
+                    table.row($currentRow).cell($currentRow.find("td:eq(3)")).data($currentRow.find("td:eq(3)").html());
+                    table.row($currentRow).cell($currentRow.find("td:eq(6)")).data($currentRow.find("td:eq(6)").html());
+
                     table.rows().invalidate();
 
                     iziToast.success({
@@ -1534,6 +1675,7 @@ $(document).ready(function () {
                             progressBar : false,
                             message : "Order mark as paid"
                     });
+
 
 
                 } else {

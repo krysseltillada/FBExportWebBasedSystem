@@ -17,6 +17,7 @@ $(document).ready(function (){
 
 	var getMoreProductDetails = function () { 
 		var parentRow = $(this).closest('tr');
+		var currentRow = $(this).closest('tr');
 
 		var row = table.row(parentRow);
 
@@ -65,7 +66,7 @@ $(document).ready(function (){
 					supplierAddress : response.supplierAddress,
 					dateOfDelivery : moment(response.dateOfDelivery).format("MMMM D, YYYY"),
 					status : response.status,
-					editAddressLink : "http://localhost:" + location.port + "/FBExportSystem/admin/inventory/edit-product/" + response.productId
+					editAddressLink : window.location.origin + "/FBExportSystem/admin/inventory/edit-product/" + response.productId
 				});
 
 				row.child(rowProductRowCollapse, 'no-padding').show();
@@ -122,6 +123,8 @@ $(document).ready(function (){
 													$addStockProductRow.find("td:eq(7)").html(newStockWeight.toFixed(1) + " KILO");
 													
 													$("#addStockWeight").val("");
+
+													table.row($currentRow).cell($currentRow.find("td:eq(7)")).data($currentRow.find("td:eq(7)").html());
 
 													table.rows().invalidate();
 
@@ -195,6 +198,8 @@ $(document).ready(function (){
 														$(this).remove();
 													});
 
+													table.row($currentRow).cell($currentRow.find("td:eq(10)")).data($currentRow.find("td:eq(10)").html());
+
 													table.rows().invalidate();
 
 												});
@@ -247,6 +252,8 @@ $(document).ready(function (){
 													$(toast).fadeOut("slow", function () {
 														$(this).remove();
 													});
+													
+													table.row($currentRow).cell($currentRow.find("td:eq(10)")).data($currentRow.find("td:eq(10)").html());
 
 													table.rows().invalidate();
 

@@ -57,13 +57,22 @@ public class SystemSettingsServiceImpl implements SystemSettingsService {
 				
 				Path path = FileSystems.getDefault().getPath("src\\main\\webapp\\system-backup\\fbexport_backup.sql");
 				Files.write(path, bytes);
+			} else {
+				
+				return "Empty";
 			}
+			
 		}catch(Exception e) {
 			return e.getMessage();
 		}
 		
 		return "Success";
 		
+	}
+
+	@Override
+	public void addInitialSystemSettings(SystemSettings systemSettings) {
+		systemSettingsRepository.save(systemSettings);
 	}
 	
 	

@@ -11,6 +11,7 @@ public interface SystemSettingsService {
 	List<SystemSettings> findAll();
 	
 	void addSystemSettings(SystemSettings systemSettings);
+	void addInitialSystemSettings(SystemSettings systemSettings);
 	
 	boolean isSystemBackupFileExist(String filePathString);
 	

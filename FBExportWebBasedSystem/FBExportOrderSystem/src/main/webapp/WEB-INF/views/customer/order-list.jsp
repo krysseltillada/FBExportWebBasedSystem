@@ -925,12 +925,14 @@
 															<hr class = "m-0"/>
 					
 															<div class = "row">
-																<div class = "col-sm-9">
-																	<strong class = "ml-2 blue-text" style = "font-size: 14px; position: relative; top: 15px;"> *reminder: click the received button if your order is receive. </strong>
-																</div>
-																<div class = "col-sm-3">
-																	<button type="button" class="btn btn-primary float-right btn-received-order">Received</button>
-																</div>
+																<c:if test = "${order.shipping.isCompleteShipping()}">
+																	<div class = "col-sm-9">
+																		<strong class = "ml-2 blue-text" style = "font-size: 14px; position: relative; top: 15px;"> *reminder: click the received button if your order is receive. </strong>
+																	</div>
+																	<div class = "col-sm-3">
+																			<button type="button" class="btn btn-primary float-right btn-received-order">Received</button>
+																	</div>
+																</c:if>
 															</div>
 															
 														</div>

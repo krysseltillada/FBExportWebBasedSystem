@@ -99,12 +99,12 @@ public class SystemSettingsController {
 			SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm");
 			ScheduledTasks.formattedTime = dateFormat.format(systemSettings.getSystemBackupTime().getTime());
 			
-			systemLog(name + " change the system backup time to " + systemBackupTimeInput + " and logout time to " + systemLogoutTime + " minutes", ActionType.SETTINGS);
-			
 			String result = systemSettingsService.uploadFile(sqlfile);
 			if(!result.equals("Success")) {
 				redirectAttributes.addFlashAttribute("ErrorSettings", result);
 				return "redirect:/admin/system-settings";
+			} else {
+				systemLog(name + " import the import database file " + sqlfile.getOriginalFilename() , ActionType.SETTINGS);
 			}
 		} catch (ParseException e) {
 			redirectAttributes.addFlashAttribute("ErrorSettings", e.getMessage());
@@ -118,28 +118,14 @@ public class SystemSettingsController {
 	
 	@RequestMapping(value="/admin/restore-data", method=RequestMethod.POST)
 	@ResponseBody
-	public String restoreData(HttpSession httpSession) {
-		
-		String name = (String)httpSession.getAttribute("employeeName");
-		
-		String message = systemSettingsBackup.restoreData();
-		
-		systemLog(name + " restored the backup", ActionType.SETTINGS);
-		
-		return message;
+	public String restoreData() {
+		return systemSettingsBackup.restoreData();
 	}
 	
 	@RequestMapping(value="/admin/backup-data", method=RequestMethod.POST)
 	@ResponseBody
-	public String backupData(HttpSession httpSession) {
-		
-		String name = (String)httpSession.getAttribute("employeeName");
-		
-		String message = systemSettingsBackup.backupData("fbexport");
-		
-		systemLog(name + " backup the system", ActionType.SETTINGS);
-		
-		return message;
+	public String backupData() {
+		return systemSettingsBackup.backupData("fbexport");
 	}
 	
 	@RequestMapping(value="/admin/export/backup")

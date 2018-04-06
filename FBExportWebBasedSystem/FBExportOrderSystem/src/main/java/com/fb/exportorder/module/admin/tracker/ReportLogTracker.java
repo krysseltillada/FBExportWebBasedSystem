@@ -1,6 +1,8 @@
 package com.fb.exportorder.module.admin.tracker;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Objects;
 
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.After;
@@ -11,6 +13,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import com.fb.exportorder.models.Employee;
 import com.fb.exportorder.models.SystemLog;
 import com.fb.exportorder.models.SystemNotification;
+import com.fb.exportorder.models.SystemSettings;
 import com.fb.exportorder.models.enums.ActionType;
 import com.fb.exportorder.models.enums.SystemNotificationStatus;
 import com.fb.exportorder.module.admin.service.ManageEmployeeService;
@@ -28,7 +31,7 @@ public class ReportLogTracker {
 	@Autowired
 	private EmployeeSessionBean employeeSessionBean;
 	
-	@Autowired
+	@Autowired(required=false)
 	private ManageEmployeeService manageEmployeeService;
 	
 	@Autowired
@@ -37,25 +40,37 @@ public class ReportLogTracker {
 	@After("execution(public void com.fb.exportorder..service.SystemSettingsService+.addSystemSettings(..))")
 	void detectSystemEditSettings (JoinPoint joinPoint) {
 		
-		Employee employee = manageEmployeeService.getEmployeeById(employeeSessionBean.getEmployeeId());
+		if (Objects.nonNull(employeeSessionBean)) { 
 		
-		SystemLog systemLog = new SystemLog();
-		systemLog.setActionType(ActionType.SETTINGS);
-		systemLog.setTimeOccured(new Date());
-		systemLog.setDateOccured(new Date());
-		systemLog.setDescription(employee.getFirstname() + " " + employee.getLastname() + " update the system settings");
+			SystemSettings systemSettings = (SystemSettings)joinPoint.getArgs()[0];
+			
+			Employee employee = manageEmployeeService.getEmployeeById(employeeSessionBean.getEmployeeId());
+			
+			SimpleDateFormat formatSystemBackupTime = new SimpleDateFormat("hh:mm a");
+			SimpleDateFormat formatLogoutTime = new SimpleDateFormat("mm");
+			
+			SystemLog systemLog = new SystemLog();
+			systemLog.setActionType(ActionType.SETTINGS);
+			systemLog.setTimeOccured(new Date());
+			systemLog.setDateOccured(new Date());
+			systemLog.setDescription(employee.getFirstname() + " "  + employee.getLastname() + 
+									 " change the system backup time to " + formatSystemBackupTime.format(systemSettings.getSystemBackupTime()) + 
+									 " and logout time to " + formatLogoutTime.format(systemSettings.getLogoutTime()) + " minutes");
+			
+			systemLogService.addSystemLog(systemLog);
+			
+			SystemNotification systemNotification = new SystemNotification();
+			
+			systemNotification.setHeader("System Settings Update");
+			systemNotification.setDescription("Update system settings success");
+			systemNotification.setSeen(false);
+			systemNotification.setSystemNotificationStatus(SystemNotificationStatus.SYSTEM_BACKUP);
+			systemNotification.setDate(new Date());
+			
+			notificationService.pushNotification(systemNotification);
+			
+		} 
 		
-		systemLogService.addSystemLog(systemLog);
-		
-		SystemNotification systemNotification = new SystemNotification();
-		
-		systemNotification.setHeader("System Settings Update");
-		systemNotification.setDescription("Update system settings success");
-		systemNotification.setSeen(false);
-		systemNotification.setSystemNotificationStatus(SystemNotificationStatus.SYSTEM_BACKUP);
-		systemNotification.setDate(new Date());
-		
-		notificationService.pushNotification(systemNotification);
 	}
 	
 	@After("execution(public String com.fb.exportorder.utilities.SystemSettingsBackup.backupData(..))")

@@ -435,7 +435,6 @@ $(document).ready(function () {
 	});
 
 	$(".btn-received-order").click(function () {
-		
 		var $btnReceivedOrder = $(this);
 
 		var $orderCollapseDiv =  $btnReceivedOrder.closest("div.multi-collapse"); 
@@ -449,6 +448,7 @@ $(document).ready(function () {
 					}, function () {
 
 						var $orderStatus = $orderItemDiv.find("#orderStatus");
+						console.log($orderStatus.html());
 						var $aListDiv = $orderItemDiv.find("a").parent();
 						var $parentAListDiv = $aListDiv.parent();			
 							

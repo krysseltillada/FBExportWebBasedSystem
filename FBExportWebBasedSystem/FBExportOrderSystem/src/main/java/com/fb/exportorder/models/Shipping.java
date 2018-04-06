@@ -42,6 +42,10 @@ public class Shipping {
 	
 	@Temporal(TemporalType.DATE)
 	private Date expectedDate;
+	
+	public boolean isCompleteShipping() {
+		return (!shippingLog.isEmpty()) ? shippingLog.get(shippingLog.size() - 1).isComplete() : false;
+	}
 
 	public Long getShippingId() {
 		return shippingId;
