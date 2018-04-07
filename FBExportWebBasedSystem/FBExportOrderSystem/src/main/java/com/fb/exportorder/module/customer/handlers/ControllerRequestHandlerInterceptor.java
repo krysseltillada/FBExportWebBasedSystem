@@ -27,10 +27,8 @@ public class ControllerRequestHandlerInterceptor extends HandlerInterceptorAdapt
 					
 					System.out.println(session.getAttribute("customerName"));
 					
-					if (StringUtils.equals(request.getRequestURI(), 
-										   "/FBExportSystem/login") ||
-						StringUtils.equals(request.getRequestURI(), 
-									   	   "/FBExportSystem/login/")) {
+					if (StringUtils.contains(request.getRequestURI(), 
+										   "/FBExportSystem/login")) {
 						response.sendRedirect("/FBExportSystem/");
 					}
 					

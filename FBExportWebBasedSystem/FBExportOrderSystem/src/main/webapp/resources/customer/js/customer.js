@@ -832,7 +832,7 @@ $(document).ready(function () {
     $('#addToCartModal').on('hidden.bs.modal', function (e) {
         $(this).find("#quantity").val(1);
         $(this).find("#massType").val("kilogram");
-        $(this).find("#weightLimit").val(30);
+        $(this).find("#weightLimit").val(5);
     })
   
 

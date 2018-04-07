@@ -47,7 +47,7 @@
 </div>
 
 <div class="modal fade" id="addToCartModal" tabindex="-1" role="dialog" aria-labelledby="addToCartModalLabel" aria-hidden="true">
-	<input type="hidden" id="weightLimit" value="30">
+	<input type="hidden" id="weightLimit" value = "5">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
