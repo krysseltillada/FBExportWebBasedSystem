@@ -410,13 +410,16 @@ $(document).ready(function () {
             jsonpCallback: "callback",
             dataType: "json",
             success: function( location ) {
-
+            			console.log("country " + location.country);
                         var country = location.country.toLowerCase();
 
                         $.ajax({
                             url : "https://restcountries.eu/rest/v2/name/" + country,
                             success : function (responseData) {
-
+                            	
+                            		$(".country").val(location.country);
+                            		$(".countryCode").val(responseData[0].callingCodes[0].trim())
+                            		
                                     setInterval(function () {
 
                                         var flagImageLink = responseData[0].flag;

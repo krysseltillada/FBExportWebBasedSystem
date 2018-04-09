@@ -211,6 +211,80 @@
         </div>
         </div>
     </section>
+    
+    <section class="dashboard-header pt-3 no-padding-bottom">
+        <div class="container-fluid">
+	        <div class = "row pb-2">
+	            <div class = "col-lg-3">
+	                <div class = "card mb-0">
+	                <div class = "card-header p-2">
+	                    <h3 class = "text-center m-1">
+	                    <span class = "mr-2"> Sales Report </span>
+	                    <i class="fa fa-line-chart" aria-hidden="true"></i>
+	                    </h3>
+	                </div>
+	                </div>
+	            </div>
+	        </div>
+
+	        <div class = "row">
+	        
+		        <div class = "col-lg-12">
+		        
+		        	<div class = "card">
+		        	
+		        		<div class = "card-body">
+		        	
+				        	<table id="salesReportTable" class="table table-sm" cellspacing="0" width="100%">
+			                    <thead>
+			                        <tr>
+			                            <th>Date</th>
+			                            <th>Order #</th>
+			                            <th>Weight sold</th>
+			                            <th>Year</th>
+			                            <th>Month</th>
+			                            <th>Expenses</th>
+			                            <th>Revenue</th>
+			                        </tr>
+			                    </thead>
+			                    <tfoot>
+			                        <tr>
+			                            <th>Date</th>
+			                            <th>Order #</th>
+			                            <th>Weight sold</th>
+			                            <th>Year</th>
+			                            <th>Month</th>
+			                            <th>Expenses</th>
+			                            <th>Revenue</th>
+			                        </tr>
+			                    </tfoot>
+			                    <tbody>
+			                    	<c:forEach var = "salesReportItem" items = "${salesReport}">
+				                        <tr>
+				                            <td>${salesReportItem[0]}</td>
+				                           	<td>${salesReportItem[1]}</td>
+				                           	<td>${salesReportItem[2]}</td>
+				                           	<td>${salesReportItem[3]}</td>
+				                           	<td>${salesReportItem[4]}</td>
+				                           	<td>${salesReportItem[5]}</td>
+				                           	<td>${salesReportItem[6]}</td>
+				                        </tr>
+			                        </c:forEach>
+			                    </tbody>
+		               		</table>
+		                
+		                </div>
+	                
+	                </div>
+			        	
+			        
+		        
+		        </div>
+	          
+	          
+	        </div>
+        </div>
+    </section>
 
 
     <section class = "products-section pt-0 no-padding-bottom">

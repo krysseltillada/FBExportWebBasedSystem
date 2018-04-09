@@ -54,6 +54,61 @@ $(document).ready(function () {
     if ($(window).outerWidth() < 576) {
         legendState = false;
     }
+    
+    jQuery.extend( jQuery.fn.dataTableExt.oSort, {
+        "my-currency-pre": function(a) {
+            return parseFloat(a.replace(/ /gi, ''));
+        },
+        "my-currency-asc": function(a,b) {
+            return ((a < b) ? -1 : ((a > b) ? 1 : 0));
+        },
+        "my-currency-desc": function(a,b) {
+            return ((a < b) ? 1 : ((a > b) ? -1 : 0));
+        }
+    });
+    
+    $('#salesReportTable').DataTable({
+    	"aoColumnDefs": [
+    	      {"sType": "my-currency", "aTargets": [5, 6]}
+    	],
+        dom: 'lBfrtip',
+        buttons: [
+            {
+                extend : "copyHtml5",
+                title: 'FONG BROS SALES REPORT',
+                messageBottom: "Report generated: " + moment(new Date()).format("MMMM D, YYYY"),
+                text : '<span>Copy</span> <i class="fa fa-copy ml-1" aria-hidden = "true"></i>',
+				className : "border border-white bg-blue text-white rounded"
+            },
+            {
+                extend : "excelHtml5",
+                title: 'FONG BROS SALES REPORT',
+                messageBottom: "Report generated: " + moment(new Date()).format("MMMM D, YYYY"),
+                text : '<span>Excel</span> <i class="fa fa-file-excel-o ml-1" aria-hidden = "true"></i>',
+				className : "border border-white bg-blue text-white rounded"
+            },
+            {
+                extend : "pdfHtml5",
+                title: 'FONG BROS SALES REPORT',
+                messageBottom: "Report generated: " + moment(new Date()).format("MMMM D, YYYY"),
+                text : '<span>PDF</span> <i class = "fa fa-file-excel-o ml-1" aria-hidden = "true"></i>',
+				className : "border border-white bg-blue text-white rounded",
+                download: 'open'
+            },
+            {
+                extend : "print",
+                title : "",
+                messageBottom: "Report generated: " + moment(new Date()).format("MMMM D, YYYY"),
+                text : '<span>Print</span> <i class="fa fa-print ml-1" aria-hidden="true"></i>',
+				className : "border border-white bg-blue text-white rounded",
+                customize : function (win) {
+                    $(win.document.body).prepend("<h1> <img class = 'mr-2' src = '" + window.location.origin + "/FBExportSystem/resources/company-logo.png' width = '50' height = '50' /> FONG BROS SALES REPORT </h1>");
+                }
+            }
+        ],
+        "order" : [],
+        "lengthMenu" : [5, 10, 25]
+    });
 	
 	 var LINECHART = $('#lineCahrt');
 	 //Line Chart

@@ -73,4 +73,6 @@ public interface OrderService {
 	
 	List<Order> getPaidOrders();
 	
+	List<Object[]> getSalesReport();
+	
 }

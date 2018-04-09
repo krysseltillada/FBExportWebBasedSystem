@@ -36,6 +36,8 @@ public class DashboardController {
 		
 		model.addAttribute("onlineUsers", customerService.getOnlineUsersCount());
 		
+		model.addAttribute("salesReport", orderService.getSalesReport());
+		
 		
 		return "dashboard";
 	}

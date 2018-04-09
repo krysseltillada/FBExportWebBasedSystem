@@ -555,5 +555,10 @@ public class OrderServiceImpl implements OrderService {
 		return orderRepository.getPaidOrders();
 	}
 
+	@Override
+	public List<Object[]> getSalesReport() {
+		return orderRepository.getSalesReport();
+	}
+
 		
 }
