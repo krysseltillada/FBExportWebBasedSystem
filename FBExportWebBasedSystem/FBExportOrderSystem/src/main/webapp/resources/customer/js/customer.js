@@ -674,10 +674,24 @@ $(document).ready(function () {
                                                         onAuthorize: function(data, actions) {
                                                             return actions.payment.execute().then(function(payment) {
   
+                                                                $("div.overlay").show();
+
                                                                 $.post("/FBExportSystem/order-list/markPaid", {
                                                                     orderId : oid
                                                                 }, function () {
-                                                                    window.location = "/FBExportSystem/payment-receipt?orderId=" + oid;
+
+                                                                    $.post("/FBExportSystem/order-list/sendPaymentReceiptEmail", {
+                                                                        orderId : oid,
+                                                                        transactionDetailsJSON : JSON.stringify(payment.transactions[0].amount),
+                                                                        itemsJSON : JSON.stringify(payment.transactions[0].item_list)
+                                                                    }, function () {
+                                                                        
+                                                                        $("div.overlay").hide();
+                                                                        window.location = "/FBExportSystem/payment-receipt?orderId=" + oid;
+                                                                        
+
+                                                                    });
+                                                                    
                                                                 });
                                                             });
                                                         },

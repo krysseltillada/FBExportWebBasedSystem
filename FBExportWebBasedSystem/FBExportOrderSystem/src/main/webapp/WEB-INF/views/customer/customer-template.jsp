@@ -35,15 +35,21 @@
 
 	<body>
 	
+		
 		<tiles:insertAttribute name = "userNavigation" />
 		
 		<tiles:insertAttribute name = "header" />
 		<tiles:insertAttribute name = "main" />
 		<tiles:insertAttribute name = "footer" />
 		
+		
 		<tiles:insertAttribute name = "modals" />
 		
 		<tiles:insertAttribute name = "templates" />
+
+		<div class = "overlay"> 
+				<img class = "center-img" src = "<c:url value = '/resources/customer/img/loader.gif' />" width = "50" height = "50" />
+		</div>
 		
 		<c:forEach var = "javascriptfile" items = "${javascriptfiles}">
 			<script src = "<c:url value = '${javascriptfile}' />" type = "text/javascript"></script>

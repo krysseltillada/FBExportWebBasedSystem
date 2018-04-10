@@ -237,7 +237,7 @@ public class Order	 {
 	}
 	
 	public double getTotalDue() {
-		return (getTaxable() * Finance.TAX) + Finance.SHIPPING_FEE + getSubTotal();
+		return (getSubTotal() * Finance.TAX) + Finance.SHIPPING_FEE + getSubTotal();
 	}
 	
 	public double getTax() {

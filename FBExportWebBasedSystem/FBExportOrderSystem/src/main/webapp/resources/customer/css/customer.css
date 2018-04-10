@@ -300,3 +300,21 @@ keyframes wobble { 16.65% {
     animation-iteration-count: 1;
  }
  /*FLOATING ACTION BUTTON MESSAGE*/
+
+ .overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 10000;
+  background-color: rgba(0,0,0,0.5); /*dim the background*/
+}
+
+.center-img {
+    margin-left: auto; 
+    margin-right: auto;
+    margin-top: 250px; 
+    display: block;
+}
