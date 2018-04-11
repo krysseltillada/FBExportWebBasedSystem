@@ -144,7 +144,6 @@ public class EmailService {
 			helper.setText(htmlMessage, true);
 			helper.addInline("fong-bros-logo", FileSystems.getDefault().getPath("src\\main\\webapp\\resources\\company-logo.png").toFile());
 			
-			
 			mailSender.send(mimeMessage);
 			
 		} catch (IOException e) {

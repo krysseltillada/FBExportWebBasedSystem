@@ -44,6 +44,8 @@
 
 <security:authorize access = "hasAuthority('CUSTOMER')">
 
+	<input type="hidden" value="${sessionScope.logoutTime}" id="logoutTime"/>
+
 	<sql:query var="notificationsQuery" 
 	           dataSource = "${dataSource}">
 	                            		   			SELECT notification_id, date, description, header, is_seen FROM 

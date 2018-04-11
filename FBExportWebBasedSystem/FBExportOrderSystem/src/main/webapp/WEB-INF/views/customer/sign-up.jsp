@@ -11,17 +11,15 @@
 
 
         </div>
-        
-        <c:if test="${not empty errorMessages}">
+
+        <div id = "errorMessageDiv" class = "d-none">
         	
         	<hr />
         	
-        	<c:forEach var = "errorMessage" items = "${errorMessages}">
-        		<span class = "red-text"> *<c:out value="${errorMessage}" /> </span> <br />
-        	</c:forEach>
+        	
+            
+        </div>
         
-        </c:if>
-
         <hr />
         
         
@@ -159,7 +157,7 @@
                         <div class = "col-md-5">
 
                             <div class="md-form form-sm" style = "position: relative; top: -20px;">
-                                <input type="text" name = "city" id="city" class="form-control" required disabled/>
+                                <input type="text" name = "city" id="city" class="form-control" required/>
                                 <label for="city" class="">city</label>
                             </div>
 

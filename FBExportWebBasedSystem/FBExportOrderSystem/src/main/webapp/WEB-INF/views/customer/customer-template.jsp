@@ -35,7 +35,6 @@
 
 	<body>
 	
-		
 		<tiles:insertAttribute name = "userNavigation" />
 		
 		<tiles:insertAttribute name = "header" />
@@ -59,6 +58,45 @@
 			<c:forEach var = "javascriptnotificationfile" items = "${javascriptnotificationfiles}">
 				<script src = "<c:url value = '${javascriptnotificationfile}' />" type = "text/javascript"></script>
 			</c:forEach>
+			<script>
+			
+					var timeoutID;
+					
+					function setup() {
+						this.addEventListener("mousemove", resetTimer, false);
+						this.addEventListener("mousedown", resetTimer, false);
+						this.addEventListener("keypress", resetTimer, false);
+						this.addEventListener("DOMMouseScroll", resetTimer, false);
+						this.addEventListener("mousewheel", resetTimer, false);
+						this.addEventListener("touchmove", resetTimer, false);
+						this.addEventListener("MSPointerMove", resetTimer, false);
+					
+						startTimer();
+					}
+					setup();
+					
+					function startTimer() {
+						// wait before calling goInactive
+						
+						timeoutID = window.setTimeout(goInactive, $("#logoutTime").val());
+					}
+					
+					function resetTimer(e) {
+						window.clearTimeout(timeoutID);
+					
+						goActive();
+					}
+					
+					function goInactive() {
+						window.location.replace(window.location.origin + "/FBExportSystem/sign-out");
+					}
+					
+					function goActive() {
+						startTimer();
+					}
+			
+
+			</script>
 		</security:authorize>
 		
 	</body>

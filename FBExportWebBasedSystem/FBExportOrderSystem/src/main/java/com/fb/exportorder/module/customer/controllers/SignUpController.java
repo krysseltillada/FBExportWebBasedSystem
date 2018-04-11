@@ -4,12 +4,14 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -42,23 +44,25 @@ public class SignUpController {
 		return "sign-up";
 	}
 	
-	@RequestMapping(value = "/register", method=RequestMethod.POST)
-	public String register (@RequestParam("profile-image") MultipartFile profileImage,
-							String username, 
-			 				String password,
-			 				String firstname,
-			 				String middlename,
-			 				String lastname,
-			 				String gender,
-			 				int age,
-			 				String country,
-			 				String city,
-			 				String address,
-			 				String zipcode,
-			 				@RequestParam("country-code") String countryCode,
-			 				@RequestParam("phone-number") String phoneNumber,
-			 				@RequestParam("email-address") String emailAddress, 
-			 				@RequestParam(name = "g-recaptcha-response") String recaptcha, Model model, HttpServletRequest request, RedirectAttributes redirectAttributes) {
+	@RequestMapping(value = "/register/validate", method=RequestMethod.POST)
+	@ResponseBody
+	public List<String> validate(@RequestParam("profile-image") MultipartFile profileImage,
+								 String username, 
+				 				 String password,
+				 				 String firstname,
+				 				 String middlename,
+				 				 String lastname,
+				 				 String gender,
+				 				 int age,
+				 				 String country,
+				 				 String city,
+				 				 String address,
+				 				 String zipcode,
+				 				 @RequestParam("country-code") String countryCode,
+				 				 @RequestParam("phone-number") String phoneNumber,
+				 				 @RequestParam("email-address") String emailAddress, 
+				 				 @RequestParam(name = "g-recaptcha-response") String recaptcha,
+				 				 HttpServletRequest request) {
 		
 		Customer newCustomer = new Customer();
 		Address customerAddress = new Address();
@@ -86,16 +90,57 @@ public class SignUpController {
 		newCustomer.setAddress(customerAddress);
 		newCustomer.setContact(customerContact);
 		
-		List<String> errorMessages = customerSignUpService.register(newCustomer, 
-																	recaptcha, 
-																	request.getRemoteAddr(),
-																	profileImage);
+		return customerSignUpService.validate(newCustomer, recaptcha, request.getRemoteAddr(), profileImage);
 		
+	}
+	
+	@RequestMapping(value = "/register", method=RequestMethod.POST)
+	public String register (@RequestParam("profile-image") MultipartFile profileImage,
+							String username, 
+			 				String password,
+			 				String firstname,
+			 				String middlename,
+			 				String lastname,
+			 				String gender,
+			 				int age,
+			 				String country,
+			 				String city,
+			 				String address,
+			 				String zipcode,
+			 				@RequestParam("country-code") String countryCode,
+			 				@RequestParam("phone-number") String phoneNumber,
+			 				@RequestParam("email-address") String emailAddress,
+			 				RedirectAttributes redirectAttributes) {
 		
-		if (!errorMessages.isEmpty()) {
-			model.addAttribute("errorMessages", errorMessages);
-			return "sign-up";
-		} 
+		Customer newCustomer = new Customer();
+		Address customerAddress = new Address();
+		Contact customerContact = new Contact(); 
+		
+		newCustomer.setUsername(username);
+		newCustomer.setPassword(password);
+		
+		newCustomer.setFirstname(firstname);
+		newCustomer.setMiddlename(middlename);
+		newCustomer.setLastname(lastname);
+		
+		newCustomer.setGender((gender.equals("Male") ? Gender.MALE : Gender.FEMALE));
+		
+		newCustomer.setAge(age);
+		
+		customerAddress.setAddress(address);
+		customerAddress.setCountry(country);
+		customerAddress.setCity(city);
+		customerAddress.setZipCode(zipcode);
+		customerContact.setCountryCode(countryCode);
+		customerContact.setPhoneNumber(phoneNumber);
+		customerContact.setEmailAddress(emailAddress);
+		
+		newCustomer.setAddress(customerAddress);
+		newCustomer.setContact(customerContact);
+		
+		customerSignUpService.register(newCustomer, 
+									   profileImage);
+		
 		
 		emailService.verifyEmail(String.format("%s %s",newCustomer.getFirstname(), newCustomer.getLastname()),
 								 newCustomer.getContact().getEmailAddress(),
