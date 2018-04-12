@@ -240,4 +240,18 @@
 		 
 	</definition>
 	
+	<definition name = "view-cart" extends = "customerBaseTemplate">
+		
+		<put-attribute name = "main" value = "/WEB-INF/views/customer/view-cart.jsp" />
+		
+		<!-- <put-list-attribute name = "cssfiles" inherit = "true">
+			<add-attribute value = "/resources/customer/css/view-product.css" />
+		</put-list-attribute>
+		
+		<put-list-attribute name = "javascriptfiles" inherit = "true">
+			<add-attribute value = "/resources/customer/js/view-product.js" />
+		</put-list-attribute>
+		 -->
+	</definition>
+	
 </tiles-definitions>

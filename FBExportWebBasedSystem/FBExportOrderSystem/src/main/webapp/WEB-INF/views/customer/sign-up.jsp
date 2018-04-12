@@ -159,7 +159,7 @@
                         <div class = "col-md-5">
 
                             <div class="md-form form-sm" style = "position: relative; top: -20px;">
-                                <input type="text" name = "city" id="city" class="form-control" required disabled/>
+                                <input type="text" name = "city" id="city" class="form-control" required/>
                                 <label for="city" class="">city</label>
                             </div>
 

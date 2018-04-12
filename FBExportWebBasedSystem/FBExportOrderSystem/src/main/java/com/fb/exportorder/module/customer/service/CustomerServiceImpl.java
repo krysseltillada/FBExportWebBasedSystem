@@ -327,4 +327,67 @@ public class CustomerServiceImpl implements CustomerService {
 		
 	}
 
+	@Override
+	public String updateCart(String info, long id) {
+		String[] parts = info.split("&");
+		List<String> productInfo = new ArrayList<>();
+		String product = "";
+		for(int i = 0; i < parts.length; ++i) {
+			if(product == "") 
+				product += parts[i];
+			else 
+				product += "&"+parts[i];
+			if(i % 3 == 2) {
+				productInfo.add(product);
+				product = "";
+			}
+		}
+		
+		Customer currentCustomer = customerRepository.findOne(id);
+		
+		List<Item> items = currentCustomer.getCart().getItems();
+		
+		List<String> valueList = new ArrayList<>();
+		for(String pInfo : productInfo) {
+			String[] partsInfo = pInfo.split("&");
+			for(int i = 0; i < partsInfo.length; ++i) {
+				String[] value = partsInfo[i].split("=");
+				valueList.add(value[1]);
+			}
+		}
+		
+		for(int i = 0; i < valueList.size(); ++i) {
+			if(i % 3 == 0) {
+				double weight = Double.parseDouble(valueList.get(i));
+				//int itemId = Integer.parseInt(valueList.get(i + 1));
+				int productId = Integer.parseInt(valueList.get(i + 2));
+				
+				if(items != null) {
+					for(Item item : items) {
+						if(item.getProduct().getProductId() == productId) {
+							if(weight <= 5) {
+								return "Your order must be above 5.00 Kg";
+							}
+							
+							if(weight > item.getProduct().getWeight()) {
+								return "Your order exceeds "+item.getProduct().getWeight()+"Kg available stocks ";
+							}
+							
+							item.getWeight().setWeight(weight);
+							
+							double price = item.getProduct().getPrice() * weight;
+							item.setPrice(price);
+							
+						}
+					}
+				}
+			}
+				
+		}
+		
+		
+		customerRepository.save(currentCustomer);
+		return "";
+	}
+
 }

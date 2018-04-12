@@ -65,6 +65,44 @@ $(function () {
 
 $(document).ready(function () {
 	
+	$(".productWeightType").on('change',function(){
+		var currentWeight = $(this).val();
+		var price = $(this).parent().parent().find(".productPriceCart").html().split(" ")[0];
+		var totalCartPrice = $("div.shopping-cart-total-view-cart").children().eq(1).html().split(" ");
+		var actualPrice = Number($(this).parent().parent().find("#actualPrice").val()).toFixed(2);
+		
+		var computedPrice = accounting.unformat(accounting.format(accounting.unformat(currentWeight) * accounting.unformat(actualPrice))).toFixed(2);
+		$(this).parent().parent().find(".productPriceCart").html(accounting.format(computedPrice) +" " + totalCartPrice[1]);
+		
+		var totalPrice = 0;
+		
+		$("#view-cart-table").find('tr').each(function () {
+			 $(this).find(".productPriceCart").each(function (i, item) {
+			     	totalPrice += Number(accounting.unformat($(this).html().split(" ")[0]));
+			        });
+			 });
+		
+		$("div.shopping-cart-total-view-cart").children().eq(1).html(accounting.format(totalPrice) +" " + totalCartPrice[1]);
+		
+		
+	});
+	
+	 $("#updateCart").submit(function(e){
+	        e.preventDefault();
+	        
+	        var data = $('#updateCart').serialize();
+	        
+	    	$.post('/FBExportSystem/update-view-cart', data, function(result){
+	    		if(result != ""){
+	    			alertify.error(result);
+	    		}else{
+	    			alertify.success("You've successfully update shopping cart");
+	    		}
+	    	});
+	    	
+	    });
+	
+	
 	$('li.active').removeClass('active');
 	$('a[href="' + location.pathname + '"]').closest('li').addClass('active'); 
 	
@@ -107,7 +145,8 @@ $(document).ready(function () {
         }
     };
 
-
+    
+    
     var updateProductCartInfo = function () {
 
 
@@ -145,6 +184,44 @@ $(document).ready(function () {
             $(".productCartHeaderItemCount").show();
         } else
             $(".productCartHeaderItemCount").hide();
+        
+        //////////////////////////////////////////
+        var $productCartItemListsViewCart = $("div#shoppingModalCart-view-cart div.modal-body>table>tbody");
+        var $productCartTotalViewCart = $("div.shopping-cart-total-view-cart").children().eq(1);
+        var itemCountViewCart = $productCartItemListsViewCart.children().length;
+
+        if (itemCountViewCart > 0) {
+            $productCartItemListsViewCart.parent().removeClass("d-none");
+            $("#productCartEmptyMessage-view-cart").addClass("d-none");
+            $("div#shoppingModalCart-view-cart div.modal-footer>button:eq(0)").removeClass("disabled");
+        } else {
+            $productCartItemListsViewCart.parent().addClass("d-none");
+            $("#productCartEmptyMessage-view-cart").removeClass("d-none");
+            $("div#shoppingModalCart-view-cart div.modal-footer>button:eq(0)").addClass("disabled");
+        }
+
+        var totalPriceViewCart = 0;
+
+        _.each($productCartItemListsViewCart.children(), function (productCartItemViewCart, i) {
+        
+
+            var $productCartItemViewCart = $(productCartItemViewCart).children().eq(2);
+            
+            totalPriceViewCart += accounting.unformat($productCartItemViewCart.text());
+            
+        });
+
+   
+
+        $productCartTotalViewCart.text(formatMoney(totalPriceViewCart, currentCurrency, "%v %s"));
+        
+        if (itemCountViewCart > 0) {
+            $(".productCartHeaderItemCount-view-cart").text(itemCountViewCart);
+            $(".productCartHeaderItemCount-view-cart").show();
+        } else
+            $(".productCartHeaderItemCount-view-cart").hide();
+        
+        
 
     };
 
@@ -158,6 +235,19 @@ $(document).ready(function () {
         
         var foundItem = false;
         $('div#shoppingModalCart .modal-body>table>tbody>tr').each(function() {
+        	if(cartItem.productId == $(this).find(".product-id").val()){
+        		var arr = $(this).find(".productPriceCart").html().split(" ");
+        		var cartPrice = cartItem.totalPrice.split(" ");
+        		var addedPrice = Number(accounting.unformat(arr[0])) + Number(accounting.unformat(cartPrice[0]));
+        		
+        		$(this).find(".productPriceCart").html(formatMoney(addedPrice, arr[1], "%v %s"));
+        		$(this).find(".productWeightCart").html(Number($(this).find(".productWeightCart").html()) + Number(cartItem.totalWeight));
+        		$(this).find(".productWeightType").html(cartItem.weightType);
+        		foundItem = true;
+        	}
+        });
+        
+        $('div#shoppingModalCart-view-cart .modal-body>table>tbody>tr').each(function() {
         	if(cartItem.productId == $(this).find(".product-id").val()){
         		var arr = $(this).find(".productPriceCart").html().split(" ");
         		var cartPrice = cartItem.totalPrice.split(" ");
@@ -529,6 +619,12 @@ $(document).ready(function () {
                                         $(".totalDue").html(formatMoney(totalDue, currentCurrency, "%v %s"));
                                       
                                         _.each($("div#shoppingModalCart div.modal-body>table>tbody").children(), function (productCartItem, i) {
+
+                                            var $productCartItem = $(productCartItem).children().eq(2).find(".productPriceCart");
+                                            $productCartItem.html(formatMoney(fx($productCartItem.html()).from("PHP").to(currentCurrency), currentCurrency, "%v %s"));
+                                        });
+                                        
+                                        _.each($("div#shoppingModalCart-view-cart div.modal-body>table>tbody").children(), function (productCartItem, i) {
 
                                             var $productCartItem = $(productCartItem).children().eq(2).find(".productPriceCart");
                                             $productCartItem.html(formatMoney(fx($productCartItem.html()).from("PHP").to(currentCurrency), currentCurrency, "%v %s"));

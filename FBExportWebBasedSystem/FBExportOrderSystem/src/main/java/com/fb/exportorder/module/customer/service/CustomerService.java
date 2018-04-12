@@ -27,4 +27,5 @@ public interface CustomerService {
 	List<Notification> getNotificationsByCustomerId(long customerId);
 	void deleteNotificationByNotificationId(long customerId, long notificationId);
 	void deleteAllNotification(long customerId, String jsonDeleteDataIds);
+	String updateCart(String info, long id);
 }

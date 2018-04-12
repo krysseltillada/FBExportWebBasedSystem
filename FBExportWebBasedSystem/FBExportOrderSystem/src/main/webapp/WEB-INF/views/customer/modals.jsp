@@ -258,7 +258,9 @@
 	            </div>
 	            <!--Footer-->
 	            <div class="modal-footer">
+	            	
 	                <button type="button" class="btn btn-outline-primary" data-dismiss="modal">Close</button>
+	                <a href="<c:url value='/view-cart'/>" class="btn btn-outline-primary">Edit Cart</a>
 	                <button class="btn btn-primary btn-place-order">Place Order</button>
 	            </div>
 	        </div>

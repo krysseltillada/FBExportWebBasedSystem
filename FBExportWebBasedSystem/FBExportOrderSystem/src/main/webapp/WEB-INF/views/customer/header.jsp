@@ -58,7 +58,7 @@
                     
                     <security:authorize access = "hasAuthority('CUSTOMER')">
 	
-						<c:if test = "${requestScope['javax.servlet.forward.request_uri'] ne '/FBExportSystem/place-order'}" >               
+						<c:if test = "${requestScope['javax.servlet.forward.request_uri'] ne '/FBExportSystem/place-order' and requestScope['javax.servlet.forward.request_uri'] ne '/FBExportSystem/view-cart'}" >               
                     	
 		                    <li class="nav-item">
 		                        <a href="#" id="cart" class = "text-white mt-2 m-0" style = "pointer-events: none;">
