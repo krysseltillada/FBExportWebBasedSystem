@@ -23,6 +23,7 @@ import com.fb.exportorder.models.customer.Item;
 import com.fb.exportorder.models.customer.Notification;
 import com.fb.exportorder.models.customer.Order;
 import com.fb.exportorder.models.customer.Weight;
+import com.fb.exportorder.models.enums.WeightType;
 import com.fb.exportorder.module.customer.repository.ActivityRepository;
 import com.fb.exportorder.module.customer.repository.CustomerRepository;
 import com.fb.exportorder.module.customer.repository.ItemRepository;
@@ -365,12 +366,22 @@ public class CustomerServiceImpl implements CustomerService {
 				if(items != null) {
 					for(Item item : items) {
 						if(item.getProduct().getProductId() == productId) {
-							if(weight <= 5) {
-								return "Your order must be above 5.00 Kg";
-							}
+							double tonLimit = Double.parseDouble(String.format("%.2f",5.0 / 1000.0));
+							double poundLimit = Double.parseDouble(String.format("%.2f", 5.0 / 0.453592));
+							
+							WeightType weightType = item.getWeight().getWeightType();
+							
+							if(weight <= 5 && weightType.equals(weightType.KILO))
+								return "Your order must be above 5.00 " + weightType;
+							
+							if(weight <= tonLimit && weightType.equals(weightType.TON))
+								return "Your order must be above 5.00 " + tonLimit +" "+ weightType;
+							
+							if(weight <= poundLimit && weightType.equals(weightType.POUND))
+								return "Your order must be above " + poundLimit +" "+weightType;
 							
 							if(weight > item.getProduct().getWeight()) {
-								return "Your order exceeds "+item.getProduct().getWeight()+"Kg available stocks ";
+								return "Your order exceeds "+item.getProduct().getWeight()+" "+weightType+" available stocks ";
 							}
 							
 							item.getWeight().setWeight(weight);

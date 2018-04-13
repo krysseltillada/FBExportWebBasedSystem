@@ -65,7 +65,7 @@ $(function () {
 
 $(document).ready(function () {
 	
-	$(".productWeightType").on('change',function(){
+	$(".productWeightType").change(function(){
 		var currentWeight = $(this).val();
 		var price = $(this).parent().parent().find(".productPriceCart").html().split(" ")[0];
 		var totalCartPrice = $("div.shopping-cart-total-view-cart").children().eq(1).html().split(" ");

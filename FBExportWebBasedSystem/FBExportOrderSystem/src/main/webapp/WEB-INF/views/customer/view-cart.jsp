@@ -62,7 +62,7 @@
 	                    			<td><img src="<c:url value = '${cartItem.product_image_link}' />" width="50" height="50" class="float-left" /></td>
 	                    			<td><a href = "<c:url value = '/view-product/${cartItem.product_id}' />">${cartItem.name} </a> </td>
 	                    			<td><span class="productPriceCart">${cartItem.price}</span></td>
-	                    			<td><input class = "productWeightType" name="weight_${cartItem.item_id}_${cartItem.product_id}" maxlength="10" style = "width: 50px;" data-toggle="tooltip" data-placement="top" title="Invalid value" value="${cartItem.weight}" type="number">  <span class="">${cartItem.weight_type}</span> </td>
+	                    			<td><input class = "productWeightType" name="weight_${cartItem.item_id}_${cartItem.product_id}" maxlength="10" style = "width: 50px;" data-toggle="tooltip" data-placement="top" title="Invalid value" value="${cartItem.weight}" type="number" min="0">  <span class="">${cartItem.weight_type}</span> </td>
 	                    			<td class="text-center"><a class = "delete-cart-item"><i class="fa fa-remove text"></i></a></td>
 									<input type = "hidden" id = "item-id" name="itemId_${cartItem.item_id}" value = "${cartItem.item_id}" />
 									<input type = "hidden" class = "product-id" name="productId_${cartItem.product_id}" value = "${cartItem.product_id}" />
