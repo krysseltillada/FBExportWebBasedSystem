@@ -8,8 +8,54 @@ $(document).ready(function () {
 	});
 	
 	$("#signup-form").submit(function(e){
-		$(".sign-up-loader").css("display", "block");
-		$("#submit-signup").hide();
+
+        if ($(".sign-up-loader").css("display") != "block") {
+            
+            var form = $("#signup-form")[0];
+            var data = new FormData(form);
+            
+            e.preventDefault();
+            
+            $.ajax({
+                type : "POST",
+                enctype : "multipart/form-data",
+                url : "/FBExportSystem/register/validate",
+                data : data,
+                processData : false,
+                contentType : false,
+                cache : false,
+                success : function (data) {
+
+                    
+                    $("#errorMessageDiv").find("span").remove();
+                    $("#errorMessageDiv").find("br").remove();
+
+                    if (data.length <= 0) {
+
+                        if (!$("#errorMessageDiv").hasClass("d-none"))
+                            $("#errorMessageDiv").addClass("d-none");
+
+                        $(".sign-up-loader").css("display", "block");
+                        $("#submit-signup").hide();
+                        $("#signup-form").submit();
+
+                    } else {
+
+                        grecaptcha.reset();
+                        $("#errorMessageDiv").removeClass("d-none");
+
+                        for (var i = data.length - 1; 0 <= i; --i) {
+                            $("#errorMessageDiv").find("hr").after('<span class = "red-text"> *' + data[i] + ' </span> <br />');
+                        }
+
+                        $('html, body').animate({
+                            scrollTop: $("body").offset().top
+                        }, 700);
+                    }
+                }
+            });
+        
+        } 
 	});
 
      var updateSignUpFormPositioning = function () {

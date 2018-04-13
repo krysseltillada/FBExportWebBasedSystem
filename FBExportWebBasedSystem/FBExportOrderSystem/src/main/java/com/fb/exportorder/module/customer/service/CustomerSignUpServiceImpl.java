@@ -51,7 +51,7 @@ public class CustomerSignUpServiceImpl implements CustomerSignUpService {
 	@Autowired
 	private GoogleRecaptchaService googleRecaptchaService;
 	
-	private List<String> validate (Customer customer, String recaptcha, String ip, MultipartFile profileImage) {
+	public List<String> validate (Customer customer, String recaptcha, String ip, MultipartFile profileImage) {
 		
 		Contact customerContact = customer.getContact();
 		Address customerAddress = customer.getAddress();
@@ -144,12 +144,8 @@ public class CustomerSignUpServiceImpl implements CustomerSignUpService {
 	}
 	
 	@Override
-	public List<String> register(Customer customer, String recaptcha, String ip, MultipartFile profileImage) {
+	public void register(Customer customer, MultipartFile profileImage) {
 		
-		List<String> errorMessages = validate (customer, recaptcha, ip, profileImage);
-		
-		
-		if (errorMessages.isEmpty()) {
 			
 			Authorities authorities = new Authorities();
 			ShippingAddress userAccountAddress = new ShippingAddress();
@@ -215,11 +211,7 @@ public class CustomerSignUpServiceImpl implements CustomerSignUpService {
 				
 			customerRepository.save(customer);
 				
-			
-		}
 		
-		
-		return errorMessages;
 		
 	}
 

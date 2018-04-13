@@ -930,17 +930,17 @@ $(document).ready(function () {
         );
     });
 
-    $('.country').change(function () {
+    // $('.country').change(function () {
         
-        var $cityTextBox = $('#city');
+    //     var $cityTextBox = $('#city');
 
-        var country = $(this).val();
+    //     var country = $(this).val();
 
 
-        if ($cityTextBox.is(":disabled"))
-            $cityTextBox.removeAttr("disabled");
+    //     if ($cityTextBox.is(":disabled"))
+    //         $cityTextBox.removeAttr("disabled");
 
-    });
+    // });
 
     $('#addToCartModal').on('hidden.bs.modal', function (e) {
         $(this).find("#quantity").val(1);

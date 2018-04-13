@@ -1,6 +1,8 @@
 package com.fb.exportorder.module.customer.handlers;
 
 import java.io.IOException;
+import java.util.Date;
+import java.util.List;
 import java.util.Objects;
 
 import javax.servlet.ServletException;
@@ -14,9 +16,12 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.stereotype.Component;
 
+import com.fb.exportorder.models.SystemSettings;
 import com.fb.exportorder.models.customer.Customer;
+import com.fb.exportorder.module.admin.repository.SystemSettingsRepository;
 import com.fb.exportorder.module.customer.repository.CustomerRepository;
 import com.fb.exportorder.module.customer.session.CustomerSessionBean;
+import com.fb.exportorder.utilities.Time;
 
 @Component("customerLoginSuccessHandler")
 public class LoginSuccessHandler implements AuthenticationSuccessHandler {
@@ -26,6 +31,9 @@ public class LoginSuccessHandler implements AuthenticationSuccessHandler {
 	
 	@Autowired
 	private CustomerRepository customerRepository;
+	
+	@Autowired
+	private SystemSettingsRepository systemSettingsRepository;
 	
 	@Value("${fbexport.server.domain.name}")
 	private String serverDomainName;
@@ -73,6 +81,10 @@ public class LoginSuccessHandler implements AuthenticationSuccessHandler {
 		session.setAttribute("customerUsername", username);
 		
 		customerSessionBean.setCustomerId(customerId);
+		
+		Date logoutTime = ((List<SystemSettings>)systemSettingsRepository.findAll()).get(0).getLogoutTime();
+		
+		session.setAttribute("logoutTime", Time.convertTimeToMilliseconds(logoutTime.getHours(), logoutTime.getMinutes(), logoutTime.getSeconds()));
 		
 		if(Objects.nonNull(customer)) {
 			customer.setOnline(true);

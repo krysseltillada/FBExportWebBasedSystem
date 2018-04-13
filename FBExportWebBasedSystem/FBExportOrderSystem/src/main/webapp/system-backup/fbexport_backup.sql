@@ -124,7 +124,7 @@ CREATE TABLE `cart_items` (
 
 LOCK TABLES `cart_items` WRITE;
 /*!40000 ALTER TABLE `cart_items` DISABLE KEYS */;
-INSERT INTO `cart_items` VALUES (1,7),(1,9);
+INSERT INTO `cart_items` VALUES (1,3);
 /*!40000 ALTER TABLE `cart_items` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -261,7 +261,7 @@ CREATE TABLE `employee` (
 
 LOCK TABLES `employee` WRITE;
 /*!40000 ALTER TABLE `employee` DISABLE KEYS */;
-INSERT INTO `employee` VALUES (0,'Address','City','Philippines','1700',23,'63','Admin1@gmail.com','09996668084','','Alfred','MALE','Borja','Argarin','\0','$2a$10$F2SU8A5rOgnVmf.XJJ.d0.hVmpQb2DLlmnRrafkrwdc9.USiLicLy','/profile-img/2e33a9b0b06aa0a01ede70995674ee23.jpg','Admin1','ADmin');
+INSERT INTO `employee` VALUES (0,'Address','City','Philippines','1700',23,'63','Admin1@gmail.com','09996668084','','Alfred','MALE','Borja','Argarin','','$2a$10$F2SU8A5rOgnVmf.XJJ.d0.hVmpQb2DLlmnRrafkrwdc9.USiLicLy','/profile-img/2e33a9b0b06aa0a01ede70995674ee23.jpg','Admin1','ADmin');
 /*!40000 ALTER TABLE `employee` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -288,7 +288,7 @@ CREATE TABLE `employee_system_notification_list` (
 
 LOCK TABLES `employee_system_notification_list` WRITE;
 /*!40000 ALTER TABLE `employee_system_notification_list` DISABLE KEYS */;
-INSERT INTO `employee_system_notification_list` VALUES (0,1),(0,2),(0,3);
+INSERT INTO `employee_system_notification_list` VALUES (0,1),(0,2),(0,3),(0,4);
 /*!40000 ALTER TABLE `employee_system_notification_list` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -332,7 +332,7 @@ CREATE TABLE `item` (
   PRIMARY KEY (`item_id`),
   KEY `FK6fok9mmtsmu22sejwqg8cq6u3` (`product_product_id`),
   CONSTRAINT `FK6fok9mmtsmu22sejwqg8cq6u3` FOREIGN KEY (`product_product_id`) REFERENCES `product` (`product_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -341,7 +341,7 @@ CREATE TABLE `item` (
 
 LOCK TABLES `item` WRITE;
 /*!40000 ALTER TABLE `item` DISABLE KEYS */;
-INSERT INTO `item` VALUES (7,1200,6,'KILO',1),(9,600,6,'KILO',2);
+INSERT INTO `item` VALUES (3,1088.621688,12,'POUND',1);
 /*!40000 ALTER TABLE `item` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -748,7 +748,7 @@ CREATE TABLE `system_log` (
   `description` varchar(255) DEFAULT NULL,
   `time_occured` datetime DEFAULT NULL,
   PRIMARY KEY (`system_log_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=155 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -757,7 +757,7 @@ CREATE TABLE `system_log` (
 
 LOCK TABLES `system_log` WRITE;
 /*!40000 ALTER TABLE `system_log` DISABLE KEYS */;
-INSERT INTO `system_log` VALUES (1,'SYSTEM','2018-04-11','System Start','2018-04-11 19:49:17'),(2,'SYSTEM','2018-04-11','System Shutdown','2018-04-11 19:49:47'),(3,'SYSTEM','2018-04-11','System Start','2018-04-11 19:50:17'),(4,'SETTINGS','2018-04-11','Alfred Borja backup the database','2018-04-11 19:53:36'),(5,'SYSTEM','2018-04-11','System Shutdown','2018-04-11 20:20:19'),(6,'SYSTEM','2018-04-11','System Start','2018-04-11 20:21:18'),(7,'SYSTEM','2018-04-11','System Shutdown','2018-04-11 20:21:58'),(8,'SYSTEM','2018-04-11','System Start','2018-04-11 20:22:26'),(9,'SYSTEM','2018-04-11','System Shutdown','2018-04-11 20:34:03'),(10,'SYSTEM','2018-04-11','System Start','2018-04-11 20:35:04'),(11,'SYSTEM','2018-04-11','System Shutdown','2018-04-11 22:07:22'),(12,'SYSTEM','2018-04-11','System Start','2018-04-11 22:08:25'),(13,'SYSTEM','2018-04-11','System Shutdown','2018-04-11 22:20:10'),(14,'SYSTEM','2018-04-11','System Start','2018-04-11 22:20:44'),(15,'SYSTEM','2018-04-11','System Shutdown','2018-04-11 22:26:09'),(16,'SYSTEM','2018-04-11','System Start','2018-04-11 22:26:44'),(17,'SYSTEM','2018-04-11','System Shutdown','2018-04-11 22:42:51'),(18,'SYSTEM','2018-04-11','System Start','2018-04-11 22:43:20'),(19,'SYSTEM','2018-04-11','System Shutdown','2018-04-11 22:49:30'),(20,'SYSTEM','2018-04-11','System Start','2018-04-11 22:49:55'),(21,'SYSTEM','2018-04-11','System Shutdown','2018-04-11 22:56:14'),(22,'SYSTEM','2018-04-11','System Start','2018-04-11 22:56:40'),(23,'SYSTEM','2018-04-11','System Shutdown','2018-04-11 23:22:24'),(24,'SYSTEM','2018-04-11','System Start','2018-04-11 23:23:18'),(25,'SYSTEM','2018-04-11','System Shutdown','2018-04-11 23:25:00'),(26,'SYSTEM','2018-04-11','System Start','2018-04-11 23:25:36');
+INSERT INTO `system_log` VALUES (1,'SYSTEM','2018-04-11','System Start','2018-04-11 19:49:17'),(2,'SYSTEM','2018-04-11','System Shutdown','2018-04-11 19:49:47'),(3,'SYSTEM','2018-04-11','System Start','2018-04-11 19:50:17'),(4,'SETTINGS','2018-04-11','Alfred Borja backup the database','2018-04-11 19:53:36'),(5,'SYSTEM','2018-04-11','System Shutdown','2018-04-11 20:20:19'),(6,'SYSTEM','2018-04-11','System Start','2018-04-11 20:21:18'),(7,'SYSTEM','2018-04-11','System Shutdown','2018-04-11 20:21:58'),(8,'SYSTEM','2018-04-11','System Start','2018-04-11 20:22:26'),(9,'SYSTEM','2018-04-11','System Shutdown','2018-04-11 20:34:03'),(10,'SYSTEM','2018-04-11','System Start','2018-04-11 20:35:04'),(11,'SYSTEM','2018-04-11','System Shutdown','2018-04-11 22:07:22'),(12,'SYSTEM','2018-04-11','System Start','2018-04-11 22:08:25'),(13,'SYSTEM','2018-04-11','System Shutdown','2018-04-11 22:20:10'),(14,'SYSTEM','2018-04-11','System Start','2018-04-11 22:20:44'),(15,'SYSTEM','2018-04-11','System Shutdown','2018-04-11 22:26:09'),(16,'SYSTEM','2018-04-11','System Start','2018-04-11 22:26:44'),(17,'SYSTEM','2018-04-11','System Shutdown','2018-04-11 22:42:51'),(18,'SYSTEM','2018-04-11','System Start','2018-04-11 22:43:20'),(19,'SYSTEM','2018-04-11','System Shutdown','2018-04-11 22:49:30'),(20,'SYSTEM','2018-04-11','System Start','2018-04-11 22:49:55'),(21,'SYSTEM','2018-04-11','System Shutdown','2018-04-11 22:56:14'),(22,'SYSTEM','2018-04-11','System Start','2018-04-11 22:56:40'),(23,'SYSTEM','2018-04-11','System Shutdown','2018-04-11 23:22:24'),(24,'SYSTEM','2018-04-11','System Start','2018-04-11 23:23:18'),(25,'SYSTEM','2018-04-11','System Shutdown','2018-04-11 23:25:00'),(26,'SYSTEM','2018-04-11','System Start','2018-04-11 23:25:36'),(27,'SYSTEM','2018-04-12','Automatic backup database','2018-04-12 00:01:06'),(28,'SYSTEM','2018-04-12','System Shutdown','2018-04-12 00:37:34'),(29,'SYSTEM','2018-04-12','System Start','2018-04-12 06:10:47'),(30,'SYSTEM','2018-04-12','System Shutdown','2018-04-12 06:33:29'),(31,'SYSTEM','2018-04-12','System Start','2018-04-12 06:34:56'),(32,'SYSTEM','2018-04-12','System Shutdown','2018-04-12 06:38:38'),(33,'SYSTEM','2018-04-12','System Start','2018-04-12 06:39:35'),(34,'SYSTEM','2018-04-12','System Shutdown','2018-04-12 06:42:58'),(35,'SYSTEM','2018-04-12','System Start','2018-04-12 06:43:47'),(36,'SYSTEM','2018-04-12','System Shutdown','2018-04-12 06:45:11'),(37,'SYSTEM','2018-04-12','System Start','2018-04-12 06:45:51'),(38,'SYSTEM','2018-04-12','System Shutdown','2018-04-12 06:50:17'),(39,'SYSTEM','2018-04-12','System Start','2018-04-12 06:51:30'),(40,'SYSTEM','2018-04-12','System Shutdown','2018-04-12 06:58:01'),(41,'SYSTEM','2018-04-12','System Start','2018-04-12 06:58:33'),(42,'SYSTEM','2018-04-12','System Shutdown','2018-04-12 07:02:16'),(43,'SYSTEM','2018-04-12','System Start','2018-04-12 07:02:49'),(44,'SYSTEM','2018-04-12','System Shutdown','2018-04-12 07:06:28'),(45,'SYSTEM','2018-04-12','System Start','2018-04-12 07:06:58'),(46,'SYSTEM','2018-04-12','System Shutdown','2018-04-12 07:08:11'),(47,'SYSTEM','2018-04-12','System Start','2018-04-12 07:08:34'),(48,'SYSTEM','2018-04-12','System Shutdown','2018-04-12 07:10:21'),(49,'SYSTEM','2018-04-12','System Start','2018-04-12 07:10:43'),(50,'SYSTEM','2018-04-12','System Shutdown','2018-04-12 07:15:59'),(51,'SYSTEM','2018-04-12','System Start','2018-04-12 07:16:20'),(52,'SYSTEM','2018-04-12','System Shutdown','2018-04-12 07:19:50'),(53,'SYSTEM','2018-04-12','System Start','2018-04-12 07:20:10'),(54,'SYSTEM','2018-04-12','System Shutdown','2018-04-12 07:21:57'),(55,'SYSTEM','2018-04-12','System Start','2018-04-12 07:22:55'),(56,'SYSTEM','2018-04-12','System Shutdown','2018-04-12 07:27:23'),(57,'SYSTEM','2018-04-12','System Start','2018-04-12 07:27:48'),(58,'SYSTEM','2018-04-12','System Shutdown','2018-04-12 07:29:50'),(59,'SYSTEM','2018-04-12','System Start','2018-04-12 07:30:15'),(60,'SYSTEM','2018-04-12','System Shutdown','2018-04-12 07:31:35'),(61,'SYSTEM','2018-04-12','System Start','2018-04-12 07:32:00'),(62,'SYSTEM','2018-04-12','System Shutdown','2018-04-12 07:32:58'),(63,'SYSTEM','2018-04-12','System Start','2018-04-12 07:33:21'),(64,'SYSTEM','2018-04-12','System Shutdown','2018-04-12 07:39:11'),(65,'SYSTEM','2018-04-12','System Start','2018-04-12 07:39:39'),(66,'SYSTEM','2018-04-12','System Shutdown','2018-04-12 07:42:25'),(67,'SYSTEM','2018-04-12','System Start','2018-04-12 07:42:53'),(68,'SYSTEM','2018-04-12','System Shutdown','2018-04-12 07:44:51'),(69,'SYSTEM','2018-04-12','System Start','2018-04-12 07:45:14'),(70,'SYSTEM','2018-04-12','System Shutdown','2018-04-12 07:48:20'),(71,'SYSTEM','2018-04-12','System Start','2018-04-12 07:48:51'),(72,'SYSTEM','2018-04-12','System Shutdown','2018-04-12 07:52:08'),(73,'SYSTEM','2018-04-12','System Start','2018-04-12 07:53:10'),(74,'SYSTEM','2018-04-12','System Shutdown','2018-04-12 07:56:57'),(75,'SYSTEM','2018-04-12','System Start','2018-04-12 07:57:50'),(76,'SYSTEM','2018-04-12','System Shutdown','2018-04-12 08:00:53'),(77,'SYSTEM','2018-04-12','System Start','2018-04-12 08:01:34'),(78,'SYSTEM','2018-04-12','System Shutdown','2018-04-12 08:06:19'),(79,'SYSTEM','2018-04-12','System Start','2018-04-12 08:06:49'),(80,'SYSTEM','2018-04-12','System Shutdown','2018-04-12 08:08:36'),(81,'SYSTEM','2018-04-12','System Start','2018-04-12 08:09:09'),(82,'SYSTEM','2018-04-12','System Shutdown','2018-04-12 08:11:32'),(83,'SYSTEM','2018-04-12','System Start','2018-04-12 08:12:14'),(84,'SYSTEM','2018-04-12','System Shutdown','2018-04-12 08:12:44'),(85,'SYSTEM','2018-04-12','System Start','2018-04-12 08:13:15'),(86,'SYSTEM','2018-04-12','System Shutdown','2018-04-12 08:17:21'),(87,'SYSTEM','2018-04-12','System Start','2018-04-12 08:17:47'),(88,'SYSTEM','2018-04-12','System Shutdown','2018-04-12 08:22:56'),(89,'SYSTEM','2018-04-12','System Start','2018-04-12 08:23:19'),(90,'SYSTEM','2018-04-12','System Shutdown','2018-04-12 08:32:06'),(91,'SYSTEM','2018-04-12','System Start','2018-04-12 08:32:38'),(92,'SYSTEM','2018-04-12','System Shutdown','2018-04-12 08:38:14'),(93,'SYSTEM','2018-04-12','System Start','2018-04-12 08:38:41'),(94,'SYSTEM','2018-04-12','System Shutdown','2018-04-12 08:45:35'),(95,'SYSTEM','2018-04-12','System Start','2018-04-12 08:45:56'),(96,'SYSTEM','2018-04-12','System Shutdown','2018-04-12 08:47:44'),(97,'SYSTEM','2018-04-12','System Start','2018-04-12 08:48:04'),(98,'SYSTEM','2018-04-12','System Shutdown','2018-04-12 08:48:53'),(99,'SYSTEM','2018-04-12','System Start','2018-04-12 08:49:54'),(100,'SYSTEM','2018-04-12','System Shutdown','2018-04-12 08:51:49'),(101,'SYSTEM','2018-04-12','System Start','2018-04-12 08:52:08'),(102,'SYSTEM','2018-04-12','System Shutdown','2018-04-12 08:58:43'),(103,'SYSTEM','2018-04-12','System Start','2018-04-12 08:59:01'),(104,'SYSTEM','2018-04-12','System Shutdown','2018-04-12 09:01:13'),(105,'SYSTEM','2018-04-12','System Start','2018-04-12 09:01:32'),(106,'SYSTEM','2018-04-12','System Shutdown','2018-04-12 09:02:32'),(107,'SYSTEM','2018-04-12','System Start','2018-04-12 09:02:52'),(108,'SYSTEM','2018-04-12','System Shutdown','2018-04-12 09:04:21'),(109,'SYSTEM','2018-04-12','System Start','2018-04-12 09:04:39'),(110,'SYSTEM','2018-04-12','System Start','2018-04-12 09:11:07'),(111,'SYSTEM','2018-04-12','System Shutdown','2018-04-12 09:13:42'),(112,'SYSTEM','2018-04-12','System Start','2018-04-12 09:14:18'),(113,'SYSTEM','2018-04-12','System Shutdown','2018-04-12 09:15:05'),(114,'SYSTEM','2018-04-12','System Start','2018-04-12 09:15:31'),(115,'SYSTEM','2018-04-12','System Shutdown','2018-04-12 09:17:45'),(116,'SYSTEM','2018-04-12','System Start','2018-04-12 09:18:13'),(117,'SYSTEM','2018-04-12','System Shutdown','2018-04-12 09:28:01'),(118,'SYSTEM','2018-04-12','System Start','2018-04-12 09:28:26'),(119,'SYSTEM','2018-04-12','System Shutdown','2018-04-12 09:31:21'),(120,'SYSTEM','2018-04-12','System Start','2018-04-12 09:31:42'),(121,'SYSTEM','2018-04-12','System Shutdown','2018-04-12 09:33:31'),(122,'SYSTEM','2018-04-12','System Start','2018-04-12 09:33:48'),(123,'SYSTEM','2018-04-12','System Shutdown','2018-04-12 10:02:56'),(124,'SYSTEM','2018-04-12','System Start','2018-04-12 13:31:51'),(125,'SYSTEM','2018-04-12','System Shutdown','2018-04-12 13:35:54'),(126,'SYSTEM','2018-04-13','System Start','2018-04-13 09:05:20'),(127,'SYSTEM','2018-04-13','System Shutdown','2018-04-13 09:14:33'),(128,'SYSTEM','2018-04-13','System Start','2018-04-13 09:15:08'),(129,'SYSTEM','2018-04-13','System Shutdown','2018-04-13 09:16:34'),(130,'SYSTEM','2018-04-13','System Start','2018-04-13 09:17:03'),(131,'SYSTEM','2018-04-13','System Shutdown','2018-04-13 09:40:58'),(132,'SYSTEM','2018-04-13','System Start','2018-04-13 09:41:24'),(133,'SYSTEM','2018-04-13','System Shutdown','2018-04-13 09:44:32'),(134,'SYSTEM','2018-04-13','System Start','2018-04-13 09:44:51'),(135,'SYSTEM','2018-04-13','System Shutdown','2018-04-13 09:49:21'),(136,'SYSTEM','2018-04-13','System Start','2018-04-13 09:49:40'),(137,'SYSTEM','2018-04-13','System Shutdown','2018-04-13 09:51:23'),(138,'SYSTEM','2018-04-13','System Start','2018-04-13 09:51:41'),(139,'SYSTEM','2018-04-13','System Shutdown','2018-04-13 09:54:20'),(140,'SYSTEM','2018-04-13','System Start','2018-04-13 09:54:45'),(141,'SYSTEM','2018-04-13','System Shutdown','2018-04-13 09:56:25'),(142,'SYSTEM','2018-04-13','System Start','2018-04-13 09:57:02'),(143,'SYSTEM','2018-04-13','System Shutdown','2018-04-13 10:05:21'),(144,'SYSTEM','2018-04-13','System Start','2018-04-13 10:05:42'),(145,'SYSTEM','2018-04-13','System Shutdown','2018-04-13 10:08:07'),(146,'SYSTEM','2018-04-13','System Start','2018-04-13 10:09:01'),(147,'SYSTEM','2018-04-13','System Shutdown','2018-04-13 10:13:55'),(148,'SYSTEM','2018-04-13','System Start','2018-04-13 10:14:18'),(149,'SYSTEM','2018-04-13','System Shutdown','2018-04-13 10:16:00'),(150,'SYSTEM','2018-04-13','System Start','2018-04-13 10:16:21'),(151,'SYSTEM','2018-04-13','System Shutdown','2018-04-13 10:18:31'),(152,'SYSTEM','2018-04-13','System Start','2018-04-13 10:26:57'),(153,'SYSTEM','2018-04-13','System Shutdown','2018-04-13 10:31:40'),(154,'SYSTEM','2018-04-13','System Start','2018-04-13 13:44:03');
 /*!40000 ALTER TABLE `system_log` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -776,7 +776,7 @@ CREATE TABLE `system_notification` (
   `is_seen` bit(1) NOT NULL,
   `system_notification_status` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`notification_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -785,7 +785,7 @@ CREATE TABLE `system_notification` (
 
 LOCK TABLES `system_notification` WRITE;
 /*!40000 ALTER TABLE `system_notification` DISABLE KEYS */;
-INSERT INTO `system_notification` VALUES (1,'2018-04-11 19:53:36','System backup success','System Backup','','SYSTEM_BACKUP'),(2,'2018-04-11 19:55:50','New product has added Product One','New Product','','INVENTORY_ADD_PRODUCT'),(3,'2018-04-11 19:56:50','New product has added Product Two','New Product','','INVENTORY_ADD_PRODUCT');
+INSERT INTO `system_notification` VALUES (1,'2018-04-11 19:53:36','System backup success','System Backup','','SYSTEM_BACKUP'),(2,'2018-04-11 19:55:50','New product has added Product One','New Product','','INVENTORY_ADD_PRODUCT'),(3,'2018-04-11 19:56:50','New product has added Product Two','New Product','','INVENTORY_ADD_PRODUCT'),(4,'2018-04-12 00:01:07','System backup success','System Backup','','SYSTEM_BACKUP');
 /*!40000 ALTER TABLE `system_notification` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -831,7 +831,7 @@ CREATE TABLE `user_access_log` (
   PRIMARY KEY (`user_access_log_id`),
   KEY `FK4jo8eq6diu8mwg6a3fekhm47y` (`employee_id`),
   CONSTRAINT `FK4jo8eq6diu8mwg6a3fekhm47y` FOREIGN KEY (`employee_id`) REFERENCES `employee` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -840,7 +840,7 @@ CREATE TABLE `user_access_log` (
 
 LOCK TABLES `user_access_log` WRITE;
 /*!40000 ALTER TABLE `user_access_log` DISABLE KEYS */;
-INSERT INTO `user_access_log` VALUES (1,'2018-04-11','Alfred Borja has logged in','0:0:0:0:0:0:0:1','19:53:03',0),(2,'2018-04-11','Alfred Borja has logged out','0:0:0:0:0:0:0:1','19:57:53',0);
+INSERT INTO `user_access_log` VALUES (1,'2018-04-11','Alfred Borja has logged in','0:0:0:0:0:0:0:1','19:53:03',0),(2,'2018-04-11','Alfred Borja has logged out','0:0:0:0:0:0:0:1','19:57:53',0),(3,'2018-04-13','Alfred Borja has logged in','0:0:0:0:0:0:0:1','13:44:46',0);
 /*!40000 ALTER TABLE `user_access_log` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -853,4 +853,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-04-12  0:01:06
+-- Dump completed on 2018-04-13 13:46:05

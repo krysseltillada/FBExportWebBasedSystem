@@ -11,17 +11,15 @@
 
 
         </div>
-        
-        <c:if test="${not empty errorMessages}">
+
+        <div id = "errorMessageDiv" class = "d-none">
         	
         	<hr />
         	
-        	<c:forEach var = "errorMessage" items = "${errorMessages}">
-        		<span class = "red-text"> *<c:out value="${errorMessage}" /> </span> <br />
-        	</c:forEach>
+        	
+            
+        </div>
         
-        </c:if>
-
         <hr />
         
         
