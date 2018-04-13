@@ -3,7 +3,8 @@
 <div class = "container" style="margin-top: 40px;">
 	<div class = "col">
             <header style = "margin-bottom: 10px;">
-                <h1> Shopping Cart </h1>
+                <h1> <img class = "mr-1" src="<c:url value = '/resources/company-logo.png' />" width="50" height="50">
+                 Shopping Cart </h1>
                 <hr />
             </header>
         </div>
