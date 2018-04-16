@@ -4,19 +4,14 @@ import java.io.File;
 import java.nio.file.FileSystems;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
-import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.io.FilenameUtils;
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.fb.exportorder.models.SystemSettings;
-import com.fb.exportorder.models.enums.Gender;
 import com.fb.exportorder.module.admin.repository.SystemSettingsRepository;
 
 @Service
@@ -45,8 +40,6 @@ public class SystemSettingsServiceImpl implements SystemSettingsService {
 
 	@Override
 	public String uploadFile(MultipartFile file) {
-		
-		
 			
 		try {
 			byte[] bytes = file.getBytes();
@@ -74,7 +67,6 @@ public class SystemSettingsServiceImpl implements SystemSettingsService {
 	public void addInitialSystemSettings(SystemSettings systemSettings) {
 		systemSettingsRepository.save(systemSettings);
 	}
-	
 	
 	
 }

@@ -4,7 +4,6 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
-import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -18,9 +17,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 import org.hibernate.annotations.Cascade;
-import org.javamoney.moneta.Money;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fb.exportorder.constants.Finance;
 import com.fb.exportorder.models.Shipping;
 import com.fb.exportorder.models.ShippingAddress;
@@ -204,8 +201,6 @@ public class Order	 {
 	public void setDateReceived(Date dateReceived) {
 		this.dateReceived = dateReceived;
 	}
-	
-	
 	
 	public boolean isPaid() {
 		return isPaid;

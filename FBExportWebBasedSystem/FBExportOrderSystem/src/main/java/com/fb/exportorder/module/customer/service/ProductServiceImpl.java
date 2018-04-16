@@ -1,9 +1,7 @@
 package com.fb.exportorder.module.customer.service;
 
 import java.math.BigInteger;
-import java.sql.Time;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
@@ -24,7 +22,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.fb.exportorder.models.Product;
-import com.fb.exportorder.models.ProductStock;
 import com.fb.exportorder.models.customer.Customer;
 import com.fb.exportorder.models.customer.Order;
 import com.fb.exportorder.models.customer.Rating;

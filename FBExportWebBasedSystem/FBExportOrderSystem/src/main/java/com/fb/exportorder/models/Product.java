@@ -219,7 +219,5 @@ public class Product {
 				+ description + ", productImageLink=" + productImageLink + ", isPosted=" + isPosted
 				+ ", previewImageLinks=" + previewImageLinks + "]";
 	}
-	
-	
 
 }

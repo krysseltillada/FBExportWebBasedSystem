@@ -10,13 +10,9 @@ import org.springframework.stereotype.Service;
 
 import com.fb.exportorder.models.customer.Activity;
 import com.fb.exportorder.module.admin.repository.ManageActivityRepository;
-import com.fb.exportorder.module.admin.repository.ManageCustomerRepository;
 
 @Service
 public class ManageActivityServiceImpl implements ManageActivityService {
-	
-	@Autowired
-	private ManageCustomerRepository customerRepository;
 	
 	@Autowired
 	private ManageActivityRepository activityRepository;

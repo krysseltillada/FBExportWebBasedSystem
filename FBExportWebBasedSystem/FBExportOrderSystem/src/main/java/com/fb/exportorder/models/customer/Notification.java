@@ -74,7 +74,4 @@ public class Notification {
 		this.date = date;
 	}
 	
-	
-	
-	
 }

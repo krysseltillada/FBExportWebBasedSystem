@@ -81,7 +81,5 @@ public class ShippingAddress {
 	public void setDefaultShippingAddress(boolean defaultShippingAddress) {
 		this.defaultShippingAddress = defaultShippingAddress;
 	}
-
-	
 	
 }

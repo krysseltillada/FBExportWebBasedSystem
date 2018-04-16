@@ -88,8 +88,4 @@ public class Customer extends Account {
 		this.notifications = notifications;
 	}
 	
-	
-	
-
-	
 }

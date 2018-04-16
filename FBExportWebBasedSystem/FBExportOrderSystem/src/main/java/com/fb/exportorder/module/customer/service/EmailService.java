@@ -1,10 +1,8 @@
 package com.fb.exportorder.module.customer.service;
 
-import java.io.BufferedReader;
 import java.io.IOException;
 import java.nio.file.FileSystems;
 import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.List;
@@ -18,13 +16,11 @@ import org.apache.commons.lang3.text.StrSubstitutor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
-import com.fb.exportorder.constants.Finance;
-import com.fb.exportorder.models.customer.Cart;
 import com.fb.exportorder.models.customer.Customer;
-import com.fb.exportorder.models.customer.Item;
 import com.fb.exportorder.models.customer.Order;
 import com.fb.exportorder.module.customer.repository.CustomerRepository;
 import com.fb.exportorder.utilities.MD5Encoder;
@@ -68,6 +64,7 @@ public class EmailService {
 		return sendEmail(name,to, subject, String.format("<html><body>%s <br><br> Sincerely, <br><b>%s</b></body></html>", text, name), "Message sent");
 	}
 	
+	@Async
 	public String verifyEmail(String name, String to, String subject, String link) {
 		StringBuilder builder = new StringBuilder();
 		builder.append("<html><body>");
@@ -81,6 +78,7 @@ public class EmailService {
 		return sendEmail(name,to, subject, builder.toString(), "Message sent");
 	}
 	
+	@Async
 	public void sendPaymentReceiptEmail(String emailTo, 
 										Order order, 
 										List<String> itemDescription, 
@@ -128,6 +126,7 @@ public class EmailService {
 						put("totalDue", totalDue);
 					  }});
 	}
+	
 	
 	private void sendHTMLEmail(String to, String subject, String templateFilePath, Map<String, String> templateArgs) {
 		

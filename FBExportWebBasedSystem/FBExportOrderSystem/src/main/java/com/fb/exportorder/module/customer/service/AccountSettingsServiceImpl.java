@@ -7,7 +7,6 @@ import java.nio.file.Path;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -24,17 +23,14 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.fb.exportorder.models.Address;
 import com.fb.exportorder.models.Contact;
 import com.fb.exportorder.models.ShippingAddress;
-import com.fb.exportorder.models.customer.Activity;
 import com.fb.exportorder.models.customer.Customer;
 import com.fb.exportorder.models.enums.Gender;
 import com.fb.exportorder.module.customer.repository.CustomerRepository;
 import com.fb.exportorder.utilities.PasswordValidator;
-import com.fb.exportorder.utilities.UploadImage;
 
 import edu.vt.middleware.password.RuleResult;
 

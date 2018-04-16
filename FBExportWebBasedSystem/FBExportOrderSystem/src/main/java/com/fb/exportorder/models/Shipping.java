@@ -103,6 +103,4 @@ public class Shipping {
 		this.expectedDate = expectedDate;
 	}
 	
-	
-	
 }

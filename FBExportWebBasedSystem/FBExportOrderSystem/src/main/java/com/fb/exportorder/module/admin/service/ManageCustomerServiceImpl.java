@@ -95,7 +95,6 @@ public class ManageCustomerServiceImpl implements ManageCustomerService {
 	public List<String> editCustomer(Customer customer, String newEmailClientEdit, String newUsernameClientEdit) {
 		List<String> errorMessages = validate(customer);
 		
-		/*Check if exist*/
 		if(!newEmailClientEdit.isEmpty()) {
 			boolean isEmailExists = customerRepository.isEmailExists(newEmailClientEdit);
 			if (isEmailExists)
@@ -115,11 +114,6 @@ public class ManageCustomerServiceImpl implements ManageCustomerService {
 					customer.setUsername(newUsernameClientEdit);
 			}
 		}
-		
-		/*Check if exist*/
-		
-		
-		
 		
 		if(errorMessages.isEmpty()) {
 			customerRepository.save(customer);

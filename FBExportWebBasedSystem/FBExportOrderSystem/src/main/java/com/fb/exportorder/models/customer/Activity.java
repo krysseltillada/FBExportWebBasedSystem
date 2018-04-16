@@ -69,6 +69,4 @@ public class Activity {
 		this.customer = customer;
 	}
 	
-	
-	
 }

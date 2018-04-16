@@ -37,7 +37,5 @@ public class Authorities {
 	public void setAccount(Account account) {
 		this.account = account;
 	}
-	  
-  
 
 }

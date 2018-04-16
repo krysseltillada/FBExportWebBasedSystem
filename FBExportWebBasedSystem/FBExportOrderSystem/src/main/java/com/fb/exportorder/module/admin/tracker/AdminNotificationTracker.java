@@ -16,7 +16,6 @@ import com.fb.exportorder.models.customer.Order;
 import com.fb.exportorder.models.enums.SystemNotificationStatus;
 import com.fb.exportorder.module.admin.service.InventoryService;
 import com.fb.exportorder.module.admin.service.NotificationService;
-import com.fb.exportorder.module.admin.session.EmployeeSessionBean;
 
 @Aspect
 public class AdminNotificationTracker {
@@ -212,8 +211,6 @@ public class AdminNotificationTracker {
 		notificationService.pushNotification(systemNotification);
 
 	}
-	
-	
 	
 	
 }

@@ -137,8 +137,6 @@ public class PlaceOrderController {
 								@ModelAttribute("order") Order order,
 														 Model model) {
 		
-		
-		
 		model.addAttribute(order);
 		model.addAttribute("totalWeight", order.getTotalWeight());
 		model.addAttribute("subTotal", order.getSubTotal());

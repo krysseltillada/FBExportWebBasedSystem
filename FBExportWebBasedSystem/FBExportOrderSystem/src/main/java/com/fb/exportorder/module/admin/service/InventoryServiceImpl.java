@@ -397,8 +397,6 @@ public class InventoryServiceImpl implements InventoryService {
 			inventoryRepository.save(editedProduct);
 		
 	}
-
-	// MAKE PAGINATION ON NEWEST WORK
 	
 	@Override
 	public List<Product> getNewLatestProduct(int records, int offset) {

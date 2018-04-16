@@ -61,7 +61,6 @@ public class HomeController {
 				notificationService.seenNotification(Long.parseLong((String)seenNotificationId.get(i)));
 		
 		} catch (ParseException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return "";

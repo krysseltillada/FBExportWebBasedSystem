@@ -194,7 +194,6 @@ public class ManageEmloyeeServiceImpl implements ManageEmployeeService {
 		if(!passwordEncoder.matches(employee.getPassword(), passwordEncrypted)) 
 			errorMessages.add("Invalid Password");
 		
-		/*Check if exist*/
 		if(!newEmailEmployeeEdit.isEmpty()) {
 			boolean isEmailExists = employeeRepository.isEmailExists(newEmailEmployeeEdit);
 			if (isEmailExists)
@@ -214,9 +213,6 @@ public class ManageEmloyeeServiceImpl implements ManageEmployeeService {
 					employee.setUsername(newUsernameEmployeeEdit);
 			}
 		}
-		
-		/*Check if exist*/
-		
 		
 		if(!newPassword.isEmpty() && !retypePassword.isEmpty()) {
 			RuleResult result = passwordValidator.validate(newPassword);
@@ -266,10 +262,8 @@ public class ManageEmloyeeServiceImpl implements ManageEmployeeService {
 					employeeRepository.save(employee);
 				}
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			
 			
 		}
 		

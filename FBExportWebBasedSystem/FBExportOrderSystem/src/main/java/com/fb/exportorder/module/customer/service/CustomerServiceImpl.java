@@ -22,7 +22,6 @@ import com.fb.exportorder.models.customer.Customer;
 import com.fb.exportorder.models.customer.Item;
 import com.fb.exportorder.models.customer.Notification;
 import com.fb.exportorder.models.customer.Order;
-import com.fb.exportorder.models.customer.Weight;
 import com.fb.exportorder.models.enums.WeightType;
 import com.fb.exportorder.module.customer.repository.ActivityRepository;
 import com.fb.exportorder.module.customer.repository.CustomerRepository;
