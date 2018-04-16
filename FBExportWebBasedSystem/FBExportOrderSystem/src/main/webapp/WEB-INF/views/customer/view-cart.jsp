@@ -79,7 +79,9 @@
 	            </div>
 	            <!--Footer-->
 	            <div class="modal-footer">
+	           	 	<a href = "<c:url value = '/' />" class="btn btn-outline-primary pt-3 pb-3 float-right">Cancel</a>
 	                <input type="submit" class="btn btn-primary btn-update-cart" value="Update Cart" />
+	            	<button class="btn btn-primary btn-place-order">Place Order</button>
 	            </div>
 	            </form>
 	        </div>
