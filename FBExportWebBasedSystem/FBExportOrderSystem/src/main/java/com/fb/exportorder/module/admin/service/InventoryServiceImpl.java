@@ -557,4 +557,6 @@ public class InventoryServiceImpl implements InventoryService {
 		return ((List<Product>) searchFilterProductQuery.list()).size();
 	}
 
+	
+
 }

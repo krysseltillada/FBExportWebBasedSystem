@@ -45,4 +45,7 @@ public interface InventoryRepository
 	@Query("SELECT DISTINCT p.origin FROM Product p")
 	List<String> getProductsOrigin();
 	
+	@Query("SELECT p FROM Product p")
+	List<Product> getAllProducts();
+	
 }

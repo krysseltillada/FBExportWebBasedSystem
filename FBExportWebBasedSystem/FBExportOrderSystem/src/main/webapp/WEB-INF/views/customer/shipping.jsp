@@ -15,7 +15,7 @@
             <c:if test = "${(not empty param.orderId)}">
 	            <div class = "col-9">
 	                <form action = "<c:url value = '/shipping' />" class = "form-inline float-right">
-	                    <input type="text" name = "orderId" class="form-control m-0 p-0" placeholder = "Order id" pattern = "[0-9]" title = "valid order id only">
+	                    <input type="text" name = "orderId" class="form-control m-0 p-0" placeholder = "Order id" pattern = "^[0-9]*$" title = "valid order id only">
 	                    <button type="submit" class="btn btn-primary pt-2 pb-2 pl-4 pr-4">Search</button>
 	                </form>
 	            </div>
@@ -79,10 +79,10 @@
 							<form action = "<c:url value = '/shipping' />">
 						                    
 							    <h5 class="text-center"> Track shipping information by order id </h5>
-							    <input type="text" name = "orderId" placeholder="Order id" class="text-center mt-3"> 
+							    <input type="text" name = "orderId" placeholder="Order id" pattern = "^[0-9]*$" class="text-center mt-3"> 
 				
 							    <div class="row">
-								    <input type="submit" class="mt-3 mx-auto btn-primary pt-2 pb-2 pl-4 pr-4" value="SEARCH" pattern = "[0-9]" title = "valud order id only">
+								    <input type="submit" class="mt-3 mx-auto btn-primary pt-2 pb-2 pl-4 pr-4" value="SEARCH">
 							    </div>
 							    
 						    </form>

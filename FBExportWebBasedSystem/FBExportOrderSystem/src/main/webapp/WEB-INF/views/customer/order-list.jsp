@@ -43,7 +43,7 @@
                     
                 </form>
 				<form action = "<c:url value = '/order-list' />" class = "form-inline small float-right">
-					<input type="text" name="orderId" class="form-control m-0 p-0 ml-5" placeholder = "Order id">
+					<input type="text" name="orderId" class="form-control m-0 p-0 ml-5" placeholder = "Order id" pattern="^[0-9]*$">
                     <button type="submit" class="btn btn-primary pt-2 pb-2 pl-4 pr-4">Search</button>
 				</form>   
 				

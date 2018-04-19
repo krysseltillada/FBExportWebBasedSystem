@@ -20,7 +20,7 @@ public class ShippingController {
 										 Model model) {
 		
 		if (!StringUtils.isBlank(orderId)) {
-			model.addAttribute(orderService.getOrderById(Long.parseLong(orderId)));
+			model.addAttribute("order", orderService.getOrderById(Long.parseLong(orderId)));
 		}
 		
 		return "shipping";

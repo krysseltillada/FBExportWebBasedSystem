@@ -43,10 +43,9 @@ public class SearchResultsController {
 		model.addAttribute("numberOfPages",  numberOfPages);
 		model.addAttribute("productSearchCount", productSearchCount);
 		model.addAttribute("searchResultsItems", SEARCH_RESULTS_ITEMS);
-		model.addAttribute("highestProductPrice", inventoryService.getHighestProductPrice());
+		model.addAttribute("highestProductPrice", (!inventoryService.getAllProducts().isEmpty()) ? inventoryService.getHighestProductPrice() : 0);
 		model.addAttribute("productOrigins", inventoryService.getProductsOrigin());
 		model.addAttribute(productSearchedList);
-		
 		
 		
 		return "search-results";
@@ -81,7 +80,7 @@ public class SearchResultsController {
 		model.addAttribute("numberOfPages",  numberOfPages);
 		model.addAttribute("productSearchCount", productSearchCount);
 		model.addAttribute("searchResultsItems", SEARCH_RESULTS_ITEMS);
-		model.addAttribute("highestProductPrice", inventoryService.getHighestProductPrice());
+		model.addAttribute("highestProductPrice", (!inventoryService.getAllProducts().isEmpty()) ? inventoryService.getHighestProductPrice() : 0);
 		model.addAttribute("productOrigins", inventoryService.getProductsOrigin());
 		model.addAttribute(productSearchedList);
 		
